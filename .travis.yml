@@ -8,6 +8,7 @@
 # * your_repo
 
 language: python
+sudo: required
 
 python:
   - 3.6.3
