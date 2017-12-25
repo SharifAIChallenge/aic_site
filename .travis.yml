@@ -26,7 +26,8 @@ install:
   - pip install -r requirements.txt
   - pip install django==$DJANGO --quiet
   - pip install psycopg2 --quiet
-  - apt get install timeout
+  - sudo apt-get -qq update
+  - sudo apt-get install -y timeout
 
 before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
