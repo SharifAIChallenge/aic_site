@@ -42,8 +42,7 @@ jobs:
       script:
         - python manage.py migrate
         - python manage.py test
-
-    - statge: test-remote
+    - stage: test-remote
       script:
         COMMANDS='
           ps -ef | grep apache;
