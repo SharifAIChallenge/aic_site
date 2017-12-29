@@ -44,9 +44,9 @@ jobs:
         - python manage.py test
     - stage: test-remote
       script:
-        COMMANDS='
-          ps -ef | grep apache;
-          uname -r;
-          pwd;
-          echo "testing";'
-        sshpass -e ssh $SSHUNAM@$SSHSERV $COMMANDS
+        - COMMANDS='
+            ps -ef | grep apache;
+            uname -r;
+            pwd;
+            echo "testing";'
+        - sshpass -e ssh $SSHUNAM@$SSHSERV $COMMANDS
