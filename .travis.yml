@@ -20,4 +20,4 @@ after_success:
   - tar -czf test_deploy_package.tgz build
   - export SSHPASS=$DEPLOY_PASS
   - ls
-  - sshpass -e scp -o LogLevel=VERBOSE test_deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - sshpass -e scp -o stricthostkeychecking=no test_deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
