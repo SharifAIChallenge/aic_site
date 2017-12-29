@@ -39,7 +39,7 @@ jobs:
     script:
     - COMMANDS=' ps -ef | grep apache; uname -r; pwd; echo "testing";'
     - ssh $SSHUNAM@$SSHSERV <<EOF
-	ps -ef | grep apache;
+    	ps -ef | grep apache;
 	uname -r;
 	pwd;
 	echo "testing";
