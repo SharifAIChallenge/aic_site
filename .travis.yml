@@ -19,5 +19,6 @@ after_success:
   - echo "testing" >> build/test.txt
   - tar -czf test_deploy_package.tgz build
   - export SSHPASS=$DEPLOY_PASS
+  - echo $DEPLOY_PASS, $DEPLOY_PATH, $DEPLOY_USER, $DEPLOY_HOST
   - ls
   - sshpass -e scp -o LogLevel=VERBOSE test_deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
