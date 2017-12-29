@@ -1,58 +1,38 @@
-#   A basic travis.yml boilerplate for Django projects
-#
-#   The set-up assumes a postgreSQL database.
-#
-#   Replace the following variables in the code:
-# * your_project_settings
-# * your_github_username
-# * your_repo
-
 language: python
 sudo: required
-
 python:
-  - 3.6.3
-
+- 3.6.3
 services: postgresql
-
 env:
-  - DJANGO=1.11
-
+- DJANGO=1.11
 before_install:
-  - export DJANGO_SETTINGS_MODULE=aic_site.settings
-  - export PYTHONPATH=$HOME/builds/SharifAIChallenge/aic_site
-  - export PIP_USE_MIRRORS=true
-
+- openssl aes-256-cbc -K $encrypted_87bd40f69a90_key -iv $encrypted_87bd40f69a90_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
+- export DJANGO_SETTINGS_MODULE=aic_site.settings
+- export PYTHONPATH=$HOME/builds/SharifAIChallenge/aic_site
+- export PIP_USE_MIRRORS=true
 install:
-  - pip install -r requirements.txt
-  - pip install django==$DJANGO --quiet
-  - pip install psycopg2 --quiet
-  - sudo apt update
-  - sudo apt install sshpass
-
+- pip install -r requirements.txt
+- pip install django==$DJANGO --quiet
+- pip install psycopg2 --quiet
+- sudo apt update
+- sudo apt install sshpass
 before_script:
-  - psql -c "CREATE DATABASE mydb;" -U postgres
-
+- psql -c "CREATE DATABASE mydb;" -U postgres
 addons:
   ssh_known_hosts: 81.31.168.207
-
 stages:
-  - test-remote
-
+- test-remote
 jobs:
   include:
-    - stage: migrate
-      script:
-        - python manage.py migrate
-    - stage: test
-      script:
-        - python manage.py migrate
-        - python manage.py test
-    - stage: test-remote
-      script:
-        - COMMANDS='
-            ps -ef | grep apache;
-            uname -r;
-            pwd;
-            echo "testing";'
-        - sshpass -e ssh -o StrictHostKeyChecking=no $SSHUNAM@$SSHSERV $COMMANDS
+  - stage: migrate
+    script:
+    - python manage.py migrate
+  - stage: test
+    script:
+    - python manage.py migrate
+    - python manage.py test
+  - stage: test-remote
+    script:
+    - COMMANDS=' ps -ef | grep apache; uname -r; pwd; echo "testing";'
+    - sshpass -e ssh -o StrictHostKeyChecking=no $SSHUNAM@$SSHSERV $COMMANDS
