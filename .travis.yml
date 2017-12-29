@@ -33,6 +33,8 @@ install:
 before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
 
+addons:
+  ssh_known_hosts: 81.31.168.207
 
 stages:
   - test-remote
