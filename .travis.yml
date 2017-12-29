@@ -10,6 +10,9 @@ addons:
         packages:
             - sshpass
 
+script:
+  - echo "dummy script"
+
 after_success:
   - mkdir build
   - touch build/test.txt
