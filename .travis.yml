@@ -17,7 +17,8 @@ after_success:
   - mkdir build
   - touch build/test.txt
   - echo "testing" >> build/test.txt
-  - tar -czf test_deploy_package.tgz build
+  - tar -czf deploy_package.tgz build
   - export SSHPASS=$DEPLOY_PASS
-  - ls
-  - sshpass -e scp -o stricthostkeychecking=no test_deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - sshpass -e scp -o stricthostkeychecking=no deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - sshpass -e scp -o stricthostkeychecking=no deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
