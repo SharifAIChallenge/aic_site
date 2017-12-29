@@ -34,7 +34,7 @@ before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
 
 script:
-  - python manage.py syncdb --noinput
+  - python manage.py migrate
   - python manage.py test
 #  - timeout 10 python manage.py runserver
   - echo 'SUCCESS! :)'
