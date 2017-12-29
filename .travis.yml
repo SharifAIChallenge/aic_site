@@ -33,6 +33,10 @@ install:
 before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
 
+
+stages:
+  - test-remote
+
 jobs:
   include:
     - stage: migrate
