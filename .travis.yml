@@ -27,7 +27,8 @@ install:
   - pip install -r requirements.txt
   - pip install django==$DJANGO --quiet
   - pip install psycopg2 --quiet
-  - sudo apt-get -qq update
+  - sudo apt update
+  - sudo apt install sshpass
 
 before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
@@ -39,4 +40,14 @@ jobs:
         - python manage.py migrate
     - stage: test
       script:
+        - python manage.py migrate
         - python manage.py test
+
+    - statge: test-remote
+      script:
+        COMMANDS='
+          ps -ef | grep apache;
+          uname -r;
+          pwd;
+          echo "testing";'
+        sshpass -e ssh $SSHUNAM@$SSHSERV $COMMANDS
