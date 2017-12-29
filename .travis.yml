@@ -38,4 +38,4 @@ jobs:
   - stage: test-remote
     script:
     - COMMANDS=' ps -ef | grep apache; uname -r; pwd; echo "testing";'
-    - ssh $SSHUNAM@$SSHSERV $COMMANDS
+    - ssh $SSHUNAM@$SSHSERV
