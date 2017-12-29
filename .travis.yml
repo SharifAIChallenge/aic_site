@@ -35,4 +35,4 @@ jobs:
   - stage: test-remote
     script:
     - COMMANDS=' ps -ef | grep apache; uname -r; pwd; echo "testing";'
-    - sshpass -e ssh -o StrictHostKeyChecking=no $SSHUNAM@$SSHSERV $COMMANDS
+    - ssh -o StrictHostKeyChecking=no $SSHUNAM@$SSHSERV $COMMANDS
