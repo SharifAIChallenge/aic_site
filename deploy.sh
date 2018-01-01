@@ -16,3 +16,6 @@ rm deploy_package.tgz
 rm -rf www_old
 mv www www_old
 mv build www
+
+cd www
+docker-compose up

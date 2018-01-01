@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  aic_site:
+    build: .
+    ports:
+      - 8000:9000
+#  nginx:
+#    image: nginx
+#    ports:
+#      - 8000:80
+#    volumes:
+#      - ./nginx.conf:/etc/enginx/conf.d/server.conf

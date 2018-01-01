@@ -10,13 +10,15 @@ addons:
         packages:
             - sshpass
 
+services:
+  - docker
+
 script:
   - echo "dummy script"
 
 after_success:
   - mkdir build
-  - touch build/test.txt
-  - echo "testing" >> build/test.txt
+  - cp -r . build
   - tar -czf deploy_package.tgz build
   - export SSHPASS=$DEPLOY_PASS
   - sshpass -e scp -o stricthostkeychecking=no deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
