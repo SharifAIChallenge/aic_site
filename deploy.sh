@@ -5,7 +5,7 @@ cd `dirname $0`
 # Extract the package
 
 tar -xzf deploy_package.tgz
-rm deploy_package.tgz
+#rm deploy_package.tgz
 
 # Copy any file we want to keep from build to build
 

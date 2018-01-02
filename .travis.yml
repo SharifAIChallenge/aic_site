@@ -18,7 +18,7 @@ script:
 
 after_success:
   - mkdir build
-  - rsync -r --exclude='.*' --exclude='build' --exclude='.git' ./ build
+  - rsync -r --exclude='.*' --exclude='build' ./ build
   - tar -czf deploy_package.tgz build
   - export SSHPASS=$DEPLOY_PASS
   - sshpass -e scp -o stricthostkeychecking=no deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
