@@ -1,3 +1,5 @@
+{% load static i18n %}
+
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
@@ -6,10 +8,10 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width, height=device-height">
     <title>نبرد هوش مصنوعی شریف</title>
     <!--Bootstrap Version 3.3.7 and make it RTL (Right To Left) -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/rtlStyle.css">
+    <link href="{% static 'intro/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'intro/css/rtlStyle.css' %}">
     <!--Pure CSS <3 Mostafa-->
-    <link href="css/stylesheet.css" rel="stylesheet">
+    <link href="{% static 'intro/css/stylesheet.css' %}" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -101,7 +103,7 @@
         </div>
     </div>
 
-    <script src="js/index.js"></script>
+    <script src="{% static 'intro/js/index.js' %}"></script>
 </div>
 <!-- TimeLine -->
 <div class="timelineDiv">
@@ -214,11 +216,11 @@
     </div>
 </div>
 <!--JQuery JS File-->
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.mobile.min.js"></script>
+<script src="{% static 'intro/js/jquery.min.js' %}"></script>
+<script src="{% static 'intro/js/jquery.mobile.min.js' %}"></script>
 <!--TimeLine-->
-<script src="js/timeline.js"></script>
+<script src="{% static 'intro/js/timeline.js' %}"></script>
 <!--Bootstrap JS File-->
-<script src="js/bootstrap.min.js"></script>
+<script src="{% static 'intro/js/bootstrap.min.js' %}"></script>
 </body>
 </html>
