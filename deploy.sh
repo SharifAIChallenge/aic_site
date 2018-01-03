@@ -18,4 +18,5 @@ mv www www_old
 mv build www
 
 cd www
+docker-compose build
 docker-compose up

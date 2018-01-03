@@ -4,7 +4,7 @@ services:
   aic_site:
     build: .
     ports:
-      - 8000:9000
+      - 2018:9000
 #  nginx:
 #    image: nginx
 #    ports:
