@@ -3,6 +3,8 @@ Django settings for AIC18_Site project.
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import django
@@ -101,7 +103,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES = (
+    ('en', _('English')),
+    ('fa', _('Persian'))
+)
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
