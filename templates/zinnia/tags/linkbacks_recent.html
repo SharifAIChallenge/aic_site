@@ -1,0 +1,21 @@
+{% load i18n %}
+<ul class="{% if not linkbacks %}no-{% endif %}linkbacks-recent">
+  {% for linkback in linkbacks %}
+  <li>
+    {% with entry=linkback.content_object %}
+    {% blocktrans with linkback_url=linkback.url linkback_name=linkback.name linkback_pk=linkback.pk entry_url=entry.get_absolute_url entry_title=entry.title trimmed %}
+    <a href="{{ linkback_url }}">{{ linkback_name }}</a>
+    in
+    <a href="{{ entry_url }}#c{{ linkback_pk }}"
+       title="Linkback on {{ entry_title }}">
+      {{ entry_title }}
+    </a>
+    {% endblocktrans %}
+    {% endwith %}
+  </li>
+  {% empty %}
+  <li>
+    {% trans "No linkbacks yet." %}
+  </li>
+  {% endfor %}
+</ul>
