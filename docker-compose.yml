@@ -9,7 +9,8 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - .:/aic_site
+      - ./static/root:/static/root/static
+      - /var/log/aic_site:/var/log/aic_site
       - ./config/nginx/sites-enabled:/etc/nginx/sites-enabled
       - ./config/nginx/sites-available:/etc/nginx/sites-available
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
@@ -19,7 +20,7 @@ services:
   aic_web:
     build: .
     container_name: aic_web_cont
-    command: bash -c "cd .. && python3 manage.py makemigrations && python3 manage.py migrate && gunicorn aic_site.wsgi -b 0.0.0.0:8000"
+    command: bash -c "cd .. && python3 manage.py makemigrations && python3 manage.py migrate && export DJANGO_SETTINGS_MODULE='aic_site.settings.production' && gunicorn aic_site.wsgi -b 0.0.0.0:8000 -w 4"
     depends_on:
       - aic_db
     expose:
