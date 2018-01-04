@@ -25,7 +25,6 @@ after_success:
 - cd ../../../..
 - tar -czf deploy_package.tgz build
 - export SSHPASS=$DEPLOY_PASS
-- ssh faryabi@ce.sharif.edu
 - sshpass -e scp -o stricthostkeychecking=no deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 - sshpass -e scp -o stricthostkeychecking=no deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
