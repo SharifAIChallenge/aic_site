@@ -13,10 +13,10 @@ tar -xzf deploy_package.tgz
 
 # Swap it all around, keeping the previous version aside in case something goes wrong
 
-rm -rf www_old
-mv www www_old
-mv build www
+rm -rf AIC_test_old
+mv AIC_test AIC_test_old
+mv build AIC_test
 
-cd www
+cd AIC_test
 docker-compose build
 docker-compose up

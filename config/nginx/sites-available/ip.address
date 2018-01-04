@@ -1,0 +1,19 @@
+
+server {
+	listen 80;
+	listen [::]:80;
+
+	root /home/ssc/aic_site/IP/;
+	
+	index index.html;
+	server_name 213.233.160.36;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location /static/ {
+		autoindex on;
+	}
+}
+
