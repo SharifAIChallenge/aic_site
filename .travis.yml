@@ -15,6 +15,9 @@ script:
 after_success:
 - mkdir build
 - rsync -r --exclude='.*' --exclude='build' ./ build
+- cd build/config/nginx/sites-available
+- cp aichallenge.sharif.edu ../sites-enabled
+- cd ../../../..
 - tar -czf deploy_package.tgz build
 - export SSHPASS=$DEPLOY_PASS
 - sshpass -e scp -o stricthostkeychecking=no deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH

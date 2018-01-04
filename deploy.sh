@@ -18,5 +18,12 @@ mv AIC_test AIC_test_old
 mv build AIC_test
 
 cd AIC_test
+
+#####################################
+# BAD PRACTICE
+docker stop $(docker ps -q)
+docker rm $(docker ps -aq)
+#####################################
+
 docker-compose build
-docker-compose up
+docker-compose up -d
