@@ -36,17 +36,18 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">خانه</a></li>
-                <li><a href="#">معرفی مسابقه</a></li>
-                <li><a href="#">برنامه مسابقه</a></li>
-                <li><a href="#">تاریخچه</a></li>
-                <li><a href="#">تصاویر برگزیده</a></li>
-                <li><a href="#">جوایز</a></li>
-                <li><a href="#">حامیان</a></li>
+                <!--<li><a href="#">معرفی مسابقه</a></li>-->
+                <li><a href="#history">تاریخچه</a></li>
+                <li><a href="#schedule">برنامه مسابقه</a></li>
+
+                <!--<li><a href="#">تصاویر برگزیده</a></li>-->
+                <!--<li><a href="#">جوایز</a></li>-->
+                <li><a href="#sponsors">حامیان</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="#">تماس با ما</a></li>
-                <li><a href="#">بلاگ</a></li>
-                <li><a href="#">en</span></a></li>
+                <li><a href="#contact-us">تماس با ما</a></li>
+                <!--<li><a href="#">بلاگ</a></li>-->
+                <!--<li><a href="#">en</span></a></li>-->
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -66,45 +67,46 @@
         </div>
         <div id="navbar1" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">حامیان</a></li>
-                <li><a href="#">جوایز</a></li>
-                <li><a href="#">تصاویر برگزیده</a></li>
-                <li><a href="#">برنامه مسابقه</a></li>
-                <li><a href="#">معرفی مسابقه</a></li>
-                <li><a href="#">تاریخچه</a></li>
+                <li><a href="#sponsors">حامیان</a></li>
+                <!--<li><a href="#">جوایز</a></li>-->
+                <!--<li><a href="#">تصاویر برگزیده</a></li>-->
+                <li><a href="#schedule">برنامه مسابقه</a></li>
+                <!--<li><a href="#">معرفی مسابقه</a></li>-->
+                <li><a href="#history">تاریخچه</a></li>
                 <li><a href="#">خانه</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="#">en</span></a></li>
-                <li><a href="#">بلاگ</a></li>
-                <li><a href="#">تماس با ما</a></li>
+                <!--<li><a href="#">en</span></a></li>-->
+                <!--<li><a href="#">بلاگ</a></li>-->
+                <li><a href="#contact-us">تماس با ما</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 <!-- countdown -->
 <div class="countdown">
-    <div id="clockdiv">
-        <div>
-            <span class="days"></span>
-            <div class="smalltext">روز</div>
-        </div>
-        <div>
-            <span class="hours"></span>
-            <div class="smalltext">ساعت</div>
-        </div>
-        <div>
-            <span class="minutes"></span>
-            <div class="smalltext">دقیقه</div>
-        </div>
-        <div>
-            <span class="seconds"></span>
-            <div class="smalltext">ثانیه</div>
-        </div>
-    </div>
+    <!--<div id="clockdiv">-->
+        <!--<div>-->
+            <!--<span class="days"></span>-->
+            <!--<div class="smalltext">روز</div>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<span class="hours"></span>-->
+            <!--<div class="smalltext">ساعت</div>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<span class="minutes"></span>-->
+            <!--<div class="smalltext">دقیقه</div>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<span class="seconds"></span>-->
+            <!--<div class="smalltext">ثانیه</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <script src="{% static 'intro/js/index.js' %}"></script>
 </div>
+<div id="history"></div>
 <!-- TimeLine -->
 <div class="timelineDiv">
     <section class="cd-horizontal-timeline">
@@ -127,7 +129,7 @@
                 <li><a href="#0" class="next">Next</a></li>
             </ul> <!-- .cd-timeline-navigation -->
         </div> <!-- .timeline -->
-        <div class="events-content">
+        <div  class="events-content">
             <ol class="timelineStoriesText">
                 <li class="selected" data-date="16/01/2014">
                     <h1>دوره هشتم مسابقه</h1>
@@ -152,7 +154,7 @@
     </section>
 </div>
 <!-- Competition Schedule -->
-<div class="schedule">
+<div id="schedule" class="schedule">
     <h1 style="text-align: center">برنامه</h1>
     <table class="table table-responsive">
         <thead>
@@ -163,8 +165,16 @@
         </thead>
         <thead>
         <tr>
-            <td>15 بهمن</td>
-            <td>اعلام بازی و جزئیات آن</td>
+            <td>10 بهمن</td>
+            <td>ثبت نام مرحله غیرحضوری</td>
+        </tr>
+        <tr>
+            <td>14 بهمن</td>
+            <td>انتشار نسخه اولیه بازی</td>
+        </tr>
+        <tr>
+            <td>نمیدونم بهمن</td>
+            <td>انتشار نسخه اولیه بازی</td>
         </tr>
         </thead>
         <thead>
@@ -187,19 +197,9 @@
         <h1>حامیان</h1>
         <!-- Three columns of text below the carousel -->
         <div class="row">
-            <div class="card">
+            <div id="sponsors" class="card">
                 <div class="headerCard"></div>
-                <img class="rounded-circle" src="{% static 'intro/image/tap30.png' %}" alt="tap30" width="140"
-                     height="140">
-                <h4>tap30</h4>
-                <p>سامانه هوشمند درخواست تاکسی</p>
-            </div><!-- /.col-lg-4 -->
-            <div class="card">
-                <div class="headerCard"></div>
-                <img class="rounded-circle" src="{% static 'intro/image/digikala.png' %}" alt="digikala" width="140"
-                     height="140">
-                <h4>Digikala</h4>
-                <p>بررسی، انتخاب، خرید آنلاین</p>
+                <img class="rounded-circle" src="{% static 'intro/image/sponsors.jpg' %}" alt="sponsors" width="90%">
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
         <!--</div>-->
@@ -210,7 +210,7 @@
     <footer class="copyright" dir="rtl"> تمامی حقوق این سایت متعلق به
         انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف است
     </footer>
-    <div class="social">
+    <div class="social" id="contact-us">
         <a href="#"><img src="{% static 'intro/image/instagram.png' %}" width="30" style="margin-left: 10px;"></a>
         <a href="#"><img src="{% static 'intro/image/telegram.png' %}" width="30"></a>
     </div>
