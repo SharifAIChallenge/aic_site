@@ -13,7 +13,7 @@ class Competition(models.Model):
     )
 
     challenge = models.ForeignKey(Challenge, related_name='competitions')
-    type = models.CharField(max_length=127, choices=TYPE_CHOICES)
+    type = models.CharField(max_length=128, choices=TYPE_CHOICES)
 
 
 class Participant(models.Model):
@@ -26,7 +26,7 @@ class Participant(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)  # Match or None
     object_id = models.PositiveIntegerField(null=True)
     depend = GenericForeignKey()
-    depend_method = models.CharField(max_length=127, choices=METHOD_CHOICES)
+    depend_method = models.CharField(max_length=128, choices=METHOD_CHOICES)
 
     submission = models.ForeignKey(TeamSubmission, null=True, blank=True)
     score = models.IntegerField(default=0)

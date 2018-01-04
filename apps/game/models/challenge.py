@@ -6,8 +6,8 @@ from apps.accounts.models import Team
 
 
 class Challenge(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.CharField(max_length=2047)
+    title = models.CharField(max_length=256)
+    description = models.CharField(max_length=2048)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     registration_start_time = models.DateTimeField()
@@ -82,9 +82,13 @@ class TeamSubmission(models.Model):
     is_final = models.BooleanField(default=False)
     language = models.CharField(max_length=127, choices=LANGUAGE_CHOICES)
     infra_compile_message = models.CharField(max_length=1023, null=True, blank=True)
-    infra_token = models.CharField(max_length=255, null=True, blank=True, unique=True)
+    infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
 
     def set_final(self):
+        """
+            Use this method instead of changing the is_final attribute directly
+            This makes sure that only one instance of TeamSubmission has is_final flag set to True
+        """
         TeamSubmission.objects.filter(is_final=True).update(is_final=False)
         self.is_final = True
         self.save()
