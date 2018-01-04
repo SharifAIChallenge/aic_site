@@ -12,6 +12,7 @@ import django
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'r=2mdcuth+5g8o6)s*z7c61bss)%0ku2b9w72d3ph^x&)^gx$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -126,3 +127,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static/files/"),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, "static/root")
+
