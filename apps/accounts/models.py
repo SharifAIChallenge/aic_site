@@ -8,7 +8,7 @@ class Profile(models.Model):
 
 
 class Team(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=256)
 
 
 class UserParticipatesOnTeam(models.Model):
