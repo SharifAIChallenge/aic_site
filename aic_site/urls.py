@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from apps.intro import urls as intro_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    
     url(r'^blog/', include('zinnia.urls')),
     url(r'^comments/', include('django_comments.urls')),
+
+    url(r'^', include(intro_urls, namespace='intro'))
 ]

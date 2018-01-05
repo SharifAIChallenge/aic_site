@@ -1,0 +1,226 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width, height=device-height">
+    <title>نبرد هوش مصنوعی شریف</title>
+    <!--Bootstrap Version 3.3.7 and make it RTL (Right To Left) -->
+    <link href="{% static 'intro/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'intro/css/rtlStyle.css' %}">
+    <!--Pure CSS <3 Mostafa-->
+    <link href="{% static 'intro/css/stylesheet.css' %}" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="سایت رقابت هوش مصنوعی دانشگاه صنعتی شریف Artificial Intelligence Challenge Website Sharif University of Technology">
+    <meta name="author" content="Mostafa Ghadimi">
+</head>
+<body>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--<a class="navbar-brand" href="#"><img src="./image/logo.png" width="25"></a>-->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">خانه</a></li>
+                <!--<li><a href="#">معرفی مسابقه</a></li>-->
+                <li><a href="#history">تاریخچه</a></li>
+                <li><a href="#schedule">برنامه مسابقه</a></li>
+
+                <!--<li><a href="#">تصاویر برگزیده</a></li>-->
+                <!--<li><a href="#">جوایز</a></li>-->
+                <li><a href="#sponsors">حامیان</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="#contact-us">تماس با ما</a></li>
+                <!--<li><a href="#">بلاگ</a></li>-->
+                <!--<li><a href="#">en</span></a></li>-->
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--<a class="navbar-brand" href="#"><img src="./image/logo.png" width="25"></a>-->
+        </div>
+        <div id="navbar1" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#sponsors">حامیان</a></li>
+                <!--<li><a href="#">جوایز</a></li>-->
+                <!--<li><a href="#">تصاویر برگزیده</a></li>-->
+                <li><a href="#schedule">برنامه مسابقه</a></li>
+                <!--<li><a href="#">معرفی مسابقه</a></li>-->
+                <li><a href="#history">تاریخچه</a></li>
+                <li><a href="#">خانه</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <!--<li><a href="#">en</span></a></li>-->
+                <!--<li><a href="#">بلاگ</a></li>-->
+                <li><a href="#contact-us">تماس با ما</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<!-- countdown -->
+<div class="countdown">
+    <!--<div id="clockdiv">-->
+        <!--<div>-->
+            <!--<span class="days"></span>-->
+            <!--<div class="smalltext">روز</div>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<span class="hours"></span>-->
+            <!--<div class="smalltext">ساعت</div>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<span class="minutes"></span>-->
+            <!--<div class="smalltext">دقیقه</div>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<span class="seconds"></span>-->
+            <!--<div class="smalltext">ثانیه</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <script src="{% static 'intro/js/index.js' %}"></script>
+</div>
+<div id="history"></div>
+<!-- TimeLine -->
+<div class="timelineDiv">
+    <section class="cd-horizontal-timeline">
+        <div class="timeline">
+            <div class="events-wrapper">
+                <div class="events">
+                    <ol>
+                        <li><a href="#0" data-date="16/01/2014" class="selected">AIC 18</a></li>
+                        <li><a href="#0" data-date="28/02/2014">AIC 17</a></li>
+                        <li><a href="#0" data-date="20/04/2014">AIC 16</a></li>
+                        <li><a href="#0" data-date="20/05/2014">AIC 15</a></li>
+                        <li><a href="#0" data-date="09/07/2014">AIC 14</a></li>
+                        <li><a href="#0" data-date="30/08/2014">AIC 13</a></li>
+                    </ol>
+                    <span class="filling-line" aria-hidden="true"></span>
+                </div> <!-- .events -->
+            </div> <!-- .events-wrapper -->
+            <ul class="cd-timeline-navigation">
+                <li><a href="#0" class="prev inactive">Prev</a></li>
+                <li><a href="#0" class="next">Next</a></li>
+            </ul> <!-- .cd-timeline-navigation -->
+        </div> <!-- .timeline -->
+        <div  class="events-content">
+            <ol class="timelineStoriesText">
+                <li class="selected" data-date="16/01/2014">
+                    <h1>دوره هشتم مسابقه</h1>
+                    <p><img src="{% static 'intro/image/ai18.jpg' %}" alt="Sharif AI Challenge 2018"></p>
+                    <p>
+                        با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی، دوره‌ی هشتم
+                        با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. از طرفی با پیشرفت چشمگیر آن در دوره ی اخیر این
+                        رقابت دانشجویی به صورت بین المللی درآمد
+                    </p>
+                </li>
+
+                <li data-date="28/02/2014">
+                    <h4>دوره هشتم مسابقه</h4>
+                    <p>
+                        با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی، دوره‌ی هشتم
+                        با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. از طرفی با پیشرفت چشمگیر آن در دوره ی اخیر این
+                        رقابت دانشجویی به صورت بین المللی درآمد
+                    </p>
+                </li>
+            </ol>
+        </div> <!-- .events-content -->
+    </section>
+</div>
+<!-- Competition Schedule -->
+<div id="schedule" class="schedule">
+    <h1 style="text-align: center">برنامه</h1>
+    <table class="table table-responsive">
+        <thead>
+        <tr>
+            <th>روز</th>
+            <th>جزئیات</th>
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+            <td>10 بهمن</td>
+            <td>ثبت نام مرحله غیرحضوری</td>
+        </tr>
+        <tr>
+            <td>14 بهمن</td>
+            <td>انتشار نسخه اولیه بازی</td>
+        </tr>
+        <tr>
+            <td>نمیدونم بهمن</td>
+            <td>انتشار نسخه اولیه بازی</td>
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+            <td>15 بهمن - 9 اسفند</td>
+            <td>مرحله ی غیر حضوری</td>
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+            <td>18 و 19 اسفند</td>
+            <td>مرحله‌ی حضوری در دانشگاه صنعتی شریف</td>
+        </tr>
+        </thead>
+    </table>
+</div>
+<!-- Sponsors -->
+<div class="sponsor">
+    <div class="container">
+        <h1>حامیان</h1>
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div id="sponsors" class="card">
+                <div class="headerCard"></div>
+                <img class="rounded-circle" src="{% static 'intro/image/sponsors.jpg' %}" alt="sponsors" width="90%">
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+        <!--</div>-->
+    </div>
+</div>
+<!-- Footer -->
+<div class="container">
+    <footer class="copyright" dir="rtl"> تمامی حقوق این سایت متعلق به
+        انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف است
+    </footer>
+    <div class="social" id="contact-us">
+        <a href="#"><img src="{% static 'intro/image/instagram.png' %}" width="30" style="margin-left: 10px;"></a>
+        <a href="#"><img src="{% static 'intro/image/telegram.png' %}" width="30"></a>
+    </div>
+</div>
+<!--JQuery JS File-->
+<script src="{% static 'intro/js/jquery.min.js' %}"></script>
+<script src="{% static 'intro/js/jquery.mobile.min.js' %}"></script>
+<!--TimeLine-->
+<script src="{% static 'intro/js/timeline.js' %}"></script>
+<!--Bootstrap JS File-->
+<script src="{% static 'intro/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
