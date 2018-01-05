@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-03 13:33+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/game/models/challenge.py:73
+msgid "C++"
+msgstr ""
+
+#: apps/game/models/challenge.py:74
+msgid "Java"
+msgstr ""
+
+#: apps/game/models/challenge.py:75
+msgid "Python 2"
+msgstr ""
+
+#: apps/game/models/challenge.py:76
+msgid "Python 3"
+msgstr ""
+
+#: apps/game/models/competition.py:10
+msgid "Elimination"
+msgstr ""
+
+#: apps/game/models/competition.py:11
+msgid "Double Elimination"
+msgstr ""
+
+#: apps/game/models/competition.py:12
+msgid "League"
+msgstr ""
+
+#: apps/game/models/competition.py:21
+msgid "Winner"
+msgstr ""
+
+#: apps/game/models/competition.py:22
+msgid "Loser"
+msgstr ""
+
+#: apps/game/models/competition.py:23
+msgid "Itself"
+msgstr ""

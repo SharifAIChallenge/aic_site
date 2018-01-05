@@ -1,0 +1,60 @@
+upstream aic_web {
+    server aic_web:8000 fail_timeout=0;
+}
+
+server {
+	listen 80;
+
+	server_name aichallenge.sharif.ir aichallenge.sharif.ac.ir;
+	return 301 $scheme://aichallenge.sharif.edu$request_uri;
+}
+
+
+
+server {
+        listen 80;
+
+        server_name aichallenge.sharif.edu;
+        return 302 $scheme://aichallenge.sharif.edu:2018$request_uri;
+}
+
+
+server {
+
+    listen 2018 default_server;
+
+    server_name aichallenge.sharif.edu;
+    client_max_body_size 8M;
+    keepalive_timeout    69;
+    error_log /var/log/aic_site/AIC_test_nginx.log info;
+
+
+    location / {
+        proxy_redirect      off;
+        proxy_set_header    Host                    $host:$server_port;
+        proxy_set_header    X-Real-IP               $remote_addr;
+        proxy_set_header    X-Forwarded-For         $proxy_add_x_forwarded_for;
+        proxy_set_header    X-Forwarded-Protocol    $scheme;
+        proxy_pass          http://aic_web;
+    }
+
+   location /static/ {
+        root            /static/root;
+        access_log      on;
+        log_not_found   on;
+        expires 30d;
+    }
+
+    location /media/ {
+        root            /static/root;
+        access_log      on;
+        log_not_found   on;
+    }
+
+    location /favicon.ico {
+        root            /static/root/static/intro/image;
+        access_log      on;
+        log_not_found   on;
+    }
+
+}

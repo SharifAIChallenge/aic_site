@@ -1,4 +1,4 @@
-# Sharif AI Challenge 2017 webite
+# Sharif AI Challenge 2018 webite
 
 ---
 
@@ -10,7 +10,7 @@
     base python version is 3.6.3
 # RUN
 ```
-pip install requirements.txt
+pip install -r requirements/production.txt
 python manage.py migrate
 python manage.py runserver
 ```
