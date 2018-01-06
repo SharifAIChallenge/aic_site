@@ -1,1 +1,0 @@
-"""Mixins for Zinnia views"""
