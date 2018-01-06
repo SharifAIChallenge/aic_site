@@ -7,5 +7,8 @@ from apps.accounts.forms.forms import SignUpForm
 
 class SignupView(generic.CreateView):
     form_class = SignUpForm
-    success_url = reverse_lazy('')
+    success_url = '/index/'
     template_name = 'accounts/signup.html'
+
+
+
