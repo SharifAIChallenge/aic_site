@@ -31,3 +31,5 @@ services:
     image: postgres:latest
     container_name: aic_db_cont
     restart: always
+    volumes:
+      - ../Database:/var/lib/postgresql/data

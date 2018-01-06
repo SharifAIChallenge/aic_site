@@ -13,11 +13,15 @@ tar -xzf deploy_package.tgz
 
 # Swap it all around, keeping the previous version aside in case something goes wrong
 
-rm -rf AIC_test_old
-mv AIC_test AIC_test_old
-mv build AIC_test
+rm -rf AIC_backup
+mv AIC AIC_backup
+mv build AIC
 
-cd AIC_test
+cp -r Database Database_backup_2
+rm -rf Database_backup
+mv Database_backup_2 Database_backup
+
+cd AIC
 
 #####################################
 # BAD PRACTICE
