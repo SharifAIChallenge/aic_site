@@ -1,10 +1,14 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout
+from django.contrib.auth.models import User
+from django.http import request
+from django.shortcuts import get_object_or_404
 from django.views import generic
 # Create your views here.
 from django.views.generic import FormView, RedirectView
 
-from apps.accounts.forms.forms import SignUpForm
+from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
+from apps.accounts.models import Profile
 
 
 class SignupView(generic.CreateView):
@@ -35,3 +39,12 @@ class LogoutView(RedirectView):
         logout(request)
         return super(LogoutView, self).get(request, *args, **kwargs)
 
+
+class UpdateProfileView(generic.UpdateView):
+    form_class = UpdateProfileForm
+    success_url = '/'
+    template_name = 'accounts/update_profile.html'
+    model = Profile
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(User, pk=self.request.user.id)
