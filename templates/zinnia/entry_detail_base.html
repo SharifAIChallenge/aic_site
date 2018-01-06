@@ -193,6 +193,23 @@
   {% if object.comment_count %}
   {% with comment_list=object.comments %}
   {% block comments-loop %}
+
+  <!-- ### Sample rendering of comments ###-->
+  <!-- reference: -->
+  <!-- https://pypi.python.org/pypi/django-threadedcomments -->
+
+  <!--{% load threadedcomments_tags %}-->
+  <!--{% get_comment_list for object as comment_list_ma %}-->
+  <!--{% for comment in comment_list_ma|fill_tree|annotate_tree %}-->
+    <!--{% ifchanged comment.parent_id %}{% else %}</li>{% endifchanged %}-->
+    <!--{% if not comment.open and not comment.close %}</li>{% endif %}-->
+    <!--{% if comment.open %}<ul>{% endif %}-->
+
+    <!--<li id="c{{ comment.id }}">-->
+        <!--{% render_comment_form for comment %}-->
+    <!--{% for close in comment.close %}</li></ul>{% endfor %}-->
+  <!--{% endfor %}-->
+
   <ol id="comment-list">
     {% for comment in comment_list %}
     <li id="comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}"

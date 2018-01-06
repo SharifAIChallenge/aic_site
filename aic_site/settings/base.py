@@ -32,19 +32,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.contenttypes',
 
-    'django_comments',
+    'threadedcomments',
     'mptt',
     'tagging',
     'zinnia',
+    'django_comments',
 
     'apps.intro',
     'apps.accounts',
     'apps.billing',
     'apps.game',
     'apps.modir',
-
-
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# comments
+COMMENTS_APP = 'threadedcomments'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -133,7 +137,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
+    # '/var/www/static/',
     os.path.join(BASE_DIR, "static/files/"),
 ]
 
