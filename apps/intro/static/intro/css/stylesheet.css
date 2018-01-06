@@ -587,7 +587,7 @@ a {
 .card {
     text-align: center;
     margin-top: 65px;
-    width: 40%;
+    width: 60%;
     /*margin-left: 150px;*/
     background-color: #ffffff;
     float: left;
@@ -614,7 +614,7 @@ a {
 }
 
 .row > .card {
-    margin-left: 30%;
+    margin-left: 20%;
 }
 
 /*footer*/
