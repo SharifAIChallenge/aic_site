@@ -1,28 +1,14 @@
 from .base import *
 
-##################################################################
-
-if 'TRAVIS' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'travisci',
-            'USER': 'postgres',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
-    }
-
-##################################################################
-
 INSTALLED_APPS += [
 
 ]
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['81.31.168.207', 'aichallenge.sharif.edu', 'aichallenge.sharif.ir']
+ALLOWED_HOSTS = ['81.31.168.207', 'aichallenge.sharif.edu', 'aichallenge.sharif.ir', 'aichallenge.sharif.ac.ir']
+
+print('AA')
 
 DATABASES = {
     'default': {
@@ -33,3 +19,5 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+
+print('BB')

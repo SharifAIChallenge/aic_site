@@ -22,7 +22,7 @@ services:
     build: .
     container_name: aic_web_cont
     restart: always
-    command: bash -c "cd .. && python3 manage.py makemigrations && python3 manage.py migrate && export DJANGO_SETTINGS_MODULE='aic_site.settings.production' && gunicorn aic_site.wsgi -b 0.0.0.0:8000 -w 4"
+    command: bash -c "cd .. && python3 manage.py makemigrations && python3 manage.py migrate && gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
     depends_on:
       - aic_db
     expose:
@@ -33,3 +33,4 @@ services:
     restart: always
     volumes:
       - ../Database:/var/lib/postgresql/data
+      - ../Database_backup:/Database_backup
