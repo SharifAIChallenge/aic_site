@@ -19,6 +19,8 @@ from apps.intro import urls as intro_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-
+    
+    url(r'^blog/', include('zinnia.urls')),
+    url(r'^articles/comments/', include('django_comments.urls')),
     url(r'^', include(intro_urls, namespace='intro'))
 ]
