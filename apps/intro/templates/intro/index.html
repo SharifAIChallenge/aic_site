@@ -42,7 +42,8 @@
                 <li><a href="#schedule">برنامه مسابقه</a></li>
 
                 <!--<li><a href="#">تصاویر برگزیده</a></li>-->
-                <!--<li><a href="#">جوایز</a></li>-->
+                <li><a href="#prizes">جوایز</a></li>
+                <li><a href="#organizers">برگزارکنندگان</a></li>
                 <li><a href="#sponsors">حامیان</a></li>
             </ul>
             <ul class="nav navbar-nav">
@@ -69,7 +70,8 @@
         <div id="navbar1" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#sponsors">حامیان</a></li>
-                <!--<li><a href="#">جوایز</a></li>-->
+                <li><a href="#prizes">جوایز</a></li>
+                <li><a href="#organizers">برگزارکنندگان</a></li>
                 <!--<li><a href="#">تصاویر برگزیده</a></li>-->
                 <li><a href="#schedule">برنامه مسابقه</a></li>
                 <!--<li><a href="#">معرفی مسابقه</a></li>-->
@@ -86,24 +88,26 @@
 </nav>
 <!-- countdown -->
 <div class="countdown">
-    <!--<div id="clockdiv">-->
-        <!--<div>-->
-            <!--<span class="days"></span>-->
-            <!--<div class="smalltext">روز</div>-->
-        <!--</div>-->
-        <!--<div>-->
-            <!--<span class="hours"></span>-->
-            <!--<div class="smalltext">ساعت</div>-->
-        <!--</div>-->
-        <!--<div>-->
-            <!--<span class="minutes"></span>-->
-            <!--<div class="smalltext">دقیقه</div>-->
-        <!--</div>-->
-        <!--<div>-->
-            <!--<span class="seconds"></span>-->
-            <!--<div class="smalltext">ثانیه</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div id="clockdiv">
+
+        <div>
+            <span class="seconds"></span>
+            <div class="smalltext">ثانیه</div>
+        </div>
+
+        <div>
+            <span class="minutes"></span>
+            <div class="smalltext">دقیقه</div>
+        </div>
+        <div>
+            <span class="hours"></span>
+            <div class="smalltext">ساعت</div>
+        </div>
+        <div>
+            <span class="days"></span>
+            <div class="smalltext">روز</div>
+        </div>
+    </div>
 
     <script src="{% static 'intro/js/index.js' %}"></script>
 </div>
@@ -115,9 +119,9 @@
             <div class="events-wrapper">
                 <div class="events">
                     <ol>
-                        <li><a href="#0" data-date="16/01/2014" class="selected">AIC 18</a></li>
-                        <li><a href="#0" data-date="28/02/2014">AIC 17</a></li>
-                        <li><a href="#0" data-date="20/04/2014">AIC 16</a></li>
+                        <li><a href="#0" data-date="16/01/2017" class="selected">SAIC 2017</a></li>
+                        <li><a href="#0" data-date="28/02/2016">SAIC 2016</a></li>
+                        <li><a href="#0" data-date="20/04/2015">Java Challenge</a></li>
                         <!--<li><a href="#0" data-date="20/05/2014">AIC 15</a></li>
                         <li><a href="#0" data-date="09/07/2014">AIC 14</a></li>
                         <li><a href="#0" data-date="30/08/2014">AIC 13</a></li>-->
@@ -132,9 +136,17 @@
         </div> <!-- .timeline -->
         <div  class="events-content">
             <ol class="timelineStoriesText">
-                <li class="selected" data-date="16/01/2014">
+                <li class="selected" data-date="16/01/2017">
                     <h1>دوره هشتم مسابقه</h1>
-                    <p><img src="{% static 'intro/image/ai18.jpg' %}" alt="Sharif AI Challenge 2018"></p>
+                    <p><img src="{% static 'intro/image/ai17.jpg' %}" alt="Sharif AI Challenge 2018"></p>
+                    <p>
+                        آخرین دوره برگزار شده از مسابقات
+                    </p>
+                </li>
+
+                <li data-date="28/02/2016">
+                    <h1>دوره هفتم مسابقات</h1>
+                    <p><img src="{% static 'intro/image/ai16.jpg' %}" alt="Sharif AI Challenge 2018"></p>
                     <p>
                         با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی، دوره‌ی هشتم
                         با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. از طرفی با پیشرفت چشمگیر آن در دوره ی اخیر این
@@ -142,56 +154,52 @@
                     </p>
                 </li>
 
-                <li data-date="28/02/2014">
-                    <h4>دوره هشتم مسابقه</h4>
+                <li data-date="20/04/2015">
+                    <h1>دوره ی هفتم مسابقات</h1>
+                     <p><img src="{% static 'intro/image/javachallenge.jpg' %}" alt="Sharif AI Challenge 2018"></p>
                     <p>
-                        با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی، دوره‌ی هشتم
-                        با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. از طرفی با پیشرفت چشمگیر آن در دوره ی اخیر این
-                        رقابت دانشجویی به صورت بین المللی درآمد
+                        در ادوار قبلی این مسابقه با نام جاواچلنج برگزار میشد و زبانهای دیگیر در سالهای بعد اضافه شد.
                     </p>
-                </li>
-                <li data-date="20/04/2014">
-                    <h4>دوره ی هفتم مسابقات</h4>
                     <!-- Slideshow container -->
-                    <div class="slideshow-container">
-                        <!-- Full-width images with number and caption text -->
-                        <div class="mySlides fade-slide">
-                            <div class="numbertext">3 / 3</div>
-                            <p><img src="{% static 'intro/image/aic16_1.jpg' %}" style="height: 640px" alt="Sharif AIC 2016"></p>
-                        </div>
+                    <!--<div class="slideshow-container">-->
+                        <!--&lt;!&ndash; Full-width images with number and caption text &ndash;&gt;-->
+                        <!--<div class="mySlides fade-slide">-->
+                            <!--<div class="numbertext">3 / 3</div>-->
+                            <!--<p><img src="{% static 'intro/image/aic16_1.jpg' %}" style="height: 640px" alt="Sharif AIC 2016"></p>-->
+                        <!--</div>-->
 
-                        <div class="mySlides fade-slide">
-                            <div class="numbertext">3 / 2</div>
-                            <p><img src="{% static 'intro/image/aic16_2.jpg' %}" style="height: 640px" alt="Sharif AIC 2016"></p>
-                        </div>
+                        <!--<div class="mySlides fade-slide">-->
+                            <!--<div class="numbertext">3 / 2</div>-->
+                            <!--<p><img src="{% static 'intro/image/aic16_2.jpg' %}" style="height: 640px" alt="Sharif AIC 2016"></p>-->
+                        <!--</div>-->
 
-                        <div class="mySlides fade-slide">
-                            <div class="numbertext">3 / 1</div>
-                            <p><img src="{% static 'intro/image/aic16_3.jpg' %}" style="height: 640px" alt="Sharif AIC 2016"></p>
-                        </div>
-                        <script src="{% static 'intro/js/slideshow.js' %}"></script>
+                        <!--<div class="mySlides fade-slide">-->
+                            <!--<div class="numbertext">3 / 1</div>-->
+                            <!--<p><img src="{% static 'intro/image/aic16_3.jpg' %}" style="height: 640px" alt="Sharif AIC 2016"></p>-->
+                        <!--</div>-->
+                        <!--<script src="{% static 'intro/js/slideshow.js' %}"></script>-->
 
-                        <!-- Next and previous buttons -->
-                        <a class="prev-slide" onclick="plusSlides(1)">&#10095;</a>
-                        <a class="next-slide" onclick="plusSlides(-1)">&#10094;</a>
-                    </div>
-                <br>
+                        <!--&lt;!&ndash; Next and previous buttons &ndash;&gt;-->
+                        <!--<a class="prev-slide" onclick="plusSlides(1)">&#10095;</a>-->
+                        <!--<a class="next-slide" onclick="plusSlides(-1)">&#10094;</a>-->
+                    <!--</div>-->
+                <!--<br>-->
 
                 <!-- The dots/circles -->
-                    <div style="text-align:center">
-                        <span class="dot-slide" onclick="currentSlide(1)"></span>
-                        <span class="dot-slide" onclick="currentSlide(2)"></span>
-                        <span class="dot-slide" onclick="currentSlide(3)"></span>
-                    </div>
+                    <!--<div style="text-align:center">-->
+                        <!--<span class="dot-slide" onclick="currentSlide(1)"></span>-->
+                        <!--<span class="dot-slide" onclick="currentSlide(2)"></span>-->
+                        <!--<span class="dot-slide" onclick="currentSlide(3)"></span>-->
+                    <!--</div>-->
                 </li>
             </ol>
         </div> <!-- .events-content -->
     </section>
 </div>
 <!-- Competition Schedule -->
-<div id="schedule" class="schedule">
+<div id="schedule" class="schedule row">
     <h1 style="text-align: center">برنامه</h1>
-    <table class="table table-responsive">
+    <table class="table card table-responsive">
         <thead>
         <tr>
             <th>روز</th>
@@ -201,20 +209,12 @@
         <thead>
         <tr>
             <td>10 بهمن</td>
-            <td>ثبت نام مرحله غیرحضوری</td>
-        </tr>
-        <tr>
-            <td>14 بهمن</td>
-            <td>انتشار نسخه اولیه بازی</td>
-        </tr>
-        <tr>
-            <td>نمیدونم بهمن</td>
-            <td>انتشار نسخه اولیه بازی</td>
+            <td>آغاز ثبت نام مرحله غیرحضوری</td>
         </tr>
         </thead>
         <thead>
         <tr>
-            <td>15 بهمن - 9 اسفند</td>
+            <td>14 بهمن - 2 اسفند</td>
             <td>مرحله ی غیر حضوری</td>
         </tr>
         </thead>
@@ -227,14 +227,45 @@
     </table>
 </div>
 <!-- Sponsors -->
-<div class="sponsor">
+<div id="prizes" class="sponsor">
+    <div class="container">
+        <h1>جوایز</h1>
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div  class="card">
+                <div class="headerCard"></div>
+                <img class="rounded-circle" src="{% static 'intro/image/prizes.jpg' %}" alt="prizes" width="90%">
+            </div>
+        </div><!-- /.row -->
+        <!--</div>-->
+    </div>
+</div>
+
+<!-- Sponsors -->
+<div  id="sponsors" class="sponsor">
     <div class="container">
         <h1>حامیان</h1>
         <!-- Three columns of text below the carousel -->
         <div class="row">
-            <div id="sponsors" class="card">
+            <div  class="card">
                 <div class="headerCard"></div>
                 <img class="rounded-circle" src="{% static 'intro/image/sponsors.jpg' %}" alt="sponsors" width="90%">
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+        <!--</div>-->
+    </div>
+</div>
+<!-- Organizers -->
+<div class="sponsor">
+    <div class="container">
+        <h1>برگزارکنندگان</h1>
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div id="organizers" class="card">
+                <div class="headerCard"></div>
+                <a href="http://ssc.ce.sharif.edu">
+                    <img class="rounded-circle" src="{% static 'intro/image/ssc.png' %}" alt="Organizers" width="40%">
+                </a>
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
         <!--</div>-->
@@ -246,8 +277,8 @@
         انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف است
     </footer>
     <div class="social" id="contact-us">
-        <a href="#"><img src="{% static 'intro/image/instagram.png' %}" width="30" style="margin-left: 10px;"></a>
-        <a href="#"><img src="{% static 'intro/image/telegram.png' %}" width="30"></a>
+        <a href="https://www.instagram.com/aichallenge/"><img src="{% static 'intro/image/instagram.png' %}" width="30" style="margin-left: 10px;"></a>
+        <a href="https://t.me/aichallenge"><img src="{% static 'intro/image/telegram.png' %}" width="30"></a>
     </div>
 </div>
 <!--JQuery JS File-->
