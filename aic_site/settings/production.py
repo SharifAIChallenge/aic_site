@@ -8,7 +8,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['81.31.168.207', 'aichallenge.sharif.edu', 'aichallenge.sharif.ir', 'aichallenge.sharif.ac.ir']
 
-print('AA')
 
 DATABASES = {
     'default': {
@@ -20,4 +19,3 @@ DATABASES = {
     }
 }
 
-print('BB')
