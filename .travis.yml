@@ -10,22 +10,30 @@ env:
   - secure: qAg02165WSLAJHPJrPOR6NnCfAVX8yLrHhdECn+lPg8yOBZvpWANlZwmuuZy3Z2nOD39x0zAhbPjvuLj4ok32MpS/IMqcCmAT7A6wjbzhgnvExWImTYsG/VokSzrBy3pFv5GjDwkChrYVqcj9b13zrznycNOJbOcRE+x+RoCENUUy+vXq+/FrLHGkC3NhADg6IJrTDAUQR20rDb8hMnRl078142Wow0jY34OnHobojWZaex2ay9Lssi2LG6PheE6nd26rvZm/+tQu/T/eSHbhsmQp+e+aaFLAiU3c0n0EGWO/ublYbAFVrjSVyqxLD8noPaggq0NYKyCD0g2zdR6PUQXcNnzRFCVB/heK3EFMB9Nie2vFVWN9ySto88PIIMbt9xFmU1Qi+mQCaNUgmyVOaRiGQDTKzlSVBtkk/7H5v46XfkGM8jPzxhMCu4qeNPE7H29bCt9ZxSSnK8aOHopGbvL+m1EMIB+NvsrNz77qWKuZkjzP2WlPme3tVLptWMCUT5jRShev5dCaN2jbCJSiAljJoBtfQp9cKfEXsImlQzeQlxtz/TPZzrPp0C81WG04wDhzQq3ALC1oCV6jGJdEN3KvMq0LdGh7aWRyalCAy2DXUgBXt861iqfN6eFGb3YGdZkD9y0FlSVcxdn7klXebl5YQ4vSp3y4YlC1wDLp6M=
   - secure: cwCaLrVIUMJT5enL7zoBiRPOn/Fay9vC+98KKV84hl9DlyazW+ZuV+Jis742FJxTb/l+QY+xut9/M/XK2dXMQYuNd4g0g2DcH1R3N8Pu6zs/YSgFWpHohSDBk1qVN8SwRB9e9ZaKWUQeiKfsk44WzynK9+LyQ5c7WQJBX9sUdwSgEd3aO2mxP9FuHXvhpBiZRuL1YRvZ2WZdZPf+nkz0vY4cQRQ7TpxBSPQm68/QkyCfNIXyrptug+XaxGSLYtqKdejwElyaIHxf9U+6VjPNdz1v4AP/cknqjBclI9WK7i2sR7jU54VOo3f2M/En1nA3dJ1TS5FC/GloTLfxkxsDM5NTDyskzAbtYfotADjNaOzqwXhUSOfTQ/k/ifrNen1Mn/tmkKPkhUzxQ/E8zSu0L+BqaJOSqHYldBSkK0eZheXIIf2PEAbNuxCFFpoJD/2dj9s0mFpNLFFHr3xcdr2FA53C916d1nQfD/5uN24ds0bCBDCBE1DeT4EoRdm0ajLJNf8qogbPwDi9lnyfvbvtcUnNLHw2RJE4MZXgD64yJiPaNz4GrKsxN9nmh7TAJYnee3/3+V4HQPfjbNimJOhun/75RzHCa+fH5mpyihRSGQUIY1ywsseN55bg69sPe8Wzi7Y0vqbcDuokb5MutNgjJMkJbDYTcwWlzlqdO0aerTA=
 addons:
+  ssh_known_hosts:
+    - 81.31.168.207
   apt:
     packages:
     - sshpass
+    - optipng
+    - jpegoptim
+    - rsync
 services:
-- docker
-script:
-- echo "dummy script"
+  - docker
 after_success:
-- mkdir build
-- rsync -r --exclude='.*' --exclude='build' ./ build
-- cd build/config/nginx/sites-available
-- cp aichallenge.sharif.edu ../sites-enabled
-- cd ../../../..
-- tar -czf deploy_package.tgz build
-- export SSHPASS=$DEPLOY_PASS
-- sshpass -e scp -o stricthostkeychecking=no deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-- sshpass -e scp -o stricthostkeychecking=no deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-- sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
-- sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+  - mkdir build
+  - rsync -r --exclude='.*' --exclude='build' ./ build
+  - cd build/config/nginx/sites-available
+  - cp aichallenge.sharif.edu ../sites-enabled
+  - cd ../../../..
+  - cd build/apps/
+  - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
+  - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve --totals
+  - cd ../..
+  - tar -czf deploy_package.tgz build
+  - export SSHPASS=$DEPLOY_PASS
+  - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - rm -r build deploy_package.tgz
+  - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
+  - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
