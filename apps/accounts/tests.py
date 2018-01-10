@@ -72,11 +72,13 @@ class TestTeam(TestCase):
         teams = Team.objects.all()
         competition = Competition.objects.get(type='elim')
         challenge = Challenge.objects.all()[0]
+        team_participation = []
         for team in teams:
             participation = TeamParticipatesChallenge()
             participation.team = team
             participation.challenge = challenge
             participation.save()
+            team_participation.append(participation)
 
         matches = []
         for i in range(3):
@@ -84,8 +86,7 @@ class TestTeam(TestCase):
             participants = []
             for j in range(2):
                 participant = Participant()
-                participant.content_type = ContentType.objects.get_for_model(Team)
-                participant.object_id = teams[(i + j) % 3].id
+                participant.depend = team_participation[(i + j) % 3]
                 participant.save()
                 participants.append(participant)
             matches[i].part1 = participants[0]
