@@ -1,9 +1,13 @@
+import datetime
+from django.utils import timezone
+
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
 
-from apps.accounts.models import Team
-from apps.game.models import Challenge, Competition, Match
+from apps.accounts.models import Team, UserParticipatesOnTeam
+from apps.game.models import Challenge, Competition, Match, Game, Participant
+from apps.game.models.challenge import TeamParticipatesChallenge
 
 
 def populate_users():
@@ -15,20 +19,34 @@ def populate_users():
 
 def populate_teams():
     users = User.objects.all()
-    team_users = []
-    for i in range(len(users)):
-        team_users += users[i]
-        if len(team_users) == 3:
+    i = 0
+    team = None
+    for user in users:
+        if i % 3 == 0:
             team = Team()
             team.name = i / 3 + 1
-            team.participants = team_users
             team.save()
-            team_users = []
+        participation = UserParticipatesOnTeam()
+        participation.user = user
+        participation.team = team
+        participation.save()
+        i += 1
 
 
 def populate_challenges():
     challenge = Challenge()
     challenge.title = "Dummiest Challenge created ever"
+    challenge.start_time = timezone.now()
+    challenge.end_time = timezone.now() + datetime.timedelta(days=1)
+    challenge.registration_start_time = challenge.start_time
+    challenge.registration_end_time = challenge.end_time
+    challenge.registration_open = True
+    challenge.team_size = 3
+    challenge.entrance_price = 1000
+    game = Game()
+    game.name = "AIC 2018"
+    game.save()
+    challenge.game = game
     challenge.save()
 
 
@@ -55,35 +73,28 @@ class TestTeam(TestCase):
         competition = Competition.objects.get(type='elim')
         challenge = Challenge.objects.all()[0]
         for team in teams:
-            team.challanges = [challenge]
-            team.save()
+            participation = TeamParticipatesChallenge()
+            participation.team = team
+            participation.challenge = challenge
+            participation.save()
 
-        match1 = Match()
-        match2 = Match()
-        match3 = Match()
-
-        matches = [match1, match2, match3]
-
-        match1.part1.content_type = ContentType.objects.get_for_model(Team)
-        match1.part2.content_type = ContentType.objects.get_for_model(Team)
-        match2.part1.content_type = ContentType.objects.get_for_model(Team)
-        match2.part2.content_type = ContentType.objects.get_for_model(Team)
-        match3.part1.content_type = ContentType.objects.get_for_model(Team)
-        match3.part2.content_type = ContentType.objects.get_for_model(Team)
-
-        match1.part1.object_id = teams[0].id
-        match1.part2.object_id = teams[1].id
-        match2.part1.object_id = teams[0].id
-        match2.part2.object_id = teams[2].id
-        match3.part1.object_id = teams[1].id
-        match3.part2.object_id = teams[2].id
-
-        competition.match_set = [match1, match2, match3]
+        matches = []
+        for i in range(3):
+            matches.append(Match())
+            participants = []
+            for j in range(2):
+                participant = Participant()
+                participant.content_type = ContentType.objects.get_for_model(Team)
+                participant.object_id = teams[(i + j) % 3].id
+                participant.save()
+                participants.append(participant)
+            matches[i].part1 = participants[0]
+            matches[i].part2 = participants[1]
+            matches[i].competition = competition
+            matches[i].save()
 
         challenge.competitions = [competition]
-
-        for match in matches:
-            match.save()
+        challenge.save()
 
         team0_matches = teams[0].get_competition_matches(competition.id)
 

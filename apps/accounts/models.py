@@ -2,8 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Q
 
-from apps.game.models import Match
-
 
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
@@ -20,6 +18,7 @@ class Team(models.Model):
         return self.name
 
     def get_competition_matches(self, competition_id):
+        from apps.game.models import Match
         matches = Match.objects.filter(Q(part1__object_id=self.id) | Q(part2__object_id=self.id),
                                        competition=competition_id)
         return matches
