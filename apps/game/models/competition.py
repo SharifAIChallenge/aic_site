@@ -50,7 +50,7 @@ class Match(models.Model):
     part1 = models.ForeignKey(Participant, related_name='mathces_as_first')
     part2 = models.ForeignKey(Participant, related_name='matches_as_second')
     done = models.BooleanField(default=False)
-    infra_compile_message = models.CharField(max_length=1023, null=True, blank=True)
+    infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
     log = models.FileField(upload_to=get_log_file_directory)
 
