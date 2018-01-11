@@ -3,10 +3,6 @@ python: 3.6
 addons:
   ssh_known_hosts:
   - 81.31.168.207
-branches:
-  only:
-  - master
-  - travis_integration
 stages:
 - test
 - deploy
@@ -31,6 +27,10 @@ jobs:
     - python manage.py migrate
     - python manage.py test
   - stage: deploy
+    branches:
+      only:
+      - master
+      - travis_integration
     addons:
       apt:
         packages:
