@@ -44,7 +44,7 @@ jobs:
           - jpegoptim
           - rsync
       script:
-        - ehco pass
+        - echo pass
       after_success:
         - mkdir build
         - rsync -r --exclude='.*' --exclude='build' ./ build
