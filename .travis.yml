@@ -1,31 +1,66 @@
-branches:
-  only:
-  - master
-  - travis_integration
-
+language: python
+python: 3.6
+addons:
+  ssh_known_hosts:
+  - 81.31.168.207
+stages:
+- test
+- deploy
+jobs:
+  include:
+  - stage: test
+    services: postgresql
+    env:
+    - DJANGO=1.11
+    before_install:
+    - export DJANGO_SETTINGS_MODULE=aic_site.settings.development
+    - export PYTHONPATH=$HOME/builds/SharifAIChallenge/aic_site
+    - export PIP_USE_MIRRORS=true
+    install:
+    - pip install -r requirements/production.txt
+    - pip install django==$DJANGO --quiet
+    - pip install psycopg2 --quiet
+    before_script:
+    - psql -c "CREATE DATABASE mydb;" -U postgres
+    script:
+    - python manage.py makemigrations
+    - python manage.py migrate
+    - python manage.py test
+  - stage: deploy
+    branches:
+      only:
+      - master
+      - travis_integration
+    addons:
+      apt:
+        packages:
+        - sshpass
+        - optipng
+        - jpegoptim
+        - rsync
+    script:
+    - mkdir build
+    - rsync -r --exclude='.*' --exclude='build' ./ build
+    - cd build/config/nginx/sites-available
+    - cp aichallenge.sharif.edu ../sites-enabled
+    - cd ../../../..
+    - cd build/apps/
+    - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
+    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
+      --totals
+    - cd ../..
+    - tar -czf deploy_package.tgz build
+    - export SSHPASS=$DEPLOY_PASS
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - rm -r build deploy_package.tgz
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
 env:
   global:
-  - secure: jlMwMsBh/ThdwUVR6Gr62kD2Kt9S0vMAXHfuXAxo4aDowJF6Hdz3G2UnsianGqfDwO/UFfKAsBvJwVZ8MbsBrU39fOYvOYLqKkJJmRZWlxpDUqEoVzuQGE7ws8cj2e3N0F6itPps4pZtXLU6RGXisYuACMwrmWzbkiN1S3PUQU2t5sIGyIc3mkrmvN49m0w3HcSi7IJYu2E1YPETQiq7VvX6jDP/u1C/Vfn/aYcyqI+CN+gR0IJGT71JByOnH6TInuBQsxSyH4d8Rp7RtpQ82Px65j6DGQgVirVGxmCVE2gz6YKvjAewQ9RPzn0+i2rm2W10IvYZVHzudYX3tcifmm/8VAAN2BlINwmmWJUsINcjyOBz0Zopj54MKgJLaaSAd8qZSV6dEBcnoN5kqGo4BonagS8e7dT/Rx06QfmD0NvZ22glXPBTQT4D6xirs/R6cAt6iWHa4YWJKO3XLRnbQy57FwNp44bT6tlgZbJrzBsFMcQ+UsUcIlrwNOnwlGeAAZlfhZQWDTyp8lhI7xXk7/U+T0QHH3/XusmIXX/5tXHScYqpSEBuC68G3U2VR7ci25W2mkvRbU3lxWOwmTBl/clHS11QP8PyZtyzg4KPvR0dBWWC6oUnmrkxgVELl8BVmYJfid593WMHZL6QhTlDxCxNCuRUtCod8f6v/QI96gk=
-  - secure: mQhFCpgsJd5bYzWvZm3gaK1+d/sVLXb01tSzUMEz43SQ3eRaDFIQTCRvThbpw2+hPe560Dcl+Hhni9gKeGUEI1n5L5/k+APsdYM1hAgaPgqquDTXhXG7QmXdB0UjdyrKrrjBAJJenT8ELapbaNkeC2HBcdgACITFLyLsbhAXENrINyku6qkQbqd+SvGqULrjUNFYW1wTaKaCF1Cxhw+Ea+HfJu9w+J+ENmgT9riJQDNMxIjz3eRH/+6+ZPK9Ox2MI+56vEQYEuQRaBygsvTwMyGlVWDUhDpvJtUJJmBPsa+qP9UNRLILJtO0Mcve0beNwocxcv8zZx1kgBoOHMD4YvGZHuN51ecBcTpPBd3q9QDNtZ+xOqN3VrCl8hfzpTfwhGffz9lQEui02gjBo/XiJh9KnUsrsoOdqcBOZRTIALG8tT/s+4oOaPZATN2yl1C2pARgo5jm7rOPZ5MFfdQXLT1fFPFGk5N+/je1nGC0oIGsC0QK1u90/S3ojly9Qhw1CWVAIQVia0+R/+J9k+9lpgcKygCPAcIUIcEC7xEgip5yfbGBP3vt9mVmneUfHOfSzyFNP1o+SBTJgh8T7MIuEJ17dt/VyRmmiiO0GrGXbeNAIZ+wA3Jsk0aIq8SakVONVcD0XngjCqtyBBe9Ax1f6RL8iTZ0PN7d/Wuth4QZ0Es=
-  - secure: qAg02165WSLAJHPJrPOR6NnCfAVX8yLrHhdECn+lPg8yOBZvpWANlZwmuuZy3Z2nOD39x0zAhbPjvuLj4ok32MpS/IMqcCmAT7A6wjbzhgnvExWImTYsG/VokSzrBy3pFv5GjDwkChrYVqcj9b13zrznycNOJbOcRE+x+RoCENUUy+vXq+/FrLHGkC3NhADg6IJrTDAUQR20rDb8hMnRl078142Wow0jY34OnHobojWZaex2ay9Lssi2LG6PheE6nd26rvZm/+tQu/T/eSHbhsmQp+e+aaFLAiU3c0n0EGWO/ublYbAFVrjSVyqxLD8noPaggq0NYKyCD0g2zdR6PUQXcNnzRFCVB/heK3EFMB9Nie2vFVWN9ySto88PIIMbt9xFmU1Qi+mQCaNUgmyVOaRiGQDTKzlSVBtkk/7H5v46XfkGM8jPzxhMCu4qeNPE7H29bCt9ZxSSnK8aOHopGbvL+m1EMIB+NvsrNz77qWKuZkjzP2WlPme3tVLptWMCUT5jRShev5dCaN2jbCJSiAljJoBtfQp9cKfEXsImlQzeQlxtz/TPZzrPp0C81WG04wDhzQq3ALC1oCV6jGJdEN3KvMq0LdGh7aWRyalCAy2DXUgBXt861iqfN6eFGb3YGdZkD9y0FlSVcxdn7klXebl5YQ4vSp3y4YlC1wDLp6M=
-  - secure: cwCaLrVIUMJT5enL7zoBiRPOn/Fay9vC+98KKV84hl9DlyazW+ZuV+Jis742FJxTb/l+QY+xut9/M/XK2dXMQYuNd4g0g2DcH1R3N8Pu6zs/YSgFWpHohSDBk1qVN8SwRB9e9ZaKWUQeiKfsk44WzynK9+LyQ5c7WQJBX9sUdwSgEd3aO2mxP9FuHXvhpBiZRuL1YRvZ2WZdZPf+nkz0vY4cQRQ7TpxBSPQm68/QkyCfNIXyrptug+XaxGSLYtqKdejwElyaIHxf9U+6VjPNdz1v4AP/cknqjBclI9WK7i2sR7jU54VOo3f2M/En1nA3dJ1TS5FC/GloTLfxkxsDM5NTDyskzAbtYfotADjNaOzqwXhUSOfTQ/k/ifrNen1Mn/tmkKPkhUzxQ/E8zSu0L+BqaJOSqHYldBSkK0eZheXIIf2PEAbNuxCFFpoJD/2dj9s0mFpNLFFHr3xcdr2FA53C916d1nQfD/5uN24ds0bCBDCBE1DeT4EoRdm0ajLJNf8qogbPwDi9lnyfvbvtcUnNLHw2RJE4MZXgD64yJiPaNz4GrKsxN9nmh7TAJYnee3/3+V4HQPfjbNimJOhun/75RzHCa+fH5mpyihRSGQUIY1ywsseN55bg69sPe8Wzi7Y0vqbcDuokb5MutNgjJMkJbDYTcwWlzlqdO0aerTA=
-addons:
-  apt:
-    packages:
-    - sshpass
-services:
-- docker
-script:
-- echo "dummy script"
-after_success:
-- mkdir build
-- rsync -r --exclude='.*' --exclude='build' ./ build
-- cd build/config/nginx/sites-available
-- cp aichallenge.sharif.edu ../sites-enabled
-- cd ../../../..
-- tar -czf deploy_package.tgz build
-- export SSHPASS=$DEPLOY_PASS
-- sshpass -e scp -o stricthostkeychecking=no deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-- sshpass -e scp -o stricthostkeychecking=no deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-- sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
-- sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+  - secure: S0mTeW5elEvCR/w67z+0uCAyaK+wG+Y/1f/iRQVxLjGD3lV5wSqCYWWLe7MCXQe0O0ErR6T1HDmPZztlxbV2b/tFzqz3PALr5LpiSoOBYuJ7xtlpnoB1nA6NywVbyF4vXa+vBlwpdYBYlXj6CIfq4RQtefQDXy1D65s9RmmM6GjN01PlqWDS1AjW1WijoKvdnx13kItulfv2x9qZRYU+9dOTzrjg+btUPFlToTYAjMnMu6fhcnNmsHluZ07gPksaTBazjb7EQbqybiILXvZM9xxos3sw3L8V/KXdf8B+CXUA7M8Q17NzKNQWZK23qBNF2b5D0IgtrgNUiM0mqhlFUZRZwP/7Fl3lndy4048RteGCl+hcBYNMNyI7f0lCTk6jO5Fx1cqS6RmIwNpGQTgzXjrCuQE/IVjWXTMyeaS56BsP+nEa+VviOsK2RObV8zZ5rVUlooQuATHPJUvBqN5gCdBdXLIqG66lPQoTA14TKRDnvHw3KOkm+ZM9D1XBey75W4R1DVAR/lPnpfyBwXWvV0jXcSDmsobV9xwcRyWyvibc3Qm8qEwa+Uj5Nk7XR1mkECzQ0xh9oQx5+vpc9OGILKBW4lj1B4+uRbubjvtW8n3TDNBo3o0RV441pUKWWSp1D9qGmsMkuILc1STQmMireduy02Zt0wtrrmK89mwJE90=
+  - secure: avypHP0OYjp9Gd2JZTq0G0QYY331fPx+SxXPWYAgWCPSF2ys84/TD0qI8HGGxMkMlkqZIxPVn8h9+aPmLPeii1rTeu6K463irH8/KSp24X34P7vltZPtkVPgEbsaSrtljxhCl+5vouWPuIle+Z+tpFvHHdnaqHt6tKEuNgfl/RQxcpcQQji8VPkXEr0jOhCoJd7yTR/g6+nU0e2FHavVv4QWVR3tfTHVFV3c6mIismcsv0C0J2TUEj+0XjvqRJ2R+FDwxcIjDyiO9INPm1Lr53uGvnZp+UaNpJga8Or6Jq/86T/FnLkI81/AQjHiroXxFblk65Zu1WnobqAD6Pyg8x+YymrCzL29f7XvnnD7inx/L8E7yLXlibXTCHGvp16B2XQWTBc+WWy49F2CwRaPhgvHbuqeJE2VuoiHoUrYP8w/Tjt1iaD8CDB3/hQE1jzAWY2jsPevPMCOgVtBBba5cgMroHa7TDnYtPCYLSFDqj0JosRf3W42k5f+e6yA59N98JqJR9Qy1bSjS139xEh10PTvhQFEoUMCu+iAbBVmH7gz6BsEntNg+jAVHychRGlHLGyyxo7DjP2CYL6z1O837VclzSFq+ZHkSUqX8J5uDTXEDMI44/0pMOQSe/L9/XgUtKT/I/OfbQu8hJpNomtlPe1XYpFoiiMoLOmCHsmLtBo=
+  - secure: Eu+Ua32JbIxWtIRbJNczICLm0NptVKf/dBXgRGGWX+aMVvS9dzN0vUebDEGhmn4uQ2mJ43cqopL22AWj6fKOj6YmbNwr0ZmzncIV9pbfbs8gMeZiHFQ3WlDio8JmkNP6duDGWB0PkGWX4Av3vaGQz9SEpilexgC+lkZfl6ZEqCv6/HFxxl6olRzYVC3gl8sqdKCBkJx1ZQTJhe1vBQoEGsmOehcLssYNmmWpiXhxeEFcDH46z91efyhCcjZtgCdjfjwVJrmR2E5bR7auHExzCqkNhmXNqi00Lk7HgB+lFWZlxd7ZNAi3c7lMx0YJEGwP0Aptub1rInuCjtnG0L3n/Eh899RG+wwMv10e1o7WXnZEVZA0wJlX1INdI0K5P1blV+AmlKYg+fa2WCo4jxfDEbAf+bSthDIpFIYhbRJ6ZsFEf17KmOxPmKjCYOKSgbEihCrg1U4JPpmM8CwUfIwMlTOtCPtojeRxgEC57lGZlQD0E7erkmnGRj3O/NrVCkS26xFzIe5YvKb1WZUIgxZqYVm1xZo9n5Ifg4haxct6EsEOqPPX1OorWupJtA0KqT8akzjUYMSaj1xoD6zq0p8FbuS3iDrvOor9mcHfR1ra+/atPYv5WHTsMdOQHL+hu1d3KGn9KsTotv1GU6N40pO8SHo9mGNF9Uv9C20vsMPhN2A=
+  - secure: dwF6n+Po7epN6ypUYTDrHkjDDfcNdKLUYHt4VVslDZUUj8xcvbZxYBDvmeLUlJbI0U69zLdmE4DJsB/DRqQtWutDIZi17XVQLClXVClJXrSE/jGNaaAv0EmyQa5nDB70iClySQCkBI7bmzqQY7ByLqIft/nRpCLC+/ZqquUKRJczD1yGbFPhE6g/qokw1w6DQP54rQEjigL2Tns4ICjj/N4vmd31ozBwUcZEZcc7sXW5q9Muk2n4VIRx5TZgs0ZdH048ZZdwxAJjLrXe4jXEtcHiB3LLZldm2lWfQsix+YT3CcaK+EMABVrnupa0+zevz9GyyTC8ggBlXo5LpOiP6EVEFOQqwPBWa98vnB0QJwD2oalfLPX8FTNFOrtnbTwVVp5Kt6xSrqDT4VA4hNqtGcAx7t6tGhu5g+Vrba8WHr29N8bbPUoryWQMcBXUge+cvFNVJyBqYAZTR6/Gxuf6qA50UiZN+VfbEKOG40fWwl31U4F5Hr9ZS4N45UBkdkPb2KNPrfd3I8yy242gXAxJG/hQYaYTeqifvb13T4W7e+agnweZQGOGmLmHfNp3NWlEwXP8nwABqgANHLrTHWRAtYJBr2j86YyMpKKrkSg28ZRCKRhEY2B0QbHyNsLVF5pZh2k/NaE2N75n7oFd922rSGJDnsRmoEYvPoh+FILoXc8=
