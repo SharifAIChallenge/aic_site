@@ -44,7 +44,7 @@ jobs:
           - jpegoptim
           - rsync
       script:
-        - skip
+        - :
       after_success:
         - mkdir build
         - rsync -r --exclude='.*' --exclude='build' ./ build
