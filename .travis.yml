@@ -11,8 +11,8 @@ branches:
   - travis_integration
 
 stages:
-  - test
   - deploy
+  - test
 
 jobs:
   include:
