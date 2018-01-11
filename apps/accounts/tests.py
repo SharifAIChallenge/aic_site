@@ -58,3 +58,45 @@ def populate_competitions():
         competition.type = types[i]
         competition.challenge = challenge
         competition.save()
+
+
+class TestTeam(TestCase):
+    def setUp(self):
+        super().setUp()
+        populate_users()
+        populate_teams()
+        populate_challenges()
+        populate_competitions()
+
+    def test_get_team_matches(self):
+        teams = Team.objects.all()
+        competition = Competition.objects.get(type='elim')
+        challenge = Challenge.objects.all()[0]
+        team_participation = []
+        for team in teams:
+            participation = TeamParticipatesChallenge()
+            participation.team = team
+            participation.challenge = challenge
+            participation.save()
+            team_participation.append(participation)
+
+        matches = []
+        for i in range(3):
+            matches.append(Match())
+            participants = []
+            for j in range(2):
+                participant = Participant()
+                participant.depend = team_participation[(i + j) % 3]
+                participant.save()
+                participants.append(participant)
+            matches[i].part1 = participants[0]
+            matches[i].part2 = participants[1]
+            matches[i].competition = competition
+            matches[i].save()
+
+        challenge.competitions = [competition]
+        challenge.save()
+
+        team0_matches = teams[0].get_competition_matches(competition.id)
+
+        self.assertEqual(len(team0_matches), 2)
