@@ -14,7 +14,7 @@ jobs:
       env:
         - DJANGO=1.11
       before_install:
-        - export DJANGO_SETTINGS_MODULE=aic_site.settings.production_test
+        - export DJANGO_SETTINGS_MODULE=aic_site.settings.development
         - export PYTHONPATH=$HOME/builds/SharifAIChallenge/aic_site
         - export PIP_USE_MIRRORS=true
       install:
@@ -24,7 +24,7 @@ jobs:
       before_script:
         - psql -c "CREATE DATABASE mydb;" -U postgres
       script:
-        - python manage.py makemigration
+        - python manage.py makemigrations
         - python manage.py migrate
         - python manage.py test
     - stage: deploy
