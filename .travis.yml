@@ -44,6 +44,8 @@ jobs:
           - jpegoptim
           - rsync
       script:
+        - skip
+      after_success:
         - mkdir build
         - rsync -r --exclude='.*' --exclude='build' ./ build
         - cd build/config/nginx/sites-available
@@ -60,3 +62,4 @@ jobs:
         - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
         - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
         - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+
