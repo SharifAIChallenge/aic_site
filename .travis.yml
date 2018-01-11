@@ -8,8 +8,8 @@ branches:
   - master
   - travis_integration
 stages:
-- deploy
 - test
+- deploy
 jobs:
   include:
   - stage: test
