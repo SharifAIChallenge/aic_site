@@ -19,10 +19,8 @@ def download_file(file_token):
     # Download the file of a match (with file's) from the infrastructure.
     # Returns the file.
 
-    file = open('static/play_logs/' + file_token + '.log', 'w')
     # Request and get the log file
-    file.write("Mock Log File")
-    file.close()
+    return "This is text will be replaced by the real log file"
 
 
 def compile_submissions(submission_tokens, game_id):
@@ -43,20 +41,24 @@ def compile_submissions(submission_tokens, game_id):
     # Send request to infrastructure to compile them
     # TODO : A thread to call compile results
 
-    compile_tokens = []  # Get the array from the infrastructure.
+    compile_details = []  # Get the array from the infrastructure.
 
     for x in submission_tokens:
-        compile_tokens.append(random_token())
+        compile_details.append({
+            "token": random_token(),
+            "success": True,
+            "errors": ""
+        })
 
-    return compile_tokens
+    return compile_details
 
 
 def run_matches(matches, game_id):
     # Tell the infrastructure to run a list of matches (match includes tokens,maps,...)
-    # Returns the list of tokens assigned to the matches
+    # Returns the list of tokens and success status and errors assigned to the matches
 
     games = []
-    for submission_token in matches:
+    for match in matches:
         games.append({
             "game": game_id,
             "section": "play",
@@ -70,31 +72,58 @@ def run_matches(matches, game_id):
     # Send request to infrastructure to compile them
     # TODO : A thread to call matches results
 
-    match_tokens = []  # Get the array from the infrastructure.
+    match_details = []  # Get the array from the infrastructure.
 
     for x in matches:
-        match_tokens.append(random_token())
+        match_details.append({
+            "token": random_token(),
+            "success": True,
+            "errors": ""
+        })
 
-    return match_tokens
+    return match_details
 
 
-def compilation_results(compile_file):
+def compilation_result(compile_result):
     # Returns compilation results.
 
-    # TODO
+    token = compile_result["token"]
+    success = compile_result["success"]
+    errors = ""
+    parameters = {}
 
+    if success is False:
+        errors = ""
+    else:
+        parameters = {}
+
+    # TODO : update result in model
     pass
 
 
-def matches_results(matches):
+def match_results(match):
     # Return matches results.
 
-    # TODO
+    token = match["token"]
+    success = match["success"]
+    errors = ""
+    parameters = {}
 
+    if success is False:
+        errors = ""
+    else:
+        parameters = {}
+
+    # TODO : update result in model
     pass
 
 
-def pull_results():
+def is_compile_report(game):
+    # TODO
+    return True
+
+
+def pull_reports():
     # Requests latest results from the infrastructure and updates them
 
     submits = []
@@ -103,7 +132,9 @@ def pull_results():
     games = []  # Request updates from the infrastructure.
 
     for game in games:
-        if game["section"] == "compile":
-            compilation_results(game)
-        elif game["section"] == "play":
-            matches_results(game)
+        token = game["token"]
+
+        if is_compile_report(game):
+            compilation_result(game)
+        else:
+            match_results(game)
