@@ -56,8 +56,8 @@ jobs:
     - rm -r build deploy_package.tgz
     - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
       deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
-    - sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
 env:
   global:
   - secure: S0mTeW5elEvCR/w67z+0uCAyaK+wG+Y/1f/iRQVxLjGD3lV5wSqCYWWLe7MCXQe0O0ErR6T1HDmPZztlxbV2b/tFzqz3PALr5LpiSoOBYuJ7xtlpnoB1nA6NywVbyF4vXa+vBlwpdYBYlXj6CIfq4RQtefQDXy1D65s9RmmM6GjN01PlqWDS1AjW1WijoKvdnx13kItulfv2x9qZRYU+9dOTzrjg+btUPFlToTYAjMnMu6fhcnNmsHluZ07gPksaTBazjb7EQbqybiILXvZM9xxos3sw3L8V/KXdf8B+CXUA7M8Q17NzKNQWZK23qBNF2b5D0IgtrgNUiM0mqhlFUZRZwP/7Fl3lndy4048RteGCl+hcBYNMNyI7f0lCTk6jO5Fx1cqS6RmIwNpGQTgzXjrCuQE/IVjWXTMyeaS56BsP+nEa+VviOsK2RObV8zZ5rVUlooQuATHPJUvBqN5gCdBdXLIqG66lPQoTA14TKRDnvHw3KOkm+ZM9D1XBey75W4R1DVAR/lPnpfyBwXWvV0jXcSDmsobV9xwcRyWyvibc3Qm8qEwa+Uj5Nk7XR1mkECzQ0xh9oQx5+vpc9OGILKBW4lj1B4+uRbubjvtW8n3TDNBo3o0RV441pUKWWSp1D9qGmsMkuILc1STQmMireduy02Zt0wtrrmK89mwJE90=
