@@ -27,10 +27,10 @@ jobs:
     - python manage.py migrate
     - python manage.py test
   - stage: deploy
-    branches:
-      only:
-      - master
-      - travis_integration
+#    branches:
+#      only:
+#      - master
+#      - travis_integration
     addons:
       apt:
         packages:
@@ -39,6 +39,7 @@ jobs:
         - jpegoptim
         - rsync
     script:
+    - if [ ![ "$TRAVIS_BRANCH" =~ ^(master|travis_integration|production-test)$ ] ]; then echo Nothing To Deploy; exit 0 fi
     - mkdir build
     - rsync -r --exclude='.*' --exclude='build' ./ build
     - cd build/config/nginx/sites-available
