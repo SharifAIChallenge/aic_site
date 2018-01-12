@@ -52,7 +52,7 @@ class Match(models.Model):
     done = models.BooleanField(default=False)
     infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
-    log = models.FileField(upload_to=get_log_file_directory)
+    log = models.FileField(upload_to=get_log_file_directory,blank=True, null=True)
 
     def is_ready(self):
         return self.part1.is_ready() and self.part2.is_ready()
