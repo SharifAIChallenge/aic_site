@@ -21,7 +21,7 @@ from apps.accounts import urls as account_urls
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(intro_urls, namespace='intro')),
-    url(r'^accounts/', include(account_urls, namespace='account'))
+    url(r'^accounts/', include(account_urls, namespace='account')),
     url(r'^blog/', include('zinnia.urls')),
     url(r'^articles/comments/', include('django_comments.urls')),
 ]
