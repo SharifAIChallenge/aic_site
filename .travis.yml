@@ -5,8 +5,8 @@ addons:
   - 81.31.168.207
 stages:
   - test
-  - deploy
-  if: branch IN (master, travis_integration, production-test)
+  - name: deploy
+    if: branch IN (master, travis_integration, production-test)
 jobs:
   include:
   - stage: test
