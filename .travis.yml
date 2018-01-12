@@ -6,7 +6,7 @@ addons:
 stages:
   - test
   - name: deploy
-    if: branch IN (master, travis_integration, production-test)
+    if: type = push AND (branch IN (master, travis_integration, production-test))
 jobs:
   include:
   - stage: test
