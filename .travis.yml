@@ -4,8 +4,9 @@ addons:
   ssh_known_hosts:
   - 81.31.168.207
 stages:
-- test
-- deploy
+  - test
+  - name: deploy
+    if: branch IN (master, travis_integration, production-test)
 jobs:
   include:
   - stage: test
@@ -39,7 +40,6 @@ jobs:
         - jpegoptim
         - rsync
     script:
-    - if [ ![ "$TRAVIS_BRANCH" =~ ^(master|travis_integration|production-test)$ ] ]; then echo Nothing To Deploy; exit 0 fi
     - mkdir build
     - rsync -r --exclude='.*' --exclude='build' ./ build
     - cd build/config/nginx/sites-available
