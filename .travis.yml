@@ -28,10 +28,6 @@ jobs:
     - python manage.py migrate
     - python manage.py test
   - stage: deploy
-#    branches:
-#      only:
-#      - master
-#      - travis_integration
     addons:
       apt:
         packages:
