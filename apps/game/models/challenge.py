@@ -17,6 +17,9 @@ class Challenge(models.Model):
     entrance_price = models.IntegerField()  # In Toomans, 0 for free
     game = models.ForeignKey(Game)
 
+    def __str__(self):
+        return self.title
+
     def can_register(self):
         return self.registration_open #and (current time between reg_start_time and reg_end_time)
 
@@ -32,6 +35,9 @@ class Challenge(models.Model):
 class TeamParticipatesChallenge(models.Model):
     team = models.ForeignKey(Team, related_name='challanges')
     challenge = models.ForeignKey(Challenge, related_name='teams')
+
+    def __str__(self):
+        return 'Team: ' + str(self.team) + ' Challenge: ' + str(self.challenge)
 
     def all_members_accepted(self):
         """
@@ -83,6 +89,10 @@ class TeamSubmission(models.Model):
     language = models.CharField(max_length=127, choices=LANGUAGE_CHOICES)
     infra_compile_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
+
+
+    def __str__(self):
+        return self.id
 
     def set_final(self):
         """
