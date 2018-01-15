@@ -11,85 +11,25 @@ def random_token():
     return ''.join((random.choice(chars)) for i in range(15))
 
 
-def upload_file(file):
-    # Tell infrastructure to upload file.
-    # Returns the token of the uploaded file.
-
-    # Request to upload file
-    return random_token()
+def is_compile_report(game):
+    return TeamSubmission.objects.filter(infra_token=game["token"]).exists()
 
 
-def download_file(file_token):
-    # Download the file of a match (with file's) from the infrastructure.
-    # Returns the file.
-
-    # Request and get the log file
-    return "This is text will be replaced by the real log file"
-
-
-def compile_submissions(file_tokens, game_id):
-    # Tell the infrastructure to compile a list of submission
+def pull_reports():
+    # Requests latest results from the infrastructure and updates them
 
     submits = []
-    for file_token in file_tokens:
-        submits.append({
-            "game": game_id,
-            "section": "compile",
-            "parameters": {  # TODO : parameters
-                "string_parameter1": "parameter1_value",
-                "string_parameter2": "parameter2_value",
-                "file_parameter1": "file_parameter1_token"
-            }
-        })
+    matches = []
 
-    # Send request to infrastructure to compile them
+    games = []  # Request updates from the infrastructure.
 
-    compile_details = []  # Get the array from the infrastructure.
+    for game in games:
+        token = game["token"]
 
-    for x in file_tokens:
-        gm = {
-            "token": random_token(),
-            "success": True,
-            "errors": ""
-        }
-        compile_details.append(gm)
-        t = threading.Thread(target=compilation_result, args=(gm,))
-        t.start()
-
-    return compile_details
-
-
-def run_matches(matches, game_id):
-    # Tell the infrastructure to run a list of matches (match includes tokens,maps,...)
-    # Returns the list of tokens and success status and errors assigned to the matches
-
-    games = []
-    for match in matches:
-        games.append({
-            "game": game_id,
-            "section": "play",
-            "parameters": {  # TODO : parameters
-                "string_parameter1": "parameter1_value",
-                "string_parameter2": "parameter2_value",
-                "file_parameter1": "file_parameter1_token"
-            }
-        })
-
-    # Send request to infrastructure to compile them
-
-    match_details = []  # Get the array from the infrastructure.
-
-    for x in matches:
-        gm = {
-            "token": random_token(),
-            "success": True,
-            "errors": ""
-        }
-        match_details.append(gm)
-        t = threading.Thread(target=match_results, args=(gm,))
-        t.start()
-
-    return match_details
+        if is_compile_report(game):
+            compilation_result(game)
+        else:
+            match_results(game)
 
 
 def compilation_result(compile_result):
@@ -130,22 +70,108 @@ def match_results(match):
     Match.objects.filter(infra_token=token).update(infra_match_message=errors)
 
 
-def is_compile_report(game):
-    return TeamSubmission.objects.filter(infra_token=game["token"]).exists()
+"""
+    **** Infrastructure API Functions ****
+"""
 
 
-def pull_reports():
-    # Requests latest results from the infrastructure and updates them
+def upload_file(file):
+    """
+    This function uploads a file to infrastructure synchronously
+    :param file: File field from TeamSubmission model
+    :return: file token or raises error with error message
+    """
+    # Temporary test code
+    return random_token()
 
+
+def download_file(file_token):
+    """
+    Downloads file from infrastructure synchronously
+    :param file_token: the file token obtained already from infra.
+    :return: sth that TeamSubmission file field can be assigned to
+    """
+
+    # Temporary test file
+    return "This is text will be replaced by the real log file"
+
+
+def compile_submissions(file_tokens, game_id):
+    """
+        Tell the infrastructure to compile a list of submissions
+    :param file_tokens: array of strings
+    :param game_id: string
+    :return: list of dictionaries each have token, success[, errors] keys
+    """
+    #
+
+    # Test code
     submits = []
-    matches = []
+    for file_token in file_tokens:
+        submits.append({
+            "game": game_id,
+            "section": "compile",
+            "parameters": {  # TODO : parameters
+                "string_parameter1": "parameter1_value",
+                "string_parameter2": "parameter2_value",
+                "file_parameter1": "file_parameter1_token"
+            }
+        })
 
-    games = []  # Request updates from the infrastructure.
+    # Send request to infrastructure to compile them
 
-    for game in games:
-        token = game["token"]
+    compile_details = []  # Get the array from the infrastructure.
 
-        if is_compile_report(game):
-            compilation_result(game)
-        else:
-            match_results(game)
+    for x in file_tokens:
+        gm = {
+            "token": random_token(),
+            "success": True,
+            "errors": ""
+        }
+        compile_details.append(gm)
+        t = threading.Thread(target=compilation_result, args=(gm,))
+        t.start()
+
+    return compile_details
+
+
+def run_matches(matches):
+    """
+        Tell the infrastructure to run a list of matches (match includes tokens,maps,...)
+    :param matches: List of match objects, having these functions:
+        get_first_file(): String
+        get_second_file: String
+        get_maps(): String[]
+        get_game_id(): String
+
+        and any other potential parameters
+    :return: Returns the list of tokens and success status and errors assigned to the matches
+    """
+
+    games = []
+    for match in matches:
+        games.append({
+            "game": "1",  # TODO match.get_game_id(),
+            "section": "play",
+            "parameters": {  # TODO : parameters
+                "string_parameter1": "parameter1_value",
+                "string_parameter2": "parameter2_value",
+                "file_parameter1": "file_parameter1_token"
+            }
+        })
+
+    # Send request to infrastructure to compile them
+
+    match_details = []  # Get the array from the infrastructure.
+
+    for x in matches:
+        gm = {
+            "token": random_token(),
+            "success": True,
+            "errors": ""
+        }
+        match_details.append(gm)
+        t = threading.Thread(target=match_results, args=(gm,))
+        t.start()
+
+    return match_details

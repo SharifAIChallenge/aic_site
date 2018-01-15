@@ -67,7 +67,7 @@ class TestGame(TransactionTestCase):
 
         time.sleep(0.4)  # Wait for the compilation results
 
-        match_tokens = run_matches([matches[0]], "AIC2018")
+        match_tokens = run_matches([matches[0]])
         Match.objects.filter(id=matches[0].id).update(infra_token=match_tokens[0]["token"])
 
         time.sleep(0.4)  # Wait for the matches results
@@ -75,5 +75,4 @@ class TestGame(TransactionTestCase):
         self.assertEqual(TeamSubmission.objects.get(infra_token=submit_tokens1[0]["token"]).infra_compile_message, 'ok')
         self.assertEqual(TeamSubmission.objects.get(infra_token=submit_tokens2[0]["token"]).infra_compile_message, 'ok')
         self.assertEqual(Match.objects.get(infra_token=match_tokens[0]["token"]).infra_match_message, 'ok')
-        #submit_token2 = upload_file('')
-        #compile_submissions([submit_token2], "AIC2018")
+
