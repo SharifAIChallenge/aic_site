@@ -14,7 +14,12 @@ class Competition(models.Model):
     )
 
     challenge = models.ForeignKey(Challenge, related_name='competitions')
+    name = models.CharField(max_length=128, null=True)
     type = models.CharField(max_length=128, choices=TYPE_CHOICES)
+
+    def __str__(self):
+        return self.name
+
 
     def create_new_league(self, teams):  # algorithm for scheduling is Round-robin tournament
         matches = []
@@ -180,6 +185,9 @@ class Participant(models.Model):
     #     depend = self.depend
     #     super().save(force_insert, force_update, using, update_fields)
     #     self.depend = depend
+
+    def __str__(self):
+        return self.object_id
 
     def is_ready(self):
         return self.submission is not None
