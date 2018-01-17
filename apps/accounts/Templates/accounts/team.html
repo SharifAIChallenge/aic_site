@@ -2,14 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Team</title>
+    <title>Team</title>
 </head>
 <body>
+    <h2>Team Members</h2>
+    {% for teamuser in team_user.objects.all %}
+        <p>member : {{ teamuser.user.name }}</p>
+    {% endfor %}
+    
     <h2>Create Team</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Create Team</button>
+        <button type="submit">Team</button>
     </form>
 </body>
 </html>
