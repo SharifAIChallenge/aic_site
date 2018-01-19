@@ -100,3 +100,6 @@ class TestTeam(TestCase):
         team0_matches = teams[0].get_competition_matches(competition.id)
 
         self.assertEqual(len(team0_matches), 2)
+
+    # def test_panel(self):
+    #     self.
