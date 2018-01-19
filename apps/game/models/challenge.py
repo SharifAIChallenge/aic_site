@@ -1,3 +1,6 @@
+import os
+import uuid
+
 from django.contrib.auth.models import User
 from .game import Game
 from django.db import models
@@ -65,7 +68,7 @@ class UserAcceptsTeamInChallenge(models.Model):
 
 
 def get_submission_file_directory(instance, filename):
-    pass
+    os.path.join(instance.team.id, uuid.uuid4())
 
 
 class TeamSubmission(models.Model):
