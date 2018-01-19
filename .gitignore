@@ -179,5 +179,7 @@ venv.bak/
 # End of https://www.gitignore.io/api/python,django,pycharm+all
 
 build.sh
+build_test.sh
+build_safe.sh
 
 node_modules/
