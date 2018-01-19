@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
@@ -51,13 +52,12 @@ class UpdateProfileView(generic.UpdateView):
         return get_object_or_404(User, pk=self.request.user.id)
 
 
+@login_required
 def panel(request, participation_id=None):
     if request.method == 'POST':
         form = SubmissionForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-        else:
-            pass
     else:
         form = SubmissionForm()
         form.fields['team'].queryset = TeamParticipatesChallenge.objects.filter(
@@ -65,4 +65,4 @@ def panel(request, participation_id=None):
         )
         if participation_id is not None:
             form.instance.team = TeamParticipatesChallenge.objects.get(id=participation_id)
-        return render(request, 'accounts/panel.html', {'submission_form': form})
+    return render(request, 'accounts/panel.html', {'submission_form': form})
