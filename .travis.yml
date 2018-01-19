@@ -4,11 +4,11 @@ addons:
   ssh_known_hosts:
   - 81.31.168.207
 stages:
-  - test
-  - name: deploy_test
-    if: type = push AND (branch IN (travis_integration, production-test))
-  - name: deploy_production
-    if: type = push AND (branch IN (master, travis_integration))
+- test
+- name: deploy_test
+  if: type = push AND (branch IN (travis_integration, production-test))
+- name: deploy_production
+  if: type = push AND (branch IN (master, travis_integration))
 jobs:
   include:
   - stage: test
@@ -49,16 +49,20 @@ jobs:
     - cd ..
     - cd build/apps/
     - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
-    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve --totals
+    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
+      --totals
     - cd ../..
     - tar -czf deploy_package.tgz build
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build deploy_package.tgz
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
-
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST
+      chmod +x $DEPLOY_PATH/deploy.sh
+    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+      $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
   - stage: deploy_test
     addons:
       apt:
@@ -79,19 +83,23 @@ jobs:
     - cd ..
     - cd build_test/apps/
     - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
-    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve --totals
+    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
+      --totals
     - cd ../..
     - tar -czf deploy_test_package.tgz build_test
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy_test_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      deploy_test_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build_test deploy_test_package.tgz
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy/deploy_test.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy_test.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
-
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      deploy/deploy_test.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST
+      chmod +x $DEPLOY_PATH/deploy_test.sh
+    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+      $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
 env:
   global:
-  - secure: S0mTeW5elEvCR/w67z+0uCAyaK+wG+Y/1f/iRQVxLjGD3lV5wSqCYWWLe7MCXQe0O0ErR6T1HDmPZztlxbV2b/tFzqz3PALr5LpiSoOBYuJ7xtlpnoB1nA6NywVbyF4vXa+vBlwpdYBYlXj6CIfq4RQtefQDXy1D65s9RmmM6GjN01PlqWDS1AjW1WijoKvdnx13kItulfv2x9qZRYU+9dOTzrjg+btUPFlToTYAjMnMu6fhcnNmsHluZ07gPksaTBazjb7EQbqybiILXvZM9xxos3sw3L8V/KXdf8B+CXUA7M8Q17NzKNQWZK23qBNF2b5D0IgtrgNUiM0mqhlFUZRZwP/7Fl3lndy4048RteGCl+hcBYNMNyI7f0lCTk6jO5Fx1cqS6RmIwNpGQTgzXjrCuQE/IVjWXTMyeaS56BsP+nEa+VviOsK2RObV8zZ5rVUlooQuATHPJUvBqN5gCdBdXLIqG66lPQoTA14TKRDnvHw3KOkm+ZM9D1XBey75W4R1DVAR/lPnpfyBwXWvV0jXcSDmsobV9xwcRyWyvibc3Qm8qEwa+Uj5Nk7XR1mkECzQ0xh9oQx5+vpc9OGILKBW4lj1B4+uRbubjvtW8n3TDNBo3o0RV441pUKWWSp1D9qGmsMkuILc1STQmMireduy02Zt0wtrrmK89mwJE90=
-  - secure: avypHP0OYjp9Gd2JZTq0G0QYY331fPx+SxXPWYAgWCPSF2ys84/TD0qI8HGGxMkMlkqZIxPVn8h9+aPmLPeii1rTeu6K463irH8/KSp24X34P7vltZPtkVPgEbsaSrtljxhCl+5vouWPuIle+Z+tpFvHHdnaqHt6tKEuNgfl/RQxcpcQQji8VPkXEr0jOhCoJd7yTR/g6+nU0e2FHavVv4QWVR3tfTHVFV3c6mIismcsv0C0J2TUEj+0XjvqRJ2R+FDwxcIjDyiO9INPm1Lr53uGvnZp+UaNpJga8Or6Jq/86T/FnLkI81/AQjHiroXxFblk65Zu1WnobqAD6Pyg8x+YymrCzL29f7XvnnD7inx/L8E7yLXlibXTCHGvp16B2XQWTBc+WWy49F2CwRaPhgvHbuqeJE2VuoiHoUrYP8w/Tjt1iaD8CDB3/hQE1jzAWY2jsPevPMCOgVtBBba5cgMroHa7TDnYtPCYLSFDqj0JosRf3W42k5f+e6yA59N98JqJR9Qy1bSjS139xEh10PTvhQFEoUMCu+iAbBVmH7gz6BsEntNg+jAVHychRGlHLGyyxo7DjP2CYL6z1O837VclzSFq+ZHkSUqX8J5uDTXEDMI44/0pMOQSe/L9/XgUtKT/I/OfbQu8hJpNomtlPe1XYpFoiiMoLOmCHsmLtBo=
-  - secure: Eu+Ua32JbIxWtIRbJNczICLm0NptVKf/dBXgRGGWX+aMVvS9dzN0vUebDEGhmn4uQ2mJ43cqopL22AWj6fKOj6YmbNwr0ZmzncIV9pbfbs8gMeZiHFQ3WlDio8JmkNP6duDGWB0PkGWX4Av3vaGQz9SEpilexgC+lkZfl6ZEqCv6/HFxxl6olRzYVC3gl8sqdKCBkJx1ZQTJhe1vBQoEGsmOehcLssYNmmWpiXhxeEFcDH46z91efyhCcjZtgCdjfjwVJrmR2E5bR7auHExzCqkNhmXNqi00Lk7HgB+lFWZlxd7ZNAi3c7lMx0YJEGwP0Aptub1rInuCjtnG0L3n/Eh899RG+wwMv10e1o7WXnZEVZA0wJlX1INdI0K5P1blV+AmlKYg+fa2WCo4jxfDEbAf+bSthDIpFIYhbRJ6ZsFEf17KmOxPmKjCYOKSgbEihCrg1U4JPpmM8CwUfIwMlTOtCPtojeRxgEC57lGZlQD0E7erkmnGRj3O/NrVCkS26xFzIe5YvKb1WZUIgxZqYVm1xZo9n5Ifg4haxct6EsEOqPPX1OorWupJtA0KqT8akzjUYMSaj1xoD6zq0p8FbuS3iDrvOor9mcHfR1ra+/atPYv5WHTsMdOQHL+hu1d3KGn9KsTotv1GU6N40pO8SHo9mGNF9Uv9C20vsMPhN2A=
-  - secure: dwF6n+Po7epN6ypUYTDrHkjDDfcNdKLUYHt4VVslDZUUj8xcvbZxYBDvmeLUlJbI0U69zLdmE4DJsB/DRqQtWutDIZi17XVQLClXVClJXrSE/jGNaaAv0EmyQa5nDB70iClySQCkBI7bmzqQY7ByLqIft/nRpCLC+/ZqquUKRJczD1yGbFPhE6g/qokw1w6DQP54rQEjigL2Tns4ICjj/N4vmd31ozBwUcZEZcc7sXW5q9Muk2n4VIRx5TZgs0ZdH048ZZdwxAJjLrXe4jXEtcHiB3LLZldm2lWfQsix+YT3CcaK+EMABVrnupa0+zevz9GyyTC8ggBlXo5LpOiP6EVEFOQqwPBWa98vnB0QJwD2oalfLPX8FTNFOrtnbTwVVp5Kt6xSrqDT4VA4hNqtGcAx7t6tGhu5g+Vrba8WHr29N8bbPUoryWQMcBXUge+cvFNVJyBqYAZTR6/Gxuf6qA50UiZN+VfbEKOG40fWwl31U4F5Hr9ZS4N45UBkdkPb2KNPrfd3I8yy242gXAxJG/hQYaYTeqifvb13T4W7e+agnweZQGOGmLmHfNp3NWlEwXP8nwABqgANHLrTHWRAtYJBr2j86YyMpKKrkSg28ZRCKRhEY2B0QbHyNsLVF5pZh2k/NaE2N75n7oFd922rSGJDnsRmoEYvPoh+FILoXc8=
+  - secure: rQisQkkzBLU5omXRyDz1eczEOcc++NQv+cfHKl+2yjf3x4cbRfiUmwFujuNN1GvpaHSf7zdCbn4tDIB5CXfwG6nlDLn7eFdgPC1rAUZ3erWqen0bsackWLNXwBtbGZsdFkp0nabfpuxT7JAFgQEeTx/JSzi80nkQzuvd9FxBzEuh4SDI78oOHbemCLAw0HlcMLcy5ZKmsm0Y6Cc3oW7/Q+fyPdAxpdOAv5ugNAmx62GJRp3MYlt1qJ8fOU4doFtY5UqFJODhAtY/S9L2tn5BKEA1W7koTQyuEn7G9aYKfPlEfzYzLplKoNr7WzWgSP+dxWUO1jolFTlEVaxCeWDD4u3gN+gYqB+0MRkRxF0ovBhlYzP9egkr9dT27QtTKhPj0HMqhVUVxm2Vfr4MwcsZkVGQFHiLqjP3G7epltqITM/kBkHt2yIJlJmiRVhfqx3RJAq3GQ7twKh0WmAfEYAXLukrrNm92FjWvz/Y7ocN8y/RCBXxmM/9H8C0urJ4RfFodMTis1+5isFKswdxMOMF4xfC48dGmxQV2jHycnCim+nrHY6tSz8HhXIsmDE47u7IrEuYTeo6BOy7miwr4x9gvS70KjD1WXwRXzR3GwJBdJ94zDKLwpnqQ4wFaKaVibgH4g1nXbs65AFFmgZRaH2N8foKhuT/+FMDTCxdATH+VJ8=
+  - secure: Vr58zGNRfD7nBee7e9ONHWGVk4exZCVrSLqbIkMFmazaD+6m/73YSJCpyN4d1Z7nCxVycsD0LIZDfqMn11V6jF5xMNqkKPa9P+0mFcuQxwGHslrNrp5d4uFzi88pEHZqDrOYKov2NXzCu7WvE/8AqAaM4v2+TEpqvLrScz5P/sHV1tvfha/6F6UCnYZ6zxNsZ8pJcEEYxdy2vHD+ePLKky49FCto7qfffAIdKYwtp/4ADzTEqUrp/osqDJc00sheTx6laHM0ksopYxE+hodI7fVBb9Nq7FhF8CnWX0CxNkD+GkrOh9oSPW1+PESXTKTzFntGOZ8ZjrThkRj6K+bMcMIEltx6ZO/8CBUV/FNjh5AC8yL1mAGWzXrEaRy/Od5oPSVulmuhU1iXsNJmkDCoHiUUDIuOeAkpdgUBQOMWOnpJxT1tWX2tCv9h/E4imaDfeS8uH3f6WEdHK05f7v2+RH4xORJmvhCyjW21wDK/ERCFLR8MXt0j38QPwlOFLI6+t28vwG8iIhzpBbhmz+c8DagrxoQswIZ98P8ABt9pCT6g5BxRPVaqPsr0+SllpXiRuKFCcw1KxGReFQglBjoneW4yYfHuGo25xfXcqChsG5fafJxlOnQCxXhMeJrQ2UsLVi0zJdUJXfcv1RsAkQ8BzqfqAT2i66smG9/kRONhRBo=
+  - secure: kwZMJxdO3D8R83uYvFb6orz7tyy5/kMiNLRYurcj0JDEP+u64PUcen66zM71ppk/Fv2kzBV/fLvum/ewnNlaRu0U5IsLaFiJrbRcs6zyDeODoYai9SIblh+ciGTYdh8sCM5pMjL9aMYrP0IE3l9n/RYw2nzSQi8Ln6KDRuE60si6R6pOk7ZZYSzpm/Lil8f8JigJ5mBztqEey2vFc/p0LjUH2RFOIErsHmZYJ5GQiN7uufmwc6AW10i0MEhqwyr5VW1AmEcy6N9C1TXcYyPirMTTDIH7ovo6XRDV+vCKyWkmAZiVJUeo9BnRJv54jSA3HC3HGb/Zp/SmdblCzZEHDpI7KPoIFDTplTDBJ3Wa3jBMvJv7n3tvXksXq7IBPt35//zWW5BSw/yhJlzA8pNCs9+3Vw+f73o8mLQTnzOLVcHZaOzh8Xi9xW9cdjNMGDws0Vw7Z0Vu1IATKVKrQH42BOIQ8z5GOxJxXOvkTWnxMjTUS3DPXUdf6A6PselFf6N7GQBBNeSrXt+0U+45gZDWt6oZzKGmbfWwb/bdYmW8WDHwt5GVlhDzw5tSieeGG2xi+Hgpylwa3UKtWORzd8rsiHZqOo4XKR82UPgJu59HjbLHIPSu2fvLuKaYHxSEnP0KqIO9oj/5HkdIkQDhmNFS4Om0n6eElBNSdRMEL22KXqM=
+  - secure: coYRr6NkJvAoITQV6987TlSr7yH8wFNp5WWG8TV58P5Wg5awpHX7LJY7hq/V7wC5+4FDrJVpNSgoXIAAbgGNGh7ShKrLxVmbwhDtrfOWW3/YGMHF/FRXRigGTlde5wfGYHSi2Slhm75d6L1UpCiRlcEVzBYH9zwbuATFBmnEEg0+P4nfWTaOmFn6BlSJPaErxZJnNwPyM0A7q2BgL8C2PUcXS9ba3yMYwwIjBoELN6V4uoagKhlxAwj3CWgpzjGwIWTa7jwPY4FY2yUIfQX1HUPrG99m1AzL+sv7lZ90YNSDdmZEcAB2drJ+wMReSp9b4laMhy52tYur9IiC6acwG35UMMWI3j5CCiK4QW+68wBczW4CnFR3Li3l0LmBpH3qb2+HHb8DjUx6IzEG1TS275wQ0rPoKz5Uqs9LRu8PrIB+X42tKGdrEhtBReA3hTxeHQ7mOm9OXJ6ckB+WmOalfsvDrKgd+XJvEdG/67saApUF3vheFCEbwEveJX2Xujt79yclEmw1QlHnEzdKPsurYsi0H5NcTBz80X/fGN0epQV4tVLU5IcuyxFCGCLrS6YQywaB6hzqZqgWYtKRkTgo8UM1b5dObYGx1URDQ5yz8a8K7kjVIjPs6UHE1lvCekA0T6RBz52BPwB6y6KZX04JDzXB+MgDWylYpuMdaa6FMc4=
