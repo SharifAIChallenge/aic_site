@@ -1,12 +1,14 @@
 import datetime
+import io
+
 from django.utils import timezone
 
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
-from django.test import TestCase
+from django.test import TestCase, Client
 
 from apps.accounts.models import Team, UserParticipatesOnTeam
-from apps.game.models import Challenge, Competition, Match, Game, Participant
+from apps.game.models import Challenge, Competition, Match, Game, Participant, TeamSubmission
 from apps.game.models.challenge import TeamParticipatesChallenge
 
 
@@ -101,5 +103,48 @@ class TestTeam(TestCase):
 
         self.assertEqual(len(team0_matches), 2)
 
-    # def test_panel(self):
-    #     self.
+    def test_panel(self):
+        # prepare data
+        teams = Team.objects.all()
+        challenge = Challenge.objects.all()[0]
+        team_participation = []
+        for team in teams:
+            participation = TeamParticipatesChallenge()
+            participation.team = team
+            participation.challenge = challenge
+            participation.save()
+            team_participation.append(participation)
+
+        # test login required
+        client = Client()
+        response = client.get('/accounts/panel/')
+        self.assertEqual(response.status_code, 302)
+        # test that it says OK
+        client.force_login(User.objects.all()[0])
+        response = client.get('/accounts/panel/')
+        self.assertEqual(response.status_code, 200)
+        participation = TeamParticipatesChallenge.objects.all()[0]
+        response = client.post(
+            '/accounts/panel/' + str(participation.id),
+            {
+                'file': io.StringIO("Log the game"),
+                'team': participation.id,
+                'language': 'c++'
+            }
+        )
+        self.assertEqual(response.status_code, 200)
+        # test that it functions
+        self.assertEqual(TeamSubmission.objects.filter(language="c++").count(), 1)
+        response = client.post(
+            '/accounts/panel/' + str(participation.id),
+            {
+                'file': io.StringIO("Log the game"),
+                'team': participation.id,
+                'language': 'c++'
+            }
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(TeamSubmission.objects.filter(language="c++").count(), 2)
+        submissions = list(TeamSubmission.objects.all())
+        self.assertFalse(submissions[0].is_final)
+        self.assertTrue(submissions[1].is_final)

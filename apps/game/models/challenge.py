@@ -1,6 +1,7 @@
 import os
 import uuid
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from .game import Game
 from django.db import models
@@ -68,7 +69,7 @@ class UserAcceptsTeamInChallenge(models.Model):
 
 
 def get_submission_file_directory(instance, filename):
-    os.path.join(instance.team.id, uuid.uuid4())
+    return os.path.join(settings.MEDIA_ROOT, instance.team.id.__str__(), uuid.uuid4().__str__())
 
 
 class TeamSubmission(models.Model):
@@ -98,5 +99,3 @@ class TeamSubmission(models.Model):
 
     def itself(self):
         return self
-
-
