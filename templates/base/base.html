@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block head_title %}AI Challenge 2018{% endblock %}</title>
+    <meta name="description"
+          content="{% block head_description %}{% endblock %}">
+    <meta content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet"
+          href="{% if LANGUAGE_BIDI %}
+            {% static 'semantic/semantic.rtl.min.css' %}
+            {% else %}
+            {% static 'semantic/semantic.min.css' %}
+            {% endif %}">
+    <script type="text/javascript" src="{% static 'semantic/semantic.js' %}"></script>
+
+    {% block extra_header %}{% endblock %}
+</head>
+<body {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+    {% block header %}
+        Here goes nav-bar code...
+    {% endblock %}
+
+    {% block sidebar %}
+        Here goes sidebar code...
+    {% endblock %}
+
+    {% block footer %}
+        Here goes footer code...
+    {% endblock %}
+</body>
+</html>
+
