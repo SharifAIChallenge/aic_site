@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import ugettext_lazy as _
 
 # Register your models here.
 from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge
@@ -27,7 +28,7 @@ class MatchInline(admin.StackedInline):
 
 
 class GameAdmin(admin.ModelAdmin):
-    fields = ['name']
+    fields = ['name','infra_token']
 
     inlines = [ChallengeInline]
 
@@ -51,15 +52,16 @@ class ChallengeAdmin(admin.ModelAdmin):
 
     #search_fields = []
 
+
 class CompetitionAdmin(admin.ModelAdmin):
     fields = ['name', 'type']
 
     inlines = [MatchInline]
-
     list_display = ('name', 'type')
     list_filter = ['type']
 
-    #search_fields = []
+
+#search_fields = []
 
 class MatchAdmin(admin.ModelAdmin):
     fields = ['competition', 'part1', 'part2', 'done']
@@ -68,6 +70,59 @@ class MatchAdmin(admin.ModelAdmin):
     list_filter = ['competition', 'done']
 
     #search_fields = []
+
+class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
+    fields = ['team', 'challenge']
+
+    actions = ['create_new_league', 'create_new_double_elimination']
+    list_display = ('id', 'team', 'challenge')
+    list_filter = ['challenge']
+
+    def create_new_league(self, request, queryset):
+        teams = list(queryset)
+
+        if len(teams)<1:
+            from django.contrib import messages
+            messages.error(request, _('no selected teams!'))
+            return
+
+        first_challenge = teams[0].challenge
+        for team in teams:
+            if team.challenge!=first_challenge:
+                from django.contrib import messages
+                messages.error(request, _('Only teams from one challenge!'))
+                return
+        new_competition= Competition(challenge=first_challenge, name=str(len(first_challenge.competitions.all())+1),
+                                     type='league')
+        new_competition.save()
+        new_competition.create_new_league(
+            [team.team for team in teams]
+        )
+
+    def create_new_double_elimination(self, request, queryset):
+        teams = list(queryset)
+        if len(teams) < 1:
+            from django.contrib import messages
+            messages.error(request, _('no selected teams!'))
+            return
+
+        first_challenge = teams[0].challenge
+        for team in teams:
+            if team.challenge != first_challenge:
+                from django.contrib import messages
+                messages.error(request, _('Only teams from one challenge!'))
+                return
+        new_competition = Competition(challenge=first_challenge, name=str(len(first_challenge.competitions.all()) + 1),
+                                      type='double')
+        new_competition.save()
+        new_competition.create_new_double_elimination(
+            [team.team for team in teams]
+        )
+
+
+
+            #search_fields = []
+
 
 # class TeamSubmissionAdmin(admin.ModelAdmin):
 #     fields = ['team', 'file', 'language', 'is_final', 'time', 'infra_compile_message']
@@ -83,7 +138,7 @@ class MatchAdmin(admin.ModelAdmin):
 admin.site.register(Game, GameAdmin)
 
 admin.site.register(Challenge, ChallengeAdmin)
-#admin.site.register(TeamParticipatesChallenge, TeamParticipatesChallengeAdmin)
+admin.site.register(TeamParticipatesChallenge, TeamParticipatesChallengeAdmin)
 # admin.site.register(TeamSubmission, TeamSubmissionAdmin)
 
 admin.site.register(Competition, CompetitionAdmin)
