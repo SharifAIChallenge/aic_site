@@ -219,7 +219,7 @@ def get_log_file_directory(instance, filename):
 
 
 class Match(models.Model):
-    competition = models.ForeignKey(Competition)
+    competition = models.ForeignKey(Competition, related_name='matches')
     part1 = models.ForeignKey(Participant, related_name='mathces_as_first')
     part2 = models.ForeignKey(Participant, related_name='matches_as_second')
     done = models.BooleanField(default=False)
