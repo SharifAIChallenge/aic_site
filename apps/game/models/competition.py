@@ -117,23 +117,34 @@ class Competition(models.Model):
         # for second round:
         start_round_index += cur_round_length
         cur_round_length = int(cur_round_length / 2)
-
+        previous_start_round_index = 0
+        previous_third_step_index = 0
         while cur_round_length >= 1:
             # first step: winners vs winners
             for i in range(cur_round_length):
                 matches.append(
-                    Match.objects.create(competition=self, part1=Participant.objects.create(depend=matches[2 * i],
-                                                                                            depend_method='winner'),
-                                         part2=Participant.objects.create(depend=matches[2 * i + 1],
-                                                                          depend_method='winner')))
+                    Match.objects.create(competition=self,
+                                         part1=Participant.objects.create(
+                                            depend=matches[previous_start_round_index + 2 * i],
+                                            depend_method='winner'),
+                                         part2=Participant.objects.create(
+                                             depend=matches[previous_start_round_index + 2 * i + 1],
+                                             depend_method='winner')
+                                         )
+                )
             # second step: losers vs losers
-            second_step_index = start_round_index + cur_round_length
             for i in range(cur_round_length):
                 matches.append(
-                    Match.objects.create(competition=self, part1=Participant.objects.create(depend=matches[2 * i],
-                                                                                            depend_method='loser'),
-                                         part2=Participant.objects.create(depend=matches[2 * i + 1],
-                                                                          depend_method='loser')))
+                    Match.objects.create(competition=self,
+                                         part1=Participant.objects.create(
+                                             depend=matches[previous_third_step_index + 2 * i],
+                                             depend_method='loser'),
+                                         part2=Participant.objects.create(
+                                             depend=matches[previous_third_step_index + 2 * i + 1],
+                                             depend_method='loser')
+                                         )
+                )
+            second_step_index = start_round_index + cur_round_length
             # third step: losers vs losers of winners
             for i in range(cur_round_length):
                 matches.append(Match.objects.create(competition=self,
@@ -144,8 +155,11 @@ class Competition(models.Model):
                                                         depend=matches[(second_step_index - 1) - i],
                                                         depend_method='loser')))
             #
+            previous_third_step_index = second_step_index + cur_round_length
+            previous_start_round_index = start_round_index
             start_round_index += 3 * cur_round_length
             cur_round_length = int(cur_round_length / 2)
+
         matches.append(
             Match.objects.create(competition=self,
                                  part1=Participant.objects.create(depend=matches[start_round_index - 1],
