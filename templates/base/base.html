@@ -19,16 +19,26 @@
     {% block extra_header %}{% endblock %}
 </head>
 <body {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
-    {% block header %}
-        Here goes nav-bar code...
-    {% endblock %}
+    {% block body %}
+        {% block header %}
+            Here goes nav-bar code...
+        {% endblock %}
 
-    {% block sidebar %}
-        Here goes sidebar code...
-    {% endblock %}
+        {% block sidebar %}
+            Here goes sidebar code...
+        {% endblock %}
 
-    {% block footer %}
-        Here goes footer code...
+        {% block content %}
+            <div class="ui container">
+                {% block container %}
+
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block footer %}
+            Here goes footer code...
+        {% endblock %}
     {% endblock %}
 </body>
 </html>
