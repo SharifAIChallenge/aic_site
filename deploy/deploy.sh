@@ -54,3 +54,7 @@ docker-compose -f docker-compose.yml up -d
 echo $LINE; echo '~~~~~>   REMOVING DEPLOYMENT SCRIPT'; echo
 rm -f ../deploy.sh
 echo '~~~~~>   DONE'
+
+echo $LINE; echo '~~~~~>   REMOVING OBSOLETE DOCKER IMAGES'; echo
+docker rmi $(docker images | egrep -v "(ubuntu|nginx|postgres|aic_aic_web|aictest_aic_test_web)" | awk '{print $3}')
+echo '~~~~~>   DONE'

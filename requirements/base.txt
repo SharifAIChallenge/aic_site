@@ -1,5 +1,5 @@
 beautifulsoup4==4.6.0
-Django==1.11
+Django==1.10.7
 django-blog-zinnia==0.19
 django-contrib-comments==1.8.0
 django-js-asset==0.1.1
