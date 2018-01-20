@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base/base.html' %}
 
+{% block content %}
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -50,5 +45,5 @@
         {{ submission_form }}
         <input type="submit" />
     </form>
-</body>
-</html>
+
+{% endblock %}
