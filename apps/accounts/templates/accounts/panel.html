@@ -5,6 +5,46 @@
     <title>Title</title>
 </head>
 <body>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th></th>
+          <th>First name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for submission in submissions %}
+        <tr>
+            <td><input type="radio" name="submission" value="{{ submission.id }}" onload="add_submission_api({{ submission.id }})"></td>
+            <td>{{ submission.time }}</td>
+            <td>{{ submission.status }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if submissions.has_other_pages %}
+      <ul class="pagination">
+        {% if submissions.has_previous %}
+          <li><a href="?page={{ submissions.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in submissions.paginator.page_range %}
+          {% if submissions.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if submissions.has_next %}
+          <li><a href="?page={{ submissions.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    {% endif %}
     <form method="post" enctype="multipart/form-data" >
         {% csrf_token %}
         {{ submission_form }}

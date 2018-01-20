@@ -2,10 +2,10 @@ import datetime
 import io
 
 from django.utils import timezone
-
+import time
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
-from django.test import TestCase, Client
+from django.test import TransactionTestCase, Client
 
 from apps.accounts.models import Team, UserParticipatesOnTeam
 from apps.game.models import Challenge, Competition, Match, Game, Participant, TeamSubmission
@@ -62,7 +62,7 @@ def populate_competitions():
         competition.save()
 
 
-class TestTeam(TestCase):
+class TestTeam(TransactionTestCase):
     def setUp(self):
         super().setUp()
         populate_users()
@@ -134,6 +134,7 @@ class TestTeam(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         # test that it functions
+        time.sleep(0.4)
         self.assertEqual(TeamSubmission.objects.filter(language="c++").count(), 1)
         response = client.post(
             '/accounts/panel/' + str(participation.id),
@@ -144,6 +145,7 @@ class TestTeam(TestCase):
             }
         )
         self.assertEqual(response.status_code, 200)
+        time.sleep(0.4)
         self.assertEqual(TeamSubmission.objects.filter(language="c++").count(), 2)
         submissions = list(TeamSubmission.objects.all())
         self.assertFalse(submissions[0].is_final)
