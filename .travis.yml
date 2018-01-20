@@ -52,8 +52,8 @@ jobs:
       "aic_site.settings.production")/g' manage.py
     - cd ..
     - cd build/apps/
-    - find . -iname '*.png' -print0 | xargs -0 mogrify -resize 1000x1000
-    - find . -iname '*.jpg' -print0 | xargs -0 mogrify -resize 1000x1000
+#    - find . -iname '*.png' -print0 | xargs -0 mogrify -resize 1000x1000
+#    - find . -iname '*.jpg' -print0 | xargs -0 mogrify -resize 1000x1000
     - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
     - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
       --totals
@@ -92,8 +92,8 @@ jobs:
       "aic_site.settings.production_test")/g' manage.py
     - cd ..
     - cd build_test/apps/
-    - find . -iname '*.png' -print0 | xargs -0 mogrify -resize 1000x1000
-    - find . -iname '*.jpg' -print0 | xargs -0 mogrify -resize 1000x1000
+#    - find . -iname '*.png' -print0 | xargs -0 mogrify -resize 1000x1000
+#    - find . -iname '*.jpg' -print0 | xargs -0 mogrify -resize 1000x1000
     - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
     - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
       --totals
