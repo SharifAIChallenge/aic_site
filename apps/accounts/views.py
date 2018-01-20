@@ -13,6 +13,7 @@ from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
 from apps.accounts.forms.panel import SubmissionForm
 from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 from apps.game.models import TeamParticipatesChallenge, TeamSubmission
+import json
 
 
 class SignupView(generic.CreateView):
@@ -71,9 +72,9 @@ def panel(request, participation_id=None):
     page = request.GET.get('page', 1)
     return render(request, 'accounts/panel.html',
                   {
-                      'submission_form': form,
+                      'form': form,
                       'submissions': Paginator(
-                          TeamSubmission.objects.filter(team=participation_id).order_by('id'),
+                          TeamSubmission.objects.filter(team=participation_id).order_by('-id'),
                           10
                       ).page(page),
                   })
@@ -82,4 +83,5 @@ def panel(request, participation_id=None):
 def set_final_submission(request, submission_id):
     submission = TeamSubmission.objects.get(id=submission_id)
     submission.set_final()
-    return HttpResponse('success')
+    data = {'success': True, 'submission_id': submission_id}
+    return HttpResponse(json.dumps(data))

@@ -1,49 +1,93 @@
 {% extends 'base/base.html' %}
-
-{% block content %}
-    <table class="table table-bordered">
+{% load i18n %}
+{% load static %}
+{% block container %}
+    <table class="ui center aligned table table-bordered">
       <thead>
         <tr>
-          <th></th>
-          <th>First name</th>
-          <th>Email</th>
+          <th>{% trans "Selected" %}</th>
+          <th>{% trans "Time" %}</th>
+          <th>{% trans "Language" %}</th>
+          <th>{% trans "Status" %}</th>
         </tr>
       </thead>
       <tbody>
         {% for submission in submissions %}
         <tr>
-            <td><input type="radio" name="submission" value="{{ submission.id }}" onload="add_submission_api({{ submission.id }})"></td>
+            <td>
+                <div class="ui checkbox">
+                    <input type="checkbox" class="submission" {% if submission.is_final %}checked="true"{% endif %} data-id="{{ submission.id }}" id="submission_{{ submission.id }}">
+                    <label></label>
+                </div>
+            </td>
+            <style>
+                add_submission_api({{ submission.id }});
+            </style>
             <td>{{ submission.time }}</td>
+            <td>{{ submission.language }}</td>
             <td>{{ submission.status }}</td>
-          </tr>
+        </tr>
         {% endfor %}
       </tbody>
+      {% if submissions.has_other_pages %}
+
+      <tfoot>
+        <tr>
+            <th colspan="4">
+              <div class="ui right floated pagination menu">
+                {% if submissions.has_previous %}
+                <a class="icon item" href="?page={{ submissions.previous_page_number }}">
+                  <i class="left chevron icon"></i>
+                </a>
+                {% else %}
+                <a class="disabled icon item">
+                  <i class="left chevron icon"></i>
+                </a>
+                {% endif %}
+                {% for i in submissions.paginator.page_range %}
+                  {% if submissions.number == i %}
+                    <a class="active item"><span>{{ i }}</span></a>
+                  {% else %}
+                    <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
+                  {% endif %}
+                {% endfor %}
+                {% if submissions.has_next %}
+                <a class="icon item" href="?page={{ submissions.next_page_number }}">
+                  <i class="right chevron icon"></i>
+                </a>
+                {% else %}
+                <a class="disabled icon item">
+                  <i class="right chevron icon"></i>
+                </a>
+                {% endif %}
+              </div>
+          </th>
+        </tr>
+      </tfoot>
+      {% endif %}
     </table>
-    {% if submissions.has_other_pages %}
-      <ul class="pagination">
-        {% if submissions.has_previous %}
-          <li><a href="?page={{ submissions.previous_page_number }}">&laquo;</a></li>
-        {% else %}
-          <li class="disabled"><span>&laquo;</span></li>
-        {% endif %}
-        {% for i in submissions.paginator.page_range %}
-          {% if submissions.number == i %}
-            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-          {% else %}
-            <li><a href="?page={{ i }}">{{ i }}</a></li>
-          {% endif %}
-        {% endfor %}
-        {% if submissions.has_next %}
-          <li><a href="?page={{ submissions.next_page_number }}">&raquo;</a></li>
-        {% else %}
-          <li class="disabled"><span>&raquo;</span></li>
-        {% endif %}
-      </ul>
-    {% endif %}
-    <form method="post" enctype="multipart/form-data" >
+    <form method="post" enctype="multipart/form-data" class="ui form">
         {% csrf_token %}
-        {{ submission_form }}
-        <input type="submit" />
+        {{ form.non_field_errors }}
+        <div class="fields">
+            <div class="three field">
+                {{ form.file.errors }}
+                <label for="{{ form.file.id_for_label }}">{% trans 'File:' %}</label>
+                {{ form.file }}
+            </div>
+            <div class="three field">
+                {{ form.language.errors }}
+                <label for="{{ form.language.id_for_label }}">{% trans 'Language:' %}</label>
+                {{ form.language }}
+            </div>
+            <div class="three field">
+                {{ form.team.errors }}
+                <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}</label>
+                {{ form.team }}
+            </div>
+        </div>
+        <input type="submit" class="ui green button" />
     </form>
 
+    <script src="{% static 'accounts/js/api.js' %}"></script>
 {% endblock %}
