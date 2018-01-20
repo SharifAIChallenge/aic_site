@@ -36,6 +36,9 @@ class TeamParticipatesChallenge(models.Model):
     team = models.ForeignKey(Team, related_name='challanges')
     challenge = models.ForeignKey(Challenge, related_name='teams')
 
+    class Meta:
+        verbose_name_plural='Team Participates In Challenges'
+
     def __str__(self):
         return 'Team: ' + str(self.team) + ' Challenge: ' + str(self.challenge)
 
@@ -92,7 +95,7 @@ class TeamSubmission(models.Model):
 
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     def set_final(self):
         """
