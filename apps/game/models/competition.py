@@ -14,9 +14,16 @@ class Competition(models.Model):
     )
 
     challenge = models.ForeignKey(Challenge, related_name='competitions')
+    name = models.CharField(max_length=128, null=True)
     type = models.CharField(max_length=128, choices=TYPE_CHOICES)
 
+    def __str__(self):
+        return self.name
+
+
     def create_new_league(self, teams):  # algorithm for scheduling is Round-robin tournament
+        if len(teams) == 0:
+            return
         matches = []
         teams = list(teams)
         bye = None
@@ -56,15 +63,16 @@ class Competition(models.Model):
                                 depend_method='itself')
                         )
                     )
-                tmp_team = second_part[0]
-                for j in range(0, (int(len(teams) / 2) - 1)):
-                    second_part[j] = second_part[j + 1]
-                second_part[int(len(teams) / 2) - 1] = first_part[int(len(teams) / 2) - 1]
-                if (len(teams) / 2) > 2:
-                    for j in reversed(range(2, len(teams))):
-                        first_part[j] = first_part[j - 1]
-                if (len(teams) / 2) > 1:
-                    first_part[1] = tmp_team
+                if len(teams) > 2:
+                    tmp_team = second_part[0]
+                    for j in range(0, (int(len(teams) / 2) - 1)):
+                        second_part[j] = second_part[j + 1]
+                    second_part[int(len(teams) / 2) - 1] = first_part[int(len(teams) / 2) - 1]
+                    if (len(teams) / 2) > 2:
+                        for j in reversed(range(2, len(teams))):
+                            first_part[j] = first_part[j - 1]
+                    if (len(teams) / 2) > 1:
+                        first_part[1] = tmp_team
 
     def create_new_double_elimination(self, teams):
         matches = []
@@ -109,23 +117,34 @@ class Competition(models.Model):
         # for second round:
         start_round_index += cur_round_length
         cur_round_length = int(cur_round_length / 2)
-
+        previous_start_round_index = 0
+        previous_third_step_index = 0
         while cur_round_length >= 1:
             # first step: winners vs winners
             for i in range(cur_round_length):
                 matches.append(
-                    Match.objects.create(competition=self, part1=Participant.objects.create(depend=matches[2 * i],
-                                                                                            depend_method='winner'),
-                                         part2=Participant.objects.create(depend=matches[2 * i + 1],
-                                                                          depend_method='winner')))
+                    Match.objects.create(competition=self,
+                                         part1=Participant.objects.create(
+                                            depend=matches[previous_start_round_index + 2 * i],
+                                            depend_method='winner'),
+                                         part2=Participant.objects.create(
+                                             depend=matches[previous_start_round_index + 2 * i + 1],
+                                             depend_method='winner')
+                                         )
+                )
             # second step: losers vs losers
-            second_step_index = start_round_index + cur_round_length
             for i in range(cur_round_length):
                 matches.append(
-                    Match.objects.create(competition=self, part1=Participant.objects.create(depend=matches[2 * i],
-                                                                                            depend_method='loser'),
-                                         part2=Participant.objects.create(depend=matches[2 * i + 1],
-                                                                          depend_method='loser')))
+                    Match.objects.create(competition=self,
+                                         part1=Participant.objects.create(
+                                             depend=matches[previous_third_step_index + 2 * i],
+                                             depend_method='loser'),
+                                         part2=Participant.objects.create(
+                                             depend=matches[previous_third_step_index + 2 * i + 1],
+                                             depend_method='loser')
+                                         )
+                )
+            second_step_index = start_round_index + cur_round_length
             # third step: losers vs losers of winners
             for i in range(cur_round_length):
                 matches.append(Match.objects.create(competition=self,
@@ -136,19 +155,22 @@ class Competition(models.Model):
                                                         depend=matches[(second_step_index - 1) - i],
                                                         depend_method='loser')))
             #
+            previous_third_step_index = second_step_index + cur_round_length
+            previous_start_round_index = start_round_index
             start_round_index += 3 * cur_round_length
             cur_round_length = int(cur_round_length / 2)
+
         matches.append(
             Match.objects.create(competition=self,
                                  part1=Participant.objects.create(depend=matches[start_round_index - 1],
                                                                   depend_method='winner'),
-                                 part2=Participant.objects.create(depend=matches[start_round_index - 2],
+                                 part2=Participant.objects.create(depend=matches[start_round_index - 3],
                                                                   depend_method='winner')))
         matches.append(
             Match.objects.create(competition=self,
                                  part1=Participant.objects.create(depend=matches[start_round_index - 1],
                                                                   depend_method='winner'),
-                                 part2=Participant.objects.create(depend=matches[start_round_index - 2],
+                                 part2=Participant.objects.create(depend=matches[start_round_index - 3],
                                                                   depend_method='winner')))
 
         # def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
@@ -181,6 +203,9 @@ class Participant(models.Model):
     #     super().save(force_insert, force_update, using, update_fields)
     #     self.depend = depend
 
+    def __str__(self):
+        return str(self.object_id)
+
     def is_ready(self):
         return self.submission is not None
 
@@ -208,6 +233,8 @@ class Match(models.Model):
     #     self.part1 = self.part1
     #     self.part2 = self.part2
     #     super().save(force_insert, force_update, using, update_fields)
+    class Meta:
+        verbose_name_plural='matches'
 
     def __str__(self):
         return str(self.part1.object_id) + ' -> ' + str(self.part2.object_id)
