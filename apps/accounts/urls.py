@@ -8,6 +8,6 @@ urlpatterns = [
     url(r'logout/$', views.LogoutView.as_view(), name='logout'),
     url(r'update_profile/$', views.UpdateProfileView.as_view(), name='update profile'),
     url(r'panel/(?P<participation_id>[0-9]+)?$', views.panel, name='panel'),
-    url(r'panel/set_final_submission/(?P<participation_id>[0-9]+)', views.set_final_submission,
+    url(r'panel/set_final_submission/(?P<submission_id>[0-9]+)', views.set_final_submission,
         name='set final submission')
 ]
