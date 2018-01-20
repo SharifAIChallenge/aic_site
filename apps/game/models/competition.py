@@ -22,6 +22,8 @@ class Competition(models.Model):
 
 
     def create_new_league(self, teams):  # algorithm for scheduling is Round-robin tournament
+        if len(teams) == 0:
+            return
         matches = []
         teams = list(teams)
         bye = None
@@ -61,15 +63,16 @@ class Competition(models.Model):
                                 depend_method='itself')
                         )
                     )
-                tmp_team = second_part[0]
-                for j in range(0, (int(len(teams) / 2) - 1)):
-                    second_part[j] = second_part[j + 1]
-                second_part[int(len(teams) / 2) - 1] = first_part[int(len(teams) / 2) - 1]
-                if (len(teams) / 2) > 2:
-                    for j in reversed(range(2, len(teams))):
-                        first_part[j] = first_part[j - 1]
-                if (len(teams) / 2) > 1:
-                    first_part[1] = tmp_team
+                if len(teams) > 2:
+                    tmp_team = second_part[0]
+                    for j in range(0, (int(len(teams) / 2) - 1)):
+                        second_part[j] = second_part[j + 1]
+                    second_part[int(len(teams) / 2) - 1] = first_part[int(len(teams) / 2) - 1]
+                    if (len(teams) / 2) > 2:
+                        for j in reversed(range(2, len(teams))):
+                            first_part[j] = first_part[j - 1]
+                    if (len(teams) / 2) > 1:
+                        first_part[1] = tmp_team
 
     def create_new_double_elimination(self, teams):
         matches = []
@@ -147,13 +150,13 @@ class Competition(models.Model):
             Match.objects.create(competition=self,
                                  part1=Participant.objects.create(depend=matches[start_round_index - 1],
                                                                   depend_method='winner'),
-                                 part2=Participant.objects.create(depend=matches[start_round_index - 2],
+                                 part2=Participant.objects.create(depend=matches[start_round_index - 3],
                                                                   depend_method='winner')))
         matches.append(
             Match.objects.create(competition=self,
                                  part1=Participant.objects.create(depend=matches[start_round_index - 1],
                                                                   depend_method='winner'),
-                                 part2=Participant.objects.create(depend=matches[start_round_index - 2],
+                                 part2=Participant.objects.create(depend=matches[start_round_index - 3],
                                                                   depend_method='winner')))
 
         # def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
@@ -187,7 +190,7 @@ class Participant(models.Model):
     #     self.depend = depend
 
     def __str__(self):
-        return self.object_id
+        return str(self.object_id)
 
     def is_ready(self):
         return self.submission is not None
@@ -216,6 +219,8 @@ class Match(models.Model):
     #     self.part1 = self.part1
     #     self.part2 = self.part2
     #     super().save(force_insert, force_update, using, update_fields)
+    class Meta:
+        verbose_name_plural='matches'
 
     def __str__(self):
         return str(self.part1.object_id) + ' -> ' + str(self.part2.object_id)
