@@ -158,8 +158,8 @@ class TestScheduling(TestCase):
         # 1 -> 2
         # 1 -> 2
         # 4 -> 3
-        # 5 -> 4
-        # 5 -> 4
+        # 5 -> 3
+        # 5 -> 3
         #
         matches = list(Match.objects.all())
         self.assertEqual(matches[0].part1.object_id, 1)
@@ -173,6 +173,6 @@ class TestScheduling(TestCase):
         self.assertEqual(matches[4].part1.object_id, 4)
         self.assertEqual(matches[4].part2.object_id, 3)
         self.assertEqual(matches[5].part1.object_id, 5)
-        self.assertEqual(matches[5].part2.object_id, 4)
+        self.assertEqual(matches[5].part2.object_id, 3)
         self.assertEqual(matches[6].part1.object_id, 5)
-        self.assertEqual(matches[6].part2.object_id, 4)
+        self.assertEqual(matches[6].part2.object_id, 3)
