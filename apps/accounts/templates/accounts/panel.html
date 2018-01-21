@@ -2,6 +2,12 @@
 {% load i18n %}
 {% load static %}
 {% block container %}
+    <form method="post" enctype="multipart/form-data" class="ui form">
+    <div class="field">
+        {{ form.team.errors }}
+        <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}</label>
+        {{ form.team }}
+    </div>
     <table class="ui center aligned table table-bordered">
       <thead>
         <tr>
@@ -66,24 +72,18 @@
       </tfoot>
       {% endif %}
     </table>
-    <form method="post" enctype="multipart/form-data" class="ui form">
         {% csrf_token %}
         {{ form.non_field_errors }}
         <div class="fields">
-            <div class="three field">
+            <div class="two field">
                 {{ form.file.errors }}
                 <label for="{{ form.file.id_for_label }}">{% trans 'File:' %}</label>
                 {{ form.file }}
             </div>
-            <div class="three field">
+            <div class="two field">
                 {{ form.language.errors }}
                 <label for="{{ form.language.id_for_label }}">{% trans 'Language:' %}</label>
                 {{ form.language }}
-            </div>
-            <div class="three field">
-                {{ form.team.errors }}
-                <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}</label>
-                {{ form.team }}
             </div>
         </div>
         <input type="submit" class="ui green button" />
