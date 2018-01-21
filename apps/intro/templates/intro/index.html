@@ -3,10 +3,123 @@
 
 
 
-
-
 {% block content %}
 
     <div class="ui  vertical masthead center aligned segment">
+
+
     </div>
+
+    <div class="gameInfo">
+        <div class="row">
+            <div class="ui grid">
+                <div class="eight wide column">
+                    <div class="container ui center aligned segment">
+                        Hello world
+                    </div>
+                </div>
+                <div class="eight wide column">
+                    <div class="container ui center aligned segment">
+                        Mostafa
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="ui grid">
+                <div class="five wide column">
+                    <div class="container ui center aligned segment">
+                        85
+                    </div>
+                </div>
+                <div class="six wide column">
+
+                </div>
+                <div class="five wide column">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="prizes">
+
+        <div class="row">
+            <div class="ui center aligned grid" style="background-color: #2d4373">
+                    <div class="five wide column" >
+                        <div class="container prize ui right aligned segment">
+                            <img id="prizeImg" src="{% static 'intro/image/prize2.png' %}" alt="Second rank prize">
+                        </div>
+                    </div>
+                    <div class="five wide column">
+                        <div class="container prize ui center aligned segment">
+                            <img id="prizeImg" src="{% static 'intro/image/prize1.png' %}" alt="First rank prize">
+                        </div>
+                    </div>
+                    <div class="five wide column">
+                        <div class="container prize ui left aligned segment">
+                            <img id="prizeImg" src="{% static 'intro/image/prize3.png' %}" alt="Third rank prize">
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="Schedule" style="background-color: #8d9e13">
+        <div class="ui container">
+
+            <div class="fake">
+                <br>
+                <br>
+            </div>
+            <table class="ui inverted grey unstackable table">
+                <thead>
+                <tr class="center aligned">
+                    <th>{% trans 'Date' %}</th>
+                    <th>{% trans 'Details' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="center aligned">
+                    <td>{% trans '10th of Bahman' %}</td>
+                    <td>{% trans 'Online phase registration starts' %}</td>
+                </tr>
+                <tr class="center aligned">
+                    <td>{% trans '14th of Bahman - 2nd of Esfand' %}</td>
+                    <td>{% trans 'Online phase starts' %}</td>
+                </tr>
+                <tr class="center aligned">
+                    <td>{% trans '18th and 19th of Esfand' %}</td>
+                    <td>{% trans 'Onsite phase at Sharif UT' %}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="fake">
+                <br>
+                <br>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="organization" style="background-color: #4f20b5">
+        <div class="container" id="SSCContainer">
+            <div class="ui center aligned grid">
+                    <div class="four columns row" >
+                            <img id="SSCImg" class="ui four column image" src="{% static 'intro/image/SSC.png' %}" alt="SSC Image">
+                    </div>
+                <div class="row">
+                    <div class="ui center aligned primary button">Staffs</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sponsors">
+
+    </div>
+
 {% endblock %}
