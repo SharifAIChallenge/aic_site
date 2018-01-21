@@ -107,19 +107,63 @@
 
     <div class="organization" style="background-color: #4f20b5">
         <div class="container" id="SSCContainer">
-            <div class="ui center aligned grid">
-                    <div class="four columns row" >
-                            <img id="SSCImg" class="ui four column image" src="{% static 'intro/image/SSC.png' %}" alt="SSC Image">
+            <div class="feature alternate ui stripe vertical segment">
+                <div class="ui three column center aligned relaxed unstackable grid container">
+                    <div class="row">
+                        <div class="column"></div>
+                        <div class="column">
+                            <img id="SSCImg" class="ui" src="{% static 'intro/image/SSC.png' %}" alt="SSC Image">
+                        </div>
+                        <div class="column"></div>
                     </div>
-                <div class="row">
-                    <div class="ui center aligned primary button">Staffs</div>
+                    <div class="row">
+                        <div class="ui primary button">Staffs <i class="users icon"></i> </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <div class="sponsors">
+    <div class="organization" style="background-color: #ffffff">
+        <div class="container" id="SSCContainer">
+            <div class="feature alternate ui stripe vertical segment">
+                <div class="ui three column center aligned  relaxed unstackable grid container">
+                    <div class="row">
+                        <div class="column"></div>
+                        <div class="column">
+                            <img class="ui large image" src="{% static 'intro/image/sponsors.png' %}">
+                        </div>
+                        <div class="column"></div>
+                    </div>
+                </div>
 
+            </div>
+        </div>
     </div>
 
+    <div class="langin-footer" style="background-color: #4f20b5">
+        <div class="ui two column center aligned divided very relaxed stackable grid container">
+            <div class="row">
+                <div class="column">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9179536820648!2d51.34940431525942!3d35.70363658018915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a8bc1a7e63%3A0x61a5a909b878501!2sSharif+University+of+Technology!5e0!3m2!1sen!2sus!4v1516554126873" width="100%" height="350" frameborder="0" style="border: 0"></iframe>
+                </div>
+                <div class="column">
+                    <a class="ui large blue label" href="https://t.me/aichallenge">
+                         Telegram <i class="telegram icon"></i>
+                    </a>
+                    <a class="ui large pink label" href="https://www.instagram.com/aichallenge/">
+                         Instagram<i class="instagram icon"></i>
+                    </a>
+                    <a class="ui large blue label" href="https://twitter.com/aichallenge">
+                         Twitter<i class="twitter icon"></i>
+                    </a>
+                    <a class="ui large blue label" href="https://www.linkedin.com/showcase/sharif-ai-challenge/">
+                         Linkedin <i class="linkedin icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}

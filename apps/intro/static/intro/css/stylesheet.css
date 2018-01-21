@@ -46,9 +46,8 @@
 
 
 #SSCImg {
-    min-width: 235px;
-    margin: auto;
-    overflow: scroll;
+    min-width: 400px !important;
+
 }
 
 #SSCContainer {
