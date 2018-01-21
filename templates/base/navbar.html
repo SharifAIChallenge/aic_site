@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div class="ui bottom attached fluid blue inverted segment">
-    <div class="ui blue inverted menu">
+    <div class="ui blue fixed inverted menu">
         {% if request.user.is_authenticated %}
             <span style="cursor: pointer;" class="ui item" onclick="$('.ui.sidebar').sidebar('toggle');"><i class="sidebar icon"></i></span>
         {% endif %}
