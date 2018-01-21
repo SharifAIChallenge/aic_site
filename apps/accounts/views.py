@@ -16,6 +16,8 @@ from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 from apps.game.models import TeamParticipatesChallenge, TeamSubmission
 import json
 
+from apps.game.models.challenge import UserAcceptsTeamInChallenge
+
 
 class SignupView(generic.CreateView):
     form_class = SignUpForm
@@ -58,6 +60,30 @@ class UpdateProfileView(LoginRequiredMixin, generic.UpdateView):
 
 @login_required
 def panel(request, participation_id=None):
+    if participation_id is not None:
+        participation = TeamParticipatesChallenge.objects.get(id=participation_id)
+    else:
+        participation = None
+
+    page = request.GET.get('page', 1)
+
+    context = {
+        'submissions': Paginator(
+            TeamSubmission.objects.filter(team=participation_id).order_by('-id'),
+            10
+        ).page(page),
+        'participation': participation,
+        'invitations': [],
+        'accepted_participations': []
+    }
+
+    all_participations = TeamParticipatesChallenge.objects.all()
+    for challenge_participation in all_participations:
+        if not UserAcceptsTeamInChallenge.objects.filter(team=challenge_participation, user=request.user).exists():
+            context['invitations'].append(challenge_participation)
+        else:
+            context['accepted_participations'].append(challenge_participation.team)
+
     if request.method == 'POST':
         form = SubmissionForm(request.POST, request.FILES)
         if form.is_valid():
@@ -65,20 +91,17 @@ def panel(request, participation_id=None):
     else:
         form = SubmissionForm()
         form.fields['team'].queryset = TeamParticipatesChallenge.objects.filter(
-            team__in=[participation.team for participation in UserParticipatesOnTeam.objects.filter(user=request.user)]
+            team__in=context['accepted_participations']
         )
-        if participation_id is not None:
-            form.initial['team'] = TeamParticipatesChallenge.objects.get(id=participation_id)
+        if participation is not None:
+            form.initial['team'] = participation
+            form.fields['team'].empty_label = None
 
-    page = request.GET.get('page', 1)
-    return render(request, 'accounts/panel.html',
-                  {
-                      'form': form,
-                      'submissions': Paginator(
-                          TeamSubmission.objects.filter(team=participation_id).order_by('-id'),
-                          10
-                      ).page(page),
-                  })
+    context['form'] = form
+    if participation is not None:
+        context['challenge_teams'] = [team_part.team for team_part in
+                                      TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
+    return render(request, 'accounts/panel.html', context)
 
 
 def set_final_submission(request, submission_id):
@@ -86,3 +109,18 @@ def set_final_submission(request, submission_id):
     submission.set_final()
     data = {'success': True, 'submission_id': submission_id}
     return HttpResponse(json.dumps(data))
+
+
+def accept_participation(request, participation_id):
+    accept = UserAcceptsTeamInChallenge(team_id=participation_id, user=request.user)
+    accept.save()
+    other_invitations = TeamParticipatesChallenge.objects.filter(challenge=accept.team.challenge)
+    for invitation in other_invitations:
+        if invitation.id != int(participation_id):
+            invitation.delete()
+    return redirect('accounts:panel', participation_id)
+
+
+def reject_participation(request, participation_id):
+    TeamParticipatesChallenge.objects.get(id=participation_id).delete()
+    return redirect('accounts:panel')
