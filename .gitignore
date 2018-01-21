@@ -183,5 +183,3 @@ node_modules/
 
 # this will be removed after travis integration
 build.sh
-
-.DS_Store
