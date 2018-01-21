@@ -238,6 +238,7 @@ class Participant(models.Model):
 def get_log_file_directory(instance, filename):
     pass
 
+
 class Match(models.Model):
     competition = models.ForeignKey(Competition, related_name='matches')
     part1 = models.ForeignKey(Participant, related_name='mathces_as_first')
