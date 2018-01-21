@@ -64,10 +64,10 @@ class CompetitionAdmin(admin.ModelAdmin):
 #search_fields = []
 
 class MatchAdmin(admin.ModelAdmin):
-    fields = ['competition', 'part1', 'part2', 'done']
+    fields = ['competition', 'part1', 'part2']
 
     list_display = ('id', 'competition', 'part1', 'part2')
-    list_filter = ['competition', 'done']
+    list_filter = ['competition']
 
     #search_fields = []
 
