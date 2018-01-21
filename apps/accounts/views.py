@@ -67,7 +67,7 @@ def panel(request, participation_id=None):
             team__in=[participation.team for participation in UserParticipatesOnTeam.objects.filter(user=request.user)]
         )
         if participation_id is not None:
-            form.instance.team = TeamParticipatesChallenge.objects.get(id=participation_id)
+            form.initial['team'] = TeamParticipatesChallenge.objects.get(id=participation_id)
 
     page = request.GET.get('page', 1)
     return render(request, 'accounts/panel.html',
