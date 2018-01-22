@@ -34,3 +34,7 @@ $('.submission')
       // navigated to a new page, CORS issue, or user canceled request
     }
   });
+
+$('#id_team').change(function () {
+    window.location.href='/accounts/panel/' + this.value;
+});
