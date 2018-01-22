@@ -1,11 +1,10 @@
-
-* {
-    padding: 0;
-    margin: 0 !important;
-}
-.masthead {
-    height: 100vh !important;
+.section{
+    height: 105vh !important;
     width: 100vw !important;
+    padding-top: 15vh;
+}
+
+.section.masthead {
     background: url("/static/intro/image/header.jpg") no-repeat !important;
     background-size: 100% 100% !important;
 }
@@ -19,38 +18,37 @@
     }
 }
 
-.gameInfo .row {
-    background-color: darkred !important;
-}
-.gameInfo .row .ui {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+.section.gameInfo {
+    background-color: #ffbe4c;
 }
 
-.prizes .row .ui .prize{
-    background : transparent !important;
-    box-shadow:  none !important;
-    border:  none !important;
+.section.gameInfo .row {
+    height: 50vh;
 }
 
-.prizes .row .ui .prize img {
-    width: 100%;
-    height: 100%;
-    max-width: 200px;
+.section.prizes {
+    background: linear-gradient(to right, #d7ddd7, white ,#d7ddd7);
 }
 
-#prizeImg {
-    min-width: 50px;
+.section.prizes #prize-grid {
+    height: inherit;
 }
 
-
-#SSCImg {
-    min-width: 400px !important;
-
+.section.prizes #prize-grid .row{
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
-#SSCContainer {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
+.section.schedule {
+    background-color: #ffbe4c;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.section.organization {
+    background: linear-gradient(to right, #d7ddd7, white ,#d7ddd7);
+}
+
+.section.organization .column {
+    padding-top: 5vh;
 }

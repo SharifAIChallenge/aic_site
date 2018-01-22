@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-03 13:33+0330\n"
+"POT-Creation-Date: 2018-01-22 04:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,42 +18,66 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/game/models/challenge.py:73
+#: apps/game/admin.py:86 apps/game/admin.py:106
+msgid "no selected teams!"
+msgstr ""
+
+#: apps/game/admin.py:93 apps/game/admin.py:113
+msgid "Only teams from one challenge!"
+msgstr ""
+
+#: apps/game/models/challenge.py:91
 msgid "C++"
 msgstr ""
 
-#: apps/game/models/challenge.py:74
+#: apps/game/models/challenge.py:92
 msgid "Java"
 msgstr ""
 
-#: apps/game/models/challenge.py:75
+#: apps/game/models/challenge.py:93
 msgid "Python 2"
 msgstr ""
 
-#: apps/game/models/challenge.py:76
+#: apps/game/models/challenge.py:94
 msgid "Python 3"
 msgstr ""
 
-#: apps/game/models/competition.py:10
-msgid "Elimination"
+#: apps/game/models/challenge.py:98
+msgid "Uploading"
+msgstr ""
+
+#: apps/game/models/challenge.py:99
+msgid "Uploaded"
+msgstr ""
+
+#: apps/game/models/challenge.py:100
+msgid "Compiling"
+msgstr ""
+
+#: apps/game/models/challenge.py:101
+msgid "Compiled"
 msgstr ""
 
 #: apps/game/models/competition.py:11
-msgid "Double Elimination"
+msgid "Elimination"
 msgstr ""
 
 #: apps/game/models/competition.py:12
+msgid "Double Elimination"
+msgstr ""
+
+#: apps/game/models/competition.py:13
 msgid "League"
 msgstr ""
 
-#: apps/game/models/competition.py:21
+#: apps/game/models/competition.py:187
 msgid "Winner"
 msgstr ""
 
-#: apps/game/models/competition.py:22
+#: apps/game/models/competition.py:188
 msgid "Loser"
 msgstr ""
 
-#: apps/game/models/competition.py:23
+#: apps/game/models/competition.py:189
 msgid "Itself"
 msgstr ""

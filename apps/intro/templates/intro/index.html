@@ -1,169 +1,159 @@
-{% extends "base/base.html" %}
+{% extends "base/full-width.html" %}
 {% load static i18n %}
 
+{% block extra_header %}
+    <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
+{% endblock %}
 
+{% block container %}
 
-{% block content %}
+    <div class="section masthead" id="section"></div>
 
-    <div class="ui  vertical masthead center aligned segment">
-
-
-    </div>
-
-    <div class="gameInfo">
-        <div class="row">
-            <div class="ui grid">
+    <div class="section gameInfo" id="section">
+        <div class="ui center aligned grid">
+            <h1 class="ui header">
+                {% trans 'Game Description' %}
+            </h1>
+            <div class="row">
                 <div class="eight wide column">
-                    <div class="container ui center aligned segment">
-                        Hello world
-                    </div>
+                    A
                 </div>
                 <div class="eight wide column">
-                    <div class="container ui center aligned segment">
-                        Mostafa
-                    </div>
+                    B
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="ui grid">
+            <div class="row">
                 <div class="five wide column">
-                    <div class="container ui center aligned segment">
-                        85
-                    </div>
+                    C
                 </div>
                 <div class="six wide column">
-
+                    D
                 </div>
                 <div class="five wide column">
-
+                    E
                 </div>
             </div>
         </div>
     </div>
 
-
-
-    <div class="prizes">
-
-        <div class="row">
-            <div class="ui center aligned grid" style="background-color: #2d4373">
-                    <div class="five wide column" >
-                        <div class="container prize ui right aligned segment">
-                            <img id="prizeImg" src="{% static 'intro/image/prize2.png' %}" alt="Second rank prize">
-                        </div>
-                    </div>
-                    <div class="five wide column">
-                        <div class="container prize ui center aligned segment">
-                            <img id="prizeImg" src="{% static 'intro/image/prize1.png' %}" alt="First rank prize">
-                        </div>
-                    </div>
-                    <div class="five wide column">
-                        <div class="container prize ui left aligned segment">
-                            <img id="prizeImg" src="{% static 'intro/image/prize3.png' %}" alt="Third rank prize">
-                        </div>
-                    </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="Schedule" style="background-color: #8d9e13">
-        <div class="ui container">
-
-            <div class="fake">
-                <br>
-                <br>
-            </div>
-            <table class="ui inverted grey unstackable table">
-                <thead>
-                <tr class="center aligned">
-                    <th>{% trans 'Date' %}</th>
-                    <th>{% trans 'Details' %}</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="center aligned">
-                    <td>{% trans '10th of Bahman' %}</td>
-                    <td>{% trans 'Online phase registration starts' %}</td>
-                </tr>
-                <tr class="center aligned">
-                    <td>{% trans '14th of Bahman - 2nd of Esfand' %}</td>
-                    <td>{% trans 'Online phase starts' %}</td>
-                </tr>
-                <tr class="center aligned">
-                    <td>{% trans '18th and 19th of Esfand' %}</td>
-                    <td>{% trans 'Onsite phase at Sharif UT' %}</td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="fake">
-                <br>
-                <br>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="organization" style="background-color: #4f20b5">
-        <div class="container" id="SSCContainer">
-            <div class="feature alternate ui stripe vertical segment">
-                <div class="ui three column center aligned relaxed unstackable grid container">
-                    <div class="row">
-                        <div class="column"></div>
-                        <div class="column">
-                            <img id="SSCImg" class="ui" src="{% static 'intro/image/SSC.png' %}" alt="SSC Image">
-                        </div>
-                        <div class="column"></div>
-                    </div>
-                    <div class="row">
-                        <div class="ui primary button">Staffs <i class="users icon"></i> </div>
-                    </div>
+    <div class="section prizes" id="section">
+        <div class="ui center aligned grid" id="prize-grid">
+            <h1 class="ui header">
+                {% trans 'Prizes' %}
+            </h1>
+            <div class="row" id="prize-row">
+                <div class="five wide column" style="margin-top: 30px;">
+                    <img id="prizeImg2" src="{% static 'intro/image/prize2.png' %}" alt="Second rank prize">
                 </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="organization" style="background-color: #ffffff">
-        <div class="container" id="SSCContainer">
-            <div class="feature alternate ui stripe vertical segment">
-                <div class="ui three column center aligned  relaxed unstackable grid container">
-                    <div class="row">
-                        <div class="column"></div>
-                        <div class="column">
-                            <img class="ui large image" src="{% static 'intro/image/sponsors.png' %}">
-                        </div>
-                        <div class="column"></div>
-                    </div>
+                <div class="six wide column" style="margin-top: -30px;">
+                    <img id="prizeImg1" src="{% static 'intro/image/prize1.png' %}" alt="First rank prize">
                 </div>
-
+                <div class="five wide column" style="margin-top: 60px;">
+                    <img id="prizeImg3" src="{% static 'intro/image/prize3.png' %}" alt="Third rank prize">
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="langin-footer" style="background-color: #4f20b5">
-        <div class="ui two column center aligned divided very relaxed stackable grid container">
-            <div class="row">
+    <div class="section schedule" id="section">
+        <h1 class="ui centered header">
+                {% trans 'Time Schedule' %}
+            </h1>
+        <table class="ui inverted grey unstackable table">
+            <thead>
+            <tr class="center aligned">
+                <th>{% trans 'Date' %}</th>
+                <th>{% trans 'Details' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="center aligned">
+                <td>{% trans '10th of Bahman' %}</td>
+                <td>{% trans 'Online phase registration starts' %}</td>
+            </tr>
+            <tr class="center aligned">
+                <td>{% trans '14th of Bahman - 2nd of Esfand' %}</td>
+                <td>{% trans 'Online phase starts' %}</td>
+            </tr>
+            <tr class="center aligned">
+                <td>{% trans '18th and 19th of Esfand' %}</td>
+                <td>{% trans 'Onsite phase at Sharif UT' %}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="section organization" id="section">
+        <div class="ui center aligned unstackable grid">
+            <div class="two column row">
                 <div class="column">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9179536820648!2d51.34940431525942!3d35.70363658018915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a8bc1a7e63%3A0x61a5a909b878501!2sSharif+University+of+Technology!5e0!3m2!1sen!2sus!4v1516554126873" width="100%" height="350" frameborder="0" style="border: 0"></iframe>
+                    <h1 class="ui header">{% trans 'Organizer' %}</h1>
+                    <img class="ui centered medium image" src="{% static 'intro/image/SSC.png' %}" alt="SSC Image">
                 </div>
                 <div class="column">
-                    <a class="ui large blue label" href="https://t.me/aichallenge">
-                         Telegram <i class="telegram icon"></i>
-                    </a>
-                    <a class="ui large pink label" href="https://www.instagram.com/aichallenge/">
-                         Instagram<i class="instagram icon"></i>
-                    </a>
-                    <a class="ui large blue label" href="https://twitter.com/aichallenge">
-                         Twitter<i class="twitter icon"></i>
-                    </a>
-                    <a class="ui large blue label" href="https://www.linkedin.com/showcase/sharif-ai-challenge/">
-                         Linkedin <i class="linkedin icon"></i>
-                    </a>
+                    <h1 class="ui header">{% trans 'Sponsors' %}</h1>
+                    <img class="ui centered medium image" src="{% static 'intro/image/sponsors.png' %}">
+                </div>
+            </div>
+            <div class="two column row">
+                <div class="column">
+                    <h1 class="ui header">{% trans 'Location' %}</h1>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9179536820648!2d51.34940431525942!3d35.70363658018915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a8bc1a7e63%3A0x61a5a909b878501!2sSharif+University+of+Technology!5e0!3m2!1sen!2sus!4v1516554126873"
+                            width="80%" height="100%" frameborder="0" style="border: 0"></iframe>
+                </div>
+                <div class="column">
+                    <h1 class="ui header">{% trans 'Social Media' %}</h1>
+                    <div class="two column row">
+                        <a class="ui blue button" href="https://t.me/aichallenge">
+                            <i class="telegram icon"></i>
+                            Telegram
+                        </a>
+                        <a class="ui pink instagram button" href="https://www.instagram.com/aichallenge/">
+                            <i class="instagram icon"></i>
+                            Instagram
+                        </a>
+                    </div>
+                    <div class="two column row">
+                        <a class="ui twitter button" href="https://twitter.com/aichallenge">
+                            <i class="twitter icon"></i>
+                            Twitter
+                        </a>
+                        <a class="ui linkedin button" href="https://www.linkedin.com/showcase/sharif-ai-challenge/">
+                            <i class="linkedin icon"></i>
+                            Linkedin
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
+
+{% endblock %}
+
+{% block footer_scripts %}
+
+    <script>
+        $(document).ready(function () {
+            $('#navbar').css('background-color', 'rgba(0,0,0,0.2)');
+            $("#prize-row").hide();
+        });
+        $(document).scroll(function() {
+            var y = $(this).scrollTop();
+            $('div#section').each(function(i, el) {
+                var t = $(el).offset().top;
+                if (y > t && $(el).is('.section.prizes') && !$('#prize-row').is(":visible")) {
+
+                    $('#prize-row').transition({
+                        animation: 'fade up',
+                        duration: '500ms'
+                    });
+
+{#                    $('#prizeImg2').transition('fly left', '1000ms');#}
+{#                    $('#prizeImg3').delay(500000).transition('fly right', '1000ms');#}
+                }
+            });
+        });
+
+    </script>
 {% endblock %}
