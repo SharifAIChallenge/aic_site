@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from apps.accounts.forms.team_forms import CreateTeamForm
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import generic
@@ -124,3 +125,31 @@ def accept_participation(request, participation_id):
 def reject_participation(request, participation_id):
     TeamParticipatesChallenge.objects.get(id=participation_id).delete()
     return redirect('accounts:panel')
+
+
+def create_team(request):
+    print("i'm here dear")
+    if request.method == 'POST':
+        form = CreateTeamForm(request.POST)
+        if form.is_valid():
+            team_name = form.cleaned_data.get('team_name')
+            member1_email = form.cleaned_data.get('member1')
+            member2_email = form.cleaned_data.get('member2')
+            member1 = User.objects.get(email__exact=member1_email)
+            member2 = User.objects.get(email__exact=member2_email)
+            team = Team(name=team_name)
+            team.save()
+            user_team0 = UserParticipatesOnTeam(team=team, user=request.user)
+            user_team0.save()
+            if member1_email and member2_email:
+                user_team1 = UserParticipatesOnTeam(team=team, user=member1)
+                user_team1.save()
+                user_team2 = UserParticipatesOnTeam(team=team, user=member2)
+                user_team2.save()
+            elif (not member2) and member1:
+                user_team1 = UserParticipatesOnTeam(team=team, user=member1)
+                user_team1.save()
+
+    else:
+        form = CreateTeamForm()
+    return render(request, 'accounts/create_team.html', {'form': form})
