@@ -10,20 +10,32 @@
 }
 
 @media screen and (max-width: 780px) {
+    .section {
+        height: auto !important;
+        display: block !important;
+        width: 100vw !important;
+    }
+
     .masthead {
         height: 100vh !important;
         width: 100vw !important;
         background: url("/static/intro/image/Mobile_header.jpg") no-repeat !important;
         background-size: 100% 100% !important;
     }
+
+    #prize-row {
+        margin-top: 50px;
+        padding-bottom: 50px;
+    }
 }
 
 .section.gameInfo {
-    background-color: #ffbe4c;
+    background-color: #ffce4b;
+    padding-bottom: 50px;
 }
 
-.section.gameInfo .row {
-    height: 50vh;
+.section.gameInfo .column {
+    margin-top: 50px;
 }
 
 .section.prizes {
@@ -40,15 +52,21 @@
 }
 
 .section.schedule {
-    background-color: #ffbe4c;
+    background-color: #ffce4b;
     padding-left: 50px;
     padding-right: 50px;
+    padding-bottom: 50px;
 }
 
 .section.organization {
     background: linear-gradient(to right, #d7ddd7, white ,#d7ddd7);
+    padding-bottom: 100px;
 }
 
-.section.organization .column {
-    padding-top: 5vh;
+.section.organization .eight.wide.column {
+    margin-top: 3vh;
+}
+
+.counter {
+    font-size: 1.2em;
 }

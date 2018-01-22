@@ -24,9 +24,7 @@
     <div class="right menu">
         <a class="item" href="{% url 'accounts:update_profile' %}">
             {% if request.user.is_authenticated %}
-                {% blocktrans with name=request.user.first_name %}
-                    Greetings, {{ name }}
-                {% endblocktrans %}
+                {{ request.user.first_name }}
             {% else %}
                 {% trans 'Login' %}
             {% endif %}

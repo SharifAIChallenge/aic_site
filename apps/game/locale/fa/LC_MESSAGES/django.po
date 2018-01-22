@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-22 04:37+0000\n"
+"POT-Creation-Date: 2018-01-22 15:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: apps/game/admin.py:86 apps/game/admin.py:106
 msgid "no selected teams!"
-msgstr ""
+msgstr "تیمی انتخاب نشده است!"
 
 #: apps/game/admin.py:93 apps/game/admin.py:113
 msgid "Only teams from one challenge!"
@@ -44,40 +44,40 @@ msgstr ""
 
 #: apps/game/models/challenge.py:98
 msgid "Uploading"
-msgstr ""
+msgstr "در حال آپلود"
 
 #: apps/game/models/challenge.py:99
 msgid "Uploaded"
-msgstr ""
+msgstr "آپلود شده"
 
 #: apps/game/models/challenge.py:100
 msgid "Compiling"
-msgstr ""
+msgstr "در حال کامپایل"
 
 #: apps/game/models/challenge.py:101
 msgid "Compiled"
-msgstr ""
+msgstr "کامپایل شده"
 
 #: apps/game/models/competition.py:11
 msgid "Elimination"
-msgstr ""
+msgstr "حذفی"
 
 #: apps/game/models/competition.py:12
 msgid "Double Elimination"
-msgstr ""
+msgstr "دوحذفی"
 
 #: apps/game/models/competition.py:13
 msgid "League"
-msgstr ""
+msgstr "لیگ"
 
 #: apps/game/models/competition.py:187
 msgid "Winner"
-msgstr ""
+msgstr "برنده"
 
 #: apps/game/models/competition.py:188
 msgid "Loser"
-msgstr ""
+msgstr "بازنده"
 
 #: apps/game/models/competition.py:189
 msgid "Itself"
-msgstr ""
+msgstr "خودش"

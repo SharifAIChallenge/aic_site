@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-22 04:37+0000\n"
+"POT-Creation-Date: 2018-01-22 15:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,30 +17,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
 #: apps/accounts/templates/accounts/panel.html:8
 msgid "Selected"
-msgstr ""
+msgstr "انتخاب شده"
 
 #: apps/accounts/templates/accounts/panel.html:9
 msgid "Time"
-msgstr ""
+msgstr "زمان"
 
 #: apps/accounts/templates/accounts/panel.html:10
 msgid "Language"
-msgstr ""
+msgstr "زبان"
 
 #: apps/accounts/templates/accounts/panel.html:11
 msgid "Status"
-msgstr ""
+msgstr "وضعیت"
 
 #: apps/accounts/templates/accounts/panel.html:75
 msgid "File:"
-msgstr ""
+msgstr "فایل:"
 
 #: apps/accounts/templates/accounts/panel.html:80
 msgid "Language:"
-msgstr ""
+msgstr "زبان:"
 
 #: apps/accounts/templates/accounts/panel.html:85
 msgid "Challenge:"
-msgstr ""
+msgstr "چالش:"
