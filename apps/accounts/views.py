@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.http import HttpResponse
@@ -45,7 +46,7 @@ class LogoutView(RedirectView):
         return super(LogoutView, self).get(request, *args, **kwargs)
 
 
-class UpdateProfileView(generic.UpdateView):
+class UpdateProfileView(LoginRequiredMixin, generic.UpdateView):
     form_class = UpdateProfileForm
     success_url = '/'
     template_name = 'accounts/update_profile.html'
