@@ -87,7 +87,7 @@ def upload_file(file):
     """
     address = '{}/api/storage/new_file/'.format(settings.INFRA_URL)
     files = {'upload_file': file}
-    headers = {'Authorization': settings.INFRA_AUTH_TOKEN}
+    headers = {'Authorization': 'token {}'.format(settings.INFRA_AUTH_TOKEN)}
     response = requests.put(address, files=files, headers=headers)
     if response.status_code == 201:
         return json.loads(response.text)['token']
