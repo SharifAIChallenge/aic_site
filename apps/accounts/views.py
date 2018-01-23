@@ -127,29 +127,31 @@ def reject_participation(request, participation_id):
     return redirect('accounts:panel')
 
 
+@login_required()
 def create_team(request):
-    print("i'm here dear")
     if request.method == 'POST':
         form = CreateTeamForm(request.POST)
         if form.is_valid():
+            member1_email = request.POST['member1']
+            member2_email = request.POST['member2']
             team_name = form.cleaned_data.get('team_name')
-            member1_email = form.cleaned_data.get('member1')
-            member2_email = form.cleaned_data.get('member2')
-            member1 = User.objects.get(email__exact=member1_email)
-            member2 = User.objects.get(email__exact=member2_email)
             team = Team(name=team_name)
             team.save()
             user_team0 = UserParticipatesOnTeam(team=team, user=request.user)
             user_team0.save()
             if member1_email and member2_email:
+                member1 = User.objects.get(email__exact=member1_email)
+                member2 = User.objects.get(email__exact=member2_email)
                 user_team1 = UserParticipatesOnTeam(team=team, user=member1)
                 user_team1.save()
                 user_team2 = UserParticipatesOnTeam(team=team, user=member2)
                 user_team2.save()
-            elif (not member2) and member1:
+            elif (not member2_email) and member1_email:
+                member1 = User.objects.get(email__exact=member1_email)
                 user_team1 = UserParticipatesOnTeam(team=team, user=member1)
                 user_team1.save()
 
     else:
         form = CreateTeamForm()
-    return render(request, 'accounts/create_team.html', {'form': form})
+    return render(request, 'accounts/create_team.html', {'form': form
+        , 'users': User.objects.exclude(username__exact=request.user.username)})
