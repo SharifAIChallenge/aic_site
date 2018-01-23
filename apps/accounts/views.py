@@ -127,6 +127,7 @@ def reject_participation(request, participation_id):
     return redirect('accounts:panel')
 
 
+
 @login_required()
 def create_team(request):
     if request.method == 'POST':
