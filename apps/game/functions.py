@@ -109,7 +109,7 @@ def download_file(file_token):
                          params={'token': file_token})
 
 
-def compile_submissions(file_tokens, game_id):
+def compile_submissions(submissions):
     """
         Tell the infrastructure to compile a list of submissions
     :param file_tokens: array of strings
@@ -119,15 +119,14 @@ def compile_submissions(file_tokens, game_id):
     #
 
     # Test code
-    submits = []
-    for file_token in file_tokens:
-        submits.append({
-            "game": game_id,
+    requests = list()
+    for submission in submissions:
+        requests.append({
+            "game": submission.team.challenge.game.infra_token,
             "section": "compile",
-            "parameters": {  # TODO : parameters
-                "string_parameter1": "parameter1_value",
-                "string_parameter2": "parameter2_value",
-                "file_parameter1": "file_parameter1_token"
+            "parameters": {
+                "language": submission.language,
+                "code_zip": submission.infra_token
             }
         })
 
@@ -135,7 +134,7 @@ def compile_submissions(file_tokens, game_id):
 
     compile_details = []  # Get the array from the infrastructure.
 
-    for x in file_tokens:
+    for _ in submissions:
         gm = {
             "token": random_token(),
             "success": True,
