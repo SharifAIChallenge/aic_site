@@ -1,7 +1,12 @@
 from django.conf.urls import url
-from apps.game import views
 
-app_name = "game"
+from . import views
+
 urlpatterns = [
-    url(r'^scoreboard/$', views.score_board_test, name='scoreboard'),
+
+    url(r'^scoreboard/(?P<competition_id>[0-9]+)/$', views.scoreboard, name='scoreboard'),
+
 ]
+
+
+
