@@ -60,7 +60,8 @@ jobs:
       --totals
     - cd ../..
     - tar -czf deploy_package.tgz build
-    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy_package.tgz
+      $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build deploy_package.tgz
     - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
@@ -99,10 +100,15 @@ jobs:
       --totals
     - cd ../..
     - tar -czf deploy_test_package.tgz build_test
-    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy_test_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy_test_package.tgz
+      $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build_test deploy_test_package.tgz
-    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy/deploy_test.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy/deploy_test.sh
+      $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy_test.sh
     - ssh -t -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
-
-
+env:
+  global:
+  - secure: FROy3eEVdQ5/H0ngl7vsq2JQXW/OaOOofZyi9s8TsfCn72ZQqaDBEEVFPs7oGnaL6AgAXGxi4M3iMhdLcyVzp4q6NCL8+XptvUiLdTt8fNFE1aAaPuGfbHZxDB3etouzqRIClC2RqyYeNWWlPVe8A7h0x4tCQYWJZzPyXBadTkPeayxRQr0lSFphAeVAhEZfvxP/nO56DJob3u1ku/3c1GHcBcsnIWnst84n9pIWAMsr1R3zZpuVqXClJyjrMlKsIZxmk6XUMo0av2nR0LC2wAEmmX5TGC3IgN46rIjJOqxUxu4k5dwW59R9QNtWsXmUopbGvfK9l3COlcrMtTyeGlt4VisFwRgTaQil89UoMNmrZ0EL6LYS/EzNOJ9snP9YLfImlErqXPklLq71OKYMELPWq1NEpXaYbamG9KI+q7aZaNHd3RlNhMIUa1F0vhPtQGHwRbuBEWOiZC5pXi2voWv1HRJ7W3Mzh3/+fxqjf2Uar3Nv/LJ69HHqQh11eskndaAR0XDxrgXy9j6FqBzEI00ad1l1K/AfyA8O4lFiVb+VSsPwygPlKbo3EhXphYajCsHMTcPLfCNd3jpUhcd+mgit+srgiOSESkIFjUKJg4rzwr/HHqePJOlUUyHO5FpSV3syYRgY8/zhHtWcZNXFkeiCDAQ0fUDRsXdk9yIxOmQ=
+  - secure: V6hThCj/4bIwQ6e6C92vmnwa3Tj5+4t9xM4XQWIdA9VcoxIHPrICDfFcgoSdFkLAjOVS7A8KNNsSUAdyHC73UIyZYvbqMqMfovjgN2TeSMc5ssqK+gOvZbXXYaSplZlqDIVVlctcur9et4Cjfi3fNIrbGDnTCKuYqLkpGNuGmkWk61l+Ck7kf8G7WSg+jTsIwJNpe+OkeaEWOb+eGlPZ/3BvhzU+Vhd3ZOVbBMi69Jk129QAXkFjql/O8DuYsFmcyIheOTNiDgAF/amUTf/KU7oiHyI1AJanSp6DXkibx1hET3dxJoIn751DrdsO3VsUoBMWUIJtrNo8eTJ2N3lncNkV/mr0DBrO5mr++/tM5jZk6FHewNNQfeABA9QSjoZ72nILwoTB5BUp6V5SavXZinzzXXmEjGzd7xHlf7IQO258BSFVFL6hX/gH+5zmoWHP5ph4py14vImLU8BoosFYDnlyJ6P1vvBdB1zgD0XgkG76qW0IVeWg6VkHXmf7ihuR1yqjcL1EHxpjd0fdbSNKXX035COt7he56nZZ7P/VB5YO13wvYT+aNOvzQYLoc0xN+VM88F8PM1qpnjcZ2e9zVFeIwMZxi8iwtb9YILMtNTAt3bNfmqRlYLFnGje4orxgSgW3PBZn1T/pZu7l7Y3QkqoErAH6/MCHC7cgRLzd47c=
+  - secure: LtrZ0nlGaCjzIcIpTF5BbwnZeDibkpxXi7NxWYwpXRnLXE+nZNcTyvRJGG4tDRDKlo7UKaBZEC5DbTSrZ3v7rw4kby5BGwuJFPgACnTSN1FtjtigRTldVITZzqrdofkiroKTnSAd42JNZiuGEdUkYlVeAnxMUdB62AUzJGni9LFY98WZFY8lf0GCwvcoO4LWcUP9iNYadD4T3BoLi8DbmHdYtNEGUbGc5Yuwta0KqwG3X4xmo4Iy/ksEtTqiLFXwmN6Fu85mQlIL0MwIx8ji8utFRf+PL6RM4Z/DXQedi4FUacU8A2EF90Q7g3Gaxw1sXvBahqaeKJX5uxJsnU2ijajhmOusqILb1vIdyYXuVBQIcLZOmm+L8KUK+C2QyhQUgt+ZGqJDki4F0lwGe9G49ww/HcSsvWAhI8AEsnQUh9zMc1AgK0vE9Rsqo+dep0f3mQxZsO3C/u4YoSEJuuO9SQ6SicOvMOiNNk28NybMVDE7euyrWSbA0St6k7C2/Noa35639hcblULBNQYm23kOepyMkvW6yTM8Y6WTChseU7rZyKSlYw8SJdy/6zi8WvMGOmXC8Jjxs1DuONEnyKuvwd6YzP0q1dOrmWcCUMgDvbTJQPK8lN2/ltSc2IyoeWf8XpYhPyo7+DZh8Pm0Bs9Elp8hUfAoW3zaJtsJ6teNUCk=
