@@ -53,12 +53,12 @@ jobs:
       --totals
     - cd ../..
     - tar -czf deploy_package.tgz build
-    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy_package.tgz
+    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null' deploy_package.tgz
       $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build deploy_package.tgz
-    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
-    - ssh -t -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
+    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null' deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
+    - ssh -t -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
   - stage: deploy_test
     addons:
       apt:
@@ -86,13 +86,13 @@ jobs:
       --totals
     - cd ../..
     - tar -czf deploy_test_package.tgz build_test
-    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy_test_package.tgz
+    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null' deploy_test_package.tgz
       $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build_test deploy_test_package.tgz
-    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy/deploy_test.sh
+    - rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null' deploy/deploy_test.sh
       $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy_test.sh
-    - ssh -t -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
+    - ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy_test.sh
+    - ssh -t -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
 
 addons:
   ssh_known_hosts: 81.31.168.207
