@@ -35,6 +35,6 @@ def render_double_elimination(request, competition_id):
         start_round_index += 3 * cur_round_length
         cur_round_length = int(cur_round_length / 2)
 
-    return render(request, 'double_score_board.html', {'win_matches': win_matches,
+    return render(request, 'scoreboard/bracket.html', {'win_matches': win_matches,
                                                        'lose_matches': lose_matches}
                   )
