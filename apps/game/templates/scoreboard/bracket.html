@@ -1,25 +1,31 @@
 {% extends "base/base.html" %}
 {% load static i18n %}
 
+{% block extra_header %}
+    <link rel="stylesheet" href="{% static 'css/style_bracket.css' %}">
+{% endblock %}
+
 {% block container %}
 
-    <div class="ui grid center aligned" style="margin-top: 50px;">
+    <div class="ui grid right aligned" id="two_brackets">
 
         <div class="ui top attached small tabular menu" >
 		  <a class="item active" onclick="changeGroup(1)" id="menu_item_1">گروه برنده ها</a>
 		  <a class="item" onclick="changeGroup(2)" id="menu_item_2">گروه بازنده ها</a>
 		</div>
 
-		<div class="ui bottom attached segment" id="bracket_1">
-            {% block winner %}
-                {% include "scoreboard/bracket_winner.html" %}
-            {% endblock %}
-		</div>
-		<div class="ui bottom attached segment" style="display:none;" id="bracket_2">
+		<div class="ui bottom attached segment" style="min-width: 1100px;display: none;" id="bracket_2">
             {% block looser %}
                 {% include "scoreboard/bracket_looser.html" %}
             {% endblock %}
 		</div>
+
+		<div class="ui bottom attached segment" style="display: block" id="bracket_1">
+            {% block winner %}
+                {% include "scoreboard/bracket_winner.html" %}
+            {% endblock %}
+		</div>
+
 
     </div>
 
