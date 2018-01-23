@@ -1,0 +1,203 @@
+.round {
+  float: left;
+}
+.round.layer1 {
+
+}
+.round.layer2 {
+  margin-top: 24px;
+}
+
+.round.layer3 {
+  margin-top: 77px;
+}
+
+.round.layer4 {
+  margin-top: 182px;
+}
+
+.round.layer5 {
+  margin-top: 390px;
+}
+
+/******/
+
+.layer2_top_space{
+    margin-top: 62px;
+}
+.layer2_connector_space{
+    margin-top: 44px;
+}
+.layer3_top_space{
+    margin-top: 166px;
+}
+.layer3_connector_space{
+    margin-top: 96px;
+}
+
+.layer4_top_space{
+    margin-top: 375px;
+}
+.layer4_connector_space{
+    margin-top: 200px;
+}
+
+.layer5_top_space{
+    margin-top: 100px;
+}
+.layer5_connector_space{
+    margin-top: 400px;
+}
+
+/*****/
+.bracket-game {
+  max-width: 125px;
+  margin: 10px 0;
+}
+.player {
+  height: 21px;
+  min-width: 100px;
+  /* border: 1px solid #AAA; */
+  padding-left: 0px;
+}
+.player.top {
+  /* border-radius: 0px 0px 0 0; */
+}
+.player.bot {
+  /* border-radius: 0 0 0px 0px; */
+}
+.player .score {
+  display: inline;
+  float: right;
+  border-left: 1px solid #AAA;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: #EEE;
+}
+.player.win {
+  /* background-color: #B8F2B8; */
+}
+.player.loss {
+  /* background-color: #F2B8B8; */
+}
+.connectors {
+  float: left;
+  min-width: 35px;
+}
+
+/******/
+
+.connectors.layer2 .top-line {
+  position: relative;
+  top: 30px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.layer2 .bottom-line {
+  position: relative;
+  top: 80px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.layer2 .vert-line {
+  position: relative;
+  top: 26px;
+  left: -16px;
+  height: 54px;
+  border-right: 2px solid #AAA;
+}
+.connectors.layer2 .next-line {
+  position: relative;
+  top: -4px;
+  left: 17px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+
+.connectors.layer3 .top-line {
+  position: relative;
+  top: 54px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.layer3 .bottom-line {
+  position: relative;
+  top: 156px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.layer3 .vert-line {
+  position: relative;
+  top: 50px;
+  left: -16px;
+  height: 106px;
+  border-right: 2px solid #AAA;
+}
+.connectors.layer3 .next-line {
+  position: relative;
+  top: -4px;
+  left: 17px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.layer4 .top-line {
+  position: relative;
+  top: 105px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.layer4 .bottom-line {
+  position: relative;
+  top: 312px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.layer4 .vert-line {
+  position: relative;
+  top: 101px;
+  left: -16px;
+  height: 211px;
+  border-right: 2px solid #AAA;
+}
+.connectors.layer4 .next-line {
+  position: relative;
+  top: -4px;
+  left: 17px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+.connectors.layer5 .top-line {
+  position: relative;
+  top: 211px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.layer5 .bottom-line {
+  position: relative;
+  top: 626px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+.connectors.layer5 .vert-line {
+  position: relative;
+  top: 207px;
+  left: -16px;
+  height: 419px;
+  border-right: 2px solid #AAA;
+}
+.connectors.layer5 .next-line {
+  position: relative;
+  top: -4px;
+  left: 17px;
+  width: 17px;
+  border: 1px solid #AAA;
+}
+
+/*****/
+
+.clear {
+  clear: both;
+}
