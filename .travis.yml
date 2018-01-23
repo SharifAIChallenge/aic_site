@@ -48,22 +48,20 @@ jobs:
     - cp ./docker-compose.yml ../build/docker-compose.yml
     - cd ..
     - cd build
-    - sed -i 's/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.development")/os.environ.setdefault("DJANGO_SETTINGS_MODULE",
-      "aic_site.settings.production")/g' manage.py
+    - sed -i 's/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.development")/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.production")/g' manage.py
     - cd ..
     - cd build/apps/
     - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
-    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
-      --totals
+    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve --totals
     - cd ../..
     - tar -czf deploy_package.tgz build
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null' deploy_package.tgz
-      $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build deploy_package.tgz
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null' deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
+    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
   - stage: deploy_test
     addons:
       apt:
@@ -83,20 +81,16 @@ jobs:
     - cp ./docker-compose_test.yml ../build_test/docker-compose.yml
     - cd ..
     - cd build_test
-    - sed -i 's/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.development")/os.environ.setdefault("DJANGO_SETTINGS_MODULE",
-      "aic_site.settings.production_test")/g' manage.py
+    - sed -i 's/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.development")/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.production_test")/g' manage.py
     - cd ..
     - cd build_test/apps/
     - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
-    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
-      --totals
+    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve --totals
     - cd ../..
     - tar -czf deploy_test_package.tgz build_test
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null' deploy_test_package.tgz
-      $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy_test_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build_test deploy_test_package.tgz
-    - sshpass -e  rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null' deploy/deploy_test.sh
-      $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy_test.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy/deploy_test.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy_test.sh
+    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
