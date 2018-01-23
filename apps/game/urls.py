@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
 
-    url(r'^scoreboard/(?P<competition_id>[0-9]+)/$', views.scoreboard, name='scoreboard'),
+    url(r'^scoreboard/(?P<competition_id>[0-9]+)$', views.render_double_elimination, name='scoreboard'),
 
 ]
 
