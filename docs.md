@@ -34,3 +34,11 @@ ai = {
 
 }
 ```
+
+# For Intro Template:
+```
+stats: {
+    'teams_count': 1242,
+    'submissions_count': 1213
+}
+```
