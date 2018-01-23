@@ -180,6 +180,6 @@ venv.bak/
 
 build.sh
 build_test.sh
-build_safe.sh
+build_both.sh
 
 node_modules/
