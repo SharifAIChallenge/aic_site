@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% block container %}
+    <h2> Create Team</h2>
+    <form method="post">
+        {% csrf_token %}
+{#        {{ form.as_p }}#}
+        <h3>Team Name:</h3>
+        {{ form.team_name }}
+        {{ form.team_name.errors }}
+        <h3>Member1:</h3>
+        {{ form.member1 }}
+        {{ form.member1.errors }}
+        <h3>Member2:</h3>
+        {{ form.member2 }}
+        {{ form.member2.errors }}
+        <button type="submit">Create Team</button>
+    </form>
+{% endblock %}
