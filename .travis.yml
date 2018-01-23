@@ -1,8 +1,5 @@
 language: python
 python: 3.6
-addons:
-  ssh_known_hosts:
-  - 81.31.168.207
 stages:
 - test
 - name: deploy_test
@@ -31,6 +28,8 @@ jobs:
     - python manage.py test
   - stage: deploy_production
     addons:
+      ssh_known_hosts:
+        - 81.31.168.207
       apt:
         packages:
         - sshpass
@@ -65,6 +64,8 @@ jobs:
     - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
   - stage: deploy_test
     addons:
+      ssh_known_hosts:
+        - 81.31.168.207
       apt:
         packages:
         - sshpass
