@@ -48,27 +48,21 @@ jobs:
     - cp ./docker-compose.yml ../build/docker-compose.yml
     - cd ..
     - cd build
-    - sed -i 's/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.development")/os.environ.setdefault("DJANGO_SETTINGS_MODULE",
-      "aic_site.settings.production")/g' manage.py
+    - sed -i 's/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.development")/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.production")/g' manage.py
     - cd ..
     - cd build/apps/
 #    - find . -iname '*.png' -print0 | xargs -0 mogrify -resize 1000x1000
 #    - find . -iname '*.jpg' -print0 | xargs -0 mogrify -resize 1000x1000
     - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
-    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
-      --totals
+    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve --totals
     - cd ../..
     - tar -czf deploy_package.tgz build
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-      deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build deploy_package.tgz
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-      deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST
-      chmod +x $DEPLOY_PATH/deploy.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-      $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy.sh
+    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
   - stage: deploy_test
     addons:
       apt:
@@ -88,30 +82,24 @@ jobs:
     - cp ./docker-compose_test.yml ../build_test/docker-compose.yml
     - cd ..
     - cd build_test
-    - sed -i 's/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.development")/os.environ.setdefault("DJANGO_SETTINGS_MODULE",
-      "aic_site.settings.production_test")/g' manage.py
+    - sed -i 's/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.development")/os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aic_site.settings.production_test")/g' manage.py
     - cd ..
     - cd build_test/apps/
 #    - find . -iname '*.png' -print0 | xargs -0 mogrify -resize 1000x1000
 #    - find . -iname '*.jpg' -print0 | xargs -0 mogrify -resize 1000x1000
     - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
-    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
-      --totals
+    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve --totals
     - cd ../..
     - tar -czf deploy_test_package.tgz build_test
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-      deploy_test_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy_test_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build_test deploy_test_package.tgz
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-      deploy/deploy_test.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST
-      chmod +x $DEPLOY_PATH/deploy_test.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-      $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' deploy/deploy_test.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST chmod +x $DEPLOY_PATH/deploy_test.sh
+    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
 env:
   global:
-  - secure: L1dK4fyG0F2ANB5yhFS1LLO2ihgsjRKmd9DfZab/832cSBLoO4lbmN03tfCbDrwURF+spdAUqnf8uqSo+dqKe+Ve9pZKT8W/OqhenQ95Ri8yDfTas1GBmCBcqpMR5RSxZ9E7joVRbzgw77UCzleU3Q6qn7PJarD5tMQZZQt85k85gnaFScD5QHJU/sTbGgiXWVIoJkwvoFU7zTbb0+7yQ+a58hGHDxrDMNXynAFbkXJUnGwS7roKmCSe5yGA5b096YsujA8TocmppUlzzueRn2Zyi+dj60kMuOdavR58TI23I83/px1xZUrUoSlkXG4VYNorM1H6X+1padWVSbaaA8o5JgbqJrR9EF9F+YWY3ic+exOg+7j1nzxug6mG479WG9o7Lw2epB8F3ikd0/fBQDi7Gr3p3IGjsV6cTCZIGA6O1Y+ms6lVD5kJQNQXo0hojztDN0f26R9tNAg1cROZcPGe05yorRPMjXY6OLarjBj5rYFixDcAmcQnL16jcihFxExcJaB6Z4Gi6OH1DI4ElKQQCDD5OZYsU4YUBZhY8X+WEK+wSsL8KvXETmdHmgbcp6tI5u/edzwlzbm3msKGRRImQCqvQ06GgyAJbtb7IitmGE8W1XbD6BZjgwByyGqRfff4Tux8qhWBX6iQPdCFi6mDba332YTq23MxrtetBfo=
-  - secure: M+RBkURPN3zt8yrwQto0V449m/PjRamjMkxTI241aICTHNnaxGzF2Hki7U4U8Ey9XXYFCUzCBNEElJAACM/GkMslX9qQzZL8b8eYSvQkJZybqmkJz80NGpIj8cpT6xK9xfbSKuPgI61uS5ccwU6kGVoBSPDEdpS/fqrzzIZx5YBZ5yMEyWMkYJDL5RrwR1+z7AW5jZB21npYa4XqM7/RgyVOv5h4tZaKIyyf9cb04/VyZv5imT0UEIV/Xm/UCRnY3XG/XANzCdCx04iVov4l3G7hckvGCk7/8lZK2a3npt8IIgY8vw3s2PnCwQSW5f65Yovg5iUX4ZAWmuyvqEhvYCUdkYqyukymIZEf5ZM7J9jEJhwg8+jT/C3Wnk7NQlM/lBoOaNKS9xqLlYPCgOSyBvR1Nqeza3USlmqrbnkQowQH2w4Up+OWFYQUZvyE20jZSqa4EvPsI7AAsC52Lbp9P1pG2dstWTnVGya7TXOKeHcRy3mR/D8PV1HSKgbz7Y8TJ/1QwirOn6aYCi/KhF71UP1LZhlI8S3tNIm/A6icsKfqYxK4M3OMGzd7GcvpwsCrZkDAguVGMlMDQjzA0hOzOC0svDSXBwKLur39Ku6WwuPdJEIEBlTayYndwDwo00XCm6YdK+UkTyQZgDcf3dB73tRhmnjE3k33h66qH6yS5nI=
-  - secure: UFklBqbldGTQqX7VW6v8wTNPwIyi7dzg5fcAhHhwcp55dot/gMxd9d1KM7bpe3l8TOZJMrvSCNcdtrXgyo+1BqtBXtrl2EHjSYmp5QW3KhXmYVOwrPb2hA7vUb5VQ5eKvRQ2TbCTCiHmCLmfz03EBp9FaxVObUyATX5GLjsbmaGW4GZDuQ/BSZMQFs/ZsvCtmr4HTxOsd/LKlmzZjelrevyrBfrm9NAyNuuX0cxUd6ooPB7ySVKDHrRBHJyDTq7fzVqvCeDlcza2O4RM4jiPs3hMxV/aR6lJX+aB8xmpEs/IktR8qugQPsjo/OIK/dWoryprkXGLS7J7jYRx2hRhIOeWSR+oV++xcCCACEm8x9fNqjvFL94ir4g/WKssvkB6jOaE1+i/CG/mLN7GYgAuLT+4iOcuKiYLz7X0xcqyw5Kl4pPAeYEUtrBVW/U7hazgL+WGMvXkP26dIyjJXin7ceFkJlqnAUlW2Iz83lHkmdb6XukrDo+EkckRI3FAQjHzNz4q2Ig9DsiRnNJ+isi+FVNUQMVbUX/s6GCRjuZltHuae1LHcrXQZNhXngLTxZsokL/Q6Oc29JvH+XEs1NZlWGRmghwa7MSrS5Z+rUcZ6tMuYelsQe308KEBbEKVqBl9R18AkWzqJXEO01zycBjDmmMsrVcqcVi031hcsHSaheQ=
-  - secure: DmSnIpaC+it3tRb7Wv8SV8oaqsA4vIKMFIAjPShdBkVBmP4jnwMf+64ZJoBM0x42JP4m68TabQYeSi87FGcL94DDuyYmYb1x7c+NaKwB9zFeT172HGKA4imC4W2BgdOEZ3ljGYw7TGBxmbJ2XVUS3T061f8BCCAeJL93snV4xLBtk8Hd4Iww+Qb+cGvY373hDOA1Bwo1IkXEWo5UBHuEHsHFc3mxm81MoIIei3tLMAwNTnc9s9yK1TAroHL6FSb5OPOySxNX00DLxz+7AeZ+JEjwENXdeTxUxaHQ5iXnrPeNxDmTNPmqMAEviGUJBLd0eNwe6IKrs+UV2Rs/VkCvVV1PXlyIF9abODc+PutZXQBDH4/K553uNsG+n593ZHyD71GrmlilSRqIBbh2Hi8bN/wbSZcG0Lh+i589XsGK+4PpLUQnmRLl8Z3ybT6XIECUzpP/f2xTXZhjJGO7pFQX5aNCTVtpWZXwfUXTpxrpNvpoKlX+7kzlpubkNgXQFlXNMDBOD4JE1dwcaLFrPrOuI2GaOA2BTlkwS05/wyBtWhmgfQhOv/40cPdfg7XoL8Wp3pBsiWNTIpzBIE3NrU2CmP5Tr4MSZnVnK43/GAehKUsbB7oKk11v/j3ArGfbRe19npnmD+QQ9gPCTN6zYXQualf/M5Xd6DitTpPgZU4c04w=
+  - secure: S0mTeW5elEvCR/w67z+0uCAyaK+wG+Y/1f/iRQVxLjGD3lV5wSqCYWWLe7MCXQe0O0ErR6T1HDmPZztlxbV2b/tFzqz3PALr5LpiSoOBYuJ7xtlpnoB1nA6NywVbyF4vXa+vBlwpdYBYlXj6CIfq4RQtefQDXy1D65s9RmmM6GjN01PlqWDS1AjW1WijoKvdnx13kItulfv2x9qZRYU+9dOTzrjg+btUPFlToTYAjMnMu6fhcnNmsHluZ07gPksaTBazjb7EQbqybiILXvZM9xxos3sw3L8V/KXdf8B+CXUA7M8Q17NzKNQWZK23qBNF2b5D0IgtrgNUiM0mqhlFUZRZwP/7Fl3lndy4048RteGCl+hcBYNMNyI7f0lCTk6jO5Fx1cqS6RmIwNpGQTgzXjrCuQE/IVjWXTMyeaS56BsP+nEa+VviOsK2RObV8zZ5rVUlooQuATHPJUvBqN5gCdBdXLIqG66lPQoTA14TKRDnvHw3KOkm+ZM9D1XBey75W4R1DVAR/lPnpfyBwXWvV0jXcSDmsobV9xwcRyWyvibc3Qm8qEwa+Uj5Nk7XR1mkECzQ0xh9oQx5+vpc9OGILKBW4lj1B4+uRbubjvtW8n3TDNBo3o0RV441pUKWWSp1D9qGmsMkuILc1STQmMireduy02Zt0wtrrmK89mwJE90=
+  - secure: avypHP0OYjp9Gd2JZTq0G0QYY331fPx+SxXPWYAgWCPSF2ys84/TD0qI8HGGxMkMlkqZIxPVn8h9+aPmLPeii1rTeu6K463irH8/KSp24X34P7vltZPtkVPgEbsaSrtljxhCl+5vouWPuIle+Z+tpFvHHdnaqHt6tKEuNgfl/RQxcpcQQji8VPkXEr0jOhCoJd7yTR/g6+nU0e2FHavVv4QWVR3tfTHVFV3c6mIismcsv0C0J2TUEj+0XjvqRJ2R+FDwxcIjDyiO9INPm1Lr53uGvnZp+UaNpJga8Or6Jq/86T/FnLkI81/AQjHiroXxFblk65Zu1WnobqAD6Pyg8x+YymrCzL29f7XvnnD7inx/L8E7yLXlibXTCHGvp16B2XQWTBc+WWy49F2CwRaPhgvHbuqeJE2VuoiHoUrYP8w/Tjt1iaD8CDB3/hQE1jzAWY2jsPevPMCOgVtBBba5cgMroHa7TDnYtPCYLSFDqj0JosRf3W42k5f+e6yA59N98JqJR9Qy1bSjS139xEh10PTvhQFEoUMCu+iAbBVmH7gz6BsEntNg+jAVHychRGlHLGyyxo7DjP2CYL6z1O837VclzSFq+ZHkSUqX8J5uDTXEDMI44/0pMOQSe/L9/XgUtKT/I/OfbQu8hJpNomtlPe1XYpFoiiMoLOmCHsmLtBo=
+  - secure: Eu+Ua32JbIxWtIRbJNczICLm0NptVKf/dBXgRGGWX+aMVvS9dzN0vUebDEGhmn4uQ2mJ43cqopL22AWj6fKOj6YmbNwr0ZmzncIV9pbfbs8gMeZiHFQ3WlDio8JmkNP6duDGWB0PkGWX4Av3vaGQz9SEpilexgC+lkZfl6ZEqCv6/HFxxl6olRzYVC3gl8sqdKCBkJx1ZQTJhe1vBQoEGsmOehcLssYNmmWpiXhxeEFcDH46z91efyhCcjZtgCdjfjwVJrmR2E5bR7auHExzCqkNhmXNqi00Lk7HgB+lFWZlxd7ZNAi3c7lMx0YJEGwP0Aptub1rInuCjtnG0L3n/Eh899RG+wwMv10e1o7WXnZEVZA0wJlX1INdI0K5P1blV+AmlKYg+fa2WCo4jxfDEbAf+bSthDIpFIYhbRJ6ZsFEf17KmOxPmKjCYOKSgbEihCrg1U4JPpmM8CwUfIwMlTOtCPtojeRxgEC57lGZlQD0E7erkmnGRj3O/NrVCkS26xFzIe5YvKb1WZUIgxZqYVm1xZo9n5Ifg4haxct6EsEOqPPX1OorWupJtA0KqT8akzjUYMSaj1xoD6zq0p8FbuS3iDrvOor9mcHfR1ra+/atPYv5WHTsMdOQHL+hu1d3KGn9KsTotv1GU6N40pO8SHo9mGNF9Uv9C20vsMPhN2A=
+  - secure: dwF6n+Po7epN6ypUYTDrHkjDDfcNdKLUYHt4VVslDZUUj8xcvbZxYBDvmeLUlJbI0U69zLdmE4DJsB/DRqQtWutDIZi17XVQLClXVClJXrSE/jGNaaAv0EmyQa5nDB70iClySQCkBI7bmzqQY7ByLqIft/nRpCLC+/ZqquUKRJczD1yGbFPhE6g/qokw1w6DQP54rQEjigL2Tns4ICjj/N4vmd31ozBwUcZEZcc7sXW5q9Muk2n4VIRx5TZgs0ZdH048ZZdwxAJjLrXe4jXEtcHiB3LLZldm2lWfQsix+YT3CcaK+EMABVrnupa0+zevz9GyyTC8ggBlXo5LpOiP6EVEFOQqwPBWa98vnB0QJwD2oalfLPX8FTNFOrtnbTwVVp5Kt6xSrqDT4VA4hNqtGcAx7t6tGhu5g+Vrba8WHr29N8bbPUoryWQMcBXUge+cvFNVJyBqYAZTR6/Gxuf6qA50UiZN+VfbEKOG40fWwl31U4F5Hr9ZS4N45UBkdkPb2KNPrfd3I8yy242gXAxJG/hQYaYTeqifvb13T4W7e+agnweZQGOGmLmHfNp3NWlEwXP8nwABqgANHLrTHWRAtYJBr2j86YyMpKKrkSg28ZRCKRhEY2B0QbHyNsLVF5pZh2k/NaE2N75n7oFd922rSGJDnsRmoEYvPoh+FILoXc8=
