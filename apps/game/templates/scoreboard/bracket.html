@@ -1,6 +1,8 @@
 {% extends "base/base.html" %}
 {% load static i18n %}
 
+{% block container %}
+
 <div id="win">
     {% block winner %}
         {% include "scoreboard/bracket_winner.html" %}
@@ -12,3 +14,5 @@
         {% include "scoreboard/bracket_looser.html" %}
     {% endblock %}
 </div>
+
+{% endblock %}
