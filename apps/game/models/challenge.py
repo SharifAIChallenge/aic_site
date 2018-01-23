@@ -77,6 +77,9 @@ class TeamParticipatesChallenge(models.Model):
             return None
 
 
+    def itself(self):
+        return self.get_final_submission()
+
 class UserAcceptsTeamInChallenge(models.Model):
     team = models.ForeignKey(TeamParticipatesChallenge, related_name='users_acceptance')
     user = models.ForeignKey(User, related_name='accepted_teams')
