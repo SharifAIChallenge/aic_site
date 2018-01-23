@@ -14,7 +14,7 @@ def render_double_elimination(request, competition_id):
         win_matches[len(win_matches)-1].append(matches[i].get_match_result())
 
     start_round_index = cur_round_length
-    cur_round_length = cur_round_length / 2
+    cur_round_length = int(cur_round_length / 2)
 
     while cur_round_length >= 1:
         win_matches.append([])
@@ -32,6 +32,8 @@ def render_double_elimination(request, competition_id):
             lose_matches[len(lose_matches)-1].append(
                 matches[start_round_index + 2 * cur_round_length + i].get_match_result()
             )
+        start_round_index += 3 * cur_round_length
+        cur_round_length = int(cur_round_length / 2)
 
     return render(request, 'double_score_board.html', {'win_matches': win_matches,
                                                        'lose_matches': lose_matches}
