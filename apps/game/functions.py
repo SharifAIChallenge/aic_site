@@ -2,9 +2,8 @@ import random
 import string
 import threading
 import time
-import requests
-import json
 
+import coreapi
 from django.conf import settings
 
 from apps.game.models import TeamSubmission, Match
@@ -85,13 +84,14 @@ def upload_file(file):
     :param file: File field from TeamSubmission model
     :return: file token or raises error with error message
     """
-    address = '{}/api/storage/new_file/'.format(settings.INFRA_URL)
-    files = {'upload_file': file}
-    headers = {'Authorization': 'token {}'.format(settings.INFRA_AUTH_TOKEN)}
-    response = requests.put(address, files=files, headers=headers)
-    if response.status_code == 201:
-        return json.loads(response.text)['token']
-    raise Exception("Can't upload file, returned {} status code".format(str(response.status_code)))
+    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
+    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
+    client = coreapi.Client(transports=transports)
+    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    response = client.action(schema,
+                             ['storage', 'new_file', 'update'],
+                             params={'file': file})
+    return response['token']
 
 
 def download_file(file_token):
