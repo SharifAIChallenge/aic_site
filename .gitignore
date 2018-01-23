@@ -178,6 +178,8 @@ venv.bak/
 
 # End of https://www.gitignore.io/api/python,django,pycharm+all
 
-build.sh
 
 node_modules/
+
+# this will be removed after travis integration
+build.sh
