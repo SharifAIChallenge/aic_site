@@ -1,7 +1,5 @@
 language: python
-python:
-- 3.6
-- pypy
+python: 3.6
 stages:
 - test
 - name: deploy_test
@@ -30,8 +28,6 @@ jobs:
     - python manage.py test
   - stage: deploy_production
     addons:
-      ssh_known_hosts:
-      - 81.31.168.207
       apt:
         packages:
         - sshpass
@@ -59,19 +55,17 @@ jobs:
     - cd ../..
     - tar -czf deploy_package.tgz build
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no ' deploy_package.tgz
-      $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build deploy_package.tgz
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy/deploy.sh
-      $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST chmod +x
-      $DEPLOY_PATH/deploy.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST sudo
-      $DEPLOY_PATH/deploy.sh
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST
+      chmod +x $DEPLOY_PATH/deploy.sh
+    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+      $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
   - stage: deploy_test
     addons:
-      ssh_known_hosts:
-      - 81.31.168.207
       apt:
         packages:
         - sshpass
@@ -99,18 +93,18 @@ jobs:
     - cd ../..
     - tar -czf deploy_test_package.tgz build_test
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy_test_package.tgz
-      $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      deploy_test_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build_test deploy_test_package.tgz
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no' deploy/deploy_test.sh
-      $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no -o $DEPLOY_USER@$DEPLOY_HOST chmod
-      +x $DEPLOY_PATH/deploy_test.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST sudo
-      $DEPLOY_PATH/deploy_test.sh
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+      deploy/deploy_test.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST
+      chmod +x $DEPLOY_PATH/deploy_test.sh
+    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+      $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
 env:
   global:
-  - secure: FEjSHMCB5VtRVYukPHc0Gym/1ygx21MyJvLRuGB4xhNbrxuz3dGi/rqwmZqbWd0p/KMcq033Q2HQlonu9PmJ2eKVeGNESsaQNkVBkkWdEFNRQzQh+aHCP2PE5JvsFXxxwQNHr3+GMcF2Z6H0VWnPKyzZbguk+MrP5mHnBMnGwbAMv9RomaXLwos2BtG0Z+CpmoLOVFc+8tJz384tlSNqSgbyEUZDKm7+bZqxvfA/7ZQLbpvh0x1QrKrrwdbdEAaevKfG6/GpG01WiD42iktxfW8/DdzVK5QmMvXaMdsyJm7dBECOU4od/5CT2UhnWUyXTLh+gxL33ImADMfDBu/2Q7PSsVzJYyX8MrxbskOTE1J56aahvKREccxHMhuTJlTzchTiXSzgClfHwONqTwLe4O03fSWdNiwrDcahsliPqxSd9cTw2UbuDMnIvKTglJ2vuioHNJ1FZMUNKkolCoI0h6SWpHEi+6edhZOQIYX/z5MUUs3GCW2vbnuAeENgT7iy+4nfcygLC0fmPS/4DKNdimBQ1n+MOPSmkl9ydlKHGEYXL6e+Yb39GrgZ48+KqwPVa7sDJcij0FevWHx3zkniTrGoB3+ILVD1X8LLwhLIKMOlB3C5wBsFT+5WBpgZhPrN3/nnNGM3Q0P7eVMdsjS7aTAGaNlW+cRKLukWvo/kqYY=
-  - secure: Vw8SLd8WCZEe9qytHCjbk66a33Z9WDy9M+aJT1DjfNk8dEthEWapfFGZ7w63Njudi3CFirDd6Bg9otL+2pQmBlWEMS8kTA8osAMQUvQDFfYWVNC2BPONBsVWZPrk/kYLSRkp/GMel6tZ1IibYgUi/e1XWBKVsCh2VtSpexhRJiWiXDGsfSMo6XLeHFR5FV63+5fWu5AdLV3MDUfL056IS/WG+YEPcLbB5zKPugMOSEpT877shF5eNWJ7uxyQsN09mjRL6lfLXtO/Y+C16ev3smUQKR6guK2iKPtfy7GUz/23pGDrn0UpVOXPSAMtaxOz7YMpdxMNsm9Q+OazK0wjU/RbKZwkU3Xj9Bs28FiNIRgaMgz3ttA50AKC9vNp6qHnM7zMAuql6f1BVWlp2TVkALOw3Lki+Iu+LWg3MRtKabyeqqtDFH5CFi0XnKvdwJQQJh9IRYOYmtFaHiEwhr5+8OzF9C4X/crNFSgUUn2pu7uI/JPcXAlwgIM+umIhWcBTThiNnA5wRkVk/xm8o9GqdIL6+CTjnzCGt1Et45mQAbjSLCKYSBGXTOZXfjRsbupGDx376cUiioPPf7Fc4Cad0P4v5j8gZif5/hBYkFIducFDN+5HCYY/KSxBxtSCVZ2p9vEapgAClb/OxJ2jYUVv56rvMWxhgnNRgl/5SDu2pkY=
-  - secure: ks8Pm5DItyxzQxtY6NgcGX1UcQJoAL3PLV7EcGJUwAjfAqOLRzlUUlb9LlHT5/o/Rj4R/PG/SjkIStI01YReU9RRfVcfSmLsr0jd78dbwez0OFNNLJiXXmAzXPBzpXSADptyvJR+rs6X33eKb075b/t7oe+LHqtG836dIukf2Ad43FLo/+UNB21p5vs4hK1+uVEfrIbhK0yfK/6Vy4knnEiAgkyd8jnuz4IZsrznBcIfh7KG3X1+cgLUcxWpEnb6QRcsKQqMTDMjiJPR+c1TrvfeNPz7mMU+YA6NvzPbzMmQ4sylIv1ncrh/s/+TtRXMIQvtkvNizfSr9YLT9yPiT89OPCw+zNoBuMMfzXk6/5eiTfoaZCgI3wIhGsBmxSvQf0WhdR7gX2aNrlGQ/BNLY1WoiwEMxi+Rvz77qnjatMljuI7cy4aA6tQq7LBwKdMK1mCBtYCw1/204Ci4i0cXK0zEvrIo3PlGAT/1LXzFebGnG7ZX0PPCMKaXXDFAVVFb4Ncm8Ab4Xb+xyIx+PucBEQxTgFeL2vVsOg9Wq7uCpnm9Y+z1/4WAFJsiUwjtHynHotBsiLzR0nuGeShuYij6VEW1RqlR+NAB3iCa0uhxOh5+pHvNOgfz2jiDXzK/dC9YaiBIzNH/ojhjCv1cdSa7HRkyJG/BJ0dc48fosXyA0Zs=
-  - secure: nkrL0A+u6HN9KdcGSpIGWNZCAqwCKMsxO6C6t+zr+/+ota5/f8l509plIVwq1INkPtVlg5oDCt42Q/3KPYZy4CO4v1rdcP3roCjedOffszoFtmg1oKAjafrqfgyRn3Dr2JcMG5K8IbYM2bLw7tXgzzrc56WSlGHPB3WNgWUwBxYwJcvfA8OD1EnuYOLkT082TnQSW4i45dF4wHL00P1W3g3v4GrLCvrUdD3kf9Os4cO1QlFEIuI13lRf2jyjZYS/oxhmVnB5PvpeL7FARr+JDuhQJBgTWZxjmVefTIZDBpL9GJjOVKa5gGZeKR5MH+zZcb5vi66tHAVjEgkhUwBnsWJblL7V4Ybibsm4vkhNhPhJN+b3r9DWz1ud+06C5lkEXrXL4IVg1q+WMlf+gMtYX98b67VVp6OsOIvNnf1zA3ImPx13D389/XKFyc4yKIQrc9v5Coyb+gT5tnSfg8Zj5XFbnxCE6LVEHZIjXvWGSpmkP671E/hbt0xacSDyeAFjpTerxHdfry5GegLTJXZXiVvJIYRjKrE+qBMga1rgdUbOf4kbYUZghIS1kOtGXjK3LWSmUgBBedhzF2TkJkAaBpphjOVAN/D3yxjl5AWgf90eNAGOWjdyMowmpxQhUJHJviRRIFi1XqfrJGfIHjUTyo1rw17uqT6kZcWzWVMjn0g=
+  - secure: m45dMAMhb9aYquY2fdVK5OfgB77QqaF4KaFFlcpqbPMUlv3ll7YX9ri6ovMLZtrzejsVW8kt7wPPm7swk86XYK05/gIcTJHWA++8akWhYa0u26PLEqwqJRNqt5GiQYOBeCQX33qiOIZK1C3OWNuhpY7xRR2auR6F58KeAwflb2J4jeidiAHu/2xQkiDqsTj4OziXAA2XnZmkWYew4mp3TM0hptSjFXw2NTgCdeDq8v1Jr4zLYt0dt52CFAWiXEA5KagxV++6g12fb5g6wwIgb9eRokaTv4bhQYdWbYTJ/NOmqCMgykOAs/3ECxjKwsta/hh7CXKZ47W+ee70pvOg8Cl5cVFZgp+dH4O1c06IK/4qWFlG1vMtaU5j3kITMZCSZbm/GyJEKD/XmybeKMXKLYsdmqgvmPTNh/UyyaIzP9GYDJy546A+W+BpA7x9jXzLlRZ7+C4UsSYWVQli//2bIqVJnsxt5yRvu8+tKUI+RsQm/F/K91dD4tVoEaka372sojF+uHLCyOyE2GV6vj+DNhT5lECpZExfKEYIEHkPwqIoJ6e89WQHmhMngU8L/S2JapLx5ONYEvZpIpcJy1b/QRXGvEJHFraeo31lcIT2/eZ+dE6bKYYROJ9NdOFLv1iNwbE7Hd1Uio2FgeHiW/CXxFU4vXqgevTrt72TU3uAeBg=
+  - secure: IdnAjE4Nhcky4HFDA12WnQIW98mjLd4lX5Q3lcdDyxx+84l3026ThQAVPT5b5Z9y7lqqKRSOAe1+G91PuKxnAq4KIwh7wuJa4YTbrVhR9MUsylCOG2J/MzHceWOLOtZ+E7v1EfGx1iaNFdOdUo3eiGfkjEMjL1GdeYDI3FcvpWZXBmCPkAAF3ATpKQb2w01TXwSIhDmOYGCavVYBfZj3SaEwcggG/pZkOxyRkBJogn5rNUuqMq/SwdAxDm/TwwCLp4N+T8mlPprSXpwgruaHBVyvmKumS+sjESbJ/YdGJ37RmePQTHoiAZCyMxBywMbmwHb3v7FoWCuVPxdahtn9srOR4TQ8z2K/0Us5r8mH7LsxjDLneqxwL0bqpsxsYaglH1/Yj58WtwEjZfucxQlpi2CKMfJkJ/txaW5ge7h6qdc5SEQXoepyG0S2GCHPGhOVBFBLIf/RgaSHZ57+aUD7tN7rYiv6J98IigmZuREifns5fKJCjPj+bUww0TPKA3BvO8Cep3KnSkxBOgFx5dzhUNyaUFr+UAnoF4qUlVYm5/B8/UIo+PTXhupG9wdiTvUulF54LpfshDSzM8dsTFUNOXTIQBU9v0r9uoF5i83PBZA727q8e1ZI1MzckUMnE4k/v0QpPMHBclCg2q9ACpLD4nU0JqXtZfqOJOGLrcpTqcY=
+  - secure: Iuigd8VjyZHGXTF0pvlh0rM6eJvB6d1WFVPhb6iuQnBfnM2Ob1Yfh7P48IrtM48EOOHEykhA+GbijElWOzfr3fx4IBUlTQ5S+SmUjZFiDycUY9V4wYgDdGjUaBTT72hsWRLeBEuL0pohNuCcroKjqrBLCd6Usxscn8gL4ms8WHMZIYsCZFlzN7tdsW7dTwKfcqFWC+l58NEFvTa0gcbEz2fdfKHzK3SCglfUrz7yb/KcU9thIP+Oc+GCdqTSLUfc66fpd9KCDcvHoXrr7A1gEleCJ/APuTzmDSlUHuaf0xrG0b9b7S1az9ITHGU3MM35kHosHNWADEezWEhmM04HCI4vWlAA4FyoKccJtOxaFjBQtBCAkGyVRwZXxAvozjWBwVVoXf8d/27+dwnVW4zidkJhccYVEoZ0nn1tXFI+y9bjO9naXyYU9+TNdD6v5/ri75LgiFR6U91ocGGCXWF8Et3JEE4lLHeEjRlumKAD8PoF0XzcBKMd7QIyqjsU+4SNss1Qb5nozhZwOComadoBeX0puv98fjtqaeLjXxk80xJ7YkgDUymChhX0UJoREitBb5VmzBbtT1ihsUaGIl+8B7J5qfEmgzCfFeCfUFUBg9wz6FmEAgRxjwSMJnL0EoYSv4yMXj/02lsJ/mpLPqd+SlwpSPDUdyYQuPnwRqDBTI8=
+  - secure: q/7+ISv2nHrP+8MWa7NaAyiBhg21skWFAt5R5an0DhrjbFDA338VFL0SvPujSHD7WSfQ4JnkkVnilyzHQ2lzVXFy8XH92YiHsX9FlkaJ/UVnsnsTUDI2TsQ0dDjd4psYluiSSu/oWfw6ygKaAJ+jJXiXYRDnSMlQylsRthGHnUVJEN6jzNPg4rPRyMmbER5e8Nf772169xfwfXRKwtZhj9KW+CLRRqtvlGL9QxKLLIXgFHcYVagojaes2xP5gD/UUeEh6ic3eNfPHZibw0Ed8GBEaBcAChTBOvSBOIWRz92ZBHL6LM34NdSA7ylhcSQ7ux4Txlkb1WOT6vkx0FIqxDDASpZH3vHIoUy+9PAUhE2B0s83f/eO+3cCzIcdEJlQvJvgukztHjiFOEru899pc2YGoDIj/ungwinfnxcRwlXoA2Yg0UKPD66dTZyyDt05lvbeenjPJJdZat7KVA/kQxV96Nm3qdtZm8cJyCw1mpcA0xQpOqafgljhIBULhhvg+oJQ3+mr1quNdJDEQqTFwncQxuPleO5Ohz6dodoPV7aegUwxRec4N5LeCEIO8Nm+kUvaXokW/kiWP0q2abKHJ+VBP7H+xfm3FrGTUUTgt7t7Tf+NdhInDkR8PevLTJ7QwFkpTiuE1oebniW5PdaPYVOm0Okrbfk9+uJmV+45khM=
