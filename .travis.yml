@@ -3,6 +3,17 @@ python: 3.6
 addons:
   ssh_known_hosts:
   - 81.31.168.207
+env:
+  global:
+  - secure: ptrJyeBX67Zsq7nevh/YT3Yjd1kYNl9mZxCvqgq6uhovSvwKot6wSNzuZ/eG8msnXT4j4ucHEFB4WSRcxT0ukvGk4QFMScKmCc8MByH/SDJiSeB7dve1xqMdk+bw8MsKy4tYW/fxUUHt7Kvq6Et7pDz+zBrmqi98w932hXAlvv09QE68s0uMqljYULiqqPYwRZCcj4NW2E3VS2i7jyeeETciLwnazR73Wa51U0fi3+/N6o6OLzStGTb60GcJIN/6GmGdpQC8djLa8az39+pJ8TMs6dNWtu3K6/hMCME3vThkQKXhw/NlnIcFrotHZmzynWHr7Ew2lx2y3D46bmNsx9kNoWGTnulTRrdr/9ndChUWAhGLfcn3mznWfzhSUKJOJ6XcljkLaeRfHJrbzGfHRx0K2CmYa3MsAZ5mZYeNr7mHtIMgIy8Z922lR6KX/2Ol/ZPCDYHS2jnRl5yZXVyBlQqvBKMDdLsCQsezW+vXZO8fAR9KHJV4h/0Bad9nwHuIOiPVlVh3YvL05d2/ye5y1H5Lr1IhYV2n5lZCEXhAn9fovwzgnPWabFFIIe29sS4UTT9tuzTFTRTAL5+L6ifpgxrkJeiXvA1UsTFJWS72Pi91nCK7cd58RxEcEJXCVPES0yvovLwKL2dIzZzANfN0R2aLI+UOavmMBYr0l7HhDdE=
+  - secure: XHTNl+BMynLDgu+ruvyCPYhf4ndC9gtCJdxckbfYOmm2OjH5IccCaakAebqXbaREsP61F4KRdNcYLD4rz+NSEdMah2xL4nxmkJdfIF9LuOXuhQJUXuX+tlpsmjAlPqsaHHOXAmD23S/TMI5bCSYmbo9KqdeI5WaSnnMbo4LtwxOVBvpl2Y39dTrVegSRSjgxFrl9TLrkyc6hXs4mKoCustInhO5Jgt6RUxr1yY+wAPUIp/gHn00YWVed7CmmqGWZci2AxbdCQUSSQtWXGF9qMjhkq/+OamlRP5zApTThbosaLZQUd35Z86tUYVp1xQoIRP7DNiG96QeR9H5vahjcM3dHgXFUVO7+s4F8BSnXYtBigMRpF3PQh8CgwOLokuJA0Ix0hXA/13Hj/oe2CVx2zEYRYAVlMZ5lyzpkjl03NmoFbmeUrLyOGQsnRYwtpRLhhrq5dMkWomb0efhAVZcOo8pBumYON7JT5vFOI929B8Ufs/A4EBPdOAN1gv9XZ/IWj8wQuS9qAhCeClpwhDjzqIe/qGlmgw6U9Dgm8SR72ncOE1e7vPTI57TjUcnhXxF6YVntX48xd13EFUIcU9haQy6xO0uRJroCYvmGmT5BPESq8vL91q6A4xKmtNo4O0rMGW14U/n1mqtv9DUfmVDQTPRlR2rgptRQftscXjOwKSg=
+  - secure: h33TtsL7AWPXv6skMjOEIflH+BK3yAGmKFOn880efwJRkDaqwZLJmQUPUKyBdFL01azFWUf3UTpgzZcw8haiAwy9+m6cHWdXZErpeYnAlUnxsp0JHNvkZgusz+9ZcM9O8HztF6BEUaYmDVO5VOv/t7S8yExlM20WvcNBsfjAtYYjbZ5rDFZIcM8MywXl1SPEmoGX1OeQmp9SEBluG0SK4N2WLWQg013jH8KKz/emnmeDpIh4jYamaL4ToA8yKL3A5/Zl4N86FUdWhdDnk2TMeAQkTz9LnwbLPdYOLvQtSWP3u//Y74fGBpJCE5lw+tBTYux4SU1xTb9d9gtvjVypiiL0nufRRMUMeW6/zx1gmKcUqd8mnEn81F2a/W26oDhQNYHfsNs1AobkQwohObUBhto/0SgZksSTsW/TKarh1RqlTaS5gGBuNMeRqJ/wuiWkBd0eX7adVNZDBcB7d3mAyV6PFQB/21md5BhQw2X9WEHHl+X+dWtQjFVyq+7Xy5YuNLltRRzrSsH6JX2Yy/Jcr0vQzicKuENSJaqMDY785dD91rQ3bLsEhrFZ/numzFLe82GtP9Vne02LlyTfn4dRKhRtZUgtaBir5vBk99pXN+95j0HT+VhgbEDO1oWDns5wsxFY+H/Ikl5UUeGLOsNM5jeLOy+hX7dU0v8kW9QfJm8=
+  - secure: KOC8pThiWln4oMqQlbw+eTQ0UbGx59rKqrktsCipP7a3nNx3Tz6QHJdAvkKyP/PuoNvIvw2fPkKRV7u2vubAcWoUUWN+lgeRWN4t3P6x14o3+NAjAjpwDOXarAk/HRUiNzCFdsN1TRFoUaXkHDmzA0mmMKO8J6OFNZqbTo6DoO4nTzrG7RFbFi0CWL+1KV4UqXgWvG9D80tq69593LqRaF0GsHdnK96ZhgHvOtsJswsC1FCbkJHcipmBmRxEsZDXazqF0yZMpQqLvkmfpt8fynPlC12OZOMzzXnOT4RTzTLHFeyMftpgPSQAF3EHListxxiQyQaq8JHjckkt7YxoyD8MGX6qRdonNvBgtUIY9EwmSlDLpAoex/ibhwx9Zh6gWZ4RmCStTpsyFGqz+znIvgxPMd0v+WkNqgUdHrppo87bKg/qYZ2Or0UOFkmbyV+vMtO/7PtSx7F67XScYHMkXOvQWNpszXqxO+VTncM18WYOuGLghz1g8eMdVaN4o8TFI3GhVikDmdl3xoxo6CMdU2cQ4dpKeYNBHgSql7brXPZAkTkfYTyLeLpaD/B0wYjjz3eGxEUpyJAY+F5G878dZn+/mAOPGFH8piG4gA12JbXXYP+pniut5ypcAcbWJlY2GYdzwsY3J57azdRExrplolNeeHjBbhkUfZJ//pucDoE=
+branches:
+  only:
+  - master
+  - dev
+  - travis_integration
 stages:
 - name: deploy_test
   if: type = push AND (branch IN (travis_integration, production-test))
@@ -58,16 +69,16 @@ jobs:
     - cd ../..
     - tar -czf deploy_package.tgz build
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no '
       deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no '
       deploy_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build deploy_package.tgz
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no '
       deploy/deploy.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST
+    - sshpass -e ssh -o StrictHostKeyChecking=no  $DEPLOY_USER@$DEPLOY_HOST
       chmod +x $DEPLOY_PATH/deploy.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+    - sshpass -e ssh -t -o StrictHostKeyChecking=no 
       $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy.sh
   - stage: deploy_test
     addons:
@@ -98,18 +109,12 @@ jobs:
     - cd ../..
     - tar -czf deploy_test_package.tgz build_test
     - export SSHPASS=$DEPLOY_PASS
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no '
       deploy_test_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     - rm -r build_test deploy_test_package.tgz
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no '
       deploy/deploy_test.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST
+    - sshpass -e ssh -o StrictHostKeyChecking=no  $DEPLOY_USER@$DEPLOY_HOST
       chmod +x $DEPLOY_PATH/deploy_test.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+    - sshpass -e ssh -t -o StrictHostKeyChecking=no 
       $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
-env:
-  global:
-  - secure: ptrJyeBX67Zsq7nevh/YT3Yjd1kYNl9mZxCvqgq6uhovSvwKot6wSNzuZ/eG8msnXT4j4ucHEFB4WSRcxT0ukvGk4QFMScKmCc8MByH/SDJiSeB7dve1xqMdk+bw8MsKy4tYW/fxUUHt7Kvq6Et7pDz+zBrmqi98w932hXAlvv09QE68s0uMqljYULiqqPYwRZCcj4NW2E3VS2i7jyeeETciLwnazR73Wa51U0fi3+/N6o6OLzStGTb60GcJIN/6GmGdpQC8djLa8az39+pJ8TMs6dNWtu3K6/hMCME3vThkQKXhw/NlnIcFrotHZmzynWHr7Ew2lx2y3D46bmNsx9kNoWGTnulTRrdr/9ndChUWAhGLfcn3mznWfzhSUKJOJ6XcljkLaeRfHJrbzGfHRx0K2CmYa3MsAZ5mZYeNr7mHtIMgIy8Z922lR6KX/2Ol/ZPCDYHS2jnRl5yZXVyBlQqvBKMDdLsCQsezW+vXZO8fAR9KHJV4h/0Bad9nwHuIOiPVlVh3YvL05d2/ye5y1H5Lr1IhYV2n5lZCEXhAn9fovwzgnPWabFFIIe29sS4UTT9tuzTFTRTAL5+L6ifpgxrkJeiXvA1UsTFJWS72Pi91nCK7cd58RxEcEJXCVPES0yvovLwKL2dIzZzANfN0R2aLI+UOavmMBYr0l7HhDdE=
-  - secure: XHTNl+BMynLDgu+ruvyCPYhf4ndC9gtCJdxckbfYOmm2OjH5IccCaakAebqXbaREsP61F4KRdNcYLD4rz+NSEdMah2xL4nxmkJdfIF9LuOXuhQJUXuX+tlpsmjAlPqsaHHOXAmD23S/TMI5bCSYmbo9KqdeI5WaSnnMbo4LtwxOVBvpl2Y39dTrVegSRSjgxFrl9TLrkyc6hXs4mKoCustInhO5Jgt6RUxr1yY+wAPUIp/gHn00YWVed7CmmqGWZci2AxbdCQUSSQtWXGF9qMjhkq/+OamlRP5zApTThbosaLZQUd35Z86tUYVp1xQoIRP7DNiG96QeR9H5vahjcM3dHgXFUVO7+s4F8BSnXYtBigMRpF3PQh8CgwOLokuJA0Ix0hXA/13Hj/oe2CVx2zEYRYAVlMZ5lyzpkjl03NmoFbmeUrLyOGQsnRYwtpRLhhrq5dMkWomb0efhAVZcOo8pBumYON7JT5vFOI929B8Ufs/A4EBPdOAN1gv9XZ/IWj8wQuS9qAhCeClpwhDjzqIe/qGlmgw6U9Dgm8SR72ncOE1e7vPTI57TjUcnhXxF6YVntX48xd13EFUIcU9haQy6xO0uRJroCYvmGmT5BPESq8vL91q6A4xKmtNo4O0rMGW14U/n1mqtv9DUfmVDQTPRlR2rgptRQftscXjOwKSg=
-  - secure: h33TtsL7AWPXv6skMjOEIflH+BK3yAGmKFOn880efwJRkDaqwZLJmQUPUKyBdFL01azFWUf3UTpgzZcw8haiAwy9+m6cHWdXZErpeYnAlUnxsp0JHNvkZgusz+9ZcM9O8HztF6BEUaYmDVO5VOv/t7S8yExlM20WvcNBsfjAtYYjbZ5rDFZIcM8MywXl1SPEmoGX1OeQmp9SEBluG0SK4N2WLWQg013jH8KKz/emnmeDpIh4jYamaL4ToA8yKL3A5/Zl4N86FUdWhdDnk2TMeAQkTz9LnwbLPdYOLvQtSWP3u//Y74fGBpJCE5lw+tBTYux4SU1xTb9d9gtvjVypiiL0nufRRMUMeW6/zx1gmKcUqd8mnEn81F2a/W26oDhQNYHfsNs1AobkQwohObUBhto/0SgZksSTsW/TKarh1RqlTaS5gGBuNMeRqJ/wuiWkBd0eX7adVNZDBcB7d3mAyV6PFQB/21md5BhQw2X9WEHHl+X+dWtQjFVyq+7Xy5YuNLltRRzrSsH6JX2Yy/Jcr0vQzicKuENSJaqMDY785dD91rQ3bLsEhrFZ/numzFLe82GtP9Vne02LlyTfn4dRKhRtZUgtaBir5vBk99pXN+95j0HT+VhgbEDO1oWDns5wsxFY+H/Ikl5UUeGLOsNM5jeLOy+hX7dU0v8kW9QfJm8=
-  - secure: KOC8pThiWln4oMqQlbw+eTQ0UbGx59rKqrktsCipP7a3nNx3Tz6QHJdAvkKyP/PuoNvIvw2fPkKRV7u2vubAcWoUUWN+lgeRWN4t3P6x14o3+NAjAjpwDOXarAk/HRUiNzCFdsN1TRFoUaXkHDmzA0mmMKO8J6OFNZqbTo6DoO4nTzrG7RFbFi0CWL+1KV4UqXgWvG9D80tq69593LqRaF0GsHdnK96ZhgHvOtsJswsC1FCbkJHcipmBmRxEsZDXazqF0yZMpQqLvkmfpt8fynPlC12OZOMzzXnOT4RTzTLHFeyMftpgPSQAF3EHListxxiQyQaq8JHjckkt7YxoyD8MGX6qRdonNvBgtUIY9EwmSlDLpAoex/ibhwx9Zh6gWZ4RmCStTpsyFGqz+znIvgxPMd0v+WkNqgUdHrppo87bKg/qYZ2Or0UOFkmbyV+vMtO/7PtSx7F67XScYHMkXOvQWNpszXqxO+VTncM18WYOuGLghz1g8eMdVaN4o8TFI3GhVikDmdl3xoxo6CMdU2cQ4dpKeYNBHgSql7brXPZAkTkfYTyLeLpaD/B0wYjjz3eGxEUpyJAY+F5G878dZn+/mAOPGFH8piG4gA12JbXXYP+pniut5ypcAcbWJlY2GYdzwsY3J57azdRExrplolNeeHjBbhkUfZJ//pucDoE=
