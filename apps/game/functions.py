@@ -132,7 +132,7 @@ def compile_submissions(submissions):
 
     # Send request to infrastructure to compile them
 
-    compile_details = []  # Get the array from the infrastructure.
+    compile_details = list()  # Get the array from the infrastructure.
 
     for _ in submissions:
         gm = {
