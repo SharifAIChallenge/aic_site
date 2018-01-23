@@ -132,16 +132,18 @@ def compile_submissions(submissions):
 
     # Send request to infrastructure to compile them
 
-    compile_details = list()  # Get the array from the infrastructure.
+    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
+    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
+    client = coreapi.Client(transports=transports)
+    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
 
-    for _ in submissions:
-        gm = {
-            "token": random_token(),
-            "success": True,
-            "errors": ""
-        }
-        compile_details.append(gm)
-        t = threading.Thread(target=compilation_result, args=(gm,))
+    compile_details = client.action(schema,
+                                    ['run', 'run', 'create'],
+                                    params={
+                                        'data': requests
+                                    })
+    for detail in compile_details:
+        t = threading.Thread(target=compilation_result, args=(detail,))
         t.start()
 
     return compile_details
