@@ -100,9 +100,13 @@ def download_file(file_token):
     :param file_token: the file token obtained already from infra.
     :return: sth that TeamSubmission file field can be assigned to
     """
-
-    # Temporary test file
-    return "This is text will be replaced by the real log file"
+    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
+    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
+    client = coreapi.Client(transports=transports)
+    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    return client.action(schema,
+                         ['storage', 'get_file', 'read'],
+                         params={'token': file_token})
 
 
 def compile_submissions(file_tokens, game_id):
