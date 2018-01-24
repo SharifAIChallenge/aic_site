@@ -49,7 +49,6 @@ class UpdateProfileForm(ModelForm):
             profile.save()
         return profile
 
-
-class Meta:
-    model = Profile
-    fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'phone_number')
+    class Meta:
+        model = Profile
+        fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'phone_number')
