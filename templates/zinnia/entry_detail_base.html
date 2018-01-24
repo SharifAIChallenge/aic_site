@@ -1,7 +1,7 @@
 {% extends "zinnia/base.html" %}
 {% load i18n %}
 {% load zinnia %}
-{% load comments %}
+
 
 {% block title %}{{ object.title }}{% endblock title %}
 
@@ -33,190 +33,45 @@
 
 {% block body-class %}entry entry-{{ object.pk }}{% if object.featured %} featured{% endif %} year-{{ object.publication_date|date:"Y" }} month-{{ object.publication_date|date:"m" }} week-{{ object.publication_date|date:"W" }} day-{{ object.publication_date|date:"d" }}{% endblock body-class %}
 
-{% block content %}
+{% block container %}
 
 {% block entry-content %}
   {% include object.content_template with object_content=object.html_content %}
 {% endblock entry-content %}
 
-{% block entry-widgets %}
-<aside role="complementary" class="entry-widgets">
-  {% block entry-next-entry %}
-  {% with next_entry=object.next_entry %}
-  {% if next_entry %}
-  <div class="entry-next">
-    <h3>{% trans "Next entry" %}</h3>
-    <p>
-      <a href="{{ next_entry.get_absolute_url }}" title="{{ next_entry.title }}" rel="next">
-        {{ next_entry.title }}
-      </a>
-    </p>
-  </div>
-  {% endif %}
-  {% endwith %}
-  {% endblock entry-next-entry %}
-  {% block entry-previous-entry %}
-  {% with previous_entry=object.previous_entry %}
-  {% if previous_entry %}
-  <div class="entry-previous">
-    <h3>{% trans "Previous entry" %}</h3>
-    <p>
-      <a href="{{ previous_entry.get_absolute_url }}" title="{{ previous_entry.title }}" rel="prev">
-        {{ previous_entry.title }}
-      </a>
-    </p>
-  </div>
-  {% endif %}
-  {% endwith %}
-  {% endblock entry-previous-entry %}
-  {% block entry-related-entries %}
-  {% with entry_related=object.related_published %}
-  {% if entry_related %}
-  <div class="entry-related">
-    <h3>{% trans "Related entries" %}</h3>
-    <ul>
-      {% for entry in entry_related %}
-      <li>
-	<a href="{{ entry.get_absolute_url }}" title="{{ entry.title }}" rel="bookmark">{{ entry.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
-  {% endwith %}
-  {% endblock entry-related-entries %}
-  {% block entry-similar-entries %}
-  <div class="entry-similar">
-    <h3>{% trans "Similar entries" %}</h3>
-    {% get_similar_entries %}
-  </div>
-  {% endblock entry-similar-entries %}
-</aside>
-{% endblock entry-widgets %}
-
-{% block entry-pingbacks %}
-<section id="pingbacks">
-  <h3>{% trans "Pingbacks" %}</h3>
-  {% if object.pingback_count %}
-  {% with pingback_list=object.pingbacks %}
-  {% block pingbacks-loop %}
-  <ol id="pingback-list">
-    {% for pingback in pingback_list %}
-    <li id="pingback-{{ pingback.pk }}" class="pingback vcard {% cycle 'box1' 'box2' %}">
-      {% block pingback-info %}
-      <p class="pingback-info">
-        {% blocktrans with pingback_url=pingback.url pingback_name=pingback.name pingback_human_date=pingback.submit_date|date:"SHORT_DATETIME_FORMAT" pingback_technical_date=pingback.submit_date|date:"c" pingback_pk=pingback.pk trimmed %}
-	<a href="{{ pingback_url }}" rel="external nofollow"
-           class="fn url org">{{ pingback_name }}</a>
-	on
-        <time class="pingback-published" datetime="{{ pingback_technical_date }}">
-          {{ pingback_human_date }}
-        </time>
-        <a href="#pingback-{{ pingback_pk }}"
-           id="c{{ pingback_pk }}" class="anchor-link"
-           title="Direct link to this pingback">#</a>
-        {% endblocktrans %}
-      </p>
-      {% endblock pingback-info %}
-      {% block pingback-content %}
-      <p class="pingback-content">
-	{{ pingback.comment }}
-      </p>
-      {% endblock pingback-content %}
-    </li>
-    {% endfor %}
-  </ol>
-  {% endblock pingbacks-loop %}
-  {% endwith %}
-  {% endif %}
-  {% block pingbacks-status %}
-  {% if object.pingbacks_are_open %}
-  <p>{% trans "Pingbacks are open." %}</p>
-  {% else %}
-  <p>{% trans "Pingbacks are closed." %}</p>
-  {% endif %}
-  {% endblock pingbacks-status %}
-</section>
-{% endblock entry-pingbacks %}
-
-{% block entry-trackbacks %}
-{% if object.trackback_count or object.trackbacks_are_open %}
-<section id="trackbacks">
-  <h3>{% trans "Trackbacks" %}</h3>
-  {% if object.trackback_count %}
-  {% with trackback_list=object.trackbacks %}
-  {% block trackbacks-loop %}
-  <ol id="trackback-list">
-    {% for trackback in trackback_list %}
-    <li id="trackback-{{ trackback.pk }}" class="trackback vcard {% cycle 'box1' 'box2' %}">
-      {% block trackback-info %}
-      <p class="trackback-info">
-        {% blocktrans with trackback_url=trackback.url trackback_name=trackback.name trackback_human_date=trackback.submit_date|date:"SHORT_DATETIME_FORMAT" trackback_technical_date=trackback.submit_date|date:"c" trackback_pk=trackback.pk trimmed %}
-	<a href="{{ trackback_url }}" rel="external nofollow"
-           class="fn url org">{{ trackback_name }}</a>
-	on
-        <time class="trackback-published" datetime="{{ trackback_technical_date }}">
-          {{ trackback_human_date }}
-        </time>
-        <a href="#trackback-{{ trackback_pk }}"
-           id="c{{ trackback_pk }}" class="anchor-link"
-           title="Direct link to this trackback">#</a>
-        {% endblocktrans %}
-      </p>
-      {% endblock trackback-info %}
-      {% block trackback-content %}
-      <p class="trackback-content">
-	{{ trackback.comment }}
-      </p>
-      {% endblock trackback-content %}
-    </li>
-    {% endfor %}
-  </ol>
-  {% endblock trackbacks-loop %}
-  {% endwith %}
-  {% endif %}
-  {% block trackbacks-status %}
-  {% if object.trackbacks_are_open %}
-  <p>
-    <a href="{% url 'zinnia:entry_trackback' object.pk %}" rel="trackback">
-      {% trans "Trackback URL" %}</a>
-  </p>
-  {% endif %}
-  {% endblock trackbacks-status %}
-</section>
-{% endif %}
-{% endblock entry-trackbacks %}
 
 {% block entry-comments %}
-<section id="comments">
+<section id="comments" class="ui form">
   <h3>{% trans "Comments" %}</h3>
   {% if object.comment_count %}
-  {% with comment_list=object.comments %}
-  {% block comments-loop %}
 
   <!-- ### Sample rendering of comments ###-->
   <!-- reference: -->
   <!-- https://pypi.python.org/pypi/django-threadedcomments -->
 
-  <!--{% load threadedcomments_tags %}-->
-  <!--{% get_comment_list for object as comment_list_ma %}-->
-  <!--{% for comment in comment_list_ma|fill_tree|annotate_tree %}-->
-    <!--{% ifchanged comment.parent_id %}{% else %}</li>{% endifchanged %}-->
-    <!--{% if not comment.open and not comment.close %}</li>{% endif %}-->
-    <!--{% if comment.open %}<ul>{% endif %}-->
 
-    <!--<li id="c{{ comment.id }}">-->
-        <!--{% render_comment_form for comment %}-->
-    <!--{% for close in comment.close %}</li></ul>{% endfor %}-->
-  <!--{% endfor %}-->
+  {% block comments-loop %}
 
+  {% load threadedcomments_tags %}
+  {% get_comment_list for object as comment_list_roots %}
   <ol id="comment-list">
-    {% for comment in comment_list %}
+
+  {% for comment_list_root in comment_list_roots %}
+    {% if user.is_staff %}
+      {% render_comment_form for comment_list_root with comment_list_root.id %}
+    {% endif %}
+    {% get_comment_list for comment_list_root as comment_list %}
+  {% for comment in comment_list|fill_tree|annotate_tree %}
+    {% ifchanged comment.parent_id %}{% else %}</li>{% endifchanged %}
+    {% if not comment.open and not comment.close %}</li>{% endif %}
+    {% if comment.open %}<ul>{% endif %}
+    <!--<li id="c{{ comment.id }}">-->
+
     <li id="comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}"
         class="comment vcard {% cycle 'box1' 'box2' %}{% if comment.user %} authenticated-comment{% if comment.user.is_staff %} staff-comment{% endif %}{% if comment.user.is_superuser %} superuser-comment{% endif %}{% endif %}">
       {% block comment-image %}
-      <img src="{% get_gravatar comment.email 60 "G" %}"
-           class="gravatar photo" alt="{{ comment.name }}" />
+      <!--<img src="{% get_gravatar comment.email 60 "G" %}"-->
+           <!--class="gravatar photo" alt="{{ comment.name }}" />-->
       {% endblock comment-image %}
       {% block comment-info %}
       <p class="comment-info">
@@ -235,12 +90,13 @@
       {% endblock comment-info %}
       {% block comment-content %}
       {{ comment.comment|linebreaks }}
+      {#{% render_comment_form for comment with comment.id %}#}
       {% endblock comment-content %}
     </li>
     {% endfor %}
+    {% endfor %}
   </ol>
   {% endblock comments-loop %}
-  {% endwith %}
     {% if not object.comments_are_open %}
   <p>{% trans "Comments are closed." %}</p>
     {% endif %}
@@ -256,11 +112,13 @@
 
 {% block entry-comments-form %}
 {% if object.comments_are_open %}
+  <div class="ui form">
   {% render_comment_form for object %}
+    </div>
 {% endif %}
 {% endblock entry-comments-form %}
 
-{% endblock content %}
+{% endblock container %}
 
 {% block admin-tools %}
 {% if perms.zinnia.change_entry %}

@@ -73,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'aic_site.context_processors.menu'
             ],
         },
     },
@@ -118,7 +119,7 @@ LANGUAGES = (
     ('en', _('English')),
     ('fa', _('Persian'))
 )
-LANGUAGE_CODE = 'fa'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -144,3 +145,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, "static/root/")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+    os.path.join(BASE_DIR, 'locale_extra'),
+)
