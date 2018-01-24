@@ -2,9 +2,9 @@ import random
 import string
 import threading
 import time
-
 import coreapi
 import uuid
+
 from django.conf import settings
 
 from apps.game.models import TeamSubmission, Match
@@ -41,7 +41,7 @@ def compilation_result(compile_result):
 
     # Returns compilation results.
 
-    token = compile_result["token"]
+    token = compile_result["run_id"]
     success = compile_result["success"]
     errors = ""
     parameters = {}
@@ -60,7 +60,7 @@ def match_results(match):
 
     # Return matches results.
 
-    token = match["token"]
+    token = match["run_id"]
     success = match["success"]
     errors = ""
     parameters = {}
@@ -124,7 +124,7 @@ def compile_submissions(submissions):
     for submission in submissions:
         requests.append({
             "game": submission.team.challenge.game.infra_token,
-            "section": "compile",
+            "operation": "compile",
             "parameters": {
                 "language": submission.language,
                 "code_zip": submission.infra_token
@@ -165,10 +165,9 @@ def run_matches(matches):
 
     games = []
     for match in matches:
-        #upload!
         games.append({
             "game": match.get_game_id(),
-            "section": "run",
+            "operation": "run",
             "parameters": {
                 "server_game_config": match.get_map(),
                 "client1_id": match.part1.submission.id,
@@ -182,15 +181,18 @@ def run_matches(matches):
 
     # Send request to infrastructure to compile them
 
-    match_details = []  # Get the array from the infrastructure.
+    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
+    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
+    client = coreapi.Client(transports=transports)
+    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
 
-    for x in matches:
-        gm = {
-            "token": random_token(),
-            "success": True,
-            "errors": ""
-        }
-        match_details.append(gm)
+    match_details = client.action(schema,
+                                  ['run', 'run', 'create'],
+                                  params={
+                                      'data': games
+                                  })
+
+    for gm in match_details:
         t = threading.Thread(target=match_results, args=(gm,))
         t.start()
 
