@@ -279,6 +279,8 @@ class Match(models.Model):
         score2 = None
         team2_name = None
         team1_name = None
+        team1_color = 'grey'
+        team2_color = 'grey'
         if self.part1.submission is None: # and depend is match
             p1 = Match.objects.get(pk=self.part1.object_id)
             team1_name = self.part1.depend_method + ' match ' + self.part1.object_id
@@ -301,10 +303,16 @@ class Match(models.Model):
         if match_done:
             score1 = str(self.get_score_for_participant(self.part1))
             score2 = str(self.get_score_for_participant(self.part2))
+            if score1 > score2 :
+                team1_color = 'green'
+                team2_color = 'red'
+            else :
+                team2_color = 'red'
+                team1_color = 'green'
         else:
             score1 = '?'
             score2 = '?'
-        return [team1_name, team2_name, score1, score2]
+        return [team1_name, team2_name, score1, score2, team1_color, team2_color]
 
     def is_ready(self):
         return self.part1.is_ready() and self.part2.is_ready()
