@@ -2,9 +2,9 @@ import random
 import string
 import threading
 import time
-import coreapi
 import uuid
 
+import coreapi
 from django.conf import settings
 
 from apps.game.models import TeamSubmission, Match
@@ -79,16 +79,21 @@ def match_results(match):
 """
 
 
+def create_infra_client():
+    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
+    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
+    client = coreapi.Client(transports=transports)
+    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    return client, schema
+
+
 def upload_file(file):
     """
     This function uploads a file to infrastructure synchronously
     :param file: File field from TeamSubmission model
     :return: file token or raises error with error message
     """
-    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
-    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
-    client = coreapi.Client(transports=transports)
-    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    client, schema = create_infra_client()
     response = client.action(schema,
                              ['storage', 'new_file', 'update'],
                              params={'file': file})
@@ -101,10 +106,7 @@ def download_file(file_token):
     :param file_token: the file token obtained already from infra.
     :return: sth that TeamSubmission file field can be assigned to
     """
-    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
-    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
-    client = coreapi.Client(transports=transports)
-    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    client, schema = create_infra_client()
     return client.action(schema,
                          ['storage', 'get_file', 'read'],
                          params={'token': file_token})
@@ -133,10 +135,7 @@ def compile_submissions(submissions):
 
     # Send request to infrastructure to compile them
 
-    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
-    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
-    client = coreapi.Client(transports=transports)
-    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    client, schema = create_infra_client()
 
     compile_details = client.action(schema,
                                     ['run', 'run', 'create'],
@@ -181,10 +180,7 @@ def run_matches(matches):
 
     # Send request to infrastructure to compile them
 
-    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
-    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
-    client = coreapi.Client(transports=transports)
-    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    client, schema = create_infra_client()
 
     match_details = client.action(schema,
                                   ['run', 'run', 'create'],
