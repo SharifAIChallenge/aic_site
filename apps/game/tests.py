@@ -321,4 +321,69 @@ class TestDoubleElimination(TestCase):
         self.assertEqual(matches[start_ind].part1.object_id, start_ind - 1)
         self.assertEqual(matches[start_ind].part2.object_id, start_ind - 3)
 
+class TestScoreboard(TestCase):
 
+    def populate_users(self):
+        for i in range(96):
+            user = User()
+            user.username = str(i) + "DummyCamelCaseTeamForTest"
+            user.save()
+
+    def populate_teams(self):
+        users = User.objects.all()
+        i = 0
+        team = None
+        for user in users:
+            if i % 3 == 0:
+                team = Team()
+                team.name = i / 3 + 1
+                team.save()
+            participation = UserParticipatesOnTeam()
+            participation.user = user
+            participation.team = team
+            participation.save()
+            i += 1
+
+    def populate_challenges(self):
+        challenge = Challenge()
+        challenge.title = "Dummiest Challenge created ever"
+        challenge.start_time = timezone.now()
+        challenge.end_time = timezone.now() + datetime.timedelta(days=1)
+        challenge.registration_start_time = challenge.start_time
+        challenge.registration_end_time = challenge.end_time
+        challenge.registration_open = True
+        challenge.team_size = 3
+        challenge.entrance_price = 1000
+        game = Game()
+        game.name = "AIC 2018"
+        game.save()
+        challenge.game = game
+        challenge.save()
+
+    def populate_competitions(self):
+        challenge = Challenge.objects.all()[0]
+        types = ['elim', 'league', 'double']
+        for i in range(3):
+            competition = Competition()
+            competition.type = types[i]
+            competition.challenge = challenge
+            competition.save()
+
+    def setUp(self):
+        super().setUp()
+        self.populate_users()
+        self.populate_teams()
+        self.populate_challenges()
+        self.populate_competitions()
+
+    def test_create_new_double_elimination(self):
+        challenge = Challenge.objects.all()[0]
+        for team in Team.objects.all():
+            participation = TeamParticipatesChallenge()
+            participation.team = team
+            participation.challenge = challenge
+            participation.save()
+
+        competition = Competition(challenge=challenge, type='double')
+        competition.save()
+        competition.create_new_double_elimination(teams=Team.objects.all())

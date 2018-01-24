@@ -346,6 +346,10 @@ class Match(models.Model):
             return self.part1.submission
         return None
 
+    def done_match(self):
+        single_matches = self.single_matches.all()
+        for single_match in single_matches:
+            single_match.done_single_match()
 
 class SingleMatch(models.Model):
     match = models.ForeignKey(Match, related_name='single_matches')
@@ -373,3 +377,8 @@ class SingleMatch(models.Model):
     def extract_score(self):
         pass
         # return list of participant's scores [part1_score, part2_score] from log file
+
+    def done_single_match(self):
+        self.done = True
+        self.part1_score = 1
+        self.part2_score = 0
