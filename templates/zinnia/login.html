@@ -5,7 +5,7 @@
 
 {% block body-class %}login-required{% endblock body-class %}
 
-{% block content %}
+{% block container %}
 <h1>{% trans "Login required" %}</h1>
 
 {% if form.errors %}
@@ -36,4 +36,4 @@
     </tr>
   </table>
 </form>
-{% endblock content %}
+{% endblock container %}

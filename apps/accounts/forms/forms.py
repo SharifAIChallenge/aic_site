@@ -39,20 +39,17 @@ class UpdateProfileForm(ModelForm):
         if password1 and password2 and password1 != password2:
             self.add_error('password1', 'password error')
 
-
-
-
     def save(self, commit=True):
         user = super().save(commit=False)
         profile = user.profile
         profile.phone_number = self.cleaned_data['phone_number']
-
 
         if commit:
             user.save()
             profile.save()
         return profile
 
-    class Meta:
-        model = Profile
-        fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'phone_number')
+
+class Meta:
+    model = Profile
+    fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'phone_number')
