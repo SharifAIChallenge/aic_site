@@ -55,10 +55,10 @@ class TeamParticipatesChallenge(models.Model):
         """
         :rtype: bool
         """
-        users = self.team.participants.all()
+        user_participations = self.team.participants.all()
         ok = True
-        for user in users:
-            ok &= UserAcceptsTeamInChallenge.objects.filter(team=self.team, user=user).exists()
+        for user_participation in user_participations:
+            ok &= UserAcceptsTeamInChallenge.objects.filter(team=self, user=user_participation.user).exists()
         return ok
 
     def has_payed(self):
@@ -108,7 +108,7 @@ class TeamSubmission(models.Model):
     file = models.FileField(upload_to=get_submission_file_directory)
     time = models.DateTimeField(auto_now_add=True)
     is_final = models.BooleanField(default=False)
-    language = models.CharField(max_length=128, choices=LANGUAGE_CHOICES)
+    language = models.CharField(max_length=128, choices=LANGUAGE_CHOICES, default='java')
     status = models.CharField(max_length=128, choices=STATUS_CHOICES, default='uploading')
     infra_compile_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
