@@ -4,6 +4,8 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.urls import reverse
+
 from apps.accounts.forms.team_forms import CreateTeamForm
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -12,7 +14,7 @@ from django.views import generic
 from django.views.generic import FormView, RedirectView
 
 from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
-from apps.accounts.forms.panel import SubmissionForm
+from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 from apps.game.models import TeamParticipatesChallenge, TeamSubmission
 import json
@@ -99,9 +101,15 @@ def panel(request, participation_id=None):
             form.fields['team'].empty_label = None
 
     context['form'] = form
+    context['form_challenge'] = ChallengeATeamForm()
     if participation is not None:
         context['challenge_teams'] = [team_part.team for team_part in
-                                      TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
+                                      TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)
+                                          .exclude(id=participation.id)]
+        context.update({
+            'participation_id': participation_id,
+            'challenge_maps': ['map1', 'map2', 'map3']
+        })
     return render(request, 'accounts/panel.html', context)
 
 
@@ -154,5 +162,14 @@ def create_team(request):
 
     else:
         form = CreateTeamForm()
-    return render(request, 'accounts/create_team.html', {'form': form
-        , 'users': User.objects.exclude(username__exact=request.user.username)})
+    return render(request, 'accounts/create_team.html', {
+        'form': form,
+        'users': User.objects.exclude(username__exact=request.user.username)
+    })
+
+
+@login_required()
+def challenge_a_team(request, participation_id):
+#    return HttpResponse(request.POST['battle_team'])
+    # TODO : Add battle history
+    return redirect(reverse('accounts:panel', args=[participation_id]))

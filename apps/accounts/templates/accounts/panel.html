@@ -139,9 +139,21 @@
                     </div>
                 </div>
                 <input type="submit" class="ui green button" value="Submit">
+
+
         {% endif %}
         {% endif %}
+
+
     </form>
+
+    {% if participation %}
+    {% if participation.all_members_accepted %}
+        {% block battle_history %}
+            {% include 'accounts/battle_history.html' %}
+        {% endblock %}
+    {% endif %}
+    {% endif %}
 
     <script src="{% static 'accounts/js/api.js' %}"></script>
 {% else %}

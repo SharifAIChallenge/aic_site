@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^panel/reject_participation/(?P<participation_id>[0-9]+)$', views.reject_participation,
         name='reject_participation'),
     url(r'^panel/set_final_submission/(?P<submission_id>[0-9]+)', views.set_final_submission,
-        name='set final submission')
+        name='set final submission'),
+    url(r'^challenge_a_team/(?P<participation_id>\d+)$', views.challenge_a_team, name='challenge_a_team')
 ]
