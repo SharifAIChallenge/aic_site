@@ -145,7 +145,7 @@ class TeamSubmission(models.Model):
         result = functions.compile_submissions([self])
         if result[0]['success']:
             self.status = 'compiling'
-            self.infra_compile_token = result[0]['token']
+            self.infra_compile_token = result[0]['run_id']
         else:
             logger.error(result[0][self.infra_token]['errors'])
         self.save()
