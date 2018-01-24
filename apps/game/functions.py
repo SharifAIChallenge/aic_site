@@ -142,9 +142,6 @@ def compile_submissions(submissions):
                                     params={
                                         'data': requests
                                     })
-    for detail in compile_details:
-        t = threading.Thread(target=compilation_result, args=(detail,))
-        t.start()
 
     return compile_details
 
@@ -187,9 +184,5 @@ def run_matches(matches):
                                   params={
                                       'data': games
                                   })
-
-    for gm in match_details:
-        t = threading.Thread(target=match_results, args=(gm,))
-        t.start()
 
     return match_details
