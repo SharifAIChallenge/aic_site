@@ -4,6 +4,7 @@ import threading
 import time
 
 import coreapi
+import uuid
 from django.conf import settings
 
 from apps.game.models import TeamSubmission, Match
@@ -155,7 +156,7 @@ def run_matches(matches):
     :param matches: List of match objects, having these functions:
         get_first_file(): String
         get_second_file: String
-        get_maps(): String[]
+        get_map(): String[]
         get_game_id(): String
 
         and any other potential parameters
@@ -164,13 +165,18 @@ def run_matches(matches):
 
     games = []
     for match in matches:
+        #upload!
         games.append({
-            "game": "1",  # TODO match.get_game_id(),
-            "section": "play",
-            "parameters": {  # TODO : parameters
-                "string_parameter1": "parameter1_value",
-                "string_parameter2": "parameter2_value",
-                "file_parameter1": "file_parameter1_token"
+            "game": match.get_game_id(),
+            "section": "run",
+            "parameters": {
+                "server_game_config": match.get_map(),
+                "client1_id": match.part1.submission.id,
+                "client1_token": str(uuid.uuid4()),
+                "client1_code": match.get_first_file(),
+                "client2_id": match.part2.submission.id,
+                "client2_token": str(uuid.uuid4()),
+                "client2_code": match.get_second_file(),
             }
         })
 
