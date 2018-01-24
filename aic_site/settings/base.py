@@ -149,3 +149,9 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
     os.path.join(BASE_DIR, 'locale_extra'),
 )
+
+INFRA_IP = 'xxx.xxx.xxx.xxx'
+INFRA_PORT = 'xxxx'
+INFRA_URL = 'http://{}:{}'.format(INFRA_IP, INFRA_PORT)
+INFRA_AUTH_TOKEN = 'Token'
+INFRA_API_SCHEMA_ADDRESS = "{}/api/schema/".format(INFRA_URL)
