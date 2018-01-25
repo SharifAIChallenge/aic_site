@@ -7,6 +7,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from apps.game.models import TeamSubmission
+from apps.game import functions
 
 
 def report(request):
@@ -35,9 +36,9 @@ def report(request):
             if single_report['status'] == 2:
                 submit.infra_compile_token = single_report['parameters']['code_compiled_zip']
                 if submit.status == 'compiling':
-                    logfile = client.action(schema, ['storage', 'get_file', 'read'],
-                                            params={'token': single_report['parameters']['code_log']})
-                    if logfile is None:
+                    try:
+                        logfile = functions.download_file(single_report['parameters']['code_log'])
+                    except Exception as exception:
                         continue
                     log = json.loads(logfile.read())
                     if len(log["errors"]) == 0:
