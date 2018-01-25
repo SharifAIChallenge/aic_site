@@ -1,13 +1,15 @@
 import datetime
 import io
-
-from django.utils import timezone
+import json
 import time
+
+from django.conf import settings
 from django.contrib.auth.models import User
-from django.contrib.contenttypes.models import ContentType
 from django.test import TransactionTestCase, Client
+from django.utils import timezone
 
 from apps.accounts.models import Team, UserParticipatesOnTeam
+from apps.game import functions
 from apps.game.models import Challenge, Competition, Match, Game, Participant, TeamSubmission
 from apps.game.models.challenge import TeamParticipatesChallenge
 
@@ -150,3 +152,21 @@ class TestTeam(TransactionTestCase):
         submissions = list(TeamSubmission.objects.all())
         self.assertFalse(submissions[0].is_final)
         self.assertTrue(submissions[1].is_final)
+
+        # successful scenario coverage
+        self.assertEqual(submissions[0].status, 'compiling')
+
+        json_str = json.dumps([{
+            'id': submissions[0].infra_token,
+            'operation': 'compile',
+            'status': 2,
+            'parameters': {
+                'code_compiled_zip': functions.random_token(),
+                'code_log': functions.random_token()
+            }
+        }])
+        response = client.post('/game/api/report', data=json_str, content_type='application/json',
+                               **{'HTTP_AUTHORIZATION': settings.INFRA_AUTH_TOKEN})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(TeamSubmission.objects.all().first().status, 'compiled')

@@ -21,7 +21,6 @@ class Competition(models.Model):
     def __str__(self):
         return self.name
 
-
     def create_new_league(self, teams):  # algorithm for scheduling is Round-robin tournament
         if len(teams) == 0:
             return
@@ -162,7 +161,6 @@ class Competition(models.Model):
         while cur_round_length >= 1:
             # first step: winners vs winners
             for i in range(cur_round_length):
-
                 new_match = Match.objects.create(
                                 competition=self,
                                 part1=Participant.objects.create(
@@ -302,9 +300,12 @@ class Match(models.Model):
     part1 = models.ForeignKey(Participant, related_name='mathces_as_first')
     part2 = models.ForeignKey(Participant, related_name='matches_as_second')
     dependers = GenericRelation(Participant, related_query_name='depends')
+    infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
+    infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
+    log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
 
     class Meta:
-        verbose_name_plural='matches'
+        verbose_name_plural = 'matches'
 
     def __str__(self):
         return str(self.part1.object_id) + ' -> ' + str(self.part2.object_id)
