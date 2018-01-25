@@ -6,3 +6,7 @@ def index(request):
         'teams_count': 97,
         'submissions_count': 418
     }})
+
+
+def faq(request):
+    return render(request, 'intro/faq.html')
