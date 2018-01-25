@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Register your models here.
 from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge
+
 from apps.game.models import TeamSubmission
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
@@ -65,10 +66,10 @@ class CompetitionAdmin(admin.ModelAdmin):
 #search_fields = []
 
 class MatchAdmin(admin.ModelAdmin):
-    fields = ['competition', 'part1', 'part2', 'done']
+    fields = ['competition', 'part1', 'part2']
 
     list_display = ('id', 'competition', 'part1', 'part2')
-    list_filter = ['competition', 'done']
+    list_filter = ['competition']
 
     #search_fields = []
 
