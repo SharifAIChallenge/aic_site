@@ -1,5 +1,8 @@
-{% extends "base/full-width.html" %}
+{% extends 'base/full-width.html' %}
+
 {% load static i18n %}
+
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block extra_header %}
     <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
@@ -7,143 +10,235 @@
 
 {% block container %}
 
-    <div class="section masthead" id="section"></div>
+    <div class="odd banner section">
+        <img class="banner text image{% if LANGUAGE_BIDI %} bidi{% endif %}"
+             src="{% static 'intro/image/banner-text.png' %}">
+    </div>
 
-    <div class="section gameInfo" id="section">
-        <h1 class="ui centered header">
-            {% trans 'Game Description' %}
-        </h1>
-        <div class="ui center aligned stackable grid">
-            <div class="eight wide column" style="padding: 30px;">
-                <p style="float: right; text-align: justify; font-size: 1.3em; padding-left: 15px;">
-                    {% trans 'Sharif AI Challenge is a programming competition for all who are interested in artificial intelligence. This competition is  held in two phases annually. Including an online and an on-site phase in which competitors will compete in teams of three in a game designed by our technical team. \n The only pre-requisite to enter this competition is familiarity with programming using C++, Java or python. But obviously, knowledge of algorithmic thinking and artificial intelligence will be a great asset for any of the participating teams. The registration for online competition is free.' %}
-                </p>
-            </div>
-            <div class="eight wide column">
-                <img class="ui centered large image"
-                     src="https://big.assets.huffingtonpost.com/1274879002_wheelchair-back-flip-jump.gif">
-            </div>
-            <div class="five wide column">
-                <h2 class="ui header">
-                    {% trans '# Teams' %}
-                </h2>
-                <div class="counter" data-count="{{ stats.teams_count }}"></div>
-            </div>
-            <div class="six wide column mobile-hidden">
-                <a class="ui animated massive green button">
-                    <div class="visible content">
-                        {% trans 'Participate' %}
-                    </div>
-                    <div class="hidden content">
-                        <i class="left arrow icon"></i>
-                    </div>
-                </a>
-            </div>
-            <div class="five wide column">
-                <h2 class="ui header">
-                    {% trans '# Submissions' %}
-                </h2>
-                <div class="counter" data-count="{{ stats.submissions_count }}">0</div>
-            </div>
-            <div class="six wide column mobile-only">
-                <a class="ui animated massive green button">
-                    <div class="visible content">
-                        {% trans 'Participate' %}
-                    </div>
-                    <div class="hidden content">
-                        <i class="left arrow icon"></i>
-                    </div>
-                </a>
+    <div class="even section" id="section-intro">
+        <div class="ui section header">
+            <a class="ui big ai button" href="#section-intro">
+                {% trans 'Introduce' %}
+            </a>
+        </div>
+        <div class="ui stackable grid container">
+            <div class="two column row">
+                <div class="eleven wide column">
+                    <p style="font-size: 1.3em;">
+                        {% blocktrans %}
+                            Sharif AI Challenge is a programming competition for all who are interested in artificial
+                            intelligence.<br><br>This competition is  held in two phases annually. Including an online
+                            and an
+                            on-site phase in which competitors will compete in teams of three in a game designed by our
+                            technical team.<br><br>
+                            The only pre-requisite to enter this competition is familiarity with programming using C++,
+                            Java
+                            or python. But obviously, knowledge of algorithmic thinking and artificial intelligence will
+                            be
+                            a great asset for any of the participating teams. The registration for online competition is
+                            free.
+                        {% endblocktrans %}
+                    </p>
+                    <a class="ui massive animated violet button">
+                        <div class="visible content">
+                            {% trans 'Participate' %}
+                        </div>
+                        <div class="hidden content">
+                            <i class="ui right arrow icon"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="five wide column">
+                    <img style="height: 100%; width: 100%;" src="{% static 'images/logo.png' %}">
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="section prizes" id="section">
-        <div class="ui center aligned grid" id="prize-grid">
-            <h1 class="ui header">
+    <div class="odd section" id="section-prizes">
+        <div class="ui section header">
+            <a class="ui big ai button" href="#section-prizes">
                 {% trans 'Prizes' %}
-            </h1>
-            <div class="row" id="prize-row">
-                <div class="five wide column" style="margin-top: 30px;">
-                    <img id="prizeImg2" src="{% static 'intro/image/prize2.png' %}" alt="Second rank prize">
+            </a>
+        </div>
+        <div class="ui stackable grid container" style="padding: 30px;">
+            <div class="three column row">
+                <div class="five wide column" style="text-align: center;">
+
+                    <div class="image">
+                        <img src="{% static 'intro/image/Cup2.png' %}">
+                    </div>
+                    <div class="ui horizontal divider header">
+                        {% trans 'Second Place' %}
+                    </div>
+                    <h5 class="ui header">
+                        {% trans '5 Million Tomans' %}
+                    </h5>
                 </div>
-                <div class="six wide column" style="margin-top: -30px;">
-                    <img id="prizeImg1" src="{% static 'intro/image/prize1.png' %}" alt="First rank prize">
+                <div class="six wide column" style="text-align: center;">
+                    <div class="image">
+                        <img src="{% static 'intro/image/Cup1.png' %}">
+                    </div>
+                    <div class="ui horizontal divider header">
+                        {% trans 'First Place' %}
+                    </div>
+                    <h5 class="ui header">
+                        {% trans '7 Million Tomans' %}
+                    </h5>
                 </div>
-                <div class="five wide column" style="margin-top: 60px;">
-                    <img id="prizeImg3" src="{% static 'intro/image/prize3.png' %}" alt="Third rank prize">
+                <div class="five wide column" style="text-align: center;">
+                    <div class="image">
+                        <img src="{% static 'intro/image/Cup3.png' %}">
+                    </div>
+                    <div class="ui horizontal divider header">
+                        {% trans 'Third Place' %}
+                    </div>
+                    <h5 class="ui header">
+                        {% trans '3 Million Tomans' %}
+                    </h5>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="section schedule" id="section">
-        <h1 class="ui centered header">
-            {% trans 'Time Schedule' %}
-        </h1>
-        <table class="ui inverted orange unstackable table" style="margin-top: 30px;">
-            <thead>
-            <tr class="center aligned">
-                <th>{% trans 'Date' %}</th>
-                <th>{% trans 'Details' %}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="center aligned">
-                <td>{% trans '10th of Bahman' %}</td>
-                <td>{% trans 'Online phase registration starts' %}</td>
-            </tr>
-            <tr class="center aligned">
-                <td>{% trans '14th of Bahman - 2nd of Esfand' %}</td>
-                <td>{% trans 'Online phase starts' %}</td>
-            </tr>
-            <tr class="center aligned">
-                <td>{% trans '18th and 19th of Esfand' %}</td>
-                <td>{% trans 'Onsite phase at Sharif UT' %}</td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="even section" id="section-history"
+         style="height: 100vh !important; background: url('{% static 'intro/image/banner-background.png' %}'); background-repeat: no-repeat; background-position: 90%;">
+        <div class="ui section header">
+            <a class="ui big ai button" href="#section-history">
+                {% trans 'History' %}
+            </a>
+        </div>
+        <div class="ui stackable grid container">
+            <div class="two column row">
+                <div class="mobile-hidden eight wide column">
+                    <video preload="preload" id="video" autoplay="autoplay" loop="loop" style="width: 100%;">
+                        <source src="{% static 'intro/video.mp4' %}" type="video/mp4"></source>
+                    </video>
+                </div>
+                <div class="eight wide column" id="history-text">
+                    <div class="ui fluid styled accordion">
+                        <div class="title">
+                            <i class="dropdown icon"></i>
+                            {% trans 'First 3 Years' %}
+                        </div>
+                        <div class="content">
+                            <div class="ui header">
+                                برگزاری مسابقه به صورت درون دانشگاهی
+                            </div>
+                            هشت سال پیش پیش احساس نیاز به برگزاری یک مسابقه دانشجویی جذاب، پرهیجان در دانشکده کامپیوتر
+                            نقطه سرآغازی برای مسابقات "نبرد هوش مصنوعی شریف" در سطح دانشکده بود که به همت انجمن علمی این
+                            دانشکده حیات خود را آغاز کرد. دانشجویان نیز از این فرصت پیش آمده در جهت سنجش و تقویت مهارت
+                            های برنامه نویسی استفاده کردند و با استقبال چشمگیر دانشجویان، " نبرد هوش مصنوعی شریف" به
+                            رویدادی سالیانه تبدیل شد.
+                        </div>
 
+                        <div class="title">
+                            <i class="dropdown icon"></i>
+                            {% trans '4th - 6th Years' %}
+                        </div>
+                        <div class="content">
+                            <div class="ui header">
+                                با حضور تیم هایی از دانشگاه های دیگر شهر تهران
+                            </div>
+                            دوره چهارم مسابقه با عنوان «نبرد به زبان جاوا» معرفی شد و به دلیل اعتبار و سطح مسابقه، این
+                            رویداد از مرحله ی دانشگاهی فراتر رفت و تیم هایی از دانشگاه های دیگر استان تهران در آن شرکت
+                            کردند. دوره پنجم هم به همین نحو برنامه ریزی و برگزار شد که طی تمامی این دوران کیفیت، سطح و
+                            روند برگزاری " نبرد هوش مصنوعی شریف" به صورت چشم گیری پیشرفت داشت. با تلاش انجمن علمی
+                            دانشکده مهندسی کامپیوتر و تبلیغات گسترده نهایتا این رویداد در دوره ششم خود در سطح ملی برنامه
+                            ریزی شد و به مرحله اجرا رسید تا با حضور تیمهایی از دانشگاه های تهران و خارج از تهران این
+                            مسابقه رنگ و بویی ملی به خود بگیرد.
+                        </div>
+
+                        <div class="title">
+                            <i class="dropdown icon"></i>
+                            {% trans '7th Year' %}
+                        </div>
+                        <div class="content">
+                            <div class="ui header">
+                                پشتیبانی از زبان های برنامه نویسی ++C و پایتون
+                            </div>
+                            مسابقه ملی "نبرد هوش مصنوعی شریف" در هفتمین دوره‌ی خود همچنان به مسیر پیشرفت خود به خوبی
+                            ادامه داد و در این زمان، به همت تیم فنی، زبان های C++ و Python هم در مسابقه پشتیبانی شدند.
+                            در این دوره از "نبرد هوش مصنوعی شریف" استقبال خوبی به عمل آمد و قریب به 158 تیم از 28
+                            دانشگاه کشور در مرحله غیر حضوری شرکت کردند. مستند این مسابقه از طریق این لینک قابل مشاهده
+                            است.
+                        </div>
+
+                        <div class="title">
+                            <i class="dropdown icon"></i>
+                            {% trans '8th Year' %}
+                        </div>
+                        <div class="content">
+                            <div class="ui header">
+                                برگزاری مسابقه در سطح بین المللی
+                            </div>
+                            با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی، دوره‌ی
+                            هشتم با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. از طرفی با پیشرفت چشمگیر آن در دوره ی
+                            اخیر این رقابت دانشجویی به صورت بین المللی درآمد.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="section organization" id="section">
+    <div class="odd section" id="section-schedule">
+        <div class="ui section header">
+            <a class="ui big ai button" href="#section-schedule">
+                {% trans 'Schedule' %}
+            </a>
+        </div>
+        <div class="ui container">
+            <table class="ui inverted grey table"
+                   style="background-color: #813800; font-size: 1.3em; text-align: center">
+                <tbody>
+                <tr>
+                    <td>
+                        {% trans 'Jan30 - Feb17' %}
+                    </td>
+                    <td>
+                        {% trans 'Registration' %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% trans 'Feb3 - Feb21' %}
+                    </td>
+                    <td>
+                        {% trans 'Online Phaze' %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% trans 'March7 - March8' %}
+                    </td>
+                    <td>
+                        {% trans 'Sharif On-Site Phaze' %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="even section" id="section-organizer">
+        <div class="ui section header">
+            <a class="ui big ai button" href="#section-organizer">
+                {% trans 'Organizer' %}
+            </a>
+        </div>
         <div class="ui center aligned stackable grid">
             <div class="eight wide column">
                 <h1 class="ui header">{% trans 'Organizer' %}</h1>
                 <img class="ui centered medium image" src="{% static 'intro/image/SSC.png' %}" alt="SSC Image">
-            </div>
-            <div class="eight wide column">
-                <h1 class="ui header">{% trans 'Location' %}</h1>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9179536820648!2d51.34940431525942!3d35.70363658018915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a8bc1a7e63%3A0x61a5a909b878501!2sSharif+University+of+Technology!5e0!3m2!1sen!2sus!4v1516554126873"
-                        width="80%" height="70%" frameborder="0" style="border: 0"></iframe>
-            </div>
-            <div class="eight wide column">
+                <div class="ui horizontal divider"></div>
                 <h1 class="ui header">{% trans 'Sponsors' %}</h1>
                 <img class="ui centered medium image" src="{% static 'intro/image/sponsors.png' %}">
             </div>
             <div class="eight wide column">
-                <h1 class="ui header">{% trans 'Social Media' %}</h1>
-                <div class="row">
-                    <a class="ui eight wide column blue button" href="https://t.me/aichallenge">
-                        <i class="telegram icon"></i>
-                        Telegram
-                    </a>
-                    <a class="ui eight wide column pink instagram button" href="https://www.instagram.com/aichallenge/">
-                        <i class="instagram icon"></i>
-                        Instagram
-                    </a>
-                </div>
-                <div class="row">
-                    <a class="ui eight wide column twitter button" href="https://twitter.com/aichallenge">
-                        <i class="twitter icon"></i>
-                        Twitter
-                    </a>
-                    <a class="ui eight wide column linkedin button"
-                       href="https://www.linkedin.com/showcase/sharif-ai-challenge/">
-                        <i class="linkedin icon"></i>
-                        Linkedin
-                    </a>
-                </div>
+                <h1 class="ui header">{% trans 'Location' %}</h1>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9179536820648!2d51.34940431525942!3d35.70363658018915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a8bc1a7e63%3A0x61a5a909b878501!2sSharif+University+of+Technology!5e0!3m2!1sen!2sus!4v1516554126873"
+                        width="80%" height="80%" frameborder="0" style="border: 0"></iframe>
             </div>
         </div>
     </div>
@@ -151,46 +246,6 @@
 {% endblock %}
 
 {% block footer_scripts %}
-
-    <script>
-        $(document).ready(function () {
-            $('#navbar').css('background-color', 'rgba(0,0,0,0.2)');
-            $('#footer').attr('style', 'background-color: rgba(0,0,0,0.4) !important');
-            $("#prize-row").hide();
-        });
-        $(document).scroll(function () {
-            var y = $(this).scrollTop();
-            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 1 / 4;
-            $('div#section').each(function (i, el) {
-                var t = $(el).offset().top;
-                if (y+h > t && $(el).is('.section.prizes') && !$('#prize-row').is(":visible")) {
-                    $('#prize-row').transition({
-                        animation: 'fade up',
-                        duration: '500ms'
-                    });
-                }
-            });
-        });
-
-        $('.counter').each(function () {
-            var $this = $(this),
-                countTo = $this.attr('data-count');
-
-            $({countNum: $this.text()}).animate({
-                    countNum: countTo
-                },
-                {
-                    duration: 8000,
-                    easing: 'linear',
-                    step: function () {
-                        $this.text(Math.floor(this.countNum));
-                    },
-                    complete: function () {
-                        $this.text(this.countNum);
-                    }
-
-                });
-        });
-
-    </script>
+    {{ block.super }}
+    <script src="{% static 'intro/js/scripts.js' %}"></script>
 {% endblock %}
