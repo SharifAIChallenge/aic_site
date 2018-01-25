@@ -4,9 +4,10 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% block container %}
 
-<form class="ui form error" id="create_team_form" method="post">
+<form class="ui form error" id="create_team_form" method="post" style="padding: 70px">
+<h3 class="ui dividing header">Create Team</h3>
   {% csrf_token %}
-  <div class="field">
+  <div class="field required">
       <label>Team Name</label>
       {{ form.team_name }}
   </div>
@@ -15,12 +16,12 @@
     <div class="ui message error" id="name_error_box">
         <strong>{{ form.team_name.errors }}</strong>
     </div>
-    $(
-{% else %}
-    <script>
-        $('#name_error_box').css();
-    </script>
 {% endif %}
+
+<div class="field">
+    <label>First Member</label>
+    <input placeholder="{{ username }}" readonly="" type="text">
+</div>
 
 <div class="field">
     <label>Second Member</label>
@@ -42,7 +43,7 @@
         {% endfor %}
     </select>
 </div>
-  <button class="ui button" type="submit">{% trans 'Create Team' %}</button>
+  <button class="ui green button" type="submit">{% trans 'Create Team' %}</button>
 {% if  form.non_field_errors %}
     <div class="ui error message">
         <div class="header">Error!</div>

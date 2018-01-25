@@ -16,9 +16,8 @@ from apps.accounts.forms.panel import SubmissionForm
 from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 from apps.game.models import TeamParticipatesChallenge, TeamSubmission
 import json
-
-from apps.game.models.challenge import UserAcceptsTeamInChallenge
-
+from apps.game.models.challenge import TeamParticipatesChallenge
+from apps.game.models.challenge import Challenge
 
 class SignupView(generic.CreateView):
     form_class = SignUpForm
@@ -129,7 +128,7 @@ def reject_participation(request, participation_id):
 
 
 @login_required()
-def create_team(request):
+def create_team(request, challenge_id):
     if request.method == 'POST':
         form = CreateTeamForm(request.POST)
         if form.is_valid():
@@ -138,21 +137,37 @@ def create_team(request):
             team_name = form.cleaned_data.get('team_name')
             team = Team(name=team_name)
             team.save()
-            user_team0 = UserParticipatesOnTeam(team=team, user=request.user)
-            user_team0.save()
+            challenge = Challenge.objects.get(id=challenge_id)
+            team_challenge = TeamParticipatesChallenge(team=team, challenge=challenge)
+            team_challenge.save()
+
             if member1_email and member2_email:
                 member1 = User.objects.get(email__exact=member1_email)
                 member2 = User.objects.get(email__exact=member2_email)
+                user_team0 = UserParticipatesOnTeam(team=team, user=request.user)
+                user_team0.save()
                 user_team1 = UserParticipatesOnTeam(team=team, user=member1)
                 user_team1.save()
                 user_team2 = UserParticipatesOnTeam(team=team, user=member2)
                 user_team2.save()
+                return redirect('accounts:success_create_team')
             elif (not member2_email) and member1_email:
                 member1 = User.objects.get(email__exact=member1_email)
+                user_team0 = UserParticipatesOnTeam(team=team, user=request.user)
+                user_team0.save()
                 user_team1 = UserParticipatesOnTeam(team=team, user=member1)
                 user_team1.save()
-
+                return redirect('accounts:success_create_team')
+            elif (not member2_email) and (not member1_email):
+                user_team0 = UserParticipatesOnTeam(team=team, user=request.user)
+                user_team0.save()
+                return redirect('accounts:success_create_team')
     else:
         form = CreateTeamForm()
     return render(request, 'accounts/create_team.html', {'form': form
-        , 'users': User.objects.exclude(username__exact=request.user.username)})
+        , 'users': User.objects.exclude(username__exact=request.user.username)
+        , 'username': request.user.username})
+
+
+def success_create_team(request):
+    return render(request, 'accounts/success_create_team.html')
