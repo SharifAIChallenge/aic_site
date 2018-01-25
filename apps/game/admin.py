@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Register your models here.
 from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge
+
 from apps.game.models import TeamSubmission
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
