@@ -3,19 +3,54 @@
 {% load static %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% block container %}
-    <h2> Create Team</h2>
-    <form method="post">
-        {% csrf_token %}
-{#        {{ form.as_p }}#}
-        <h3>Team Name:</h3>
-        {{ form.team_name }}
-        {{ form.team_name.errors }}
-        <h3>Member1:</h3>
-        {{ form.member1 }}
-        {{ form.member1.errors }}
-        <h3>Member2:</h3>
-        {{ form.member2 }}
-        {{ form.member2.errors }}
-        <button type="submit">Create Team</button>
-    </form>
+
+<form class="ui form error" id="create_team_form" method="post" style="padding: 70px">
+<h3 class="ui dividing header">Create Team</h3>
+  {% csrf_token %}
+  {{ form.challenge_id }}
+  <div class="field required">
+      <label>Team Name</label>
+      {{ form.team_name }}
+  </div>
+
+{% if  form.team_name.errors %}
+    <div class="ui message error" id="name_error_box">
+        <strong>{{ form.team_name.errors }}</strong>
+    </div>
+{% endif %}
+
+<div class="field">
+    <label>First Member</label>
+    <input placeholder="{{ username }}" readonly="" type="text">
+</div>
+
+<div class="field">
+    <label>Second Member</label>
+    <select class="ui dropdown search" id="drop1_id" name="member1" onchange="second_field()">
+        <option value="">-----</option>
+        <option value="-----">-----</option>
+        {% for user in users %}
+            <option value={{ user.email }}>{{ user.username }}</option>
+        {% endfor %}
+    </select>
+</div>
+<div id="third_member" class="field" style="display: none">
+    <label>Third Member</label>
+    <select class="ui dropdown search" id="drop2_id" name="member2" onchange="third_field()">
+        <option value="">-----</option>
+        <option value="-----">-----</option>
+        {% for user in users %}
+            <option value={{ user.email }}>{{ user.username }}</option>
+        {% endfor %}
+    </select>
+</div>
+  <button class="ui green button" type="submit">{% trans 'Create Team' %}</button>
+{% if  form.non_field_errors %}
+    <div class="ui error message">
+        <div class="header">Error!</div>
+        <strong>{{ form.non_field_errors }}</strong>
+    </div>
+{% endif %}
+</form>
+<script type="text/javascript" src="{% static 'accounts/js/create_team.js' %}"></script>
 {% endblock %}

@@ -1,6 +1,14 @@
-<h2>Login</h2>
-<form method="post">
+{% extends 'base/base.html' %}
+
+{% load static i18n %}
+
+{% block container %}
+
+<h2>{% trans 'Login' %}</h2>
+<form method="post" class="ui form">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Login</button>
+  <button type="submit" class="ui green button">{% trans 'Login' %}</button>
 </form>
+
+{% endblock %}
