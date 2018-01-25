@@ -27,5 +27,4 @@ urlpatterns = [
     url(r'^game/', include(game_urls)),
     url(r'^blog/', include(zinnia_urls)),
     url(r'^articles/comments/', include('django_comments.urls')),
-    url(r'^', include(intro_urls, namespace='intro'))
 ]
