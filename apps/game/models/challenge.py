@@ -98,7 +98,8 @@ class TeamSubmission(models.Model):
         ('uploading', _('Uploading')),
         ('uploaded', _('Uploaded')),
         ('compiling', _('Compiling')),
-        ('compiled', _('Compiled'))
+        ('compiled', _('Compiled')),
+        ('failed', _('Failed'))
     )
 
     team = models.ForeignKey(TeamParticipatesChallenge)
