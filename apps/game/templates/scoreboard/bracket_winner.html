@@ -1,0 +1,698 @@
+{% load static i18n %}
+
+{% block extra_header %}
+    <link rel="stylesheet" href="{% static 'css/style_winner.css' %}">
+{% endblock %}
+
+<div class="round layer1">
+
+    {% for match in win_matches.0 %}
+        <div class="bracket-game">
+            <div class="player bot win">
+                <div class="ui {{match.4}} image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">
+                    {{match.0}}
+                    <div class="detail" style="float:right;">{{match.2}}</div>
+                </div>
+            </div>
+            <div class="player bot loss">
+                <div class="ui {{match.5}} image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">
+                    {{match.1}}
+                    <div class="detail" style="float:right;">{{match.3}}</div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{#    <div class="bracket-game cont">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game cont">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game cont">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game cont">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game cont">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="bracket-game cont">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+</div>
+
+<div class="connectors layer2">
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer2_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer2_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer2_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer2_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer2_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer2_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer2_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+</div>
+
+<div class="round layer2">
+    {% for match in matches.1 %}
+        <div class="bracket-game">
+            <div class="player bot win">
+                <div class="ui {{match.4}} image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">
+                    {{match.0}}
+                    <div class="detail" style="float:right;">{{match.2}}</div>
+                </div>
+            </div>
+            <div class="player bot loss">
+                <div class="ui {{match.5}} image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">
+                    {{match.1}}
+                    <div class="detail" style="float:right;">{{match.3}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layer2_top_space"></div>
+
+    {% endfor %}
+
+
+{#    <div class="layer2_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="layer2_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="layer2_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="layer2_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="layer2_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="layer2_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="layer2_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+</div>
+
+<div class="connectors layer3">
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer3_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer3_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer3_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+</div>
+
+
+<div class="round layer3">
+
+    {% for match in matches.2 %}
+        <div class="bracket-game">
+            <div class="player bot win">
+                <div class="ui {{match.4}} image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">
+                    {{match.0}}
+                    <div class="detail" style="float:right;">{{match.2}}</div>
+                </div>
+            </div>
+            <div class="player bot loss">
+                <div class="ui {{match.5}} image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">
+                    {{match.1}}
+                    <div class="detail" style="float:right;">{{match.3}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layer3_top_space"></div>
+
+    {% endfor %}
+
+{#    <div class="layer3_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="layer3_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="layer3_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">3</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+</div>
+
+<div class="connectors layer4">
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="layer4_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+</div>
+
+<div class="round layer4">
+    {% for match in matches.3 %}
+        <div class="bracket-game">
+            <div class="player bot win">
+                <div class="ui {{match.4}} image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">
+                    {{match.0}}
+                    <div class="detail" style="float:right;">{{match.2}}</div>
+                </div>
+            </div>
+            <div class="player bot loss">
+                <div class="ui {{match.5}} image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">
+                    {{match.1}}
+                    <div class="detail" style="float:right;">{{match.3}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layer4_top_space"></div>
+    {% endfor %}
+
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="layer4_top_space"></div>#}
+{##}
+{#    <div class="bracket-game">#}
+{#        <div class="player bot win">#}
+{#            <div class="ui red image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Friends#}
+{#                <div class="detail" style="float:right;">0</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="player bot loss">#}
+{#            <div class="ui green image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">#}
+{#                Enemies#}
+{#                <div class="detail" style="float:right;">1</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+</div>
+
+<div class="connectors layer5">
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+</div>
+
+<div class="round layer5">
+
+    {% for match in matches.4 %}
+        <div class="bracket-game">
+            <div class="player bot win">
+                <div class="ui {{match.4}} image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">
+                    {{match.0}}
+                    <div class="detail" style="float:right;">{{match.2}}</div>
+                </div>
+            </div>
+            <div class="player bot loss">
+                <div class="ui {{match.5}} image mini label" style="float:left; text-align:center; margin-right:0px; min-width:98px;">
+                    {{match.1}}
+                    <div class="detail" style="float:right;">{{match.3}}</div>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+</div>
