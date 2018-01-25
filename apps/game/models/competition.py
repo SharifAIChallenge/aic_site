@@ -58,25 +58,25 @@ class Competition(models.Model):
                         second_participant = first_participant
                         first_participant = temp
                     new_match = Match.objects.create(
-                                    competition=self,
-                                    part1=Participant.objects.create(
-                                        depend=first_participant,
-                                        depend_method='itself',
-                                        submission=TeamSubmission.objects.create(
-                                            team=first_participant
-                                        )
-                                    ),
-                                    part2=Participant.objects.create(
-                                        depend=second_participant,
-                                        depend_method='itself',
-                                        submission=TeamSubmission.objects.create(
-                                            team=second_participant
-                                        )
-                                    )
-                                )
+                        competition=self,
+                        part1=Participant.objects.create(
+                            depend=first_participant,
+                            depend_method='itself',
+                            submission=TeamSubmission.objects.create(
+                                team=first_participant
+                            )
+                        ),
+                        part2=Participant.objects.create(
+                            depend=second_participant,
+                            depend_method='itself',
+                            submission=TeamSubmission.objects.create(
+                                team=second_participant
+                            )
+                        )
+                    )
                     matches.append(new_match)
                     for i in range(3):
-                       SingleMatch.objects.create(match=new_match)
+                        SingleMatch.objects.create(match=new_match)
 
                 if len(teams) > 2:
                     tmp_team = second_part[0]
@@ -126,28 +126,28 @@ class Competition(models.Model):
             else:
                 second_participant = second_participant[0]
 
-            print('f')
-            print(first_participant)
-            print('s')
-            print(second_participant)
+            # print('f')
+            # print(first_participant)
+            # print('s')
+            # print(second_participant)
 
             new_match = Match.objects.create(
-                            competition=self,
-                            part1=Participant.objects.create(
-                                depend=first_participant,
-                                depend_method='itself',
-                                submission=TeamSubmission.objects.create(
-                                    team=first_participant
-                                )
-                            ),
-                            part2=Participant.objects.create(
-                                depend=second_participant,
-                                depend_method='itself',
-                                submission=TeamSubmission.objects.create(
-                                    team=second_participant
-                                )
-                            )
-                        )
+                competition=self,
+                part1=Participant.objects.create(
+                    depend=first_participant,
+                    depend_method='itself',
+                    submission=TeamSubmission.objects.create(
+                        team=first_participant
+                    )
+                ),
+                part2=Participant.objects.create(
+                    depend=second_participant,
+                    depend_method='itself',
+                    submission=TeamSubmission.objects.create(
+                        team=second_participant
+                    )
+                )
+            )
             matches.append(new_match)
             for i in range(3):
                 SingleMatch.objects.create(match=new_match)
@@ -162,14 +162,14 @@ class Competition(models.Model):
             # first step: winners vs winners
             for i in range(cur_round_length):
                 new_match = Match.objects.create(
-                                competition=self,
-                                part1=Participant.objects.create(
-                                    depend=matches[previous_start_round_index + 2 * i],
-                                    depend_method='winner'),
-                                part2=Participant.objects.create(
-                                     depend=matches[previous_start_round_index + 2 * i + 1],
-                                     depend_method='winner')
-                            )
+                    competition=self,
+                    part1=Participant.objects.create(
+                        depend=matches[previous_start_round_index + 2 * i],
+                        depend_method='winner'),
+                    part2=Participant.objects.create(
+                        depend=matches[previous_start_round_index + 2 * i + 1],
+                        depend_method='winner')
+                )
                 matches.append(new_match)
                 for i in range(3):
                     SingleMatch.objects.create(match=new_match)
@@ -178,14 +178,14 @@ class Competition(models.Model):
             if is_second_round:
                 for i in range(cur_round_length):
                     new_match = Match.objects.create(
-                                    competition=self,
-                                    part1=Participant.objects.create(
-                                        depend=matches[previous_third_step_index + 2 * i],
-                                        depend_method='loser'),
-                                    part2=Participant.objects.create(
-                                        depend=matches[previous_third_step_index + 2 * i + 1],
-                                        depend_method='loser')
-                                )
+                        competition=self,
+                        part1=Participant.objects.create(
+                            depend=matches[previous_third_step_index + 2 * i],
+                            depend_method='loser'),
+                        part2=Participant.objects.create(
+                            depend=matches[previous_third_step_index + 2 * i + 1],
+                            depend_method='loser')
+                    )
                     matches.append(new_match)
                     for i in range(3):
                         SingleMatch.objects.create(match=new_match)
@@ -208,14 +208,14 @@ class Competition(models.Model):
             # third step: losers vs losers of winners
             for i in range(cur_round_length):
                 new_match = Match.objects.create(
-                                competition=self,
-                                part1=Participant.objects.create(
-                                    depend=matches[second_step_index + i],
-                                    depend_method='winner'),
-                                part2=Participant.objects.create(
-                                    depend=matches[(second_step_index - 1) - i],
-                                    depend_method='loser')
-                            )
+                    competition=self,
+                    part1=Participant.objects.create(
+                        depend=matches[second_step_index + i],
+                        depend_method='winner'),
+                    part2=Participant.objects.create(
+                        depend=matches[(second_step_index - 1) - i],
+                        depend_method='loser')
+                )
                 matches.append(new_match)
                 for i in range(3):
                     SingleMatch.objects.create(match=new_match)
@@ -228,30 +228,31 @@ class Competition(models.Model):
             is_second_round = False
 
         new_match = Match.objects.create(
-                        competition=self,
-                        part1=Participant.objects.create(
-                            depend=matches[start_round_index - 1],
-                            depend_method='winner'),
-                        part2=Participant.objects.create(
-                            depend=matches[start_round_index - 3],
-                            depend_method='winner')
-                    )
+            competition=self,
+            part1=Participant.objects.create(
+                depend=matches[start_round_index - 1],
+                depend_method='winner'),
+            part2=Participant.objects.create(
+                depend=matches[start_round_index - 3],
+                depend_method='winner')
+        )
         matches.append(new_match)
         for i in range(3):
             SingleMatch.objects.create(match=new_match)
 
         new_match = Match.objects.create(
-                        competition=self,
-                        part1=Participant.objects.create(
-                            depend=matches[start_round_index - 1],
-                            depend_method='winner'),
-                        part2=Participant.objects.create(
-                            depend=matches[start_round_index - 3],
-                            depend_method='winner')
-                    )
+            competition=self,
+            part1=Participant.objects.create(
+                depend=matches[start_round_index - 1],
+                depend_method='winner'),
+            part2=Participant.objects.create(
+                depend=matches[start_round_index - 3],
+                depend_method='winner')
+        )
         matches.append(new_match)
         for i in range(3):
             SingleMatch.objects.create(match=new_match)
+
 
 class Participant(models.Model):
     METHOD_CHOICES = (
@@ -263,18 +264,18 @@ class Participant(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE,
                                      null=True)  # Match or TeamParticipatesChallenge
     object_id = models.PositiveIntegerField(null=True)
-    depend = GenericForeignKey() # match or TeamParticipatesChallenge
+    depend = GenericForeignKey()  # match or TeamParticipatesChallenge
     depend_method = models.CharField(max_length=128, choices=METHOD_CHOICES)
 
     submission = models.ForeignKey(TeamSubmission, null=True, blank=True)
-    #score = models.IntegerField(default=0)
+
+    # score = models.IntegerField(default=0)
 
     def get_score_for_match(self, match):
         score = 0
         for single_match in match.single_matches.all():
             score += single_match.get_score_for_participant(self)
         return score
-
 
     def __str__(self):
         return str(self.object_id)
@@ -292,6 +293,7 @@ class Participant(models.Model):
 
 def get_log_file_directory(instance, filename):
     pass
+
 
 ########################################################################################################
 
@@ -312,7 +314,7 @@ class Match(models.Model):
 
     def get_score_for_participant(self, participant):
         for single_match in self.single_matches.all():
-            if single_match.done==False:
+            if single_match.done == False:
                 return None
         score = 0
         if self.part1 == participant:
@@ -333,7 +335,7 @@ class Match(models.Model):
         score2 = None
         team2_name = None
         team1_name = None
-        if self.part1.submission is None: # and depend is match
+        if self.part1.submission is None:  # and depend is match
             p1 = Match.objects.get(pk=self.part1.object_id)
             team1_name = self.part1.depend_method + ' match ' + str(self.part1.object_id)
         else:
@@ -409,15 +411,14 @@ class Match(models.Model):
             participant.update_depend()
 
 
-
 class SingleMatch(models.Model):
     match = models.ForeignKey(Match, related_name='single_matches')
     done = models.BooleanField(default=False)
     infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
-    part1_score = models.IntegerField(null=True,blank=True)
-    part2_score = models.IntegerField(null=True,blank=True)
+    part1_score = models.IntegerField(null=True, blank=True)
+    part2_score = models.IntegerField(null=True, blank=True)
 
     def update_scores_from_log(self):
         extracted_scores = self.extract_scores()
