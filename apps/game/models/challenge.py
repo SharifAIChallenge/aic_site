@@ -143,7 +143,7 @@ class TeamSubmission(models.Model):
 
     def compile(self):
         from apps.game import functions
-        result = functions.compile_submissions(file_tokens=[self.infra_token], game_id=self.team.challenge.game.id)
+        result = functions.compile_submissions([self])
         if result[0]['success']:
             self.status = 'compiling'
             self.infra_compile_token = result[0]['token']

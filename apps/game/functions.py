@@ -3,6 +3,9 @@ import string
 import threading
 import time
 
+import coreapi
+from django.conf import settings
+
 from apps.game.models import TeamSubmission, Match
 
 
@@ -81,8 +84,14 @@ def upload_file(file):
     :param file: File field from TeamSubmission model
     :return: file token or raises error with error message
     """
-    # Temporary test code
-    return random_token()
+    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
+    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
+    client = coreapi.Client(transports=transports)
+    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    response = client.action(schema,
+                             ['storage', 'new_file', 'update'],
+                             params={'file': file})
+    return response['token']
 
 
 def download_file(file_token):
@@ -91,12 +100,16 @@ def download_file(file_token):
     :param file_token: the file token obtained already from infra.
     :return: sth that TeamSubmission file field can be assigned to
     """
+    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
+    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
+    client = coreapi.Client(transports=transports)
+    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    return client.action(schema,
+                         ['storage', 'get_file', 'read'],
+                         params={'token': file_token})
 
-    # Temporary test file
-    return "This is text will be replaced by the real log file"
 
-
-def compile_submissions(file_tokens, game_id):
+def compile_submissions(submissions):
     """
         Tell the infrastructure to compile a list of submissions
     :param file_tokens: array of strings
@@ -106,30 +119,31 @@ def compile_submissions(file_tokens, game_id):
     #
 
     # Test code
-    submits = []
-    for file_token in file_tokens:
-        submits.append({
-            "game": game_id,
+    requests = list()
+    for submission in submissions:
+        requests.append({
+            "game": submission.team.challenge.game.infra_token,
             "section": "compile",
-            "parameters": {  # TODO : parameters
-                "string_parameter1": "parameter1_value",
-                "string_parameter2": "parameter2_value",
-                "file_parameter1": "file_parameter1_token"
+            "parameters": {
+                "language": submission.language,
+                "code_zip": submission.infra_token
             }
         })
 
     # Send request to infrastructure to compile them
 
-    compile_details = []  # Get the array from the infrastructure.
+    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
+    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
+    client = coreapi.Client(transports=transports)
+    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
 
-    for x in file_tokens:
-        gm = {
-            "token": random_token(),
-            "success": True,
-            "errors": ""
-        }
-        compile_details.append(gm)
-        t = threading.Thread(target=compilation_result, args=(gm,))
+    compile_details = client.action(schema,
+                                    ['run', 'run', 'create'],
+                                    params={
+                                        'data': requests
+                                    })
+    for detail in compile_details:
+        t = threading.Thread(target=compilation_result, args=(detail,))
         t.start()
 
     return compile_details
