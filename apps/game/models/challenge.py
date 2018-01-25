@@ -3,10 +3,13 @@ import uuid
 
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericRelation
+
 from .game import Game
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from apps.accounts.models import Team
+# from apps.game.models.competition import Participant
 
 
 import logging

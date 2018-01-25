@@ -15,8 +15,9 @@ from apps.accounts.tests import populate_users, populate_teams, populate_challen
 from apps.game.functions import upload_file, compile_submissions, run_matches
 from apps.game.models import Match, TeamSubmission, Challenge, Game, Competition, Participant
 from apps.game.models.challenge import TeamParticipatesChallenge
+from apps.game.views import render_double_elimination
 
-
+"""
 class TestGame(TransactionTestCase):
 
     def setUp(self):
@@ -320,11 +321,11 @@ class TestDoubleElimination(TestCase):
 
         self.assertEqual(matches[start_ind].part1.object_id, start_ind - 1)
         self.assertEqual(matches[start_ind].part2.object_id, start_ind - 3)
-
+"""
 class TestScoreboard(TestCase):
 
     def populate_users(self):
-        for i in range(96):
+        for i in range(48):
             user = User()
             user.username = str(i) + "DummyCamelCaseTeamForTest"
             user.save()
@@ -336,7 +337,7 @@ class TestScoreboard(TestCase):
         for user in users:
             if i % 3 == 0:
                 team = Team()
-                team.name = i / 3 + 1
+                team.name = int(i / 3 + 1)
                 team.save()
             participation = UserParticipatesOnTeam()
             participation.user = user
@@ -355,7 +356,7 @@ class TestScoreboard(TestCase):
         challenge.team_size = 3
         challenge.entrance_price = 1000
         game = Game()
-        game.name = "AIC 2018"
+        game.name = "AIC Game 2018"
         game.save()
         challenge.game = game
         challenge.save()
@@ -376,7 +377,40 @@ class TestScoreboard(TestCase):
         self.populate_challenges()
         self.populate_competitions()
 
-    def test_create_new_double_elimination(self):
+    def render_double_elimination(request, competition_id):
+        matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
+        win_matches = []
+        lose_matches = []
+        cur_round_length = int((len(matches) + 1) / 4)  # for 16 teams there is 31 matches and cur_round_length is 8
+        win_matches.append([])
+        for i in range(cur_round_length):
+            win_matches[len(win_matches) - 1].append(matches[i].get_match_result())
+
+        start_round_index = cur_round_length
+        cur_round_length = int(cur_round_length / 2)
+
+        while cur_round_length >= 1:
+            win_matches.append([])
+            for i in range(cur_round_length):
+                win_matches[len(win_matches) - 1].append(matches[start_round_index + i].get_match_result())
+
+            lose_matches.append([])
+            for i in range(cur_round_length):
+                lose_matches[len(lose_matches) - 1].append(
+                    matches[start_round_index + cur_round_length + i].get_match_result()
+                )
+
+            lose_matches.append([])
+            for i in range(cur_round_length):
+                lose_matches[len(lose_matches) - 1].append(
+                    matches[start_round_index + 2 * cur_round_length + i].get_match_result()
+                )
+            start_round_index += 3 * cur_round_length
+            cur_round_length = int(cur_round_length / 2)
+
+        return [win_matches, lose_matches]
+
+    def test_scoreboard_double_elimination(self):
         challenge = Challenge.objects.all()[0]
         for team in Team.objects.all():
             participation = TeamParticipatesChallenge()
@@ -387,3 +421,33 @@ class TestScoreboard(TestCase):
         competition = Competition(challenge=challenge, type='double')
         competition.save()
         competition.create_new_double_elimination(teams=Team.objects.all())
+        list_matches = list(Match.objects.all())
+
+        matches = self.render_double_elimination(competition.id)
+        print(matches)
+        print(len(matches))
+        for wl in range(len(matches)):
+            print('win/lose = ' + str(wl))
+            for r in range(len(matches[wl])):
+                print('round = ' + str(r))
+                for m in range(len(matches[wl][r])):
+                    print('match = ' + str(m))
+                    for i in range(len(matches[wl][r][m])):
+                        print('i = ' + str(i) + ' , ' + matches[wl][r][m][i])
+
+
+        for i in range(len(list_matches)):
+            list_matches[i].done_match()
+
+        matches = self.render_double_elimination(competition.id)
+        print(matches)
+        print(len(matches))
+        for wl in range(len(matches)):
+            print('win/lose = ' + str(wl))
+            for r in range(len(matches[wl])):
+                print('round = ' + str(r))
+                for m in range(len(matches[wl][r])):
+                    print('match = ' + str(m))
+                    for i in range(len(matches[wl][r][m])):
+                        print('i = ' + str(i) + ' , ' + matches[wl][r][m][i])
+
