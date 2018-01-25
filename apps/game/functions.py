@@ -2,6 +2,7 @@ import random
 import string
 import threading
 import time
+import uuid
 
 import coreapi
 from django.conf import settings
@@ -40,7 +41,7 @@ def compilation_result(compile_result):
 
     # Returns compilation results.
 
-    token = compile_result["token"]
+    token = compile_result["run_id"]
     success = compile_result["success"]
     errors = ""
     parameters = {}
@@ -59,7 +60,7 @@ def match_results(match):
 
     # Return matches results.
 
-    token = match["token"]
+    token = match["run_id"]
     success = match["success"]
     errors = ""
     parameters = {}
@@ -78,16 +79,21 @@ def match_results(match):
 """
 
 
+def create_infra_client():
+    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
+    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
+    client = coreapi.Client(transports=transports)
+    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    return client, schema
+
+
 def upload_file(file):
     """
     This function uploads a file to infrastructure synchronously
     :param file: File field from TeamSubmission model
     :return: file token or raises error with error message
     """
-    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
-    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
-    client = coreapi.Client(transports=transports)
-    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    client, schema = create_infra_client()
     response = client.action(schema,
                              ['storage', 'new_file', 'update'],
                              params={'file': file})
@@ -100,10 +106,7 @@ def download_file(file_token):
     :param file_token: the file token obtained already from infra.
     :return: sth that TeamSubmission file field can be assigned to
     """
-    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
-    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
-    client = coreapi.Client(transports=transports)
-    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    client, schema = create_infra_client()
     return client.action(schema,
                          ['storage', 'get_file', 'read'],
                          params={'token': file_token})
@@ -123,7 +126,7 @@ def compile_submissions(submissions):
     for submission in submissions:
         requests.append({
             "game": submission.team.challenge.game.infra_token,
-            "section": "compile",
+            "operation": "compile",
             "parameters": {
                 "language": submission.language,
                 "code_zip": submission.infra_token
@@ -132,19 +135,13 @@ def compile_submissions(submissions):
 
     # Send request to infrastructure to compile them
 
-    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
-    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
-    client = coreapi.Client(transports=transports)
-    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    client, schema = create_infra_client()
 
     compile_details = client.action(schema,
                                     ['run', 'run', 'create'],
                                     params={
                                         'data': requests
                                     })
-    for detail in compile_details:
-        t = threading.Thread(target=compilation_result, args=(detail,))
-        t.start()
 
     return compile_details
 
@@ -155,7 +152,7 @@ def run_matches(matches):
     :param matches: List of match objects, having these functions:
         get_first_file(): String
         get_second_file: String
-        get_maps(): String[]
+        get_map(): String[]
         get_game_id(): String
 
         and any other potential parameters
@@ -165,27 +162,27 @@ def run_matches(matches):
     games = []
     for match in matches:
         games.append({
-            "game": "1",  # TODO match.get_game_id(),
-            "section": "play",
-            "parameters": {  # TODO : parameters
-                "string_parameter1": "parameter1_value",
-                "string_parameter2": "parameter2_value",
-                "file_parameter1": "file_parameter1_token"
+            "game": match.get_game_id(),
+            "operation": "run",
+            "parameters": {
+                "server_game_config": match.get_map(),
+                "client1_id": match.part1.submission.id,
+                "client1_token": str(uuid.uuid4()),
+                "client1_code": match.get_first_file(),
+                "client2_id": match.part2.submission.id,
+                "client2_token": str(uuid.uuid4()),
+                "client2_code": match.get_second_file(),
             }
         })
 
     # Send request to infrastructure to compile them
 
-    match_details = []  # Get the array from the infrastructure.
+    client, schema = create_infra_client()
 
-    for x in matches:
-        gm = {
-            "token": random_token(),
-            "success": True,
-            "errors": ""
-        }
-        match_details.append(gm)
-        t = threading.Thread(target=match_results, args=(gm,))
-        t.start()
+    match_details = client.action(schema,
+                                  ['run', 'run', 'create'],
+                                  params={
+                                      'data': games
+                                  })
 
     return match_details
