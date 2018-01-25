@@ -20,7 +20,6 @@ class Competition(models.Model):
     def __str__(self):
         return self.name
 
-
     def create_new_league(self, teams):  # algorithm for scheduling is Round-robin tournament
         if len(teams) == 0:
             return
@@ -125,8 +124,8 @@ class Competition(models.Model):
                 matches.append(
                     Match.objects.create(competition=self,
                                          part1=Participant.objects.create(
-                                            depend=matches[previous_start_round_index + 2 * i],
-                                            depend_method='winner'),
+                                             depend=matches[previous_start_round_index + 2 * i],
+                                             depend_method='winner'),
                                          part2=Participant.objects.create(
                                              depend=matches[previous_start_round_index + 2 * i + 1],
                                              depend_method='winner')
@@ -220,12 +219,12 @@ def get_log_file_directory(instance, filename):
 
 class Match(models.Model):
     competition = models.ForeignKey(Competition)
-    part1 = models.ForeignKey(Participant, related_name='mathces_as_first')
+    part1 = models.ForeignKey(Participant, related_name='matches_as_first')
     part2 = models.ForeignKey(Participant, related_name='matches_as_second')
     done = models.BooleanField(default=False)
     infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
-    log = models.FileField(upload_to=get_log_file_directory,blank=True, null=True)
+    log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
 
     # def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
     #     self.part1.save()
@@ -234,7 +233,7 @@ class Match(models.Model):
     #     self.part2 = self.part2
     #     super().save(force_insert, force_update, using, update_fields)
     class Meta:
-        verbose_name_plural='matches'
+        verbose_name_plural = 'matches'
 
     def __str__(self):
         return str(self.part1.object_id) + ' -> ' + str(self.part2.object_id)

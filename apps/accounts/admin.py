@@ -1,8 +1,5 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
-
-# Register your models here.
-from apps.accounts.models import Profile,Team, UserParticipatesOnTeam
+from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 
 
 class UserInline(admin.StackedInline):
@@ -17,9 +14,10 @@ class TeamAdmin(admin.ModelAdmin):
     inlines = [UserInline]
 
     list_display = ('id', 'name')
-    #list_filter = []
+    # list_filter = []
 
-    #search_fields = []
+    # search_fields = []
+
 
 admin.site.register(Profile)
 admin.site.register(Team, TeamAdmin)
