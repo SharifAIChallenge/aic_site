@@ -3,6 +3,7 @@ Django settings for AIC18_Site project.
 """
 
 import os
+import sys
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -17,6 +18,8 @@ SECRET_KEY = 'r=2mdcuth+5g8o6)s*z7c61bss)%0ku2b9w72d3ph^x&)^gx$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+TESTING = sys.argv[1:2] == ['test']
 
 ALLOWED_HOSTS = []
 
@@ -149,3 +152,10 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
     os.path.join(BASE_DIR, 'locale_extra'),
 )
+
+INFRA_IP = '217.79.184.161'
+INFRA_PORT = '8000'
+INFRA_URL = 'http://{}:{}'.format(INFRA_IP, INFRA_PORT)
+INFRA_AUTH_TOKEN = '1234'
+INFRA_API_SCHEMA_ADDRESS = "{}/api/schema/".format(INFRA_URL)
+
