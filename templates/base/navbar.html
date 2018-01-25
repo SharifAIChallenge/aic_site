@@ -1,6 +1,7 @@
 {% load i18n %}
 
-<div class="ui fixed blue inverted menu" id="navbar">
+
+<div class="ui attached inverted sticky borderless menu navbar-color" id="navbar">
     {% if request.user.is_authenticated and not no_sidebar %}
         <span style="cursor: pointer;" class="ui item" onclick="$('.ui.sidebar').sidebar('toggle');"><i
                 class="sidebar icon"></i></span>
@@ -21,13 +22,5 @@
         {% endif %}
     {% endfor %}
 
-    <div class="right menu">
-        <a class="item" href="{% url 'accounts:update_profile' %}">
-            {% if request.user.is_authenticated %}
-                {{ request.user.first_name }}
-            {% else %}
-                {% trans 'Login' %}
-            {% endif %}
-        </a>
-    </div>
+
 </div>
