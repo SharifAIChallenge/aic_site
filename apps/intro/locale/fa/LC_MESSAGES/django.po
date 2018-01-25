@@ -68,7 +68,7 @@ msgstr "جوایز"
 
 #: apps/intro/templates/intro/index.html:72
 msgid "Second Place"
-msgstr "مقام دوم"
+msgstr "تیم دوم"
 
 #: apps/intro/templates/intro/index.html:75
 msgid "5 Million Tomans"
@@ -76,7 +76,7 @@ msgstr "۵ میلیون تومان"
 
 #: apps/intro/templates/intro/index.html:83
 msgid "Champion"
-msgstr ""
+msgstr "تیم قهرمان"
 
 #: apps/intro/templates/intro/index.html:86
 msgid "7 Million Tomans"
@@ -84,7 +84,7 @@ msgstr "۷ میلیون تومان"
 
 #: apps/intro/templates/intro/index.html:94
 msgid "Third Place"
-msgstr "مقام سوم"
+msgstr "تیم سوم"
 
 #: apps/intro/templates/intro/index.html:97
 msgid "3 Million Tomans"
@@ -100,7 +100,7 @@ msgstr "۳ سال اول"
 
 #: apps/intro/templates/intro/index.html:126
 msgid "In the University"
-msgstr ""
+msgstr "در دانشگاه"
 
 #: apps/intro/templates/intro/index.html:128
 msgid ""
@@ -118,15 +118,17 @@ msgid ""
 "\"Sharif AI Challenge\" soon became an annual event.\n"
 "                            </p>\n"
 "                            "
-msgstr ""
+msgstr "<p><span class=\"red\">هشت سال پیش</span>"
+"                            پیش احساس نیاز به برگزاری یک مسابقه دانشجویی جذاب، پرهیجان در دانشکده کامپیوتر  نقطه سرآغازی برای مسابقات \"نبرد هوش مصنوعی شریف\" در سطح دانشکده بود که به همت انجمن علمی این دانشکده حیات خود را آغاز کرد. دانشجویان نیز از این فرصت پیش آمده در جهت سنجش و تقویت مهارت های برنامه نویسی استفاده کردند و با استقبال چشمگیر دانشجویان، \" نبرد هوش مصنوعی شریف\" به رویدادی سالیانه تبدیل شد."
+"                            </p>"
 
 #: apps/intro/templates/intro/index.html:141
 msgid "4th to 6th Challenge"
-msgstr ""
+msgstr "4امین تا 6امین نبرد"
 
 #: apps/intro/templates/intro/index.html:145
 msgid "With Teams From Others Universities of Tehran"
-msgstr ""
+msgstr "با دیگر تیم ها از دانشگاه های شهر تهران"
 
 #: apps/intro/templates/intro/index.html:147
 msgid ""
@@ -153,7 +155,9 @@ msgid ""
 "\n"
 "                            </p>\n"
 "                            "
-msgstr ""
+msgstr "دوره چهارم مسابقه با عنوان «نبرد به زبان جاوا» معرفی شد و به دلیل اعتبار و سطح مسابقه، این رویداد از مرحله ی دانشگاهی فراتر رفت و تیم هایی از دانشگاه های دیگر استان تهران در آن شرکت کردند. دوره پنجم هم به همین نحو برنامه ریزی و برگزار شد که طی تمامی این دوران کیفیت، سطح و روند برگزاری"
+"\"نبرد هوش مصنوعی شریف \""
+"به صورت چشم گیری پیشرفت داشت. با تلاش انجمن علمی دانشکده مهندسی کامپیوتر و تبلیغات گسترده نهایتا این رویداد در دوره ششم خود در سطح ملی برنامه ریزی شد و به مرحله اجرا رسید تا با حضور تیمهایی از دانشگاه های تهران و خارج از تهران این مسابقه رنگ و بویی ملی به خود بگیرد. "
 
 #: apps/intro/templates/intro/index.html:164
 #, fuzzy
@@ -163,7 +167,7 @@ msgstr "سال ۷م"
 
 #: apps/intro/templates/intro/index.html:168
 msgid "Supporting C++ and Python"
-msgstr ""
+msgstr "پشتیبانی از زبان های برنامه نویسی C++ و پایتون"
 
 #: apps/intro/templates/intro/index.html:170
 msgid ""
@@ -186,17 +190,24 @@ msgid ""
 "\">here</a>.\n"
 "                            </p>\n"
 "                            "
-msgstr ""
-
+msgstr "مسابقه ی ملی"
+"\"نبرد هوش مصنوعی شریف\""
+" در هفتمین دوره‌ی خود همچنان به مسیر پیشرفت خود به خوبی ادامه داد و در این زمان، به همت تیم فنی، زبان های C++ و Python هم در مسابقه پشتیبانی شدند. در این دوره از"
+"\"نبرد هوش مصنوعی شریف\""
+"استقبال خوبی به عمل آمد و قریب به 158 تیم از 28 دانشگاه کشور در مرحله غیر حضوری شرکت کردند. مستند این مسابقه از طریق"
+ "<a style=\"color:blue\" href=\"http://bayanbox.ir/view/8601289253364961637/JavaChallenge2015-fa.pdf\">"
+ "این لینک"
+ "</a>"
+"قابل مشاهده است."
 #: apps/intro/templates/intro/index.html:185
 #, fuzzy
 #| msgid "First 3 Years"
 msgid "Last 2 Years"
-msgstr "۳ سال اول"
+msgstr "۳ سال اخیر"
 
 #: apps/intro/templates/intro/index.html:189
 msgid "Sharif AI Challenge, a New Title"
-msgstr ""
+msgstr "نبرد هوش مصنوعی شریف،عنوانی جدید"
 
 #: apps/intro/templates/intro/index.html:191
 msgid ""
@@ -208,7 +219,7 @@ msgid ""
 "Challenge\".\n"
 "                            </p>\n"
 "                            "
-msgstr ""
+msgstr " با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی، دوره‌ی هشتم با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. "
 
 #: apps/intro/templates/intro/index.html:206 apps/intro/views.py:19
 msgid "Schedule"
@@ -244,7 +255,7 @@ msgstr "مرحله حضوری در دانشگاه شریف"
 
 #: apps/intro/templates/intro/index.html:245
 msgid "Contact Us"
-msgstr ""
+msgstr "تماس با ما"
 
 #: apps/intro/templates/intro/index.html:250
 #: apps/intro/templates/intro/index.old.html:112 apps/intro/views.py:22
@@ -263,7 +274,7 @@ msgstr "مکان"
 
 #: apps/intro/templates/intro/index.html:261
 msgid "Address: "
-msgstr ""
+msgstr "نشانی"
 
 #: apps/intro/templates/intro/index.html:262
 msgid ""
@@ -272,19 +283,19 @@ msgid ""
 "Technology<br>\n"
 "                        Azadi St, Tehran\n"
 "                    "
-msgstr ""
+msgstr "تهران،خیابان آزادی،دانشگاه صنعتی شریف،دانشکده مهندسی کامپیوتر"
 
 #: apps/intro/templates/intro/index.html:268
 msgid "Contact Info"
-msgstr ""
+msgstr "اطلاعات تماس"
 
 #: apps/intro/templates/intro/index.html:269
 msgid "Email: "
-msgstr ""
+msgstr "ایمیل"
 
 #: apps/intro/templates/intro/index.html:270
 msgid "Phone: "
-msgstr ""
+msgstr "شماره تماس"
 
 #: apps/intro/templates/intro/index.old.html:14
 msgid "Game Description"
@@ -335,7 +346,7 @@ msgstr "۱۰م بهمن"
 
 #: apps/intro/templates/intro/index.old.html:94
 msgid "Online phase registration starts"
-msgstr "شروع ثبت نام مرحله آنلاین"
+msgstr "شروع ثبت نام مرحله غیرحضوری(آنلاین)"
 
 #: apps/intro/templates/intro/index.old.html:97
 msgid "14th of Bahman - 2nd of Esfand"
