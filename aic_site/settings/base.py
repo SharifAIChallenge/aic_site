@@ -119,7 +119,7 @@ LANGUAGES = (
     ('en', _('English')),
     ('fa', _('Persian'))
 )
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'fa'
 
 TIME_ZONE = 'UTC'
 

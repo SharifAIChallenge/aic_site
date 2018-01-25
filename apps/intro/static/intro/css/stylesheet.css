@@ -1,72 +1,46 @@
-.section{
-    height: 105vh !important;
+.section {
+    height: auto;
     width: 100vw !important;
-    padding-top: 15vh;
+    padding-bottom: 50px !important;
 }
 
-.section.masthead {
-    background: url("/static/intro/image/header.jpg") no-repeat !important;
-    background-size: 100% 100% !important;
+.odd {
+    background-color: #F0F0F0;
 }
 
-@media screen and (max-width: 780px) {
-    .section {
-        height: auto !important;
-        display: block !important;
-        width: 100vw !important;
-    }
-
-    .masthead {
-        height: 100vh !important;
-        width: 100vw !important;
-        background: url("/static/intro/image/Mobile_header.jpg") no-repeat !important;
-        background-size: 100% 100% !important;
-    }
-
-    #prize-row {
-        margin-top: 50px;
-        padding-bottom: 50px;
-    }
+.even {
+    background-color: #ffffff;
 }
 
-.section.gameInfo {
-    background-color: #ffce4b;
-    padding-bottom: 50px;
+.odd.banner.section {
+    background-image: url("/static/intro/image/banner-background.png");
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: 15;
 }
 
-.section.gameInfo .column {
-    margin-top: 50px;
+.banner.text.image.bidi {
+    height: 100vh;
+    margin-right: 50%;
+    transform: translateX(50%);
+    z-index: 1;
 }
 
-.section.prizes {
-    background: linear-gradient(to right, #d7ddd7, white ,#d7ddd7);
+.banner.text.image {
+    height: 100vh;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
 }
 
-.section.prizes #prize-grid {
-    height: inherit;
+.section.header {
+    height: auto !important;
+    text-align: center;
+    z-index: -1;
 }
 
-.section.prizes #prize-grid .row{
-    padding-left: 30px;
-    padding-right: 30px;
-}
-
-.section.schedule {
-    background-color: #ffce4b;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-}
-
-.section.organization {
-    background: linear-gradient(to right, #d7ddd7, white ,#d7ddd7);
-    padding-bottom: 100px;
-}
-
-.section.organization .eight.wide.column {
-    margin-top: 3vh;
-}
-
-.counter {
-    font-size: 1.2em;
+#history-text {
+    /*overflow: auto;*/
 }
