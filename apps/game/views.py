@@ -2,7 +2,7 @@ import json
 
 import coreapi as coreapi
 from django.conf import settings
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse, Http404
 from django.shortcuts import render
 
 # Create your views here.
@@ -11,22 +11,19 @@ from apps.game import functions
 
 
 def report(request):
-    if not request.is_ajax():
+    if not request.content_type == 'application/json':
         return HttpResponseBadRequest()
     if request.method != 'POST':
         return HttpResponseBadRequest()
 
-    received_json_data = json.loads(request.body)
+    received_json_data = json.loads(request.body.decode("utf-8"))
 
     if request.META.get('HTTP_AUTHORIZATION') != settings.INFRA_AUTH_TOKEN:
         return HttpResponseBadRequest()
 
-    credentials = {settings.INFRA_IP: 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
-    transports = [coreapi.transports.HTTPTransport(credentials=credentials)]
-    client = coreapi.Client(transports=transports)
-    schema = client.get(settings.INFRA_API_SCHEMA_ADDRESS)
+    client, schema = functions.create_infra_client()
 
-    reports = request
+    reports = received_json_data
 
     for single_report in reports:
         if single_report['operation'] == 'compile':
@@ -40,7 +37,7 @@ def report(request):
                         logfile = functions.download_file(single_report['parameters']['code_log'])
                     except Exception as exception:
                         continue
-                    log = json.loads(logfile.read())
+                    log = json.load(logfile)
                     if len(log["errors"]) == 0:
                         submit.status = 'compiled'
                     else:
@@ -50,6 +47,7 @@ def report(request):
                 submit.status = 'failed'
                 submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
             submit.save()
+            return JsonResponse({'success': True})
         elif single_report['operation'] == 'execute':
             # try:
             #     game = Game.objects.get(run_id=single_report['id'])
@@ -76,4 +74,6 @@ def report(request):
             #     pass
             #     # run_game.delay(game.id)
             # game.save()
+            return Http404()
             pass
+        return HttpResponseServerError()
