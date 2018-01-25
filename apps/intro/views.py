@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.utils.translation import ugettext_lazy as _
 
 
 def index(request):
@@ -25,3 +24,7 @@ def index(request):
             }
         }
     })
+
+
+def faq(request):
+    return render(request, 'intro/faq.html')
