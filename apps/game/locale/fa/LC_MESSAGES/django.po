@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-25 01:42+0000\n"
+"POT-Creation-Date: 2018-01-26 04:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,66 +18,70 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/game/admin.py:87 apps/game/admin.py:107
+#: apps/game/admin.py:88 apps/game/admin.py:108
 msgid "no selected teams!"
 msgstr "تیمی انتخاب نشده است!"
 
-#: apps/game/admin.py:94 apps/game/admin.py:114
+#: apps/game/admin.py:95 apps/game/admin.py:115
 msgid "Only teams from one challenge!"
 msgstr ""
 
-#: apps/game/models/challenge.py:91
+#: apps/game/models/challenge.py:97
 msgid "C++"
 msgstr ""
 
-#: apps/game/models/challenge.py:92
+#: apps/game/models/challenge.py:98
 msgid "Java"
 msgstr ""
 
-#: apps/game/models/challenge.py:93
+#: apps/game/models/challenge.py:99
 msgid "Python 2"
 msgstr ""
 
-#: apps/game/models/challenge.py:94
+#: apps/game/models/challenge.py:100
 msgid "Python 3"
 msgstr ""
 
-#: apps/game/models/challenge.py:98
+#: apps/game/models/challenge.py:104
 msgid "Uploading"
 msgstr "در حال آپلود"
 
-#: apps/game/models/challenge.py:99
+#: apps/game/models/challenge.py:105
 msgid "Uploaded"
 msgstr "آپلود شده"
 
-#: apps/game/models/challenge.py:100
+#: apps/game/models/challenge.py:106
 msgid "Compiling"
 msgstr "در حال کامپایل"
 
-#: apps/game/models/challenge.py:101
+#: apps/game/models/challenge.py:107
 msgid "Compiled"
 msgstr "کامپایل شده"
 
-#: apps/game/models/competition.py:11
+#: apps/game/models/challenge.py:108
+msgid "Failed"
+msgstr ""
+
+#: apps/game/models/competition.py:12
 msgid "Elimination"
 msgstr "حذفی"
 
-#: apps/game/models/competition.py:12
+#: apps/game/models/competition.py:13
 msgid "Double Elimination"
 msgstr "دوحذفی"
 
-#: apps/game/models/competition.py:13
+#: apps/game/models/competition.py:14
 msgid "League"
 msgstr "لیگ"
 
-#: apps/game/models/competition.py:187
+#: apps/game/models/competition.py:259
 msgid "Winner"
 msgstr "برنده"
 
-#: apps/game/models/competition.py:188
+#: apps/game/models/competition.py:260
 msgid "Loser"
 msgstr "بازنده"
 
-#: apps/game/models/competition.py:189
+#: apps/game/models/competition.py:261
 msgid "Itself"
 msgstr "خودش"

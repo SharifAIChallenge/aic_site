@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-25 01:42+0000\n"
+"POT-Creation-Date: 2018-01-26 04:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/accounts/forms/team_forms.py:11
+msgid "Required,Choose a suitable name for your team"
+msgstr ""
+
+#: apps/accounts/forms/team_forms.py:24
+msgid "This name is used by another team!"
+msgstr ""
+
+#: apps/accounts/forms/team_forms.py:27
+msgid "You can't add same users to your team!"
+msgstr ""
+
+#: apps/accounts/forms/team_forms.py:31
+msgid "Some of users are already participated in the challenge!"
+msgstr ""
+
+#: apps/accounts/templates/accounts/create_team.html:47
+msgid "Create Team"
+msgstr ""
+
+#: apps/accounts/templates/accounts/login.html:7
+#: apps/accounts/templates/accounts/login.html:11
+msgid "Login"
+msgstr ""
 
 #: apps/accounts/templates/accounts/panel.html:11
 msgid "You are invited to the team "
@@ -86,4 +111,18 @@ msgstr "زبان:"
 
 #: apps/accounts/templates/accounts/panel.html:148
 msgid "Create New Team"
+msgstr ""
+
+#: apps/accounts/templates/accounts/signup.html:5
+#: apps/accounts/templates/accounts/update_profile.html:5
+msgid "Sign Up"
+msgstr ""
+
+#: apps/accounts/templates/accounts/signup.html:12
+#: apps/accounts/templates/accounts/update_profile.html:8
+msgid "Sign up"
+msgstr ""
+
+#: apps/accounts/templates/accounts/update_profile.html:12
+msgid "Update"
 msgstr ""

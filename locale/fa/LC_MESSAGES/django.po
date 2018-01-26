@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-25 01:42+0000\n"
+"POT-Creation-Date: 2018-01-26 04:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,17 +26,29 @@ msgstr "خانه"
 msgid "Blog"
 msgstr "بلاگ"
 
-#: aic_site/settings/base.py:119
+#: aic_site/context_processors.py:15
+msgid "FAQ"
+msgstr ""
+
+#: aic_site/context_processors.py:27
+msgid "Panel"
+msgstr ""
+
+#: aic_site/context_processors.py:30
+msgid "Create Team"
+msgstr ""
+
+#: aic_site/settings/base.py:122
 msgid "English"
 msgstr "انگلیسی"
 
-#: aic_site/settings/base.py:120
+#: aic_site/settings/base.py:123
 msgid "Persian"
 msgstr "فارسی"
 
 #: templates/base/footer.html:20
-msgid "Sharif AI Challenge 2018"
-msgstr "چالش هوش مصنوعی شریف - Sharif AI Challenge 2018"
+msgid "© All rights reserved for <a href=\\"
+msgstr ""
 
 #: templates/zinnia/_entry_detail_base.html:18
 msgid "Written by"
@@ -675,6 +687,9 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] ""
+
+#~ msgid "Sharif AI Challenge 2018"
+#~ msgstr "چالش هوش مصنوعی شریف - Sharif AI Challenge 2018"
 
 #~ msgid "Short url"
 #~ msgstr "آدرس کوتاه"
