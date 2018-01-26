@@ -37,6 +37,11 @@
     z-index: -1;
 }
 
-#history-text {
-    /*overflow: auto;*/
+#history-text, history-video {
+
+}
+
+#video {
+    -webkit-clip-path: inset(0 45px 0 45px);
+    clip-path: inset(0 45px 0 45px);
 }
