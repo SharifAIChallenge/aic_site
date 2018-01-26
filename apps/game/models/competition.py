@@ -411,6 +411,11 @@ class Match(models.Model):
             participant.update_depend()
 
 
+class Map(models.Model):
+    file = models.FileField(blank=False, null=False)
+    name = models.CharField(null=False, blank=False)
+
+
 class SingleMatch(models.Model):
     match = models.ForeignKey(Match, related_name='single_matches')
     done = models.BooleanField(default=False)
@@ -419,6 +424,7 @@ class SingleMatch(models.Model):
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
     part1_score = models.IntegerField(null=True, blank=True)
     part2_score = models.IntegerField(null=True, blank=True)
+    map = models.ForeignKey(Map)
 
     def update_scores_from_log(self):
         extracted_scores = self.extract_scores()
