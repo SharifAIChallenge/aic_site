@@ -89,10 +89,14 @@ This set of fonts are used in this project under the license: RC4QT
     padding-right: 30px;
     padding-left: 30px;
 
-    width: 100vw;
+    width: 100vw !important;
     overflow-x: auto;
     font-size: small;
     font-weight: bold !important;
+
+	-webkit-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: all 1s linear;
 }
 
 #navbar a {

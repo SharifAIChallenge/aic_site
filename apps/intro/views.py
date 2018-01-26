@@ -19,9 +19,9 @@ def index(request):
                 (_('Schedule'), {
                     'address': '#section-schedule'
                 }),
-                (_('Contact Us'), {
-                    'address': '#section-organizer'
-                })
+                # (_('Contact Us'), {
+                #     'address': '#section-organizer'
+                # })
             ]
         }
     })

@@ -16,7 +16,7 @@ function setAnimation(selector, animation, delay=0) {
 
 $(document).ready(function () {
     $('.section.header .ai.button').css('margin-top', '-50%');
-    setAnimation('.banner.text.image', 'scale in');
+    // setAnimation('.banner.text.image', 'scale in');
     setAnimation('#head-logo, #seven-million', 'tada', 1000);
     setAnimation('#champion-cup', 'scale in');
 });
