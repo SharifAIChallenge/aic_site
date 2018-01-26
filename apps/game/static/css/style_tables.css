@@ -1,10 +1,9 @@
 tr {
-    text-align: center;
+    /*text-align: center;*/
 }
 
 #table1, #table2, #table3, #table4 {
 
-    margin: 10px;
-    width: 400px;
-    display: inline-block;
+
+
 }
