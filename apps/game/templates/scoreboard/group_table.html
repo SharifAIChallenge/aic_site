@@ -7,36 +7,23 @@
 
 
 {% block container %}
-    <div id="table1">
-        <table class="ui red selectable unstackable table">
+
+        <table class="ui red selectable unstackable table" style="margin: 50px;">
             <thead>
             <tr>
-                <th>تیم</th>
-                <th>برد ها</th>
-                <th>امتیاز</th>
+                <th>{% trans 'تیم' %}</th>
+                <th>{% trans 'score' %}</th>
+                <th>{% trans 'wins' %}</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Apples</td>
-                <td>200</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
+            {% for scores in league_scoreboard %}
+                <tr>
+                    <td>{{ scores.1 }}</td>
+                    <td>{{ scores.2 }}</td>
+                    <td>{{ scores.3 }}</td>
+                </tr>
+            {% endfor %}
             </tbody>
             <tfoot>
             <tr>
@@ -46,127 +33,7 @@
             </tr>
             </tfoot>
         </table>
-    </div>
-    <div id="table2">
-        <table class="ui blue selectable unstackable table">
-            <thead>
-            <tr>
-                <th>تیم</th>
-                <th>برد ها</th>
-                <th>امتیاز</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Apples</td>
-                <td>200</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th></th>
-                <th>گروه 2</th>
-                <th></th>
-            </tr>
-            </tfoot>
-        </table>
-    </div>
-    <div id="table3">
-        <table class="ui green selectable unstackable table">
-            <thead>
-            <tr>
-                <th>تیم</th>
-                <th>برد ها</th>
-                <th>امتیاز</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Apples</td>
-                <td>200</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th></th>
-                <th>گروه 3</th>
-                <th></th>
-            </tr>
 
-            </tfoot>
-        </table>
-    </div>
-    <div id="table4">
-        <table class="ui yellow selectable unstackable table">
-            <thead>
-            <tr>
-                <th>تیم</th>
-                <th>برد ها</th>
-                <th>امتیاز</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Apples</td>
-                <td>200</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            <tr>
-                <td>Orange</td>
-                <td>310</td>
-                <td>120</td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <th></th>
-                <th>گروه 4</th>
-                <th></th>
-            </tr>
-            </tfoot>
-        </table>
     </div>
 
 {% endblock %}

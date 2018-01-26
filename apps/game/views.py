@@ -5,6 +5,8 @@ from django.conf import settings
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse, Http404
 
 # Create your views here.
+from django.shortcuts import render
+
 from apps.game.models import Competition, TeamParticipatesChallenge
 
 def render_scoreboard(request, competition_id):
@@ -14,12 +16,12 @@ def render_scoreboard(request, competition_id):
         return ValueError('There is not such Competition')
 
     if competition.type == 'double':
-        render_double_elimination(competition_id)
+        return render_double_elimination(request, competition_id)
     elif competition.type == 'league':
-        render_league(competition_id)
+        return render_league(request, competition_id)
 
 
-def render_double_elimination(competition_id):
+def render_double_elimination(request, competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
     win_matches = []
     lose_matches = []
@@ -50,13 +52,13 @@ def render_double_elimination(competition_id):
         start_round_index += 3 * cur_round_length
         cur_round_length = int(cur_round_length / 2)
 
-    return [win_matches, lose_matches]
-    # return render(request, 'double_score_board.html', {'win_matches': win_matches,
-    #                                                    'lose_matches': lose_matches}
-    #  
+    #return [win_matches, lose_matches]
+    return render(request, 'scoreboard/bracket.html', {'win_matches': win_matches,
+                                                       'lose_matches': lose_matches})
 
 
-def render_league(competition_id):
+
+def render_league(request, competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
     league_teams = []
     league_scoreboard = []
@@ -145,10 +147,11 @@ def render_league(competition_id):
                                 league_scoreboard[j][3] += 1
 
     league_scoreboard = sorted(league_scoreboard, key=itemgetter(2, 3, 1))
-    return [league_scoreboard, league_matches]
-    # return render(request, 'double_score_board.html', {'league_scoreboard': league_scoreboard,
-    #                                                    'league_matches': league_matches}
-    #
+    #return [league_scoreboard, league_matches]
+
+    return render(request, 'scoreboard/group_table.html', {'league_scoreboard': league_scoreboard,
+                                                       'league_matches': league_matches})
+
 
 
 from apps.game.models import TeamSubmission
