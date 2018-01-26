@@ -407,6 +407,8 @@ class Match(models.Model):
         score2 = None
         team2_name = None
         team1_name = None
+        team1_color = 'gray'
+        team2_color = 'gray'
 
         if self.part1 is None or self.part1.object_id is None:
             team1_name = 'None'
@@ -434,10 +436,16 @@ class Match(models.Model):
         if match_done:
             score1 = self.get_score_for_participant(self.part1)
             score2 = self.get_score_for_participant(self.part2)
+            if score1 > score2 :
+                team1_color = 'green'
+                team2_color = 'red'
+            else :
+                team1_color = 'red'
+                team2_color = 'green'
         else:
             score1 = -1
             score2 = -1
-        return [team1_name, team2_name, score1, score2]
+        return [team1_name, team2_name, score1, score2, team1_color, team2_color]
 
     def is_ready(self):
         return self.part1.is_ready() and self.part2.is_ready()
