@@ -7,4 +7,7 @@ class Game(models.Model):
 
 
     def __str__(self):
-        return self.name
+        if self.name is None:
+            return str(self.id)
+        else:
+            return self.name
