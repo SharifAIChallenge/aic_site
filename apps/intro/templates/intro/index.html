@@ -49,7 +49,7 @@
                     </a>-->
                 </div>
                 <div class="five wide column">
-                    <img style="height: 100%; width: 100%;" src="{% static 'images/logo.png' %}">
+                    <img id="head-logo" style="height: 100%; width: 100%;" src="{% static 'images/logo.png' %}">
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="ui stackable grid container" style="padding: 30px;">
             <div class="three column row">
-                <div class="five wide column" style="text-align: center;">
+                <div  id="second-cup" class="five wide column" style="text-align: center;">
 
                     <div class="image">
                         <img src="{% static 'intro/image/Cup2.png' %}">
@@ -75,18 +75,18 @@
                         {% trans '5 Million Tomans' %}
                     </div>
                 </div>
-                <div class="six wide column" style="text-align: center;">
+                <div id="champion-cup" class="six wide column" style="text-align: center;">
                     <div class="image">
                         <img src="{% static 'intro/image/Cup1.png' %}">
                     </div>
                     <div class="ui horizontal divider header">
                         {% trans 'Champion' %}
                     </div>
-                    <div class="ui large header">
+                    <div id="seven-million" class="ui large header">
                         {% trans '7 Million Tomans' %}
                     </div>
                 </div>
-                <div class="five wide column" style="text-align: center;">
+                <div id="third-cup" class="five wide column" style="text-align: center;">
                     <div class="image">
                         <img src="{% static 'intro/image/Cup3.png' %}">
                     </div>
@@ -276,5 +276,6 @@
 
 {% block footer_scripts %}
     {{ block.super }}
+    <script src="{% static 'js/jquery.inview.min.js' %}"></script>
     <script src="{% static 'intro/js/scripts.js' %}"></script>
 {% endblock %}

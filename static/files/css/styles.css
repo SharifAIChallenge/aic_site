@@ -89,7 +89,9 @@ This set of fonts are used in this project under the license: RC4QT
     padding-right: 30px;
     padding-left: 30px;
 
-    font-size: 1.2em;
+    width: 100vw;
+    overflow-x: auto;
+    font-size: small;
     font-weight: bold !important;
 }
 
@@ -143,4 +145,9 @@ This set of fonts are used in this project under the license: RC4QT
     background-color: transparent;
     color: #40444d !important;
     font-size: 1.3em;
+}
+
+#container {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
