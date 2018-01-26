@@ -8,7 +8,7 @@
 
 {% block body-class %}sitemap{% endblock body-class %}
 
-{% block content %}
+{% block container %}
 <h1>{% trans "Sitemap" %}</h1>
 
 <div class="entriesbycategories">
@@ -38,4 +38,4 @@
   <h2>{% trans "Monthly archives" %}</h2>
   {% get_archives_entries %}
 </div>
-{% endblock content %}
+{% endblock container %}
