@@ -6,23 +6,23 @@ def index(request):
     return render(request, 'intro/index.html', {
         'no_sidebar': True,
         'ai': {
-            'navbar': {
-                _('Introduction'): {
+            'navbar': [
+                (_('Introduction'), {
                     'address': '#section-intro'
-                },
-                _('Prize'): {
+                }),
+                (_('Prize'), {
                     'address': '#section-prizes'
-                },
-                _('History'): {
+                }),
+                (_('History'), {
                     'address': '#section-history'
-                },
-                _('Schedule'): {
+                }),
+                (_('Schedule'), {
                     'address': '#section-schedule'
-                },
-                _('Organizer'): {
+                }),
+                (_('Contact Us'), {
                     'address': '#section-organizer'
-                }
-            }
+                })
+            ]
         }
     })
 
