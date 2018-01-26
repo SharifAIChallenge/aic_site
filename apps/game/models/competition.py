@@ -424,7 +424,7 @@ class SingleMatch(models.Model):
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
     part1_score = models.IntegerField(null=True, blank=True)
     part2_score = models.IntegerField(null=True, blank=True)
-    # map = models.ForeignKey(Map)
+    map = models.ForeignKey(Map)
 
     def update_scores_from_log(self):
         extracted_scores = self.extract_scores()
