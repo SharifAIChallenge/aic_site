@@ -7,7 +7,7 @@ def index(request):
         'no_sidebar': True,
         'ai': {
             'navbar': {
-                _('Introduce'): {
+                _('Introduction'): {
                     'address': '#section-intro'
                 },
                 _('Prize'): {
