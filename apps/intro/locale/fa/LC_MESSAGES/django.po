@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-26 04:05+0000\n"
+"POT-Creation-Date: 2018-01-26 06:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,8 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: apps/intro/templates/intro/index.html:21 apps/intro/views.py:10
-#, fuzzy
-#| msgid "Introduce"
 msgid "Introduction"
 msgstr "معرفی رویداد"
 
@@ -118,9 +116,15 @@ msgid ""
 "\"Sharif AI Challenge\" soon became an annual event.\n"
 "                            </p>\n"
 "                            "
-msgstr "<p><span class=\"red\">هشت سال پیش</span>"
-"                            پیش احساس نیاز به برگزاری یک مسابقه دانشجویی جذاب، پرهیجان در دانشکده کامپیوتر  نقطه سرآغازی برای مسابقات \"نبرد هوش مصنوعی شریف\" در سطح دانشکده بود که به همت انجمن علمی این دانشکده حیات خود را آغاز کرد. دانشجویان نیز از این فرصت پیش آمده در جهت سنجش و تقویت مهارت های برنامه نویسی استفاده کردند و با استقبال چشمگیر دانشجویان، \" نبرد هوش مصنوعی شریف\" به رویدادی سالیانه تبدیل شد."
-"                            </p>"
+msgstr ""
+"\n"
+"<p><span class=\"red\">هشت سال پیش</span>                            پیش "
+"احساس نیاز به برگزاری یک مسابقه دانشجویی جذاب، پرهیجان در دانشکده کامپیوتر  "
+"نقطه سرآغازی برای مسابقات \"نبرد هوش مصنوعی شریف\" در سطح دانشکده بود که به "
+"همت انجمن علمی این دانشکده حیات خود را آغاز کرد. دانشجویان نیز از این فرصت "
+"پیش آمده در جهت سنجش و تقویت مهارت های برنامه نویسی استفاده کردند و با "
+"استقبال چشمگیر دانشجویان، \" نبرد هوش مصنوعی شریف\" به رویدادی سالیانه تبدیل "
+"شد.                            </p>"
 
 #: apps/intro/templates/intro/index.html:141
 msgid "4th to 6th Challenge"
@@ -155,15 +159,20 @@ msgid ""
 "\n"
 "                            </p>\n"
 "                            "
-msgstr "دوره چهارم مسابقه با عنوان «نبرد به زبان جاوا» معرفی شد و به دلیل اعتبار و سطح مسابقه، این رویداد از مرحله ی دانشگاهی فراتر رفت و تیم هایی از دانشگاه های دیگر استان تهران در آن شرکت کردند. دوره پنجم هم به همین نحو برنامه ریزی و برگزار شد که طی تمامی این دوران کیفیت، سطح و روند برگزاری"
-"\"نبرد هوش مصنوعی شریف \""
-"به صورت چشم گیری پیشرفت داشت. با تلاش انجمن علمی دانشکده مهندسی کامپیوتر و تبلیغات گسترده نهایتا این رویداد در دوره ششم خود در سطح ملی برنامه ریزی شد و به مرحله اجرا رسید تا با حضور تیمهایی از دانشگاه های تهران و خارج از تهران این مسابقه رنگ و بویی ملی به خود بگیرد. "
+msgstr ""
+"\n"
+"دوره چهارم مسابقه با عنوان «نبرد به زبان جاوا» معرفی شد و به دلیل اعتبار و "
+"سطح مسابقه، این رویداد از مرحله ی دانشگاهی فراتر رفت و تیم هایی از دانشگاه "
+"های دیگر استان تهران در آن شرکت کردند. دوره پنجم هم به همین نحو برنامه ریزی "
+"و برگزار شد که طی تمامی این دوران کیفیت، سطح و روند برگزاری\"نبرد هوش مصنوعی "
+"شریف \"به صورت چشم گیری پیشرفت داشت. با تلاش انجمن علمی دانشکده مهندسی "
+"کامپیوتر و تبلیغات گسترده نهایتا این رویداد در دوره ششم خود در سطح ملی "
+"برنامه ریزی شد و به مرحله اجرا رسید تا با حضور تیمهایی از دانشگاه های تهران "
+"و خارج از تهران این مسابقه رنگ و بویی ملی به خود بگیرد. "
 
 #: apps/intro/templates/intro/index.html:164
-#, fuzzy
-#| msgid "7th Year"
 msgid "7th year"
-msgstr "سال ۷م"
+msgstr "سال ۷ام"
 
 #: apps/intro/templates/intro/index.html:168
 msgid "Supporting C++ and Python"
@@ -190,20 +199,19 @@ msgid ""
 "\">here</a>.\n"
 "                            </p>\n"
 "                            "
-msgstr "مسابقه ی ملی"
-"\"نبرد هوش مصنوعی شریف\""
-" در هفتمین دوره‌ی خود همچنان به مسیر پیشرفت خود به خوبی ادامه داد و در این زمان، به همت تیم فنی، زبان های C++ و Python هم در مسابقه پشتیبانی شدند. در این دوره از"
-"\"نبرد هوش مصنوعی شریف\""
-"استقبال خوبی به عمل آمد و قریب به 158 تیم از 28 دانشگاه کشور در مرحله غیر حضوری شرکت کردند. مستند این مسابقه از طریق"
- "<a style=\"color:blue\" href=\"http://bayanbox.ir/view/8601289253364961637/JavaChallenge2015-fa.pdf\">"
- "این لینک"
- "</a>"
-"قابل مشاهده است."
+msgstr ""
+"\n"
+"مسابقه ی ملی\"نبرد هوش مصنوعی شریف\" در هفتمین دوره‌ی خود همچنان به مسیر "
+"پیشرفت خود به خوبی ادامه داد و در این زمان، به همت تیم فنی، زبان های C++ و "
+"Python هم در مسابقه پشتیبانی شدند. در این دوره از\"نبرد هوش مصنوعی شریف"
+"\"استقبال خوبی به عمل آمد و قریب به 158 تیم از 28 دانشگاه کشور در مرحله غیر "
+"حضوری شرکت کردند. مستند این مسابقه از طریق<a style=\"color:blue\" href="
+"\"http://bayanbox.ir/view/8601289253364961637/JavaChallenge2015-fa.pdf\">این "
+"لینک</a>قابل مشاهده است."
+
 #: apps/intro/templates/intro/index.html:185
-#, fuzzy
-#| msgid "First 3 Years"
 msgid "Last 2 Years"
-msgstr "۳ سال اخیر"
+msgstr "2 سال اخیر"
 
 #: apps/intro/templates/intro/index.html:189
 msgid "Sharif AI Challenge, a New Title"
@@ -219,7 +227,10 @@ msgid ""
 "Challenge\".\n"
 "                            </p>\n"
 "                            "
-msgstr " با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی، دوره‌ی هشتم با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. "
+msgstr ""
+"\n"
+" با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه "
+"نویسی، دوره‌ی هشتم با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. "
 
 #: apps/intro/templates/intro/index.html:206 apps/intro/views.py:19
 msgid "Schedule"
@@ -238,27 +249,23 @@ msgid "Feb3 - Feb21"
 msgstr "۱۴ بهمن - ۲ اسفند"
 
 #: apps/intro/templates/intro/index.html:226
-#, fuzzy
-#| msgid "Online Phaze"
 msgid "Online Phase"
-msgstr "مرحله آنلاین"
+msgstr "مرحله غیر‌حضوری (آنلاین)"
 
 #: apps/intro/templates/intro/index.html:231
 msgid "March7 - March8"
 msgstr "۱۶ و ۱۷ اسفند"
 
 #: apps/intro/templates/intro/index.html:234
-#, fuzzy
-#| msgid "Sharif On-Site Phaze"
 msgid "Sharif On-Site Phase"
 msgstr "مرحله حضوری در دانشگاه شریف"
 
-#: apps/intro/templates/intro/index.html:245
+#: apps/intro/templates/intro/index.html:245 apps/intro/views.py:22
 msgid "Contact Us"
 msgstr "تماس با ما"
 
 #: apps/intro/templates/intro/index.html:250
-#: apps/intro/templates/intro/index.old.html:112 apps/intro/views.py:22
+#: apps/intro/templates/intro/index.old.html:112
 msgid "Organizer"
 msgstr "برگزارکننده"
 
@@ -283,7 +290,9 @@ msgid ""
 "Technology<br>\n"
 "                        Azadi St, Tehran\n"
 "                    "
-msgstr "تهران،خیابان آزادی،دانشگاه صنعتی شریف،دانشکده مهندسی کامپیوتر"
+msgstr ""
+"\n"
+"تهران،خیابان آزادی،دانشگاه صنعتی شریف،دانشکده مهندسی کامپیوتر"
 
 #: apps/intro/templates/intro/index.html:268
 msgid "Contact Info"

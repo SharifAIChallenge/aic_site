@@ -6,7 +6,7 @@
         <span style="cursor: pointer;" class="ui item" onclick="$('.ui.sidebar').sidebar('toggle');"><i
                 class="sidebar icon"></i></span>
     {% endif %}
-    {% for title, link in ai.navbar.items %}
+    {% for title, link in ai.navbar %}
         {% if not link.dropdown %}
             <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>
         {% else %}
