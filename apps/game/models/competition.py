@@ -413,7 +413,13 @@ class Match(models.Model):
 
 class Map(models.Model):
     file = models.FileField(blank=False, null=False)
-    name = models.CharField(max_length=128,null=False, blank=False)
+    name = models.CharField(max_length=128, null=False, blank=False)
+    token = models.CharField(max_length=256, null=True, blank=False)
+
+    def save(self, *args, **kwargs):
+        from apps.game import functions
+        self.token = functions.upload_file(self.file)
+        super(Map, self).save(args, kwargs)
 
 
 class SingleMatch(models.Model):
