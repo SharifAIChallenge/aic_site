@@ -155,7 +155,8 @@ admin.site.register(UserAcceptsTeamInChallenge)
 
 
 class MapAdmin(admin.ModelAdmin):
-    fields = ['name', 'file']
+    fields = ['name', 'file', 'token']
+    readonly_fields = ['token']
 
 
 admin.site.register(Map, MapAdmin)

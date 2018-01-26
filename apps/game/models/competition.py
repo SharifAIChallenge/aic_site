@@ -421,6 +421,9 @@ class Map(models.Model):
         self.token = functions.upload_file(self.file)
         super(Map, self).save(args, kwargs)
 
+    def __str__(self):
+        return self.name
+
 
 class SingleMatch(models.Model):
     match = models.ForeignKey(Match, related_name='single_matches')
