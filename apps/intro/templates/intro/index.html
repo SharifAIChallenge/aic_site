@@ -18,7 +18,7 @@
     <div class="even section" id="section-intro">
         <div class="ui section header">
             <a class="ui big ai button" href="#section-intro">
-                {% trans 'Introduce' %}
+                {% trans 'Introduction' %}
             </a>
         </div>
         <div class="ui stackable grid container">
@@ -71,20 +71,20 @@
                     <div class="ui horizontal divider header">
                         {% trans 'Second Place' %}
                     </div>
-                    <h5 class="ui header">
+                    <div class="ui large header">
                         {% trans '5 Million Tomans' %}
-                    </h5>
+                    </div>
                 </div>
                 <div class="six wide column" style="text-align: center;">
                     <div class="image">
                         <img src="{% static 'intro/image/Cup1.png' %}">
                     </div>
                     <div class="ui horizontal divider header">
-                        {% trans 'First Place' %}
+                        {% trans 'Champion' %}
                     </div>
-                    <h5 class="ui header">
+                    <div class="ui large header">
                         {% trans '7 Million Tomans' %}
-                    </h5>
+                    </div>
                 </div>
                 <div class="five wide column" style="text-align: center;">
                     <div class="image">
@@ -93,9 +93,9 @@
                     <div class="ui horizontal divider header">
                         {% trans 'Third Place' %}
                     </div>
-                    <h5 class="ui header">
+                    <div class="ui large header">
                         {% trans '3 Million Tomans' %}
-                    </h5>
+                    </div>
                 </div>
             </div>
         </div>
@@ -123,58 +123,76 @@
                         </div>
                         <div class="content">
                             <div class="ui header">
-                                برگزاری مسابقه به صورت درون دانشگاهی
+                                {% trans 'In the University' %}
                             </div>
-                            هشت سال پیش پیش احساس نیاز به برگزاری یک مسابقه دانشجویی جذاب، پرهیجان در دانشکده کامپیوتر
-                            نقطه سرآغازی برای مسابقات "نبرد هوش مصنوعی شریف" در سطح دانشکده بود که به همت انجمن علمی این
-                            دانشکده حیات خود را آغاز کرد. دانشجویان نیز از این فرصت پیش آمده در جهت سنجش و تقویت مهارت
-                            های برنامه نویسی استفاده کردند و با استقبال چشمگیر دانشجویان، " نبرد هوش مصنوعی شریف" به
-                            رویدادی سالیانه تبدیل شد.
+                            {% blocktrans %}
+                            <p><span class="red">8 years ago, </span>
+                                the need for an exciting and challenging inter-university competition in the CE department
+                                was a starting point for the "Sharif AI Challenge". This later became possible thanks to the
+                                efforts of the Student's Scientific Chapter(SSC) of this department. The students took advantage
+                                of this opportunity in order to evaluate their skills in programming and improve upon them.
+                                Participation was so impressive that the "Sharif AI Challenge" soon became an annual event.
+                            </p>
+                            {% endblocktrans %}
                         </div>
 
                         <div class="title">
                             <i class="dropdown icon"></i>
-                            {% trans '4th - 6th Years' %}
+                            {% trans '4th to 6th Challenge' %}
                         </div>
                         <div class="content">
                             <div class="ui header">
-                                با حضور تیم هایی از دانشگاه های دیگر شهر تهران
+                                {% trans 'With Teams From Others Universities of Tehran' %}
                             </div>
-                            دوره چهارم مسابقه با عنوان «نبرد به زبان جاوا» معرفی شد و به دلیل اعتبار و سطح مسابقه، این
-                            رویداد از مرحله ی دانشگاهی فراتر رفت و تیم هایی از دانشگاه های دیگر استان تهران در آن شرکت
-                            کردند. دوره پنجم هم به همین نحو برنامه ریزی و برگزار شد که طی تمامی این دوران کیفیت، سطح و
-                            روند برگزاری " نبرد هوش مصنوعی شریف" به صورت چشم گیری پیشرفت داشت. با تلاش انجمن علمی
-                            دانشکده مهندسی کامپیوتر و تبلیغات گسترده نهایتا این رویداد در دوره ششم خود در سطح ملی برنامه
-                            ریزی شد و به مرحله اجرا رسید تا با حضور تیمهایی از دانشگاه های تهران و خارج از تهران این
-                            مسابقه رنگ و بویی ملی به خود بگیرد.
+                            {% blocktrans %}
+                            <p>
+
+                                The <span class="red">4<sup>th</sup> year </span> of the competition was introduced
+                                as the "Java Challenge".
+                                Due to its high level and credibility, the event went further than collegiate
+                                level and witnessed the participation of other teams from Tehran. The <span class="red">5<sup>th</sup> tournament</span> was
+                                organized and held in a similar way. During all this time, the level and quality of
+                                the "AI Challenge" was immensely improved. With the efforts of the Student's Scientific
+                                Chapter of the CE department and widespread advertisement, the <span class="red">6<sup>th</sup> year </span> was finally organized and held nationally. The participation of teams from Tehran and other provinces brought upon a new spirit of nationality to the competition.
+
+                            </p>
+                            {% endblocktrans %}
                         </div>
 
                         <div class="title">
                             <i class="dropdown icon"></i>
-                            {% trans '7th Year' %}
+                            {% trans '7th year' %}
                         </div>
                         <div class="content">
                             <div class="ui header">
-                                پشتیبانی از زبان های برنامه نویسی ++C و پایتون
+                                {% trans 'Supporting C++ and Python' %}
                             </div>
-                            مسابقه ملی "نبرد هوش مصنوعی شریف" در هفتمین دوره‌ی خود همچنان به مسیر پیشرفت خود به خوبی
-                            ادامه داد و در این زمان، به همت تیم فنی، زبان های C++ و Python هم در مسابقه پشتیبانی شدند.
-                            در این دوره از "نبرد هوش مصنوعی شریف" استقبال خوبی به عمل آمد و قریب به 158 تیم از 28
-                            دانشگاه کشور در مرحله غیر حضوری شرکت کردند. مستند این مسابقه از طریق این لینک قابل مشاهده
-                            است.
+                            {% blocktrans %}
+                            <p>"Sharif AI Challenge" national competition continuously advanced and in its <span class="red">7<sup>th</sup> year </span>,
+                                thanks to the efforts of the technical team, C++ and Python were added to the competition's
+                                supported languages as well. This round of the "Sharif AI Challenge" was met with
+                                good reception and approximately 158 teams from 28 universities participated in
+                                the selection phase.
+                                <br>
+                                The Documentation of this competition (Java Challenge 2015) is available
+                                <a href="http://bayanbox.ir/view/992459135507989458/JavaChallenge2015-en.pdf" style="color: blue">here</a>.
+                            </p>
+                            {% endblocktrans %}
                         </div>
 
-                        <div class="title">
+                        <div class="title active">
                             <i class="dropdown icon"></i>
-                            {% trans '8th Year' %}
+                            {% trans 'Last 2 Years' %}
                         </div>
-                        <div class="content">
-                            <div class="ui header">
-                                برگزاری مسابقه در سطح بین المللی
+                        <div class="content active">
+                            <div class="ui active header">
+                                {% trans 'Sharif AI Challenge, a New Title' %}
                             </div>
-                            با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی، دوره‌ی
-                            هشتم با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. از طرفی با پیشرفت چشمگیر آن در دوره ی
-                            اخیر این رقابت دانشجویی به صورت بین المللی درآمد.
+                            {% blocktrans %}
+                            <p>Since the added benefit of supporting other languages in the competition
+                                was a success, the <span class="red">8<sup>th</sup> tournament</span> was held under the name "Sharif AI Challenge".
+                            </p>
+                            {% endblocktrans %}
                         </div>
                     </div>
                 </div>
@@ -205,7 +223,7 @@
                         {% trans 'Feb3 - Feb21' %}
                     </td>
                     <td>
-                        {% trans 'Online Phaze' %}
+                        {% trans 'Online Phase' %}
                     </td>
                 </tr>
                 <tr>
@@ -213,7 +231,7 @@
                         {% trans 'March7 - March8' %}
                     </td>
                     <td>
-                        {% trans 'Sharif On-Site Phaze' %}
+                        {% trans 'Sharif On-Site Phase' %}
                     </td>
                 </tr>
                 </tbody>
@@ -224,21 +242,32 @@
     <div class="even section" id="section-organizer">
         <div class="ui section header">
             <a class="ui big ai button" href="#section-organizer">
-                {% trans 'Organizer' %}
+                {% trans 'Contact Us' %}
             </a>
         </div>
         <div class="ui center aligned stackable grid">
             <div class="eight wide column">
                 <h1 class="ui header">{% trans 'Organizer' %}</h1>
-                <img class="ui centered medium image" src="{% static 'intro/image/SSC.png' %}" alt="SSC Image">
+                <a href="http://ssc.ce.sharif.edu/"><img class="ui centered medium image" src="{% static 'intro/image/SSC.png' %}" alt="SSC Image"></a>
                 <div class="ui horizontal divider"></div>
                 <h1 class="ui header">{% trans 'Sponsors' %}</h1>
-                <img class="ui centered medium image" src="{% static 'intro/image/sponsors.png' %}">
+                <a href="https://cafebazaar.ir/"><img class="ui centered medium image" src="{% static 'intro/image/sponsors.png' %}"></a>
             </div>
             <div class="eight wide column">
                 <h1 class="ui header">{% trans 'Location' %}</h1>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9179536820648!2d51.34940431525942!3d35.70363658018915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a8bc1a7e63%3A0x61a5a909b878501!2sSharif+University+of+Technology!5e0!3m2!1sen!2sus!4v1516554126873"
-                        width="80%" height="80%" frameborder="0" style="border: 0"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9627430847677!2d51.34888151486223!3d35.702534430189345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a61f30034b%3A0xe59caa3900cd3c54!2sTehran+Province%2C+Tehran%2C+Azadi+St%2C+Dept.+of+Computer+Eng.%2C+Iran!5e0!3m2!1sen!2s!4v1516927405125"
+                         frameborder="0" style="border: 0"></iframe>
+                <p>
+                    {% trans 'Address: ' %}
+                    {% blocktrans %}
+                        Dept. of Computer Eng., Sharif University of Technology<br>
+                        Azadi St, Tehran
+                    {% endblocktrans %}<br>
+                </p>
+                <div class="ui horizontal divider"></div>
+                <h1 class="ui header">{% trans 'Contact Info' %}</h1>
+                <b><b>{% trans 'Email: ' %}<a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
+                <br><b>{% trans 'Phone: ' %}021-6616-5781</b></p>
             </div>
         </div>
     </div>
