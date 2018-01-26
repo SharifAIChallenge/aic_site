@@ -51,7 +51,8 @@ def render_double_elimination(request, competition_id):
             )
         start_round_index += 3 * cur_round_length
         cur_round_length = int(cur_round_length / 2)
-
+    print(win_matches)
+    print(lose_matches)
     #return [win_matches, lose_matches]
     return render(request, 'scoreboard/bracket.html', {'win_matches': win_matches,
                                                        'lose_matches': lose_matches})
@@ -68,6 +69,8 @@ def render_league(request, competition_id):
     # print(len(matches))
     # print(matches)
     while True:
+        if cnt >= len(matches):
+            break
         tmp_league_size = league_size
         if matches[cnt].part1.object_id is not None:
             team1 = TeamParticipatesChallenge.objects.filter(
