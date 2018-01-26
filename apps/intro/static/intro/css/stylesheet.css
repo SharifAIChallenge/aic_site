@@ -23,15 +23,11 @@
 
 .banner.text.image.bidi {
     height: 100vh;
-    margin-right: 50%;
-    transform: translateX(50%);
     z-index: 1;
 }
 
 .banner.text.image {
     height: 100vh;
-    margin-left: 50%;
-    transform: translateX(-50%);
     z-index: 1;
 }
 

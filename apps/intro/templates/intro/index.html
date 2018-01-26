@@ -10,7 +10,7 @@
 
 {% block container %}
 
-    <div class="odd banner section">
+    <div class="odd banner section" align="center">
         <img class="banner text image{% if LANGUAGE_BIDI %} bidi{% endif %}"
              src="{% static 'intro/image/banner-text.png' %}">
     </div>
@@ -266,8 +266,8 @@
                 </p>
                 <div class="ui horizontal divider"></div>
                 <h1 class="ui header">{% trans 'Contact Info' %}</h1>
-                <b><b>{% trans 'Email: ' %}<a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
-                <br><b>{% trans 'Phone: ' %}021-6616-5781</b></p>
+                <b>{% trans 'Email: ' %}<a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
+                <br><b>{% trans 'Phone: ' %}<span style="direction: ltr;">021-6616-5781</span></b></p>
             </div>
         </div>
     </div>
