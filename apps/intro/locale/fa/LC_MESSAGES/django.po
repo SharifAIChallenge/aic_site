@@ -281,7 +281,7 @@ msgstr "مکان"
 
 #: apps/intro/templates/intro/index.html:261
 msgid "Address: "
-msgstr "نشانی"
+msgstr "نشانی:"
 
 #: apps/intro/templates/intro/index.html:262
 msgid ""
@@ -300,11 +300,11 @@ msgstr "اطلاعات تماس"
 
 #: apps/intro/templates/intro/index.html:269
 msgid "Email: "
-msgstr "ایمیل"
+msgstr "ایمیل:"
 
 #: apps/intro/templates/intro/index.html:270
 msgid "Phone: "
-msgstr "شماره تماس"
+msgstr "شماره تماس:"
 
 #: apps/intro/templates/intro/index.old.html:14
 msgid "Game Description"
