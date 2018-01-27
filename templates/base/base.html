@@ -9,7 +9,7 @@
     <meta name="description"
           content="{% block head_description %}{% endblock %}">
     <meta content="text/html" charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="fontiran.com:license" content="RC4QT">
     <link rel="stylesheet" href="{% if LANGUAGE_BIDI %}{% static 'semantic/semantic.rtl.min.css' %}{% else %}{% static 'semantic/semantic.min.css' %}{% endif %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -21,7 +21,12 @@
 </head>
 <body {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
     {% block body %}
+    <div id="main">
         {% block header %}
+            {% include 'base/header.html' %}
+        {% endblock %}
+
+        {% block navbar %}
             {% include 'base/navbar.html' %}
         {% endblock %}
 
@@ -30,7 +35,7 @@
         {% endblock %}
 
         {% block content %}
-            <div class="ui container">
+            <div class="ui container" style="margin-top: -25px !important;">
                 {% block container %}
 
                 {% endblock %}
@@ -41,7 +46,7 @@
             {% include 'base/footer.html' %}
         {% endblock %}
     {% endblock %}
-
+    </div>
     <script src="{% static 'js/footer_scripts.js' %}"></script>
     {% block footer_scripts %}{% endblock %}
 </body>

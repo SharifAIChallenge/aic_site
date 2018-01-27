@@ -2,16 +2,8 @@
 
 {% block sidebar %}{% endblock %}
 
-
-{% block header %}
-    {% with no_sidebar=True %}
-    {% include 'base/navbar.html' %}
-    {% endwith %}
-{% endblock %}
-
-
 {% block content %}
-    <div class="ui fluid container" style="margin:0px !important;">
+    <div id="container" class="ui fluid container">
         {% block container %}
         {% endblock %}
     </div>

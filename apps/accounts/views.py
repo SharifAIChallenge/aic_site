@@ -1,20 +1,24 @@
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import generic
+
+from apps.accounts.forms.team_forms import CreateTeamForm
 # Create your views here.
 from django.views.generic import FormView, RedirectView
 
 from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
 from apps.accounts.forms.panel import SubmissionForm
 from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
-from apps.game.models import TeamParticipatesChallenge, TeamSubmission
+from apps.game.models import TeamSubmission
 import json
+from apps.game.models.challenge import TeamParticipatesChallenge, UserAcceptsTeamInChallenge
+from apps.game.models.challenge import Challenge
 
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
@@ -124,3 +128,21 @@ def accept_participation(request, participation_id):
 def reject_participation(request, participation_id):
     TeamParticipatesChallenge.objects.get(id=participation_id).delete()
     return redirect('accounts:panel')
+
+
+@login_required()
+def create_team(request, challenge_id):
+    if request.method == 'POST':
+        form = CreateTeamForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:success_create_team')
+    else:
+        form = CreateTeamForm(user=request.user, initial={'challenge_id': challenge_id})
+    return render(request, 'accounts/create_team.html', {'form': form
+        , 'users': User.objects.exclude(username__exact=request.user.username)
+        , 'username': request.user.username})
+
+
+def success_create_team(request):
+    return render(request, 'accounts/success_create_team.html')
