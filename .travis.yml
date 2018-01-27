@@ -96,7 +96,8 @@ jobs:
     - mkdir build_test
     - rsync -r --exclude='.*' --exclude='build_test' --exclude='deploy' ./ build_test
     - cd build_test/config/nginx/sites-available
-    - cp aichallenge.sharif.edu.test ../sites-enabled
+    - mkdir -p ../sites-enabled
+    - cp aichallenge.sharif.edu.test ../sites-enabled/aichallenge.sharif.edu.test
     - cd ../../../..
     - cd deploy
     - cp deploy_test.sh Dockerfile ../build_test
@@ -107,18 +108,18 @@ jobs:
       "aic_site.settings.production_test")/g' manage.py
     - cd ..
     - cd build_test/apps/
-    - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
-    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
-      --totals
+#    - find . -iname '*.png' -print0 | xargs -0 optipng -o7 -preserve
+#    - find . -iname '*.jpg' -print0 | xargs -0 jpegoptim --max=90 --strip-all --preserve
+#      --totals
     - cd ../..
     - tar -czf deploy_test_package.tgz build_test
     - export SSHPASS=$DEPLOY_PASS
     - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
       deploy_test_package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - rm -r build_test deploy_test_package.tgz
-    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-      deploy/deploy_test.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST
-      chmod +x $DEPLOY_PATH/deploy_test.sh
-    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-      $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
+#    - rm -r build_test deploy_test_package.tgz
+#    - sshpass -e rsync --progress -avzhe 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+#      deploy/deploy_test.sh $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+#    - sshpass -e ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $DEPLOY_USER@$DEPLOY_HOST
+#      chmod +x $DEPLOY_PATH/deploy_test.sh
+#    - sshpass -e ssh -t -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+#      $DEPLOY_USER@$DEPLOY_HOST sudo $DEPLOY_PATH/deploy_test.sh
