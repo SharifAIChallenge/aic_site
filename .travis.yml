@@ -13,7 +13,7 @@ stages:
   if: type = push AND (branch IN (travis_integration, production-test))
 - test
 - name: deploy_production
-  if: type = push AND (branch IN (master, travis_integration))
+  if: type = push AND (branch IN (master))
 jobs:
   include:
   - stage: test
@@ -95,8 +95,9 @@ jobs:
     script:
     - openssl aes-256-cbc -K $encrypted_2aab729caa64_key -iv $encrypted_2aab729caa64_iv -in id_rsa.enc -out id_rsa -d
     - eval "$(ssh-agent -s)"
-    - chmod 600 /tmp/deploy_rsa
-    - ssh-add /tmp/deploy_rsa
+    - chmod 600 id_rsa
+    - ssh-add id_rsa
+    - ssh ssc@81.31.168.207 'echo hello'
     - mkdir build_test
     - rsync -r --exclude='.*' --exclude='build_test' --exclude='deploy' ./ build_test
     - cd build_test/config/nginx/sites-available
