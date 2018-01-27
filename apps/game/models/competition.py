@@ -50,20 +50,15 @@ class Competition(models.Model):
                                                                                  challenge=self.challenge)
                     second_participant = TeamParticipatesChallenge.objects.filter(team=second_part[i],
                                                                                   challenge=self.challenge)
-                    first_teamsubmission = None
-                    second_teamsubmission = None
                     if len(first_participant) == 0:
                         first_participant = None
-                        first_teamsubmission = TeamSubmission.objects.create(team=bye_team)
                     else:
                         first_participant = first_participant[0]
-                        first_teamsubmission = TeamSubmission.objects.create(team=first_participant)
                     if len(second_participant) == 0:
                         second_participant = None
-                        second_teamsubmission = TeamSubmission.objects.create(team=bye_team)
                     else:
                         second_participant = second_participant[0]
-                        second_teamsubmission = TeamSubmission.objects.create(team=second_participant)
+
                     if round % 2 == 1:
                         temp = second_participant
                         second_participant = first_participant
@@ -72,15 +67,11 @@ class Competition(models.Model):
                         competition=self,
                         part1=Participant.objects.create(
                             depend=first_participant,
-                            depend_method='itself',
-                            submission=first_teamsubmission
-
+                            depend_method='itself'
                         ),
                         part2=Participant.objects.create(
                             depend=second_participant,
-                            depend_method='itself',
-                            submission=second_teamsubmission
-
+                            depend_method='itself'
                         )
                     )
                     matches.append(new_match)
@@ -138,13 +129,11 @@ class Competition(models.Model):
                 competition=self,
                 part1=Participant.objects.create(
                     depend=first_participant,
-                    depend_method='itself',
-                    submission=TeamSubmission.objects.create(team=first_participant)
+                    depend_method='itself'
                 ),
                 part2=Participant.objects.create(
                     depend=second_participant,
-                    depend_method='itself',
-                    submission=TeamSubmission.objects.create(team=second_participant)
+                    depend_method='itself'
                 )
             )
             matches.append(new_match)
@@ -155,13 +144,11 @@ class Competition(models.Model):
                 competition=self,
                 part1=Participant.objects.create(
                     depend=first_participant,
-                    depend_method='itself',
-                    submission=TeamSubmission.objects.create(team=first_participant)
+                    depend_method='itself'
                 ),
                 part2=Participant.objects.create(
                     depend=second_participant,
-                    depend_method='itself',
-                    submission=TeamSubmission.objects.create(team=second_participant)
+                    depend_method='itself'
                 )
             )
             matches.append(new_match)
@@ -175,32 +162,24 @@ class Competition(models.Model):
             second_participant = TeamParticipatesChallenge.objects.filter(team=teams[2 * i + 1],
                                                                           challenge=self.challenge)
 
-            first_teamsubmission = None
-            second_teamsubmission = None
             if len(first_participant) == 0:
                 first_participant = None
-                first_teamsubmission = TeamSubmission.objects.create(team=bye_team)
             else:
                 first_participant = first_participant[0]
-                first_teamsubmission = TeamSubmission.objects.create(team=first_participant)
             if len(second_participant) == 0:
                 second_participant = None
-                second_teamsubmission = TeamSubmission.objects.create(team=bye_team)
             else:
                 second_participant = second_participant[0]
-                second_teamsubmission = TeamSubmission.objects.create(team=second_participant)
 
             new_match = Match.objects.create(
                 competition=self,
                 part1=Participant.objects.create(
                     depend=first_participant,
-                    depend_method='itself',
-                    submission=first_teamsubmission
+                    depend_method='itself'
                 ),
                 part2=Participant.objects.create(
                     depend=second_participant,
-                    depend_method='itself',
-                    submission=second_teamsubmission
+                    depend_method='itself'
                 )
             )
             matches.append(new_match)
