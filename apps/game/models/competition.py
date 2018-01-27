@@ -75,8 +75,8 @@ class Competition(models.Model):
                         )
                     )
                     matches.append(new_match)
-                    for i in range(3):
-                        SingleMatch.objects.create(match=new_match)
+                    for  map in self.maps.all():
+                        SingleMatch.objects.create(match=new_match, map=map)
 
                 if len(teams) > 2:
                     tmp_team = second_part[0]
@@ -137,8 +137,8 @@ class Competition(models.Model):
                 )
             )
             matches.append(new_match)
-            for i in range(3):
-                SingleMatch.objects.create(match=new_match)
+            for map in self.maps.all():
+                SingleMatch.objects.create(match=new_match, map=map)
 
             new_match = Match.objects.create(
                 competition=self,
@@ -152,8 +152,8 @@ class Competition(models.Model):
                 )
             )
             matches.append(new_match)
-            for i in range(3):
-                SingleMatch.objects.create(match=new_match)
+            for map in self.maps.all():
+                SingleMatch.objects.create(match=new_match, map=map)
             return
 
         for i in range(cur_round_length):
@@ -183,8 +183,8 @@ class Competition(models.Model):
                 )
             )
             matches.append(new_match)
-            for i in range(3):
-                SingleMatch.objects.create(match=new_match)
+            for map in self.maps.all():
+                SingleMatch.objects.create(match=new_match, map=map)
 
         # for second round:
         start_round_index += cur_round_length
@@ -205,8 +205,8 @@ class Competition(models.Model):
                         depend_method='winner')
                 )
                 matches.append(new_match)
-                for i in range(3):
-                    SingleMatch.objects.create(match=new_match)
+                for map in self.maps.all():
+                    SingleMatch.objects.create(match=new_match, map=map)
 
             # second step: (winner of)losers vs (winner of)losers
             if is_second_round:
@@ -221,8 +221,8 @@ class Competition(models.Model):
                             depend_method='loser')
                     )
                     matches.append(new_match)
-                    for i in range(3):
-                        SingleMatch.objects.create(match=new_match)
+                    for map in self.maps.all():
+                        SingleMatch.objects.create(match=new_match, map=map)
             else:
                 for i in range(cur_round_length):
                     new_match = Match.objects.create(
@@ -235,8 +235,8 @@ class Competition(models.Model):
                             depend_method='winner')
                     )
                     matches.append(new_match)
-                    for i in range(3):
-                        SingleMatch.objects.create(match=new_match)
+                    for  map in self.maps.all():
+                        SingleMatch.objects.create(match=new_match, map=map)
 
             second_step_index = start_round_index + cur_round_length
             # third step: losers vs losers of winners
@@ -251,8 +251,8 @@ class Competition(models.Model):
                         depend_method='loser')
                 )
                 matches.append(new_match)
-                for i in range(3):
-                    SingleMatch.objects.create(match=new_match)
+                for map in self.maps.all():
+                    SingleMatch.objects.create(match=new_match, map=map)
 
             #
             previous_third_step_index = second_step_index + cur_round_length
@@ -271,8 +271,8 @@ class Competition(models.Model):
                 depend_method='winner')
         )
         matches.append(new_match)
-        for i in range(3):
-            SingleMatch.objects.create(match=new_match)
+        for map in self.maps.all():
+            SingleMatch.objects.create(match=new_match, map=map)
 
         new_match = Match.objects.create(
             competition=self,
@@ -284,8 +284,9 @@ class Competition(models.Model):
                 depend_method='winner')
         )
         matches.append(new_match)
-        for i in range(3):
-            SingleMatch.objects.create(match=new_match)
+        for map in self.maps.all():
+            SingleMatch.objects.create(match=new_match, map=map)
+
 
 ########################################################################################################
 
@@ -475,6 +476,23 @@ class Match(models.Model):
             participant.update_depend()
 
 
+class Map(models.Model):
+    file = models.FileField(blank=False, null=False)
+    name = models.CharField(max_length=128, null=False, blank=False)
+    token = models.CharField(max_length=256, null=True, blank=False)
+    competitions = models.ManyToManyField(Competition, related_name='maps')
+
+    def save(self, *args, **kwargs):
+        from apps.game import functions
+        self.token = functions.upload_file(self.file)
+        super(Map, self).save(args, kwargs)
+
+    def __str__(self):
+        if self.name is None:
+            return str(self.id)
+        return self.name
+
+
 class SingleMatch(models.Model):
     match = models.ForeignKey(Match, related_name='single_matches')
     done = models.BooleanField(default=False)
@@ -483,6 +501,7 @@ class SingleMatch(models.Model):
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
     part1_score = models.IntegerField(null=True, blank=True)
     part2_score = models.IntegerField(null=True, blank=True)
+    map = models.ForeignKey(Map)
 
     def __str__(self):
         str_part1 = 'None'

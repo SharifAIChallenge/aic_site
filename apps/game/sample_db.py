@@ -12,6 +12,7 @@ def create_sample_db():
     populate_teams()
     populate_games()
     populate_challenges()
+    populate_maps()
     populate_competitions()
 
 def populate_users(num):
@@ -95,9 +96,15 @@ def populate_challenges():
         participation.challenge = challenge
         participation.save()
 
+def populate_maps():
+    for i in range(3):
+        map = Map()
+        map.name = 'map ' + str(i)
+        map.save()
 
 def populate_competitions():
     challenge = Challenge.objects.all()[1]
+    maps = list(Map.objects.all())
     types = ['league', 'double']
     team_size = [2, 4, 8, 16, 32, 3, 5, 6, 7, 15]
     for k in range(2):
@@ -106,6 +113,9 @@ def populate_competitions():
             competition.type = types[k]
             competition.challenge = challenge
             competition.save()
+
+            for map in maps:
+                competition.maps.add(map)
 
             if k == 0:
                 competition.create_new_league(teams=Team.objects.all()[1: (team_size[i] + 1)], rounds_num=1)
