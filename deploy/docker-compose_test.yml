@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+  aic_test_nginx:
+    image: nginx:latest
+    container_name: aic_test_nginx_cont
+    restart: always
+    ports:
+      - 2016:2016
+    volumes:
+      - ./static/root:/static/root/static
+      - /var/log/aic_test_site:/var/log/aic_test_site
+      - ./config/nginx/sites-enabled:/etc/nginx/sites-enabled
+      - ./config/nginx/sites-available:/etc/nginx/sites-available
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+
+    depends_on:
+      - aic_test_web
+  aic_test_web:
+    build: .
+    container_name: aic_test_web_cont
+    restart: always
+#    environment:
+#    - DJANGO_SETTINGS_MODULE="aic_site.settings.production"
+    command: bash -c "cd .. && python3 manage.py collectstatic <<< yes && gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
+#    cp /patches/zinnia_migrations.py /usr/local/lib/python3.5/dist-packages/zinnia/migrations/0003_publication_date.py &&
+    volumes:
+      - ./static/root:/root/aic_site/static/root
+    depends_on:
+      - aic_test_db
+    expose:
+      - 8000
+  aic_test_db:
+    image: postgres:latest
+    container_name: aic_test_db_cont
+    restart: always
+    volumes:
+      - ../Database_test:/var/lib/postgresql/data
+      - ../Database_test_backup:/Database_backup
+      - ../Database_backup:/Database_backup_production

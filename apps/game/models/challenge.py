@@ -3,10 +3,13 @@ import uuid
 
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericRelation
+
 from .game import Game
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from apps.accounts.models import Team
+# from apps.game.models.competition import Participant
 
 
 import logging
@@ -77,6 +80,9 @@ class TeamParticipatesChallenge(models.Model):
             return None
 
 
+    def itself(self):
+        return self.get_final_submission()
+
 class UserAcceptsTeamInChallenge(models.Model):
     team = models.ForeignKey(TeamParticipatesChallenge, related_name='users_acceptance')
     user = models.ForeignKey(User, related_name='accepted_teams')
@@ -98,7 +104,8 @@ class TeamSubmission(models.Model):
         ('uploading', _('Uploading')),
         ('uploaded', _('Uploaded')),
         ('compiling', _('Compiling')),
-        ('compiled', _('Compiled'))
+        ('compiled', _('Compiled')),
+        ('failed', _('Failed'))
     )
 
     team = models.ForeignKey(TeamParticipatesChallenge)
@@ -110,6 +117,10 @@ class TeamSubmission(models.Model):
     infra_compile_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
     infra_compile_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
+
+
+    def __str__(self):
+        return str(self.id)
 
 
     def __str__(self):
@@ -142,10 +153,10 @@ class TeamSubmission(models.Model):
 
     def compile(self):
         from apps.game import functions
-        result = functions.compile_submissions(file_tokens=[self.infra_token], game_id=self.team.challenge.game.id)
+        result = functions.compile_submissions([self])
         if result[0]['success']:
             self.status = 'compiling'
-            self.infra_compile_token = result[0]['token']
+            self.infra_compile_token = result[0]['run_id']
         else:
             logger.error(result[0][self.infra_token]['errors'])
         self.save()

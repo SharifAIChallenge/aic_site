@@ -1,5 +1,6 @@
 beautifulsoup4==4.6.0
-Django==1.11
+Django==1.10.7
+coreapi==2.2.4
 django-blog-zinnia==0.19
 django-contrib-comments==1.8.0
 django-js-asset==0.1.1
@@ -15,3 +16,4 @@ pyparsing==2.2.0
 pytz==2017.3
 regex==2017.12.12
 six==1.11.0
+uuid==1.30
