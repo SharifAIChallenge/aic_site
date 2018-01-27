@@ -170,3 +170,13 @@ This set of fonts are used in this project under the license: RC4QT
     max-width: none !important;
     margin: 0px !important;
 }
+
+
+#comment-form-title {
+    width: 50% !important;
+}
+
+#post-a-comment-form {
+    width: 50% !important;
+    min-width: 300px !important;
+}

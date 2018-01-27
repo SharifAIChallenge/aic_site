@@ -1,4 +1,4 @@
-{% extends "base/base.html" %}
+{% extends "zinnia/base.html" %}
 {% load i18n %}
 {% load zinnia %}
 {% load threadedcomments_tags %}
@@ -170,8 +170,10 @@
     {% endblock entry-comments %}
 
     {% block entry-comments-form %}
-        {% if object.comments_are_open %}
-            {% render_comment_form for object %}
+        {% if request.user.is_authenticated %} {# comment it if Unauthenticated users can register #}
+            {% if object.comments_are_open %}
+                {% render_comment_form for object %}
+            {% endif %}
         {% endif %}
     {% endblock entry-comments-form %}
 
