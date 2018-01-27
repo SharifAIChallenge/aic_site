@@ -159,3 +159,14 @@ This set of fonts are used in this project under the license: RC4QT
 .fake {
     height: 50px;
 }
+
+.blog_post {
+     width: 100% !important;
+}
+
+#comments-container {
+    padding-top: 30px;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0px !important;
+}
