@@ -13,7 +13,7 @@ stages:
   if: type = push AND (branch IN (travis_integration, production-test))
 - test
 - name: deploy_production
-  if: type = push AND (branch IN (master, travis_integration))
+  if: type = push AND (branch IN (master))
 jobs:
   include:
   - stage: test
