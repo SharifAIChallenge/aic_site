@@ -4,7 +4,8 @@
 {#  <li>#}
     <a href="{% url 'zinnia:tag_detail' tag.name %}"
        title="{% blocktrans count entry_count=tag.count %}{{ entry_count }} entry tagged by {{ tag }}{% plural %}{{ entry_count }} entries tagged by {{ tag }}{% endblocktrans %}"
-       class="tag-{{ tag.font_size }}{% if tag.name == context_tag.name %} current{% endif %} ui blue label">{{ tag }}</a>
+       class="tag-{{ tag.font_size }}{% if tag.name == context_tag.name %} current{% endif %} ui blue label"
+        style="margin: 2px;">{{ tag }}</a>
 {#  </li>#}
   {% empty %}
   <li>

@@ -51,30 +51,30 @@
       <!--<div class="item"><div class="title">{% trans "Calendar" %}</h3>-->
       <!--{% get_calendar_entries %}-->
     <!--</aside>-->
-    <aside id="widget-tags" class="widget">
+    <div id="widget-tags" class="item">
       <div class="item">
-        <div class="title">
-            <a href="{% url 'zinnia:tag_list' %}">{% trans "Tags" %}</a>
+        <div class="header">
+            {% trans "Tags" %}
         </div>
       </div>
       <div class="content menu">
         {% get_tag_cloud %}
       </div>
-    </aside>
-    <aside id="widget-recents" class="widget">
+    </div>
+    <div id="widget-recents" class="item">
       <div class="item">
           <div class="title">{% trans "Recent entries" %}</div>
       </div>
       <div class="content menu">
       {% get_recent_entries %}
       </div>
-    </aside>
-    <aside id="widget-comments" class="widget">
-      <div class="item"><div class="title">{% trans "Recent comments" %}</div></div>
+    </div>
+    <div id="widget-comments" class="item">
+      <div class="item"><div class="header">{% trans "Recent comments" %}</div></div>
         <div class="content menu">
       {% get_recent_comments %}
         </div>
-    </aside>
+    </div>
     <!--<aside id="widget-linkbacks" class="widget">-->
       <!--<div class="item"><div class="title">{% trans "Recent linkbacks" %}</h3>-->
       <!--{% get_recent_linkbacks %}-->
@@ -92,8 +92,8 @@
       <!--{% get_archives_entries_tree %}-->
     <!--</aside>-->
     {% if user.is_authenticated %}
-    <aside id="widget-tools" class="widget">
-      <div class="item"><div class="title">{% trans "Tools" %}</div></div>
+    <div id="widget-tools" class="item">
+      <div class="item"><div class="header">{% trans "Tools" %}</div></div>
         <div class="content menu">
       <ul>
         {% if perms.zinnia %}
@@ -119,7 +119,7 @@
         </li>
       </ul>
             </div>
-    </aside>
+    </div>
 </div>
 {% endif %}
 {% endblock sidebar %}
