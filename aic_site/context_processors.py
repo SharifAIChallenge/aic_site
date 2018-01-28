@@ -5,17 +5,23 @@ from django.utils.translation import ugettext as _
 def menu(request):
     context = {
         'ai': {
-            'navbar': {
-                _('Home'): {
-                    'address': reverse('intro:index')
-                },
-                _('Blog'): {
-                    'address': reverse('zinnia:entry_archive_index')
-                },
-                _('FAQ'): {
-                    'address': reverse('intro:faq')
-                }
-            },
+            'navbar': [
+                (_('Introduction'), {
+                    'address': '#section-intro'
+                }),
+                (_('Prize'), {
+                    'address': '#section-prizes'
+                }),
+                (_('History'), {
+                    'address': '#section-history'
+                }),
+                (_('Schedule'), {
+                    'address': '#section-schedule'
+                }),
+                # (_('Contact Us'), {
+                #     'address': '#section-organizer'
+                # })
+            ],
             'sidebar': {
 
             }
