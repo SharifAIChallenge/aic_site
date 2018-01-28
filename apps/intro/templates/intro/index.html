@@ -10,7 +10,7 @@
 
 {% block container %}
 
-    <div class="odd banner section">
+    <div class="odd banner section" align="center">
         <img class="banner text image{% if LANGUAGE_BIDI %} bidi{% endif %}"
              src="{% static 'intro/image/banner-text.png' %}">
     </div>
@@ -23,7 +23,7 @@
         </div>
         <div class="ui stackable grid container">
             <div class="two column row">
-                <div class="eleven wide column">
+                <div class="eight wide column">
                     <p style="font-size: 1.3em;">
                         {% blocktrans %}
                             Sharif AI Challenge is a programming competition for all who are interested in artificial
@@ -39,17 +39,23 @@
                             free.
                         {% endblocktrans %}
                     </p>
-                    <!-- <a class="ui massive animated violet button">
-                        <div class="visible content">
-                            {#{% trans 'Participate' %}#}
-                        </div>
-                        <div class="hidden content">
-                            <i class="ui right arrow icon"></i>
-                        </div>
-                    </a>-->
+
+                    <div class="ui center aligned container">
+                        <a href="#section-schedule" class="ui centered massive animated violet button">
+                            <div class="visible content">
+                                {% trans 'Participate' %}
+                            </div>
+                            <div class="hidden content">
+                                <i class="ui calendar icon"></i>
+                                {% trans 'View Schedule' %}
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="five wide column">
-                    <img style="height: 100%; width: 100%;" src="{% static 'images/logo.png' %}">
+                <div class="eight wide column">
+                    <div id="15171308283766309">
+                        <script type="text/JavaScript" src="https://www.aparat.com/embed/N2Ae4?data[rnddiv]=15171308283766309&data[responsive]=yes"></script>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,7 +69,7 @@
         </div>
         <div class="ui stackable grid container" style="padding: 30px;">
             <div class="three column row">
-                <div class="five wide column" style="text-align: center;">
+                <div id="second-cup" class="five wide column" style="text-align: center;">
 
                     <div class="image">
                         <img src="{% static 'intro/image/Cup2.png' %}">
@@ -75,18 +81,18 @@
                         {% trans '5 Million Tomans' %}
                     </div>
                 </div>
-                <div class="six wide column" style="text-align: center;">
+                <div id="champion-cup" class="six wide column" style="text-align: center;">
                     <div class="image">
                         <img src="{% static 'intro/image/Cup1.png' %}">
                     </div>
                     <div class="ui horizontal divider header">
                         {% trans 'Champion' %}
                     </div>
-                    <div class="ui large header">
+                    <div id="seven-million" class="ui large header">
                         {% trans '7 Million Tomans' %}
                     </div>
                 </div>
-                <div class="five wide column" style="text-align: center;">
+                <div id="third-cup" class="five wide column" style="text-align: center;">
                     <div class="image">
                         <img src="{% static 'intro/image/Cup3.png' %}">
                     </div>
@@ -108,91 +114,129 @@
                 {% trans 'History' %}
             </a>
         </div>
-        <div class="ui stackable grid container">
-            <div class="two column row">
-                <div class="mobile-hidden eight wide column">
-                    <video preload="preload" id="video" autoplay="autoplay" loop="loop" style="width: 100%;">
-                        <source src="{% static 'intro/video.mp4' %}" type="video/mp4"></source>
-                    </video>
+        <div class="ui fluid segment" style="padding: 0px 70px; border: none; background: transparent;">
+            <div class="ui fluid styled accordion">
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    {% trans 'First 3 Years' %}
                 </div>
-                <div class="eight wide column" id="history-text">
-                    <div class="ui fluid styled accordion">
-                        <div class="title">
-                            <i class="dropdown icon"></i>
-                            {% trans 'First 3 Years' %}
-                        </div>
-                        <div class="content">
+                <div class="ui stackable grid content">
+                    <div class="ui two column row">
+                        <div class="ten wide column">
                             <div class="ui header">
                                 {% trans 'In the University' %}
                             </div>
                             {% blocktrans %}
-                            <p><span class="red">8 years ago, </span>
-                                the need for an exciting and challenging inter-university competition in the CE department
-                                was a starting point for the "Sharif AI Challenge". This later became possible thanks to the
-                                efforts of the Student's Scientific Chapter(SSC) of this department. The students took advantage
-                                of this opportunity in order to evaluate their skills in programming and improve upon them.
-                                Participation was so impressive that the "Sharif AI Challenge" soon became an annual event.
-                            </p>
+                                <p><span class="red">8 years ago, </span>
+                                    the need for an exciting and challenging inter-university competition in the CE
+                                    department
+                                    was a starting point for the "Sharif AI Challenge". This later became possible
+                                    thanks to the
+                                    efforts of the Student's Scientific Chapter(SSC) of this department. The students
+                                    took
+                                    advantage
+                                    of this opportunity in order to evaluate their skills in programming and improve
+                                    upon them.
+                                    Participation was so impressive that the "Sharif AI Challenge" soon became an annual
+                                    event.
+                                </p>
                             {% endblocktrans %}
                         </div>
-
-                        <div class="title">
-                            <i class="dropdown icon"></i>
-                            {% trans '4th to 6th Challenge' %}
+                        <div class="mobile-hidden six wide column">
+                            <img src="{% static 'intro/image/history1.jpg' %}">
                         </div>
-                        <div class="content">
+                    </div>
+                </div>
+
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    {% trans '4th to 6th Challenge' %}
+                </div>
+                <div class="ui stackable grid content">
+                    <div class="ui two column row">
+                        <div class="ten wide column">
+
                             <div class="ui header">
                                 {% trans 'With Teams From Others Universities of Tehran' %}
                             </div>
                             {% blocktrans %}
-                            <p>
+                                <p>
+                                    The <span class="red">4<sup>th</sup> year </span> of the competition was introduced
+                                    as the "Java Challenge".
+                                    Due to its high level and credibility, the event went further than collegiate
+                                    level and witnessed the participation of other teams from Tehran. The <span
+                                        class="red">5<sup>th</sup> tournament</span> was
+                                    organized and held in a similar way. During all this time, the level and quality of
+                                    the "AI Challenge" was immensely improved. With the efforts of the Student's
+                                    Scientific
+                                    Chapter of the CE department and widespread advertisement, the <span
+                                        class="red">6<sup>th</sup> year </span>
+                                    was finally organized and held nationally. The participation of teams from Tehran
+                                    and other
+                                    provinces brought upon a new spirit of nationality to the competition.
 
-                                The <span class="red">4<sup>th</sup> year </span> of the competition was introduced
-                                as the "Java Challenge".
-                                Due to its high level and credibility, the event went further than collegiate
-                                level and witnessed the participation of other teams from Tehran. The <span class="red">5<sup>th</sup> tournament</span> was
-                                organized and held in a similar way. During all this time, the level and quality of
-                                the "AI Challenge" was immensely improved. With the efforts of the Student's Scientific
-                                Chapter of the CE department and widespread advertisement, the <span class="red">6<sup>th</sup> year </span> was finally organized and held nationally. The participation of teams from Tehran and other provinces brought upon a new spirit of nationality to the competition.
-
-                            </p>
+                                </p>
                             {% endblocktrans %}
                         </div>
-
-                        <div class="title">
-                            <i class="dropdown icon"></i>
-                            {% trans '7th year' %}
+                        <div class="mobile-hidden six wide column">
+                            <img src="{% static 'intro/image/history2.jpg' %}">
                         </div>
-                        <div class="content">
+                    </div>
+                </div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    {% trans '7th year' %}
+                </div>
+                <div class="ui stackable grid content">
+                    <div class="ui two column row">
+                        <div class="ten wide column">
+
                             <div class="ui header">
                                 {% trans 'Supporting C++ and Python' %}
                             </div>
                             {% blocktrans %}
-                            <p>"Sharif AI Challenge" national competition continuously advanced and in its <span class="red">7<sup>th</sup> year </span>,
-                                thanks to the efforts of the technical team, C++ and Python were added to the competition's
-                                supported languages as well. This round of the "Sharif AI Challenge" was met with
-                                good reception and approximately 158 teams from 28 universities participated in
-                                the selection phase.
-                                <br>
-                                The Documentation of this competition (Java Challenge 2015) is available
-                                <a href="http://bayanbox.ir/view/992459135507989458/JavaChallenge2015-en.pdf" style="color: blue">here</a>.
-                            </p>
+                                <p>"Sharif AI Challenge" national competition continuously advanced and in its <span
+                                        class="red">7<sup>th</sup> year </span>,
+                                    thanks to the efforts of the technical team, C++ and Python were added to the
+                                    competition's
+                                    supported languages as well. This round of the "Sharif AI Challenge" was met with
+                                    good reception and approximately 158 teams from 28 universities participated in
+                                    the selection phase.
+                                    <br>
+                                    The Documentation of this competition (Java Challenge 2015) is available
+                                    <a href="http://bayanbox.ir/view/992459135507989458/JavaChallenge2015-en.pdf"
+                                       style="color: blue">here</a>.
+                                </p>
                             {% endblocktrans %}
                         </div>
-
-                        <div class="title active">
-                            <i class="dropdown icon"></i>
-                            {% trans 'Last 2 Years' %}
+                        <div class="mobile-hidden six wide column">
+                            <img src="{% static 'intro/image/history3.jpg' %}">
                         </div>
-                        <div class="content active">
+                    </div>
+                </div>
+
+                <div class="title active">
+                    <i class="dropdown icon"></i>
+                    {% trans 'Last 2 Years' %}
+                </div>
+                <div class="ui stackable grid active content">
+                    <div class="ui two column row">
+                        <div class="ten wide column">
+
                             <div class="ui active header">
                                 {% trans 'Sharif AI Challenge, a New Title' %}
                             </div>
                             {% blocktrans %}
-                            <p>Since the added benefit of supporting other languages in the competition
-                                was a success, the <span class="red">8<sup>th</sup> tournament</span> was held under the name "Sharif AI Challenge".
-                            </p>
+                                <p>Since the added benefit of supporting other languages in the competition
+                                    was a success, the <span class="red">8<sup>th</sup> tournament</span> was held under
+                                    the
+                                    name
+                                    "Sharif AI Challenge".
+                                </p>
                             {% endblocktrans %}
+                        </div>
+                        <div class="mobile-hidden six wide column">
+                            <img src="{% static 'intro/image/history4.jpg' %}">
                         </div>
                     </div>
                 </div>
@@ -236,6 +280,11 @@
                 </tr>
                 </tbody>
             </table>
+            <div class="ui center aligned container">
+                        <a href="{% url 'intro:faq' %}" class="ui centered violet button">
+                            {% trans 'FAQ' %}
+                        </a>
+            </div>
         </div>
     </div>
 
@@ -248,15 +297,17 @@
         <div class="ui center aligned stackable grid">
             <div class="eight wide column">
                 <h1 class="ui header">{% trans 'Organizer' %}</h1>
-                <a href="http://ssc.ce.sharif.edu/"><img class="ui centered medium image" src="{% static 'intro/image/SSC.png' %}" alt="SSC Image"></a>
+                <a href="http://ssc.ce.sharif.edu/"><img class="ui centered medium image"
+                                                         src="{% static 'intro/image/SSC.png' %}" alt="SSC Image"></a>
                 <div class="ui horizontal divider"></div>
                 <h1 class="ui header">{% trans 'Sponsors' %}</h1>
-                <a href="https://cafebazaar.ir/"><img class="ui centered medium image" src="{% static 'intro/image/sponsors.png' %}"></a>
+                <a href="https://cafebazaar.ir/"><img class="ui centered medium image"
+                                                      src="{% static 'intro/image/sponsors.png' %}"></a>
             </div>
             <div class="eight wide column">
                 <h1 class="ui header">{% trans 'Location' %}</h1>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9627430847677!2d51.34888151486223!3d35.702534430189345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a61f30034b%3A0xe59caa3900cd3c54!2sTehran+Province%2C+Tehran%2C+Azadi+St%2C+Dept.+of+Computer+Eng.%2C+Iran!5e0!3m2!1sen!2s!4v1516927405125"
-                         frameborder="0" style="border: 0"></iframe>
+                        frameborder="0" style="border: 0"></iframe>
                 <p>
                     {% trans 'Address: ' %}
                     {% blocktrans %}
@@ -266,8 +317,8 @@
                 </p>
                 <div class="ui horizontal divider"></div>
                 <h1 class="ui header">{% trans 'Contact Info' %}</h1>
-                <b><b>{% trans 'Email: ' %}<a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
-                <br><b>{% trans 'Phone: ' %}021-6616-5781</b></p>
+                <b>{% trans 'Email: ' %}<a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
+                <br><b>{% trans 'Phone: ' %}<span dir="ltr">021-6616-5781</span></b></p>
             </div>
         </div>
     </div>
@@ -276,5 +327,6 @@
 
 {% block footer_scripts %}
     {{ block.super }}
+    <script src="{% static 'js/jquery.inview.min.js' %}"></script>
     <script src="{% static 'intro/js/scripts.js' %}"></script>
 {% endblock %}
