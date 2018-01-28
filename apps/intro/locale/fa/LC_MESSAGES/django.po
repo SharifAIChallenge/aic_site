@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-26 22:34+0000\n"
+"POT-Creation-Date: 2018-01-28 22:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: apps/intro/templates/intro/index.html:21 apps/intro/views.py:10
-#: apps/intro/views.py:33
 msgid "Introduction"
 msgstr "معرفی رویداد"
 
@@ -54,48 +53,55 @@ msgstr ""
 "این مسابقه توسط انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف(SSC)، "
 "امسال دهمین دوره‌ این مسابقه در دو مرحله‌ غیرحضوری و حضوری برگزار خواهد شد."
 
-#: apps/intro/templates/intro/index.html:61
+#: apps/intro/templates/intro/index.html:46
+msgid "Participate"
+msgstr "شرکت در مسابقه"
+
+#: apps/intro/templates/intro/index.html:50
+msgid "View Schedule"
+msgstr "مشاهده زمان‌بندی"
+
+#: apps/intro/templates/intro/index.html:67
 msgid "Prizes"
 msgstr "جوایز"
 
-#: apps/intro/templates/intro/index.html:72
+#: apps/intro/templates/intro/index.html:78
 msgid "Second Place"
 msgstr "تیم دوم"
 
-#: apps/intro/templates/intro/index.html:75
+#: apps/intro/templates/intro/index.html:81
 msgid "5 Million Tomans"
 msgstr "۵ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:83
+#: apps/intro/templates/intro/index.html:89
 msgid "Champion"
 msgstr "تیم قهرمان"
 
-#: apps/intro/templates/intro/index.html:86
+#: apps/intro/templates/intro/index.html:92
 msgid "7 Million Tomans"
 msgstr "۷ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:94
+#: apps/intro/templates/intro/index.html:100
 msgid "Third Place"
 msgstr "تیم سوم"
 
-#: apps/intro/templates/intro/index.html:97
+#: apps/intro/templates/intro/index.html:103
 msgid "3 Million Tomans"
 msgstr "۳ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:108 apps/intro/views.py:16
-#: apps/intro/views.py:39
+#: apps/intro/templates/intro/index.html:114 apps/intro/views.py:16
 msgid "History"
 msgstr "تاریخچه"
 
-#: apps/intro/templates/intro/index.html:115
+#: apps/intro/templates/intro/index.html:121
 msgid "First 3 Years"
 msgstr "۳ سال اول"
 
-#: apps/intro/templates/intro/index.html:121
+#: apps/intro/templates/intro/index.html:127
 msgid "In the University"
 msgstr "در دانشگاه"
 
-#: apps/intro/templates/intro/index.html:123
+#: apps/intro/templates/intro/index.html:129
 msgid ""
 "\n"
 "                                <p><span class=\"red\">8 years ago, </span>\n"
@@ -127,15 +133,15 @@ msgstr ""
 "استقبال چشمگیر دانشجویان، \" نبرد هوش مصنوعی شریف\" به رویدادی سالیانه تبدیل "
 "شد.                            </p>"
 
-#: apps/intro/templates/intro/index.html:147
+#: apps/intro/templates/intro/index.html:153
 msgid "4th to 6th Challenge"
 msgstr "4امین تا 6امین نبرد"
 
-#: apps/intro/templates/intro/index.html:154
+#: apps/intro/templates/intro/index.html:160
 msgid "With Teams From Others Universities of Tehran"
 msgstr "با دیگر تیم ها از دانشگاه های شهر تهران"
 
-#: apps/intro/templates/intro/index.html:156
+#: apps/intro/templates/intro/index.html:162
 msgid ""
 "\n"
 "                                <p>\n"
@@ -176,15 +182,15 @@ msgstr ""
 "برنامه ریزی شد و به مرحله اجرا رسید تا با حضور تیمهایی از دانشگاه های تهران "
 "و خارج از تهران این مسابقه رنگ و بویی ملی به خود بگیرد. "
 
-#: apps/intro/templates/intro/index.html:182
+#: apps/intro/templates/intro/index.html:188
 msgid "7th year"
 msgstr "سال ۷ام"
 
-#: apps/intro/templates/intro/index.html:189
+#: apps/intro/templates/intro/index.html:195
 msgid "Supporting C++ and Python"
 msgstr "پشتیبانی از زبان های برنامه نویسی C++ و پایتون"
 
-#: apps/intro/templates/intro/index.html:191
+#: apps/intro/templates/intro/index.html:197
 msgid ""
 "\n"
 "                                <p>\"Sharif AI Challenge\" national "
@@ -217,15 +223,15 @@ msgstr ""
 "\"http://bayanbox.ir/view/8601289253364961637/JavaChallenge2015-fa.pdf\">این "
 "لینک</a>قابل مشاهده است."
 
-#: apps/intro/templates/intro/index.html:214
+#: apps/intro/templates/intro/index.html:220
 msgid "Last 2 Years"
 msgstr "2 سال اخیر"
 
-#: apps/intro/templates/intro/index.html:221
+#: apps/intro/templates/intro/index.html:227
 msgid "Sharif AI Challenge, a New Title"
 msgstr "نبرد هوش مصنوعی شریف،عنوانی جدید"
 
-#: apps/intro/templates/intro/index.html:223
+#: apps/intro/templates/intro/index.html:229
 msgid ""
 "\n"
 "                                <p>Since the added benefit of supporting "
@@ -242,56 +248,59 @@ msgstr ""
 " با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه "
 "نویسی، دوره‌ی هشتم با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. "
 
-#: apps/intro/templates/intro/index.html:244 apps/intro/views.py:19
-#: apps/intro/views.py:42
+#: apps/intro/templates/intro/index.html:250 apps/intro/views.py:19
 msgid "Schedule"
 msgstr "زمان بندی"
 
-#: apps/intro/templates/intro/index.html:253
+#: apps/intro/templates/intro/index.html:259
 msgid "Jan30 - Feb17"
 msgstr "۱۰ بهمن - ۲۸ بهمن"
 
-#: apps/intro/templates/intro/index.html:256
+#: apps/intro/templates/intro/index.html:262
 msgid "Registration"
 msgstr "ثبت نام"
 
-#: apps/intro/templates/intro/index.html:261
+#: apps/intro/templates/intro/index.html:267
 msgid "Feb3 - Feb21"
 msgstr "۱۴ بهمن - ۲ اسفند"
 
-#: apps/intro/templates/intro/index.html:264
+#: apps/intro/templates/intro/index.html:270
 msgid "Online Phase"
 msgstr "مرحله غیر‌حضوری (آنلاین)"
 
-#: apps/intro/templates/intro/index.html:269
+#: apps/intro/templates/intro/index.html:275
 msgid "March7 - March8"
 msgstr "۱۶ و ۱۷ اسفند"
 
-#: apps/intro/templates/intro/index.html:272
+#: apps/intro/templates/intro/index.html:278
 msgid "Sharif On-Site Phase"
 msgstr "مرحله حضوری در دانشگاه شریف"
 
-#: apps/intro/templates/intro/index.html:283 apps/intro/views.py:45
+#: apps/intro/templates/intro/index.html:286 apps/intro/views.py:22
+msgid "FAQ"
+msgstr "سوالات متداول"
+
+#: apps/intro/templates/intro/index.html:295
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: apps/intro/templates/intro/index.html:288
+#: apps/intro/templates/intro/index.html:300
 msgid "Organizer"
 msgstr "برگزارکننده"
 
-#: apps/intro/templates/intro/index.html:292
+#: apps/intro/templates/intro/index.html:304
 msgid "Sponsors"
 msgstr "حامیان مالی"
 
-#: apps/intro/templates/intro/index.html:297
+#: apps/intro/templates/intro/index.html:309
 msgid "Location"
 msgstr "مکان"
 
-#: apps/intro/templates/intro/index.html:301
+#: apps/intro/templates/intro/index.html:313
 msgid "Address: "
 msgstr "نشانی:"
 
-#: apps/intro/templates/intro/index.html:302
+#: apps/intro/templates/intro/index.html:314
 msgid ""
 "\n"
 "                        Dept. of Computer Eng., Sharif University of "
@@ -302,18 +311,22 @@ msgstr ""
 "\n"
 "تهران،خیابان آزادی،دانشگاه صنعتی شریف،دانشکده مهندسی کامپیوتر"
 
-#: apps/intro/templates/intro/index.html:308
+#: apps/intro/templates/intro/index.html:320
 msgid "Contact Info"
 msgstr "اطلاعات تماس"
 
-#: apps/intro/templates/intro/index.html:309
+#: apps/intro/templates/intro/index.html:321
 msgid "Email: "
 msgstr "ایمیل:"
 
-#: apps/intro/templates/intro/index.html:310
+#: apps/intro/templates/intro/index.html:322
 msgid "Phone: "
 msgstr "شماره تماس:"
 
-#: apps/intro/views.py:13 apps/intro/views.py:36
+#: apps/intro/views.py:13
 msgid "Prize"
 msgstr "جوایز"
+
+#: apps/intro/views.py:36
+msgid "Home"
+msgstr ""
