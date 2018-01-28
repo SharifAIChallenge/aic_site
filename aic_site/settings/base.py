@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'tagging',
     'zinnia',
     'django_comments',
+    'captcha',
 
     'apps.intro',
     'apps.accounts',

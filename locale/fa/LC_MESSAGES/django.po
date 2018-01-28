@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-28 10:03+0000\n"
+"POT-Creation-Date: 2018-01-28 10:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,30 +19,34 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: aic_site/context_processors.py:9
-msgid "Home"
-msgstr "خانه"
-
-#: aic_site/context_processors.py:12 templates/zinnia/base.html:23
-msgid "Blog"
-msgstr "بلاگ"
-
-#: aic_site/context_processors.py:15
-msgid "FAQ"
+msgid "Introduction"
 msgstr ""
 
-#: aic_site/context_processors.py:27
+#: aic_site/context_processors.py:12
+msgid "Prize"
+msgstr ""
+
+#: aic_site/context_processors.py:15
+msgid "History"
+msgstr ""
+
+#: aic_site/context_processors.py:18
+msgid "Schedule"
+msgstr ""
+
+#: aic_site/context_processors.py:33
 msgid "Panel"
 msgstr ""
 
-#: aic_site/context_processors.py:30
+#: aic_site/context_processors.py:36
 msgid "Create Team"
 msgstr ""
 
-#: aic_site/settings/base.py:122
+#: aic_site/settings/base.py:123
 msgid "English"
 msgstr "انگلیسی"
 
-#: aic_site/settings/base.py:123
+#: aic_site/settings/base.py:124
 msgid "Persian"
 msgstr "فارسی"
 
@@ -147,6 +151,10 @@ msgstr "فید RSS آخرین نوشته‌ها"
 #: templates/zinnia/base.html:18
 msgid "RSS feed of last discussions"
 msgstr "فید RSS آخرین بحث‌ها"
+
+#: templates/zinnia/base.html:23
+msgid "Blog"
+msgstr "بلاگ"
 
 #: templates/zinnia/base.html:30
 msgid "Welcome!"
@@ -694,6 +702,9 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] ""
+
+#~ msgid "Home"
+#~ msgstr "خانه"
 
 #~ msgid "Sharif AI Challenge 2018"
 #~ msgstr "چالش هوش مصنوعی شریف - Sharif AI Challenge 2018"

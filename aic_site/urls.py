@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^game/', include(game_urls)),
     url(r'^blog/', include(zinnia_urls)),
     url(r'^articles/comments/', include('django_comments.urls')),
+    url(r'^captcha/', include('captcha.urls')),
 ]
