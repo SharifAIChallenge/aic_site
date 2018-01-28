@@ -29,17 +29,14 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.admin',
-    'django.contrib.sites',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.contenttypes',
 
-    'threadedcomments',
     'mptt',
     'tagging',
     'zinnia',
-    'django_comments',
 
     'apps.intro',
     'apps.accounts',
@@ -48,10 +45,16 @@ INSTALLED_APPS = [
     'apps.modir',
 ]
 
+INSTALLED_APPS += (
+    'threadedcomments',
+    'django_comments',
+    'django.contrib.sites',
+)
+
+COMMENTS_APP = 'threadedcomments'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# comments
-COMMENTS_APP = 'threadedcomments'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

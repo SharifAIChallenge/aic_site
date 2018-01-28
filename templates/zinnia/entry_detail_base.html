@@ -1,131 +1,191 @@
 {% extends "zinnia/base.html" %}
 {% load i18n %}
 {% load zinnia %}
-
+{% load threadedcomments_tags %}
 
 {% block title %}{{ object.title }}{% endblock title %}
 
 {% block meta-description %}{{ object.excerpt|safe }}{% endblock meta-description %}
 
-{% block meta-keywords %}{% if object.tags %}{{ object.tags }}{% else %}{{ block.super }}{% endif %}{% endblock meta-keywords %}
+{% block meta-keywords %}{% if object.tags %}{{ object.tags }}{% else %}{{ block.super }}
+{% endif %}{% endblock meta-keywords %}
 
 {% block link %}
-  {{ block.super }}
-  {% with previous_entry=object.previous_entry %}{% if previous_entry %}
-  <link rel="prev" title="{{ previous_entry.title }}" href="{{ previous_entry.get_absolute_url }}" />
-  {% endif %}{% endwith %}
-  {% with next_entry=object.next_entry %}{% if next_entry %}
-  <link rel="next" title="{{ next_entry.title }}" href="{{ next_entry.get_absolute_url }}" />
-  {% endif %}{% endwith %}
-  <link rel="shortlink" href="{{ object.short_url }}" />
-  <link rel="canonical" href="{{ object.get_absolute_url }}" />
-  {% with year=object.publication_date|date:"Y" month=object.publication_date|date:"m" day=object.publication_date|date:"d" %}
-  <link rel="alternate" type="application/rss+xml" title="{% blocktrans with object=object.title %}RSS feed of discussions on {{ object }}{% endblocktrans %}"
-        href="{% url 'zinnia:entry_discussion_feed' year month day object.slug %}" />
-  <link rel="alternate" type="application/rss+xml" title="{% blocktrans with object=object.title %}RSS feed of comments on {{ object }}{% endblocktrans %}"
-        href="{% url 'zinnia:entry_comment_feed' year month day object.slug %}" />
-  <link rel="alternate" type="application/rss+xml" title="{% blocktrans with object=object.title %}RSS feed of pingbacks on {{ object }}{% endblocktrans %}"
-        href="{% url 'zinnia:entry_pingback_feed' year month day object.slug %}" />
-  <link rel="alternate" type="application/rss+xml" title="{% blocktrans with object=object.title %}RSS feed of trackbacks on {{ object }}{% endblocktrans %}"
-        href="{% url 'zinnia:entry_trackback_feed' year month day object.slug %}" />
-  {% endwith %}
+    {{ block.super }}
+    {% with previous_entry=object.previous_entry %}{% if previous_entry %}
+        <link rel="prev" title="{{ previous_entry.title }}" href="{{ previous_entry.get_absolute_url }}"/>
+    {% endif %}{% endwith %}
+    {% with next_entry=object.next_entry %}{% if next_entry %}
+        <link rel="next" title="{{ next_entry.title }}" href="{{ next_entry.get_absolute_url }}"/>
+    {% endif %}{% endwith %}
+    <link rel="shortlink" href="{{ object.short_url }}"/>
+    <link rel="canonical" href="{{ object.get_absolute_url }}"/>
+    {% with year=object.publication_date|date:"Y" month=object.publication_date|date:"m" day=object.publication_date|date:"d" %}
+        <link rel="alternate" type="application/rss+xml"
+              title="{% blocktrans with object=object.title %}RSS feed of discussions on {{ object }}{% endblocktrans %}"
+              href="{% url 'zinnia:entry_discussion_feed' year month day object.slug %}"/>
+        <link rel="alternate" type="application/rss+xml"
+              title="{% blocktrans with object=object.title %}RSS feed of comments on {{ object }}{% endblocktrans %}"
+              href="{% url 'zinnia:entry_comment_feed' year month day object.slug %}"/>
+        <link rel="alternate" type="application/rss+xml"
+              title="{% blocktrans with object=object.title %}RSS feed of pingbacks on {{ object }}{% endblocktrans %}"
+              href="{% url 'zinnia:entry_pingback_feed' year month day object.slug %}"/>
+        <link rel="alternate" type="application/rss+xml"
+              title="{% blocktrans with object=object.title %}RSS feed of trackbacks on {{ object }}{% endblocktrans %}"
+              href="{% url 'zinnia:entry_trackback_feed' year month day object.slug %}"/>
+    {% endwith %}
 {% endblock link %}
 
-{% block body-class %}entry entry-{{ object.pk }}{% if object.featured %} featured{% endif %} year-{{ object.publication_date|date:"Y" }} month-{{ object.publication_date|date:"m" }} week-{{ object.publication_date|date:"W" }} day-{{ object.publication_date|date:"d" }}{% endblock body-class %}
+{% block body-class %}entry entry-
+    {{ object.pk }}{% if object.featured %} featured{% endif %} year-{{ object.publication_date|date:"Y" }} month-
+    {{ object.publication_date|date:"m" }} week-{{ object.publication_date|date:"W" }} day-
+    {{ object.publication_date|date:"d" }}{% endblock body-class %}
 
 {% block container %}
 
-{% block entry-content %}
-  {% include object.content_template with object_content=object.html_content %}
-{% endblock entry-content %}
+    {% block entry-content %}
+        {% include object.content_template with object_content=object.html_content %}
+    {% endblock entry-content %}
 
 
-{% block entry-comments %}
-<section id="comments" class="ui form">
-  <h3>{% trans "Comments" %}</h3>
-  {% if object.comment_count %}
 
-  <!-- ### Sample rendering of comments ###-->
-  <!-- reference: -->
-  <!-- https://pypi.python.org/pypi/django-threadedcomments -->
+    {% block entry-comments %}
+        <section id="comments">
+            {% if object.comment_count %}
+                {% with comment_list=object.comments %}
+                    <div class="ui comments" id="comments-container">
+                        {% block comments-loop %}
 
+                            <!-- ### Sample rendering of comments ###-->
+                            <!-- reference: -->
+                            <!-- https://pypi.python.org/pypi/django-threadedcomments -->
 
-  {% block comments-loop %}
+                            <h3 class="ui dividing header">{% trans 'Comments' %}</h3>
 
-  {% load threadedcomments_tags %}
-  {% get_comment_list for object as comment_list_roots %}
-  <ol id="comment-list">
+                            {% get_comment_list for object as object_comments %}
+                            {% for object_comment in object_comments %}
 
-  {% for comment_list_root in comment_list_roots %}
-    {% if user.is_staff %}
-      {% render_comment_form for comment_list_root with comment_list_root.id %}
-    {% endif %}
-    {% get_comment_list for comment_list_root as comment_list %}
-  {% for comment in comment_list|fill_tree|annotate_tree %}
-    {% ifchanged comment.parent_id %}{% else %}</li>{% endifchanged %}
-    {% if not comment.open and not comment.close %}</li>{% endif %}
-    {% if comment.open %}<ul>{% endif %}
-    <!--<li id="c{{ comment.id }}">-->
+                                {% get_comment_list for object_comment as comment_comments %}
+                                {% if request.user.is_staff %}
+                                <div class="comment" id="c{{ object_comment.id }}">
 
-    <li id="comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}"
-        class="comment vcard {% cycle 'box1' 'box2' %}{% if comment.user %} authenticated-comment{% if comment.user.is_staff %} staff-comment{% endif %}{% if comment.user.is_superuser %} superuser-comment{% endif %}{% endif %}">
-      {% block comment-image %}
-      <!--<img src="{% get_gravatar comment.email 60 "G" %}"-->
-           <!--class="gravatar photo" alt="{{ comment.name }}" />-->
-      {% endblock comment-image %}
-      {% block comment-info %}
-      <p class="comment-info">
-        {% blocktrans with comment_url=comment.url|default:"#" comment_name=comment.name comment_human_date=comment.submit_date|date:"SHORT_DATETIME_FORMAT" comment_technical_date=comment.submit_date|date:"c" comment_pk=comment.pk comment_author_slug=comment.user_name|slugify trimmed %}
-        <a href="{{ comment_url }}" rel="external nofollow"
-           class="fn url">{{ comment_name }}</a>
-        on
-        <time class="comment-published" datetime="{{ comment_technical_date }}">
-          {{ comment_human_date }}
-        </time>
-        <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
-           id="c{{ comment_pk }}" class="anchor-link"
-           title="Direct link to this comment">#</a>
-        {% endblocktrans %}
-      </p>
-      {% endblock comment-info %}
-      {% block comment-content %}
-      {{ comment.comment|linebreaks }}
-      {#{% render_comment_form for comment with comment.id %}#}
-      {% endblock comment-content %}
-    </li>
-    {% endfor %}
-    {% endfor %}
-  </ol>
-  {% endblock comments-loop %}
-    {% if not object.comments_are_open %}
-  <p>{% trans "Comments are closed." %}</p>
-    {% endif %}
-  {% else %}
-    {% if object.comments_are_open %}
-  <p>{% trans "No comments yet." %}</p>
-    {% else %}
-  <p>{% trans "Comments are closed." %}</p>
-    {% endif %}
-  {% endif %}
-</section>
-{% endblock entry-comments %}
+                                    {#            start comment #}
+                                    <div class="avatar">
+                                        {% block comment-image-noanswer %}
+                                            <img src="{% get_gravatar object_comment.email 60 "G" %}"
+                                                 class="gravatar photo" alt="{{ object_comment.name }}"/>
+                                        {% endblock comment-image-noanswer %}
+                                    </div>
+                                    <div class="content">
+                                        <div class="metadata">
+                                            <span class="date">
+                                                {% block comment-info-noanswer %}
+                                                    <p class="comment-info">
+                                                    {% blocktrans with comment_title=object_comment.title|default:"#" comment_url=object_comment.url|default:"#" comment_name=object_comment.name comment_human_date=object_comment.submit_date|date:"SHORT_DATETIME_FORMAT" comment_technical_date=object_comment.submit_date|date:"c" comment_pk=object_comment.pk comment_author_slug=object_comment.user_name|slugify trimmed %}
+                                                        <a href="{{ comment_url }}" rel="external nofollow"
+                                                           class="fn url">{{ comment_name }}</a>
+                                                        on
+                                                        <time class="comment-published" datetime="{{ comment_technical_date }}">
+                                                            {{ comment_human_date }}
+                                                        </time>
+                                                        <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
+                                                           id="c{{ comment_pk }}" class="anchor-link"
+                                                           title="Direct link to this comment">{{ comment_title }}</a>
+                                                    {% endblocktrans %}
+                                                </p>
+                                                {% endblock comment-info-noanswer %}
+                                            </span>
+                                        </div>
+                                        <div class="text">
+                                            {% block comment-content-noanswer %}
+                                                {{ object_comment.comment|linebreaks }}
+                                            {% endblock comment-content-noanswer %}
+                                            {#            end comment #}
+                                        </div>
+                                    </div>
+                                </div>
+                                    {% render_comment_form for object_comment with object_comment.id %}
+                                {% endif %}
+                                {% for comment in comment_comments|fill_tree|annotate_tree %}
+                                    {% ifchanged comment.parent_id %}{% else %}</div>{% endifchanged %}
+                                    {% if not comment.open and not comment.close %}</div>{% endif %}
+                                    {% if comment.open %}
+                                        <div class="comments">{% endif %}
 
-{% block entry-comments-form %}
-{% if object.comments_are_open %}
-  <div class="ui form">
-  {% render_comment_form for object %}
-    </div>
-{% endif %}
-{% endblock entry-comments-form %}
+                                <div class="comment" id="c{{ comment.id }}">
+
+                                    {#            start comment #}
+                                    <div class="avatar">
+                                        {% block comment-image %}
+                                            <img src="{% get_gravatar comment.email 60 "G" %}"
+                                                 class="gravatar photo" alt="{{ comment.name }}"/>
+                                        {% endblock comment-image %}
+                                    </div>
+                                    <div class="content">
+                                        <div class="metadata">
+                                            <span class="date">
+                                                {% block comment-info %}
+                                                    <p class="comment-info">
+                                                    {% blocktrans with comment_title=comment.title|default:"#" comment_url=comment.url|default:"#" comment_name=comment.name comment_human_date=comment.submit_date|date:"SHORT_DATETIME_FORMAT" comment_technical_date=comment.submit_date|date:"c" comment_pk=comment.pk comment_author_slug=comment.user_name|slugify trimmed %}
+                                                        <a href="{{ comment_url }}" rel="external nofollow"
+                                                           class="fn url">{{ comment_name }}</a>
+                                                        on
+                                                        <time class="comment-published" datetime="{{ comment_technical_date }}">
+                                                            {{ comment_human_date }}
+                                                        </time>
+                                                        <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
+                                                           id="c{{ comment_pk }}" class="anchor-link"
+                                                           title="Direct link to this comment">{{ comment_title }}</a>
+                                                    {% endblocktrans %}
+                                                </p>
+                                                {% endblock comment-info %}
+                                            </span>
+                                        </div>
+                                        <div class="text">
+                                            {% block comment-content %}
+                                                {{ comment.comment|linebreaks }}
+                                            {% endblock comment-content %}
+                                            {#            end comment #}
+                                        </div>
+                                    </div>
+
+                                    {% for close in comment.close %}</div></div>{% endfor %}
+                                {% endfor %}
+                            {% endfor %}
+
+                        {% endblock comments-loop %}
+                    </div>
+                {% endwith %}
+                {% if not object.comments_are_open %}
+                    <p>{% trans "Comments are closed." %}</p>
+                {% endif %}
+            {% else %}
+                {% if object.comments_are_open %}
+                    <p>{% trans "No comments yet." %}</p>
+                {% else %}
+                    <p>{% trans "Comments are closed." %}</p>
+                {% endif %}
+            {% endif %}
+        </section>
+    {% endblock entry-comments %}
+
+    {% block entry-comments-form %}
+        {% if request.user.is_authenticated %} {# comment it if Unauthenticated users can register #}
+            {% if object.comments_are_open %}
+                {% render_comment_form for object %}
+            {% endif %}
+        {% endif %}
+    {% endblock entry-comments-form %}
 
 {% endblock container %}
 
 {% block admin-tools %}
-{% if perms.zinnia.change_entry %}
-<li>
-  <a href="{% url 'admin:zinnia_entry_change' object.pk %}" title="{% trans "Edit the entry" %}">
-    {% trans "Edit the entry" %}
-  </a>
-</li>
-{% endif %}
+    {% if perms.zinnia.change_entry %}
+        <li>
+            <a href="{% url 'admin:zinnia_entry_change' object.pk %}" title="{% trans "Edit the entry" %}">
+                {% trans "Edit the entry" %}
+            </a>
+        </li>
+    {% endif %}
 {% endblock admin-tools %}
+
