@@ -29,17 +29,14 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.admin',
-    'django.contrib.sites',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.contenttypes',
 
-    'threadedcomments',
     'mptt',
     'tagging',
     'zinnia',
-    'django_comments',
     'captcha',
 
     'apps.intro',
@@ -49,10 +46,16 @@ INSTALLED_APPS = [
     'apps.modir',
 ]
 
+INSTALLED_APPS += (
+    'threadedcomments',
+    'django_comments',
+    'django.contrib.sites',
+)
+
+COMMENTS_APP = 'threadedcomments'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# comments
-COMMENTS_APP = 'threadedcomments'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -152,6 +155,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
     os.path.join(BASE_DIR, 'locale_extra'),
+    os.path.join(BASE_DIR, 'apps', 'accounts', 'locale'),
 )
 
 INFRA_IP = '217.79.184.161'
