@@ -33,20 +33,8 @@ def index(request):
 def faq(request):
     return render(request, 'intro/faq.html', {'ai': {
             'navbar': [
-                (_('Introduction'), {
-                    'address': '#section-intro'
+                (_('Home'), {
+                    'address': '/'
                 }),
-                (_('Prize'), {
-                    'address': '#section-prizes'
-                }),
-                (_('History'), {
-                    'address': '#section-history'
-                }),
-                (_('Schedule'), {
-                    'address': '#section-schedule'
-                }),
-                (_('Contact Us'), {
-                    'address': '#section-organizer'
-                })
             ]
         }})
