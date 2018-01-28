@@ -20,9 +20,10 @@ $(document)
         var scrollY = window.pageYOffset;
         var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-        if (scrollY >= h) {
+        if (scrollY >= 15) {
             navbar.addClass('reverse-navbar-color');
             navbar.removeClass('navbar-color');
+
         }
         else {
             navbar.addClass('navbar-color');

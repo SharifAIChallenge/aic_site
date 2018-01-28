@@ -4,7 +4,7 @@ upstream aic_test_web {
 
 server {
 
-    listen 2018 default_server;
+    listen 2016 default_server;
 
     server_name aichallenge.sharif.edu;
     client_max_body_size 8M;

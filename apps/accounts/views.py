@@ -23,6 +23,8 @@ import json
 from apps.game.models.challenge import TeamParticipatesChallenge, UserAcceptsTeamInChallenge
 from apps.game.models.challenge import Challenge
 
+from apps.game.models.challenge import UserAcceptsTeamInChallenge
+
 
 class SignupView(generic.CreateView):
     form_class = SignUpForm

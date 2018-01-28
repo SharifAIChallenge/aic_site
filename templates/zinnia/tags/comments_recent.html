@@ -1,20 +1,21 @@
 {% load i18n %}
-<ul class="{% if not comments %}no-{% endif %}comments-recent">
+<div class="ui list">
   {% for comment in comments %}
-  <li>
+  <div class="item">
     {% with entry=comment.content_object %}
-    {% blocktrans with comment_author=comment.name comment_pk=comment.pk comment_author_slug=comment.user_name|slugify entry_url=entry.get_absolute_url entry_title=entry.title trimmed %}
-    {{ comment_author }} in
-    <a href="{{ entry_url }}#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
-       title="Comment on {{ entry_title }}">
-      {{ entry_title }}
-    </a>
-    {% endblocktrans %}
+        <div >
+            <i class="comment icon"></i>
+            {{ comment.name }} {% trans 'in' %}
+            <a href="{{ entry.get_absolute_url }}#comment-{{ comment.pk }}-by-{{ comment.user_name|slugify }}"
+                title="Comment on {{ entry.title }}">
+                {{ entry.title }}
+            </a>
+        </div>
     {% endwith %}
-  </li>
+  </div>
   {% empty %}
   <li>
     {% trans "No comments yet." %}
   </li>
   {% endfor %}
-</ul>
+</div>

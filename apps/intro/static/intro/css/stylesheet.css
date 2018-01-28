@@ -23,16 +23,14 @@
 
 .banner.text.image.bidi {
     height: 100vh;
-    margin-right: 50%;
-    transform: translateX(50%);
     z-index: 1;
 }
 
 .banner.text.image {
     height: 100vh;
-    margin-left: 50%;
-    transform: translateX(-50%);
     z-index: 1;
+    -webkit-clip-path: inset(10px 0 10px 0);
+    clip-path: inset(10px 0 10px 0);
 }
 
 .section.header {
@@ -41,6 +39,11 @@
     z-index: -1;
 }
 
-#history-text {
-    /*overflow: auto;*/
+#history-text, history-video {
+
+}
+
+#video {
+    -webkit-clip-path: inset(0 45px 0 45px);
+    clip-path: inset(0 45px 0 45px);
 }
