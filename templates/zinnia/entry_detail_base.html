@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load zinnia %}
 {% load threadedcomments_tags %}
+{% load static %}
 
 {% block title %}{{ object.title }}{% endblock title %}
 
@@ -72,8 +73,13 @@
                                     {#            start comment #}
                                     <div class="avatar">
                                         {% block comment-image-noanswer %}
-                                            <img src="{% get_gravatar object_comment.email 60 "G" %}"
-                                                 class="gravatar photo" alt="{{ object_comment.name }}"/>
+                                            {% if comment.user.is_staff %}
+                                                <img class="large image" src="{% static 'images/admin.png' %}">
+                                            {% else %}
+                                                <img src="{% static 'images/user.jpeg' %}">
+{#                                            <img src="{% get_gravatar comment.email 60 "G" %}"#}
+{#                                                 class="gravatar photo" alt="{{ comment.name }}"/>#}
+                                            {% endif %}
                                         {% endblock comment-image-noanswer %}
                                     </div>
                                     <div class="content">
@@ -117,8 +123,13 @@
                                     {#            start comment #}
                                     <div class="avatar">
                                         {% block comment-image %}
-                                            <img src="{% get_gravatar comment.email 60 "G" %}"
-                                                 class="gravatar photo" alt="{{ comment.name }}"/>
+                                            {% if comment.user.is_staff %}
+                                                <img class="large image" src="{% static 'images/admin.png' %}">
+                                            {% else %}
+                                                <img src="{% static 'images/user.jpeg' %}">
+{#                                            <img src="{% get_gravatar comment.email 60 "G" %}"#}
+{#                                                 class="gravatar photo" alt="{{ comment.name }}"/>#}
+                                            {% endif %}
                                         {% endblock comment-image %}
                                     </div>
                                     <div class="content">
