@@ -1,0 +1,26 @@
+{% load i18n %}
+
+
+<div class="ui attached inverted sticky borderless menu navbar-color" id="navbar">
+    {% if request.user.is_authenticated and not no_sidebar %}
+        <span style="cursor: pointer;" class="ui item" onclick="$('.ui.sidebar').sidebar('toggle');"><i
+                class="sidebar icon"></i></span>
+    {% endif %}
+    {% for title, link in ai.navbar %}
+        {% if not link.dropdown %}
+            <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>
+        {% else %}
+            <div class="ui pointing dropdown link item">
+                <span class="text">{{ title }}</span>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    {% for dtitle, dlink in link.dropdown.items %}
+                        <a href="{{ dlink }}" class="item">{{ dtitle }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+
+</div>

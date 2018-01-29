@@ -1,7 +1,6 @@
 {% extends "zinnia/base.html" %}
 {% load i18n %}
 {% load zinnia %}
-
 {% block meta-description %}{% spaceless %}
 {% if category %}
 {% if category.description %}
@@ -55,8 +54,7 @@
 
 {% block body-class %}entry-list{% if page_obj %} paginated page-{{ page_obj.number }}{% endif %}{% if category %} category category-{{ category.slug }}{% endif %}{% if tag %} tag tag-{{ tag|slugify }}{% endif %}{% if author %} author author-{{ author|slugify }}{% endif %}{% endblock body-class %}
 
-{% block content %}
-
+{% block container %}
 {% block content-title %}
 {% if category %}
 <h1>{% blocktrans %}Category archives: {{ category }}{% endblocktrans %}</h1>
@@ -90,14 +88,27 @@
 {% endblock content-title %}
 
 {% block content-loop %}
+<div class="blog_post ui grid">
 {% for object in object_list %}
+
+  <div class="blog_post card">
+    <!--<div class="image">-->
+      <!--<img src="/images/avatar/large/stevie.jpg">-->
+    <!--</div>-->
+    <div class="content">
+
   {% zinnia_loop_template object.content_template as template %}
   {% include template with object_content=object.html_preview continue_reading=1 %}
+
+    </div>
+  </div>
 {% empty %}
   <p class="info">
     <a href="{% url 'admin:zinnia_entry_add' %}">{% trans "No entries yet." %}</a>
   </p>
 {% endfor %}
+
+</div>
 {% endblock content-loop %}
 
 {% block content-pagination %}
@@ -106,10 +117,10 @@
 {% endif %}
 {% endblock content-pagination %}
 
-{% block content-related %}
-{% endblock content-related %}
+{#{% block content-related %}#}
+{#{% endblock content-related %}#}
 
-{% endblock content %}
+{% endblock container %}
 
 {% block admin-tools %}
   {% if category and perms.zinnia.change_category %}
