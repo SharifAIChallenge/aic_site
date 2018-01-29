@@ -10,7 +10,7 @@ from django.utils import timezone
 
 from apps.accounts.models import Team, UserParticipatesOnTeam
 from apps.game import functions
-from apps.game.models import Challenge, Competition, Match, Game, Participant, TeamSubmission
+from apps.game.models import Challenge, Competition, Match, Game, Participant, TeamSubmission, Map
 from apps.game.models.challenge import TeamParticipatesChallenge
 
 
@@ -53,15 +53,23 @@ def populate_challenges():
     challenge.game = game
     challenge.save()
 
+def populate_maps():
+    for i in range(3):
+        map = Map()
+        map.name = 'map ' + str(i)
+        map.save()
 
 def populate_competitions():
     challenge = Challenge.objects.all()[0]
+    maps = list(Map.objects.all())
     types = ['elim', 'league', 'double']
     for i in range(3):
         competition = Competition()
         competition.type = types[i]
         competition.challenge = challenge
         competition.save()
+        for map in maps:
+            competition.maps.add(map)
 
 
 class TestTeam(TransactionTestCase):
@@ -70,6 +78,7 @@ class TestTeam(TransactionTestCase):
         populate_users()
         populate_teams()
         populate_challenges()
+        populate_maps()
         populate_competitions()
 
     def test_get_team_matches(self):

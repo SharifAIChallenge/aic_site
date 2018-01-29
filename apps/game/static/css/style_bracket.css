@@ -1,0 +1,8 @@
+#two_brackets {
+    margin-top: 50px;
+    overflow-y:scroll;
+}
+
+#bracket_1, #bracket_2 {
+    min-width: 1100px;
+}
