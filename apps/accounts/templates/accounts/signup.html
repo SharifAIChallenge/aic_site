@@ -45,6 +45,17 @@
           </div>
       </div>
 
+      {% if form.organization.errors %}
+        <div class="ui message error">
+            <strong>{{ form.organization.errors }}</strong>
+        </div>
+      {% endif %}
+      {% if form.phone_number.errors %}
+        <div class="ui message error">
+            <strong>{{ form.phone_number.errors }}</strong>
+        </div>
+      {% endif %}
+
       <div class="field required">
           <label>{% trans 'Email' %}</label>
           {{ form.email }}

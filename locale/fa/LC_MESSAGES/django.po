@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-28 22:02+0000\n"
+"POT-Creation-Date: 2018-01-29 15:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,33 +20,33 @@ msgstr ""
 
 #: aic_site/context_processors.py:9
 msgid "Introduction"
-msgstr ""
+msgstr "معرفی"
 
 #: aic_site/context_processors.py:12
 msgid "Prize"
-msgstr ""
+msgstr "جایزه"
 
 #: aic_site/context_processors.py:15
 msgid "History"
-msgstr ""
+msgstr "تاریخ"
 
 #: aic_site/context_processors.py:18
 msgid "Schedule"
-msgstr ""
+msgstr "برنامه"
 
 #: aic_site/context_processors.py:33
 msgid "Panel"
-msgstr ""
+msgstr "پنل"
 
 #: aic_site/context_processors.py:36
 msgid "Create Team"
-msgstr ""
+msgstr "ایجاد تیم"
 
-#: aic_site/settings/base.py:125
+#: aic_site/settings/base.py:130
 msgid "English"
 msgstr "انگلیسی"
 
-#: aic_site/settings/base.py:126
+#: aic_site/settings/base.py:131
 msgid "Persian"
 msgstr "فارسی"
 
@@ -95,11 +95,11 @@ msgstr ""
 
 #: templates/comments/delete.html:13
 msgid "Remove"
-msgstr ""
+msgstr "حذف"
 
 #: templates/comments/deleted.html:4
 msgid "Thanks for removing"
-msgstr ""
+msgstr "ممنون بابت حذف کردن"
 
 #: templates/comments/flag.html:4
 #: templates/comments/zinnia/entry/email/notification.txt:10
@@ -121,15 +121,15 @@ msgstr ""
 #: templates/comments/form.html:50 templates/comments/preview.html:36
 #: templates/comments/zinnia/entry/form.html:50
 msgid "Post"
-msgstr ""
+msgstr "فرستادن"
 
 #: templates/comments/posted.html:4
 msgid "Thanks for commenting"
-msgstr ""
+msgstr "با تشکر از نظر شما"
 
 #: templates/comments/posted.html:7
 msgid "Thank you for your comment"
-msgstr ""
+msgstr "با تشکر از نظر شما"
 
 #: templates/comments/preview.html:4 templates/comments/preview.html:14
 #, fuzzy
@@ -140,22 +140,20 @@ msgstr "ماه قبل"
 #: templates/comments/preview.html:12
 msgid "Please correct the error below"
 msgid_plural "Please correct the errors below"
-msgstr[0] ""
+msgstr[0] "لطفاً ارور های زیر را رفع کنید"
 
 #: templates/comments/preview.html:17
 msgid "and"
-msgstr ""
+msgstr "و"
 
 #: templates/comments/preview.html:18
-#, fuzzy
-#| msgid "Be first to comment!"
 msgid "Post your comment"
-msgstr "اولین نظر را بدهید!"
+msgstr "نظر بدهید"
 
 #. Translators: This string follows the 'Post your comment' submit button.
 #: templates/comments/preview.html:20
 msgid "or make changes"
-msgstr ""
+msgstr "یا تغییراتی انجام دهید"
 
 #: templates/comments/preview.html:37
 #, fuzzy
@@ -213,8 +211,8 @@ msgstr "اولین نظر را بدهید!"
 msgid "Comment as"
 msgstr "نظرات"
 
-#: templates/comments/zinnia/entry/form.html:46 templates/zinnia/base.html:116
-#: templates/zinnia/base.html:117
+#: templates/comments/zinnia/entry/form.html:46 templates/zinnia/base.html:123
+#: templates/zinnia/base.html:124
 msgid "Log out"
 msgstr "خروج"
 
@@ -232,7 +230,7 @@ msgstr ""
 #: templates/comments/zinnia/entry/posted.html:19
 #, python-format
 msgid "Back to %(title)s"
-msgstr ""
+msgstr "%(title)s برگشت به "
 
 #: templates/comments/zinnia/entry/posted.html:26
 #: templates/comments/zinnia/entry/posted.html:27
@@ -250,7 +248,7 @@ msgstr "نظرات بسته است."
 #: templates/comments/zinnia_entry_preview.html:10
 msgid "Please correct following error."
 msgid_plural "Please correct following errors."
-msgstr[0] ""
+msgstr[0] "لطفاً ارور های زیر را رفع کنید."
 
 #: templates/comments/zinnia_entry_preview.html:12
 #, fuzzy
@@ -275,7 +273,7 @@ msgstr ""
 msgid "Continue reading"
 msgstr "ادامه خواندن"
 
-#: templates/zinnia/_entry_detail_base.html:127 templates/zinnia/base.html:57
+#: templates/zinnia/_entry_detail_base.html:127 templates/zinnia/base.html:60
 #: templates/zinnia/tag_list.html:6
 msgid "Tags"
 msgstr "تگ‌ها"
@@ -294,7 +292,7 @@ msgstr "بدون تگ"
 msgid "Author list"
 msgstr "لیست نویسنده‌ها"
 
-#: templates/zinnia/author_list.html:6 templates/zinnia/base.html:46
+#: templates/zinnia/author_list.html:6 templates/zinnia/base.html:49
 msgid "Authors"
 msgstr "نویسنده‌ها"
 
@@ -317,62 +315,62 @@ msgstr[0] ""
 msgid "No authors yet."
 msgstr "نویسنده‌ای ثبت نشده است."
 
-#: templates/zinnia/base.html:17 templates/zinnia/skeleton.html:36
+#: templates/zinnia/base.html:18 templates/zinnia/skeleton.html:36
 msgid "RSS feed of last entries"
 msgstr "فید RSS آخرین نوشته‌ها"
 
-#: templates/zinnia/base.html:18
+#: templates/zinnia/base.html:20
 msgid "RSS feed of last discussions"
 msgstr "فید RSS آخرین بحث‌ها"
 
-#: templates/zinnia/base.html:23
+#: templates/zinnia/base.html:26
 msgid "Blog"
 msgstr "بلاگ"
 
-#: templates/zinnia/base.html:30
+#: templates/zinnia/base.html:33
 msgid "Welcome!"
 msgstr "خوش‌ آمدید!"
 
-#: templates/zinnia/base.html:32
+#: templates/zinnia/base.html:35
 msgid "This simple theme is the default appearance of Zinnia."
 msgstr ""
 
-#: templates/zinnia/base.html:35
+#: templates/zinnia/base.html:38
 msgid ""
 "Don't hesitate to override the template <strong>zinnia/base.html</strong> to "
 "start <a href='http://docs.django-blog-zinnia.com/en/latest/how-to/"
 "customize_look_and_feel.html'>customizing your Weblog</a>."
 msgstr ""
 
-#: templates/zinnia/base.html:40 templates/zinnia/category_list.html:6
+#: templates/zinnia/base.html:43 templates/zinnia/category_list.html:6
 msgid "Categories"
 msgstr "موضوعات"
 
-#: templates/zinnia/base.html:51
+#: templates/zinnia/base.html:54
 msgid "Calendar"
 msgstr "تقویم"
 
-#: templates/zinnia/base.html:66
+#: templates/zinnia/base.html:69
 msgid "Recent entries"
 msgstr "نوشته‌های اخیر"
 
-#: templates/zinnia/base.html:73
+#: templates/zinnia/base.html:77
 msgid "Recent comments"
 msgstr "نظرات اخیر"
 
-#: templates/zinnia/base.html:79
+#: templates/zinnia/base.html:84
 msgid "Recent linkbacks"
 msgstr ""
 
-#: templates/zinnia/base.html:83
+#: templates/zinnia/base.html:88
 msgid "Random entries"
 msgstr "نوشته‌های تصادفی"
 
-#: templates/zinnia/base.html:87
+#: templates/zinnia/base.html:92
 msgid "Popular entries"
 msgstr "نوشته‌های محبوب"
 
-#: templates/zinnia/base.html:91 templates/zinnia/entry_archive_day.html:5
+#: templates/zinnia/base.html:96 templates/zinnia/entry_archive_day.html:5
 #: templates/zinnia/entry_archive_day.html:7
 #: templates/zinnia/entry_archive_day.html:12
 #: templates/zinnia/entry_archive_day.html:29
@@ -393,15 +391,15 @@ msgstr "نوشته‌های محبوب"
 msgid "Archives"
 msgstr "آرشیو‌ها"
 
-#: templates/zinnia/base.html:96
+#: templates/zinnia/base.html:102
 msgid "Tools"
 msgstr "ابزارها"
 
-#: templates/zinnia/base.html:101 templates/zinnia/base.html:102
+#: templates/zinnia/base.html:108 templates/zinnia/base.html:109
 msgid "Dashboard"
 msgstr "پیشخوان"
 
-#: templates/zinnia/base.html:108 templates/zinnia/base.html:109
+#: templates/zinnia/base.html:115 templates/zinnia/base.html:116
 msgid "Post an entry"
 msgstr "ارسال نوشته"
 
@@ -492,32 +490,32 @@ msgstr "سال قبل"
 msgid "Next year"
 msgstr "سال بعد"
 
-#: templates/zinnia/entry_detail_base.html:25
+#: templates/zinnia/entry_detail_base.html:26
 #, python-format
 msgid "RSS feed of discussions on %(object)s"
 msgstr "فید RSS بحث %(object)s"
 
-#: templates/zinnia/entry_detail_base.html:28
+#: templates/zinnia/entry_detail_base.html:29
 #, python-format
 msgid "RSS feed of comments on %(object)s"
 msgstr "فید RSS نظرات %(object)s"
 
-#: templates/zinnia/entry_detail_base.html:31
+#: templates/zinnia/entry_detail_base.html:32
 #, python-format
 msgid "RSS feed of pingbacks on %(object)s"
 msgstr ""
 
-#: templates/zinnia/entry_detail_base.html:34
+#: templates/zinnia/entry_detail_base.html:35
 #, python-format
 msgid "RSS feed of trackbacks on %(object)s"
 msgstr ""
 
-#: templates/zinnia/entry_detail_base.html:63
+#: templates/zinnia/entry_detail_base.html:64
 msgid "Comments"
 msgstr "نظرات"
 
-#: templates/zinnia/entry_detail_base.html:84
-#: templates/zinnia/entry_detail_base.html:129
+#: templates/zinnia/entry_detail_base.html:90
+#: templates/zinnia/entry_detail_base.html:140
 #, python-format
 msgid ""
 "<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
@@ -527,19 +525,25 @@ msgid ""
 "\" class=\"anchor-link\" title=\"Direct link to this comment\">"
 "%(comment_title)s</a>"
 msgstr ""
+"<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
+"%(comment_name)s</a> در <time class=\"comment-published\" datetime="
+"\"%(comment_technical_date)s\"> %(comment_human_date)s </time> <a href="
+"\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c%(comment_pk)s"
+"\" class=\"anchor-link\" title=\"لینک مستقیم به این نظر\">%(comment_title)s</"
+"a>"
 
-#: templates/zinnia/entry_detail_base.html:160
-#: templates/zinnia/entry_detail_base.html:166
+#: templates/zinnia/entry_detail_base.html:171
+#: templates/zinnia/entry_detail_base.html:177
 msgid "Comments are closed."
 msgstr "نظرات بسته است."
 
-#: templates/zinnia/entry_detail_base.html:164
+#: templates/zinnia/entry_detail_base.html:175
 #: templates/zinnia/tags/comments_recent.html:18
 msgid "No comments yet."
 msgstr "بدون نظر"
 
-#: templates/zinnia/entry_detail_base.html:185
-#: templates/zinnia/entry_detail_base.html:186
+#: templates/zinnia/entry_detail_base.html:196
+#: templates/zinnia/entry_detail_base.html:197
 msgid "Edit the entry"
 msgstr "ویرایش نوشته"
 
@@ -637,7 +641,7 @@ msgstr "نتایج جستجو برای %(pattern)s"
 #: templates/zinnia/entry_search.html:26
 #, python-format
 msgid "RSS feed of search results for '%(pattern)s'"
-msgstr ""
+msgstr "'%(pattern)s' فید RSS نتیجه ی جست و جو برای "
 
 #: templates/zinnia/entry_search.html:33
 #, python-format
@@ -745,7 +749,7 @@ msgstr "تگی یافت نشد."
 
 #: templates/zinnia/tags/comments_recent.html:8
 msgid "in"
-msgstr ""
+msgstr "در"
 
 #: templates/zinnia/tags/entries_archives.html:12
 #: templates/zinnia/tags/entries_archives_tree.html:37
@@ -814,7 +818,7 @@ msgstr ""
 #, python-format
 msgid "%(author_count)s author"
 msgid_plural "%(author_count)s authors"
-msgstr[0] ""
+msgstr[0] "%(author_count)s تا نویسنده"
 
 #: templates/zinnia/tags/statistics.html:10
 #, python-format
@@ -849,22 +853,22 @@ msgstr[0] ""
 #: templates/zinnia/tags/statistics.html:28
 #, python-format
 msgid "%(entries_per_month)s entries per month"
-msgstr ""
+msgstr "%(entries_per_month)s تا پست در هر ماه"
 
 #: templates/zinnia/tags/statistics.html:31
 #, python-format
 msgid "%(words_per_entry)s words per entry"
-msgstr ""
+msgstr "%(words_per_entry)s تا کلمه در هر پست"
 
 #: templates/zinnia/tags/statistics.html:34
 #, python-format
 msgid "%(words_per_comment)s words per comment"
-msgstr ""
+msgstr "%(words_per_comment)s تا کلمه در هر نظر"
 
 #: templates/zinnia/tags/statistics.html:37
 #, python-format
 msgid "%(comments_per_entry)s comments per entry"
-msgstr ""
+msgstr "%(comments_per_entry)s تا نظر در هر پست"
 
 #: templates/zinnia/tags/statistics.html:40
 #, python-format
@@ -875,7 +879,10 @@ msgstr ""
 #, python-format
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
-msgstr[0] ""
+msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
+
+#~ msgid "Be first to comment!"
+#~ msgstr "اولین نظر را بدهید!"
 
 #~ msgid "Home"
 #~ msgstr "خانه"
