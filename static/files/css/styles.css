@@ -99,7 +99,7 @@ This set of fonts are used in this project under the license: RC4QT
     -o-transition: all 0.2s linear;
 }
 
-#navbar a {
+#navbar .item {
     z-index: 99;
     position: relative;
 }
