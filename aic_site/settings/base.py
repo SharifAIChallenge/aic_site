@@ -47,11 +47,11 @@ INSTALLED_APPS = [
     'apps.utils'
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.mailgun.com'
-EMAIL_HOST_USER = 'info@aichallenge.ir'
-EMAIL_HOST_PASSWORD = 'aichallenge_SSC_96'
-DEFAULT_FROM_EMAIL = 'info@aichallenge.ir'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = 'smtp.mailgun.com'
+# EMAIL_HOST_USER = 'info@aichallenge.ir'
+# EMAIL_HOST_PASSWORD = 'aichallenge_SSC_96'
+# DEFAULT_FROM_EMAIL = 'info@aichallenge.ir'
 
 INSTALLED_APPS += (
     'threadedcomments',
