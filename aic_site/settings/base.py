@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'apps.modir',
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.mailgun.com'
 EMAIL_HOST_USER = 'info@aichallenge.ir'
 EMAIL_HOST_PASSWORD = 'aichallenge_SSC_96'
