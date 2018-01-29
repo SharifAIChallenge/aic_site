@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-29 13:14+0000\n"
+"POT-Creation-Date: 2018-01-29 15:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,7 +140,7 @@ msgstr "ماه قبل"
 #: templates/comments/preview.html:12
 msgid "Please correct the error below"
 msgid_plural "Please correct the errors below"
-msgstr[0] ""
+msgstr[0] "لطفاً ارور های زیر را رفع کنید"
 
 #: templates/comments/preview.html:17
 msgid "and"
@@ -248,7 +248,7 @@ msgstr "نظرات بسته است."
 #: templates/comments/zinnia_entry_preview.html:10
 msgid "Please correct following error."
 msgid_plural "Please correct following errors."
-msgstr[0] ""
+msgstr[0] "لطفاً ارور های زیر را رفع کنید."
 
 #: templates/comments/zinnia_entry_preview.html:12
 #, fuzzy
@@ -490,32 +490,32 @@ msgstr "سال قبل"
 msgid "Next year"
 msgstr "سال بعد"
 
-#: templates/zinnia/entry_detail_base.html:25
+#: templates/zinnia/entry_detail_base.html:26
 #, python-format
 msgid "RSS feed of discussions on %(object)s"
 msgstr "فید RSS بحث %(object)s"
 
-#: templates/zinnia/entry_detail_base.html:28
+#: templates/zinnia/entry_detail_base.html:29
 #, python-format
 msgid "RSS feed of comments on %(object)s"
 msgstr "فید RSS نظرات %(object)s"
 
-#: templates/zinnia/entry_detail_base.html:31
+#: templates/zinnia/entry_detail_base.html:32
 #, python-format
 msgid "RSS feed of pingbacks on %(object)s"
 msgstr ""
 
-#: templates/zinnia/entry_detail_base.html:34
+#: templates/zinnia/entry_detail_base.html:35
 #, python-format
 msgid "RSS feed of trackbacks on %(object)s"
 msgstr ""
 
-#: templates/zinnia/entry_detail_base.html:63
+#: templates/zinnia/entry_detail_base.html:64
 msgid "Comments"
 msgstr "نظرات"
 
-#: templates/zinnia/entry_detail_base.html:84
-#: templates/zinnia/entry_detail_base.html:129
+#: templates/zinnia/entry_detail_base.html:90
+#: templates/zinnia/entry_detail_base.html:140
 #, python-format
 msgid ""
 "<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
@@ -529,21 +529,21 @@ msgstr ""
 "%(comment_name)s</a> در <time class=\"comment-published\" datetime="
 "\"%(comment_technical_date)s\"> %(comment_human_date)s </time> <a href="
 "\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c%(comment_pk)s"
-"\" class=\"anchor-link\" title=\"لینک مستقیم به این نظر\">"
-"%(comment_title)s</a>"
+"\" class=\"anchor-link\" title=\"لینک مستقیم به این نظر\">%(comment_title)s</"
+"a>"
 
-#: templates/zinnia/entry_detail_base.html:160
-#: templates/zinnia/entry_detail_base.html:166
+#: templates/zinnia/entry_detail_base.html:171
+#: templates/zinnia/entry_detail_base.html:177
 msgid "Comments are closed."
 msgstr "نظرات بسته است."
 
-#: templates/zinnia/entry_detail_base.html:164
+#: templates/zinnia/entry_detail_base.html:175
 #: templates/zinnia/tags/comments_recent.html:18
 msgid "No comments yet."
 msgstr "بدون نظر"
 
-#: templates/zinnia/entry_detail_base.html:185
-#: templates/zinnia/entry_detail_base.html:186
+#: templates/zinnia/entry_detail_base.html:196
+#: templates/zinnia/entry_detail_base.html:197
 msgid "Edit the entry"
 msgstr "ویرایش نوشته"
 
@@ -818,7 +818,7 @@ msgstr ""
 #, python-format
 msgid "%(author_count)s author"
 msgid_plural "%(author_count)s authors"
-msgstr[0] ""
+msgstr[0] "%(author_count)s تا نویسنده"
 
 #: templates/zinnia/tags/statistics.html:10
 #, python-format
@@ -853,22 +853,22 @@ msgstr[0] ""
 #: templates/zinnia/tags/statistics.html:28
 #, python-format
 msgid "%(entries_per_month)s entries per month"
-msgstr ""
+msgstr "%(entries_per_month)s تا پست در هر ماه"
 
 #: templates/zinnia/tags/statistics.html:31
 #, python-format
 msgid "%(words_per_entry)s words per entry"
-msgstr ""
+msgstr "%(words_per_entry)s تا کلمه در هر پست"
 
 #: templates/zinnia/tags/statistics.html:34
 #, python-format
 msgid "%(words_per_comment)s words per comment"
-msgstr ""
+msgstr "%(words_per_comment)s تا کلمه در هر نظر"
 
 #: templates/zinnia/tags/statistics.html:37
 #, python-format
 msgid "%(comments_per_entry)s comments per entry"
-msgstr ""
+msgstr "%(comments_per_entry)s تا نظر در هر پست"
 
 #: templates/zinnia/tags/statistics.html:40
 #, python-format
@@ -879,7 +879,7 @@ msgstr ""
 #, python-format
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
-msgstr[0] ""
+msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
 
 #~ msgid "Be first to comment!"
 #~ msgstr "اولین نظر را بدهید!"

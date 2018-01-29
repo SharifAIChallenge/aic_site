@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-29 13:14+0000\n"
+"POT-Creation-Date: 2018-01-29 15:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: apps/accounts/forms/forms.py:24
+msgid "Please enter your phone number correctly!"
+msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
+
 #: apps/accounts/forms/team_forms.py:11
 msgid "Required,Choose a suitable name for your team"
 msgstr "انتخاب نام تیم لازم است!"
 
 #: apps/accounts/forms/team_forms.py:24
-msgid "This name is used by another team!"
+#, fuzzy
+#| msgid "This name is used by another team!"
+msgid "This name is used by another team"
 msgstr "این نام قبلا توسط تیمی دیگر استفاده شده است!"
 
 #: apps/accounts/forms/team_forms.py:27
-msgid "You can't add same users to your team!"
+#, fuzzy
+#| msgid "You can't add same users to your team!"
+msgid "You can't add same users to your team"
 msgstr "لطفا دو کاربران تکراری برای تیم انتخاب نکنید!"
 
 #: apps/accounts/forms/team_forms.py:31
-msgid "Some of users are already participated in the challenge!"
+#, fuzzy
+#| msgid "Some of users are already participated in the challenge!"
+msgid "Some of the users are already participating in this challenge"
 msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
 
 #: apps/accounts/templates/accounts/create_team.html:47
@@ -113,10 +123,71 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/signup.html:5
 #: apps/accounts/templates/accounts/update_profile.html:5
+#: apps/accounts/templates/email/email_confirm.html:5
+#: apps/accounts/templates/email/email_invalid.html:5
+#: apps/accounts/templates/email/email_sent.html:5
 msgid "Sign Up"
 msgstr "ثبت نام"
 
+#: apps/accounts/templates/accounts/signup.html:10
+#, fuzzy
+#| msgid "Sign Up"
+msgid "SignUp Form"
+msgstr "ثبت نام"
+
 #: apps/accounts/templates/accounts/signup.html:12
+msgid "Username"
+msgstr ""
+
+#: apps/accounts/templates/accounts/signup.html:28
+msgid "First Name"
+msgstr ""
+
+#: apps/accounts/templates/accounts/signup.html:32
+msgid "Last Name"
+msgstr ""
+
+#: apps/accounts/templates/accounts/signup.html:39
+msgid "College/School/Organization"
+msgstr ""
+
+#: apps/accounts/templates/accounts/signup.html:43
+msgid "Phone Number"
+msgstr "شماره ی همراه"
+
+#: apps/accounts/templates/accounts/signup.html:60
+msgid "Email"
+msgstr "ایمیل"
+
+#: apps/accounts/templates/accounts/signup.html:75
+msgid "Password"
+msgstr "رمز"
+
+#: apps/accounts/templates/accounts/signup.html:90
+msgid "Password Confirm"
+msgstr "تکرار رمز"
+
+#: apps/accounts/templates/accounts/signup.html:110
+#, fuzzy
+#| msgid "Sign Up"
+msgid "SignUp"
+msgstr "ثبت نام"
+
+#: apps/accounts/templates/accounts/success_create_team.html:10
+msgid "Your team has been created successfully"
+msgstr "تیم شما با موفقیت ساخته شد"
+
+#: apps/accounts/templates/accounts/success_create_team.html:12
+msgid "Request messages has bee sent to your teammates"
+msgstr "درخواست عضویت به هم تیمی های شما فرستاده شد"
+
+#: apps/accounts/templates/accounts/success_create_team.html:17
+#: apps/accounts/templates/email/email_confirm.html:20
+#: apps/accounts/templates/email/email_invalid.html:20
+#: apps/accounts/templates/email/email_sent.html:20
+msgid "OK"
+msgstr "باشه"
+
 #: apps/accounts/templates/accounts/update_profile.html:8
 msgid "Sign up"
 msgstr "ثبت نام"
@@ -124,3 +195,29 @@ msgstr "ثبت نام"
 #: apps/accounts/templates/accounts/update_profile.html:12
 msgid "Update"
 msgstr "ذخیره"
+
+#: apps/accounts/templates/email/email_confirm.html:12
+#, fuzzy
+#| msgid "Your team has been created successfully"
+msgid "Your account has been successfully verified"
+msgstr "تیم شما با موفقیت ساخته شد"
+
+#: apps/accounts/templates/email/email_confirm.html:14
+msgid "You can now login with your account"
+msgstr "شما اکنون می‌توانید به اکانت خود وارد شوید"
+
+#: apps/accounts/templates/email/email_invalid.html:12
+msgid "The verification link is invalid"
+msgstr "لینک فعال سازی معتبر نیست"
+
+#: apps/accounts/templates/email/email_invalid.html:14
+msgid "your link might have expired"
+msgstr "ممکن است لینک فعال سازی شما منقضی شده باشد"
+
+#: apps/accounts/templates/email/email_sent.html:12
+msgid "Your user registration was successful"
+msgstr "ثبت نام شما موفقیت آمیز بود"
+
+#: apps/accounts/templates/email/email_sent.html:14
+msgid "a verification link has been sent to your Email"
+msgstr "یک لینک فعال سازی به ایمیل شما ارسال شد"
