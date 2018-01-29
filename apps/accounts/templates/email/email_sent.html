@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% load static i18n %}
+
+{% block title %}{% trans 'Sign Up' %}{% endblock %}
+
+{% block container %}
+<div class="ui success icon message">
+  <i class="mail icon"></i>
+  <div class="content">
+    <div class="header">
+      {% trans 'Your user registration was successful' %}
+    </div>
+    <p>{% trans 'a verification link has been sent to your Email'%}</p>
+  </div>
+</div>
+
+<a href="/accounts/login">
+<div class="ui animated button" tabindex="0">
+  <div class="visible content">{% trans 'OK' %}</div>
+  <div class="hidden content">
+    <i class="right arrow icon"></i>
+  </div>
+</div>
+</a>
+{% endblock %}
