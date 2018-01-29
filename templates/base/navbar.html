@@ -2,7 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 <div class="ui attached inverted sticky borderless menu navbar-color" id="navbar">
-    {% if request.user.is_authenticated and not no_sidebar %}
+    {% if not no_sidebar %}
         <span style="cursor: pointer;" class="ui item" onclick="$('.ui.sidebar').sidebar('toggle');"><i
                 class="sidebar icon"></i></span>
     {% endif %}
@@ -29,11 +29,26 @@
         <input type="hidden" name="language" value="{% if LANGUAGE_CODE == "fa" %}en{% else %}fa{% endif %}"/>
     </form>
 
-    <div class="right menu mobile-hidden">
+    <div class="right menu">
         <div class="ui dropdown item">
             <i class="user icon"></i>
             <div class="menu">
-                <a class="item" onclick="document.changeLang.submit();" href="#"><i class="glob icon"></i>{% if LANGUAGE_CODE == "fa" %}EN{% else %}FA{% endif %}</a>
+                {% if request.user.is_authenticated %}
+                    <a class="item" href="{% url 'accounts:logout' %}">
+                        <i class="sign out icon"></i>
+                        {% trans 'Logout' %}
+                    </a>
+                {% else %}
+                    <a class="item" href="{% url 'accounts:login' %}">
+                        <i class="sign in icon"></i>
+                        {% trans 'Login' %}
+                    </a>
+                    <a class="item" href="{% url 'accounts:signup' %}">
+                        <i class="add user icon"></i>
+                        {% trans 'Register' %}
+                    </a>
+                {% endif %}
+                <a class="item" onclick="document.changeLang.submit();" href="#"><i class="world icon"></i>{% if LANGUAGE_CODE == "fa" %}EN{% else %}FA{% endif %}</a>
             </div>
         </div>
     </div>
