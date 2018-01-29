@@ -31,6 +31,11 @@ class SignupView(generic.CreateView):
     success_url = '/accounts/login/'
     template_name = 'accounts/signup.html'
 
+    def get_form_class(self):
+        form = super().get_form_class()
+        form.request = self.request
+        return form
+
 
 def activate(request, uidb64, token):
     try:

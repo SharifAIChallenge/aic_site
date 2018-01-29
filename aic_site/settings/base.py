@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'mptt',
     'tagging',
     'zinnia',
+    'captcha',
 
     'apps.intro',
     'apps.accounts',
@@ -158,6 +159,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
     os.path.join(BASE_DIR, 'locale_extra'),
+    os.path.join(BASE_DIR, 'apps', 'accounts', 'locale'),
 )
 
 INFRA_IP = '217.79.184.161'
