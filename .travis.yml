@@ -31,7 +31,6 @@ jobs:
 #    - curl -H "X-token: $TOKEN" -X GET http://127.0.0.1/deploy_production
   - stage: deploy_test
     script:
-    - curl -
     - "curl -H 'X-token:$TOKEN' -X GET http://127.0.0.1/deploy_test"
 env:
   global:
