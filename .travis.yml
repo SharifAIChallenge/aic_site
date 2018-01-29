@@ -3,9 +3,9 @@ python: 3.6
 stages:
 - test
 - name: deploy_test
-  if: type = push AND (branch IN (travis_integration, production-test))
+  if: type = push AND (branch IN (travis_integration, dev))
 #- name: deploy_production
-#  if: type = push AND (branch IN (master))
+#  if: type = push AND (branch IN (stable-dev))
 jobs:
   include:
   - stage: test
