@@ -94,9 +94,9 @@ This set of fonts are used in this project under the license: RC4QT
     font-size: small;
     font-weight: bold !important;
 
-    -webkit-transition: all 0.5s linear;
-    -moz-transition: all 0.5s linear;
-    -o-transition: all 0.5s linear;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
 }
 
 #navbar a {

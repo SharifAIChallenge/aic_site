@@ -23,27 +23,13 @@
     {% endfor %}
 
 
-    <form name="setLangEnglish" action="/i18n/setlang/" method="POST">
+    <form name="changeLang" action="/i18n/setlang/" method="POST">
         {% csrf_token %}
         <input name="next" type="hidden" value="{{ request.path }}"/>
-        <input type="hidden" name="language" value="en"/>
-    </form>
-
-    <form name="setLangPersian" action="/i18n/setlang/" method="POST">
-        {% csrf_token %}
-        <input name="next" type="hidden" value="{{ request.path }}"/>
-        <input type="hidden" name="language" value="fa"/>
+        <input type="hidden" name="language" value="{% if LANGUAGE_CODE == "fa" %}en{% else %}fa{% endif %}"/>
     </form>
 
     <div class="right menu">
-        {% if LANGUAGE_CODE == "en" %}
-                <a onclick="document.setLangPersian.submit();return false;" href="#"> فا </a>
-        {% else %}
-                <a onclick="document.setLangEnglish.submit();return false;" href="#">en </a>
-        {% endif %}
-
-
+        <a onclick="document.changeLang.submit();" href="#">{% if LANGUAGE_CODE == "fa" %}EN{% else %}FA{% endif %}</a>
     </div>
-
-
 </div>
