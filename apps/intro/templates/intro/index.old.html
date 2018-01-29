@@ -1,0 +1,194 @@
+{% extends "base/full-width.html" %}
+{% load static i18n %}
+
+{% block extra_header %}
+    <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
+{% endblock %}
+
+{% block container %}
+
+    <div class="section masthead" id="section"></div>
+
+    <div class="section gameInfo" id="section">
+        <h1 class="ui centered header">
+            {% trans 'Game Description' %}
+        </h1>
+        <div class="ui center aligned stackable grid">
+            <div class="eight wide column" style="padding: 30px;">
+                <p style="float: right; text-align: justify; font-size: 1.3em; padding-left: 15px;">
+                    {% trans 'Sharif AI Challenge is a programming competition for all who are interested in artificial intelligence. This competition is  held in two phases annually. Including an online and an on-site phase in which competitors will compete in teams of three in a game designed by our technical team. \n The only pre-requisite to enter this competition is familiarity with programming using C++, Java or python. But obviously, knowledge of algorithmic thinking and artificial intelligence will be a great asset for any of the participating teams. The registration for online competition is free.' %}
+                </p>
+            </div>
+            <div class="eight wide column">
+                <img class="ui centered large image"
+                     src="https://big.assets.huffingtonpost.com/1274879002_wheelchair-back-flip-jump.gif">
+            </div>
+            <div class="five wide column">
+                <h2 class="ui header">
+                    {% trans '# Teams' %}
+                </h2>
+                <div class="counter" data-count="{{ stats.teams_count }}"></div>
+            </div>
+            <div class="six wide column mobile-hidden">
+                <a class="ui animated massive green button">
+                    <div class="visible content">
+                        {% trans 'Participate' %}
+                    </div>
+                    <div class="hidden content">
+                        <i class="left arrow icon"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="five wide column">
+                <h2 class="ui header">
+                    {% trans '# Submissions' %}
+                </h2>
+                <div class="counter" data-count="{{ stats.submissions_count }}">0</div>
+            </div>
+            <div class="six wide column mobile-only">
+                <a class="ui animated massive green button">
+                    <div class="visible content">
+                        {% trans 'Participate' %}
+                    </div>
+                    <div class="hidden content">
+                        <i class="left arrow icon"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section prizes" id="section">
+        <div class="ui center aligned grid" id="prize-grid">
+            <h1 class="ui header">
+                {% trans 'Prizes' %}
+            </h1>
+            <div class="row" id="prize-row">
+                <div class="five wide column" style="margin-top: 30px;">
+                    <img id="prizeImg2" src="{% static 'intro/image/prize2.png' %}" alt="Second rank prize">
+                </div>
+                <div class="six wide column" style="margin-top: -30px;">
+                    <img id="prizeImg1" src="{% static 'intro/image/prize1.png' %}" alt="First rank prize">
+                </div>
+                <div class="five wide column" style="margin-top: 60px;">
+                    <img id="prizeImg3" src="{% static 'intro/image/prize3.png' %}" alt="Third rank prize">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section schedule" id="section">
+        <h1 class="ui centered header">
+            {% trans 'Time Schedule' %}
+        </h1>
+        <table class="ui inverted orange unstackable table" style="margin-top: 30px;">
+            <thead>
+            <tr class="center aligned">
+                <th>{% trans 'Date' %}</th>
+                <th>{% trans 'Details' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="center aligned">
+                <td>{% trans '10th of Bahman' %}</td>
+                <td>{% trans 'Online phase registration starts' %}</td>
+            </tr>
+            <tr class="center aligned">
+                <td>{% trans '14th of Bahman - 2nd of Esfand' %}</td>
+                <td>{% trans 'Online phase starts' %}</td>
+            </tr>
+            <tr class="center aligned">
+                <td>{% trans '18th and 19th of Esfand' %}</td>
+                <td>{% trans 'Onsite phase at Sharif UT' %}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="section organization" id="section">
+        <div class="ui center aligned stackable grid">
+            <div class="eight wide column">
+                <h1 class="ui header">{% trans 'Organizer' %}</h1>
+                <img class="ui centered medium image" src="{% static 'intro/image/SSC.png' %}" alt="SSC Image">
+            </div>
+            <div class="eight wide column">
+                <h1 class="ui header">{% trans 'Location' %}</h1>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9179536820648!2d51.34940431525942!3d35.70363658018915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a8bc1a7e63%3A0x61a5a909b878501!2sSharif+University+of+Technology!5e0!3m2!1sen!2sus!4v1516554126873"
+                        width="80%" height="70%" frameborder="0" style="border: 0"></iframe>
+            </div>
+            <div class="eight wide column">
+                <h1 class="ui header">{% trans 'Sponsors' %}</h1>
+                <img class="ui centered medium image" src="{% static 'intro/image/sponsors.png' %}">
+            </div>
+            <div class="eight wide column">
+                <h1 class="ui header">{% trans 'Social Media' %}</h1>
+                <div class="row">
+                    <a class="ui eight wide column blue button" href="https://t.me/aichallenge">
+                        <i class="telegram icon"></i>
+                        Telegram
+                    </a>
+                    <a class="ui eight wide column pink instagram button" href="https://www.instagram.com/aichallenge/">
+                        <i class="instagram icon"></i>
+                        Instagram
+                    </a>
+                </div>
+                <div class="row">
+                    <a class="ui eight wide column twitter button" href="https://twitter.com/aichallenge">
+                        <i class="twitter icon"></i>
+                        Twitter
+                    </a>
+                    <a class="ui eight wide column linkedin button"
+                       href="https://www.linkedin.com/showcase/sharif-ai-challenge/">
+                        <i class="linkedin icon"></i>
+                        Linkedin
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer_scripts %}
+
+    <script>
+        $(document).ready(function () {
+            $("#prize-row").hide();
+        });
+        $(document).scroll(function () {
+            var y = $(this).scrollTop();
+            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * 1 / 4;
+            $('div#section').each(function (i, el) {
+                var t = $(el).offset().top;
+                if (y+h > t && $(el).is('.section.prizes') && !$('#prize-row').is(":visible")) {
+                    $('#prize-row').transition({
+                        animation: 'fade up',
+                        duration: '500ms'
+                    });
+                }
+            });
+        });
+
+        $('.counter').each(function () {
+            var $this = $(this),
+                countTo = $this.attr('data-count');
+
+            $({countNum: $this.text()}).animate({
+                    countNum: countTo
+                },
+                {
+                    duration: 8000,
+                    easing: 'linear',
+                    step: function () {
+                        $this.text(Math.floor(this.countNum));
+                    },
+                    complete: function () {
+                        $this.text(this.countNum);
+                    }
+
+                });
+        });
+
+    </script>
+{% endblock %}
