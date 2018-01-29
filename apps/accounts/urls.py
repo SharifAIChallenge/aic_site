@@ -20,4 +20,7 @@ urlpatterns = [
         name='set final submission'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate'),
+    url(r'^email_sent$', views.email_sent, name='email_sent'),
+    url(r'^email_confirm$', views.email_confirm, name='email_confirm'),
+    url(r'^email_invalid$', views.email_invalid, name='email_invalid'),
 ]
