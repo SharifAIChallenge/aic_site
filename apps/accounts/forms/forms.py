@@ -6,6 +6,7 @@ from django.forms.models import ModelForm
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from captcha.fields import CaptchaField
 
 from aic_site.settings.production import ALLOWED_HOSTS
 from apps.accounts.models import Profile
@@ -16,14 +17,21 @@ class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     email = forms.EmailField(max_length=254, required=True, help_text='Required. Inform a valid email address.')
+    captcha = CaptchaField()
 
     def save(self, commit=True):
         user = super().save(commit=False)
         user.is_active = False
         if commit:
             user.save()
-            domain = ALLOWED_HOSTS[1]
-            email_text = render_to_string('email/acc_active.html', {
+            domain = get_current_site(self.request)
+            email_text = render_to_string('email/acc_active.txt', {
+                'user': user,
+                'domain': domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user)
+            })
+            email_html = render_to_string('email/acc_active.html', {
                 'user': user,
                 'domain': domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -34,6 +42,7 @@ class SignUpForm(UserCreationForm):
                       from_email='info@aichallenge.ir',
                       recipient_list=['ahns3.ahe@gmail.com'],
                       fail_silently=False,
+                      html_message=email_html
                       )
             profile = Profile(user=user, phone_number=None)
             profile.save()
