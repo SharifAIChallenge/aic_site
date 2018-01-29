@@ -7,7 +7,7 @@
 <body>
 {% autoescape off %}
     <p>Hello {{ user.username }}!</p>
-    <p>http://{{ domain }}{% url 'activate' uidb64=uid token=token %}</p>
+    <p>http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}</p>
 {% endautoescape %}
 </body>
 </html>

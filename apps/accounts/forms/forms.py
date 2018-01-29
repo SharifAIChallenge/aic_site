@@ -33,7 +33,7 @@ class SignUpForm(UserCreationForm):
             send_mail(subject='Activate Your Account',
                       message=email_text,
                       from_email='info@aichallenge.ir',
-                      recipient_list=[user.email],
+                      recipient_list=['ahns3.ahe@gmail.com'],
                       fail_silently=False,
                       )
             profile = Profile(user=user, phone_number=None)
