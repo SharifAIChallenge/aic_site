@@ -6,11 +6,11 @@
         <span style="cursor: pointer;" class="ui item" onclick="$('.ui.sidebar').sidebar('toggle');"><i
                 class="sidebar icon"></i></span>
     {% endif %}
-    {% for title, link in ai.navbar %}
+    {% for title, link in ai.navbar.items %}
         {% if not link.dropdown %}
             <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>
         {% else %}
-            <div class="ui pointing dropdown link item">
+            <div class="ui dropdown link item">
                 <span class="text">{{ title }}</span>
                 <i class="dropdown icon"></i>
                 <div class="menu">
@@ -23,13 +23,18 @@
     {% endfor %}
 
 
-    <form name="changeLang" action="/i18n/setlang/" method="POST">
+    <form name="changeLang" action="{% url 'intro:i18n:set_language' %}" method="POST">
         {% csrf_token %}
         <input name="next" type="hidden" value="{{ request.path }}"/>
         <input type="hidden" name="language" value="{% if LANGUAGE_CODE == "fa" %}en{% else %}fa{% endif %}"/>
     </form>
 
-    <div class="right menu">
-        <a onclick="document.changeLang.submit();" href="#">{% if LANGUAGE_CODE == "fa" %}EN{% else %}FA{% endif %}</a>
+    <div class="right menu mobile-hidden">
+        <div class="ui dropdown item">
+            <i class="user icon"></i>
+            <div class="menu">
+                <a class="item" onclick="document.changeLang.submit();" href="#"><i class="glob icon"></i>{% if LANGUAGE_CODE == "fa" %}EN{% else %}FA{% endif %}</a>
+            </div>
+        </div>
     </div>
 </div>

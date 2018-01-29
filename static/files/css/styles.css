@@ -90,7 +90,6 @@ This set of fonts are used in this project under the license: RC4QT
     padding-left: 30px;
 
     width: 100vw !important;
-    overflow-x: auto;
     font-size: small;
     font-weight: bold !important;
 
@@ -159,7 +158,7 @@ This set of fonts are used in this project under the license: RC4QT
     padding-top: 30px;
     width: 100% !important;
     max-width: none !important;
-    margin: 0px !important;
+    margin: 0 !important;
 }
 
 
@@ -179,6 +178,6 @@ This set of fonts are used in this project under the license: RC4QT
 
 #main #fluid-container {
     margin-top: -50px !important;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
