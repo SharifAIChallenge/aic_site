@@ -1,5 +1,5 @@
 {% load i18n %}
-
+{% get_current_language as LANGUAGE_CODE %}
 
 <div class="ui attached inverted sticky borderless menu navbar-color" id="navbar">
     {% if request.user.is_authenticated and not no_sidebar %}
@@ -21,6 +21,29 @@
             </div>
         {% endif %}
     {% endfor %}
+
+
+    <form name="setLangEnglish" action="/i18n/setlang/" method="POST">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.path }}"/>
+        <input type="hidden" name="language" value="en"/>
+    </form>
+
+    <form name="setLangPersian" action="/i18n/setlang/" method="POST">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.path }}"/>
+        <input type="hidden" name="language" value="fa"/>
+    </form>
+
+    <div class="right menu">
+        {% if LANGUAGE_CODE == "en" %}
+                <a onclick="document.setLangPersian.submit();return false;" href="#"> فا </a>
+        {% else %}
+                <a onclick="document.setLangEnglish.submit();return false;" href="#">en </a>
+        {% endif %}
+
+
+    </div>
 
 
 </div>
