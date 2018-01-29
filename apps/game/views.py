@@ -4,8 +4,6 @@ from operator import itemgetter
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse, Http404
-
-# Create your views here.
 from django.shortcuts import render
 
 from apps.game.models import Competition, TeamParticipatesChallenge
@@ -57,9 +55,11 @@ def render_double_elimination(request, competition_id):
         cur_round_length = int(cur_round_length / 2)
     print(win_matches)
     print(lose_matches)
-    #return [win_matches, lose_matches]
-    return render(request, 'scoreboard/bracket.html', {'win_matches': win_matches,
-                                                       'lose_matches': lose_matches})
+    # return [win_matches, lose_matches]
+    return render(request, 'scoreboard/bracket.html', {
+        'win_matches': win_matches,
+        'lose_matches': lose_matches
+    })
 
 
 @login_required()
@@ -154,11 +154,12 @@ def render_league(request, competition_id):
                                 league_scoreboard[j][3] += 1
 
     league_scoreboard = sorted(league_scoreboard, key=itemgetter(2, 3, 1))
-    #return [league_scoreboard, league_matches]
+    # return [league_scoreboard, league_matches]
 
-    return render(request, 'scoreboard/group_table.html', {'league_scoreboard': league_scoreboard,
-                                                       'league_matches': league_matches})
-
+    return render(request, 'scoreboard/group_table.html', {
+        'league_scoreboard': league_scoreboard,
+        'league_matches': league_matches
+    })
 
 
 from apps.game.models import TeamSubmission
