@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.billing',
     'apps.game',
     'apps.modir',
+    'apps.utils'
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
