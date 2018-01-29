@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-28 10:56+0000\n"
+"POT-Creation-Date: 2018-01-28 22:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,11 +42,11 @@ msgstr ""
 msgid "Create Team"
 msgstr ""
 
-#: aic_site/settings/base.py:126
+#: aic_site/settings/base.py:125
 msgid "English"
 msgstr "انگلیسی"
 
-#: aic_site/settings/base.py:127
+#: aic_site/settings/base.py:126
 msgid "Persian"
 msgstr "فارسی"
 
@@ -877,14 +877,14 @@ msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] ""
 
+#~ msgid "Home"
+#~ msgstr "خانه"
+
 #~ msgid "Written by"
 #~ msgstr "نوشته شده توسط"
 
 #~ msgid "Last update on"
 #~ msgstr "آخرین به‌روزرسانی در"
-
-#~ msgid "Home"
-#~ msgstr "خانه"
 
 #~ msgid "Sharif AI Challenge 2018"
 #~ msgstr "چالش هوش مصنوعی شریف - Sharif AI Challenge 2018"
