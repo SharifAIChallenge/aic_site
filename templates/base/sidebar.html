@@ -1,4 +1,4 @@
-<div class="ui sidebar inverted vertical menu">
+<div class="ui right sidebar inverted vertical menu">
     {% for title, link in ai.sidebar.items %}
             {% if not link.dropdown %}
                 <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>
