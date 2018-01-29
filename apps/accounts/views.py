@@ -79,7 +79,7 @@ class LoginView(FormView):
         return super(LoginView, self).form_valid(form)
 
 
-class LogoutView(RedirectView):
+class LogoutView(LoginRequiredMixin ,RedirectView):
     url = '/'
 
     def get(self, request, *args, **kwargs):
@@ -142,14 +142,14 @@ def panel(request, participation_id=None):
                                       TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
     return render(request, 'accounts/panel.html', context)
 
-
+@login_required()
 def set_final_submission(request, submission_id):
     submission = TeamSubmission.objects.get(id=submission_id)
     submission.set_final()
     data = {'success': True, 'submission_id': submission_id}
     return HttpResponse(json.dumps(data))
 
-
+@login_required()
 def accept_participation(request, participation_id):
     accept = UserAcceptsTeamInChallenge(team_id=participation_id, user=request.user)
     accept.save()
@@ -159,7 +159,7 @@ def accept_participation(request, participation_id):
             invitation.delete()
     return redirect('accounts:panel', participation_id)
 
-
+@login_required()
 def reject_participation(request, participation_id):
     TeamParticipatesChallenge.objects.get(id=participation_id).delete()
     return redirect('accounts:panel')
@@ -178,6 +178,6 @@ def create_team(request, challenge_id):
         , 'users': User.objects.exclude(username__exact=request.user.username)
         , 'username': request.user.username})
 
-
+@login_required()
 def success_create_team(request):
     return render(request, 'accounts/success_create_team.html')
