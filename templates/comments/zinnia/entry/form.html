@@ -1,0 +1,54 @@
+{% load comments i18n %}
+<form action="{% comment_form_target %}" method="post" id="comment-form">
+    <div>{% csrf_token %}</div>
+    {% if form.non_field_errors %}
+        <div class="error">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+    <div>
+        {#    <legend>{% trans "Post your comment" %}</legend>#}
+        <input type="hidden" name="next" value="{% url 'zinnia:comment_success' %}"/>
+
+        {% for field in form %}
+            {% if field.is_hidden %}{{ field }}{% endif %}
+        {% endfor %}
+
+
+        <div class="ui form" id="post-a-comment-form">
+
+            <div class="field" id="comment-form-title">
+            {% if user.email and form.title.name in "namemailurl" %}{% else %}
+                <div{% if form.title.errors %} class="error"{% endif %}{% ifequal field.name "honeypot" %}
+                                               style="display:none;"{% endifequal %}>
+                    <label>{{ form.title.label_tag }}</label>
+                    {% if form.title.errors %}{{ form.title.errors }}{% endif %}
+                    {{ form.title }}
+                </div>
+            {% endif %}
+            </div>
+            <div class="field">
+            {% if user.email and form.comment.name in "namemailurl" %}{% else %}
+                <div{% if form.comment.errors %} class="error"{% endif %}{% ifequal form.comment.name "honeypot" %}
+                                                 style="display:none;"{% endifequal %}>
+                    <label>{{ form.comment.label_tag }}</label>
+                    {% if form.comment.errors %}{{ form.comment.errors }}{% endif %}
+                    {{ form.comment }}
+                </div>
+            {% endif %}
+            </div>
+
+        </div>
+
+        {% if user.is_authenticated %}
+            <p class="auth">
+                {% trans "Comment as" %} <strong>{% firstof user.get_full_name user.get_username %}</strong>. <a
+                    href="{% url 'admin:logout' %}">{% trans "Log out" %}</a>.
+            </p>
+        {% endif %}
+        <p class="submit">
+            <input type="submit" name="submit" class="ui primary button" value="{% trans "Post" %}"/>
+            {#            <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}"/>#}
+        </p>
+    </div>
+</form>
