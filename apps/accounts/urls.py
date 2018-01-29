@@ -15,5 +15,7 @@ urlpatterns = [
     url(r'^panel/reject_participation/(?P<participation_id>[0-9]+)$', views.reject_participation,
         name='reject_participation'),
     url(r'^panel/set_final_submission/(?P<submission_id>[0-9]+)', views.set_final_submission,
-        name='set final submission')
+        name='set final submission'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
 ]

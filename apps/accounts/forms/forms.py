@@ -25,8 +25,14 @@ class SignUpForm(UserCreationForm):
         user.is_active = False
         if commit:
             user.save()
-            domain = ALLOWED_HOSTS[1]
-            email_text = render_to_string('email/acc_active.html', {
+            domain = get_current_site(self.request)
+            email_text = render_to_string('email/acc_active.txt', {
+                'user': user,
+                'domain': domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user)
+            })
+            email_html = render_to_string('email/acc_active.html', {
                 'user': user,
                 'domain': domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -37,6 +43,7 @@ class SignUpForm(UserCreationForm):
                       from_email='info@aichallenge.ir',
                       recipient_list=[user.email],
                       fail_silently=False,
+                      html_message=email_html
                       )
             profile = Profile(user=user, phone_number=None)
             profile.save()
