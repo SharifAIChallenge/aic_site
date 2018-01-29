@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'mptt',
     'tagging',
     'zinnia',
+    'captcha',
 
     'apps.intro',
     'apps.accounts',
@@ -45,16 +46,20 @@ INSTALLED_APPS = [
     'apps.modir',
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.com'
+EMAIL_HOST_USER = 'info@aichallenge.ir'
+EMAIL_HOST_PASSWORD = 'aichallenge_SSC_96'
+DEFAULT_FROM_EMAIL = 'info@aichallenge.ir'
+
 INSTALLED_APPS += (
     'threadedcomments',
     'django_comments',
     'django.contrib.sites',
 )
 
+# comments
 COMMENTS_APP = 'threadedcomments'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -154,6 +159,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
     os.path.join(BASE_DIR, 'locale_extra'),
+    os.path.join(BASE_DIR, 'apps', 'accounts', 'locale'),
 )
 
 INFRA_IP = '217.79.184.161'

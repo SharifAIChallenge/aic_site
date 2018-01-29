@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
+from django.utils.encoding import force_text
+from django.utils.http import urlsafe_base64_decode
 from django.views import generic
 
 from apps.accounts.forms.team_forms import CreateTeamForm
@@ -15,6 +17,7 @@ from django.views.generic import FormView, RedirectView
 from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
 from apps.accounts.forms.panel import SubmissionForm
 from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
+from apps.accounts.tokens import account_activation_token
 from apps.game.models import TeamSubmission
 import json
 from apps.game.models.challenge import TeamParticipatesChallenge, UserAcceptsTeamInChallenge
@@ -27,6 +30,26 @@ class SignupView(generic.CreateView):
     form_class = SignUpForm
     success_url = '/accounts/login/'
     template_name = 'accounts/signup.html'
+
+    def get_form_class(self):
+        form = super().get_form_class()
+        form.request = self.request
+        return form
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user,token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        return HttpResponse('Confirmed')
+    else:
+        return HttpResponse('Invalid!')
 
 
 class LoginView(FormView):
