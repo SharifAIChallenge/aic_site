@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base/base.html' %}
+
+{% load static i18n %}
+
+{% block title %}{% trans 'Sign Up' %}{% endblock %}
+
+{% block container %}
+<div class="ui error icon message">
+  <i class="remove circle icon"></i>
+  <div class="content">
+    <div class="header">
+      {% trans 'The verification link is invalid' %}
+    </div>
+    <p>{% trans 'your link might have epiredt'%}</p>
+  </div>
+</div>
+
+<a href="/accounts/login">
+<div class="ui animated button" tabindex="0">
+  <div class="visible content">{% trans 'OK' %}</div>
+  <div class="hidden content">
+    <i class="right arrow icon"></i>
+  </div>
+</div>
+</a>
+{% endblock %}
