@@ -87,9 +87,9 @@ class TeamParticipatesChallenge(models.Model):
         except TeamSubmission.DoesNotExist:
             return None
 
-
     def itself(self):
         return self.get_final_submission()
+
 
 class UserAcceptsTeamInChallenge(models.Model):
     team = models.ForeignKey(TeamParticipatesChallenge, related_name='users_acceptance')
@@ -125,7 +125,6 @@ class TeamSubmission(models.Model):
     infra_compile_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
     infra_compile_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
-
 
     def __str__(self):
         return str(self.id) + ' team: ' + str(self.team) + ' is final: ' + str(self.is_final)

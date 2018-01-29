@@ -142,14 +142,16 @@ def panel(request, participation_id=None):
                                       TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
     return render(request, 'accounts/panel.html', context)
 
-@login_required()
+
+@login_required
 def set_final_submission(request, submission_id):
     submission = TeamSubmission.objects.get(id=submission_id)
     submission.set_final()
     data = {'success': True, 'submission_id': submission_id}
     return HttpResponse(json.dumps(data))
 
-@login_required()
+
+@login_required
 def accept_participation(request, participation_id):
     accept = UserAcceptsTeamInChallenge(team_id=participation_id, user=request.user)
     accept.save()
@@ -159,7 +161,8 @@ def accept_participation(request, participation_id):
             invitation.delete()
     return redirect('accounts:panel', participation_id)
 
-@login_required()
+
+@login_required
 def reject_participation(request, participation_id):
     TeamParticipatesChallenge.objects.get(id=participation_id).delete()
     return redirect('accounts:panel')
@@ -174,10 +177,13 @@ def create_team(request, challenge_id):
             return redirect('accounts:success_create_team')
     else:
         form = CreateTeamForm(user=request.user, initial={'challenge_id': challenge_id})
-    return render(request, 'accounts/create_team.html', {'form': form
-        , 'users': User.objects.exclude(username__exact=request.user.username)
-        , 'username': request.user.username})
+    return render(request, 'accounts/create_team.html', {
+        'form': form,
+        'users': User.objects.exclude(username__exact=request.user.username),
+        'username': request.user.username
+    })
 
-@login_required()
+
+@login_required
 def success_create_team(request):
     return render(request, 'accounts/success_create_team.html')
