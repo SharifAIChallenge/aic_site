@@ -28,7 +28,7 @@ from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
 class SignupView(generic.CreateView):
     form_class = SignUpForm
-    success_url = '/accounts/login/'
+    success_url = '/accounts/email_sent'
     template_name = 'accounts/signup.html'
 
     def get_form_class(self):
@@ -47,9 +47,21 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return HttpResponse('Confirmed')
+        return redirect(to='/accounts/email_confirm')
     else:
-        return HttpResponse('Invalid!')
+        return redirect(to='/accounts/email_invalid')
+
+
+def email_confirm(request):
+    return render(request=request, template_name='email/email_confirm.html')
+
+
+def email_invalid(request):
+    return render(request=request, template_name='email/email_invalid.html')
+
+
+def email_sent(request):
+    return render(request=request, template_name='email/email_sent.html')
 
 
 class LoginView(FormView):
