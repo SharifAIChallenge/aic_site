@@ -5,10 +5,97 @@
 {% block title %}{% trans 'Sign Up' %}{% endblock %}
 
 {% block container %}
-  <h2>Sign up</h2>
-  <form method="post" class="ui form">
+  <form method="post" class="ui form error" style="width: 50%;margin-right: 30%;    ">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="ui green primary button">{% trans 'Sign up' %}</button>
+      <h3 class="ui dividing header">{% trans 'SignUp Form' %}</h3>
+      <div class="field required">
+          <label>{% trans 'Username' %}</label>
+          {{ form.username }}
+      </div>
+      <div class="ui message">
+          <ul class="list">
+              <p>{{ form.username.help_text|safe }}</p>
+          </ul>
+      </div>
+      {% if form.username.errors %}
+        <div class="ui message error">
+            <strong>{{ form.username.errors }}</strong>
+        </div>
+      {% endif %}
+
+      <div class="two fields">
+          <div class="field required">
+              <label>{% trans 'First Name' %}</label>
+              {{ form.first_name }}
+          </div>
+          <div class="field required">
+              <label>{% trans 'Last Name' %}</label>
+              {{ form.last_name }}
+          </div>
+      </div>
+
+      <div class="two fields">
+          <div class="field required">
+              <label>{% trans 'College/School/Organization' %}</label>
+              {{ form.organization }}
+          </div>
+          <div class="field required">
+              <label>{% trans 'Phone Number' %}</label>
+              {{ form.phone_number }}
+          </div>
+      </div>
+
+      <div class="field required">
+          <label>{% trans 'Email' %}</label>
+          {{ form.email }}
+      </div>
+      {% if form.email.errors %}
+        <div class="ui message error">
+          <strong>{{ form.email.errors }}</strong>
+        </div>
+        <ol class="ui message error">
+            {% for error in form.email.errors %}
+                <li>{{ error|escape }}</li>
+            {% endfor %}
+        </ol>
+      {% endif %}
+
+      <div class="field required">
+          <label>{% trans 'Password' %}</label>
+          {{ form.password1 }}
+      </div>
+      <div class="ui message">
+          <p>{{ form.password1.help_text|safe }}</p>
+      </div>
+      {% if form.password1.errors %}
+          <ol class="ui message error">
+          {% for error in form.password1.errors %}
+              <li>{{ error|escape }}</li>
+          {% endfor %}
+          </ol>
+      {% endif %}
+
+      <div class="field required">
+          <label>{% trans 'Password Confirm' %}</label>
+          {{ form.password2 }}
+      </div>
+      {% if form.password2.errors %}
+        <ol class="ui message error">
+            {% for error in form.password2.errors %}
+                {{ error|escape }}
+            {% endfor %}
+        </ol>
+      {% endif %}
+
+      <div class="field required">
+          {{ form.captcha }}
+      </div>
+      {% if form.captcha.errors %}
+        <div class="ui message error">
+          {{ form.captcha.errors }}
+        </div>
+      {% endif %}
+
+    <button type="submit" class="ui green button">{% trans 'SignUp' %}</button>
   </form>
 {% endblock %}
