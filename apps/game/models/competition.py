@@ -75,7 +75,7 @@ class Competition(models.Model):
                         )
                     )
                     matches.append(new_match)
-                    for  map in self.maps.all():
+                    for map in self.maps.all():
                         SingleMatch.objects.create(match=new_match, map=map)
 
                 if len(teams) > 2:
@@ -254,7 +254,6 @@ class Competition(models.Model):
                 for map in self.maps.all():
                     SingleMatch.objects.create(match=new_match, map=map)
 
-            #
             previous_third_step_index = second_step_index + cur_round_length
             previous_start_round_index = start_round_index
             start_round_index += 3 * cur_round_length
@@ -288,8 +287,6 @@ class Competition(models.Model):
             SingleMatch.objects.create(match=new_match, map=map)
 
 
-########################################################################################################
-
 class Participant(models.Model):
     METHOD_CHOICES = (
         ('winner', _('Winner')),  # IF WINNER, CONTENT TYPE SHOULD BE MATCH
@@ -316,7 +313,7 @@ class Participant(models.Model):
     def __str__(self):
         if self.object_id is None:
             return 'None'
-        return str(self.object_id) # NOTICE that str is not self.id
+        return str(self.object_id)  # NOTICE that str is not self.id
 
     def is_ready(self):
         return self.submission is not None
@@ -333,8 +330,6 @@ class Participant(models.Model):
 def get_log_file_directory(instance, filename):
     pass
 
-
-########################################################################################################
 
 class Match(models.Model):
     competition = models.ForeignKey(Competition, related_name='matches')
@@ -511,7 +506,6 @@ class SingleMatch(models.Model):
         if self.part2 is not None:
             str_part2 = str(self.part2)
         return str(self.id) + ' ' + str_part1 + ' -> ' + str_part2
-
 
     def update_scores_from_log(self):
         extracted_scores = self.extract_scores()
