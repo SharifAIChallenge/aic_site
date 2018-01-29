@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-28 22:02+0000\n"
+"POT-Creation-Date: 2018-01-29 15:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,6 +54,8 @@ msgstr ""
 "امسال دهمین دوره‌ این مسابقه در دو مرحله‌ غیرحضوری و حضوری برگزار خواهد شد."
 
 #: apps/intro/templates/intro/index.html:46
+#: apps/intro/templates/intro/index.old.html:35
+#: apps/intro/templates/intro/index.old.html:51
 msgid "Participate"
 msgstr "شرکت در مسابقه"
 
@@ -62,6 +64,7 @@ msgid "View Schedule"
 msgstr "مشاهده زمان‌بندی"
 
 #: apps/intro/templates/intro/index.html:67
+#: apps/intro/templates/intro/index.old.html:64
 msgid "Prizes"
 msgstr "جوایز"
 
@@ -276,31 +279,34 @@ msgstr "۱۶ و ۱۷ اسفند"
 msgid "Sharif On-Site Phase"
 msgstr "مرحله حضوری در دانشگاه شریف"
 
-#: apps/intro/templates/intro/index.html:286 apps/intro/views.py:22
+#: apps/intro/templates/intro/index.html:285 apps/intro/views.py:22
 msgid "FAQ"
 msgstr "سوالات متداول"
 
-#: apps/intro/templates/intro/index.html:295
+#: apps/intro/templates/intro/index.html:294
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: apps/intro/templates/intro/index.html:300
+#: apps/intro/templates/intro/index.html:299
+#: apps/intro/templates/intro/index.old.html:112
 msgid "Organizer"
 msgstr "برگزارکننده"
 
-#: apps/intro/templates/intro/index.html:304
+#: apps/intro/templates/intro/index.html:303
+#: apps/intro/templates/intro/index.old.html:121
 msgid "Sponsors"
 msgstr "حامیان مالی"
 
-#: apps/intro/templates/intro/index.html:309
+#: apps/intro/templates/intro/index.html:308
+#: apps/intro/templates/intro/index.old.html:116
 msgid "Location"
 msgstr "مکان"
 
-#: apps/intro/templates/intro/index.html:313
+#: apps/intro/templates/intro/index.html:312
 msgid "Address: "
 msgstr "نشانی:"
 
-#: apps/intro/templates/intro/index.html:314
+#: apps/intro/templates/intro/index.html:313
 msgid ""
 "\n"
 "                        Dept. of Computer Eng., Sharif University of "
@@ -311,17 +317,114 @@ msgstr ""
 "\n"
 "تهران،خیابان آزادی،دانشگاه صنعتی شریف،دانشکده مهندسی کامپیوتر"
 
-#: apps/intro/templates/intro/index.html:320
+#: apps/intro/templates/intro/index.html:319
 msgid "Contact Info"
 msgstr "اطلاعات تماس"
 
-#: apps/intro/templates/intro/index.html:321
+#: apps/intro/templates/intro/index.html:320
 msgid "Email: "
 msgstr "ایمیل:"
 
-#: apps/intro/templates/intro/index.html:322
+#: apps/intro/templates/intro/index.html:321
 msgid "Phone: "
 msgstr "شماره تماس:"
+
+#: apps/intro/templates/intro/index.old.html:14
+msgid "Game Description"
+msgstr ""
+
+#: apps/intro/templates/intro/index.old.html:19
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                            Sharif AI Challenge is a programming "
+#| "competition for all who are interested in artificial\n"
+#| "                            intelligence.<br><br>This competition is  "
+#| "held in two phases annually. Including an online\n"
+#| "                            and an\n"
+#| "                            on-site phase in which competitors will "
+#| "compete in teams of three in a game designed by our\n"
+#| "                            technical team.<br><br>\n"
+#| "                            The only pre-requisite to enter this "
+#| "competition is familiarity with programming using C++,\n"
+#| "                            Java\n"
+#| "                            or python. But obviously, knowledge of "
+#| "algorithmic thinking and artificial intelligence will\n"
+#| "                            be\n"
+#| "                            a great asset for any of the participating "
+#| "teams. The registration for online competition is\n"
+#| "                            free.\n"
+#| "                        "
+msgid ""
+"Sharif AI Challenge is a programming competition for all who are interested "
+"in artificial intelligence. This competition is  held in two phases "
+"annually. Including an online and an on-site phase in which competitors will "
+"compete in teams of three in a game designed by our technical team. \\n The "
+"only pre-requisite to enter this competition is familiarity with programming "
+"using C++, Java or python. But obviously, knowledge of algorithmic thinking "
+"and artificial intelligence will be a great asset for any of the "
+"participating teams. The registration for online competition is free."
+msgstr ""
+"\n"
+"نبرد هوش مصنوعی شریف یا Sharif AI Challenge، یک مسابقه‌ برنامه‌نویسی است که "
+"شرکت‌کنندگان آن می‌توانند با دارا بودن مهارت قابل قبولی در یکی از زبان‌های "
+"برنامه‌نویسی جاوا، سی‌پلاس‌‌پلاس یا پایتون در آن شرکت کنند. <br><br> محوریت "
+"مسابقه رقابت تیم‌های شرکت‌کننده با هم در یک بازی طراحی شده توسط تیم فنی، با "
+"استفاده از برنامه‌نویسی توسط یکی از سه زبان مسابقه است.پس از نه دوره برگزاری "
+"این مسابقه توسط انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف(SSC)، "
+"امسال دهمین دوره‌ این مسابقه در دو مرحله‌ غیرحضوری و حضوری برگزار خواهد شد."
+
+#: apps/intro/templates/intro/index.old.html:28
+msgid "# Teams"
+msgstr ""
+
+#: apps/intro/templates/intro/index.old.html:44
+msgid "# Submissions"
+msgstr ""
+
+#: apps/intro/templates/intro/index.old.html:82
+#, fuzzy
+#| msgid "View Schedule"
+msgid "Time Schedule"
+msgstr "مشاهده زمان‌بندی"
+
+#: apps/intro/templates/intro/index.old.html:87
+msgid "Date"
+msgstr ""
+
+#: apps/intro/templates/intro/index.old.html:88
+msgid "Details"
+msgstr ""
+
+#: apps/intro/templates/intro/index.old.html:93
+msgid "10th of Bahman"
+msgstr ""
+
+#: apps/intro/templates/intro/index.old.html:94
+msgid "Online phase registration starts"
+msgstr ""
+
+#: apps/intro/templates/intro/index.old.html:97
+msgid "14th of Bahman - 2nd of Esfand"
+msgstr ""
+
+#: apps/intro/templates/intro/index.old.html:98
+#, fuzzy
+#| msgid "Online Phase"
+msgid "Online phase starts"
+msgstr "مرحله غیر‌حضوری (آنلاین)"
+
+#: apps/intro/templates/intro/index.old.html:101
+msgid "18th and 19th of Esfand"
+msgstr ""
+
+#: apps/intro/templates/intro/index.old.html:102
+msgid "Onsite phase at Sharif UT"
+msgstr ""
+
+#: apps/intro/templates/intro/index.old.html:125
+msgid "Social Media"
+msgstr ""
 
 #: apps/intro/views.py:13
 msgid "Prize"
