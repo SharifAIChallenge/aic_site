@@ -10,6 +10,9 @@ $(document)
         var height = -1 * navbar.height();
         navbar.css('margin-bottom', height);
         navbar.css('z-index', '999');
+
+        $('time').attr("dir", "ltr")
+
     })
     .scroll(function(){
         var navbar = $('#navbar');
