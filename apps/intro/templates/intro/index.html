@@ -41,13 +41,12 @@
                     </p>
 
                     <div class="ui center aligned container">
-                        <a href="#section-schedule" class="ui centered massive animated violet button">
+                        <a href="{% url 'accounts:signup' %}" class="ui centered massive animated violet button">
                             <div class="visible content">
                                 {% trans 'Participate' %}
                             </div>
                             <div class="hidden content">
-                                <i class="ui calendar icon"></i>
-                                {% trans 'View Schedule' %}
+                                {% trans 'Register' %}
                             </div>
                         </a>
                     </div>

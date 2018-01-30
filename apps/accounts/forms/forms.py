@@ -22,7 +22,7 @@ class SignUpForm(UserCreationForm):
     organization = forms.CharField(max_length=255, required=True)
     phone_regex = RegexValidator(regex=r'^\d{8,15}$',
                                  message=_("Please enter your phone number correctly!"))
-    phone_number = forms.CharField(validators=[phone_regex], required=True)
+    phone_number = forms.CharField(validators=[phone_regex], required=False)
     captcha = CaptchaField()
 
     def save(self, commit=True):
