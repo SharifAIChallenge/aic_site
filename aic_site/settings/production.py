@@ -11,7 +11,7 @@ ALLOWED_HOSTS = ['81.31.168.207', 'aichallenge.sharif.edu', 'aichallenge.sharif.
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mailgun.com'
 EMAIL_HOST_USER = 'info@aichallenge.ir'
-EMAIL_HOST_PASSWORD = 'aichallenge_SSC_96'
+EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = 'info@aichallenge.ir'
 
 DATABASES = {
