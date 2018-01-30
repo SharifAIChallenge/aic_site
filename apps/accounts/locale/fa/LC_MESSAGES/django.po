@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 12:02+0000\n"
+"POT-Creation-Date: 2018-01-30 13:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,8 +48,8 @@ msgstr "بعضی از کاربران انتخاب شده قبلا در این ر
 msgid "Create Team"
 msgstr "ایجاد تیم"
 
-#: apps/accounts/templates/accounts/login.html:7
-#: apps/accounts/templates/accounts/login.html:11
+#: apps/accounts/templates/accounts/login.html:10
+#: apps/accounts/templates/accounts/login.html:13
 msgid "Login"
 msgstr "ورود"
 

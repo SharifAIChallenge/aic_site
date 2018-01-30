@@ -25,17 +25,10 @@ $(document)
         if (scrollY >= 15) {
             navbar.addClass('reverse-navbar-color');
             navbar.removeClass('navbar-color');
-
-            $('#navbar .ui.inverted.menu').addClass('reverse-navbar-color');
-            $('#navbar .ui.inverted.menu').removeClass('navbar-color');
-
         }
         else {
             navbar.addClass('navbar-color');
             navbar.removeClass('reverse-navbar-color');
-
-            $('#navbar .ui.inverted.menu').removeClass('reverse-navbar-color');
-            $('#navbar .ui.inverted.menu').addClass('navbar-color');
         }
 
 });

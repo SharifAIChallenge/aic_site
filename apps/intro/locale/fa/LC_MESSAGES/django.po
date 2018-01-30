@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 12:02+0000\n"
+"POT-Creation-Date: 2018-01-30 13:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/intro/templates/intro/index.html:21 apps/intro/views.py:10
+#: apps/intro/templates/intro/index.html:21
 msgid "Introduction"
 msgstr "معرفی رویداد"
 
@@ -89,7 +89,7 @@ msgstr "تیم سوم"
 msgid "3 Million Tomans"
 msgstr "۳ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:114 apps/intro/views.py:16
+#: apps/intro/templates/intro/index.html:114
 msgid "History"
 msgstr "تاریخچه"
 
@@ -248,7 +248,7 @@ msgstr ""
 " با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه "
 "نویسی، دوره‌ی هشتم با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. "
 
-#: apps/intro/templates/intro/index.html:250 apps/intro/views.py:19
+#: apps/intro/templates/intro/index.html:250
 msgid "Schedule"
 msgstr "زمان بندی"
 
@@ -276,31 +276,31 @@ msgstr "۱۶ و ۱۷ اسفند"
 msgid "Sharif On-Site Phase"
 msgstr "مرحله حضوری در دانشگاه شریف"
 
-#: apps/intro/templates/intro/index.html:285 apps/intro/views.py:22
+#: apps/intro/templates/intro/index.html:285
 msgid "FAQ"
 msgstr "سوالات متداول"
 
-#: apps/intro/templates/intro/index.html:294
+#: apps/intro/templates/intro/index.html:295
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: apps/intro/templates/intro/index.html:299
+#: apps/intro/templates/intro/index.html:300
 msgid "Organizer"
 msgstr "برگزارکننده"
 
-#: apps/intro/templates/intro/index.html:303
+#: apps/intro/templates/intro/index.html:304
 msgid "Sponsors"
 msgstr "حامیان مالی"
 
-#: apps/intro/templates/intro/index.html:308
+#: apps/intro/templates/intro/index.html:309
 msgid "Location"
 msgstr "مکان"
 
-#: apps/intro/templates/intro/index.html:312
+#: apps/intro/templates/intro/index.html:313
 msgid "Address: "
 msgstr "نشانی:"
 
-#: apps/intro/templates/intro/index.html:313
+#: apps/intro/templates/intro/index.html:314
 msgid ""
 "\n"
 "                        Dept. of Computer Eng., Sharif University of "
@@ -311,25 +311,20 @@ msgstr ""
 "\n"
 "تهران،خیابان آزادی،دانشگاه صنعتی شریف،دانشکده مهندسی کامپیوتر"
 
-#: apps/intro/templates/intro/index.html:319
+#: apps/intro/templates/intro/index.html:320
 msgid "Contact Info"
 msgstr "اطلاعات تماس"
 
-#: apps/intro/templates/intro/index.html:320
+#: apps/intro/templates/intro/index.html:321
 msgid "Email: "
 msgstr "ایمیل:"
 
-#: apps/intro/templates/intro/index.html:321
+#: apps/intro/templates/intro/index.html:322
 msgid "Phone: "
 msgstr "شماره تماس:"
 
-#: apps/intro/views.py:13
-msgid "Prize"
-msgstr "جوایز"
-
-#: apps/intro/views.py:36
-msgid "Home"
-msgstr ""
+#~ msgid "Prize"
+#~ msgstr "جوایز"
 
 #, fuzzy
 #~| msgid ""

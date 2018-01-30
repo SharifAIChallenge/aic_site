@@ -108,9 +108,9 @@ This set of fonts are used in this project under the license: RC4QT
     background-color: #40444d !important;
 }
 
-.reverse-navbar-color * {
-    color: #F0F0F0 !important;
-}
+/*.reverse-navbar-color * {*/
+    /*color: #F0F0F0 !important;*/
+/*}*/
 
 .navbar-color {
     background: transparent !important;

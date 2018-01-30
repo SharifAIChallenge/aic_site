@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 12:02+0000\n"
+"POT-Creation-Date: 2018-01-30 13:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,35 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: aic_site/context_processors.py:9
+#: aic_site/context_processors.py:10
+msgid "Home"
+msgstr "خانه"
+
+#: aic_site/context_processors.py:12
 msgid "Introduction"
 msgstr "معرفی"
 
-#: aic_site/context_processors.py:12
+#: aic_site/context_processors.py:13
 msgid "Prize"
 msgstr "جایزه"
 
-#: aic_site/context_processors.py:15
+#: aic_site/context_processors.py:14
 msgid "History"
 msgstr "تاریخ"
 
-#: aic_site/context_processors.py:18
+#: aic_site/context_processors.py:15
 msgid "Schedule"
 msgstr "برنامه"
 
-#: aic_site/context_processors.py:33
-msgid "Panel"
-msgstr "پنل"
+#: aic_site/context_processors.py:16
+msgid "FAQ"
+msgstr "سوالات متداول"
 
-#: aic_site/context_processors.py:36
-msgid "Create Team"
-msgstr "ایجاد تیم"
+#: aic_site/context_processors.py:17
+msgid "Contact Us"
+msgstr "تماس با ما"
 
-#: aic_site/settings/base.py:126
+#: aic_site/settings/base.py:121
 msgid "English"
 msgstr "انگلیسی"
 
-#: aic_site/settings/base.py:127
+#: aic_site/settings/base.py:122
 msgid "Persian"
 msgstr "فارسی"
 
@@ -61,21 +65,37 @@ msgstr ""
 "تمامی حقوق  برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
 "مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. "
 
+#: templates/base/navbar.html:35
+msgid "Logout"
+msgstr "خروج"
+
+#: templates/base/navbar.html:40 templates/zinnia/login.html:34
+msgid "Login"
+msgstr "ورود"
+
+#: templates/base/navbar.html:44
+msgid "Register"
+msgstr "ثبت نام"
+
+#: templates/base/navbar.html:49
+msgid "Change Language"
+msgstr "تغییر زبان"
+
 #: templates/comments/approve.html:4
 msgid "Approve a comment"
-msgstr ""
+msgstr "تایید نظر"
 
 #: templates/comments/approve.html:7
 msgid "Really make this comment public?"
-msgstr ""
+msgstr "این نظر رو عمومی کنیم؟‌"
 
 #: templates/comments/approve.html:13
 msgid "Approve"
-msgstr ""
+msgstr "تایید"
 
 #: templates/comments/approved.html:4
 msgid "Thanks for approving"
-msgstr ""
+msgstr "تشکر بابت تایید!"
 
 #: templates/comments/approved.html:7 templates/comments/deleted.html:7
 #: templates/comments/flagged.html:7
@@ -665,9 +685,6 @@ msgstr "نام کاربری و پسورد تطابق نداشتند. مجددا 
 msgid "You need to be connected to view this entry."
 msgstr "برای مشاهده این نوشته باید متصل باشید."
 
-#: templates/zinnia/login.html:34
-msgid "Login"
-msgstr "ورود"
 
 #: templates/zinnia/password.html:4 templates/zinnia/password.html:9
 msgid "Password required"
@@ -881,14 +898,17 @@ msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
 
+#~ msgid "Panel"
+#~ msgstr "پنل"
+
+#~ msgid "Create Team"
+#~ msgstr "ایجاد تیم"
+
 #~ msgid "Comments"
 #~ msgstr "نظرات"
 
 #~ msgid "Be first to comment!"
 #~ msgstr "اولین نظر را بدهید!"
-
-#~ msgid "Home"
-#~ msgstr "خانه"
 
 #~ msgid "Written by"
 #~ msgstr "نوشته شده توسط"
