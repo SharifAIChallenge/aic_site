@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
+from django.utils.datetime_safe import datetime
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.views import generic
@@ -112,6 +113,7 @@ def panel(request, participation_id=None):
             10
         ).page(page),
         'participation': participation,
+        'challenges': Challenge.objects.all(),
         'invitations': [],
         'accepted_participations': []
     }
@@ -177,13 +179,18 @@ def create_team(request, challenge_id):
             return redirect('accounts:success_create_team')
     else:
         form = CreateTeamForm(user=request.user, initial={'challenge_id': challenge_id})
+    already_participated_users = UserAcceptsTeamInChallenge.objects.filter(team__challenge_id=challenge_id)
+    already_participated_usernames = [user.username for user in already_participated_users]
     return render(request, 'accounts/create_team.html', {
         'form': form,
-        'users': User.objects.exclude(username__exact=request.user.username),
+        'users': User.objects.exclude(username__exact=request.user.username).exclude(username__in=already_participated_usernames),
         'username': request.user.username
     })
 
 
 @login_required
 def success_create_team(request):
-    return render(request, 'accounts/success_create_team.html')
+    return render(request, 'accounts/success_create_team.html',
+                  {
+                      'last_participation_id': TeamParticipatesChallenge.objects.last().id
+                  })

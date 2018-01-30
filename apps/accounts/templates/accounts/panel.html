@@ -145,6 +145,9 @@
 
     <script src="{% static 'accounts/js/api.js' %}"></script>
 {% else %}
-    <a href="" class="ui blue button" >{% trans 'Create New Team' %}</a>
-{% endif %}
-{% endblock %}
+    {% for challenge in  challenges %}
+        {% if challenge.can_register %}
+            <a href="{% url 'accounts:create_team' challenge.id %}" class="ui blue button" >{% trans 'Create New Team' %}</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}{% endblock %}
