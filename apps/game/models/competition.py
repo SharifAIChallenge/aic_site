@@ -182,7 +182,7 @@ class Competition(models.Model):
                     depend_method='itself'
                 )
             )
-            matches.append(new_match)
+            matches.appenfd(new_match)
             for map in self.maps.all():
                 SingleMatch.objects.create(match=new_match, map=map)
 
@@ -501,18 +501,19 @@ class SingleMatch(models.Model):
     def __str__(self):
         str_part1 = 'None'
         if self.match.part1 is not None:
-            str_part1 = str(self.part1)
+            str_part1 = str(self.match.part1)
         str_part2 = 'None'
-        if self.part2 is not None:
-            str_part2 = str(self.part2)
+        if self.match.part2 is not None:
+            str_part2 = str(self.match.part2)
         return str(self.id) + ' ' + str_part1 + ' -> ' + str_part2
 
     def update_scores_from_log(self):
-        extracted_scores = self.extract_scores()
+        extracted_scores = self.extract_score()
+        # TODO: Complete extract_score
+        extracted_scores = [0, 0]
         self.part1_score = extracted_scores[0]
         self.part2_score = extracted_scores[1]
         self.save()
-        return
 
     def get_score_for_participant(self, participant):
         if self.match.part1 == participant:

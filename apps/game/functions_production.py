@@ -160,18 +160,17 @@ def run_matches(matches):
     """
 
     games = []
-    for match in matches:
+    for single_match in matches:
         games.append({
-            "game": match.get_game_id(),
             "operation": "run",
             "parameters": {
-                "server_game_config": match.get_map(),
-                "client1_id": match.part1.submission.id,
+                "server_game_config": single_match.map,
+                "client1_id": single_match.match.part1.submission.id,
                 "client1_token": str(uuid.uuid4()),
-                "client1_code": match.get_first_file(),
-                "client2_id": match.part2.submission.id,
+                "client1_code": single_match.match.part1.submission,
+                "client2_id": single_match.part2.submission.id,
                 "client2_token": str(uuid.uuid4()),
-                "client2_code": match.get_second_file(),
+                "client2_code": single_match.get_second_file(),
             }
         })
 
