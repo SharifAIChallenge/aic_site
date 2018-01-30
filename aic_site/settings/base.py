@@ -4,6 +4,8 @@ Django settings for AIC18_Site project.
 
 import os
 import sys
+
+from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -53,7 +55,6 @@ INSTALLED_APPS += (
 
 # comments
 COMMENTS_APP = 'threadedcomments'
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,8 +63,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'aic_site.force_default_language_middleware.force_default_language_middleware',
     'django.middleware.locale.LocaleMiddleware',
 ]
+
 
 ROOT_URLCONF = 'aic_site.urls'
 
