@@ -3,39 +3,22 @@ from django.utils.translation import ugettext as _
 
 
 def menu(request):
+    print("sssssasd" + str(request.build_absolute_uri(reverse('intro:index'))))
     context = {
         'ai': {
-            'navbar': [
-                (_('Introduction'), {
-                    'address': '#section-intro'
-                }),
-                (_('Prize'), {
-                    'address': '#section-prizes'
-                }),
-                (_('History'), {
-                    'address': '#section-history'
-                }),
-                (_('Schedule'), {
-                    'address': '#section-schedule'
-                }),
-                # (_('Contact Us'), {
-                #     'address': '#section-organizer'
-                # })
-            ],
-            'sidebar': {
-
+            'navbar': {
+                _('Home'): {
+                    'dropdown': {
+                        _('Introduction'): reverse('intro:index') + '#section-intro',
+                        _('Prize'): reverse('intro:index') + '#section-prizes',
+                        _('History'): reverse('intro:index') + "#section-history",
+                        _('Schedule'): reverse('intro:index') + '#section-schedule',
+                        _('FAQ'): reverse('intro:faq'),
+                        _('Contact Us'): reverse('intro:index') + '#section-organizer'
+                    }
+                }
             }
         }
     }
-
-    if request.user.is_authenticated():
-        context['ai']['sidebar'].update({
-            _('Panel'): {
-                'address': reverse('accounts:panel')
-            },
-            _('Create Team'): {
-                'address': reverse('accounts:panel')
-            },
-        })
 
     return context
