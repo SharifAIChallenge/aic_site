@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 13:40+0000\n"
+"POT-Creation-Date: 2018-01-30 15:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -684,7 +684,6 @@ msgstr "نام کاربری و پسورد تطابق نداشتند. مجددا 
 #: templates/zinnia/login.html:17
 msgid "You need to be connected to view this entry."
 msgstr "برای مشاهده این نوشته باید متصل باشید."
-
 
 #: templates/zinnia/password.html:4 templates/zinnia/password.html:9
 msgid "Password required"

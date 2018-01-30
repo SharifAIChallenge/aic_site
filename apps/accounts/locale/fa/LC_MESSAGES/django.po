@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 13:40+0000\n"
+"POT-Creation-Date: 2018-01-30 15:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,27 +26,52 @@ msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید
 msgid "Required,Choose a suitable name for your team"
 msgstr "انتخاب نام تیم لازم است!"
 
-#: apps/accounts/forms/team_forms.py:24
+#: apps/accounts/forms/team_forms.py:20
+msgid "Registration is not open."
+msgstr "ثبت نام هم‌اکنون باز نیست."
+
+#: apps/accounts/forms/team_forms.py:28
 #, fuzzy
 #| msgid "This name is used by another team!"
 msgid "This name is used by another team"
 msgstr "این نام قبلا توسط تیمی دیگر استفاده شده است!"
 
-#: apps/accounts/forms/team_forms.py:27
+#: apps/accounts/forms/team_forms.py:31
 #, fuzzy
 #| msgid "You can't add same users to your team!"
 msgid "You can't add same users to your team"
 msgstr "لطفا دو کاربران تکراری برای تیم انتخاب نکنید!"
 
-#: apps/accounts/forms/team_forms.py:31
+#: apps/accounts/forms/team_forms.py:35
 #, fuzzy
 #| msgid "Some of users are already participated in the challenge!"
 msgid "Some of the users are already participating in this challenge"
 msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
 
+#: apps/accounts/templates/accounts/create_team.html:8
 #: apps/accounts/templates/accounts/create_team.html:47
 msgid "Create Team"
 msgstr "ایجاد تیم"
+
+#: apps/accounts/templates/accounts/create_team.html:12
+msgid "Team Name"
+msgstr "نام تیم"
+
+#: apps/accounts/templates/accounts/create_team.html:23
+msgid "First Member"
+msgstr "عضو اول"
+
+#: apps/accounts/templates/accounts/create_team.html:28
+msgid "Second Member"
+msgstr "عضو دوم"
+
+#: apps/accounts/templates/accounts/create_team.html:38
+msgid "Third Member"
+msgstr "عضو سوم"
+
+#: apps/accounts/templates/accounts/create_team.html:50
+msgid "Error!"
+msgstr "خطا!"
 
 #: apps/accounts/templates/accounts/login.html:10
 #: apps/accounts/templates/accounts/login.html:13
@@ -96,30 +121,6 @@ msgstr "تمام اعضا شرکت در مسابقه را تایید کرده‌
 #: apps/accounts/templates/accounts/panel.html:53
 msgid "All users haven't accepted the challenge yet!"
 msgstr "هنوز همه اعضا شرکت در مسابقه را تایید نکرده‌اند."
-
-#: apps/accounts/templates/accounts/panel.html:66
-msgid "Selected"
-msgstr "انتخاب‌شده"
-
-#: apps/accounts/templates/accounts/panel.html:67
-msgid "Time"
-msgstr "زمان"
-
-#: apps/accounts/templates/accounts/panel.html:68
-msgid "Language"
-msgstr "زبان"
-
-#: apps/accounts/templates/accounts/panel.html:69
-msgid "Status"
-msgstr "وضعیت"
-
-#: apps/accounts/templates/accounts/panel.html:132
-msgid "File:"
-msgstr "فایل:"
-
-#: apps/accounts/templates/accounts/panel.html:137
-msgid "Language:"
-msgstr "زبان:"
 
 #: apps/accounts/templates/accounts/panel.html:150
 msgid "Create New Team"
@@ -201,8 +202,6 @@ msgid "Update"
 msgstr "ذخیره"
 
 #: apps/accounts/templates/email/email_confirm.html:12
-#, fuzzy
-#| msgid "Your team has been created successfully"
 msgid "Your account has been successfully verified"
 msgstr "تیم شما با موفقیت ساخته شد"
 
@@ -225,3 +224,21 @@ msgstr "ثبت نام شما موفقیت آمیز بود"
 #: apps/accounts/templates/email/email_sent.html:14
 msgid "a verification link has been sent to your Email"
 msgstr "یک لینک فعال سازی به ایمیل شما ارسال شد"
+
+#~ msgid "Selected"
+#~ msgstr "انتخاب‌شده"
+
+#~ msgid "Time"
+#~ msgstr "زمان"
+
+#~ msgid "Language"
+#~ msgstr "زبان"
+
+#~ msgid "Status"
+#~ msgstr "وضعیت"
+
+#~ msgid "File:"
+#~ msgstr "فایل:"
+
+#~ msgid "Language:"
+#~ msgstr "زبان:"
