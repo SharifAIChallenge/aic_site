@@ -188,8 +188,8 @@ def create_team(request, challenge_id):
             return redirect('accounts:success_create_team')
     else:
         form = CreateTeamForm(user=request.user, initial={'challenge_id': challenge_id})
-    already_participated_users = UserAcceptsTeamInChallenge.objects.filter(team__challenge_id=challenge_id)
-    already_participated_usernames = [user.username for user in already_participated_users]
+    already_participated_users_accepts = UserAcceptsTeamInChallenge.objects.filter(team__challenge_id=challenge_id)
+    already_participated_usernames = [accept.user.username for accept in already_participated_users_accepts]
     return render(request, 'accounts/create_team.html', {
         'form': form,
         'users': User.objects.exclude(username__exact=request.user.username).exclude(

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 15:49+0000\n"
+"POT-Creation-Date: 2018-01-30 16:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,20 +31,14 @@ msgid "Registration is not open."
 msgstr "ثبت نام هم‌اکنون باز نیست."
 
 #: apps/accounts/forms/team_forms.py:28
-#, fuzzy
-#| msgid "This name is used by another team!"
 msgid "This name is used by another team"
 msgstr "این نام قبلا توسط تیمی دیگر استفاده شده است!"
 
 #: apps/accounts/forms/team_forms.py:31
-#, fuzzy
-#| msgid "You can't add same users to your team!"
 msgid "You can't add same users to your team"
 msgstr "لطفا دو کاربران تکراری برای تیم انتخاب نکنید!"
 
 #: apps/accounts/forms/team_forms.py:35
-#, fuzzy
-#| msgid "Some of users are already participated in the challenge!"
 msgid "Some of the users are already participating in this challenge"
 msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
 
