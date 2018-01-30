@@ -3,7 +3,6 @@ from django.utils.translation import ugettext as _
 
 
 def menu(request):
-    print("sssssasd" + str(request.build_absolute_uri(reverse('intro:index'))))
     context = {
         'ai': {
             'navbar': {
@@ -14,7 +13,7 @@ def menu(request):
                         _('History'): reverse('intro:index') + "#section-history",
                         _('Schedule'): reverse('intro:index') + '#section-schedule',
                         _('FAQ'): reverse('intro:faq'),
-                        _('Q&A'): '/blog',
+                        # _('Q&A'): '/blog',
                         _('Contact Us'): reverse('intro:index') + '#section-organizer'
                     }
                 }
@@ -32,7 +31,7 @@ def menu(request):
                 _('Blog'): {
                     'dropdown': {
                         _('FAQ'): reverse('intro:faq'),
-                        _('Q&A'): '/blog',
+                        # _('Q&A'): '/blog',
                     }
                 },
                 _('Game'): {
