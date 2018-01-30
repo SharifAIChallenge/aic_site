@@ -5,7 +5,7 @@
 {% block title %}{% trans 'Sign Up' %}{% endblock %}
 
 {% block container %}
-  <form method="post" class="ui form error" style="width: 50%;margin-right: 30%;    ">
+  <form method="post" class="ui form error">
     {% csrf_token %}
       <h3 class="ui dividing header">{% trans 'SignUp Form' %}</h3>
       <div class="field required">

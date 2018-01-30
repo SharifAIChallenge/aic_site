@@ -11,69 +11,70 @@ This set of fonts are used in this project under the license: RC4QT
 */
 
 /*@font-face {*/
-	/*font-family: IRANSans;*/
-	/*font-style: normal;*/
-	/*font-weight: 900;*/
-	/*src: url('../fonts/eot/IRANSansWeb_Black.eot');*/
-	/*src: url('../fonts/eot/IRANSansWeb_Black.eot?#iefix') format('embedded-opentype'),  !* IE6-8 *!*/
-		 /*url('../fonts/woff2/IRANSansWeb_Black.woff2') format('woff2'),  !* FF39+,Chrome36+, Opera24+*!*/
-		 /*url('../fonts/woff/IRANSansWeb_Black.woff') format('woff'),  !* FF3.6+, IE9, Chrome6+, Saf5.1+*!*/
-		 /*url('../fonts/ttf/IRANSansWeb_Black.ttf') format('truetype');*/
+/*font-family: IRANSans;*/
+/*font-style: normal;*/
+/*font-weight: 900;*/
+/*src: url('../fonts/eot/IRANSansWeb_Black.eot');*/
+/*src: url('../fonts/eot/IRANSansWeb_Black.eot?#iefix') format('embedded-opentype'),  !* IE6-8 *!*/
+/*url('../fonts/woff2/IRANSansWeb_Black.woff2') format('woff2'),  !* FF39+,Chrome36+, Opera24+*!*/
+/*url('../fonts/woff/IRANSansWeb_Black.woff') format('woff'),  !* FF3.6+, IE9, Chrome6+, Saf5.1+*!*/
+/*url('../fonts/ttf/IRANSansWeb_Black.ttf') format('truetype');*/
 /*}*/
 @font-face {
-	font-family: IRANSans;
-	font-style: normal;
-	font-weight: bold;
-	src: url('../fonts/eot/IRANSansWeb_Bold.eot');
-	src: url('../fonts/eot/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-		 url('../fonts/woff2/IRANSansWeb_Bold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-		 url('../fonts/woff/IRANSansWeb_Bold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-		 url('../fonts/ttf/IRANSansWeb_Bold.ttf') format('truetype');
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('../fonts/eot/IRANSansWeb_Bold.eot');
+    src: url('../fonts/eot/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../fonts/woff2/IRANSansWeb_Bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../fonts/woff/IRANSansWeb_Bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/ttf/IRANSansWeb_Bold.ttf') format('truetype');
 }
+
 /*@font-face {*/
-	/*font-family: IRANSans;*/
-	/*font-style: normal;*/
-	/*font-weight: 500;*/
-	/*src: url('../fonts/eot/IRANSansWeb_Medium.eot');*/
-	/*src: url('../fonts/eot/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'),  !* IE6-8 *!*/
-		 /*url('../fonts/woff2/IRANSansWeb_Medium.woff2') format('woff2'),  !* FF39+,Chrome36+, Opera24+*!*/
-		 /*url('../fonts/woff/IRANSansWeb_Medium.woff') format('woff'),  !* FF3.6+, IE9, Chrome6+, Saf5.1+*!*/
-		 /*url('../fonts/ttf/IRANSansWeb_Medium.ttf') format('truetype');*/
+/*font-family: IRANSans;*/
+/*font-style: normal;*/
+/*font-weight: 500;*/
+/*src: url('../fonts/eot/IRANSansWeb_Medium.eot');*/
+/*src: url('../fonts/eot/IRANSansWeb_Medium.eot?#iefix') format('embedded-opentype'),  !* IE6-8 *!*/
+/*url('../fonts/woff2/IRANSansWeb_Medium.woff2') format('woff2'),  !* FF39+,Chrome36+, Opera24+*!*/
+/*url('../fonts/woff/IRANSansWeb_Medium.woff') format('woff'),  !* FF3.6+, IE9, Chrome6+, Saf5.1+*!*/
+/*url('../fonts/ttf/IRANSansWeb_Medium.ttf') format('truetype');*/
 /*}*/
 /*@font-face {*/
-	/*font-family: IRANSans;*/
-	/*font-style: normal;*/
-	/*font-weight: 300;*/
-	/*src: url('../fonts/eot/IRANSansWeb_Light.eot');*/
-	/*src: url('../fonts/eot/IRANSansWeb_Light.eot?#iefix') format('embedded-opentype'),  !* IE6-8 *!*/
-		 /*url('../fonts/woff2/IRANSansWeb_Light.woff2') format('woff2'),  !* FF39+,Chrome36+, Opera24+*!*/
-		 /*url('../fonts/woff/IRANSansWeb_Light.woff') format('woff'),  !* FF3.6+, IE9, Chrome6+, Saf5.1+*!*/
-		 /*url('../fonts/ttf/IRANSansWeb_Light.ttf') format('truetype');*/
+/*font-family: IRANSans;*/
+/*font-style: normal;*/
+/*font-weight: 300;*/
+/*src: url('../fonts/eot/IRANSansWeb_Light.eot');*/
+/*src: url('../fonts/eot/IRANSansWeb_Light.eot?#iefix') format('embedded-opentype'),  !* IE6-8 *!*/
+/*url('../fonts/woff2/IRANSansWeb_Light.woff2') format('woff2'),  !* FF39+,Chrome36+, Opera24+*!*/
+/*url('../fonts/woff/IRANSansWeb_Light.woff') format('woff'),  !* FF3.6+, IE9, Chrome6+, Saf5.1+*!*/
+/*url('../fonts/ttf/IRANSansWeb_Light.ttf') format('truetype');*/
 /*}*/
 /*@font-face {*/
-	/*font-family: IRANSans;*/
-	/*font-style: normal;*/
-	/*font-weight: 200;*/
-	/*src: url('../fonts/eot/IRANSansWeb_UltraLight.eot');*/
-	/*src: url('../fonts/eot/IRANSansWeb_UltraLight.eot?#iefix') format('embedded-opentype'),  !* IE6-8 *!*/
-		 /*url('../fonts/woff2/IRANSansWeb_UltraLight.woff2') format('woff2'),  !* FF39+,Chrome36+, Opera24+*!*/
-		 /*url('../fonts/woff/IRANSansWeb_UltraLight.woff') format('woff'),  !* FF3.6+, IE9, Chrome6+, Saf5.1+*!*/
-		 /*url('../fonts/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');*/
+/*font-family: IRANSans;*/
+/*font-style: normal;*/
+/*font-weight: 200;*/
+/*src: url('../fonts/eot/IRANSansWeb_UltraLight.eot');*/
+/*src: url('../fonts/eot/IRANSansWeb_UltraLight.eot?#iefix') format('embedded-opentype'),  !* IE6-8 *!*/
+/*url('../fonts/woff2/IRANSansWeb_UltraLight.woff2') format('woff2'),  !* FF39+,Chrome36+, Opera24+*!*/
+/*url('../fonts/woff/IRANSansWeb_UltraLight.woff') format('woff'),  !* FF3.6+, IE9, Chrome6+, Saf5.1+*!*/
+/*url('../fonts/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');*/
 /*}*/
 @font-face {
-	font-family: IRANSans;
-	font-style: normal;
-	font-weight: normal;
-	src: url('../fonts/eot/IRANSansWeb.eot');
-	src: url('../fonts/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-		 url('../fonts/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-		 url('../fonts/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-		 url('../fonts/ttf/IRANSansWeb.ttf') format('truetype');
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/eot/IRANSansWeb.eot');
+    src: url('../fonts/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../fonts/woff2/IRANSansWeb.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../fonts/woff/IRANSansWeb.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/ttf/IRANSansWeb.ttf') format('truetype');
 }
 
 @media only screen and (min-width: 768px) {
     .mobile-only {
         display: none !important;
+    }
+
+    .ui.form {
+        width: 50%;
+        margin-right: auto;
+        margin-left: auto;
     }
 }
 
@@ -90,7 +91,6 @@ This set of fonts are used in this project under the license: RC4QT
     padding-left: 30px;
 
     width: 100vw !important;
-    overflow-x: auto;
     font-size: small;
     font-weight: bold !important;
 
@@ -99,7 +99,7 @@ This set of fonts are used in this project under the license: RC4QT
     -o-transition: all 0.2s linear;
 }
 
-#navbar a {
+#navbar .item {
     z-index: 99;
     position: relative;
 }
@@ -127,7 +127,7 @@ This set of fonts are used in this project under the license: RC4QT
 }
 
 .ai.button {
-	background-color: #40444d !important;
+    background-color: #40444d !important;
     color: #ffffff;
     border-radius: 3px;
     z-index: 6;
@@ -152,16 +152,15 @@ This set of fonts are used in this project under the license: RC4QT
 }
 
 .blog_post {
-     width: 100% !important;
+    width: 100% !important;
 }
 
 #comments-container {
     padding-top: 30px;
     width: 100% !important;
     max-width: none !important;
-    margin: 0px !important;
+    margin: 0 !important;
 }
-
 
 #comment-form-title {
     width: 50% !important;
@@ -179,6 +178,10 @@ This set of fonts are used in this project under the license: RC4QT
 
 #main #fluid-container {
     margin-top: -50px !important;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.ui.form p label {
+    padding: 5px !important;
 }

@@ -4,11 +4,14 @@
 
 {% block container %}
 
-<h2>{% trans 'Login' %}</h2>
-<form method="post" class="ui form">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="ui green button">{% trans 'Login' %}</button>
-</form>
+
+
+    <form method="post" class="ui form">
+        <h3 class="ui dividing header">{% trans 'Login' %}</h3>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="ui green button">{% trans 'Login' %}</button>
+    </form>
+
 
 {% endblock %}
