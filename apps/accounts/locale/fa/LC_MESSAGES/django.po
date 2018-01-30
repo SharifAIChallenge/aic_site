@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-29 16:16+0000\n"
+"POT-Creation-Date: 2018-01-30 12:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,6 +65,10 @@ msgstr " در رقابت "
 msgid ", do you accept?"
 msgstr " دعوت شده اید، آیا می‌پذیرید؟"
 
+#: apps/accounts/templates/accounts/panel.html:12
+msgid "Members are:"
+msgstr "اعضا:"
+
 #: apps/accounts/templates/accounts/panel.html:21
 msgid "Accept"
 msgstr "پذیرفتن"
@@ -117,7 +121,7 @@ msgstr "فایل:"
 msgid "Language:"
 msgstr "زبان:"
 
-#: apps/accounts/templates/accounts/panel.html:148
+#: apps/accounts/templates/accounts/panel.html:150
 msgid "Create New Team"
 msgstr "ایجاد تیم جدید"
 
@@ -130,46 +134,46 @@ msgid "Sign Up"
 msgstr "ثبت نام"
 
 #: apps/accounts/templates/accounts/signup.html:10
-#, fuzzy
-#| msgid "Sign Up"
 msgid "SignUp Form"
 msgstr "ثبت نام"
 
 #: apps/accounts/templates/accounts/signup.html:12
 msgid "Username"
-msgstr ""
+msgstr "نام کاربری"
 
 #: apps/accounts/templates/accounts/signup.html:28
 msgid "First Name"
-msgstr ""
+msgstr "نام"
 
 #: apps/accounts/templates/accounts/signup.html:32
 msgid "Last Name"
-msgstr ""
+msgstr "نام خانوادگی"
 
 #: apps/accounts/templates/accounts/signup.html:39
 msgid "College/School/Organization"
-msgstr ""
+msgstr "دانشگاه/مدرسه/شرکت"
 
 #: apps/accounts/templates/accounts/signup.html:43
 msgid "Phone Number"
-msgstr "شماره ی همراه"
+msgstr "شماره ی تلفن"
 
 #: apps/accounts/templates/accounts/signup.html:60
 msgid "Email"
 msgstr "ایمیل"
 
-#: apps/accounts/templates/accounts/signup.html:75
+#: apps/accounts/templates/accounts/signup.html:74
+msgid "لطفا عبارت زیر را وارد کنید: "
+msgstr ""
+
+#: apps/accounts/templates/accounts/signup.html:84
 msgid "Password"
 msgstr "رمز"
 
-#: apps/accounts/templates/accounts/signup.html:90
+#: apps/accounts/templates/accounts/signup.html:99
 msgid "Password Confirm"
 msgstr "تکرار رمز"
 
-#: apps/accounts/templates/accounts/signup.html:110
-#, fuzzy
-#| msgid "Sign Up"
+#: apps/accounts/templates/accounts/signup.html:111
 msgid "SignUp"
 msgstr "ثبت نام"
 

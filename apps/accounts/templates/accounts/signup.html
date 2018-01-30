@@ -70,7 +70,16 @@
             {% endfor %}
         </ol>
       {% endif %}
+      <div class="field required">
+          <label>{% trans 'لطفا عبارت زیر را وارد کنید: ' %}<i onclick="location.reload()" class="ui icon refresh" ></i></label>
+          {{ form.captcha }}
+      </div>
 
+      {% if form.captcha.errors %}
+        <div class="ui message error">
+          {{ form.captcha.errors }}
+        </div>
+      {% endif %}
       <div class="field required">
           <label>{% trans 'Password' %}</label>
           {{ form.password1 }}
@@ -98,14 +107,6 @@
         </ol>
       {% endif %}
 
-      <div class="field required">
-          {{ form.captcha }}
-      </div>
-      {% if form.captcha.errors %}
-        <div class="ui message error">
-          {{ form.captcha.errors }}
-        </div>
-      {% endif %}
 
     <button type="submit" class="ui green button">{% trans 'SignUp' %}</button>
   </form>

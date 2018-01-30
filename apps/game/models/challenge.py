@@ -7,7 +7,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 
 from .game import Game
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ugettext
 from apps.accounts.models import Team
 # from apps.game.models.competition import Participant
 
@@ -30,8 +30,6 @@ class Challenge(models.Model):
     game = models.ForeignKey(Game)
 
     def __str__(self):
-        if self.title is None:
-            return 'challenge id: ' + str(self.id)
         return self.title
 
     def can_register(self):
@@ -54,13 +52,13 @@ class TeamParticipatesChallenge(models.Model):
         verbose_name_plural='Team Participates In Challenges'
 
     def __str__(self):
-        team_name = 'None'
+        team_name = ugettext('None')
         if self.team is not None:
             team_name = str(self.team)
-        challenge_name = 'None'
+        challenge_name = ugettext('None')
         if self.challenge is not None:
             challenge_name = str(self.challenge)
-        return 'Team: ' + team_name + ' Challenge: ' + challenge_name
+        return ugettext('Team: ') + team_name + ' ' + ugettext('Challenge: ') + challenge_name
 
     def all_members_accepted(self):
         """

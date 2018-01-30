@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
 from django.utils.datetime_safe import datetime
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
@@ -44,7 +45,7 @@ def activate(request, uidb64, token):
         user = User.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
-    if user is not None and account_activation_token.check_token(user,token):
+    if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
         login(request, user)
@@ -66,7 +67,7 @@ def email_sent(request):
 
 
 class LoginView(FormView):
-    success_url = '/'
+    success_url = '/accounts/panel'
     form_class = AuthenticationForm
     template_name = 'accounts/login.html'
 
@@ -80,7 +81,7 @@ class LoginView(FormView):
         return super(LoginView, self).form_valid(form)
 
 
-class LogoutView(LoginRequiredMixin ,RedirectView):
+class LogoutView(LoginRequiredMixin, RedirectView):
     url = '/'
 
     def get(self, request, *args, **kwargs):
@@ -90,7 +91,7 @@ class LogoutView(LoginRequiredMixin ,RedirectView):
 
 class UpdateProfileView(LoginRequiredMixin, generic.UpdateView):
     form_class = UpdateProfileForm
-    success_url = '/'
+    success_url = 'accounts/panel'
     template_name = 'accounts/update_profile.html'
     model = Profile
 
@@ -118,7 +119,11 @@ def panel(request, participation_id=None):
         'accepted_participations': []
     }
 
-    all_participations = TeamParticipatesChallenge.objects.all()
+    all_participations = TeamParticipatesChallenge.objects.filter(
+        team__participants__user=request.user
+    )
+    if all_participations.count() > 0 and participation is None:
+        return redirect('accounts:panel', all_participations.first().id)
     for challenge_participation in all_participations:
         if not UserAcceptsTeamInChallenge.objects.filter(team=challenge_participation, user=request.user).exists():
             context['invitations'].append(challenge_participation)
@@ -129,6 +134,10 @@ def panel(request, participation_id=None):
         form = SubmissionForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            context['submissions'] = Paginator(
+                TeamSubmission.objects.filter(team=participation_id).order_by('-id'),
+                10
+            ).page(page)
     else:
         form = SubmissionForm()
         form.fields['team'].queryset = TeamParticipatesChallenge.objects.filter(
@@ -183,7 +192,8 @@ def create_team(request, challenge_id):
     already_participated_usernames = [user.username for user in already_participated_users]
     return render(request, 'accounts/create_team.html', {
         'form': form,
-        'users': User.objects.exclude(username__exact=request.user.username).exclude(username__in=already_participated_usernames),
+        'users': User.objects.exclude(username__exact=request.user.username).exclude(
+            username__in=already_participated_usernames),
         'username': request.user.username
     })
 
