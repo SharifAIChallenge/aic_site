@@ -1,4 +1,5 @@
 from .base import *
+from .production_secrets import *
 
 INSTALLED_APPS += [
 
@@ -23,4 +24,3 @@ DATABASES = {
         'PORT': 5432,
     }
 }
-

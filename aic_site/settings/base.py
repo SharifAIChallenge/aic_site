@@ -13,12 +13,6 @@ import django
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'r=2mdcuth+5g8o6)s*z7c61bss)%0ku2b9w72d3ph^x&)^gx$t'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 TESTING = sys.argv[1:2] == ['test']
 
 ALLOWED_HOSTS = []
@@ -155,9 +149,3 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale_extra'),
     os.path.join(BASE_DIR, 'apps', 'accounts', 'locale'),
 )
-
-INFRA_IP = 'xxxx'
-INFRA_PORT = '8000'
-INFRA_URL = 'http://{}:{}'.format(INFRA_IP, INFRA_PORT)
-INFRA_AUTH_TOKEN = 'xxxx'
-INFRA_API_SCHEMA_ADDRESS = "{}/api/schema/".format(INFRA_URL)
