@@ -1,5 +1,5 @@
 from .base import *
-from .production_secrets import *
+from .production_secret import *
 
 INSTALLED_APPS += [
 
