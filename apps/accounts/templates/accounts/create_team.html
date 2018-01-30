@@ -5,11 +5,11 @@
 {% block container %}
 
 <form class="ui form error" id="create_team_form" method="post" style="padding: 70px">
-<h3 class="ui dividing header">Create Team</h3>
+<h3 class="ui dividing header">{% trans 'Create Team' %}</h3>
   {% csrf_token %}
   {{ form.challenge_id }}
   <div class="field required">
-      <label>Team Name</label>
+      <label>{% trans 'Team Name' %}</label>
       {{ form.team_name }}
   </div>
 
@@ -20,12 +20,12 @@
 {% endif %}
 
 <div class="field">
-    <label>First Member</label>
+    <label>{% trans 'First Member' %}</label>
     <input placeholder="{{ username }}" readonly="" type="text">
 </div>
 
 <div class="field">
-    <label>Second Member</label>
+    <label>{% trans 'Second Member' %}</label>
     <select class="ui dropdown search" id="drop1_id" name="member1" onchange="second_field()">
         <option value="">-----</option>
         <option value="-----">-----</option>
@@ -35,7 +35,7 @@
     </select>
 </div>
 <div id="third_member" class="field" style="display: none">
-    <label>Third Member</label>
+    <label>{% trans 'Third Member' %}</label>
     <select class="ui dropdown search" id="drop2_id" name="member2" onchange="third_field()">
         <option value="">-----</option>
         <option value="-----">-----</option>
@@ -47,7 +47,7 @@
   <button class="ui green button" type="submit">{% trans 'Create Team' %}</button>
 {% if  form.non_field_errors %}
     <div class="ui error message">
-        <div class="header">Error!</div>
+        <div class="header">{% trans 'Error!' %}</div>
         <strong>{{ form.non_field_errors }}</strong>
     </div>
 {% endif %}

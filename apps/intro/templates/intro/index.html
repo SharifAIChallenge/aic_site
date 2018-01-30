@@ -41,14 +41,22 @@
                     </p>
 
                     <div class="ui center aligned container">
-                        <a href="#section-schedule" class="ui centered massive animated violet button">
-                            <div class="visible content">
-                                {% trans 'Participate' %}
-                            </div>
-                            <div class="hidden content">
-                                <i class="ui calendar icon"></i>
-                                {% trans 'View Schedule' %}
-                            </div>
+                        <a href="{% if request.user.is_authenticated %}{% url 'accounts:panel' %}{% else %}{% url 'accounts:signup' %}{% endif %}" class="ui centered massive animated violet button">
+                            {% if request.user.is_authenticated %}
+                                <div class="visible content">
+                                {% trans 'Panel' %}
+                                </div>
+                                <div class="hidden content">
+                                    {% trans 'Panel' %}
+                                </div>
+                            {% else %}
+                                <div class="visible content">
+                                    {% trans 'Participate' %}
+                                </div>
+                                <div class="hidden content">
+                                    {% trans 'Register' %}
+                                </div>
+                            {% endif %}
                         </a>
                     </div>
                 </div>
@@ -289,6 +297,7 @@
     </div>
 
     <div class="even section" id="section-organizer">
+
         <div class="ui section header">
             <a class="ui big ai button" href="#section-organizer">
                 {% trans 'Contact Us' %}
@@ -327,6 +336,5 @@
 
 {% block footer_scripts %}
     {{ block.super }}
-    <script src="{% static 'js/jquery.inview.min.js' %}"></script>
     <script src="{% static 'intro/js/scripts.js' %}"></script>
 {% endblock %}

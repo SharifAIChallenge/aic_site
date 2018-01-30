@@ -1,12 +1,17 @@
+{% load static i18n %}
+
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Email Activation</title>
+    <title>{%  trans 'Email Activation' %}</title>
 </head>
 <body>
 {% autoescape off %}
-    <p>Hello {{ user.username }}!</p>
+    <p>{% trans 'Hello' %} {{ user.username }}!</p>
+    <p>{% trans 'Click on the  link below to activate your account:' %} </p>
     <a href="http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}">http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}</a>
 {% endautoescape %}
 </body>

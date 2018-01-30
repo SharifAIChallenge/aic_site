@@ -5,37 +5,47 @@ from django.utils.translation import ugettext as _
 def menu(request):
     context = {
         'ai': {
-            'navbar': [
-                (_('Introduction'), {
-                    'address': '#section-intro'
-                }),
-                (_('Prize'), {
-                    'address': '#section-prizes'
-                }),
-                (_('History'), {
-                    'address': '#section-history'
-                }),
-                (_('Schedule'), {
-                    'address': '#section-schedule'
-                }),
-                # (_('Contact Us'), {
-                #     'address': '#section-organizer'
-                # })
-            ],
+            'navbar': {
+                _('Home'): {
+                    'dropdown': {
+                        _('Introduction'): reverse('intro:index') + '#section-intro',
+                        _('Prize'): reverse('intro:index') + '#section-prizes',
+                        _('History'): reverse('intro:index') + "#section-history",
+                        _('Schedule'): reverse('intro:index') + '#section-schedule',
+                        _('FAQ'): reverse('intro:faq'),
+                        # _('Q&A'): '/blog',
+                        _('Contact Us'): reverse('intro:index') + '#section-organizer'
+                    }
+                }
+            },
             'sidebar': {
-
+                _('Home'): {
+                    'dropdown': {
+                        _('Introduction'): reverse('intro:index') + '#section-intro',
+                        _('Prize'): reverse('intro:index') + '#section-prizes',
+                        _('History'): reverse('intro:index') + "#section-history",
+                        _('Schedule'): reverse('intro:index') + '#section-schedule',
+                        _('Contact Us'): reverse('intro:index') + '#section-organizer'
+                    }
+                },
+                _('Blog'): {
+                    'dropdown': {
+                        _('FAQ'): reverse('intro:faq'),
+                        # _('Q&A'): '/blog',
+                    }
+                },
+                _('Game'): {
+                    'dropdown': {
+                        _('Panel'): reverse('accounts:panel'),
+                    }
+                },
+                _('Account'): {
+                    'dropdown': {
+                        _('Logout'): reverse('accounts:logout'),
+                    }
+                }
             }
         }
     }
-
-    if request.user.is_authenticated():
-        context['ai']['sidebar'].update({
-            _('Panel'): {
-                'address': reverse('accounts:panel')
-            },
-            _('Create Team'): {
-                'address': reverse('accounts:panel')
-            },
-        })
 
     return context

@@ -15,6 +15,10 @@ class CreateTeamForm(Form):
 
     def is_valid(self):
         valid = super(Form, self).is_valid()
+        challenge = Challenge.objects.get(id=self.cleaned_data['challenge_id'])
+        if not challenge.can_register():
+            self.add_error(None, _("Registration is not open."))
+            return False
         member1_username = self.cleaned_data['member1']
         member2_username = self.cleaned_data['member2']
         if not valid:

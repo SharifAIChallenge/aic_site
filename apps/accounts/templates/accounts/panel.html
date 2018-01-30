@@ -8,8 +8,8 @@
 
           <i onclick="window.location.href='{% url "accounts:reject_participation" invitation.id %}';" class="close icon"></i>
       <div class="header">
-        <p>{% trans 'You are invited to the team ' %}{{ invitation.team }}{% trans ' on the challenge ' %}{{ invitation.challenge }}{% trans ', do you accept?' %}</p>
-          <p>Members are: </p>
+        <p>{% trans 'You are invited to the team ' %}"{{ invitation.team }}"{% trans ' on the challenge ' %}"{{ invitation.challenge }}"{% trans ', do you accept?' %}</p>
+          <p>{%  trans 'Members are:' %}</p>
       </div>
       <ul class="list">
           {% for participant in invitation.team.participants.all %}
@@ -145,6 +145,9 @@
 
     <script src="{% static 'accounts/js/api.js' %}"></script>
 {% else %}
-    <a href="" class="ui blue button" >{% trans 'Create New Team' %}</a>
-{% endif %}
-{% endblock %}
+    {% for challenge in  challenges %}
+        {% if challenge.can_register %}
+            <a href="{% url 'accounts:create_team' challenge.id %}" class="ui blue button" >{% trans 'Create New Team' %}</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}{% endblock %}

@@ -3,15 +3,15 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
+from django.core.validators import RegexValidator
 from django.forms.models import ModelForm
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
-from captcha.fields import CaptchaField
-
-from aic_site.settings.production import ALLOWED_HOSTS
+from django.utils.translation import ugettext_lazy as _
 from apps.accounts.models import Profile
 from apps.accounts.tokens import account_activation_token
+from captcha.fields import ReCaptchaField
 
 
 class SignUpForm(UserCreationForm):
@@ -19,8 +19,10 @@ class SignUpForm(UserCreationForm):
     last_name = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(max_length=254, required=True)
     organization = forms.CharField(max_length=255, required=True)
-    phone_number = forms.RegexField(regex=r'^\d{8,15}$', required=True)
-    captcha = CaptchaField()
+    phone_regex = RegexValidator(regex=r'^\d{8,15}$',
+                                 message=_("Please enter your phone number correctly!"))
+    phone_number = forms.CharField(validators=[phone_regex], required=False)
+    captcha = ReCaptchaField()
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -42,7 +44,7 @@ class SignUpForm(UserCreationForm):
             })
             send_mail(subject='Activate Your Account',
                       message=email_text,
-                      from_email='info@aichallenge.ir',
+                      from_email='Sharif AI Challenge <info@aichallenge.ir>',
                       recipient_list=[user.email],
                       fail_silently=False,
                       html_message=email_html
