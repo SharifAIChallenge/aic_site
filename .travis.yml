@@ -3,9 +3,9 @@ python: 3.6
 stages:
 - test
 - name: deploy_test
-  if: type = push AND (branch IN (travis_integration, dev))
-#- name: deploy_production
-#  if: type = push AND (branch IN (stable-dev))
+  if: type = push AND (branch IN (travis_integration, production-test))
+- name: deploy_production
+  if: type = push AND (branch IN (master))
 jobs:
   include:
   - stage: test
@@ -26,9 +26,9 @@ jobs:
     - python manage.py makemigrations
     - python manage.py migrate
     - python manage.py test
-#  - stage: deploy_production
-#    script:
-#    - eval "curl -H 'X-token:${TOKEN}' -X GET http://207.246.83.0:3589/deploy_production"
+  - stage: deploy_production
+    script:
+    - eval "curl -H 'X-token:${TOKEN}' -X GET http://207.246.83.0:3589/deploy_production"
   - stage: deploy_test
     script:
     - eval "curl -H 'X-token:${TOKEN}' -X GET http://207.246.83.0:3589/deploy_test"
