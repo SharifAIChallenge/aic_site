@@ -4,6 +4,9 @@ $('#navbar').sticky({context: '#main'});
 
 $('.ui.accordion').accordion();
 
+$('.popup-link').popup();
+
+
 $(document)
     .ready(function () {
         var navbar = $('#navbar');
