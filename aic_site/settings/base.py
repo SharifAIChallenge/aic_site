@@ -13,6 +13,8 @@ import django
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+SECRET_KEY = 'r=2mdcuth+5g8o6)s*z7c61bss)%0ku2b9w72d3ph^x&)^gx$t'
+
 TESTING = sys.argv[1:2] == ['test']
 
 ALLOWED_HOSTS = []
@@ -149,3 +151,5 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale_extra'),
     os.path.join(BASE_DIR, 'apps', 'accounts', 'locale'),
 )
+
+NOCAPTCHA = True

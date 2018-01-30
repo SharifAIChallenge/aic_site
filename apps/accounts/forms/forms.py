@@ -8,12 +8,11 @@ from django.forms.models import ModelForm
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
-from captcha.fields import CaptchaField
 from django.utils.translation import ugettext_lazy as _
-
-from aic_site.settings.production import ALLOWED_HOSTS
 from apps.accounts.models import Profile
 from apps.accounts.tokens import account_activation_token
+from captcha.fields import ReCaptchaField
+
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True)
@@ -23,7 +22,7 @@ class SignUpForm(UserCreationForm):
     phone_regex = RegexValidator(regex=r'^\d{8,15}$',
                                  message=_("Please enter your phone number correctly!"))
     phone_number = forms.CharField(validators=[phone_regex], required=False)
-    captcha = CaptchaField()
+    captcha = ReCaptchaField()
 
     def save(self, commit=True):
         user = super().save(commit=False)
