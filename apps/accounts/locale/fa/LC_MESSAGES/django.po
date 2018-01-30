@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 16:21+0000\n"
+"POT-Creation-Date: 2018-01-30 17:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr "این نام قبلا توسط تیمی دیگر استفاده شده 
 
 #: apps/accounts/forms/team_forms.py:31
 msgid "You can't add same users to your team"
-msgstr "لطفا دو کاربران تکراری برای تیم انتخاب نکنید!"
+msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
 
 #: apps/accounts/forms/team_forms.py:35
 msgid "Some of the users are already participating in this challenge"
@@ -122,9 +122,6 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/signup.html:5
 #: apps/accounts/templates/accounts/update_profile.html:5
-#: apps/accounts/templates/email/email_confirm.html:5
-#: apps/accounts/templates/email/email_invalid.html:5
-#: apps/accounts/templates/email/email_sent.html:5
 msgid "Sign Up"
 msgstr "ثبت نام"
 
@@ -181,9 +178,6 @@ msgid "Request messages has bee sent to your teammates"
 msgstr "درخواست عضویت به هم تیمی های شما فرستاده شد"
 
 #: apps/accounts/templates/accounts/success_create_team.html:17
-#: apps/accounts/templates/email/email_confirm.html:20
-#: apps/accounts/templates/email/email_invalid.html:20
-#: apps/accounts/templates/email/email_sent.html:20
 msgid "OK"
 msgstr "باشه"
 
@@ -195,29 +189,23 @@ msgstr "ثبت نام"
 msgid "Update"
 msgstr "ذخیره"
 
-#: apps/accounts/templates/email/email_confirm.html:12
-msgid "Your account has been successfully verified"
-msgstr "تیم شما با موفقیت ساخته شد"
+#~ msgid "Your account has been successfully verified"
+#~ msgstr "تیم شما با موفقیت ساخته شد"
 
-#: apps/accounts/templates/email/email_confirm.html:14
-msgid "You can now login with your account"
-msgstr "شما اکنون می‌توانید به اکانت خود وارد شوید"
+#~ msgid "You can now login with your account"
+#~ msgstr "شما اکنون می‌توانید به اکانت خود وارد شوید"
 
-#: apps/accounts/templates/email/email_invalid.html:12
-msgid "The verification link is invalid"
-msgstr "لینک فعال سازی معتبر نیست"
+#~ msgid "The verification link is invalid"
+#~ msgstr "لینک فعال سازی معتبر نیست"
 
-#: apps/accounts/templates/email/email_invalid.html:14
-msgid "your link might have expired"
-msgstr "ممکن است لینک فعال سازی شما منقضی شده باشد"
+#~ msgid "your link might have expired"
+#~ msgstr "ممکن است لینک فعال سازی شما منقضی شده باشد"
 
-#: apps/accounts/templates/email/email_sent.html:12
-msgid "Your user registration was successful"
-msgstr "ثبت نام شما موفقیت آمیز بود"
+#~ msgid "Your user registration was successful"
+#~ msgstr "ثبت نام شما موفقیت آمیز بود"
 
-#: apps/accounts/templates/email/email_sent.html:14
-msgid "a verification link has been sent to your Email"
-msgstr "یک لینک فعال سازی به ایمیل شما ارسال شد"
+#~ msgid "a verification link has been sent to your Email"
+#~ msgstr "یک لینک فعال سازی به ایمیل شما ارسال شد"
 
 #~ msgid "Selected"
 #~ msgstr "انتخاب‌شده"

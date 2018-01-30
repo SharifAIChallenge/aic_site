@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 16:21+0000\n"
+"POT-Creation-Date: 2018-01-30 17:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,64 +18,59 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: aic_site/context_processors.py:10 aic_site/context_processors.py:23
+#: aic_site/context_processors.py:9 aic_site/context_processors.py:22
 msgid "Home"
 msgstr "خانه"
 
-#: aic_site/context_processors.py:12 aic_site/context_processors.py:25
+#: aic_site/context_processors.py:11 aic_site/context_processors.py:24
 msgid "Introduction"
 msgstr "معرفی"
 
-#: aic_site/context_processors.py:13 aic_site/context_processors.py:26
+#: aic_site/context_processors.py:12 aic_site/context_processors.py:25
 msgid "Prize"
 msgstr "جایزه"
 
-#: aic_site/context_processors.py:14 aic_site/context_processors.py:27
+#: aic_site/context_processors.py:13 aic_site/context_processors.py:26
 msgid "History"
 msgstr "تاریخ"
 
-#: aic_site/context_processors.py:15 aic_site/context_processors.py:28
+#: aic_site/context_processors.py:14 aic_site/context_processors.py:27
 msgid "Schedule"
 msgstr "برنامه"
 
-#: aic_site/context_processors.py:16 aic_site/context_processors.py:34
+#: aic_site/context_processors.py:15 aic_site/context_processors.py:33
 msgid "FAQ"
 msgstr "سوالات متداول"
 
-#: aic_site/context_processors.py:17 aic_site/context_processors.py:35
-#: templates/zinnia/entry_detail_base.html:66
-msgid "Q&A"
-msgstr "پرسش و پاسخ"
-
-#: aic_site/context_processors.py:18 aic_site/context_processors.py:29
+#: aic_site/context_processors.py:17 aic_site/context_processors.py:28
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: aic_site/context_processors.py:32 templates/zinnia/base.html:26
+#: aic_site/context_processors.py:31 templates/zinnia/base.html:26
 msgid "Blog"
 msgstr "بلاگ"
 
-#: aic_site/context_processors.py:38
+#: aic_site/context_processors.py:37
 msgid "Game"
 msgstr "بازی"
 
-#: aic_site/context_processors.py:40
+#: aic_site/context_processors.py:39
 msgid "Panel"
 msgstr "پنل"
 
-#: aic_site/context_processors.py:43
+#: aic_site/context_processors.py:42
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: aic_site/context_processors.py:45 templates/base/navbar.html:35
+#: aic_site/context_processors.py:44 templates/base/navbar.html:35
 msgid "Logout"
 msgstr "خروج"
 
-#: aic_site/settings/base.py:121
+#: aic_site/settings/base.py:124
 msgid "English"
 msgstr "انگلیسی"
 
-#: aic_site/settings/base.py:122
+#: aic_site/settings/base.py:125
 msgid "Persian"
 msgstr "فارسی"
 
@@ -524,6 +519,10 @@ msgstr ""
 #, python-format
 msgid "RSS feed of trackbacks on %(object)s"
 msgstr ""
+
+#: templates/zinnia/entry_detail_base.html:66
+msgid "Q&A"
+msgstr "پرسش و پاسخ"
 
 #: templates/zinnia/entry_detail_base.html:92
 #: templates/zinnia/entry_detail_base.html:142

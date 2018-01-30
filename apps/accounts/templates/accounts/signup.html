@@ -84,9 +84,9 @@
           <label>{% trans 'Password' %}</label>
           {{ form.password1 }}
       </div>
-      <div class="ui message">
-          <p>{{ form.password1.help_text|safe }}</p>
-      </div>
+{#      <div class="ui message">#}
+{#          <p>{{ form.password1.help_text|safe }}</p>#}
+{#      </div>#}
       {% if form.password1.errors %}
           <ol class="ui message error">
           {% for error in form.password1.errors %}

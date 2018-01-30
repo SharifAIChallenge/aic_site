@@ -8,7 +8,7 @@
 
           <i onclick="window.location.href='{% url "accounts:reject_participation" invitation.id %}';" class="close icon"></i>
       <div class="header">
-        <p>{% trans 'You are invited to the team ' %}{{ invitation.team }}{% trans ' on the challenge ' %}{{ invitation.challenge }}{% trans ', do you accept?' %}</p>
+        <p>{% trans 'You are invited to the team ' %}"{{ invitation.team }}"{% trans ' on the challenge ' %}"{{ invitation.challenge }}"{% trans ', do you accept?' %}</p>
           <p>{%  trans 'Members are:' %}</p>
       </div>
       <ul class="list">
