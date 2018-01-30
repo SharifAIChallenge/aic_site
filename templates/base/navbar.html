@@ -2,10 +2,6 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 <div class="ui attached inverted sticky borderless menu navbar-color" id="navbar">
-    {% if not no_sidebar %}
-        <span style="cursor: pointer;" class="ui item" onclick="$('.ui.sidebar').sidebar('toggle');"><i
-                class="sidebar icon"></i></span>
-    {% endif %}
     {% for title, link in ai.navbar.items %}
         {% if not link.dropdown %}
             <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>
@@ -29,8 +25,8 @@
         <input type="hidden" name="language" value="{% if LANGUAGE_CODE == "fa" %}en{% else %}fa{% endif %}"/>
     </form>
 
-    <div class="right menu">
-        <div class="ui dropdown item">
+    <div class="right compact menu">
+        <div class="ui dropdown fitted item">
             <i class="user icon"></i>
             <div class="menu">
                 {% if request.user.is_authenticated %}
@@ -48,8 +44,15 @@
                         {% trans 'Register' %}
                     </a>
                 {% endif %}
-                <a class="item" onclick="document.changeLang.submit();" href="#"><i class="world icon"></i>{% if LANGUAGE_CODE == "fa" %}EN{% else %}FA{% endif %}</a>
             </div>
         </div>
+        <a class="fitted item popup-link" onclick="document.changeLang.submit();" href="#" data-tooltip="{% trans 'Change Language' %}" data-position="left center" data-inverted="">
+            <i class="world icon"></i>
+        </a>
+        {% if not no_sidebar %}
+            <div style="cursor: pointer;" class="fitted item" onclick="$('.ui.sidebar').sidebar('toggle');">
+                <i class="sidebar icon"></i>
+            </div>
+        {% endif %}
     </div>
 </div>
