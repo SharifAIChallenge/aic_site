@@ -49,7 +49,7 @@ class TeamParticipatesChallenge(models.Model):
     challenge = models.ForeignKey(Challenge, related_name='teams')
 
     class Meta:
-        verbose_name_plural='Team Participates In Challenges'
+        verbose_name_plural = 'Team Participates In Challenges'
 
     def __str__(self):
         return 'Team: ' + str(self.team) + ' Challenge: ' + str(self.challenge)
@@ -79,9 +79,9 @@ class TeamParticipatesChallenge(models.Model):
         except TeamSubmission.DoesNotExist:
             return None
 
-
     def itself(self):
         return self.get_final_submission()
+
 
 class UserAcceptsTeamInChallenge(models.Model):
     team = models.ForeignKey(TeamParticipatesChallenge, related_name='users_acceptance')
@@ -94,10 +94,9 @@ def get_submission_file_directory(instance, filename):
 
 class TeamSubmission(models.Model):
     LANGUAGE_CHOICES = (
-        ('c++', _('C++')),
+        ('cpp', _('C++')),
         ('java', _('Java')),
-        ('python2', _('Python 2')),
-        ('python3', _('Python 3'))
+        ('py3', _('Python 3'))
     )
 
     STATUS_CHOICES = (
@@ -118,10 +117,8 @@ class TeamSubmission(models.Model):
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
     infra_compile_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
 
-
     def __str__(self):
         return str(self.id)
-
 
     def __str__(self):
         return str(self.id)
@@ -131,7 +128,7 @@ class TeamSubmission(models.Model):
             Use this method instead of changing the is_final attribute directly
             This makes sure that only one instance of TeamSubmission has is_final flag set to True
         """
-        TeamSubmission.objects.filter(is_final=True).update(is_final=False)
+        TeamSubmission.objects.filter(is_final=True, team=self.team).update(is_final=False)
         self.is_final = True
         self.save()
 
