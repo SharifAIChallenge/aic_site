@@ -1,4 +1,4 @@
-import json
+import logging
 
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -6,23 +6,31 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import get_object_or_404, render, redirect
+from django.urls import reverse
+from django.utils.datetime_safe import datetime
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.views import generic
+
+from apps.accounts.forms.team_forms import CreateTeamForm
+# Create your views here.
 from django.views.generic import FormView, RedirectView
 
 from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
 from apps.accounts.forms.panel import SubmissionForm
-from apps.accounts.forms.team_forms import CreateTeamForm
-from apps.accounts.models import Profile
+from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 from apps.accounts.tokens import account_activation_token
 from apps.game.models import TeamSubmission
+import json
+from apps.game.models.challenge import TeamParticipatesChallenge, UserAcceptsTeamInChallenge
 from apps.game.models.challenge import Challenge
-from apps.game.models.challenge import TeamParticipatesChallenge
+
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
+
+logger = logging.getLogger(__name__)
 
 class SignupView(generic.CreateView):
     form_class = SignUpForm
@@ -98,7 +106,13 @@ class UpdateProfileView(LoginRequiredMixin, generic.UpdateView):
 @login_required
 def panel(request, participation_id=None):
     if participation_id is not None:
-        participation = TeamParticipatesChallenge.objects.get(id=participation_id)
+        try:
+            participation = TeamParticipatesChallenge.objects.get(
+                id=participation_id,
+                team__participants__user=request.user
+            )
+        except TeamParticipatesChallenge.DoesNotExist:
+            return redirect('accounts:panel')
     else:
         participation = None
 
@@ -153,6 +167,8 @@ def panel(request, participation_id=None):
 @login_required
 def set_final_submission(request, submission_id):
     submission = TeamSubmission.objects.get(id=submission_id)
+    if submission.team.team.participants.filter(user=request.user).count() == 0:
+        return Http404()
     submission.set_final()
     data = {'success': True, 'submission_id': submission_id}
     return HttpResponse(json.dumps(data))
@@ -160,23 +176,39 @@ def set_final_submission(request, submission_id):
 
 @login_required
 def accept_participation(request, participation_id):
-    accept = UserAcceptsTeamInChallenge(team_id=participation_id, user=request.user)
-    accept.save()
-    other_invitations = TeamParticipatesChallenge.objects.filter(challenge=accept.team.challenge)
-    for invitation in other_invitations:
-        if invitation.id != int(participation_id):
-            invitation.delete()
+    team = get_object_or_404(TeamParticipatesChallenge,
+                             id=participation_id,
+                             team__participants__user=request.user)
+    UserAcceptsTeamInChallenge.objects.get_or_create(team=team, user=request.user)
+    TeamParticipatesChallenge.objects.filter(
+        challenge=team.challenge,
+        team__participants__user=request.user,
+    ).exclude(id=team.id).delete()
     return redirect('accounts:panel', participation_id)
 
 
 @login_required
 def reject_participation(request, participation_id):
-    TeamParticipatesChallenge.objects.get(id=participation_id).delete()
+    team = get_object_or_404(TeamParticipatesChallenge,
+                             id=participation_id,
+                             team__participants__user=request.user)
+    team.delete()
+    logger.info("User {}(#{}) rejected the request for team {}(#{})".format(
+        request.user,
+        request.user.id,
+        team,
+        team.id
+    ))
     return redirect('accounts:panel')
 
 
 @login_required()
 def create_team(request, challenge_id):
+    if UserAcceptsTeamInChallenge.objects.filter(
+        team__challenge_id=challenge_id,
+        team__team__participants__user=request.user
+    ).exists():
+        return redirect('accounts:panel')
     if request.method == 'POST':
         form = CreateTeamForm(request.user, request.POST)
         if form.is_valid():
