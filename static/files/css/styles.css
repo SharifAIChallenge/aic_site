@@ -186,6 +186,24 @@ This set of fonts are used in this project under the license: RC4QT
     padding: 5px !important;
 }
 
+#panel-button {
+    height: 30px;
+    line-height:30px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.navbar-color #panel-button {
+    background-color: #d8d5d5;
+}
+
+.reverse-navbar-color #panel-button {
+    background-color: #518799;
+    color: white;
+}
+  
 #navbar .large-icon {
     font-size: 1.5em;
 }
