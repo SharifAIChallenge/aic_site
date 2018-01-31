@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-31 10:37+0000\n"
+"POT-Creation-Date: 2018-02-01 01:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/accounts/forms/forms.py:23
+msgid "Please enter your phone number correctly!"
+msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
+
+#: apps/accounts/forms/team_forms.py:11
+msgid "Required,Choose a suitable name for your team"
+msgstr "انتخاب نام تیم لازم است!"
+
+#: apps/accounts/forms/team_forms.py:20
+msgid "Registration is not open."
+msgstr "ثبت نام هم‌اکنون باز نیست."
+
+#: apps/accounts/forms/team_forms.py:28
+msgid "This name is used by another team"
+msgstr "این نام قبلا توسط تیمی دیگر استفاده شده است!"
+
+#: apps/accounts/forms/team_forms.py:31
+msgid "You can't add same users to your team"
+msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
+
+#: apps/accounts/forms/team_forms.py:35
+msgid "Some of the users are already participating in this challenge"
+msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
 
 #: apps/accounts/templates/accounts/create_team.html:8
 #: apps/accounts/templates/accounts/create_team.html:48
@@ -53,11 +77,21 @@ msgid "Error!"
 msgstr "خطا!"
 
 #: apps/accounts/templates/accounts/login.html:10
-#: apps/accounts/templates/accounts/login.html:13
+#: apps/accounts/templates/accounts/login.html:30
 msgid "Login"
 msgstr "ورود"
 
-#: apps/accounts/templates/accounts/login.html:15
+#: apps/accounts/templates/accounts/login.html:14
+#: apps/accounts/templates/accounts/signup.html:12
+msgid "Username"
+msgstr "نام کاربری"
+
+#: apps/accounts/templates/accounts/login.html:25
+#: apps/accounts/templates/accounts/signup.html:75
+msgid "Password"
+msgstr "رمز"
+
+#: apps/accounts/templates/accounts/login.html:32
 msgid "I forgot my password"
 msgstr "رمزم را فراموش کردم"
 
@@ -118,11 +152,6 @@ msgstr "ثبت نام"
 msgid "SignUp Form"
 msgstr "ثبت نام"
 
-#: apps/accounts/templates/accounts/signup.html:12
-msgid "Username"
-msgstr "نام کاربری"
-
-
 #: apps/accounts/templates/accounts/signup.html:28
 msgid "First Name"
 msgstr "نام"
@@ -132,8 +161,9 @@ msgid "Last Name"
 msgstr "نام خانوادگی"
 
 #: apps/accounts/templates/accounts/signup.html:39
-msgid "College/School/Organization"
-msgstr "دانشگاه/مدرسه/شرکت"
+#| msgid "College/School/Organization"
+msgid "College/School"
+msgstr "دانشگاه/مدرسه"
 
 #: apps/accounts/templates/accounts/signup.html:43
 msgid "Phone Number"
@@ -143,15 +173,11 @@ msgstr "شماره ی تلفن"
 msgid "Email"
 msgstr "ایمیل"
 
-#: apps/accounts/templates/accounts/signup.html:79
-msgid "Password"
-msgstr "رمز"
-
-#: apps/accounts/templates/accounts/signup.html:94
+#: apps/accounts/templates/accounts/signup.html:90
 msgid "Password Confirm"
 msgstr "تکرار رمز"
 
-#: apps/accounts/templates/accounts/signup.html:110
+#: apps/accounts/templates/accounts/signup.html:112
 msgid "SignUp"
 msgstr "ثبت نام"
 
@@ -177,24 +203,6 @@ msgstr "ذخیره"
 
 #~ msgid "username"
 #~ msgstr "نام کاربری"
-
-#~ msgid "Please enter your phone number correctly!"
-#~ msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
-
-#~ msgid "Required,Choose a suitable name for your team"
-#~ msgstr "انتخاب نام تیم لازم است!"
-
-#~ msgid "Registration is not open."
-#~ msgstr "ثبت نام هم‌اکنون باز نیست."
-
-#~ msgid "This name is used by another team"
-#~ msgstr "این نام قبلا توسط تیمی دیگر استفاده شده است!"
-
-#~ msgid "You can't add same users to your team"
-#~ msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
-
-#~ msgid "Some of the users are already participating in this challenge"
-#~ msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
 
 #~ msgid "Your account has been successfully verified"
 #~ msgstr "تیم شما با موفقیت ساخته شد"

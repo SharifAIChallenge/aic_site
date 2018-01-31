@@ -10,3 +10,7 @@ def index(request):
 
 def faq(request):
     return render(request, 'intro/faq.html')
+
+
+def not_found(request):
+    return render(request, '404.html')

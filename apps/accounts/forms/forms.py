@@ -49,7 +49,11 @@ class SignUpForm(UserCreationForm):
                       fail_silently=False,
                       html_message=email_html
                       )
-            profile = Profile(user=user, phone_number=None)
+            profile = Profile(
+                user=user,
+                phone_number=self.cleaned_data['phone_number'],
+                organization=self.cleaned_data['organization']
+            )
             profile.save()
 
         return user
