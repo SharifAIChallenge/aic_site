@@ -91,7 +91,7 @@ This set of fonts are used in this project under the license: RC4QT
     padding-left: 30px;
 
     width: 100vw !important;
-    font-size: small;
+
     font-weight: bold !important;
 
     -webkit-transition: all 0.2s linear;
@@ -184,4 +184,13 @@ This set of fonts are used in this project under the license: RC4QT
 
 .ui.form p label {
     padding: 5px !important;
+}
+
+#navbar .large-icon {
+    font-size: 1.5em;
+}
+
+
+.vertical.menu {
+    font-size: medium;
 }

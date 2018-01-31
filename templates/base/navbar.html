@@ -27,7 +27,7 @@
 
     <div class="right menu" id="right-navbar">
         <div class="ui dropdown fitted item">
-            <i class="user icon"></i>
+            <i class="user icon large-icon"></i>
             <div class="ui inverted menu" style="margin-right: -60px;">
                 {% if request.user.is_authenticated %}
                     <a class="item" href="{% url 'accounts:logout' %}">
@@ -47,11 +47,11 @@
             </div>
         </div>
         <a class="fitted item popup-link" onclick="document.changeLang.submit();" href="#" data-tooltip="{% trans 'Change Language' %}" data-position="left center" data-inverted="">
-            <i class="world icon"></i>
+            <i class="world icon large-icon"></i>
         </a>
         {% if not no_sidebar %}
             <div style="cursor: pointer;" class="fitted item" onclick="$('.ui.sidebar').sidebar('toggle');">
-                <i class="sidebar icon"></i>
+                <i class="sidebar icon large-icon"></i>
             </div>
         {% endif %}
     </div>
