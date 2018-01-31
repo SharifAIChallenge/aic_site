@@ -59,7 +59,7 @@
         </div>
 {#        {% if participation %}#}
 {#        {% if participation.all_members_accepted %}#}
-{#            <h2>Submissions</h2>#}
+{#            <h2>{% trans 'Submissions' %}</h2>#}
 {#            <table class="ui center aligned table table-bordered">#}
 {#              <thead>#}
 {#                <tr>#}
@@ -141,13 +141,13 @@
 {#                <input type="submit" class="ui green button" value="Submit">#}
 {#        {% endif %}#}
 {#        {% endif %}#}
-{#    </form>#}
-{##}
-{#    <script src="{% static 'accounts/js/api.js' %}"></script>#}
-{#{% else %}#}
-{#    {% for challenge in  challenges %}#}
-{#        {% if challenge.can_register %}#}
-{#            <a href="{% url 'accounts:create_team' challenge.id %}" class="ui blue button" >{% trans 'Create New Team' %}</a>#}
-{#        {% endif %}#}
-{#    {% endfor %}#}
-{#{% endif %}{% endblock %}#}
+    </form>
+
+    <script src="{% static 'accounts/js/api.js' %}"></script>
+{% else %}
+    {% for challenge in  challenges %}
+        {% if challenge.can_register %}
+            <a href="{% url 'accounts:create_team' challenge.id %}" class="ui blue button" >{% trans 'Create New Team' %}</a>
+        {% endif %}
+    {% endfor %}
+{% endif %}{% endblock %}
