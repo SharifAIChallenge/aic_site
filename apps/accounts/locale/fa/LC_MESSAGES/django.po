@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 17:39+0000\n"
+"POT-Creation-Date: 2018-01-31 00:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,52 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/accounts/forms/forms.py:24
-msgid "Please enter your phone number correctly!"
-msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
-
-#: apps/accounts/forms/team_forms.py:11
-msgid "Required,Choose a suitable name for your team"
-msgstr "انتخاب نام تیم لازم است!"
-
-#: apps/accounts/forms/team_forms.py:20
-msgid "Registration is not open."
-msgstr "ثبت نام هم‌اکنون باز نیست."
-
-#: apps/accounts/forms/team_forms.py:28
-msgid "This name is used by another team"
-msgstr "این نام قبلا توسط تیمی دیگر استفاده شده است!"
-
-#: apps/accounts/forms/team_forms.py:31
-msgid "You can't add same users to your team"
-msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
-
-#: apps/accounts/forms/team_forms.py:35
-msgid "Some of the users are already participating in this challenge"
-msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
-
 #: apps/accounts/templates/accounts/create_team.html:8
-#: apps/accounts/templates/accounts/create_team.html:47
+#: apps/accounts/templates/accounts/create_team.html:48
 msgid "Create Team"
 msgstr "ایجاد تیم"
 
-#: apps/accounts/templates/accounts/create_team.html:12
+#: apps/accounts/templates/accounts/create_team.html:9
+msgid ""
+"Before creating a team all of your team members should register on the site. "
+"Then, enter their usernames here. Your team can have up to 3 members."
+msgstr ""
+"قبل از تشکیل تیم همه اعضای تیم باید در سایت ثبت ‌نام کرده باشند. سپس برای ثبت "
+"تیم، نام کاربری آنان را اینجا وارد کنید. تیم شما می ‌تواند حداکثر ۳ عضو داشته "
+"باشد."
+
+#: apps/accounts/templates/accounts/create_team.html:13
 msgid "Team Name"
 msgstr "نام تیم"
 
-#: apps/accounts/templates/accounts/create_team.html:23
+#: apps/accounts/templates/accounts/create_team.html:24
 msgid "First Member"
 msgstr "عضو اول"
 
-#: apps/accounts/templates/accounts/create_team.html:28
+#: apps/accounts/templates/accounts/create_team.html:29
 msgid "Second Member"
 msgstr "عضو دوم"
 
-#: apps/accounts/templates/accounts/create_team.html:38
+#: apps/accounts/templates/accounts/create_team.html:39
 msgid "Third Member"
 msgstr "عضو سوم"
 
-#: apps/accounts/templates/accounts/create_team.html:50
+#: apps/accounts/templates/accounts/create_team.html:51
 msgid "Error!"
 msgstr "خطا!"
 
@@ -71,6 +56,10 @@ msgstr "خطا!"
 #: apps/accounts/templates/accounts/login.html:13
 msgid "Login"
 msgstr "ورود"
+
+#: apps/accounts/templates/accounts/login.html:15
+msgid "I forgot my password"
+msgstr "رمزم را فراموش کردم"
 
 #: apps/accounts/templates/accounts/panel.html:11
 msgid "You are invited to the team "
@@ -153,19 +142,15 @@ msgstr "شماره ی تلفن"
 msgid "Email"
 msgstr "ایمیل"
 
-#: apps/accounts/templates/accounts/signup.html:74
-msgid "لطفا عبارت زیر را وارد کنید: "
-msgstr ""
-
-#: apps/accounts/templates/accounts/signup.html:84
+#: apps/accounts/templates/accounts/signup.html:79
 msgid "Password"
 msgstr "رمز"
 
-#: apps/accounts/templates/accounts/signup.html:99
+#: apps/accounts/templates/accounts/signup.html:94
 msgid "Password Confirm"
 msgstr "تکرار رمز"
 
-#: apps/accounts/templates/accounts/signup.html:111
+#: apps/accounts/templates/accounts/signup.html:110
 msgid "SignUp"
 msgstr "ثبت نام"
 
@@ -188,6 +173,24 @@ msgstr "ثبت نام"
 #: apps/accounts/templates/accounts/update_profile.html:12
 msgid "Update"
 msgstr "ذخیره"
+
+#~ msgid "Please enter your phone number correctly!"
+#~ msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
+
+#~ msgid "Required,Choose a suitable name for your team"
+#~ msgstr "انتخاب نام تیم لازم است!"
+
+#~ msgid "Registration is not open."
+#~ msgstr "ثبت نام هم‌اکنون باز نیست."
+
+#~ msgid "This name is used by another team"
+#~ msgstr "این نام قبلا توسط تیمی دیگر استفاده شده است!"
+
+#~ msgid "You can't add same users to your team"
+#~ msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
+
+#~ msgid "Some of the users are already participating in this challenge"
+#~ msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
 
 #~ msgid "Your account has been successfully verified"
 #~ msgstr "تیم شما با موفقیت ساخته شد"

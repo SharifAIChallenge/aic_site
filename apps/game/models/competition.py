@@ -1,10 +1,15 @@
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.http import HttpResponseServerError, Http404
 from django.utils.translation import ugettext_lazy as _
 
 from apps.accounts.models import Team
 from apps.game.models.challenge import Challenge, TeamSubmission, TeamParticipatesChallenge
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Competition(models.Model):
@@ -84,7 +89,7 @@ class Competition(models.Model):
                         second_part[j] = second_part[j + 1]
                     second_part[int(len(teams) / 2) - 1] = first_part[int(len(teams) / 2) - 1]
                     if (len(teams) / 2) > 2:
-                        for j in reversed(range(2, int(len(teams)/2))):
+                        for j in reversed(range(2, int(len(teams) / 2))):
                             first_part[j] = first_part[j - 1]
                     if (len(teams) / 2) > 1:
                         first_part[1] = tmp_team
@@ -235,7 +240,7 @@ class Competition(models.Model):
                             depend_method='winner')
                     )
                     matches.append(new_match)
-                    for  map in self.maps.all():
+                    for map in self.maps.all():
                         SingleMatch.objects.create(match=new_match, map=map)
 
             second_step_index = start_round_index + cur_round_length
@@ -411,10 +416,10 @@ class Match(models.Model):
         if match_done:
             score1 = self.get_score_for_participant(self.part1)
             score2 = self.get_score_for_participant(self.part2)
-            if score1 > score2 :
+            if score1 > score2:
                 team1_color = 'green'
                 team2_color = 'red'
-            else :
+            else:
                 team1_color = 'red'
                 team2_color = 'green'
         else:
@@ -443,7 +448,7 @@ class Match(models.Model):
             if not single_match.done:
                 return ValueError('Match is not done completely! why do yo call it ? :/')
         if self.part1 is None or self.part2 is None:
-           return ValueError('Participants can\'t be None')
+            return ValueError('Participants can\'t be None')
         elif self.part1.get_score_for_match(self) > self.part2.get_score_for_match(self):
             return self.part1.submission
         elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
@@ -455,7 +460,7 @@ class Match(models.Model):
             if not single_match.done:
                 return ValueError('Match is not done completely! why do yo call it ? :/')
         if self.part1 is None or self.part2 is None:
-           return ValueError('Participants can\'t be None')
+            return ValueError('Participants can\'t be None')
         elif self.part1.get_score_for_match(self) > self.part2.get_score_for_match(self):
             return self.part2.submission
         elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
@@ -469,6 +474,31 @@ class Match(models.Model):
 
         for participant in self.dependers.all():
             participant.update_depend()
+
+    def handle(self):
+        if self.is_ready() is False:
+            logger.error("Match :" + str(self) + " is not ready.")
+            raise Http404("Match :" + str(self) + " is not ready.")
+        try:
+            from apps.game import functions
+            single_matches = self.single_matches.all()
+            answers = functions.run_matches(single_matches)
+            for i in range(len(answers)):
+                answer = answers[i]
+                single_match = single_matches[i]
+                if answer['success']:
+                    single_match.infra_token = answer['run_id']
+                    single_match.status = 'running'
+                    single_match.save()
+                else:
+                    logger.error(answer)
+                    single_match.status = 'failed'
+                    single_match.save()
+                    # raise Http404(str(answer))
+
+        except Exception as e:
+            logger.error(e)
+            raise Http404(str(e))
 
 
 class Map(models.Model):
@@ -489,6 +519,13 @@ class Map(models.Model):
 
 
 class SingleMatch(models.Model):
+    STATUS_CHOICES = (
+        ('running', _('Running')),
+        ('failed', _('Failed')),
+        ('done', _('Done')),
+        ('waiting', _('Waiting')),
+    )
+
     match = models.ForeignKey(Match, related_name='single_matches')
     done = models.BooleanField(default=False)
     infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
@@ -497,6 +534,7 @@ class SingleMatch(models.Model):
     part1_score = models.IntegerField(null=True, blank=True)
     part2_score = models.IntegerField(null=True, blank=True)
     map = models.ForeignKey(Map)
+    status = models.CharField(max_length=128, choices=STATUS_CHOICES, default='waiting')
 
     def __str__(self):
         str_part1 = 'None'
@@ -521,6 +559,37 @@ class SingleMatch(models.Model):
         elif self.match.part2 == participant:
             return self.part2_score
         return None
+
+    def get_first_file(self):
+        return self.match.part1.submission
+
+    def get_second_file(self):
+        return self.match.part2.submission
+
+    def get_map(self):
+        return self.map.token
+
+    def get_game_id(self):
+        return self.match.competition.challenge.game.infra_token
+
+    def handle(self):
+        try:
+            from apps.game import functions
+            answer = functions.run_matches([self])[0]
+            if answer['success']:
+                self.infra_token = answer['run_id']
+                self.status = 'running'
+                self.save()
+            else:
+                logger.error(answer)
+                self.status = 'failed'
+                self.save()
+                # raise Http404(str(answer))
+        except Exception as error:
+            self.status = 'failed'
+            self.save()
+            logger.error(error)
+            raise Http404(str(error))
 
     def extract_score(self):
         pass

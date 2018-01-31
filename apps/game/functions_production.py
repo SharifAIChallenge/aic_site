@@ -146,10 +146,10 @@ def compile_submissions(submissions):
     return compile_details
 
 
-def run_matches(matches):
+def run_matches(single_matches):
     """
-        Tell the infrastructure to run a list of matches (match includes tokens,maps,...)
-    :param matches: List of match objects, having these functions:
+        Tell the infrastructure to run a list of single_matches (single_match includes tokens,maps,...)
+    :param matches: List of single_match objects, having these functions:
         get_first_file(): String
         get_second_file: String
         get_map(): String
@@ -160,15 +160,16 @@ def run_matches(matches):
     """
 
     games = []
-    for single_match in matches:
+    for single_match in single_matches:
         games.append({
+            "game": single_match.get_game_id(),
             "operation": "run",
             "parameters": {
-                "server_game_config": single_match.map,
+                "server_game_config": single_match.get_map(),
                 "client1_id": single_match.match.part1.submission.id,
                 "client1_token": str(uuid.uuid4()),
-                "client1_code": single_match.match.part1.submission,
-                "client2_id": single_match.part2.submission.id,
+                "client1_code": single_match.get_first_file(),
+                "client2_id": single_match.match.part2.submission.id,
                 "client2_token": str(uuid.uuid4()),
                 "client2_code": single_match.get_second_file(),
             }

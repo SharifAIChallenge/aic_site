@@ -1,0 +1,10 @@
+{% extends "base/base.html" %}
+{% load i18n %}
+
+
+{% block container %}
+        <h1>{% trans "403" %}</h1>
+        <h1>{% trans "Permission denied" %}</h1>
+
+        <p>{% trans "Sorry, but you don't have the permission to do this action." %}</p>
+{% endblock %}

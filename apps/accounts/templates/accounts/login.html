@@ -11,6 +11,9 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="ui green button">{% trans 'Login' %}</button>
+        <p>
+        <a class="ui blue link" href="{% url 'password_reset' %}">{% trans 'I forgot my password' %}</a>
+        </p>
     </form>
 
 
