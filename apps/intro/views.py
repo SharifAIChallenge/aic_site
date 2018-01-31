@@ -14,3 +14,7 @@ def faq(request):
 
 def not_found(request):
     return render(request, '404.html')
+
+
+def staffs(request):
+    return render(request, 'intro/staffs.html')
