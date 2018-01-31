@@ -252,7 +252,7 @@ msgstr "رمز"
 
 #: templates/registration/password_reset_confirm.html:23
 msgid "Password Confirm"
-msgstr "رمز لازم است"
+msgstr "تکرار رمز"
 
 #: templates/registration/password_reset_confirm.html:39
 msgid ""
