@@ -150,6 +150,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
     os.path.join(BASE_DIR, 'locale_extra'),
     os.path.join(BASE_DIR, 'apps', 'accounts', 'locale'),
+    os.path.join(BASE_DIR, 'apps', 'accounts', 'templates', 'email', 'locale')
 )
 
 NOCAPTCHA = True

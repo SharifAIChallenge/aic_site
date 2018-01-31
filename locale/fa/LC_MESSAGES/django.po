@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-31 07:01+0000\n"
+"POT-Creation-Date: 2018-01-31 10:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,16 +137,12 @@ msgid "or make changes"
 msgstr "یا تغییراتی انجام دهید"
 
 #: templates/comments/preview.html:37
-#, fuzzy
-#| msgid "Previous week"
 msgid "Preview"
 msgstr "هفته قبل"
 
 #: templates/comments/zinnia/entry/email/authors.txt:1
 #: templates/comments/zinnia/entry/email/notification.txt:1
 #: templates/comments/zinnia/entry/email/reply.txt:1
-#, fuzzy
-#| msgid "Authors"
 msgid "Author"
 msgstr "نویسنده‌ها"
 

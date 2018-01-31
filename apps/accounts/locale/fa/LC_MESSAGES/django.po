@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-31 07:01+0000\n"
+"POT-Creation-Date: 2018-01-31 10:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,8 +122,6 @@ msgstr "ثبت نام"
 msgid "Username"
 msgstr "نام کاربری"
 
-msgid "username"
-msgstr "نام کاربری"
 
 #: apps/accounts/templates/accounts/signup.html:28
 msgid "First Name"
@@ -176,6 +174,9 @@ msgstr "ثبت نام"
 #: apps/accounts/templates/accounts/update_profile.html:12
 msgid "Update"
 msgstr "ذخیره"
+
+#~ msgid "username"
+#~ msgstr "نام کاربری"
 
 #~ msgid "Please enter your phone number correctly!"
 #~ msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
