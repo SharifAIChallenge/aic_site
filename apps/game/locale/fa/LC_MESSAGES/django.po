@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-31 10:37+0000\n"
+"POT-Creation-Date: 2018-02-01 01:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,86 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/game/admin.py:92 apps/game/admin.py:112
+msgid "no selected teams!"
+msgstr "تیمی انتخاب نشده است!"
+
+#: apps/game/admin.py:99 apps/game/admin.py:119
+msgid "Only teams from one challenge!"
+msgstr "تنها میتوانید از تیم‌های یک چالش انتخاب کنید!"
+
+#: apps/game/models/challenge.py:55 apps/game/models/challenge.py:58
+msgid "None"
+msgstr "هیچ!"
+
+#: apps/game/models/challenge.py:61
+msgid "Team: "
+msgstr "تیم:‌"
+
+#: apps/game/models/challenge.py:61
+msgid "Challenge: "
+msgstr "چالش:‌"
+
+#: apps/game/models/challenge.py:103
+msgid "C++"
+msgstr "++C"
+
+#: apps/game/models/challenge.py:104
+msgid "Java"
+msgstr "جاوا"
+
+#: apps/game/models/challenge.py:105
+msgid "Python 2"
+msgstr "پایتون ۲"
+
+#: apps/game/models/challenge.py:106
+msgid "Python 3"
+msgstr "پایتون ۳"
+
+#: apps/game/models/challenge.py:110
+msgid "Uploading"
+msgstr "در حال آپلود"
+
+#: apps/game/models/challenge.py:111
+msgid "Uploaded"
+msgstr "آپلود شده"
+
+#: apps/game/models/challenge.py:112
+msgid "Compiling"
+msgstr "در حال کامپایل"
+
+#: apps/game/models/challenge.py:113
+msgid "Compiled"
+msgstr "کامپایل شده"
+
+#: apps/game/models/challenge.py:114
+msgid "Failed"
+msgstr "ناموفق!"
+
+#: apps/game/models/competition.py:12
+msgid "Elimination"
+msgstr "حذفی"
+
+#: apps/game/models/competition.py:13
+msgid "Double Elimination"
+msgstr "دوحذفی"
+
+#: apps/game/models/competition.py:14
+msgid "League"
+msgstr "لیگ"
+
+#: apps/game/models/competition.py:292
+msgid "Winner"
+msgstr "برنده"
+
+#: apps/game/models/competition.py:293
+msgid "Loser"
+msgstr "بازنده"
+
+#: apps/game/models/competition.py:294
+msgid "Itself"
+msgstr "خودش"
 
 #: apps/game/templates/scoreboard/bracket.html:13
 msgid "Winners bracket"
@@ -45,63 +125,3 @@ msgstr "بردها"
 #: apps/game/templates/scoreboard/group_table.html:36
 msgid "Group 1"
 msgstr "گروه یک"
-
-#~ msgid "no selected teams!"
-#~ msgstr "تیمی انتخاب نشده است!"
-
-#~ msgid "Only teams from one challenge!"
-#~ msgstr "تنها میتوانید از تیم‌های یک چالش انتخاب کنید!"
-
-#~ msgid "None"
-#~ msgstr "هیچ!"
-
-#~ msgid "Team: "
-#~ msgstr "تیم:‌"
-
-#~ msgid "Challenge: "
-#~ msgstr "چالش:‌"
-
-#~ msgid "C++"
-#~ msgstr "++C"
-
-#~ msgid "Java"
-#~ msgstr "جاوا"
-
-#~ msgid "Python 2"
-#~ msgstr "پایتون ۲"
-
-#~ msgid "Python 3"
-#~ msgstr "پایتون ۳"
-
-#~ msgid "Uploading"
-#~ msgstr "در حال آپلود"
-
-#~ msgid "Uploaded"
-#~ msgstr "آپلود شده"
-
-#~ msgid "Compiling"
-#~ msgstr "در حال کامپایل"
-
-#~ msgid "Compiled"
-#~ msgstr "کامپایل شده"
-
-#~ msgid "Failed"
-#~ msgstr "ناموفق!"
-
-#~ msgid "Elimination"
-#~ msgstr "حذفی"
-
-#~ msgid "Double Elimination"
-#~ msgstr "دوحذفی"
-
-#~ msgid "League"
-#~ msgstr "لیگ"
-
-#~ msgid "Winner"
-#~ msgstr "برنده"
-
-#~ msgid "Loser"
-#~ msgstr "بازنده"
-
-#~ msgid "Itself"
-#~ msgstr "خودش"
