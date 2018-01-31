@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -6,25 +8,19 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from django.urls import reverse
-from django.utils.datetime_safe import datetime
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.views import generic
-
-from apps.accounts.forms.team_forms import CreateTeamForm
-# Create your views here.
 from django.views.generic import FormView, RedirectView
 
 from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
 from apps.accounts.forms.panel import SubmissionForm
-from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
+from apps.accounts.forms.team_forms import CreateTeamForm
+from apps.accounts.models import Profile
 from apps.accounts.tokens import account_activation_token
 from apps.game.models import TeamSubmission
-import json
-from apps.game.models.challenge import TeamParticipatesChallenge, UserAcceptsTeamInChallenge
 from apps.game.models.challenge import Challenge
-
+from apps.game.models.challenge import TeamParticipatesChallenge
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
 

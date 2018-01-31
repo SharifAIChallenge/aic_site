@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'aic_site.force_default_language_middleware.force_default_language_middleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 
@@ -153,5 +154,10 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'apps', 'accounts', 'templates', 'email', 'locale')
 )
 
-NOCAPTCHA = True
+INFRA_IP = '217.79.184.161'
+INFRA_PORT = '8000'
+INFRA_URL = 'http://{}:{}'.format(INFRA_IP, INFRA_PORT)
+INFRA_AUTH_TOKEN = '1234'
+INFRA_API_SCHEMA_ADDRESS = "{}/api/schema/".format(INFRA_URL)
 
+NOCAPTCHA = True
