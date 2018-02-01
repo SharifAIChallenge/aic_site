@@ -44,6 +44,8 @@
                 {% trans "Comment as" %} <strong>{% firstof user.get_full_name user.get_username %}</strong> <a
                     href="{% url 'accounts:logout' %}">{% trans "Log out" %}</a>
             </p>
+        {% else %}
+            <p></p>
         {% endif %}
         <p class="submit">
             <input type="submit" name="submit" class="ui primary button" value="{% trans "Post" %}"/>

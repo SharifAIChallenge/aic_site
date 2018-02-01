@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-01 11:30+0000\n"
+"POT-Creation-Date: 2018-02-01 12:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,7 +91,13 @@ msgstr "نام کاربری"
 msgid "Password"
 msgstr "رمز"
 
-#: apps/accounts/templates/accounts/login.html:32
+#: apps/accounts/templates/accounts/login.html:31
+#: apps/accounts/templates/accounts/signup.html:5
+#: apps/accounts/templates/accounts/update_profile.html:5
+msgid "Sign Up"
+msgstr "ثبت نام"
+
+#: apps/accounts/templates/accounts/login.html:33
 msgid "I forgot my password"
 msgstr "رمزم را فراموش کردم"
 
@@ -142,11 +148,6 @@ msgstr "هنوز همه اعضا شرکت در مسابقه را تایید نک
 #: apps/accounts/templates/accounts/panel.html:150
 msgid "Create New Team"
 msgstr "ایجاد تیم جدید"
-
-#: apps/accounts/templates/accounts/signup.html:5
-#: apps/accounts/templates/accounts/update_profile.html:5
-msgid "Sign Up"
-msgstr "ثبت نام"
 
 #: apps/accounts/templates/accounts/signup.html:10
 msgid "SignUp Form"

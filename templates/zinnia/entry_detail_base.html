@@ -3,6 +3,7 @@
 {% load zinnia %}
 {% load threadedcomments_tags %}
 {% load static %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% load ai_filters %}
 
@@ -63,7 +64,7 @@
                             <!-- reference: -->
                             <!-- https://pypi.python.org/pypi/django-threadedcomments -->
 
-                            <h3 class="ui dividing header">{% trans 'Q&A' %}</h3>
+                            <h3 class="ui dividing header">{% trans 'Comments and Q&A' %}</h3>
 
                             {% get_comment_list for object as object_comments %}
                             {% for object_comment in object_comments %}
@@ -86,15 +87,16 @@
                                                 {% block comment-info-noanswer %}
                                                     <p class="comment-info">
                                                     {% blocktrans with comment_title=object_comment.title|default:"#" comment_url=object_comment.url|default:"#" comment_name=object_comment.name comment_human_date=object_comment.submit_date|date:"SHORT_DATETIME_FORMAT"|jalali comment_technical_date=object_comment.submit_date|date:"c" comment_pk=object_comment.pk comment_author_slug=object_comment.user_name|slugify trimmed %}
+                                                        <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
+                                                           id="c{{ comment_pk }}" class="anchor-link ui header"
+                                                           title="Direct link to this comment" class="large"> {{ comment_title }} </a>
+
                                                         <a href="{{ comment_url }}" rel="external nofollow"
-                                                           class="fn url">{{ comment_name }}</a>
+                                                           class="fn url header">{{ comment_name }}</a>
                                                         on
                                                         <time class="comment-published" datetime="{{ comment_technical_date }}">
                                                             {{ comment_human_date }}
                                                         </time>
-                                                        <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
-                                                           id="c{{ comment_pk }}" class="anchor-link"
-                                                           title="Direct link to this comment">{{ comment_title }}</a>
                                                     {% endblocktrans %}
                                                 </p>
                                                 {% endblock comment-info-noanswer %}
@@ -126,16 +128,16 @@
                                                         <span class="date">
                                                             {% block comment-info %}
                                                                 <p class="comment-info">
-                                                                {% blocktrans with comment_title=comment.title|default:"#" comment_url=comment.url|default:"#" comment_name=comment.name comment_human_date=comment.submit_date|date:"SHORT_DATETIME_FORMAT"|jalali comment_technical_date=comment.submit_date|date:"c" comment_pk=comment.pk comment_author_slug=comment.user_name|slugify trimmed %}
+                                                                {% blocktrans with comment_title=comment.title|default:"" comment_url=comment.url|default:"#" comment_name=comment.name comment_human_date=comment.submit_date|date:"SHORT_DATETIME_FORMAT"|jalali comment_technical_date=comment.submit_date|date:"c" comment_pk=comment.pk comment_author_slug=comment.user_name|slugify trimmed %}
+                                                                    <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
+                                                                       id="c{{ comment_pk }}" class="anchor-link ui header"
+                                                                       title="Direct link to this comment">{{ comment_title }}</a>
                                                                     <a href="{{ comment_url }}" rel="external nofollow"
-                                                                       class="fn url">{{ comment_name }}</a>
+                                                                       class="fn url large">{{ comment_name }}</a>
                                                                     on
                                                                     <time class="comment-published" datetime="{{ comment_technical_date }}">
                                                                         {{ comment_human_date }}
                                                                     </time>
-                                                                    <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
-                                                                       id="c{{ comment_pk }}" class="anchor-link"
-                                                                       title="Direct link to this comment">{{ comment_title }}</a>
                                                                 {% endblocktrans %}
                                                             </p>
                                                             {% endblock comment-info %}
@@ -178,6 +180,8 @@
             {% if object.comments_are_open %}
                 {% render_comment_form for object %}
             {% endif %}
+        {% else %}
+            <a href="{% url 'accounts:login' %}" class="ui primary button">{%  trans 'Login To Comment' %}</a>
         {% endif %}
     {% endblock entry-comments-form %}
 
