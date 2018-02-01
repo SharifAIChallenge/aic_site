@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-31 18:13+0000\n"
+"POT-Creation-Date: 2018-02-01 14:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,6 +42,11 @@ msgstr "برنامه"
 msgid "FAQ"
 msgstr "سوالات متداول"
 
+#: aic_site/context_processors.py:16 aic_site/context_processors.py:34
+#: templates/base/navbar.html:59
+msgid "Blog and Q&A"
+msgstr "وبلاگ و پرسش و پاسخ"
+
 #: aic_site/context_processors.py:17 aic_site/context_processors.py:28
 msgid "Contact Us"
 msgstr "تماس با ما"
@@ -54,7 +59,7 @@ msgstr "بلاگ"
 msgid "Game"
 msgstr "بازی"
 
-#: aic_site/context_processors.py:39
+#: aic_site/context_processors.py:39 templates/base/navbar.html:23
 msgid "Panel"
 msgstr "پنل"
 
@@ -135,10 +140,6 @@ msgstr ""
 "تمامی حقوق  برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
 "مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. "
 
-#: templates/base/navbar.html:23
-msgid "Competition Area"
-msgstr "محیط مسابقه"
-
 #: templates/base/navbar.html:47 templates/zinnia/login.html:34
 msgid "Login"
 msgstr "ورود"
@@ -206,8 +207,8 @@ msgstr ""
 msgid "Thanks for flagging"
 msgstr ""
 
-#: templates/comments/form.html:50 templates/comments/preview.html:36
-#: templates/comments/zinnia/entry/form.html:50
+#: templates/comments/form.html:51 templates/comments/preview.html:36
+#: templates/comments/zinnia/entry/form.html:51
 msgid "Post"
 msgstr "فرستادن"
 
@@ -218,6 +219,10 @@ msgstr "با تشکر از نظر شما"
 #: templates/comments/posted.html:7
 msgid "Thank you for your comment"
 msgstr "با تشکر از نظر شما"
+
+#: templates/comments/posted.html:8
+msgid "Return"
+msgstr "بازگشت"
 
 #: templates/comments/preview.html:4 templates/comments/preview.html:14
 msgid "Preview your comment"
@@ -281,11 +286,11 @@ msgstr "نظرات اخیر"
 msgid "Approve this comment"
 msgstr "این نظر را تایید کنید!"
 
-#: templates/comments/zinnia/entry/form.html:45
+#: templates/comments/zinnia/entry/form.html:44
 msgid "Comment as"
 msgstr "نظر دادن با عنوان "
 
-#: templates/comments/zinnia/entry/form.html:46 templates/zinnia/base.html:123
+#: templates/comments/zinnia/entry/form.html:45 templates/zinnia/base.html:123
 #: templates/zinnia/base.html:124
 msgid "Log out"
 msgstr "خروج"
@@ -610,60 +615,68 @@ msgstr "سال قبل"
 msgid "Next year"
 msgstr "سال بعد"
 
-#: templates/zinnia/entry_detail_base.html:28
+#: templates/zinnia/entry_detail_base.html:29
 #, python-format
 msgid "RSS feed of discussions on %(object)s"
 msgstr "فید RSS بحث %(object)s"
 
-#: templates/zinnia/entry_detail_base.html:31
+#: templates/zinnia/entry_detail_base.html:32
 #, python-format
 msgid "RSS feed of comments on %(object)s"
 msgstr "فید RSS نظرات %(object)s"
 
-#: templates/zinnia/entry_detail_base.html:34
+#: templates/zinnia/entry_detail_base.html:35
 #, python-format
 msgid "RSS feed of pingbacks on %(object)s"
 msgstr ""
 
-#: templates/zinnia/entry_detail_base.html:37
+#: templates/zinnia/entry_detail_base.html:38
 #, python-format
 msgid "RSS feed of trackbacks on %(object)s"
 msgstr ""
 
-#: templates/zinnia/entry_detail_base.html:66
-msgid "Q&A"
-msgstr "پرسش و پاسخ"
+#: templates/zinnia/entry_detail_base.html:67
+msgid "Comments and Q&A"
+msgstr "پرسش و پاسخ و نظرات"
 
-#: templates/zinnia/entry_detail_base.html:92
-#: templates/zinnia/entry_detail_base.html:142
+#: templates/zinnia/entry_detail_base.html:89
 #, python-format
 msgid ""
-"<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
-"%(comment_name)s</a> on <time class=\"comment-published\" datetime="
-"\"%(comment_technical_date)s\"> %(comment_human_date)s </time> <a href="
-"\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c%(comment_pk)s"
-"\" class=\"anchor-link\" title=\"Direct link to this comment\">"
-"%(comment_title)s</a>"
+"<a href=\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
+"%(comment_pk)s\" class=\"anchor-link ui header\" title=\"Direct link to this "
+"comment\" class=\"large\"> %(comment_title)s </a> <a href=\"%(comment_url)s"
+"\" rel=\"external nofollow\" class=\"fn url header\">%(comment_name)s</a> on "
+"<time class=\"comment-published\" datetime=\"%(comment_technical_date)s\"> "
+"%(comment_human_date)s </time>"
 msgstr ""
-"<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
-"%(comment_name)s</a> در <time class=\"comment-published\" datetime="
-"\"%(comment_technical_date)s\"> %(comment_human_date)s </time> <a href="
-"\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c%(comment_pk)s"
-"\" class=\"anchor-link\" title=\"لینک مستقیم به این نظر\">%(comment_title)s</"
-"a>"
 
-#: templates/zinnia/entry_detail_base.html:173
-#: templates/zinnia/entry_detail_base.html:179
+#: templates/zinnia/entry_detail_base.html:131
+#, python-format
+msgid ""
+"<a href=\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
+"%(comment_pk)s\" class=\"anchor-link ui header\" title=\"Direct link to this "
+"comment\">%(comment_title)s</a> <a href=\"%(comment_url)s\" rel=\"external "
+"nofollow\" class=\"fn url large\">%(comment_name)s</a> on <time class="
+"\"comment-published\" datetime=\"%(comment_technical_date)s\"> "
+"%(comment_human_date)s </time>"
+msgstr ""
+
+#: templates/zinnia/entry_detail_base.html:166
+#: templates/zinnia/entry_detail_base.html:172
 msgid "Comments are closed."
 msgstr "نظرات بسته است."
 
-#: templates/zinnia/entry_detail_base.html:177
+#: templates/zinnia/entry_detail_base.html:170
 #: templates/zinnia/tags/comments_recent.html:18
 msgid "No comments yet."
 msgstr "بدون نظر"
 
-#: templates/zinnia/entry_detail_base.html:198
-#: templates/zinnia/entry_detail_base.html:199
+#: templates/zinnia/entry_detail_base.html:184
+msgid "Login To Comment"
+msgstr "برای پرسش و پاسخ وارد شوید"
+
+#: templates/zinnia/entry_detail_base.html:193
+#: templates/zinnia/entry_detail_base.html:194
 msgid "Edit the entry"
 msgstr "ویرایش نوشته"
 
@@ -714,7 +727,7 @@ msgstr "صفحه %(object)s"
 #: templates/zinnia/entry_list.html:84
 #, python-format
 msgid "RSS feed of %(object)s"
-msgstr ""
+msgstr "خوراک RSS مربوط به %(object)s"
 
 #: templates/zinnia/entry_list.html:60
 #, python-format
@@ -724,7 +737,7 @@ msgstr ""
 #: templates/zinnia/entry_list.html:72
 #, python-format
 msgid "Tag archives: %(tag)s"
-msgstr ""
+msgstr "آرشیو تگ «%(tag)s»"
 
 #: templates/zinnia/entry_list.html:81
 #, python-format
@@ -992,6 +1005,54 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
+
+#~ msgid "Competition Area"
+#~ msgstr "محیط مسابقه"
+
+#~| msgid ""
+#~| "<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
+#~| "%(comment_name)s</a> on <time class=\"comment-published\" datetime="
+#~| "\"%(comment_technical_date)s\"> %(comment_human_date)s </time> <a href="
+#~| "\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
+#~| "%(comment_pk)s\" class=\"anchor-link\" title=\"Direct link to this "
+#~| "comment\">%(comment_title)s</a>"
+#~ msgid ""
+#~ "<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url "
+#~ "header\">%(comment_name)s</a> on <time class=\"comment-published\" "
+#~ "datetime=\"%(comment_technical_date)s\"> %(comment_human_date)s </time> "
+#~ "<a href=\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
+#~ "%(comment_pk)s\" class=\"anchor-link\" title=\"Direct link to this comment"
+#~ "\" class=\"large\"> %(comment_title)s </a>"
+#~ msgstr ""
+#~ "<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
+#~ "%(comment_name)s</a> در <time class=\"comment-published\" datetime="
+#~ "\"%(comment_technical_date)s\"> %(comment_human_date)s </time> <a href="
+#~ "\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
+#~ "%(comment_pk)s\" class=\"anchor-link\" title=\"لینک مستقیم به این نظر\">"
+#~ "%(comment_title)s</a>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
+#~| "%(comment_name)s</a> on <time class=\"comment-published\" datetime="
+#~| "\"%(comment_technical_date)s\"> %(comment_human_date)s </time> <a href="
+#~| "\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
+#~| "%(comment_pk)s\" class=\"anchor-link\" title=\"Direct link to this "
+#~| "comment\">%(comment_title)s</a>"
+#~ msgid ""
+#~ "<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url large"
+#~ "\">%(comment_name)s</a> on <time class=\"comment-published\" datetime="
+#~ "\"%(comment_technical_date)s\"> %(comment_human_date)s </time><span> </"
+#~ "span> <a href=\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id="
+#~ "\"c%(comment_pk)s\" class=\"anchor-link ui header\" title=\"Direct link "
+#~ "to this comment\">%(comment_title)s</a>"
+#~ msgstr ""
+#~ "<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
+#~ "%(comment_name)s</a> در <time class=\"comment-published\" datetime="
+#~ "\"%(comment_technical_date)s\"> %(comment_human_date)s </time> <a href="
+#~ "\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
+#~ "%(comment_pk)s\" class=\"anchor-link\" title=\"لینک مستقیم به این نظر\">"
+#~ "%(comment_title)s</a>"
 
 #~ msgid "Password Reset"
 #~ msgstr "بازیابی رمز"
