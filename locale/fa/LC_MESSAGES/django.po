@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-31 18:13+0000\n"
+"POT-Creation-Date: 2018-02-01 11:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,11 @@ msgstr "برنامه"
 #: aic_site/context_processors.py:15 aic_site/context_processors.py:33
 msgid "FAQ"
 msgstr "سوالات متداول"
+
+#: aic_site/context_processors.py:16 aic_site/context_processors.py:34
+#: templates/zinnia/entry_detail_base.html:66
+msgid "Q&A"
+msgstr "پرسش و پاسخ"
 
 #: aic_site/context_processors.py:17 aic_site/context_processors.py:28
 msgid "Contact Us"
@@ -206,8 +211,8 @@ msgstr ""
 msgid "Thanks for flagging"
 msgstr ""
 
-#: templates/comments/form.html:50 templates/comments/preview.html:36
-#: templates/comments/zinnia/entry/form.html:50
+#: templates/comments/form.html:51 templates/comments/preview.html:36
+#: templates/comments/zinnia/entry/form.html:49
 msgid "Post"
 msgstr "فرستادن"
 
@@ -218,6 +223,10 @@ msgstr "با تشکر از نظر شما"
 #: templates/comments/posted.html:7
 msgid "Thank you for your comment"
 msgstr "با تشکر از نظر شما"
+
+#: templates/comments/posted.html:8
+msgid "Return"
+msgstr "بازگشت"
 
 #: templates/comments/preview.html:4 templates/comments/preview.html:14
 msgid "Preview your comment"
@@ -281,11 +290,11 @@ msgstr "نظرات اخیر"
 msgid "Approve this comment"
 msgstr "این نظر را تایید کنید!"
 
-#: templates/comments/zinnia/entry/form.html:45
+#: templates/comments/zinnia/entry/form.html:44
 msgid "Comment as"
 msgstr "نظر دادن با عنوان "
 
-#: templates/comments/zinnia/entry/form.html:46 templates/zinnia/base.html:123
+#: templates/comments/zinnia/entry/form.html:45 templates/zinnia/base.html:123
 #: templates/zinnia/base.html:124
 msgid "Log out"
 msgstr "خروج"
@@ -630,12 +639,8 @@ msgstr ""
 msgid "RSS feed of trackbacks on %(object)s"
 msgstr ""
 
-#: templates/zinnia/entry_detail_base.html:66
-msgid "Q&A"
-msgstr "پرسش و پاسخ"
-
-#: templates/zinnia/entry_detail_base.html:92
-#: templates/zinnia/entry_detail_base.html:142
+#: templates/zinnia/entry_detail_base.html:88
+#: templates/zinnia/entry_detail_base.html:129
 #, python-format
 msgid ""
 "<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
@@ -652,18 +657,18 @@ msgstr ""
 "\" class=\"anchor-link\" title=\"لینک مستقیم به این نظر\">%(comment_title)s</"
 "a>"
 
-#: templates/zinnia/entry_detail_base.html:173
-#: templates/zinnia/entry_detail_base.html:179
+#: templates/zinnia/entry_detail_base.html:164
+#: templates/zinnia/entry_detail_base.html:170
 msgid "Comments are closed."
 msgstr "نظرات بسته است."
 
-#: templates/zinnia/entry_detail_base.html:177
+#: templates/zinnia/entry_detail_base.html:168
 #: templates/zinnia/tags/comments_recent.html:18
 msgid "No comments yet."
 msgstr "بدون نظر"
 
-#: templates/zinnia/entry_detail_base.html:198
-#: templates/zinnia/entry_detail_base.html:199
+#: templates/zinnia/entry_detail_base.html:189
+#: templates/zinnia/entry_detail_base.html:190
 msgid "Edit the entry"
 msgstr "ویرایش نوشته"
 
@@ -714,7 +719,7 @@ msgstr "صفحه %(object)s"
 #: templates/zinnia/entry_list.html:84
 #, python-format
 msgid "RSS feed of %(object)s"
-msgstr ""
+msgstr "خوراک RSS مربوط به %(object)s"
 
 #: templates/zinnia/entry_list.html:60
 #, python-format
@@ -724,7 +729,7 @@ msgstr ""
 #: templates/zinnia/entry_list.html:72
 #, python-format
 msgid "Tag archives: %(tag)s"
-msgstr ""
+msgstr "آرشیو تگ «%(tag)s»"
 
 #: templates/zinnia/entry_list.html:81
 #, python-format
