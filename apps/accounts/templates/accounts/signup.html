@@ -70,11 +70,7 @@
                 {% endfor %}
             </ol>
         {% endif %}
-        {% if form.captcha.errors %}
-            <div class="ui message error">
-                {{ form.captcha.errors }}
-            </div>
-        {% endif %}
+
         <div class="field required">
             <label>{% trans 'Password' %}</label>
             {{ form.password1 }}
@@ -105,6 +101,12 @@
         <div class="field">
             {{ form.captcha }}
         </div>
+        {% if form.captcha.errors %}
+            <div class="ui message error">
+                {{ form.captcha.errors }}
+            </div>
+        {% endif %}
+
 
 
         <button type="submit" class="ui green button">{% trans 'SignUp' %}</button>
