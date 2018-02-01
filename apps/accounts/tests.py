@@ -53,11 +53,13 @@ def populate_challenges():
     challenge.game = game
     challenge.save()
 
+
 def populate_maps():
     for i in range(3):
         map = Map()
         map.name = 'map ' + str(i)
         map.save()
+
 
 def populate_competitions():
     challenge = Challenge.objects.all()[0]
@@ -140,24 +142,24 @@ class TestTeam(TransactionTestCase):
             {
                 'file': io.StringIO("Log the game"),
                 'team': participation.id,
-                'language': 'c++'
+                'language': 'cpp'
             }
         )
         self.assertEqual(response.status_code, 200)
         # test that it functions
         time.sleep(0.4)
-        self.assertEqual(TeamSubmission.objects.filter(language="c++").count(), 1)
+        self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 1)
         response = client.post(
             '/accounts/panel/' + str(participation.id),
             {
                 'file': io.StringIO("Log the game"),
                 'team': participation.id,
-                'language': 'c++'
+                'language': 'cpp'
             }
         )
         self.assertEqual(response.status_code, 200)
         time.sleep(0.4)
-        self.assertEqual(TeamSubmission.objects.filter(language="c++").count(), 2)
+        self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 2)
         submissions = list(TeamSubmission.objects.all())
         self.assertFalse(submissions[0].is_final)
         self.assertTrue(submissions[1].is_final)

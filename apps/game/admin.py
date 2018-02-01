@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map
+from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map, SingleMatch
 
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
@@ -159,3 +159,4 @@ class MapAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Map, MapAdmin)
+admin.site.register(SingleMatch)

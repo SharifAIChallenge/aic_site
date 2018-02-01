@@ -1,3 +1,4 @@
+import codecs
 import json
 import logging
 from operator import itemgetter
@@ -189,7 +190,9 @@ def report(request):
                     logger.error('Error while download log of compile: %s' % e)
                     return HttpResponseServerError()
 
-                log = json.load(logfile)
+                reader = codecs.getreader('utf-8')
+
+                log = json.load(reader(logfile))
                 if len(log["errors"]) == 0:
                     submit.status = 'compiled'
                 else:

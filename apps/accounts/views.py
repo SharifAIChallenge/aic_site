@@ -33,8 +33,8 @@ from apps.game.models.challenge import Challenge
 
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
-
 logger = logging.getLogger(__name__)
+
 
 class SignupView(generic.CreateView):
     form_class = SignUpForm
@@ -214,8 +214,8 @@ def reject_participation(request, participation_id):
 @login_required()
 def create_team(request, challenge_id):
     if UserAcceptsTeamInChallenge.objects.filter(
-        team__challenge_id=challenge_id,
-        team__team__participants__user=request.user
+            team__challenge_id=challenge_id,
+            team__team__participants__user=request.user
     ).exists():
         return redirect('accounts:panel')
     if request.method == 'POST':
@@ -241,3 +241,10 @@ def success_create_team(request):
                   {
                       'last_participation_id': TeamParticipatesChallenge.objects.last().id
                   })
+
+
+@login_required()
+def challenge_a_team(request, participation_id):
+    #    return HttpResponse(request.POST['battle_team'])
+    # TODO : Add battle history
+    return redirect(reverse('accounts:panel', args=[participation_id]))
