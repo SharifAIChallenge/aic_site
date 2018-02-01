@@ -1,0 +1,9 @@
+{% extends "zinnia/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Thanks for commenting" %}.{% endblock %}
+
+{% block container %}
+  <h1>{% trans "Thank you for your comment" %}.</h1>
+  <a href="javascript:location.href=document.referrer;" class="ui primary button" >{% trans 'Return' %}</a>
+{% endblock %}

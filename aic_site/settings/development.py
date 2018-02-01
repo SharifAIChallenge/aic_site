@@ -1,7 +1,7 @@
 from .base import *
 
 DEBUG = True
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.87']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.87', '192.168.1.115']
 
 INSTALLED_APPS += [
 
@@ -18,3 +18,5 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -1,6 +1,38 @@
-<h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form>
+{% extends 'base/base.html' %}
+
+{% load static i18n %}
+
+{% block container %}
+
+
+
+    <form method="post" class="ui form">
+        <h3 class="ui dividing header">{% trans 'Login' %}</h3>
+        {% csrf_token %}
+
+        <div class="field ">
+            <label>{% trans 'Username' %}</label>
+            {{ form.username }}
+        </div>
+
+        {% if form.username.errors %}
+            <div class="ui message error">
+                <strong>{{ form.username.errors }}</strong>
+            </div>
+        {% endif %}
+
+        <div class="field ">
+            <label>{% trans 'Password' %}</label>
+            {{ form.password }}
+        </div>
+
+
+        <button type="submit" class="ui green button">{% trans 'Login' %}</button>
+        <a href="{% url 'accounts:signup' %}" class="ui green button">{% trans 'Sign Up' %}</a>
+        <p>
+        <a class="ui blue link" href="{% url 'password_reset' %}">{% trans 'I forgot my password' %}</a>
+        </p>
+    </form>
+
+
+{% endblock %}

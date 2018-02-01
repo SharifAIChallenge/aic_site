@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-22 15:25+0000\n"
+"POT-Creation-Date: 2018-02-01 14:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,30 +18,224 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/accounts/templates/accounts/panel.html:8
-msgid "Selected"
-msgstr "انتخاب شده"
+#: apps/accounts/forms/forms.py:23
+msgid "Please enter your phone number correctly!"
+msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
 
-#: apps/accounts/templates/accounts/panel.html:9
-msgid "Time"
-msgstr "زمان"
+#: apps/accounts/forms/team_forms.py:11
+msgid "Required,Choose a suitable name for your team"
+msgstr "انتخاب نام تیم لازم است!"
 
-#: apps/accounts/templates/accounts/panel.html:10
-msgid "Language"
-msgstr "زبان"
+#: apps/accounts/forms/team_forms.py:20
+msgid "Registration is not open."
+msgstr "ثبت نام هم‌اکنون باز نیست."
+
+#: apps/accounts/forms/team_forms.py:28
+msgid "This name is used by another team"
+msgstr "این نام قبلا توسط تیمی دیگر استفاده شده است!"
+
+#: apps/accounts/forms/team_forms.py:31
+msgid "You can't add same users to your team"
+msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
+
+#: apps/accounts/forms/team_forms.py:35
+msgid "Some of the users are already participating in this challenge"
+msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
+
+#: apps/accounts/templates/accounts/create_team.html:8
+#: apps/accounts/templates/accounts/create_team.html:48
+msgid "Create Team"
+msgstr "ایجاد تیم"
+
+#: apps/accounts/templates/accounts/create_team.html:9
+msgid ""
+"Before creating a team all of your team members should register on the site. "
+"Then, enter their usernames here. Your team can have up to 3 members."
+msgstr ""
+"قبل از تشکیل تیم همه اعضای تیم باید در سایت ثبت ‌نام کرده باشند. سپس برای ثبت "
+"تیم، نام کاربری آنان را اینجا وارد کنید. تیم شما می ‌تواند حداکثر ۳ عضو داشته "
+"باشد."
+
+#: apps/accounts/templates/accounts/create_team.html:13
+msgid "Team Name"
+msgstr "نام تیم"
+
+#: apps/accounts/templates/accounts/create_team.html:24
+msgid "First Member"
+msgstr "عضو اول"
+
+#: apps/accounts/templates/accounts/create_team.html:29
+msgid "Second Member"
+msgstr "عضو دوم"
+
+#: apps/accounts/templates/accounts/create_team.html:39
+msgid "Third Member"
+msgstr "عضو سوم"
+
+#: apps/accounts/templates/accounts/create_team.html:51
+msgid "Error!"
+msgstr "خطا!"
+
+#: apps/accounts/templates/accounts/login.html:10
+#: apps/accounts/templates/accounts/login.html:30
+msgid "Login"
+msgstr "ورود"
+
+#: apps/accounts/templates/accounts/login.html:14
+#: apps/accounts/templates/accounts/signup.html:12
+msgid "Username"
+msgstr "نام کاربری"
+
+#: apps/accounts/templates/accounts/login.html:25
+#: apps/accounts/templates/accounts/signup.html:75
+msgid "Password"
+msgstr "رمز"
+
+#: apps/accounts/templates/accounts/login.html:31
+#: apps/accounts/templates/accounts/signup.html:5
+#: apps/accounts/templates/accounts/update_profile.html:5
+msgid "Sign Up"
+msgstr "ثبت نام"
+
+#: apps/accounts/templates/accounts/login.html:33
+msgid "I forgot my password"
+msgstr "رمزم را فراموش کردم"
 
 #: apps/accounts/templates/accounts/panel.html:11
-msgid "Status"
-msgstr "وضعیت"
+msgid "You are invited to the team "
+msgstr "شما به تیم "
 
-#: apps/accounts/templates/accounts/panel.html:75
-msgid "File:"
-msgstr "فایل:"
+#: apps/accounts/templates/accounts/panel.html:11
+msgid " on the challenge "
+msgstr " در رقابت "
 
-#: apps/accounts/templates/accounts/panel.html:80
-msgid "Language:"
-msgstr "زبان:"
+#: apps/accounts/templates/accounts/panel.html:11
+msgid ", do you accept?"
+msgstr " دعوت شده اید، آیا می‌پذیرید؟"
 
-#: apps/accounts/templates/accounts/panel.html:85
+#: apps/accounts/templates/accounts/panel.html:12
+msgid "Members are:"
+msgstr "اعضا:"
+
+#: apps/accounts/templates/accounts/panel.html:21
+msgid "Accept"
+msgstr "پذیرفتن"
+
+#: apps/accounts/templates/accounts/panel.html:22
+msgid "Reject"
+msgstr "ردکردن"
+
+#: apps/accounts/templates/accounts/panel.html:30
 msgid "Challenge:"
-msgstr "چالش:"
+msgstr "رویداد:"
+
+#: apps/accounts/templates/accounts/panel.html:34
+msgid "Team Status"
+msgstr "وضعیت تیم"
+
+#: apps/accounts/templates/accounts/panel.html:38
+msgid "Members"
+msgstr "اعضا"
+
+#: apps/accounts/templates/accounts/panel.html:51
+msgid "All users have accepted the challenge."
+msgstr "تمام اعضا شرکت در مسابقه را تایید کرده‌اند."
+
+#: apps/accounts/templates/accounts/panel.html:53
+msgid "All users haven't accepted the challenge yet!"
+msgstr "هنوز همه اعضا شرکت در مسابقه را تایید نکرده‌اند."
+
+#: apps/accounts/templates/accounts/panel.html:150
+msgid "Create New Team"
+msgstr "ایجاد تیم جدید"
+
+#: apps/accounts/templates/accounts/signup.html:10
+msgid "SignUp Form"
+msgstr "ثبت نام"
+
+#: apps/accounts/templates/accounts/signup.html:28
+msgid "First Name"
+msgstr "نام"
+
+#: apps/accounts/templates/accounts/signup.html:32
+msgid "Last Name"
+msgstr "نام خانوادگی"
+
+#: apps/accounts/templates/accounts/signup.html:39
+msgid "College/School"
+msgstr "دانشگاه/مدرسه"
+
+#: apps/accounts/templates/accounts/signup.html:43
+msgid "Phone Number"
+msgstr "شماره ی تلفن"
+
+#: apps/accounts/templates/accounts/signup.html:60
+msgid "Email"
+msgstr "ایمیل"
+
+#: apps/accounts/templates/accounts/signup.html:90
+msgid "Password Confirm"
+msgstr "تکرار رمز"
+
+#: apps/accounts/templates/accounts/signup.html:112
+msgid "SignUp"
+msgstr "ثبت نام"
+
+#: apps/accounts/templates/accounts/success_create_team.html:10
+msgid "Your team has been created successfully"
+msgstr "تیم شما با موفقیت ساخته شد"
+
+#: apps/accounts/templates/accounts/success_create_team.html:12
+msgid "Request messages has bee sent to your teammates"
+msgstr "درخواست عضویت به هم تیمی های شما فرستاده شد"
+
+#: apps/accounts/templates/accounts/success_create_team.html:17
+msgid "OK"
+msgstr "باشه"
+
+#: apps/accounts/templates/accounts/update_profile.html:8
+msgid "Sign up"
+msgstr "ثبت نام"
+
+#: apps/accounts/templates/accounts/update_profile.html:12
+msgid "Update"
+msgstr "ذخیره"
+
+#~ msgid "username"
+#~ msgstr "نام کاربری"
+
+#~ msgid "Your account has been successfully verified"
+#~ msgstr "تیم شما با موفقیت ساخته شد"
+
+#~ msgid "You can now login with your account"
+#~ msgstr "شما اکنون می‌توانید به اکانت خود وارد شوید"
+
+#~ msgid "The verification link is invalid"
+#~ msgstr "لینک فعال سازی معتبر نیست"
+
+#~ msgid "your link might have expired"
+#~ msgstr "ممکن است لینک فعال سازی شما منقضی شده باشد"
+
+#~ msgid "Your user registration was successful"
+#~ msgstr "ثبت نام شما موفقیت آمیز بود"
+
+#~ msgid "a verification link has been sent to your Email"
+#~ msgstr "یک لینک فعال سازی به ایمیل شما ارسال شد"
+
+#~ msgid "Selected"
+#~ msgstr "انتخاب‌شده"
+
+#~ msgid "Time"
+#~ msgstr "زمان"
+
+#~ msgid "Language"
+#~ msgstr "زبان"
+
+#~ msgid "Status"
+#~ msgstr "وضعیت"
+
+#~ msgid "File:"
+#~ msgstr "فایل:"
+
+#~ msgid "Language:"
+#~ msgstr "زبان:"

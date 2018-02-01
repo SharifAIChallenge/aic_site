@@ -1,0 +1,10 @@
+{% load static i18n %}
+
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% trans 'Email Activation' %}
+
+{% autoescape off %}
+{% trans 'Hello' %} {{ user.username }}!
+http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}
+{% endautoescape %}

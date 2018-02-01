@@ -4,10 +4,13 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% block container %}
 
-<form class="ui form error" id="create_team_form" method="post">
+<form class="ui form error" id="create_team_form" method="post" style="padding: 70px">
+<h3 class="ui dividing header">{% trans 'Create Team' %}</h3>
+<h4 class="ui message"> {% trans 'Before creating a team all of your team members should register on the site. Then, enter their usernames here. Your team can have up to 3 members.' %} </h4>
   {% csrf_token %}
-  <div class="field">
-      <label>Team Name</label>
+  {{ form.challenge_id }}
+  <div class="field required">
+      <label>{% trans 'Team Name' %}</label>
       {{ form.team_name }}
   </div>
 
@@ -15,37 +18,37 @@
     <div class="ui message error" id="name_error_box">
         <strong>{{ form.team_name.errors }}</strong>
     </div>
-    $(
-{% else %}
-    <script>
-        $('#name_error_box').css();
-    </script>
 {% endif %}
 
 <div class="field">
-    <label>Second Member</label>
+    <label>{% trans 'First Member' %}</label>
+    <input placeholder="{{ username }}" readonly="" type="text">
+</div>
+
+<div class="field">
+    <label>{% trans 'Second Member' %}</label>
     <select class="ui dropdown search" id="drop1_id" name="member1" onchange="second_field()">
         <option value="">-----</option>
         <option value="-----">-----</option>
         {% for user in users %}
-            <option value={{ user.email }}>{{ user.username }}</option>
+            <option value={{ user.username }}>{{ user.username }}</option>
         {% endfor %}
     </select>
 </div>
 <div id="third_member" class="field" style="display: none">
-    <label>Third Member</label>
+    <label>{% trans 'Third Member' %}</label>
     <select class="ui dropdown search" id="drop2_id" name="member2" onchange="third_field()">
         <option value="">-----</option>
         <option value="-----">-----</option>
         {% for user in users %}
-            <option value={{ user.email }}>{{ user.username }}</option>
+            <option value={{ user.username }}>{{ user.username }}</option>
         {% endfor %}
     </select>
 </div>
-  <button class="ui button" type="submit">{% trans 'Create Team' %}</button>
+  <button class="ui green button" type="submit">{% trans 'Create Team' %}</button>
 {% if  form.non_field_errors %}
     <div class="ui error message">
-        <div class="header">Error!</div>
+        <div class="header">{% trans 'Error!' %}</div>
         <strong>{{ form.non_field_errors }}</strong>
     </div>
 {% endif %}
