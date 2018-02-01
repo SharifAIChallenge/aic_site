@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-01 12:49+0000\n"
+"POT-Creation-Date: 2018-02-01 14:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr "بلاگ"
 msgid "Game"
 msgstr "بازی"
 
-#: aic_site/context_processors.py:39
+#: aic_site/context_processors.py:39 templates/base/navbar.html:23
 msgid "Panel"
 msgstr "پنل"
 
@@ -139,10 +139,6 @@ msgstr ""
 "\n"
 "تمامی حقوق  برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
 "مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. "
-
-#: templates/base/navbar.html:23
-msgid "Competition Area"
-msgstr "محیط مسابقه"
 
 #: templates/base/navbar.html:47 templates/zinnia/login.html:34
 msgid "Login"
@@ -640,7 +636,6 @@ msgid "RSS feed of trackbacks on %(object)s"
 msgstr ""
 
 #: templates/zinnia/entry_detail_base.html:67
-#| msgid "Comment as"
 msgid "Comments and Q&A"
 msgstr "پرسش و پاسخ و نظرات"
 
@@ -1010,6 +1005,9 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
+
+#~ msgid "Competition Area"
+#~ msgstr "محیط مسابقه"
 
 #~| msgid ""
 #~| "<a href=\"%(comment_url)s\" rel=\"external nofollow\" class=\"fn url\">"
