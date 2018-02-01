@@ -12,6 +12,7 @@ services:
     volumes:
       - ./static/root:/static/root/static
       - /var/log/aic_site:/var/log/aic_site
+      - /var/log/aic_site/nginx/:/var/log/nginx/
       - ./config/nginx/sites-enabled:/etc/nginx/sites-enabled
       - ./config/nginx/sites-available:/etc/nginx/sites-available
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
@@ -29,6 +30,7 @@ services:
     volumes:
       - ./static/root:/root/aic_site/static/root
       - ./patches:/patches
+      - /var/log/aic_site:/var/log/aic_site
     depends_on:
       - aic_db
     expose:
