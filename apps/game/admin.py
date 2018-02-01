@@ -1,10 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-# Register your models here.
 from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map
 
-from apps.game.models import TeamSubmission
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
 
@@ -59,7 +57,7 @@ class ChallengeAdmin(admin.ModelAdmin):
 
 
 class CompetitionAdmin(admin.ModelAdmin):
-    fields = ['name', 'type']
+    fields = ['name', 'type', 'challenge']
 
     inlines = [MatchInline]
     list_display = ('name', 'type')
@@ -152,6 +150,7 @@ admin.site.register(Competition, CompetitionAdmin)
 admin.site.register(Match, MatchAdmin)
 
 admin.site.register(UserAcceptsTeamInChallenge)
+admin.site.register(Participant)
 
 
 class MapAdmin(admin.ModelAdmin):

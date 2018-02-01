@@ -154,4 +154,3 @@ LOCALE_PATHS = (
 )
 
 NOCAPTCHA = True
-
