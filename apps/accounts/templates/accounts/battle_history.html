@@ -39,31 +39,6 @@
                 {{ form_challenge.battle_team_maps }}
                 <input type="submit" class="ui green button" value="Submit">
             </form>
-
-{#            <form action="{% url 'accounts:challenge_a_team' participation_id %}" method="post" >#}
-{#                {% csrf_token %}#}
-{#                <div class="three wide column">#}
-{#                    <select id="challenge-teams-select" name="battle_team">#}
-{#                        <option value="">-----</option>#}
-{##}
-{#                        {% for team in challenge_teams %}#}
-{#                            <option value={{ team }}>{{ team }}</option>#}
-{#                        {% endfor %}#}
-{#                    </select>#}
-{#                </div>#}
-{#                <div class="three wide column">#}
-{#                    <select id="challenge-map-select" name="battle_team_maps">#}
-{#                        <option value="">-----</option>#}
-{#                        {% for map in challenge_maps %}#}
-{#                            <option value={{ map }}>{{ map }}</option>#}
-{#                        {% endfor %}#}
-{#                    </select>#}
-{#                </div>#}
-{#                <div class="three wide column">#}
-{#                    #}
-{#                </div>#}
-{##}
-{#            </form>#}
         </div>
     </div>
 

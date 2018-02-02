@@ -26,7 +26,7 @@ from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 from apps.accounts.tokens import account_activation_token
-from apps.game.models import TeamSubmission
+from apps.game.models import TeamSubmission, SingleMatch
 import json
 from apps.game.models.challenge import TeamParticipatesChallenge, UserAcceptsTeamInChallenge
 from apps.game.models.challenge import Challenge
@@ -245,6 +245,24 @@ def success_create_team(request):
 
 @login_required()
 def challenge_a_team(request, participation_id):
+    # TODO : add time limit for challenging a team
     #    return HttpResponse(request.POST['battle_team'])
-    # TODO : Add battle history
+
+    if participation_id is not None:
+        try:
+            participation = TeamParticipatesChallenge.objects.get(
+                id=participation_id,
+                team__participants__user=request.user
+            )
+        except TeamParticipatesChallenge.DoesNotExist:
+            return redirect('accounts:panel')
+    else:
+        return redirect(reverse('accounts:panel', args=[participation_id]))
+
+    single_match = SingleMatch()
+    team1 = participation.team
+    team2 = request.POST['battle_team']
+    map = request.POST['battle_team_maps']
+
+    # single_match.
     return redirect(reverse('accounts:panel', args=[participation_id]))

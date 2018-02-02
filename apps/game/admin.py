@@ -154,7 +154,7 @@ admin.site.register(Participant)
 
 
 class MapAdmin(admin.ModelAdmin):
-    fields = ['name', 'file', 'token']
+    fields = ['name', 'file', 'token', 'competitions']
     readonly_fields = ['token']
 
 
