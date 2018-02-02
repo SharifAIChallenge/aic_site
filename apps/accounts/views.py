@@ -117,13 +117,21 @@ def panel(request, participation_id=None):
         participation = None
 
     page = request.GET.get('page', 1)
-
     context = {
         'submissions': Paginator(
             TeamSubmission.objects.filter(team=participation_id).order_by('-id'),
             10
         ).page(page),
         'participation': participation,
+        'participation_members': [
+            (
+                user_part.user,
+                not UserAcceptsTeamInChallenge.objects.filter(
+                    user=user_part.user,
+                    team__team=participation.team
+                ).exists()
+            )
+            for user_part in participation.team.participants.all()] if participation else [],
         'challenges': Challenge.objects.all(),
         'invitations': [],
         'accepted_participations': []
@@ -232,3 +240,21 @@ def success_create_team(request):
                   {
                       'last_participation_id': TeamParticipatesChallenge.objects.last().id
                   })
+
+
+def cancel_participation_request(request, participation_id, user_id):
+    accepted = get_object_or_404(UserAcceptsTeamInChallenge,
+                                 team_id=participation_id,
+                                 user=request.user)
+
+    if UserAcceptsTeamInChallenge.objects.filter(
+        user_id=user_id,
+        team__team=accepted.team.team
+    ).exists():
+        return redirect('accounts:panel', participation_id)
+
+    participation_request = get_object_or_404(UserParticipatesOnTeam,
+                                              team=accepted.team.team,
+                                              user_id=user_id)
+    participation_request.delete()
+    return redirect('accounts:panel', participation_id)
