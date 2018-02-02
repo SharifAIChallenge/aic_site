@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-01 14:06+0000\n"
+"POT-Creation-Date: 2018-02-02 21:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,15 +30,21 @@ msgstr "انتخاب نام تیم لازم است!"
 msgid "Registration is not open."
 msgstr "ثبت نام هم‌اکنون باز نیست."
 
-#: apps/accounts/forms/team_forms.py:28
+#: apps/accounts/forms/team_forms.py:30
 msgid "This name is used by another team"
 msgstr "این نام قبلا توسط تیمی دیگر استفاده شده است!"
 
-#: apps/accounts/forms/team_forms.py:31
+#: apps/accounts/forms/team_forms.py:33
 msgid "You can't add same users to your team"
 msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
 
-#: apps/accounts/forms/team_forms.py:35
+#: apps/accounts/forms/team_forms.py:36
+#, fuzzy
+#| msgid "You can't add same users to your team"
+msgid "You must select a second member for your team"
+msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
+
+#: apps/accounts/forms/team_forms.py:40
 msgid "Some of the users are already participating in this challenge"
 msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
 
@@ -82,6 +88,7 @@ msgid "Login"
 msgstr "ورود"
 
 #: apps/accounts/templates/accounts/login.html:14
+#: apps/accounts/templates/accounts/panel.html:39
 #: apps/accounts/templates/accounts/signup.html:12
 msgid "Username"
 msgstr "نام کاربری"
@@ -133,19 +140,25 @@ msgstr "رویداد:"
 msgid "Team Status"
 msgstr "وضعیت تیم"
 
-#: apps/accounts/templates/accounts/panel.html:38
-msgid "Members"
-msgstr "اعضا"
+#: apps/accounts/templates/accounts/panel.html:52
+msgid "Remove"
+msgstr "حذف"
 
-#: apps/accounts/templates/accounts/panel.html:51
+#: apps/accounts/templates/accounts/panel.html:57
+#, fuzzy
+#| msgid "Accept"
+msgid "Accepted"
+msgstr "پذیرفتن"
+
+#: apps/accounts/templates/accounts/panel.html:69
 msgid "All users have accepted the challenge."
 msgstr "تمام اعضا شرکت در مسابقه را تایید کرده‌اند."
 
-#: apps/accounts/templates/accounts/panel.html:53
+#: apps/accounts/templates/accounts/panel.html:71
 msgid "All users haven't accepted the challenge yet!"
 msgstr "هنوز همه اعضا شرکت در مسابقه را تایید نکرده‌اند."
 
-#: apps/accounts/templates/accounts/panel.html:150
+#: apps/accounts/templates/accounts/panel.html:169
 msgid "Create New Team"
 msgstr "ایجاد تیم جدید"
 
@@ -200,6 +213,9 @@ msgstr "ثبت نام"
 #: apps/accounts/templates/accounts/update_profile.html:12
 msgid "Update"
 msgstr "ذخیره"
+
+#~ msgid "Members"
+#~ msgstr "اعضا"
 
 #~ msgid "username"
 #~ msgstr "نام کاربری"
