@@ -21,8 +21,7 @@ class CreateTeamForm(Form):
             return False
         member1_username = self.cleaned_data['member1']
         member2_username = self.cleaned_data['member2']
-        print((not member1_username))
-        print((member2_username))
+
         if not valid:
             return valid
         team_name = self.cleaned_data['team_name']
