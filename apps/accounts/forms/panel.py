@@ -10,7 +10,7 @@ def get_maps():
     maps = []
     maps.append(('', ''))  #nothing
     for i in Map.objects.all():  # TODO : get all from a competition
-        maps.append((i.id, i.name))
+        maps.append((i.id, i.name))  # id will pass
     return maps
 
 
@@ -18,7 +18,7 @@ def get_teams():
     teams = []
     teams.append(('', '')) # nothing
     for i in Team.objects.all():  # TODO : get all from a competition
-        teams.append((i.id, i.name))
+        teams.append((i.id, i.name))  # name will pass
     return teams
 
 

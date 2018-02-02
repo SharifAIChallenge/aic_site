@@ -26,7 +26,7 @@ from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 from apps.accounts.tokens import account_activation_token
-from apps.game.models import TeamSubmission, SingleMatch
+from apps.game.models import TeamSubmission, SingleMatch, Match, Participant, Map, Competition
 import json
 from apps.game.models.challenge import TeamParticipatesChallenge, UserAcceptsTeamInChallenge
 from apps.game.models.challenge import Challenge
@@ -168,7 +168,7 @@ def panel(request, participation_id=None):
                                       TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
         context.update({
             'participation_id': participation_id,
-            'challenge_maps': ['map1', 'map2', 'map3']
+            # 'challenge_maps': ['map1', 'map2', 'map3']
         })
     return render(request, 'accounts/panel.html', context)
 
@@ -259,10 +259,38 @@ def challenge_a_team(request, participation_id):
     else:
         return redirect(reverse('accounts:panel', args=[participation_id]))
 
-    single_match = SingleMatch()
-    team1 = participation.team
-    team2 = request.POST['battle_team']
-    map = request.POST['battle_team_maps']
+    try:
+        challenge = participation.challenge
+
+        competition = Competition()  #TODO : fill it
+        competition.save()
+
+
+        team1 =  participation.team
+
+        team2_ = Team.objects.filter(id=request.POST['battle_team']).first()
+        team2 = TeamParticipatesChallenge.objects.filter(team=team2_, challenge=challenge).first()
+
+        part1 = Participant()
+        part1.depend = team1
+        part1.save()
+
+        part2 = Participant()
+        part2.depend = team2
+        part2.save()
+
+        match = Match(part1=part1, part2=part2, competition=competition)
+        match.save()
+
+        competition_map = Map.objects.filter(id=request.POST['battle_team_maps'])
+
+        single_match = SingleMatch(match=match, map=competition_map)
+        single_match.save()
+
+        single_match.handle()
+
+    except Exception as e:
+        logger.error("Team failed to submit : " + str(e))
 
     # single_match.
     return redirect(reverse('accounts:panel', args=[participation_id]))
