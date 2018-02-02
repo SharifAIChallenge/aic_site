@@ -21,6 +21,8 @@ class CreateTeamForm(Form):
             return False
         member1_username = self.cleaned_data['member1']
         member2_username = self.cleaned_data['member2']
+        print((not member1_username))
+        print((member2_username))
         if not valid:
             return valid
         team_name = self.cleaned_data['team_name']
@@ -29,6 +31,9 @@ class CreateTeamForm(Form):
             return False
         if member1_username and member2_username and (member1_username == member2_username):
             self.add_error(None, _("You can't add same users to your team"))
+            return False
+        if (not member1_username) and member2_username:
+            self.add_error(None, _("You must select a second member for your team"))
             return False
         if UserAcceptsTeamInChallenge.objects.filter(user__username__in=[self.user.username, member1_username, member2_username],
                                                      team__challenge_id=self.cleaned_data['challenge_id']).count() > 0:
