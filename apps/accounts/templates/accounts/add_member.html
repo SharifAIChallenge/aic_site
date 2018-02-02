@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% block container %}
+
+<form class="ui form error" id="create_team_form" method="post" style="padding: 70px">
+<h3 class="ui dividing header">{% trans 'Add a member to' %} {{ team }} </h3>
+  {% csrf_token %}
+
+<div class="field">
+    <label>{% trans 'Username' %}</label>
+    <select class="ui dropdown search" id="drop1_id" name="member1" onchange="second_field()">
+        <option value="">-----</option>
+        <option value="-----">-----</option>
+        {% for user in users %}
+            <option value={{ user.username }}>{{ user.username }}</option>
+        {% endfor %}
+    </select>
+</div>
+  <button class="ui green button" type="submit">{% trans 'Add' %}</button>
+{% if  form.non_field_errors %}
+    <div class="ui error message">
+        <div class="header">{% trans 'Error!' %}</div>
+        <strong>{{ form.non_field_errors }}</strong>
+    </div>
+{% endif %}
+</form>
+<script type="text/javascript" src="{% static 'accounts/js/create_team.js' %}"></script>
+{% endblock %}

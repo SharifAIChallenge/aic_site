@@ -14,7 +14,7 @@ from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.views import generic
 
-from apps.accounts.forms.team_forms import CreateTeamForm
+from apps.accounts.forms.team_forms import CreateTeamForm, AddParticipationForm
 # Create your views here.
 from django.views.generic import FormView, RedirectView
 
@@ -187,6 +187,7 @@ def accept_participation(request, participation_id):
     team = get_object_or_404(TeamParticipatesChallenge,
                              id=participation_id,
                              team__participants__user=request.user)
+    # TODO: If user already has a team in this challenge redirect
     UserAcceptsTeamInChallenge.objects.get_or_create(team=team, user=request.user)
     TeamParticipatesChallenge.objects.filter(
         challenge=team.challenge,
@@ -227,6 +228,29 @@ def create_team(request, challenge_id):
     already_participated_users_accepts = UserAcceptsTeamInChallenge.objects.filter(team__challenge_id=challenge_id)
     already_participated_usernames = [accept.user.username for accept in already_participated_users_accepts]
     return render(request, 'accounts/create_team.html', {
+        'form': form,
+        'users': User.objects.exclude(username__exact=request.user.username).exclude(
+            username__in=already_participated_usernames).exclude(is_active=False),
+        'username': request.user.username
+    })
+
+
+@login_required()
+def add_participation(request, participation_id):
+    acceptance = get_object_or_404(UserAcceptsTeamInChallenge,
+                                   team_id=participation_id,
+                                   user=request.user)
+    if request.method == 'POST':
+        form = AddParticipationForm(request.user, acceptance.team.challenge, acceptance.team.team, request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('accounts:success_create_team')
+    else:
+        form = AddParticipationForm(user=request.user, team=acceptance.team.team, challenge=acceptance.team.challenge)
+    already_participated_users_accepts = UserAcceptsTeamInChallenge.objects.filter(team__challenge_id=acceptance.team.challenge.id)
+    already_participated_usernames = [accept.user.username for accept in already_participated_users_accepts]
+    return render(request, 'accounts/add_member.html', {
+        'team': acceptance.team.team,
         'form': form,
         'users': User.objects.exclude(username__exact=request.user.username).exclude(
             username__in=already_participated_usernames).exclude(is_active=False),

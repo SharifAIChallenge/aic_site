@@ -60,6 +60,17 @@
                         </td>
                     </tr>
                 {% endfor %}
+                {% if participation_members|length < participation.challenge.team_size %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'accounts:add_participation' participation.id %}" class="ui right aligned green button tiny">
+                                <i class="add icon"></i>
+                                {% trans 'Add a member' %}
+                            </a>
+                        </td>
+                        <td></td>
+                    </tr>
+                {% endif %}
                 </tbody>
                 <tfoot>
                     <tr>
