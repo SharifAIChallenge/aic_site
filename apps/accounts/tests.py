@@ -133,7 +133,7 @@ class TestTeam(TransactionTestCase):
         # test that it says OK
         client.force_login(User.objects.all()[0])
         response = client.get('/accounts/panel/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
         participation = TeamParticipatesChallenge.objects.all()[0]
         response = client.post(
             '/accounts/panel/' + str(participation.id),
