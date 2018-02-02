@@ -229,7 +229,7 @@ def create_team(request, challenge_id):
     return render(request, 'accounts/create_team.html', {
         'form': form,
         'users': User.objects.exclude(username__exact=request.user.username).exclude(
-            username__in=already_participated_usernames),
+            username__in=already_participated_usernames).exclude(is_active=False),
         'username': request.user.username
     })
 
