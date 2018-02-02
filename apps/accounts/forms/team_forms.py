@@ -91,7 +91,7 @@ class AddParticipationForm(Form):
         if not self.challenge.can_register():
             self.add_error(None, _("Registration is not open."))
             return False
-        member1_username = self.cleaned_data['member1']
+        member1_username = self.cleaned_data.get('member1', '')
 
         if not valid:
             return valid
