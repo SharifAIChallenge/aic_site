@@ -16,7 +16,8 @@ class Competition(models.Model):
     TYPE_CHOICES = (
         ('elim', _('Elimination')),
         ('double', _('Double Elimination')),
-        ('league', _('League'))
+        ('league', _('League')),
+        ('friendly', _('Friendly')),
     )
 
     challenge = models.ForeignKey(Challenge, related_name='competitions')
@@ -337,7 +338,7 @@ def get_log_file_directory(instance, filename):
 
 
 class Match(models.Model):
-    competition = models.ForeignKey(Competition, related_name='matches')
+    competition = models.ForeignKey(Competition, related_name='matches', null=True)
     part1 = models.ForeignKey(Participant, related_name='mathces_as_first')
     part2 = models.ForeignKey(Participant, related_name='matches_as_second')
     dependers = GenericRelation(Participant, related_query_name='depends')
@@ -561,10 +562,10 @@ class SingleMatch(models.Model):
         return None
 
     def get_first_file(self):
-        return self.match.part1.submission
+        return self.match.part1.submission.file
 
     def get_second_file(self):
-        return self.match.part2.submission
+        return self.match.part2.submission.file
 
     def get_map(self):
         return self.map.token
