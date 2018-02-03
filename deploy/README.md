@@ -101,6 +101,28 @@ Werkzeug==0.14.1
 
 ```
 
+## templates/response.html
+
+html flask template used for rendering server responses:
+
+```djangotemplate
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ deployment_type }}</title>
+</head>
+<body>
+
+{% if name %}
+<h1>{{ deployment_type }} in progress!</h1>
+{% else %}
+<p>deployment log will be available on <a href='{{ log_file }}'>{{ log_file }}</a></p>
+{% endif %}
+
+</body>
+</html>
+``` 
+
 ## deploy.sh
 
 script used for deployment to production server:
