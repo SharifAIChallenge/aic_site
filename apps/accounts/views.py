@@ -3,10 +3,14 @@ import logging
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.http import HttpResponse, Http404
+from django.urls import reverse
+from apps.accounts.forms.team_forms import CreateTeamForm
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.utils.datetime_safe import datetime
@@ -19,18 +23,18 @@ from apps.accounts.forms.team_forms import CreateTeamForm, AddParticipationForm
 from django.views.generic import FormView, RedirectView
 
 from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
-from apps.accounts.forms.panel import SubmissionForm
+from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 from apps.accounts.tokens import account_activation_token
-from apps.game.models import TeamSubmission
+from apps.game.models import TeamSubmission, SingleMatch, Match, Participant, Map, Competition, ContentType
 import json
 from apps.game.models.challenge import TeamParticipatesChallenge, UserAcceptsTeamInChallenge
 from apps.game.models.challenge import Challenge
 
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
-
 logger = logging.getLogger(__name__)
+
 
 class SignupView(generic.CreateView):
     form_class = SignUpForm
@@ -95,7 +99,7 @@ class LogoutView(LoginRequiredMixin, RedirectView):
 
 class UpdateProfileView(LoginRequiredMixin, generic.UpdateView):
     form_class = UpdateProfileForm
-    success_url = 'accounts/panel'
+    success_url = '/accounts/panel'
     template_name = 'accounts/update_profile.html'
     model = Profile
 
@@ -166,9 +170,14 @@ def panel(request, participation_id=None):
             form.fields['team'].empty_label = None
 
     context['form'] = form
+    context['form_challenge'] = ChallengeATeamForm()
     if participation is not None:
         context['challenge_teams'] = [team_part.team for team_part in
                                       TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
+        context.update({
+            'participation_id': participation_id,
+            'battle_history': Match.objects.all() # TODO : ok it
+        })
     return render(request, 'accounts/panel.html', context)
 
 
@@ -187,7 +196,6 @@ def accept_participation(request, participation_id):
     team = get_object_or_404(TeamParticipatesChallenge,
                              id=participation_id,
                              team__participants__user=request.user)
-    # TODO: If user already has a team in this challenge redirect
     UserAcceptsTeamInChallenge.objects.get_or_create(team=team, user=request.user)
     TeamParticipatesChallenge.objects.filter(
         challenge=team.challenge,
@@ -214,8 +222,8 @@ def reject_participation(request, participation_id):
 @login_required()
 def create_team(request, challenge_id):
     if UserAcceptsTeamInChallenge.objects.filter(
-        team__challenge_id=challenge_id,
-        team__team__participants__user=request.user
+            team__challenge_id=challenge_id,
+            team__team__participants__user=request.user
     ).exists():
         return redirect('accounts:panel')
     if request.method == 'POST':
@@ -282,3 +290,55 @@ def cancel_participation_request(request, participation_id, user_id):
                                               user_id=user_id)
     participation_request.delete()
     return redirect('accounts:panel', participation_id)
+
+@login_required()
+def challenge_a_team(request, participation_id):
+    # TODO : add time limit for challenging a team
+    #    return HttpResponse(request.POST['battle_team'])
+
+    if participation_id is not None:
+        try:
+            participation = TeamParticipatesChallenge.objects.get(
+                id=participation_id,
+                team__participants__user=request.user
+            )
+        except TeamParticipatesChallenge.DoesNotExist:
+            return redirect('accounts:panel')
+    else:
+        return redirect(reverse('accounts:panel', args=[participation_id]))
+
+    try:
+        challenge = participation.challenge
+
+        team1 = participation.team
+
+        competition = Competition.objects.filter(challenge=challenge, type='friendly').first()
+
+        team2_ = Team.objects.filter(id=request.POST['battle_team']).first()
+        team2 = TeamParticipatesChallenge.objects.filter(team=team2_, challenge=challenge).first()
+
+        part1 = Participant()
+        part1.depend = participation
+        part1.submission = participation.get_final_submission()
+        part1.save()
+
+        part2 = Participant()
+        part2.depend = team2
+        part2.submission = team2.get_final_submission()
+        part2.save()
+
+        match = Match(part1=part1, part2=part2, competition=competition)
+        match.save()
+
+        competition_map = Map.objects.filter(id=request.POST['battle_team_maps']).first()
+
+        single_match = SingleMatch(match=match, map=competition_map)
+        single_match.save()
+
+        single_match.handle()
+
+    except Exception as e:
+        logger.error("Team failed to submit : " + str(e))
+
+    # single_match.
+    return redirect(reverse('accounts:panel', args=[participation_id]))
