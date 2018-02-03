@@ -27,7 +27,12 @@ jobs:
     - python manage.py test
   - stage: deploy_production
     script:
-    - eval "curl -H 'X-token:${TOKEN}' -X GET http://199.247.7.212:3589/deploy_production"
+    - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://199.247.7.212:3589/deploy_production")
+    - ADDRESS=$(echo $CRES | grep -o "http://[^']*txt")
+    - COND="false"
+    - echo "waiting for deployment server"
+    - while [[ $COND == *"false"* ]]; do sleep 3s; echo -n "."; LAST_LINE=$(curl $ADDRESS | tail -1); if [[ $LAST_LINE == *"~~~~~>   DEPLOYMENT DONE SUCCESSFULLY"* ]]; then COND="true"; fi; done
+    - echo $CRES
   - stage: deploy_test
     script:
     - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://199.247.7.212:3589/deploy_test")
