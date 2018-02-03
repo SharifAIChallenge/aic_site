@@ -3,11 +3,21 @@
 {% load static %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% block container %}
-<div class="ui icon green message" style="padding: 80px">
+<div class="ui icon green message">
     <i class="users icon"></i>
     <div class="content">
-        Success!!!
+      <div class="header">
+        {% trans 'Your team has been created successfully' %}
+      </div>
+      <p>{% trans 'Request messages has bee sent to your teammates' %}</p>
     </div>
 </div>
-<a class="ui button" href="/">OK!</a>
+<a href="{% url 'accounts:panel' last_participation_id %}">
+<div class="ui animated button" tabindex="0">
+  <div class="visible content">{% trans 'OK' %}</div>
+  <div class="hidden content">
+    <i class="right arrow icon"></i>
+  </div>
+</div>
+</a>
 {% endblock %}

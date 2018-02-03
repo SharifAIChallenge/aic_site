@@ -26,6 +26,7 @@ echo $LINE; echo '~~~~~>   COMMITTING TEST DATABASE BACKUP'; echo
 docker exec aic_test_db_cont bash -c 'pg_dumpall > /Database_backup/aic_test_site_postgres_backup_2 --username=postgres'
 sudo rm -f Database_test_backup/aic_test_site_postgres_backup
 sudo mv Database_test_backup/aic_test_site_postgres_backup_2 Database_test_backup/aic_test_site_postgres_backup
+#sudo rm -rf Database_test/*
 echo '~~~~~>   DONE'
 
 echo $LINE; echo '~~~~~>   COMMITTING PRODUCTION DATABASE BACKUP'; echo
@@ -62,7 +63,7 @@ rm -f ../deploy_test.sh
 echo '~~~~~>   DONE'
 
 echo $LINE; echo '~~~~~>   CLONING DATABASE FROM PRODUCTION'; echo
-docker exec aic_test_db_cont bash -c 'psql -f /Database_backup_production/aic_site_postgres_backup --username=postgres'
+#docker exec aic_test_db_cont bash -c 'psql -f /Database_backup_production/aic_site_postgres_backup --username=postgres'
 echo '~~~~~>   DONE'
 
 echo $LINE; echo '~~~~~>   REMOVING OBSOLETE DOCKER IMAGES'; echo

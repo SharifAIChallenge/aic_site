@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+{% load static i18n %}
+
+{% block extra_header %}
+    <link rel="stylesheet" href="{% static 'css/style_tables.css' %}">
+{% endblock %}
+
+
+{% block container %}
+
+        <table class="ui red selectable unstackable table" style="margin: 50px;">
+            <thead>
+            <tr>
+                <th class="collapsing">{% trans 'Rank' %}</th>
+                <th>{% trans 'Team' %}</th>
+                <th>{% trans 'Score' %}</th>
+                <th>{% trans 'Wins' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for scores in league_scoreboard %}
+                <tr>
+                    <td>
+                        <div class="ui green label">{{ scores.1 }}</div>
+                    </td>
+                    <td>{{ scores.2 }}</td>
+                    <td>{{ scores.3 }}</td>
+                    <td>{{ scores.4 }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>{% trans 'Group 1' %}</th>
+                <th></th>
+            </tr>
+            </tfoot>
+        </table>
+
+    </div>
+
+{% endblock %}

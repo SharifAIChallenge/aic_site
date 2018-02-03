@@ -7,7 +7,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 
 from .game import Game
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ugettext
 from apps.accounts.models import Team
 # from apps.game.models.competition import Participant
 
@@ -52,7 +52,13 @@ class TeamParticipatesChallenge(models.Model):
         verbose_name_plural='Team Participates In Challenges'
 
     def __str__(self):
-        return 'Team: ' + str(self.team) + ' Challenge: ' + str(self.challenge)
+        team_name = ugettext('None')
+        if self.team is not None:
+            team_name = str(self.team)
+        challenge_name = ugettext('None')
+        if self.challenge is not None:
+            challenge_name = str(self.challenge)
+        return ugettext('Team: ') + team_name + ' ' + ugettext('Challenge: ') + challenge_name
 
     def all_members_accepted(self):
         """
@@ -79,9 +85,9 @@ class TeamParticipatesChallenge(models.Model):
         except TeamSubmission.DoesNotExist:
             return None
 
-
     def itself(self):
         return self.get_final_submission()
+
 
 class UserAcceptsTeamInChallenge(models.Model):
     team = models.ForeignKey(TeamParticipatesChallenge, related_name='users_acceptance')
@@ -118,13 +124,8 @@ class TeamSubmission(models.Model):
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
     infra_compile_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
 
-
     def __str__(self):
-        return str(self.id)
-
-
-    def __str__(self):
-        return str(self.id)
+        return str(self.id) + ' team: ' + str(self.team) + ' is final: ' + str(self.is_final)
 
     def set_final(self):
         """

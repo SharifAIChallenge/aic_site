@@ -75,7 +75,7 @@
                                     <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
                                 {% endif %}
                                 <figure itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-                                    <img src="{{ object.image.url }}"
+                                    <img style="max-width: 20vw; float: left;" src="{{ object.image.url }}"
                                          alt="{{ object.image_caption|default:object.title }}" itemprop="contentUrl"/>
                                     {% if object.image_caption %}
                                         <figcaption itemprop="caption">{{ object.image_caption }}</figcaption>

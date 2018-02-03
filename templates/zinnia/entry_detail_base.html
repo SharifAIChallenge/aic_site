@@ -3,6 +3,9 @@
 {% load zinnia %}
 {% load threadedcomments_tags %}
 {% load static %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% load ai_filters %}
 
 {% block title %}{{ object.title }}{% endblock title %}
 
@@ -61,16 +64,12 @@
                             <!-- reference: -->
                             <!-- https://pypi.python.org/pypi/django-threadedcomments -->
 
-                            <h3 class="ui dividing header">{% trans 'Comments' %}</h3>
+                            <h3 class="ui dividing header">{% trans 'Comments and Q&A' %}</h3>
 
                             {% get_comment_list for object as object_comments %}
                             {% for object_comment in object_comments %}
-
                                 {% get_comment_list for object_comment as comment_comments %}
-                                {% if request.user.is_staff %}
                                 <div class="comment" id="c{{ object_comment.id }}">
-
-                                    {#            start comment #}
                                     <div class="avatar">
                                         {% block comment-image-noanswer %}
                                             {% if comment.user.is_staff %}
@@ -87,16 +86,17 @@
                                             <span class="date">
                                                 {% block comment-info-noanswer %}
                                                     <p class="comment-info">
-                                                    {% blocktrans with comment_title=object_comment.title|default:"#" comment_url=object_comment.url|default:"#" comment_name=object_comment.name comment_human_date=object_comment.submit_date|date:"SHORT_DATETIME_FORMAT" comment_technical_date=object_comment.submit_date|date:"c" comment_pk=object_comment.pk comment_author_slug=object_comment.user_name|slugify trimmed %}
+                                                    {% blocktrans with comment_title=object_comment.title|default:"#" comment_url=object_comment.url|default:"#" comment_name=object_comment.name comment_human_date=object_comment.submit_date|date:"SHORT_DATETIME_FORMAT"|jalali comment_technical_date=object_comment.submit_date|date:"c" comment_pk=object_comment.pk comment_author_slug=object_comment.user_name|slugify trimmed %}
+                                                        <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
+                                                           id="c{{ comment_pk }}" class="anchor-link ui header"
+                                                           title="Direct link to this comment" class="large"> {{ comment_title }} </a>
+
                                                         <a href="{{ comment_url }}" rel="external nofollow"
-                                                           class="fn url">{{ comment_name }}</a>
+                                                           class="fn url header">{{ comment_name }}</a>
                                                         on
                                                         <time class="comment-published" datetime="{{ comment_technical_date }}">
                                                             {{ comment_human_date }}
                                                         </time>
-                                                        <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
-                                                           id="c{{ comment_pk }}" class="anchor-link"
-                                                           title="Direct link to this comment">{{ comment_title }}</a>
                                                     {% endblocktrans %}
                                                 </p>
                                                 {% endblock comment-info-noanswer %}
@@ -109,59 +109,54 @@
                                             {#            end comment #}
                                         </div>
                                     </div>
+                                    <div class="comments">
+                                        {% for comment in comment_comments %}
+                                            <div class="comment" id="c{{ comment.id }}">
+                                                <div class="avatar">
+                                                {% block comment-image %}
+                                                    {% if comment.user.is_staff %}
+                                                        <img class="large image" src="{% static 'images/admin.png' %}">
+                                                    {% else %}
+                                                        <img src="{% static 'images/user.jpeg' %}">
+        {#                                            <img src="{% get_gravatar comment.email 60 "G" %}"#}
+        {#                                                 class="gravatar photo" alt="{{ comment.name }}"/>#}
+                                                    {% endif %}
+                                                {% endblock comment-image %}
+                                                </div>
+                                                <div class="content">
+                                                    <div class="metadata">
+                                                        <span class="date">
+                                                            {% block comment-info %}
+                                                                <p class="comment-info">
+                                                                {% blocktrans with comment_title=comment.title|default:"" comment_url=comment.url|default:"#" comment_name=comment.name comment_human_date=comment.submit_date|date:"SHORT_DATETIME_FORMAT"|jalali comment_technical_date=comment.submit_date|date:"c" comment_pk=comment.pk comment_author_slug=comment.user_name|slugify trimmed %}
+                                                                    <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
+                                                                       id="c{{ comment_pk }}" class="anchor-link ui header"
+                                                                       title="Direct link to this comment">{{ comment_title }}</a>
+                                                                    <a href="{{ comment_url }}" rel="external nofollow"
+                                                                       class="fn url large">{{ comment_name }}</a>
+                                                                    on
+                                                                    <time class="comment-published" datetime="{{ comment_technical_date }}">
+                                                                        {{ comment_human_date }}
+                                                                    </time>
+                                                                {% endblocktrans %}
+                                                            </p>
+                                                            {% endblock comment-info %}
+                                                        </span>
+                                                    </div>
+                                                    <div class="text">
+                                                        {% block comment-content %}
+                                                            {{ comment.comment|linebreaks }}
+                                                        {% endblock comment-content %}
+                                                        {#            end comment #}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        {% if request.user.is_staff %}
+                                            {% render_comment_form for object_comment with object_comment.id %}
+                                        {% endif %}
+                                    </div>
                                 </div>
-                                    {% render_comment_form for object_comment with object_comment.id %}
-                                {% endif %}
-                                {% for comment in comment_comments|fill_tree|annotate_tree %}
-                                    {% ifchanged comment.parent_id %}{% else %}</div>{% endifchanged %}
-                                    {% if not comment.open and not comment.close %}</div>{% endif %}
-                                    {% if comment.open %}
-                                        <div class="comments">{% endif %}
-
-                                <div class="comment" id="c{{ comment.id }}">
-
-                                    {#            start comment #}
-                                    <div class="avatar">
-                                        {% block comment-image %}
-                                            {% if comment.user.is_staff %}
-                                                <img class="large image" src="{% static 'images/admin.png' %}">
-                                            {% else %}
-                                                <img src="{% static 'images/user.jpeg' %}">
-{#                                            <img src="{% get_gravatar comment.email 60 "G" %}"#}
-{#                                                 class="gravatar photo" alt="{{ comment.name }}"/>#}
-                                            {% endif %}
-                                        {% endblock comment-image %}
-                                    </div>
-                                    <div class="content">
-                                        <div class="metadata">
-                                            <span class="date">
-                                                {% block comment-info %}
-                                                    <p class="comment-info">
-                                                    {% blocktrans with comment_title=comment.title|default:"#" comment_url=comment.url|default:"#" comment_name=comment.name comment_human_date=comment.submit_date|date:"SHORT_DATETIME_FORMAT" comment_technical_date=comment.submit_date|date:"c" comment_pk=comment.pk comment_author_slug=comment.user_name|slugify trimmed %}
-                                                        <a href="{{ comment_url }}" rel="external nofollow"
-                                                           class="fn url">{{ comment_name }}</a>
-                                                        on
-                                                        <time class="comment-published" datetime="{{ comment_technical_date }}">
-                                                            {{ comment_human_date }}
-                                                        </time>
-                                                        <a href="#comment-{{ comment_pk }}-by-{{ comment_author_slug }}"
-                                                           id="c{{ comment_pk }}" class="anchor-link"
-                                                           title="Direct link to this comment">{{ comment_title }}</a>
-                                                    {% endblocktrans %}
-                                                </p>
-                                                {% endblock comment-info %}
-                                            </span>
-                                        </div>
-                                        <div class="text">
-                                            {% block comment-content %}
-                                                {{ comment.comment|linebreaks }}
-                                            {% endblock comment-content %}
-                                            {#            end comment #}
-                                        </div>
-                                    </div>
-
-                                    {% for close in comment.close %}</div></div>{% endfor %}
-                                {% endfor %}
                             {% endfor %}
 
                         {% endblock comments-loop %}
@@ -185,6 +180,8 @@
             {% if object.comments_are_open %}
                 {% render_comment_form for object %}
             {% endif %}
+        {% else %}
+            <a href="{% url 'accounts:login' %}" class="ui primary button">{%  trans 'Login To Comment' %}</a>
         {% endif %}
     {% endblock entry-comments-form %}
 
