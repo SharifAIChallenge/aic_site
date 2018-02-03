@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-01 14:06+0000\n"
+"POT-Creation-Date: 2018-02-03 14:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -290,8 +290,7 @@ msgstr "این نظر را تایید کنید!"
 msgid "Comment as"
 msgstr "نظر دادن با عنوان "
 
-#: templates/comments/zinnia/entry/form.html:45 templates/zinnia/base.html:123
-#: templates/zinnia/base.html:124
+#: templates/comments/zinnia/entry/form.html:45
 msgid "Log out"
 msgstr "خروج"
 
@@ -402,7 +401,7 @@ msgstr ""
 msgid "Continue reading"
 msgstr "ادامه خواندن"
 
-#: templates/zinnia/_entry_detail_base.html:127 templates/zinnia/base.html:60
+#: templates/zinnia/_entry_detail_base.html:127 templates/zinnia/base.html:51
 #: templates/zinnia/tag_list.html:6
 msgid "Tags"
 msgstr "تگ‌ها"
@@ -421,7 +420,7 @@ msgstr "بدون تگ"
 msgid "Author list"
 msgstr "لیست نویسنده‌ها"
 
-#: templates/zinnia/author_list.html:6 templates/zinnia/base.html:49
+#: templates/zinnia/author_list.html:6
 msgid "Authors"
 msgstr "نویسنده‌ها"
 
@@ -452,85 +451,21 @@ msgstr "فید RSS آخرین نوشته‌ها"
 msgid "RSS feed of last discussions"
 msgstr "فید RSS آخرین بحث‌ها"
 
-#: templates/zinnia/base.html:33
-msgid "Welcome!"
-msgstr "خوش‌ آمدید!"
-
-#: templates/zinnia/base.html:35
-msgid "This simple theme is the default appearance of Zinnia."
-msgstr ""
-
-#: templates/zinnia/base.html:38
-msgid ""
-"Don't hesitate to override the template <strong>zinnia/base.html</strong> to "
-"start <a href='http://docs.django-blog-zinnia.com/en/latest/how-to/"
-"customize_look_and_feel.html'>customizing your Weblog</a>."
-msgstr ""
-
-#: templates/zinnia/base.html:43 templates/zinnia/category_list.html:6
-msgid "Categories"
-msgstr "موضوعات"
-
-#: templates/zinnia/base.html:54
-msgid "Calendar"
-msgstr "تقویم"
-
-#: templates/zinnia/base.html:69
+#: templates/zinnia/base.html:60
 msgid "Recent entries"
 msgstr "نوشته‌های اخیر"
 
-#: templates/zinnia/base.html:77
+#: templates/zinnia/base.html:68
 msgid "Recent comments"
 msgstr "نظرات اخیر"
-
-#: templates/zinnia/base.html:84
-msgid "Recent linkbacks"
-msgstr ""
-
-#: templates/zinnia/base.html:88
-msgid "Random entries"
-msgstr "نوشته‌های تصادفی"
-
-#: templates/zinnia/base.html:92
-msgid "Popular entries"
-msgstr "نوشته‌های محبوب"
-
-#: templates/zinnia/base.html:96 templates/zinnia/entry_archive_day.html:5
-#: templates/zinnia/entry_archive_day.html:7
-#: templates/zinnia/entry_archive_day.html:12
-#: templates/zinnia/entry_archive_day.html:29
-#: templates/zinnia/entry_archive_month.html:4
-#: templates/zinnia/entry_archive_month.html:6
-#: templates/zinnia/entry_archive_month.html:11
-#: templates/zinnia/entry_archive_month.html:37
-#: templates/zinnia/entry_archive_today.html:22
-#: templates/zinnia/entry_archive_week.html:43
-#: templates/zinnia/entry_archive_year.html:4
-#: templates/zinnia/entry_archive_year.html:6
-#: templates/zinnia/entry_archive_year.html:11
-#: templates/zinnia/tags/entries_archives.html:5
-#: templates/zinnia/tags/entries_archives_link.html:2
-#: templates/zinnia/tags/entries_archives_tree.html:6
-#: templates/zinnia/tags/entries_archives_tree.html:13
-#: templates/zinnia/tags/entries_archives_tree.html:23
-msgid "Archives"
-msgstr "آرشیو‌ها"
-
-#: templates/zinnia/base.html:102
-msgid "Tools"
-msgstr "ابزارها"
-
-#: templates/zinnia/base.html:108 templates/zinnia/base.html:109
-msgid "Dashboard"
-msgstr "پیشخوان"
-
-#: templates/zinnia/base.html:115 templates/zinnia/base.html:116
-msgid "Post an entry"
-msgstr "ارسال نوشته"
 
 #: templates/zinnia/category_list.html:4 templates/zinnia/category_list.html:11
 msgid "Category list"
 msgstr "لیست موضوعات"
+
+#: templates/zinnia/category_list.html:6
+msgid "Categories"
+msgstr "موضوعات"
 
 #: templates/zinnia/category_list.html:17
 #: templates/zinnia/tags/categories.html:6
@@ -552,6 +487,27 @@ msgstr "نوشته‌های اخیر"
 #: templates/zinnia/entry_archive.html:17
 msgid "Yearly archives"
 msgstr "بایگانی سالانه"
+
+#: templates/zinnia/entry_archive_day.html:5
+#: templates/zinnia/entry_archive_day.html:7
+#: templates/zinnia/entry_archive_day.html:12
+#: templates/zinnia/entry_archive_day.html:29
+#: templates/zinnia/entry_archive_month.html:4
+#: templates/zinnia/entry_archive_month.html:6
+#: templates/zinnia/entry_archive_month.html:11
+#: templates/zinnia/entry_archive_month.html:37
+#: templates/zinnia/entry_archive_today.html:22
+#: templates/zinnia/entry_archive_week.html:43
+#: templates/zinnia/entry_archive_year.html:4
+#: templates/zinnia/entry_archive_year.html:6
+#: templates/zinnia/entry_archive_year.html:11
+#: templates/zinnia/tags/entries_archives.html:5
+#: templates/zinnia/tags/entries_archives_link.html:2
+#: templates/zinnia/tags/entries_archives_tree.html:6
+#: templates/zinnia/tags/entries_archives_tree.html:13
+#: templates/zinnia/tags/entries_archives_tree.html:23
+msgid "Archives"
+msgstr "آرشیو‌ها"
 
 #: templates/zinnia/entry_archive_day.html:17
 #: templates/zinnia/entry_archive_today.html:16
@@ -1005,6 +961,27 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
+
+#~ msgid "Welcome!"
+#~ msgstr "خوش‌ آمدید!"
+
+#~ msgid "Calendar"
+#~ msgstr "تقویم"
+
+#~ msgid "Random entries"
+#~ msgstr "نوشته‌های تصادفی"
+
+#~ msgid "Popular entries"
+#~ msgstr "نوشته‌های محبوب"
+
+#~ msgid "Tools"
+#~ msgstr "ابزارها"
+
+#~ msgid "Dashboard"
+#~ msgstr "پیشخوان"
+
+#~ msgid "Post an entry"
+#~ msgstr "ارسال نوشته"
 
 #~ msgid "Competition Area"
 #~ msgstr "محیط مسابقه"

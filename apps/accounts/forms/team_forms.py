@@ -30,6 +30,9 @@ class CreateTeamForm(Form):
         if member1_username and member2_username and (member1_username == member2_username):
             self.add_error(None, _("You can't add same users to your team"))
             return False
+        if (not member1_username) and member2_username:
+            self.add_error(None, _("You must select a second member for your team"))
+            return False
         if UserAcceptsTeamInChallenge.objects.filter(user__username__in=[self.user.username, member1_username, member2_username],
                                                      team__challenge_id=self.cleaned_data['challenge_id']).count() > 0:
             self.add_error(None, _("Some of the users are already participating in this challenge"))
@@ -78,3 +81,44 @@ class CreateTeamForm(Form):
     class Meta:
         model = UserParticipatesOnTeam
         fields = ('team_name', 'member1', 'member2',)
+
+
+class AddParticipationForm(Form):
+    member1 = forms.CharField(max_length=30, required=True)
+
+    def is_valid(self):
+        valid = super(Form, self).is_valid()
+        if not self.challenge.can_register():
+            self.add_error(None, _("Registration is not open."))
+            return False
+        member1_username = self.cleaned_data.get('member1', '')
+
+        if not valid:
+            return valid
+        if UserAcceptsTeamInChallenge.objects.filter(user__username=member1_username,
+                                                     team__challenge=self.challenge).count() > 0:
+            self.add_error(None, _("The user is already participating in this challenge"))
+            return False
+        if self.team.participants.count() > self.challenge.team_size - 1:
+            self.add_error(None, _("No more capacity in this challenge."))
+            return False
+        return True
+
+    def __init__(self, user, challenge, team, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.challenge = challenge
+        self.user = user
+        self.team = team
+
+    def save(self, commit=True):
+        member1_username = self.cleaned_data['member1']
+        team = self.team
+
+        member1 = User.objects.get(username__exact=member1_username)
+        user_team1 = UserParticipatesOnTeam(team=team, user=member1)
+        if commit:
+            user_team1.save()
+
+    class Meta:
+        model = UserParticipatesOnTeam
+        fields = ('team_name', 'member1',)

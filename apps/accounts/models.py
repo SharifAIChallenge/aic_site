@@ -34,3 +34,6 @@ class Team(models.Model):
 class UserParticipatesOnTeam(models.Model):
     team = models.ForeignKey(Team, related_name='participants')
     user = models.ForeignKey(User, related_name='teams')
+
+    class Meta:
+        unique_together = ('team', 'user')
