@@ -11,6 +11,7 @@ services:
       - ./static/root:/static/root/static
       - ../media_test/root:/static/root/media
       - /var/log/aic_test_site:/var/log/aic_test_site
+      - /var/log/aic_test_site/nginx/:/var/log/nginx/
       - ./config/nginx/sites-enabled:/etc/nginx/sites-enabled
       - ./config/nginx/sites-available:/etc/nginx/sites-available
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
@@ -28,6 +29,7 @@ services:
     volumes:
       - ./static/root:/root/aic_site/static/root
       - ../media_test/root:/root/aic_site/media
+      - /var/log/aic_test_site:/var/log/aic_site
     depends_on:
       - aic_test_db
     expose:
