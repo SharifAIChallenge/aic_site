@@ -181,7 +181,7 @@ LOGGING = {
             'propagate': True,
             'level': 'INFO',
         },
-        'apps': {
+        '': {
             'handlers': ['logfile'],
             'propagate': True,
             'level': 'INFO',
