@@ -23,7 +23,6 @@ jobs:
     before_script:
     - psql -c "CREATE DATABASE mydb;" -U postgres
     script:
-    - python manage.py makemigrations
     - python manage.py migrate
     - python manage.py test
   - stage: deploy_production
