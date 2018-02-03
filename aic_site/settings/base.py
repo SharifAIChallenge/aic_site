@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'apps.utils'
 ]
 
-
 INSTALLED_APPS += (
     'threadedcomments',
     'django_comments',
@@ -62,7 +61,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 ROOT_URLCONF = 'aic_site.urls'
 
@@ -155,3 +153,43 @@ LOCALE_PATHS = (
 
 NOCAPTCHA = True
 
+LOGGING = {
+    'version': 1,
+    # 'disable_existing_loggers': True,
+    # 'formatters': {
+    #     'standard': {
+    #         'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+    #         'datefmt': "%d/%b/%Y %H:%M:%S"
+    #     },
+    # },
+    'handlers': {
+        'logfile': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': "/var/log/aic_site/aic_web.log",
+            'maxBytes': 50000,
+            'backupCount': 2,
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'logfile'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        '': {
+            'handlers': ['logfile'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    }
+}
