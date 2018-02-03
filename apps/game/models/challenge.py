@@ -49,7 +49,8 @@ class TeamParticipatesChallenge(models.Model):
     challenge = models.ForeignKey(Challenge, related_name='teams')
 
     class Meta:
-        verbose_name_plural='Team Participates In Challenges'
+        unique_together = ('team', 'challenge')
+        verbose_name_plural = 'Team Participates In Challenges'
 
     def __str__(self):
         team_name = ugettext('None')
@@ -92,6 +93,9 @@ class TeamParticipatesChallenge(models.Model):
 class UserAcceptsTeamInChallenge(models.Model):
     team = models.ForeignKey(TeamParticipatesChallenge, related_name='users_acceptance')
     user = models.ForeignKey(User, related_name='accepted_teams')
+
+    class Meta:
+        unique_together = ('team', 'user')
 
 
 def get_submission_file_directory(instance, filename):

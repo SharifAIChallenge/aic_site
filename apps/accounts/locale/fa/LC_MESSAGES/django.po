@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-01 14:06+0000\n"
+"POT-Creation-Date: 2018-02-03 14:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید
 msgid "Required,Choose a suitable name for your team"
 msgstr "انتخاب نام تیم لازم است!"
 
-#: apps/accounts/forms/team_forms.py:20
+#: apps/accounts/forms/team_forms.py:20 apps/accounts/forms/team_forms.py:92
 msgid "Registration is not open."
 msgstr "ثبت نام هم‌اکنون باز نیست."
 
@@ -38,9 +38,41 @@ msgstr "این نام قبلا توسط تیمی دیگر استفاده شده 
 msgid "You can't add same users to your team"
 msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
 
-#: apps/accounts/forms/team_forms.py:35
+#: apps/accounts/forms/team_forms.py:34
+msgid "You must select a second member for your team"
+msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
+
+#: apps/accounts/forms/team_forms.py:38
 msgid "Some of the users are already participating in this challenge"
 msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
+
+#: apps/accounts/forms/team_forms.py:100
+msgid "The user is already participating in this challenge"
+msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
+
+#: apps/accounts/forms/team_forms.py:103
+msgid "No more capacity in this challenge."
+msgstr "تیم در این چالش دیگر ظرفیت ندارد!"
+
+#: apps/accounts/templates/accounts/add_member.html:8
+msgid "Add a member to"
+msgstr "اضافه کردن عضو به"
+
+#: apps/accounts/templates/accounts/add_member.html:12
+#: apps/accounts/templates/accounts/login.html:14
+#: apps/accounts/templates/accounts/panel.html:39
+#: apps/accounts/templates/accounts/signup.html:12
+msgid "Username"
+msgstr "نام کاربری"
+
+#: apps/accounts/templates/accounts/add_member.html:21
+msgid "Add"
+msgstr "اضافه کن"
+
+#: apps/accounts/templates/accounts/add_member.html:24
+#: apps/accounts/templates/accounts/create_team.html:51
+msgid "Error!"
+msgstr "خطا!"
 
 #: apps/accounts/templates/accounts/create_team.html:8
 #: apps/accounts/templates/accounts/create_team.html:48
@@ -72,19 +104,10 @@ msgstr "عضو دوم"
 msgid "Third Member"
 msgstr "عضو سوم"
 
-#: apps/accounts/templates/accounts/create_team.html:51
-msgid "Error!"
-msgstr "خطا!"
-
 #: apps/accounts/templates/accounts/login.html:10
 #: apps/accounts/templates/accounts/login.html:30
 msgid "Login"
 msgstr "ورود"
-
-#: apps/accounts/templates/accounts/login.html:14
-#: apps/accounts/templates/accounts/signup.html:12
-msgid "Username"
-msgstr "نام کاربری"
 
 #: apps/accounts/templates/accounts/login.html:25
 #: apps/accounts/templates/accounts/signup.html:75
@@ -133,19 +156,27 @@ msgstr "رویداد:"
 msgid "Team Status"
 msgstr "وضعیت تیم"
 
-#: apps/accounts/templates/accounts/panel.html:38
-msgid "Members"
-msgstr "اعضا"
+#: apps/accounts/templates/accounts/panel.html:52
+msgid "Remove"
+msgstr "حذف"
 
-#: apps/accounts/templates/accounts/panel.html:51
+#: apps/accounts/templates/accounts/panel.html:57
+msgid "Accepted"
+msgstr "پذیرفت"
+
+#: apps/accounts/templates/accounts/panel.html:68
+msgid "Add a member"
+msgstr "اضافه کردن عضو"
+
+#: apps/accounts/templates/accounts/panel.html:80
 msgid "All users have accepted the challenge."
 msgstr "تمام اعضا شرکت در مسابقه را تایید کرده‌اند."
 
-#: apps/accounts/templates/accounts/panel.html:53
+#: apps/accounts/templates/accounts/panel.html:82
 msgid "All users haven't accepted the challenge yet!"
 msgstr "هنوز همه اعضا شرکت در مسابقه را تایید نکرده‌اند."
 
-#: apps/accounts/templates/accounts/panel.html:150
+#: apps/accounts/templates/accounts/panel.html:180
 msgid "Create New Team"
 msgstr "ایجاد تیم جدید"
 
@@ -200,6 +231,9 @@ msgstr "ثبت نام"
 #: apps/accounts/templates/accounts/update_profile.html:12
 msgid "Update"
 msgstr "ذخیره"
+
+#~ msgid "Members"
+#~ msgstr "اعضا"
 
 #~ msgid "username"
 #~ msgstr "نام کاربری"
