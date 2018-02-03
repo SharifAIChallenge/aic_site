@@ -1,5 +1,6 @@
 {% load comments i18n %}
-<form action="{% comment_form_target %}" method="post">{% csrf_token %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+<form class="ui form" style="margin-{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: 0px;"  action="{% comment_form_target %}" method="post">{% csrf_token %}
     {% if next %}
         <div><input type="hidden" name="next" value="{{ next }}"/></div>
     {% endif %}
@@ -28,14 +29,14 @@
     <p
             {% if form.url.errors %} class="error"{% endif %}
             {% ifequal form.url.name "honeypot" %} style="display:none;"{% endifequal %}>
-        {{ form.url.label_tag }} {{ form.url }}
+        {# {{ form.url.label_tag }} #} {{ form.url }}
     </p>
 
     {% if form.title.errors %}{{ form.title.errors }}{% endif %}
     <p
             {% if form.title.errors %} class="error"{% endif %}
             {% ifequal form.title.name "honeypot" %} style="display:none;"{% endifequal %}>
-        {{ form.title.label_tag }} {{ form.title }}
+        {# {{ form.title.label_tag }} #} {{ form.title }}
     </p>
 
 
@@ -51,4 +52,12 @@
         {#        <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}"/>#}
     </p>
 </form>
+
+{# excuse me for this tof #}
+<script>
+    document.getElementsByName("{{ form.email.name }}").forEach(function (value) { value.value="{{ request.user.email }}"; });
+    document.getElementsByName("{{ form.name.name }}").forEach(function (value) { value.value="{{ request.user.get_full_name }}" });
+    document.getElementsByName("{{ form.title.name }}").forEach(function (value) { value.style="display:none;"; });
+    document.getElementsByName("{{ form.url.name }}").forEach(function (value) { value.style="display:none;"; });
+</script>
 

@@ -28,6 +28,7 @@
 
 
         <button type="submit" class="ui green button">{% trans 'Login' %}</button>
+        <a href="{% url 'accounts:signup' %}" class="ui green button">{% trans 'Sign Up' %}</a>
         <p>
         <a class="ui blue link" href="{% url 'password_reset' %}">{% trans 'I forgot my password' %}</a>
         </p>

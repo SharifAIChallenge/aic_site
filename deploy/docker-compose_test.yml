@@ -9,6 +9,7 @@ services:
       - 2016:2016
     volumes:
       - ./static/root:/static/root/static
+      - ../media_test/root:/static/root/media
       - /var/log/aic_test_site:/var/log/aic_test_site
       - /var/log/aic_test_site/nginx/:/var/log/nginx/
       - ./config/nginx/sites-enabled:/etc/nginx/sites-enabled
@@ -27,6 +28,7 @@ services:
 #    cp /patches/zinnia_migrations.py /usr/local/lib/python3.5/dist-packages/zinnia/migrations/0003_publication_date.py &&
     volumes:
       - ./static/root:/root/aic_site/static/root
+      - ../media_test/root:/root/aic_site/media
       - /var/log/aic_test_site:/var/log/aic_site
     depends_on:
       - aic_test_db

@@ -5,7 +5,7 @@
 
 {% block body-class %}comment-preview{% endblock body-class %}
 
-{% block content %}
+{% block container %}
   {% if form.errors %}
   <h2>{% blocktrans count errors=form.errors|length %}Please correct following error.{% plural %}Please correct following errors.{% endblocktrans %}</h2>
   {% else %}
@@ -31,4 +31,4 @@
   </ol>
   {% endif %}
   {% include "comments/zinnia/entry/form.html" %}
-{% endblock content %}
+{% endblock container %}

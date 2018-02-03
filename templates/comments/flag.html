@@ -1,9 +1,9 @@
-{% extends "comments/base.html" %}
+{% extends "base/base.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Flag this comment" %}{% endblock %}
 
-{% block content %}
+{% block container %}
   <h1>{% trans "Really flag this comment?" %}</h1>
   <blockquote>{{ comment|linebreaks }}</blockquote>
   <form action="." method="post">{% csrf_token %}

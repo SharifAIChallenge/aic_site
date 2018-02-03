@@ -1,4 +1,5 @@
 {% load comments i18n %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 <form action="{% comment_form_target %}" method="post" id="comment-form">
     <div>{% csrf_token %}</div>
     {% if form.non_field_errors %}
@@ -7,7 +8,6 @@
         </div>
     {% endif %}
     <div>
-        {#    <legend>{% trans "Post your comment" %}</legend>#}
         <input type="hidden" name="next" value="{% url 'zinnia:comment_success' %}"/>
 
         {% for field in form %}
@@ -15,8 +15,7 @@
         {% endfor %}
 
 
-        <div class="ui form" id="post-a-comment-form">
-
+        <div class="ui form" style="margin-{% if LANGUAGE_BIDI %}right{% else %}left{% endif %}: 0px;" id="post-a-comment-form">
             <div class="field" id="comment-form-title">
             {% if user.email and form.title.name in "namemailurl" %}{% else %}
                 <div{% if form.title.errors %} class="error"{% endif %}{% ifequal field.name "honeypot" %}
@@ -42,13 +41,15 @@
 
         {% if user.is_authenticated %}
             <p class="auth">
-                {% trans "Comment as" %} <strong>{% firstof user.get_full_name user.get_username %}</strong>. <a
-                    href="{% url 'admin:logout' %}">{% trans "Log out" %}</a>.
+                {% trans "Comment as" %} <strong>{% firstof user.get_full_name user.get_username %}</strong> <a
+                    href="{% url 'accounts:logout' %}">{% trans "Log out" %}</a>
             </p>
+        {% else %}
+            <p></p>
         {% endif %}
         <p class="submit">
             <input type="submit" name="submit" class="ui primary button" value="{% trans "Post" %}"/>
-            {#            <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}"/>#}
+{#                        <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}"/>#}
         </p>
     </div>
 </form>

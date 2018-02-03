@@ -91,7 +91,7 @@ This set of fonts are used in this project under the license: RC4QT
     padding-left: 30px;
 
     width: 100vw !important;
-    font-size: small;
+
     font-weight: bold !important;
 
     -webkit-transition: all 0.2s linear;
@@ -177,11 +177,38 @@ This set of fonts are used in this project under the license: RC4QT
 }
 
 #main #fluid-container {
-    margin-top: -50px !important;
+    margin-top: -55px !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
 
 .ui.form p label {
     padding: 5px !important;
+}
+
+#panel-button {
+    height: 30px;
+    line-height:30px;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.navbar-color #panel-button {
+    background-color: #d8d5d5;
+}
+
+.reverse-navbar-color #panel-button {
+    background-color: #518799;
+    color: white;
+}
+  
+#navbar .large-icon {
+    font-size: 1.5em;
+}
+
+
+.vertical.menu {
+    font-size: medium;
 }
