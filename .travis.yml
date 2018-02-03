@@ -23,6 +23,7 @@ jobs:
     before_script:
     - psql -c "CREATE DATABASE mydb;" -U postgres
     script:
+    - mkdir -p /var/log/aic_site/
     - python manage.py migrate
 #    - python manage.py test
   - stage: deploy_production
