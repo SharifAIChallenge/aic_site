@@ -20,3 +20,14 @@ DATABASES = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGGING['handlers'] = {
+    'console': {
+        'level': 'INFO',
+        'class': 'logging.StreamHandler',
+    },
+    'logfile': {
+        'level': 'INFO',
+        'class': 'logging.NullHandler',
+    },
+}
