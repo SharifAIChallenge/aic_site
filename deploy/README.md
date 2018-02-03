@@ -1,4 +1,4 @@
-# [Sharif AI Challenge site Deployment server](https://aichallenge.sharif.edu/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)] [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)]
+# [Sharif AI Challenge site Deployment server](https://aichallenge.sharif.edu/) &middot; ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 
 Sharif AI Challenge 2018 private deployment server.
 
