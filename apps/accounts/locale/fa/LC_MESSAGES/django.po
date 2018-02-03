@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-02 22:23+0000\n"
+"POT-Creation-Date: 2018-02-03 14:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,8 +39,6 @@ msgid "You can't add same users to your team"
 msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
 
 #: apps/accounts/forms/team_forms.py:34
-#, fuzzy
-#| msgid "You can't add same users to your team"
 msgid "You must select a second member for your team"
 msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نکنید!"
 
@@ -49,10 +47,12 @@ msgid "Some of the users are already participating in this challenge"
 msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
 
 #: apps/accounts/forms/team_forms.py:100
-#, fuzzy
-#| msgid "Some of the users are already participating in this challenge"
 msgid "The user is already participating in this challenge"
 msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
+
+#: apps/accounts/forms/team_forms.py:103
+msgid "No more capacity in this challenge."
+msgstr "تیم در این چالش دیگر ظرفیت ندارد!"
 
 #: apps/accounts/templates/accounts/add_member.html:8
 msgid "Add a member to"
@@ -161,10 +161,8 @@ msgid "Remove"
 msgstr "حذف"
 
 #: apps/accounts/templates/accounts/panel.html:57
-#, fuzzy
-#| msgid "Accept"
 msgid "Accepted"
-msgstr "پذیرفتن"
+msgstr "پذیرفت"
 
 #: apps/accounts/templates/accounts/panel.html:68
 msgid "Add a member"
