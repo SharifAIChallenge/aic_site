@@ -23,9 +23,7 @@ jobs:
     before_script:
     - psql -c "CREATE DATABASE mydb;" -U postgres
     script:
-    - echo pass
-#    - python manage.py migrate
-#    - python manage.py test
+    - python manage.py test
   - stage: deploy_production
     script:
     - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://199.247.7.212:3589/deploy_production")
