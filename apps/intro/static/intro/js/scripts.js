@@ -30,3 +30,7 @@ $(document).on('click', 'a[href^="#"]', function (event) {
     }, 500);
 });
 
+$(document).ready(function(){
+    $('iframe#google_maps_iframe').attr('src', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9627430847677!2d51.34888151486223!3d35.702534430189345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a61f30034b%3A0xe59caa3900cd3c54!2sTehran+Province%2C+Tehran%2C+Azadi+St%2C+Dept.+of+Computer+Eng.%2C+Iran!5e0!3m2!1sen!2s!4v1516927405125');
+});
+
