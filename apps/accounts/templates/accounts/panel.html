@@ -26,12 +26,17 @@
             </div>
         </div>
     {% endfor %}
+    <form method="post" enctype="multipart/form-data" class="ui form">
     {% if accepted_participations|length > 0 %}
-        <form method="post" enctype="multipart/form-data" class="ui form">
             <div class="field">
                 {{ form.team.errors }}
-                <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}</label>
-                {{ form.team }}
+                <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}
+                </label>
+                <select name="{{ form.team.name }}" class="ui dropdown">
+                    {% for choice in form.team.field.choices %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
             <h2>{% trans 'Team Status' %}</h2>
@@ -170,19 +175,24 @@
                     {% csrf_token %}
                     {{ form.non_field_errors }}
                     {% if participation.challenge.is_submission_open %}
-                        <div class="fields">
-                            <div class="two field">
-                                {{ form.file.errors }}
-                                <label for="{{ form.file.id_for_label }}">{% trans 'File:' %}</label>
-                                {{ form.file }}
-                            </div>
-                            <div class="two field">
-                                {{ form.language.errors }}
-                                <label for="{{ form.language.id_for_label }}">{% trans 'Language:' %}</label>
-                                {{ form.language }}
-                            </div>
+                        <div class="one field" >
+                            {{ form.file.errors }}
+                            <label for="{{ form.file.id_for_label }}">{% trans 'File:' %}</label>
+                            {{ form.file }}
                         </div>
-                        <input type="submit" class="ui green button" value="Submit">
+                        <div class="one field" style="height: 100%;">
+                            {{ form.language.errors }}
+                            <label for="{{ form.language.id_for_label }}">{% trans 'Language:' %}</label>
+
+                            <select name="{{ form.language.name }}" class="ui dropdown">
+                                {% for choice in form.language.field.choices %}
+                                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                {% endfor %}
+                            </select>
+
+                        </div>
+
+                        <input type="submit" class="ui green button" value="{% trans 'Submit' %}">
                     {% endif %}
 
                 {% endif %}
@@ -192,7 +202,7 @@
         {% if participation %}
             {% if participation.all_members_accepted %}
                 {% block battle_history %}
-                    {% include 'accounts/battle_history.html' %}
+{#                    {% include 'accounts/battle_history.html' %}#}
                 {% endblock %}
             {% endif %}
         {% endif %}
