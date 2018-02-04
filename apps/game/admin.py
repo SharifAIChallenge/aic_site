@@ -1,10 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-# Register your models here.
-from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map
+from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map, SingleMatch
 
-from apps.game.models import TeamSubmission
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
 
@@ -48,7 +46,7 @@ class ChallengeAdmin(admin.ModelAdmin):
         ('Challenge', {'fields': ['title', 'description', 'registration_open']}),
         ('Challenge Information', {'fields': ['game', 'team_size', 'entrance_price']}),
         ('Challenge Timing', {'fields': ['registration_start_time', 'registration_end_time',
-                                         'start_time', 'end_time']})
+                                         'start_time', 'end_time', 'is_submission_open']})
     ]
     inlines = [CompetitionInline, TeamParticipatesChallengeInline]
 
@@ -59,7 +57,7 @@ class ChallengeAdmin(admin.ModelAdmin):
 
 
 class CompetitionAdmin(admin.ModelAdmin):
-    fields = ['name', 'type']
+    fields = ['name', 'type', 'challenge']
 
     inlines = [MatchInline]
     list_display = ('name', 'type')
@@ -152,11 +150,13 @@ admin.site.register(Competition, CompetitionAdmin)
 admin.site.register(Match, MatchAdmin)
 
 admin.site.register(UserAcceptsTeamInChallenge)
+admin.site.register(Participant)
 
 
 class MapAdmin(admin.ModelAdmin):
-    fields = ['name', 'file', 'token']
+    fields = ['name', 'file', 'token', 'competitions']
     readonly_fields = ['token']
 
 
 admin.site.register(Map, MapAdmin)
+admin.site.register(SingleMatch)

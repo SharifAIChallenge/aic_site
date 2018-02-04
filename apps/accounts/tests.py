@@ -39,6 +39,7 @@ def populate_teams():
 
 def populate_challenges():
     challenge = Challenge()
+    challenge.is_submission_open = True
     challenge.title = "Dummiest Challenge created ever"
     challenge.start_time = timezone.now()
     challenge.end_time = timezone.now() + datetime.timedelta(days=1)
@@ -53,11 +54,13 @@ def populate_challenges():
     challenge.game = game
     challenge.save()
 
+
 def populate_maps():
     for i in range(3):
         map = Map()
         map.name = 'map ' + str(i)
         map.save()
+
 
 def populate_competitions():
     challenge = Challenge.objects.all()[0]
@@ -133,31 +136,31 @@ class TestTeam(TransactionTestCase):
         # test that it says OK
         client.force_login(User.objects.all()[0])
         response = client.get('/accounts/panel/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
         participation = TeamParticipatesChallenge.objects.all()[0]
         response = client.post(
             '/accounts/panel/' + str(participation.id),
             {
                 'file': io.StringIO("Log the game"),
                 'team': participation.id,
-                'language': 'c++'
+                'language': 'cpp'
             }
         )
         self.assertEqual(response.status_code, 200)
         # test that it functions
         time.sleep(0.4)
-        self.assertEqual(TeamSubmission.objects.filter(language="c++").count(), 1)
+        self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 1)
         response = client.post(
             '/accounts/panel/' + str(participation.id),
             {
                 'file': io.StringIO("Log the game"),
                 'team': participation.id,
-                'language': 'c++'
+                'language': 'cpp'
             }
         )
         self.assertEqual(response.status_code, 200)
         time.sleep(0.4)
-        self.assertEqual(TeamSubmission.objects.filter(language="c++").count(), 2)
+        self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 2)
         submissions = list(TeamSubmission.objects.all())
         self.assertFalse(submissions[0].is_final)
         self.assertTrue(submissions[1].is_final)
@@ -165,15 +168,15 @@ class TestTeam(TransactionTestCase):
         # successful scenario coverage
         self.assertEqual(submissions[0].status, 'compiling')
 
-        json_str = json.dumps([{
-            'id': submissions[0].infra_token,
+        json_str = json.dumps({
+            'id': submissions[0].infra_compile_token,
             'operation': 'compile',
             'status': 2,
             'parameters': {
                 'code_compiled_zip': functions.random_token(),
                 'code_log': functions.random_token()
             }
-        }])
+        })
         response = client.post('/game/api/report', data=json_str, content_type='application/json',
                                **{'HTTP_AUTHORIZATION': settings.INFRA_AUTH_TOKEN})
 

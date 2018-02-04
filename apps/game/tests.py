@@ -1,16 +1,18 @@
-import datetime
-from operator import itemgetter
-from unittest import skip
+import json
+import time
 
-from django.test import TestCase, TransactionTestCase
+from datetime import timedelta
+
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.test import TestCase, TransactionTestCase, client, Client
 from django.utils import timezone
 
 from apps.accounts import tests
-
 from apps.accounts.models import Team, UserParticipatesOnTeam
-from apps.game.models import Match, Challenge, Competition, Game, Map
+from apps.game import functions
+from apps.game.models import Match, Challenge, Competition, Game, Map, TeamSubmission, Participant, SingleMatch
 from apps.game.models.challenge import TeamParticipatesChallenge
-from django.contrib.auth.models import User
 
 
 class TestGame(TransactionTestCase):
@@ -21,62 +23,86 @@ class TestGame(TransactionTestCase):
         tests.populate_challenges()
         tests.populate_maps()
         tests.populate_competitions()
-        pass
 
-        # def test_functions(self):
-        #     teams = Team.objects.all()
-        #     competition = Competition.objects.get(type='elim')
-        #     challenge = Challenge.objects.all()[0]
-        #     team_participation = []
-        #     for team in teams:
-        #         participation = TeamParticipatesChallenge()
-        #         participation.team = team
-        #         participation.challenge = challenge
-        #         participation.save()
-        #         team_participation.append(participation)
-        #
-        #     matches = []
-        #     for i in range(3):
-        #         matches.append(Match())
-        #         participants = []
-        #         for j in range(2):
-        #             participant = Participant()
-        #             participant.depend = team_participation[(i + j) % 3]
-        #             participant.save()
-        #             participants.append(participant)
-        #         matches[i].part1 = participants[0]
-        #         matches[i].part2 = participants[1]
-        #         matches[i].competition = competition
-        #         matches[i].save()
-        #
-        #     challenge.competitions = [competition]
-        #     challenge.save()
-        #
-        #     ''' teams and matches initialized '''
-        #
-        #     self.assertTrue(upload_file(open("README.md", "r")) is not None)
-        #
-        #     file_token1 = upload_file(open("README.md", "r"))
-        #
-        #     submit_tokens1 = compile_submissions([file_token1])
-        #     TeamSubmission.objects.create(team=team_participation[0], infra_token=submit_tokens1[0]["run_id"])
-        #
-        #     time.sleep(0.4)  # Wait for the compilation results
-        #
-        #     file_token2 = upload_file(open("README.md", "r"))
-        #     submit_tokens2 = compile_submissions([file_token2], "AIC2018")
-        #     TeamSubmission.objects.create(team=team_participation[1], infra_token=submit_tokens2[0]["run_id"])
-        #
-        #     time.sleep(0.4)  # Wait for the compilation results
-        #
-        #     match_tokens = run_matches([matches[0]])
-        #     Match.objects.filter(id=matches[0].id).update(infra_token=match_tokens[0]["run_id"])
-        #
-        #     time.sleep(0.4)  # Wait for the matches results
-        #
-        #     self.assertEqual(TeamSubmission.objects.get(infra_token=submit_tokens1[0]["run_id"]).infra_compile_message, 'ok')
-        #     self.assertEqual(TeamSubmission.objects.get(infra_token=submit_tokens2[0]["run_id"]).infra_compile_message, 'ok')
-        #     self.assertEqual(Match.objects.get(infra_token=match_tokens[0]["run_id"]).infra_match_message, 'ok')
+    def test_functions(self):
+        teams = Team.objects.all()
+        competition = Competition.objects.get(type='elim')
+        challenge = Challenge.objects.all()[0]
+        team_participation = []
+        for team in teams:
+            participation = TeamParticipatesChallenge()
+            participation.team = team
+            participation.challenge = challenge
+            participation.save()
+            team_participation.append(participation)
+
+        matches = []
+        for i in range(3):
+            matches.append(Match())
+            participants = []
+            for j in range(2):
+                participant = Participant()
+                participant.depend = team_participation[(i + j) % 3]
+                participant.save()
+                participants.append(participant)
+            matches[i].part1 = participants[0]
+            matches[i].part2 = participants[1]
+            matches[i].competition = competition
+            matches[i].save()
+
+        challenge.competitions = [competition]
+        challenge.save()
+
+        ''' teams and matches initialized '''
+
+        self.assertTrue(functions.upload_file(open("README.md", "r")) is not None)
+
+        file_token1 = functions.upload_file(open("README.md", "r"))
+
+        submit_tokens1 = functions.compile_submissions([file_token1])
+        TeamSubmission.objects.create(team=team_participation[0], infra_token=submit_tokens1[0]["run_id"])
+
+        time.sleep(0.4)  # Wait for the compilation results
+
+        submission = TeamSubmission.objects.create(team=team_participation[1])
+        submission.handle()
+
+        client = Client()
+
+        json_str = json.dumps({
+            'id': submission.infra_compile_token,
+            'operation': 'compile',
+            'status': 2,
+            'parameters': {
+                'code_compiled_zip': functions.random_token(),
+                'code_log': functions.random_token()
+            }
+        })
+        response = client.post('/game/api/report', data=json_str, content_type='application/json',
+                               **{'HTTP_AUTHORIZATION': settings.INFRA_AUTH_TOKEN})
+
+        self.assertEqual(response.status_code, 200)
+
+        single_match = SingleMatch.objects.create(match=matches[0], map=Map.objects.first())
+        single_match.handle()
+
+        time.sleep(0.4)  # Wait for the matches results
+
+        self.assertEqual(
+            TeamSubmission.objects.get(infra_token=submit_tokens1[0]["run_id"]).infra_compile_message,
+            None
+        )
+
+        # TODO successful run coverage
+
+        # timeout coverage
+        json_str = '{"id": "' + single_match.infra_token + '", "operation": "run", "status": 3, "end_time": ' \
+                   '"2018-02-04T10:18:11.128063Z", "log": "ERROR: Killing manager due to timeout after ' \
+                   '402.2596387863159 seconds\n", "parameters": {}} '
+        response = client.post('/game/api/report', data=json_str, content_type='application/json',
+                               **{'HTTP_AUTHORIZATION': settings.INFRA_AUTH_TOKEN})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(matches[0].single_matches.first().status, 'failed')
 
 
 class TestScheduling(TestCase):
@@ -88,7 +114,6 @@ class TestScheduling(TestCase):
         tests.populate_maps()
         tests.populate_competitions()
 
-    @skip("Map model known issue.")
     def test_create_new_league(self):
         challenge = Challenge.objects.all()[0]
         for team in Team.objects.all():
@@ -98,7 +123,7 @@ class TestScheduling(TestCase):
             participation.save()
         competition = Competition(challenge=challenge, type='league')
         competition.save()
-        competition.create_new_league(teams=Team.objects.all(),rounds_num=2)
+        competition.create_new_league(teams=Team.objects.all(), rounds_num=2)
 
         # expected result
         # 1 -> 3
@@ -140,7 +165,6 @@ class TestScheduling(TestCase):
         self.assertEqual(matches[11].part2.object_id, None)
         self.assertEqual(matches[11].part1.object_id, 3)
 
-    @skip("Map model known issue.")
     def test_create_new_double_elimination(self):
         challenge = Challenge.objects.all()[0]
         for team in Team.objects.all():
@@ -201,11 +225,12 @@ class TestDoubleElimination(TestCase):
             participation.save()
             i += 1
 
-    def populate_challenges(self):
+    @staticmethod
+    def populate_challenges():
         challenge = Challenge()
         challenge.title = "Dummiest Challenge created ever"
         challenge.start_time = timezone.now()
-        challenge.end_time = timezone.now() + datetime.timedelta(days=1)
+        challenge.end_time = timezone.now() + timedelta(days=1)
         challenge.registration_start_time = challenge.start_time
         challenge.registration_end_time = challenge.end_time
         challenge.registration_open = True
@@ -217,13 +242,15 @@ class TestDoubleElimination(TestCase):
         challenge.game = game
         challenge.save()
 
-    def populate_maps(self):
+    @staticmethod
+    def populate_maps():
         for i in range(3):
             map = Map()
             map.name = 'map ' + str(i)
             map.save()
 
-    def populate_competitions(self):
+    @staticmethod
+    def populate_competitions():
         challenge = Challenge.objects.all()[0]
         maps = list(Map.objects.all())
         types = ['elim', 'league', 'double']
@@ -358,7 +385,7 @@ class TestScoreboard(TestCase):
         challenge = Challenge()
         challenge.title = "Dummiest Challenge created ever"
         challenge.start_time = timezone.now()
-        challenge.end_time = timezone.now() + datetime.timedelta(days=1)
+        challenge.end_time = timezone.now() + timedelta(days=1)
         challenge.registration_start_time = challenge.start_time
         challenge.registration_end_time = challenge.end_time
         challenge.registration_open = True
@@ -470,8 +497,6 @@ class TestScoreboard(TestCase):
     #                 for i in range(len(matches[wl][r][m])):
     #                     # print('i = ' + str(i) + ' , ' + matches[wl][r][m][i])
     #                     pass
-
-
 
     # def render_league(self, competition_id):
     #     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())

@@ -115,13 +115,8 @@ def download_file(file_token):
 def compile_submissions(submissions):
     """
         Tell the infrastructure to compile a list of submissions
-    :param file_tokens: array of strings
-    :param game_id: string
     :return: list of dictionaries each have token, success[, errors] keys
     """
-    #
-
-    # Test code
     requests = list()
     for submission in submissions:
         requests.append({
@@ -146,32 +141,27 @@ def compile_submissions(submissions):
     return compile_details
 
 
-def run_matches(matches):
+def run_matches(single_matches):
     """
-        Tell the infrastructure to run a list of matches (match includes tokens,maps,...)
-    :param matches: List of match objects, having these functions:
-        get_first_file(): String
-        get_second_file: String
-        get_map(): String
-        get_game_id(): String
-
-        and any other potential parameters
+        Tell the infrastructure to run a list of single_matches (single_match includes tokens,maps,...)
+    :param single_matches:
     :return: Returns the list of tokens and success status and errors assigned to the matches
     """
 
     games = []
-    for match in matches:
+    for single_match in single_matches:
         games.append({
-            "game": match.get_game_id(),
+            "game": single_match.get_game_id(),
             "operation": "run",
             "parameters": {
-                "server_game_config": match.get_map(),
-                "client1_id": match.part1.submission.id,
-                "client1_token": str(uuid.uuid4()),
-                "client1_code": match.get_first_file(),
-                "client2_id": match.part2.submission.id,
-                "client2_token": str(uuid.uuid4()),
-                "client2_code": match.get_second_file(),
+                "server_game_config": single_match.get_map(),
+                "client1_id": single_match.match.part1.submission.id,
+                "client1_token": random_token(),
+                "client1_code": single_match.get_first_file(),
+                "client2_id": single_match.match.part2.submission.id,
+                "client2_token": random_token(),
+                "client2_code": single_match.get_second_file(),
+                "logger_token": random_token(),
             }
         })
 

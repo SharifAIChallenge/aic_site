@@ -1,12 +1,18 @@
+import codecs
 import json
+import logging
 from operator import itemgetter
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse, Http404
+from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
-from apps.game.models import Competition, TeamParticipatesChallenge
+from apps.game import functions
+from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch
+
+logger = logging.getLogger(__name__)
 
 
 @login_required()
@@ -162,75 +168,66 @@ def render_league(request, competition_id):
     })
 
 
-from apps.game.models import TeamSubmission
-from apps.game import functions
-
-
-@login_required()
+@csrf_exempt
 def report(request):
-    if not request.content_type == 'application/json':
-        return HttpResponseBadRequest()
-    if request.method != 'POST':
-        return HttpResponseBadRequest()
-
-    received_json_data = json.loads(request.body.decode("utf-8"))
-
+    logger.debug("Someone calling report")
     if request.META.get('HTTP_AUTHORIZATION') != settings.INFRA_AUTH_TOKEN:
         return HttpResponseBadRequest()
+    logger.debug("BODY: " + request.body.decode("utf-8"))
+    single_report = json.loads(request.body.decode("utf-8"), strict=False)
+    logger.debug("Deserialized json")
+    if single_report['operation'] == 'compile':
+        if TeamSubmission.objects.filter(infra_compile_token=single_report['id']).count() != 1:
+            logger.error('Error while finding team submission in report view')
+            return HttpResponseServerError()
 
-    client, schema = functions.create_infra_client()
+        submit = TeamSubmission.objects.get(infra_compile_token=single_report['id'])
+        if single_report['status'] == 2:
+            submit.infra_compile_token = single_report['parameters'].get('code_compiled_zip', None)
+            if submit.status == 'compiling':
+                try:
+                    logfile = functions.download_file(single_report['parameters']['code_log'])
+                except Exception as e:
+                    logger.error('Error while download log of compile: %s' % e)
+                    return HttpResponseServerError()
 
-    reports = received_json_data
+                reader = codecs.getreader('utf-8')
 
-    for single_report in reports:
-        if single_report['operation'] == 'compile':
-            if len(TeamSubmission.objects.filter(infra_token=single_report['id'])) == 0:
-                continue
-            submit = TeamSubmission.objects.get(infra_token=single_report['id'])
-            if single_report['status'] == 2:
-                submit.infra_compile_token = single_report['parameters']['code_compiled_zip']
-                if submit.status == 'compiling':
-                    try:
-                        logfile = functions.download_file(single_report['parameters']['code_log'])
-                    except Exception as exception:
-                        continue
-                    log = json.load(logfile)
-                    if len(log["errors"]) == 0:
-                        submit.status = 'compiled'
-                    else:
-                        submit.status = 'failed'
-                        submit.infra_compile_message = '\n'.join(error for error in log["errors"])
-            elif single_report['status'] == 3:
-                submit.status = 'failed'
-                submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
-            submit.save()
-            return JsonResponse({'success': True})
-        elif single_report['operation'] == 'execute':
-            # try:
-            #     game = Game.objects.get(run_id=single_report['id'])
-            # except Exception as exception:
-            #     continue
-            # print("Game is {} with status".format(game.run_id, single_report['status']))
-            # if single_report['status'] == 2:
-            #     logfile = client.action(schema, ['storage', 'get_file', 'read'],
-            #                             params={'token': single_report['parameters']['game_log']})
-            #     if logfile is None:
-            #         continue
-            #
-            #     submissions = list(GameTeamSubmit.objects.all().filter(game=game).order_by('pk'))
-            #     submissions[0].score, submissions[1].score = json.load(
-            #         client.action(schema, ['storage', 'get_file', 'read'],
-            #                       params={'token': single_report['parameters']['game_score']}))
-            #     submissions[0].save()
-            #     submissions[1].save()
-            #     game.log = logfile.read()
-            #     game.log_file.save(single_report['parameters']['game_log'], ContentFile(game.log))
-            #     game.status = 3
-            # elif single_report['status'] == 3:
-            #     game.status = 4
-            #     pass
-            #     # run_game.delay(game.id)
-            # game.save()
-            return Http404()
+                log = json.load(reader(logfile))
+                if len(log["errors"]) == 0:
+                    submit.status = 'compiled'
+                else:
+                    submit.status = 'failed'
+                    submit.infra_compile_message = '\n'.join(error for error in log["errors"])
+        elif single_report['status'] == 3:
+            submit.status = 'failed'
+            submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
+        submit.save()
+        return JsonResponse({'success': True})
+
+    elif single_report['operation'] == 'run':
+        logger.debug("Getting run report")
+        try:
+            single_match = SingleMatch.objects.get(infra_token=single_report['id'])
+            logger.debug("Obtained relevant single match")
+        except Exception as exception:
+            logger.error(exception)
+            return HttpResponseBadRequest()
             pass
-        return HttpResponseServerError()
+
+        if single_report['status'] == 2:
+            logger.debug("Report status is OK")
+            logfile = functions.download_file(single_report['parameters']['game_log'])
+            if logfile is None:
+                pass
+            single_match.status = 'done'
+            single_match.log = logfile
+            single_match.update_scores_from_log()
+        elif single_report['status'] == 3:
+            single_match.status = 'failed'
+            single_match.infra_match_message = single_report['log']
+        else:
+            return JsonResponse({'success': False, 'error': 'Invalid Status.'})
+        single_match.save()
+        return JsonResponse({'success': True})
+    return HttpResponseServerError()

@@ -1,0 +1,48 @@
+{% load static i18n %}
+
+<div id="challenge-teams">
+    <h2>{% trans 'Battle history' %}</h2>
+    <table class="ui center aligned table table-bordered">
+        <thead>
+            <tr>
+                <th>{% trans 'Time' %}</th>
+                <th>{% trans 'Team' %}</th>
+                <th>{% trans 'Log' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for match in battle_history %}
+                <tr>
+                    <td>{{ match.part2 }}</td>
+                    <td>date</td>
+                    <td>ss</td>
+                </tr>
+
+
+            {% endfor %}
+            <tr>
+                <td>
+                    s
+                </td>
+                <td>date</td>
+                <td>ss</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    <div class="ui grid">
+        <div class="row">
+            <form action="{% url 'accounts:challenge_a_team' participation_id %}" method="post" >
+                {% csrf_token %}
+                {{ form_challenge.battle_team }}
+                {{ form_challenge.battle_team_maps }}
+                <input type="submit" class="ui green button" value="Submit">
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="{% static 'accounts/js/challenge_teams.js' %}"></script>
