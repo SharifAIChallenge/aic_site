@@ -46,7 +46,7 @@ class ChallengeAdmin(admin.ModelAdmin):
         ('Challenge', {'fields': ['title', 'description', 'registration_open']}),
         ('Challenge Information', {'fields': ['game', 'team_size', 'entrance_price']}),
         ('Challenge Timing', {'fields': ['registration_start_time', 'registration_end_time',
-                                         'start_time', 'end_time']})
+                                         'start_time', 'end_time', 'is_submission_open']})
     ]
     inlines = [CompetitionInline, TeamParticipatesChallengeInline]
 

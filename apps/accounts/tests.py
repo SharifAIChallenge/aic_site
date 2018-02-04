@@ -39,6 +39,7 @@ def populate_teams():
 
 def populate_challenges():
     challenge = Challenge()
+    challenge.is_submission_open = True
     challenge.title = "Dummiest Challenge created ever"
     challenge.start_time = timezone.now()
     challenge.end_time = timezone.now() + datetime.timedelta(days=1)
