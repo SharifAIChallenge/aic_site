@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-03 14:34+0000\n"
+"POT-Creation-Date: 2018-02-04 21:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr "اضافه کردن عضو به"
 
 #: apps/accounts/templates/accounts/add_member.html:12
 #: apps/accounts/templates/accounts/login.html:14
-#: apps/accounts/templates/accounts/panel.html:39
+#: apps/accounts/templates/accounts/panel.html:47
 #: apps/accounts/templates/accounts/signup.html:12
 msgid "Username"
 msgstr "نام کاربری"
@@ -73,6 +73,23 @@ msgstr "اضافه کن"
 #: apps/accounts/templates/accounts/create_team.html:51
 msgid "Error!"
 msgstr "خطا!"
+
+#: apps/accounts/templates/accounts/battle_history.html:4
+msgid "Battle history"
+msgstr "نبردها"
+
+#: apps/accounts/templates/accounts/battle_history.html:8
+#: apps/accounts/templates/accounts/panel.html:107
+msgid "Time"
+msgstr "زمان"
+
+#: apps/accounts/templates/accounts/battle_history.html:9
+msgid "Team"
+msgstr "نام تیم"
+
+#: apps/accounts/templates/accounts/battle_history.html:10
+msgid "Log"
+msgstr "ورود"
 
 #: apps/accounts/templates/accounts/create_team.html:8
 #: apps/accounts/templates/accounts/create_team.html:48
@@ -124,59 +141,87 @@ msgstr "ثبت نام"
 msgid "I forgot my password"
 msgstr "رمزم را فراموش کردم"
 
-#: apps/accounts/templates/accounts/panel.html:11
+#: apps/accounts/templates/accounts/panel.html:12
 msgid "You are invited to the team "
 msgstr "شما به تیم "
 
-#: apps/accounts/templates/accounts/panel.html:11
+#: apps/accounts/templates/accounts/panel.html:12
 msgid " on the challenge "
 msgstr " در رقابت "
 
-#: apps/accounts/templates/accounts/panel.html:11
+#: apps/accounts/templates/accounts/panel.html:12
 msgid ", do you accept?"
 msgstr " دعوت شده اید، آیا می‌پذیرید؟"
 
-#: apps/accounts/templates/accounts/panel.html:12
+#: apps/accounts/templates/accounts/panel.html:13
 msgid "Members are:"
 msgstr "اعضا:"
 
-#: apps/accounts/templates/accounts/panel.html:21
+#: apps/accounts/templates/accounts/panel.html:23
 msgid "Accept"
 msgstr "پذیرفتن"
 
-#: apps/accounts/templates/accounts/panel.html:22
+#: apps/accounts/templates/accounts/panel.html:25
 msgid "Reject"
 msgstr "ردکردن"
 
-#: apps/accounts/templates/accounts/panel.html:30
+#: apps/accounts/templates/accounts/panel.html:33
 msgid "Challenge:"
 msgstr "رویداد:"
 
-#: apps/accounts/templates/accounts/panel.html:34
+#: apps/accounts/templates/accounts/panel.html:42
 msgid "Team Status"
 msgstr "وضعیت تیم"
 
-#: apps/accounts/templates/accounts/panel.html:52
+#: apps/accounts/templates/accounts/panel.html:61
 msgid "Remove"
 msgstr "حذف"
 
-#: apps/accounts/templates/accounts/panel.html:57
+#: apps/accounts/templates/accounts/panel.html:66
 msgid "Accepted"
 msgstr "پذیرفت"
 
-#: apps/accounts/templates/accounts/panel.html:68
+#: apps/accounts/templates/accounts/panel.html:78
 msgid "Add a member"
 msgstr "اضافه کردن عضو"
 
-#: apps/accounts/templates/accounts/panel.html:80
+#: apps/accounts/templates/accounts/panel.html:90
 msgid "All users have accepted the challenge."
 msgstr "تمام اعضا شرکت در مسابقه را تایید کرده‌اند."
 
-#: apps/accounts/templates/accounts/panel.html:82
+#: apps/accounts/templates/accounts/panel.html:92
 msgid "All users haven't accepted the challenge yet!"
 msgstr "هنوز همه اعضا شرکت در مسابقه را تایید نکرده‌اند."
 
+#: apps/accounts/templates/accounts/panel.html:102
+msgid "Submissions"
+msgstr "ارسال‌ها"
+
+#: apps/accounts/templates/accounts/panel.html:106
+msgid "Selected"
+msgstr "انتخاب‌شده"
+
+#: apps/accounts/templates/accounts/panel.html:108
+msgid "Language"
+msgstr "زبان"
+
+#: apps/accounts/templates/accounts/panel.html:109
+msgid "Status"
+msgstr "وضعیت"
+
 #: apps/accounts/templates/accounts/panel.html:180
+msgid "File:"
+msgstr "فایل:"
+
+#: apps/accounts/templates/accounts/panel.html:185
+msgid "Language:"
+msgstr "زبان:"
+
+#: apps/accounts/templates/accounts/panel.html:195
+msgid "Submit"
+msgstr "ارسال"
+
+#: apps/accounts/templates/accounts/panel.html:215
 msgid "Create New Team"
 msgstr "ایجاد تیم جدید"
 
@@ -255,21 +300,3 @@ msgstr "ذخیره"
 
 #~ msgid "a verification link has been sent to your Email"
 #~ msgstr "یک لینک فعال سازی به ایمیل شما ارسال شد"
-
-#~ msgid "Selected"
-#~ msgstr "انتخاب‌شده"
-
-#~ msgid "Time"
-#~ msgstr "زمان"
-
-#~ msgid "Language"
-#~ msgstr "زبان"
-
-#~ msgid "Status"
-#~ msgstr "وضعیت"
-
-#~ msgid "File:"
-#~ msgstr "فایل:"
-
-#~ msgid "Language:"
-#~ msgstr "زبان:"
