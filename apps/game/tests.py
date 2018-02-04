@@ -11,7 +11,7 @@ from django.utils import timezone
 from apps.accounts import tests
 from apps.accounts.models import Team, UserParticipatesOnTeam
 from apps.game import functions
-from apps.game.models import Match, Challenge, Competition, Game, Map, TeamSubmission, Participant
+from apps.game.models import Match, Challenge, Competition, Game, Map, TeamSubmission, Participant, SingleMatch
 from apps.game.models.challenge import TeamParticipatesChallenge
 
 
@@ -83,8 +83,8 @@ class TestGame(TransactionTestCase):
 
         self.assertEqual(response.status_code, 200)
 
-        match_tokens = functions.run_matches([matches[0]])
-        Match.objects.filter(id=matches[0].id).update(infra_token=match_tokens[0]["run_id"])
+        single_match = SingleMatch.objects.create(match=matches[0], map=Map.objects.first())
+        single_match.handle()
 
         time.sleep(0.4)  # Wait for the matches results
 
@@ -93,7 +93,16 @@ class TestGame(TransactionTestCase):
             None
         )
 
-        # TODO add run report coverage
+        # TODO successful run coverage
+
+        # timeout coverage
+        json_str = '{"id": "' + single_match.infra_token + '", "operation": "run", "status": 3, "end_time": ' \
+                   '"2018-02-04T10:18:11.128063Z", "log": "ERROR: Killing manager due to timeout after ' \
+                   '402.2596387863159 seconds\n", "parameters": {}} '
+        response = client.post('/game/api/report', data=json_str, content_type='application/json',
+                               **{'HTTP_AUTHORIZATION': settings.INFRA_AUTH_TOKEN})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(matches[0].single_matches.first().status, 'failed')
 
 
 class TestScheduling(TestCase):

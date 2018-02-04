@@ -170,10 +170,12 @@ def render_league(request, competition_id):
 
 @csrf_exempt
 def report(request):
+    logger.debug("Someone calling report")
     if request.META.get('HTTP_AUTHORIZATION') != settings.INFRA_AUTH_TOKEN:
         return HttpResponseBadRequest()
-    single_report = json.loads(request.body.decode("utf-8"))
-
+    logger.debug("BODY: " + request.body.decode("utf-8"))
+    single_report = json.loads(request.body.decode("utf-8"), strict=False)
+    logger.debug("Deserialized json")
     if single_report['operation'] == 'compile':
         if TeamSubmission.objects.filter(infra_compile_token=single_report['id']).count() != 1:
             logger.error('Error while finding team submission in report view')
@@ -204,18 +206,28 @@ def report(request):
         return JsonResponse({'success': True})
 
     elif single_report['operation'] == 'run':
+        logger.debug("Getting run report")
         try:
             single_match = SingleMatch.objects.get(infra_token=single_report['id'])
+            logger.debug("Obtained relevant single match")
         except Exception as exception:
+            logger.error(exception)
+            return HttpResponseBadRequest()
             pass
-            # continue
+
         if single_report['status'] == 2:
+            logger.debug("Report status is OK")
             logfile = functions.download_file(single_report['parameters']['game_log'])
             if logfile is None:
                 pass
-                # continue
+            single_match.status = 'done'
             single_match.log = logfile
             single_match.update_scores_from_log()
-            single_match.save()
-            return JsonResponse({'success': True})
+        elif single_report['status'] == 3:
+            single_match.status = 'failed'
+            single_match.infra_match_message = single_report['log']
+        else:
+            return JsonResponse({'success': False, 'error': 'Invalid Status.'})
+        single_match.save()
+        return JsonResponse({'success': True})
     return HttpResponseServerError()
