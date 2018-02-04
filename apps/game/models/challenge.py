@@ -28,6 +28,7 @@ class Challenge(models.Model):
     team_size = models.IntegerField()
     entrance_price = models.IntegerField()  # In Toomans, 0 for free
     game = models.ForeignKey(Game)
+    is_submission_open = models.BooleanField(null=False, blank=False,default=False)
 
     def __str__(self):
         return self.title
