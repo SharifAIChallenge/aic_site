@@ -561,10 +561,10 @@ class SingleMatch(models.Model):
         return None
 
     def get_first_file(self):
-        return self.match.part1.submission.infra_token
+        return self.match.part1.submission.infra_compile_token
 
     def get_second_file(self):
-        return self.match.part2.submission.infra_token
+        return self.match.part2.submission.infra_compile_token
 
     def get_map(self):
         return self.map.token
