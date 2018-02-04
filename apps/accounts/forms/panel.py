@@ -31,7 +31,7 @@ class SubmissionForm(ModelForm):
         is_valid = super().is_valid()
         if not is_valid:
             return False
-        if self.cleaned_data['team'].challenge.is_submission_open:
+        if not self.cleaned_data['team'].challenge.is_submission_open:
             return False
         return True
 
