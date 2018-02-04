@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install -yq python3.5.2 python3-pip vim curl gettext
+RUN apt-get update && apt-get install -yq python3.5 python3-pip vim curl gettext
 RUN mkdir /root/aic_site
 COPY requirements /root/aic_site/requirements
 WORKDIR /root/aic_site/requirements
