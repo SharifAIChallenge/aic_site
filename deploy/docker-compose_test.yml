@@ -24,7 +24,7 @@ services:
     restart: always
 #    environment:
 #    - DJANGO_SETTINGS_MODULE="aic_site.settings.production"
-    command: bash -c "cd .. && python3 manage.py migrate && python3 manage.py compilemessages && python3 manage.py collectstatic <<< yes && gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
+    command: bash -c "cd .. && python3.6 manage.py migrate && python3.6 manage.py compilemessages && python3.6 manage.py collectstatic <<< yes && gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
 #    cp /patches/zinnia_migrations.py /usr/local/lib/python3.5/dist-packages/zinnia/migrations/0003_publication_date.py &&
     volumes:
       - ./static/root:/root/aic_site/static/root
