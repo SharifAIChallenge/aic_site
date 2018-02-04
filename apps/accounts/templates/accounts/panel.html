@@ -6,156 +6,165 @@
 {% for invitation in invitations %}
     <div class="ui info message">
 
-          <i onclick="window.location.href='{% url "accounts:reject_participation" invitation.id %}';" class="close icon"></i>
-      <div class="header">
-        <p>{% trans 'You are invited to the team ' %}"{{ invitation.team }}"{% trans ' on the challenge ' %}"{{ invitation.challenge }}"{% trans ', do you accept?' %}</p>
-          <p>{%  trans 'Members are:' %}</p>
-      </div>
-      <ul class="list">
-          {% for participant in invitation.team.participants.all %}
-            <li>{{ participant.user.username }}: {{ participant.user.first_name }} {{ participant.user.last_name }}</li>
-          {% endfor %}
-      </ul>
+        <i onclick="window.location.href='{% url "accounts:reject_participation" invitation.id %}';"
+           class="close icon"></i>
+        <div class="header">
+            <p>{% trans 'You are invited to the team ' %}"{{ invitation.team }}"{% trans ' on the challenge ' %}"{{ invitation.challenge }}"{% trans ', do you accept?' %}</p>
+            <p>{% trans 'Members are:' %}</p>
+        </div>
+        <ul class="list">
+            {% for participant in invitation.team.participants.all %}
+                <li>{{ participant.user.username }}: {{ participant.user.first_name }} {{ participant.user.last_name }}</li>
+            {% endfor %}
+        </ul>
         <br>
-      <div class="ui buttons">
-        <a href="{% url 'accounts:accept_participation' invitation.id %}" class="ui right aligned green button">{% trans 'Accept' %}</a>
-        <a href="{% url 'accounts:reject_participation' invitation.id %}" class="ui right aligned red button">{% trans 'Reject' %}</a>
-       </div>
+        <div class="ui buttons">
+            <a href="{% url 'accounts:accept_participation' invitation.id %}"
+               class="ui right aligned green button">{% trans 'Accept' %}</a>
+            <a href="{% url 'accounts:reject_participation' invitation.id %}"
+               class="ui right aligned red button">{% trans 'Reject' %}</a>
+        </div>
     </div>
 {% endfor %}
 {% if accepted_participations|length > 0 %}
     <form method="post" enctype="multipart/form-data" class="ui form">
-        <div class="field">
-            {{ form.team.errors }}
-            <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}</label>
-            {{ form.team }}
-        </div>
+    <div class="field">
+        {{ form.team.errors }}
+        <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}</label>
+        {{ form.team }}
+    </div>
 
-        <h2>{% trans 'Team Status' %}</h2>
-        <div>
-            <table class="ui center aligned table">
-                <thead>
-                    <tr>
-                        <th>{% trans 'Username' %}</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for user, removable in participation_members %}
-                    <tr>
-                        <td>{{ user }}</td>
-                        <td>
-                            {% if removable %}
+    <h2>{% trans 'Team Status' %}</h2>
+    <div>
+        <table class="ui center aligned table">
+            <thead>
+            <tr>
+                <th>{% trans 'Username' %}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user, removable in participation_members %}
+                <tr>
+                    <td>{{ user }}</td>
+                    <td>
+                        {% if removable %}
 
-                                <a href="{% url 'accounts:cancel_participation_request' participation.id user.id %}" class="ui right aligned red button tiny">
+                            <a href="{% url 'accounts:cancel_participation_request' participation.id user.id %}"
+                               class="ui right aligned red button tiny">
                                 <i class="remove icon"></i>
-                                    {% trans 'Remove' %}
-                                </a>
-                            {% else %}
-                                <span class="ui right aligned green button tiny">
+                                {% trans 'Remove' %}
+                            </a>
+                        {% else %}
+                            <span class="ui right aligned green button tiny">
                                     <i class="checkmark icon"></i>
                                     {% trans 'Accepted' %}
                                 </span>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-                {% if participation_members|length < participation.challenge.team_size %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'accounts:add_participation' participation.id %}" class="ui right aligned green button tiny">
-                                <i class="add icon"></i>
-                                {% trans 'Add a member' %}
-                            </a>
-                        </td>
-                        <td></td>
-                    </tr>
-                {% endif %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="2">
-                            {% if participation %}
-                                {% if participation.all_members_accepted %}
-                                    {% trans "All users have accepted the challenge." %}
-                                {% else %}
-                                    {% trans "All users haven't accepted the challenge yet!" %}
-                                {% endif %}
-                            {% endif %}
-                        </th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        {% if participation %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            {% if participation_members|length < participation.challenge.team_size %}
+                <tr>
+                    <td>
+                        <a href="{% url 'accounts:add_participation' participation.id %}"
+                           class="ui right aligned green button tiny">
+                            <i class="add icon"></i>
+                            {% trans 'Add a member' %}
+                        </a>
+                    </td>
+                    <td></td>
+                </tr>
+            {% endif %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="2">
+                    {% if participation %}
+                        {% if participation.all_members_accepted %}
+                            {% trans "All users have accepted the challenge." %}
+                        {% else %}
+                            {% trans "All users haven't accepted the challenge yet!" %}
+                        {% endif %}
+                    {% endif %}
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+    {% if participation %}
         {% if participation.all_members_accepted %}
             <h2>{% trans 'Submissions' %}</h2>
             <table class="ui center aligned table table-bordered">
-              <thead>
+                <thead>
                 <tr>
-                  <th>{% trans "Selected" %}</th>
-                  <th>{% trans "Time" %}</th>
-                  <th>{% trans "Language" %}</th>
-                  <th>{% trans "Status" %}</th>
+                    <th>{% trans "Selected" %}</th>
+                    <th>{% trans "Time" %}</th>
+                    <th>{% trans "Language" %}</th>
+                    <th>{% trans "Status" %}</th>
                 </tr>
-              </thead>
-              <tbody>
+                </thead>
+                <tbody>
                 {% for submission in submissions %}
-                <tr>
-                    <td>
-                        <div class="ui checkbox">
-                            <input type="checkbox" class="submission" {% if submission.is_final %}checked="true"{% endif %} data-id="{{ submission.id }}" id="submission_{{ submission.id }}">
-                            <label></label>
-                        </div>
-                    </td>
-                    <style>
-                        add_submission_api({{ submission.id }});
-                    </style>
-                    <td>{{ submission.time }}</td>
-                    <td>{{ submission.language }}</td>
-                    <td>{{ submission.status }}</td>
-                </tr>
+                    <tr>
+                        <td>
+                            <div class="ui checkbox">
+                                <input type="checkbox" class="submission"
+                                        {% if not participation.challenge.is_submission_open %} disabled{% endif %}
+                                       {% if submission.is_final %}checked="true"{% endif %}
+                                       data-id="{{ submission.id }}" id="submission_{{ submission.id }}">
+                                <label></label>
+                            </div>
+                        </td>
+                        <style>
+                            add_submission_api({{ submission.id }});
+                        </style>
+                        <td>{{ submission.time }}</td>
+                        <td>{{ submission.language }}</td>
+                        <td>{{ submission.status }}</td>
+                    </tr>
                 {% endfor %}
-              </tbody>
-              {% if submissions.has_other_pages %}
+                </tbody>
+                {% if submissions.has_other_pages %}
 
-              <tfoot>
-                <tr>
-                    <th colspan="4">
-                      <div class="ui right floated pagination menu">
-                        {% if submissions.has_previous %}
-                        <a class="icon item" href="?page={{ submissions.previous_page_number }}">
-                          <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
-                        </a>
-                        {% else %}
-                        <a class="disabled icon item">
-                          <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
-                        </a>
-                        {% endif %}
-                        {% for i in submissions.paginator.page_range %}
-                          {% if submissions.number == i %}
-                            <a class="active item"><span>{{ i }}</span></a>
-                          {% else %}
-                            <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
-                          {% endif %}
-                        {% endfor %}
-                        {% if submissions.has_next %}
-                        <a class="icon item" href="?page={{ submissions.next_page_number }}">
-                          <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
-                        </a>
-                        {% else %}
-                        <a class="disabled icon item">
-                          <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
-                        </a>
-                        {% endif %}
-                      </div>
-                  </th>
-                </tr>
-              </tfoot>
-              {% endif %}
+                    <tfoot>
+                    <tr>
+                        <th colspan="4">
+                            <div class="ui right floated pagination menu">
+                                {% if submissions.has_previous %}
+                                    <a class="icon item" href="?page={{ submissions.previous_page_number }}">
+                                        <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+                                    </a>
+                                {% else %}
+                                    <a class="disabled icon item">
+                                        <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+                                    </a>
+                                {% endif %}
+                                {% for i in submissions.paginator.page_range %}
+                                    {% if submissions.number == i %}
+                                        <a class="active item"><span>{{ i }}</span></a>
+                                    {% else %}
+                                        <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if submissions.has_next %}
+                                    <a class="icon item" href="?page={{ submissions.next_page_number }}">
+                                        <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+                                    </a>
+                                {% else %}
+                                    <a class="disabled icon item">
+                                        <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </th>
+                    </tr>
+                    </tfoot>
+                {% endif %}
             </table>
-                {% csrf_token %}
-                {{ form.non_field_errors }}
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% if participation.challenge.is_submission_open %}
                 <div class="fields">
                     <div class="two field">
                         {{ form.file.errors }}
@@ -168,24 +177,28 @@
                         {{ form.language }}
                     </div>
                 </div>
-                <input type="submit" class="ui green button" value="Submit">
-        {% endif %}
-        {% endif %}
-    </form>
+            {% endif %}
 
-    {% if participation %}
+        {% endif %}
+        <input type="submit" class="ui green button" value="Submit">
+    {% endif %}
+{% endif %}
+</form>
+
+{% if participation %}
     {% if participation.all_members_accepted %}
         {% block battle_history %}
             {% include 'accounts/battle_history.html' %}
         {% endblock %}
     {% endif %}
-    {% endif %}
+{% endif %}
 
-    <script src="{% static 'accounts/js/api.js' %}"></script>
+<script src="{% static 'accounts/js/api.js' %}"></script>
 {% else %}
-    {% for challenge in  challenges %}
-        {% if challenge.can_register %}
-            <a href="{% url 'accounts:create_team' challenge.id %}" class="ui blue button" >{% trans 'Create New Team' %}</a>
-        {% endif %}
-    {% endfor %}
+{% for challenge in  challenges %}
+    {% if challenge.can_register %}
+        <a href="{% url 'accounts:create_team' challenge.id %}"
+           class="ui blue button">{% trans 'Create New Team' %}</a>
+    {% endif %}
+{% endfor %}
 {% endif %}{% endblock %}
