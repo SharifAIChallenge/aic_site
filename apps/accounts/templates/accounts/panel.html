@@ -26,12 +26,17 @@
             </div>
         </div>
     {% endfor %}
+    <form method="post" enctype="multipart/form-data" class="ui form">
     {% if accepted_participations|length > 0 %}
-        <form method="post" enctype="multipart/form-data" class="ui form">
             <div class="field">
                 {{ form.team.errors }}
-                <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}</label>
-                {{ form.team }}
+                <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}
+                </label>
+                <select name="{{ form.team.name }}" class="ui dropdown">
+                    {% for choice in form.team.field.choices %}
+                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
             </div>
 
             <h2>{% trans 'Team Status' %}</h2>
@@ -94,97 +99,103 @@
             </div>
             {% if participation %}
                 {% if participation.all_members_accepted %}
-                    <h2>{% trans 'Submissions' %}</h2>
-                    <table class="ui center aligned table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>{% trans "Selected" %}</th>
-                            <th>{% trans "Time" %}</th>
-                            <th>{% trans "Language" %}</th>
-                            <th>{% trans "Status" %}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for submission in submissions %}
+                    {% if submissions|length > 0 %}
+                        <h2>{% trans 'Submissions' %}</h2>
+                        <table class="ui center aligned table table-bordered">
+                            <thead>
                             <tr>
-                                <td>
-                                    <div class="ui checkbox">
-                                        <input type="checkbox" class="submission"
-                                               {% if not submission.team.challenge.is_submission_open %}disabled{% endif %}
-                                               {% if submission.is_final %}checked="true"{% endif %}
-                                               data-id="{{ submission.id }}" id="submission_{{ submission.id }}">
-                                        <label></label>
-                                    </div>
-                                </td>
-                                <style>
-                                    add_submission_api
-
-                                    (
-                                    {{ submission.id }}
-                                    )
-                                    ;
-                                </style>
-                                <td>{{ submission.time }}</td>
-                                <td>{{ submission.language }}</td>
-                                <td>{{ submission.status }}</td>
+                                <th>{% trans "Selected" %}</th>
+                                <th>{% trans "Time" %}</th>
+                                <th>{% trans "Language" %}</th>
+                                <th>{% trans "Status" %}</th>
                             </tr>
-                        {% endfor %}
-                        </tbody>
-                        {% if submissions.has_other_pages %}
+                            </thead>
+                            <tbody>
+                            {% for submission in submissions %}
+                                <tr>
+                                    <td>
+                                        <div class="ui checkbox">
+                                            <input type="checkbox" class="submission"
+                                                   {% if not submission.team.challenge.is_submission_open %}disabled{% endif %}
+                                                   {% if submission.is_final %}checked="true"{% endif %}
+                                                   data-id="{{ submission.id }}" id="submission_{{ submission.id }}">
+                                            <label></label>
+                                        </div>
+                                    </td>
+                                    <style>
+                                        add_submission_api
 
-                            <tfoot>
-                            <tr>
-                                <th colspan="4">
-                                    <div class="ui right floated pagination menu">
-                                        {% if submissions.has_previous %}
-                                            <a class="icon item" href="?page={{ submissions.previous_page_number }}">
-                                                <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
-                                            </a>
-                                        {% else %}
-                                            <a class="disabled icon item">
-                                                <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
-                                            </a>
-                                        {% endif %}
-                                        {% for i in submissions.paginator.page_range %}
-                                            {% if submissions.number == i %}
-                                                <a class="active item"><span>{{ i }}</span></a>
+                                        (
+                                        {{ submission.id }}
+                                        )
+                                        ;
+                                    </style>
+                                    <td>{{ submission.time }}</td>
+                                    <td>{{ submission.language }}</td>
+                                    <td>{{ submission.status }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            {% if submissions.has_other_pages %}
+
+                                <tfoot>
+                                <tr>
+                                    <th colspan="4">
+                                        <div class="ui right floated pagination menu">
+                                            {% if submissions.has_previous %}
+                                                <a class="icon item" href="?page={{ submissions.previous_page_number }}">
+                                                    <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+                                                </a>
                                             {% else %}
-                                                <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
+                                                <a class="disabled icon item">
+                                                    <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+                                                </a>
                                             {% endif %}
-                                        {% endfor %}
-                                        {% if submissions.has_next %}
-                                            <a class="icon item" href="?page={{ submissions.next_page_number }}">
-                                                <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
-                                            </a>
-                                        {% else %}
-                                            <a class="disabled icon item">
-                                                <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
-                                            </a>
-                                        {% endif %}
-                                    </div>
-                                </th>
-                            </tr>
-                            </tfoot>
-                        {% endif %}
-                    </table>
-                    {% csrf_token %}
-                    {{ form.non_field_errors }}
-                    {% if participation.challenge.is_submission_open %}
-                        <div class="fields">
-                            <div class="two field">
+                                            {% for i in submissions.paginator.page_range %}
+                                                {% if submissions.number == i %}
+                                                    <a class="active item"><span>{{ i }}</span></a>
+                                                {% else %}
+                                                    <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if submissions.has_next %}
+                                                <a class="icon item" href="?page={{ submissions.next_page_number }}">
+                                                    <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+                                                </a>
+                                            {% else %}
+                                                <a class="disabled icon item">
+                                                    <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </th>
+                                </tr>
+                                </tfoot>
+                            {% endif %}
+                        </table>
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        {% if participation.challenge.is_submission_open %}
+                            <div class="one field" >
                                 {{ form.file.errors }}
                                 <label for="{{ form.file.id_for_label }}">{% trans 'File:' %}</label>
                                 {{ form.file }}
                             </div>
-                            <div class="two field">
+                            <div class="one field" style="height: 100%;">
                                 {{ form.language.errors }}
                                 <label for="{{ form.language.id_for_label }}">{% trans 'Language:' %}</label>
-                                {{ form.language }}
-                            </div>
-                        </div>
-                        <input type="submit" class="ui green button" value="Submit">
-                    {% endif %}
 
+                                <select name="{{ form.language.name }}" class="ui dropdown">
+                                    {% for choice in form.language.field.choices %}
+                                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+                            <input type="submit" class="ui green button" value="{% trans 'Submit' %}">
+                        {% endif %}
+                    {% endif %}
                 {% endif %}
             {% endif %}
         </form>
@@ -192,7 +203,7 @@
         {% if participation %}
             {% if participation.all_members_accepted %}
                 {% block battle_history %}
-                    {% include 'accounts/battle_history.html' %}
+{#                    {% include 'accounts/battle_history.html' %}#}
                 {% endblock %}
             {% endif %}
         {% endif %}
