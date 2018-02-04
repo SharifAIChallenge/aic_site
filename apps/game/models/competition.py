@@ -188,7 +188,7 @@ class Competition(models.Model):
                     depend_method='itself'
                 )
             )
-            matches.appenfd(new_match)
+            matches.append(new_match)
             for map in self.maps.all():
                 SingleMatch.objects.create(match=new_match, map=map)
 

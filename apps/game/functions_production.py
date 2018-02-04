@@ -115,13 +115,8 @@ def download_file(file_token):
 def compile_submissions(submissions):
     """
         Tell the infrastructure to compile a list of submissions
-    :param file_tokens: array of strings
-    :param game_id: string
     :return: list of dictionaries each have token, success[, errors] keys
     """
-    #
-
-    # Test code
     requests = list()
     for submission in submissions:
         requests.append({
@@ -149,13 +144,7 @@ def compile_submissions(submissions):
 def run_matches(single_matches):
     """
         Tell the infrastructure to run a list of single_matches (single_match includes tokens,maps,...)
-    :param matches: List of single_match objects, having these functions:
-        get_first_file(): String
-        get_second_file: String
-        get_map(): String
-        get_game_id(): String
-
-        and any other potential parameters
+    :param single_matches:
     :return: Returns the list of tokens and success status and errors assigned to the matches
     """
 

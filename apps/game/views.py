@@ -173,7 +173,6 @@ def report(request):
     if request.META.get('HTTP_AUTHORIZATION') != settings.INFRA_AUTH_TOKEN:
         return HttpResponseBadRequest()
     single_report = json.loads(request.body.decode("utf-8"))
-    client, schema = functions.create_infra_client()
 
     if single_report['operation'] == 'compile':
         if TeamSubmission.objects.filter(infra_compile_token=single_report['id']).count() != 1:
@@ -211,8 +210,7 @@ def report(request):
             pass
             # continue
         if single_report['status'] == 2:
-            logfile = client.action(schema, ['storage', 'get_file', 'read'],
-                                    params={'token': single_report['parameters']['game_log']})
+            logfile = functions.download_file(single_report['parameters']['game_log'])
             if logfile is None:
                 pass
                 # continue

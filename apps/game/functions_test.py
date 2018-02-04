@@ -6,6 +6,7 @@ import time
 import uuid
 
 import coreapi
+from coreapi.utils import DownloadedFile, File
 from django.conf import settings
 
 from apps.game.models import TeamSubmission, Match
@@ -98,7 +99,7 @@ def upload_file(file):
 
 
 def download_file(file_token):
-    return open(test_json)
+    return DownloadedFile(open(test_json, mode='r+b'), test_json, False)
 
 
 def compile_submissions(submissions):
