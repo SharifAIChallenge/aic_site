@@ -31,3 +31,5 @@ LOGGING['handlers'] = {
         'class': 'logging.NullHandler',
     },
 }
+
+INFRA_AUTH_TOKEN = 'test_token'

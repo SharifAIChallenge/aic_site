@@ -167,15 +167,15 @@ class TestTeam(TransactionTestCase):
         # successful scenario coverage
         self.assertEqual(submissions[0].status, 'compiling')
 
-        json_str = json.dumps([{
-            'id': submissions[0].infra_token,
+        json_str = json.dumps({
+            'id': submissions[0].infra_compile_token,
             'operation': 'compile',
             'status': 2,
             'parameters': {
                 'code_compiled_zip': functions.random_token(),
                 'code_log': functions.random_token()
             }
-        }])
+        })
         response = client.post('/game/api/report', data=json_str, content_type='application/json',
                                **{'HTTP_AUTHORIZATION': settings.INFRA_AUTH_TOKEN})
 
