@@ -22,3 +22,7 @@ def not_found(request):
     logger.debug("hello")
     logger.warning("hello")
     return render(request, '404.html')
+
+
+def staffs(request):
+    return render(request, 'intro/staffs.html')

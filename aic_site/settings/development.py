@@ -1,7 +1,7 @@
 from .base import *
 
 DEBUG = True
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.87', '192.168.1.115']
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS += [
 
@@ -20,3 +20,16 @@ DATABASES = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGGING['handlers'] = {
+    'console': {
+        'level': 'INFO',
+        'class': 'logging.StreamHandler',
+    },
+    'logfile': {
+        'level': 'INFO',
+        'class': 'logging.NullHandler',
+    },
+}
+
+INFRA_AUTH_TOKEN = 'test_token'
