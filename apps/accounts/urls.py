@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^email_sent$', views.email_sent, name='email_sent'),
     url(r'^email_confirm$', views.email_confirm, name='email_confirm'),
     url(r'^email_invalid$', views.email_invalid, name='email_invalid'),
+    url(r'^challenge_a_team/(?P<participation_id>\d+)$', views.challenge_a_team, name='challenge_a_team')
 ]
