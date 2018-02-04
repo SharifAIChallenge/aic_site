@@ -156,11 +156,12 @@ def run_matches(single_matches):
             "parameters": {
                 "server_game_config": single_match.get_map(),
                 "client1_id": single_match.match.part1.submission.id,
-                "client1_token": str(uuid.uuid4()),
+                "client1_token": random_token(),
                 "client1_code": single_match.get_first_file(),
                 "client2_id": single_match.match.part2.submission.id,
-                "client2_token": str(uuid.uuid4()),
+                "client2_token": random_token(),
                 "client2_code": single_match.get_second_file(),
+                "logger_token": random_token(),
             }
         })
 
