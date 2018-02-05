@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-03 14:34+0000\n"
+"POT-Creation-Date: 2018-02-04 21:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,11 +71,11 @@ msgstr "حساب کاربری"
 msgid "Logout"
 msgstr "خروج"
 
-#: aic_site/settings/base.py:120
+#: aic_site/settings/base.py:118
 msgid "English"
 msgstr "انگلیسی"
 
-#: aic_site/settings/base.py:121
+#: aic_site/settings/base.py:119
 msgid "Persian"
 msgstr "فارسی"
 
