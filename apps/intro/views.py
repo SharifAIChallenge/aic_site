@@ -1,7 +1,11 @@
 import logging
 
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
+
+from apps.accounts.models import Team
+from apps.game.models import TeamSubmission
 
 logger = logging.getLogger(__name__)
 
@@ -9,6 +13,9 @@ logger = logging.getLogger(__name__)
 def index(request):
     return render(request, 'intro/index.html', {
         'no_sidebar': True,
+        'users_count': User.objects.count(),
+        'submits_count': TeamSubmission.objects.count(),
+        'teams_count': Team.objects.count(),
     })
 
 
