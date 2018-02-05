@@ -49,12 +49,59 @@
 }
 
 .circle {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  font-size: 50px;
-  color: #fff;
-  line-height: 300px;
-  text-align: center;
-  background: #ff43d8
+    width: 167px;
+    height: 167px;
+
+    border-radius: 50%;
+    background-size:cover !important;
+
+    font-weight:bold;
+
+    font-size: 20px;
+    color: #fff;
+    line-height: 65px;
+    text-align: center;
+    background: #ff43d8;
+    margin: 42px;
+    padding-top: 10px;
 }
+
+.circle a {
+    line-height: 65px;
+    font-size: 60px;
+    color: #fff;
+}
+
+.circle#purple a {
+    -webkit-text-stroke: 2px #6d144e;
+}
+
+.circle#yellow a {
+    -webkit-text-stroke: 2px #e29234;
+}
+
+.circle#blue a {
+    -webkit-text-stroke: 2px #659d97;
+}
+
+.circle#purple {
+    background-image: url("/static/intro/image/square_red.png");
+    /*-webkit-text-stroke: 1px #6d144e;*/
+    /*background: #7D184F;*/
+    color: #FFF;
+}
+
+.circle#yellow {
+    background-image: url("/static/intro/image/square_yellow.png");
+    /*-webkit-text-stroke: 1px #d2d2d2;*/
+    /*background: #E29234;*/
+    color: #FFF;
+}
+
+.circle#blue {
+    background-image: url("/static/intro/image/square_blue.png");
+    /*-webkit-text-stroke: 1px #659d97;*/
+    /*background: #68ACBF;*/
+    color: #FFF;
+}
+

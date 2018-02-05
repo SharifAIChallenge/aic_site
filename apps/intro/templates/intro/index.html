@@ -16,16 +16,7 @@
 </div>
 
 <div class="even section" id="section-intro">
-    <!--<div class="even section">-->
-        <!--<a class="ui extra large red circular label">2</a>-->
-        <!--<a class="ui orange circular label">2</a>-->
-        <!--<a class="ui yellow circular label">2</a>-->
-        <!--<a class="ui olive circular label">2</a>-->
-        <!--<a class="ui green circular label">2</a>-->
-        <!--<div class="circle">Hello I am A Circle</div>-->
-    <!--</div>-->
-<!---->
-<!---->
+
     <div class="ui section header">
         <a class="ui big ai button" href="#section-intro">
             {% trans 'Introduction' %}
@@ -70,9 +61,35 @@
                         {% endif %}
                     </a>
                 </div>
+
             </div>
             <div class="eight wide column">
                 <div id="15171308283766309"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="ui section">
+        <div class="ui center aligned grid">
+            <div class="circle" id="purple">
+                {% trans 'Users' %}<br/>
+                <a>
+                    {{ users_count }}
+                </a>
+            </div>
+            <div class="circle" id="yellow">
+                {% trans 'Submissions' %}<br/>
+                <a>
+                    {{ submits_count }}
+                </a>
+            </div>
+            <div class="circle" id="blue">
+                {% trans 'Teams' %}<br/>
+                <a>
+                    {{ teams_count }}
+                </a>
             </div>
         </div>
     </div>
