@@ -36,8 +36,6 @@ $(document).ready(function(){
 
 });
 
-function initiate_counters()
-
 
 
 

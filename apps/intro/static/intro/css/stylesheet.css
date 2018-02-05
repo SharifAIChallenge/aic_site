@@ -49,11 +49,17 @@
 }
 
 .circle {
-    width: 190px;
+    width: 140px;
+    height: 140px;
+
     border-radius: 50%;
+    background-size:cover !important;
+
+    font-weight:bold;
+
     font-size: 20px;
     color: #fff;
-    line-height: 85px;
+    line-height: 65px;
     text-align: center;
     background: #ff43d8;
     margin: 10px;
@@ -61,111 +67,41 @@
 }
 
 .circle a {
-    line-height: 85px;
+    line-height: 45px;
+    font-size: 60px;
+    color: #fff;
 }
 
 .circle#purple a {
-    font-size: 70px;
-    /*text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;*/
-    text-shadow: 2px 2px 0 #821949,
-    -2px 2px 0 #821949,
-    2px -2px 0 #821949,
-    -2px -2px 0 #821949,
-    0px 2px 0 #821949,
-    0px -2px 0 #821949,
-    -2px 0px 0 #821949,
-    2px 0px 0 #821949,
-    4px 4px 0 #821949,
-    -4px 4px 0 #821949,
-    4px -4px 0 #821949,
-    -4px -4px 0 #821949,
-    0px 4px 0 #821949,
-    0px -4px 0 #821949,
-    -4px 0px 0 #821949,
-    4px 0px 0 #821949,
-    2px 4px 0 #821949,
-    -2px 4px 0 #821949,
-    2px -4px 0 #821949,
-    -2px -4px 0 #821949,
-    4px 2px 0 #821949,
-    -4px 2px 0 #821949,
-    4px -2px 0 #821949,
-    -4px -2px 0 #821949;
-    color: #fff;
+    -webkit-text-stroke: 2px #6d144e;
 }
 
 .circle#yellow a {
-    font-size: 70px;
-    /*text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;*/
-    text-shadow: 2px 2px 0 #E29234,
-    -2px 2px 0 #E29234,
-    2px -2px 0 #E29234,
-    -2px -2px 0 #E29234,
-    0px 2px 0 #E29234,
-    0px -2px 0 #E29234,
-    -2px 0px 0 #E29234,
-    2px 0px 0 #E29234,
-    4px 4px 0 #E29234,
-    -4px 4px 0 #E29234,
-    4px -4px 0 #E29234,
-    -4px -4px 0 #E29234,
-    0px 4px 0 #E29234,
-    0px -4px 0 #E29234,
-    -4px 0px 0 #E29234,
-    4px 0px 0 #E29234,
-    2px 4px 0 #E29234,
-    -2px 4px 0 #E29234,
-    2px -4px 0 #E29234,
-    -2px -4px 0 #E29234,
-    4px 2px 0 #E29234,
-    -4px 2px 0 #E29234,
-    4px -2px 0 #E29234,
-    -4px -2px 0 #E29234;
-    color: #fff;
+    -webkit-text-stroke: 2px #e29234;
 }
 
 .circle#blue a {
-    font-size: 70px;
-    /*text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;*/
-    text-shadow: 2px 2px 0 #4483b8,
-    -2px 2px 0 #4483b8,
-    2px -2px 0 #4483b8,
-    -2px -2px 0 #4483b8,
-    0px 2px 0 #4483b8,
-    0px -2px 0 #4483b8,
-    -2px 0px 0 #4483b8,
-    2px 0px 0 #4483b8,
-    4px 4px 0 #4483b8,
-    -4px 4px 0 #4483b8,
-    4px -4px 0 #4483b8,
-    -4px -4px 0 #4483b8,
-    0px 4px 0 #4483b8,
-    0px -4px 0 #4483b8,
-    -4px 0px 0 #4483b8,
-    4px 0px 0 #4483b8,
-    2px 4px 0 #4483b8,
-    -2px 4px 0 #4483b8,
-    2px -4px 0 #4483b8,
-    -2px -4px 0 #4483b8,
-    4px 2px 0 #4483b8,
-    -4px 2px 0 #4483b8,
-    4px -2px 0 #4483b8,
-    -4px -2px 0 #4483b8;
-    color: #fff;
+    -webkit-text-stroke: 2px #659d97;
 }
 
 .circle#purple {
-    background: #f7658d;
-    color: #821949;
+    background-image: url("/static/intro/image/square_red.png");
+    /*-webkit-text-stroke: 1px #6d144e;*/
+    /*background: #7D184F;*/
+    color: #FFF;
 }
 
 .circle#yellow {
-    background: #F4D586;
-    color: #b97300;
+    background-image: url("/static/intro/image/square_yellow.png");
+    /*-webkit-text-stroke: 1px #d2d2d2;*/
+    /*background: #E29234;*/
+    color: #FFF;
 }
 
 .circle#blue {
-    background: #AFE1E2;
-    color: #066cb8;
+    background-image: url("/static/intro/image/square_blue.png");
+    /*-webkit-text-stroke: 1px #659d97;*/
+    /*background: #68ACBF;*/
+    color: #FFF;
 }
 
