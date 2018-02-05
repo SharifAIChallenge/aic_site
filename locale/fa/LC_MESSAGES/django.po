@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-04 21:18+0000\n"
+"POT-Creation-Date: 2018-02-05 14:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,11 +63,19 @@ msgstr "بازی"
 msgid "Panel"
 msgstr "پنل"
 
-#: aic_site/context_processors.py:42
+#: aic_site/context_processors.py:40
+msgid "Game Viewer"
+msgstr "نمایشگر بازی"
+
+#: aic_site/context_processors.py:41
+msgid "Map Maker"
+msgstr "نقشه ساز"
+
+#: aic_site/context_processors.py:44
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: aic_site/context_processors.py:44 templates/base/navbar.html:42
+#: aic_site/context_processors.py:46 templates/base/navbar.html:42
 msgid "Logout"
 msgstr "خروج"
 
