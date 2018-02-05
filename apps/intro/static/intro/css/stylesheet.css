@@ -49,8 +49,8 @@
 }
 
 .circle {
-    width: 140px;
-    height: 140px;
+    width: 167px;
+    height: 167px;
 
     border-radius: 50%;
     background-size:cover !important;
@@ -62,12 +62,12 @@
     line-height: 65px;
     text-align: center;
     background: #ff43d8;
-    margin: 10px;
+    margin: 42px;
     padding-top: 10px;
 }
 
 .circle a {
-    line-height: 45px;
+    line-height: 65px;
     font-size: 60px;
     color: #fff;
 }
