@@ -14,7 +14,7 @@ def menu(request):
                         _('Schedule'): reverse('intro:index') + '#section-schedule',
                         _('FAQ'): reverse('intro:faq'),
                         _('Blog and Q&A'): '/blog',
-                        _('Contact Us'): reverse('intro:index') + '#section-organizer'
+                        _('Contact Us'): reverse('intro:index') + '#section-organizer',
                     }
                 }
             },
@@ -37,6 +37,8 @@ def menu(request):
                 _('Game'): {
                     'dropdown': {
                         _('Panel'): reverse('accounts:panel'),
+                        _('Game Viewer'): '/static/game_graphics/game_viewer/index.html',
+                        _('Map Maker'): '/static/game_graphics/map_maker/index.html',
                     }
                 },
                 _('Account'): {
