@@ -32,7 +32,7 @@
                 {{ form.team.errors }}
                 <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}
                 </label>
-                <select name="{{ form.team.name }}" class="ui dropdown">
+                <select name="{{ form.team.name }}" id="{{ form.team.id_for_label }}" class="ui dropdown" value="{{ participation.id }}">
                     {% for choice in form.team.field.choices %}
                         <option value="{{ choice.0 }}">{{ choice.1 }}</option>
                     {% endfor %}
