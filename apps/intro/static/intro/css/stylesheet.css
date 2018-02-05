@@ -47,3 +47,14 @@
     -webkit-clip-path: inset(0 45px 0 45px);
     clip-path: inset(0 45px 0 45px);
 }
+
+.circle {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  font-size: 50px;
+  color: #fff;
+  line-height: 300px;
+  text-align: center;
+  background: #ff43d8
+}
