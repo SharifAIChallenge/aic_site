@@ -49,12 +49,123 @@
 }
 
 .circle {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  font-size: 50px;
-  color: #fff;
-  line-height: 300px;
-  text-align: center;
-  background: #ff43d8
+    width: 190px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #fff;
+    line-height: 85px;
+    text-align: center;
+    background: #ff43d8;
+    margin: 10px;
+    padding-top: 10px;
 }
+
+.circle a {
+    line-height: 85px;
+}
+
+.circle#purple a {
+    font-size: 70px;
+    /*text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;*/
+    text-shadow: 2px 2px 0 #821949,
+    -2px 2px 0 #821949,
+    2px -2px 0 #821949,
+    -2px -2px 0 #821949,
+    0px 2px 0 #821949,
+    0px -2px 0 #821949,
+    -2px 0px 0 #821949,
+    2px 0px 0 #821949,
+    4px 4px 0 #821949,
+    -4px 4px 0 #821949,
+    4px -4px 0 #821949,
+    -4px -4px 0 #821949,
+    0px 4px 0 #821949,
+    0px -4px 0 #821949,
+    -4px 0px 0 #821949,
+    4px 0px 0 #821949,
+    2px 4px 0 #821949,
+    -2px 4px 0 #821949,
+    2px -4px 0 #821949,
+    -2px -4px 0 #821949,
+    4px 2px 0 #821949,
+    -4px 2px 0 #821949,
+    4px -2px 0 #821949,
+    -4px -2px 0 #821949;
+    color: #fff;
+}
+
+.circle#yellow a {
+    font-size: 70px;
+    /*text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;*/
+    text-shadow: 2px 2px 0 #E29234,
+    -2px 2px 0 #E29234,
+    2px -2px 0 #E29234,
+    -2px -2px 0 #E29234,
+    0px 2px 0 #E29234,
+    0px -2px 0 #E29234,
+    -2px 0px 0 #E29234,
+    2px 0px 0 #E29234,
+    4px 4px 0 #E29234,
+    -4px 4px 0 #E29234,
+    4px -4px 0 #E29234,
+    -4px -4px 0 #E29234,
+    0px 4px 0 #E29234,
+    0px -4px 0 #E29234,
+    -4px 0px 0 #E29234,
+    4px 0px 0 #E29234,
+    2px 4px 0 #E29234,
+    -2px 4px 0 #E29234,
+    2px -4px 0 #E29234,
+    -2px -4px 0 #E29234,
+    4px 2px 0 #E29234,
+    -4px 2px 0 #E29234,
+    4px -2px 0 #E29234,
+    -4px -2px 0 #E29234;
+    color: #fff;
+}
+
+.circle#blue a {
+    font-size: 70px;
+    /*text-shadow: -4px 0 black, 0 4px black, 4px 0 black, 0 -4px black;*/
+    text-shadow: 2px 2px 0 #4483b8,
+    -2px 2px 0 #4483b8,
+    2px -2px 0 #4483b8,
+    -2px -2px 0 #4483b8,
+    0px 2px 0 #4483b8,
+    0px -2px 0 #4483b8,
+    -2px 0px 0 #4483b8,
+    2px 0px 0 #4483b8,
+    4px 4px 0 #4483b8,
+    -4px 4px 0 #4483b8,
+    4px -4px 0 #4483b8,
+    -4px -4px 0 #4483b8,
+    0px 4px 0 #4483b8,
+    0px -4px 0 #4483b8,
+    -4px 0px 0 #4483b8,
+    4px 0px 0 #4483b8,
+    2px 4px 0 #4483b8,
+    -2px 4px 0 #4483b8,
+    2px -4px 0 #4483b8,
+    -2px -4px 0 #4483b8,
+    4px 2px 0 #4483b8,
+    -4px 2px 0 #4483b8,
+    4px -2px 0 #4483b8,
+    -4px -2px 0 #4483b8;
+    color: #fff;
+}
+
+.circle#purple {
+    background: #f7658d;
+    color: #821949;
+}
+
+.circle#yellow {
+    background: #F4D586;
+    color: #b97300;
+}
+
+.circle#blue {
+    background: #AFE1E2;
+    color: #066cb8;
+}
+
