@@ -1,6 +1,9 @@
 import codecs
 import json
 
+import uuid
+
+import os
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -337,7 +340,7 @@ class Participant(models.Model):
 
 
 def get_log_file_directory(instance, filename):
-    pass
+    return os.path.join('logs', filename + str(uuid.uuid4()))
 
 
 class Match(models.Model):
@@ -592,7 +595,7 @@ class SingleMatch(models.Model):
             raise Http404(str(error))
 
     def extract_score(self):
-        reader = codecs.getreader('utf-8')
+        reader = codecs.getreader('ASCII')
         log_array = json.load(reader(self.log), strict=False)
         last_row = log_array[len(log_array) - 1]
         return float(last_row[1]), float(last_row[2])

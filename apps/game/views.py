@@ -5,6 +5,7 @@ from operator import itemgetter
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.files import File
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -221,7 +222,7 @@ def report(request):
             if logfile is None:
                 pass
             single_match.status = 'done'
-            single_match.log = logfile
+            single_match.log.save(name='log', content=File(logfile.file))
             single_match.update_scores_from_log()
         elif single_report['status'] == 3:
             single_match.status = 'failed'
