@@ -1,3 +1,6 @@
+import codecs
+import json
+
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -625,11 +628,7 @@ class SingleMatch(models.Model):
         return str(self.id) + ' ' + str_part1 + ' -> ' + str_part2
 
     def update_scores_from_log(self):
-        extracted_scores = self.extract_score()
-        # TODO: Complete extract_score
-        extracted_scores = [0, 0]
-        self.part1_score = extracted_scores[0]
-        self.part2_score = extracted_scores[1]
+        self.part1_score, self.part2_score = self.extract_score()
         self.save()
 
     def get_score_for_participant(self, participant):
@@ -671,8 +670,10 @@ class SingleMatch(models.Model):
             raise Http404(str(error))
 
     def extract_score(self):
-        pass
-        # return list of participant's scores [part1_score, part2_score] from log file
+        reader = codecs.getreader('utf-8')
+        log_array = json.load(reader(self.log), strict=False)
+        last_row = log_array[len(log_array) - 1]
+        return float(last_row[1]), float(last_row[2])
 
     def done_single_match(self):
         self.status = 'done'

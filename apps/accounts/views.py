@@ -176,7 +176,7 @@ def panel(request, participation_id=None):
                                       TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
         context.update({
             'participation_id': participation_id,
-            'battle_history': Match.objects.all() # TODO : ok it
+            'battle_history': Match.objects.all()  # TODO : ok it
         })
     return render(request, 'accounts/panel.html', context)
 
@@ -184,7 +184,8 @@ def panel(request, participation_id=None):
 @login_required
 def set_final_submission(request, submission_id):
     submission = TeamSubmission.objects.get(id=submission_id)
-    if submission.team.team.participants.filter(user=request.user).count() == 0:
+    if submission.team.team.participants.filter(
+            user=request.user).count() == 0 or not submission.team.challenge.is_submission_open:
         return Http404()
     submission.set_final()
     data = {'success': True, 'submission_id': submission_id}
@@ -255,7 +256,8 @@ def add_participation(request, participation_id):
             return redirect('accounts:success_create_team')
     else:
         form = AddParticipationForm(user=request.user, team=acceptance.team.team, challenge=acceptance.team.challenge)
-    already_participated_users_accepts = UserAcceptsTeamInChallenge.objects.filter(team__challenge_id=acceptance.team.challenge.id)
+    already_participated_users_accepts = UserAcceptsTeamInChallenge.objects.filter(
+        team__challenge_id=acceptance.team.challenge.id)
     already_participated_usernames = [accept.user.username for accept in already_participated_users_accepts]
     return render(request, 'accounts/add_member.html', {
         'team': acceptance.team.team,
@@ -280,8 +282,8 @@ def cancel_participation_request(request, participation_id, user_id):
                                  user=request.user)
 
     if UserAcceptsTeamInChallenge.objects.filter(
-        user_id=user_id,
-        team__team=accepted.team.team
+            user_id=user_id,
+            team__team=accepted.team.team
     ).exists():
         return redirect('accounts:panel', participation_id)
 
@@ -290,6 +292,7 @@ def cancel_participation_request(request, participation_id, user_id):
                                               user_id=user_id)
     participation_request.delete()
     return redirect('accounts:panel', participation_id)
+
 
 @login_required()
 def challenge_a_team(request, participation_id):

@@ -5,336 +5,362 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block extra_header %}
-    <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
+<link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
 {% endblock %}
 
 {% block container %}
 
-    <div class="odd banner section" align="center">
-        <img class="banner text image{% if LANGUAGE_BIDI %} bidi{% endif %}"
-             src="{% static 'intro/image/banner-text.png' %}">
+<div class="odd banner section" align="center">
+    <img class="banner text image{% if LANGUAGE_BIDI %} bidi{% endif %}"
+         src="{% static 'intro/image/banner-text.png' %}">
+</div>
+
+<div class="even section" id="section-intro">
+
+    <div class="ui section header">
+        <a class="ui big ai button" href="#section-intro">
+            {% trans 'Introduction' %}
+        </a>
     </div>
-
-    <div class="even section" id="section-intro">
-        <div class="ui section header">
-            <a class="ui big ai button" href="#section-intro">
-                {% trans 'Introduction' %}
-            </a>
-        </div>
-        <div class="ui stackable grid container">
-            <div class="two column row">
-                <div class="eight wide column">
-                    <p style="font-size: 1.3em;">
-                        {% blocktrans %}
-                            Sharif AI Challenge is a programming competition for all who are interested in artificial
-                            intelligence.<br><br>This competition is  held in two phases annually. Including an online
-                            and an
-                            on-site phase in which competitors will compete in teams of three in a game designed by our
-                            technical team.<br><br>
-                            The only pre-requisite to enter this competition is familiarity with programming using C++,
-                            Java
-                            or python. But obviously, knowledge of algorithmic thinking and artificial intelligence will
-                            be
-                            a great asset for any of the participating teams. The registration for online competition is
-                            free.
-                        {% endblocktrans %}
-                    </p>
-
-                    <div class="ui center aligned container">
-                        <a href="{% if request.user.is_authenticated %}{% url 'accounts:panel' %}{% else %}{% url 'accounts:signup' %}{% endif %}" class="ui centered massive animated violet button">
-                            {% if request.user.is_authenticated %}
-                                <div class="visible content">
-                                {% trans 'Panel' %}
-                                </div>
-                                <div class="hidden content">
-                                    {% trans 'Panel' %}
-                                </div>
-                            {% else %}
-                                <div class="visible content">
-                                    {% trans 'Participate' %}
-                                </div>
-                                <div class="hidden content">
-                                    {% trans 'Register' %}
-                                </div>
-                            {% endif %}
-                        </a>
-                    </div>
-                </div>
-                <div class="eight wide column">
-                    <div id="15171308283766309">
-                        <script type="text/JavaScript" src="https://www.aparat.com/embed/N2Ae4?data[rnddiv]=15171308283766309&data[responsive]=yes"></script>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="odd section" id="section-prizes">
-        <div class="ui section header">
-            <a class="ui big ai button" href="#section-prizes">
-                {% trans 'Prizes' %}
-            </a>
-        </div>
-        <div class="ui stackable grid container" style="padding: 30px;">
-            <div class="three column row">
-                <div id="second-cup" class="five wide column" style="text-align: center;">
-
-                    <div class="image">
-                        <img src="{% static 'intro/image/Cup2.png' %}">
-                    </div>
-                    <div class="ui horizontal divider header">
-                        {% trans 'Second Place' %}
-                    </div>
-                    <div class="ui large header">
-                        {% trans '5 Million Tomans' %}
-                    </div>
-                </div>
-                <div id="champion-cup" class="six wide column" style="text-align: center;">
-                    <div class="image">
-                        <img src="{% static 'intro/image/Cup1.png' %}">
-                    </div>
-                    <div class="ui horizontal divider header">
-                        {% trans 'Champion' %}
-                    </div>
-                    <div id="seven-million" class="ui large header">
-                        {% trans '7 Million Tomans' %}
-                    </div>
-                </div>
-                <div id="third-cup" class="five wide column" style="text-align: center;">
-                    <div class="image">
-                        <img src="{% static 'intro/image/Cup3.png' %}">
-                    </div>
-                    <div class="ui horizontal divider header">
-                        {% trans 'Third Place' %}
-                    </div>
-                    <div class="ui large header">
-                        {% trans '3 Million Tomans' %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="even section" id="section-history"
-         style="height: 100vh !important; background: url('{% static 'intro/image/banner-background.png' %}'); background-repeat: no-repeat; background-position: 90%;">
-        <div class="ui section header">
-            <a class="ui big ai button" href="#section-history">
-                {% trans 'History' %}
-            </a>
-        </div>
-        <div class="ui fluid segment" style="padding: 0px 70px; border: none; background: transparent;">
-            <div class="ui fluid styled accordion">
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    {% trans 'First 3 Years' %}
-                </div>
-                <div class="ui stackable grid content">
-                    <div class="ui two column row">
-                        <div class="ten wide column">
-                            <div class="ui header">
-                                {% trans 'In the University' %}
-                            </div>
-                            {% blocktrans %}
-                                <p><span class="red">8 years ago, </span>
-                                    the need for an exciting and challenging inter-university competition in the CE
-                                    department
-                                    was a starting point for the "Sharif AI Challenge". This later became possible
-                                    thanks to the
-                                    efforts of the Student's Scientific Chapter(SSC) of this department. The students
-                                    took
-                                    advantage
-                                    of this opportunity in order to evaluate their skills in programming and improve
-                                    upon them.
-                                    Participation was so impressive that the "Sharif AI Challenge" soon became an annual
-                                    event.
-                                </p>
-                            {% endblocktrans %}
-                        </div>
-                        <div class="mobile-hidden six wide column">
-                            <img src="{% static 'intro/image/history1.jpg' %}">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    {% trans '4th to 6th Challenge' %}
-                </div>
-                <div class="ui stackable grid content">
-                    <div class="ui two column row">
-                        <div class="ten wide column">
-
-                            <div class="ui header">
-                                {% trans 'With Teams From Others Universities of Tehran' %}
-                            </div>
-                            {% blocktrans %}
-                                <p>
-                                    The <span class="red">4<sup>th</sup> year </span> of the competition was introduced
-                                    as the "Java Challenge".
-                                    Due to its high level and credibility, the event went further than collegiate
-                                    level and witnessed the participation of other teams from Tehran. The <span
-                                        class="red">5<sup>th</sup> tournament</span> was
-                                    organized and held in a similar way. During all this time, the level and quality of
-                                    the "AI Challenge" was immensely improved. With the efforts of the Student's
-                                    Scientific
-                                    Chapter of the CE department and widespread advertisement, the <span
-                                        class="red">6<sup>th</sup> year </span>
-                                    was finally organized and held nationally. The participation of teams from Tehran
-                                    and other
-                                    provinces brought upon a new spirit of nationality to the competition.
-
-                                </p>
-                            {% endblocktrans %}
-                        </div>
-                        <div class="mobile-hidden six wide column">
-                            <img src="{% static 'intro/image/history2.jpg' %}">
-                        </div>
-                    </div>
-                </div>
-                <div class="title">
-                    <i class="dropdown icon"></i>
-                    {% trans '7th year' %}
-                </div>
-                <div class="ui stackable grid content">
-                    <div class="ui two column row">
-                        <div class="ten wide column">
-
-                            <div class="ui header">
-                                {% trans 'Supporting C++ and Python' %}
-                            </div>
-                            {% blocktrans %}
-                                <p>"Sharif AI Challenge" national competition continuously advanced and in its <span
-                                        class="red">7<sup>th</sup> year </span>,
-                                    thanks to the efforts of the technical team, C++ and Python were added to the
-                                    competition's
-                                    supported languages as well. This round of the "Sharif AI Challenge" was met with
-                                    good reception and approximately 158 teams from 28 universities participated in
-                                    the selection phase.
-                                    <br>
-                                    The Documentation of this competition (Java Challenge 2015) is available
-                                    <a href="http://bayanbox.ir/view/992459135507989458/JavaChallenge2015-en.pdf"
-                                       style="color: blue">here</a>.
-                                </p>
-                            {% endblocktrans %}
-                        </div>
-                        <div class="mobile-hidden six wide column">
-                            <img src="{% static 'intro/image/history3.jpg' %}">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="title active">
-                    <i class="dropdown icon"></i>
-                    {% trans 'Last 2 Years' %}
-                </div>
-                <div class="ui stackable grid active content">
-                    <div class="ui two column row">
-                        <div class="ten wide column">
-
-                            <div class="ui active header">
-                                {% trans 'Sharif AI Challenge, a New Title' %}
-                            </div>
-                            {% blocktrans %}
-                                <p>Since the added benefit of supporting other languages in the competition
-                                    was a success, the <span class="red">8<sup>th</sup> tournament</span> was held under
-                                    the
-                                    name
-                                    "Sharif AI Challenge".
-                                </p>
-                            {% endblocktrans %}
-                        </div>
-                        <div class="mobile-hidden six wide column">
-                            <img src="{% static 'intro/image/history4.jpg' %}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="odd section" id="section-schedule">
-        <div class="ui section header">
-            <a class="ui big ai button" href="#section-schedule">
-                {% trans 'Schedule' %}
-            </a>
-        </div>
-        <div class="ui container">
-            <table class="ui inverted grey table"
-                   style="background-color: #813800; font-size: 1.3em; text-align: center">
-                <tbody>
-                <tr>
-                    <td>
-                        {% trans 'Jan30 - Feb17' %}
-                    </td>
-                    <td>
-                        {% trans 'Registration' %}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {% trans 'Feb3 - Feb21' %}
-                    </td>
-                    <td>
-                        {% trans 'Online Phase' %}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {% trans 'March7 - March8' %}
-                    </td>
-                    <td>
-                        {% trans 'Sharif On-Site Phase' %}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="ui center aligned container">
-                        <a href="{% url 'intro:faq' %}" class="ui centered violet button">
-                            {% trans 'FAQ' %}
-                        </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="even section" id="section-organizer">
-
-        <div class="ui section header">
-            <a class="ui big ai button" href="#section-organizer">
-                {% trans 'Contact Us' %}
-            </a>
-        </div>
-        <div class="ui center aligned stackable grid">
+    <div class="ui stackable grid container">
+        <div class="two column row">
             <div class="eight wide column">
-                <h1 class="ui header">{% trans 'Organizer' %}</h1>
-                <a href="http://ssc.ce.sharif.edu/"><img class="ui centered medium image"
-                                                         src="{% static 'intro/image/SSC.png' %}" alt="SSC Image"></a>
-                <div class="ui horizontal divider"></div>
-                <h1 class="ui header">{% trans 'Sponsors' %}</h1>
-                <a href="https://cafebazaar.ir/"><img class="ui centered medium image"
-                                                      src="{% static 'intro/image/sponsors.png' %}"></a>
-            </div>
-            <div class="eight wide column">
-                <h1 class="ui header">{% trans 'Location' %}</h1>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.9627430847677!2d51.34888151486223!3d35.702534430189345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00a61f30034b%3A0xe59caa3900cd3c54!2sTehran+Province%2C+Tehran%2C+Azadi+St%2C+Dept.+of+Computer+Eng.%2C+Iran!5e0!3m2!1sen!2s!4v1516927405125"
-                        frameborder="0" style="border: 0"></iframe>
-                <p>
-                    {% trans 'Address: ' %}
+                <p style="font-size: 1.3em;">
                     {% blocktrans %}
-                        Dept. of Computer Eng., Sharif University of Technology<br>
-                        Azadi St, Tehran
-                    {% endblocktrans %}<br>
+                    Sharif AI Challenge is a programming competition for all who are interested in artificial
+                    intelligence.<br><br>This competition is held in two phases annually. Including an online
+                    and an
+                    on-site phase in which competitors will compete in teams of three in a game designed by our
+                    technical team.<br><br>
+                    The only pre-requisite to enter this competition is familiarity with programming using C++,
+                    Java
+                    or python. But obviously, knowledge of algorithmic thinking and artificial intelligence will
+                    be
+                    a great asset for any of the participating teams. The registration for online competition is
+                    free.
+                    {% endblocktrans %}
                 </p>
-                <div class="ui horizontal divider"></div>
-                <h1 class="ui header">{% trans 'Contact Info' %}</h1>
-                <b>{% trans 'Email: ' %}<a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
-                <br><b>{% trans 'Phone: ' %}<span dir="ltr">021-6616-5781</span></b></p>
+
+                <div class="ui center aligned container">
+                    <a href="{% if request.user.is_authenticated %}{% url 'accounts:panel' %}{% else %}{% url 'accounts:signup' %}{% endif %}"
+                       class="ui centered massive animated violet button">
+                        {% if request.user.is_authenticated %}
+                        <div class="visible content">
+                            {% trans 'Panel' %}
+                        </div>
+                        <div class="hidden content">
+                            {% trans 'Panel' %}
+                        </div>
+                        {% else %}
+                        <div class="visible content">
+                            {% trans 'Participate' %}
+                        </div>
+                        <div class="hidden content">
+                            {% trans 'Register' %}
+                        </div>
+                        {% endif %}
+                    </a>
+                </div>
+
+            </div>
+            <div class="eight wide column">
+                <div id="15171308283766309"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="ui section">
+        <div class="ui center aligned grid">
+            <div class="circle" id="purple">
+                {% trans 'Users' %}<br/>
+                <a>
+                    {{ users_count }}
+                </a>
+            </div>
+            <div class="circle" id="yellow">
+                {% trans 'Submissions' %}<br/>
+                <a>
+                    {{ submits_count }}
+                </a>
+            </div>
+            <div class="circle" id="blue">
+                {% trans 'Teams' %}<br/>
+                <a>
+                    {{ teams_count }}
+                </a>
             </div>
         </div>
     </div>
+</div>
+
+<div class="odd section" id="section-prizes">
+    <div class="ui section header">
+        <a class="ui big ai button" href="#section-prizes">
+            {% trans 'Prizes' %}
+        </a>
+    </div>
+    <div class="ui stackable grid container" style="padding: 30px;">
+        <div class="three column row">
+            <div id="second-cup" class="five wide column" style="text-align: center;">
+
+                <div class="image">
+                    <img src="{% static 'intro/image/Cup2.png' %}">
+                </div>
+                <div class="ui horizontal divider header">
+                    {% trans 'Second Place' %}
+                </div>
+                <div class="ui large header">
+                    {% trans '5 Million Tomans' %}
+                </div>
+            </div>
+            <div id="champion-cup" class="six wide column" style="text-align: center;">
+                <div class="image">
+                    <img src="{% static 'intro/image/Cup1.png' %}">
+                </div>
+                <div class="ui horizontal divider header">
+                    {% trans 'Champion' %}
+                </div>
+                <div id="seven-million" class="ui large header">
+                    {% trans '7 Million Tomans' %}
+                </div>
+            </div>
+            <div id="third-cup" class="five wide column" style="text-align: center;">
+                <div class="image">
+                    <img src="{% static 'intro/image/Cup3.png' %}">
+                </div>
+                <div class="ui horizontal divider header">
+                    {% trans 'Third Place' %}
+                </div>
+                <div class="ui large header">
+                    {% trans '3 Million Tomans' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="even section" id="section-history"
+     style="height: 100vh !important; background: url('{% static 'intro/image/banner-background.png' %}'); background-repeat: no-repeat; background-position: 90%;">
+    <div class="ui section header">
+        <a class="ui big ai button" href="#section-history">
+            {% trans 'History' %}
+        </a>
+    </div>
+    <div class="ui fluid segment" style="padding: 0px 70px; border: none; background: transparent;">
+        <div class="ui fluid styled accordion">
+            <div class="title">
+                <i class="dropdown icon"></i>
+                {% trans 'First 3 Years' %}
+            </div>
+            <div class="ui stackable grid content">
+                <div class="ui two column row">
+                    <div class="ten wide column">
+                        <div class="ui header">
+                            {% trans 'In the University' %}
+                        </div>
+                        {% blocktrans %}
+                        <p><span class="red">8 years ago, </span>
+                            the need for an exciting and challenging inter-university competition in the CE
+                            department
+                            was a starting point for the "Sharif AI Challenge". This later became possible
+                            thanks to the
+                            efforts of the Student's Scientific Chapter(SSC) of this department. The students
+                            took
+                            advantage
+                            of this opportunity in order to evaluate their skills in programming and improve
+                            upon them.
+                            Participation was so impressive that the "Sharif AI Challenge" soon became an annual
+                            event.
+                        </p>
+                        {% endblocktrans %}
+                    </div>
+                    <div class="mobile-hidden six wide column">
+                        <img src="{% static 'intro/image/history1.jpg' %}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="title">
+                <i class="dropdown icon"></i>
+                {% trans '4th to 6th Challenge' %}
+            </div>
+            <div class="ui stackable grid content">
+                <div class="ui two column row">
+                    <div class="ten wide column">
+
+                        <div class="ui header">
+                            {% trans 'With Teams From Others Universities of Tehran' %}
+                        </div>
+                        {% blocktrans %}
+                        <p>
+                            The <span class="red">4<sup>th</sup> year </span> of the competition was introduced
+                            as the "Java Challenge".
+                            Due to its high level and credibility, the event went further than collegiate
+                            level and witnessed the participation of other teams from Tehran. The <span
+                                class="red">5<sup>th</sup> tournament</span> was
+                            organized and held in a similar way. During all this time, the level and quality of
+                            the "AI Challenge" was immensely improved. With the efforts of the Student's
+                            Scientific
+                            Chapter of the CE department and widespread advertisement, the <span
+                                class="red">6<sup>th</sup> year </span>
+                            was finally organized and held nationally. The participation of teams from Tehran
+                            and other
+                            provinces brought upon a new spirit of nationality to the competition.
+
+                        </p>
+                        {% endblocktrans %}
+                    </div>
+                    <div class="mobile-hidden six wide column">
+                        <img src="{% static 'intro/image/history2.jpg' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                {% trans '7th year' %}
+            </div>
+            <div class="ui stackable grid content">
+                <div class="ui two column row">
+                    <div class="ten wide column">
+
+                        <div class="ui header">
+                            {% trans 'Supporting C++ and Python' %}
+                        </div>
+                        {% blocktrans %}
+                        <p>"Sharif AI Challenge" national competition continuously advanced and in its <span
+                                class="red">7<sup>th</sup> year </span>,
+                            thanks to the efforts of the technical team, C++ and Python were added to the
+                            competition's
+                            supported languages as well. This round of the "Sharif AI Challenge" was met with
+                            good reception and approximately 158 teams from 28 universities participated in
+                            the selection phase.
+                            <br>
+                            The Documentation of this competition (Java Challenge 2015) is available
+                            <a href="http://bayanbox.ir/view/992459135507989458/JavaChallenge2015-en.pdf"
+                               style="color: blue">here</a>.
+                        </p>
+                        {% endblocktrans %}
+                    </div>
+                    <div class="mobile-hidden six wide column">
+                        <img src="{% static 'intro/image/history3.jpg' %}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="title active">
+                <i class="dropdown icon"></i>
+                {% trans 'Last 2 Years' %}
+            </div>
+            <div class="ui stackable grid active content">
+                <div class="ui two column row">
+                    <div class="ten wide column">
+
+                        <div class="ui active header">
+                            {% trans 'Sharif AI Challenge, a New Title' %}
+                        </div>
+                        {% blocktrans %}
+                        <p>Since the added benefit of supporting other languages in the competition
+                            was a success, the <span class="red">8<sup>th</sup> tournament</span> was held under
+                            the
+                            name
+                            "Sharif AI Challenge".
+                        </p>
+                        {% endblocktrans %}
+                    </div>
+                    <div class="mobile-hidden six wide column">
+                        <img src="{% static 'intro/image/history4.jpg' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="odd section" id="section-schedule">
+    <div class="ui section header">
+        <a class="ui big ai button" href="#section-schedule">
+            {% trans 'Schedule' %}
+        </a>
+    </div>
+    <div class="ui container">
+        <table class="ui inverted grey table"
+               style="background-color: #813800; font-size: 1.3em; text-align: center">
+            <tbody>
+            <tr>
+                <td>
+                    {% trans 'Jan30 - Feb17' %}
+                </td>
+                <td>
+                    {% trans 'Registration' %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% trans 'Feb3 - Feb21' %}
+                </td>
+                <td>
+                    {% trans 'Online Phase' %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% trans 'March7 - March8' %}
+                </td>
+                <td>
+                    {% trans 'Sharif On-Site Phase' %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="ui center aligned container">
+            <a href="{% url 'intro:faq' %}" class="ui centered violet button">
+                {% trans 'FAQ' %}
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="even section" id="section-organizer">
+
+    <div class="ui section header">
+        <a class="ui big ai button" href="#section-organizer">
+            {% trans 'Contact Us' %}
+        </a>
+    </div>
+    <div class="ui center aligned stackable grid">
+        <div class="eight wide column">
+            <h1 class="ui header">{% trans 'Organizer' %}</h1>
+            <a href="http://ssc.ce.sharif.edu/"><img class="ui centered medium image"
+                                                     src="{% static 'intro/image/SSC.png' %}" alt="SSC Image"></a>
+            <div class="ui horizontal divider"></div>
+            <h1 class="ui header">{% trans 'Sponsors' %}</h1>
+            <a href="https://cafebazaar.ir/"><img class="ui centered medium image"
+                                                  src="{% static 'intro/image/sponsors.png' %}"></a>
+        </div>
+        <div class="eight wide column">
+            <h1 class="ui header">{% trans 'Location' %}</h1>
+            <iframe id="google_maps_iframe" src=""
+                    frameborder="0" style="border: 0"></iframe>
+            <p>
+                {% trans 'Address: ' %}
+                {% blocktrans %}
+                Dept. of Computer Eng., Sharif University of Technology<br>
+                Azadi St, Tehran
+                {% endblocktrans %}<br>
+            </p>
+            <div class="ui horizontal divider"></div>
+            <h1 class="ui header">{% trans 'Contact Info' %}</h1>
+            <b>{% trans 'Email: ' %}<a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
+            <br><b>{% trans 'Phone: ' %}<span dir="ltr">021-6616-5781</span></b></p>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 
 {% block footer_scripts %}
-    {{ block.super }}
-    <script src="{% static 'intro/js/scripts.js' %}"></script>
+{{ block.super }}
+<script src="{% static 'intro/js/scripts.js' %}"></script>
 {% endblock %}
