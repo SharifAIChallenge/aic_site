@@ -415,7 +415,12 @@ class Match(models.Model):
                 have_waiting = True
         if (not have_running) and (not have_failed) and (not have_waiting):
             return 'done'
-        return 'not_done'
+        status_result = ''
+        if have_running:
+            status_result += 'running '
+        if have_waiting:
+            status_result += 'waiting'
+        return status_result
 
     def get_score_for_participant(self, participant):
         if participant is None:

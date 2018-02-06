@@ -99,7 +99,19 @@ class MatchAdmin(admin.ModelAdmin):
                 single_matches.append(single_match)
 
         from apps.game import functions
-        functions.run_matches(single_matches)
+        matches_details = functions.run_matches(single_matches)
+        # print(matches_details)
+        cnt = 0
+        for match in matches:
+            for single_match in match.single_matches.all():
+                if matches_details[cnt]['success'] == True:
+                    single_match.status = 'running'
+                    single_match.save()
+                cnt += 1
+        # for match in matches:
+        #     for single_match in match.single_matches.all():
+        #         print(single_match.status)
+        #     print(match.status)
 
 
 class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
