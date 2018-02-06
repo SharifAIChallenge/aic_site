@@ -127,36 +127,30 @@
 {#                                        add_submission_api({{ submission.id }})#}
                                     </style>
                                     <td>{{ submission.time }}</td>
-                                    <td>{{ submission.language }}</td>
+                                    <td>
+                                        {% if submission.language == 'java'%}
+                                            <div class="ui red button">java</div>
+                                        {% elif submission.language == 'py3'%}
+                                            <div class="ui yellow button">py3</div>
+                                        {% elif submission.language == 'cpp'%}
+                                            <div class="ui purple button">cpp</div>
+                                        {% endif %}
+                                    </td>
                                     <td>
                                         {% if submission.status == 'compiled' %}
-                                            <a class="ui button green" onclick="show_modal(this)">Compiled</a>
-                                            <div class="ui modal">
-                                            <div class="header">Compiled Successfully</div>
-                                            <div class="actions">
-                                                <a class="ui positive button" onclick="close_modal(this)">OK</a>
-                                            </div>
-                                            </div>
+                                            <a class="ui button green" data-tooltip="{% trans 'Compiled Successfuly' %}" data-inverted="">Compiled</a>
                                         {% elif submission.status == 'failed' %}
-                                            <a class="ui button red" onclick="show_modal(this)">Failed</a>
-                                            <div class="ui modal">
-                                            <div class="header">Error</div>
-                                            <div class="description">{{ submission.infra_compile_message }}</div>
-                                            <div class="actions">
-                                                <a class="ui positive button" onclick="close_modal(this)">OK</a>
-                                            </div>
-                                            </div>
+                                            <a class="ui button red" data-tooltip="{{ submission.infra_compile_message }}" data-inverted="">Failed</a>
                                         {% elif submission.status == 'uploading' %}
-                                            <a class="ui button">Uploading</a>
+                                            <a class="ui button" data-tooltip="{% trans 'Still uploading!Wait and refresh your page' %}" data-inverted="">Uploading</a>
                                         {% elif submission.status == 'compiling' %}
-                                            <a class="ui blue button">Compiling</a>
+                                            <a class="ui blue button" data-tooltip="{% trans 'We are compiling your code!Wait and refresh your page' %}" data-inverted="">Compiling</a>
                                         {% endif %}
                                     </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                             {% if submissions.has_other_pages %}
-
                                 <tfoot>
                                 <tr>
                                     <th colspan="4">
