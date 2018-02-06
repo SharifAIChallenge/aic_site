@@ -84,9 +84,19 @@ class MatchAdmin(admin.ModelAdmin):
 
         single_matches = []
         for match in matches:
-            if match.is_ready() and match.status != 'done':
-                for single_match in match.single_matches.all():
-                    single_matches.append(single_match)
+            from django.contrib import messages
+
+            if (not match.is_ready()):
+                messages.error(request, _('one of selected matches is not ready!'))
+                return
+
+            if match.status == 'done':
+                messages.error(request, _('one of selected matches is done!'))
+                return
+
+        for match in matches:
+            for single_match in match.single_matches.all():
+                single_matches.append(single_match)
 
         from apps.game import functions
         functions.run_matches(single_matches)
