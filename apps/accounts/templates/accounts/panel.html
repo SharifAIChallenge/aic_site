@@ -3,6 +3,7 @@
 {% load static %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% block container %}
+    <script src="{% static 'accounts/js/submission_modal.js' %}"></script>
     {% for invitation in invitations %}
         <div class="ui info message">
 
@@ -123,16 +124,34 @@
                                         </div>
                                     </td>
                                     <style>
-                                        add_submission_api
-
-                                        (
-                                        {{ submission.id }}
-                                        )
-                                        ;
+{#                                        add_submission_api({{ submission.id }})#}
                                     </style>
                                     <td>{{ submission.time }}</td>
                                     <td>{{ submission.language }}</td>
-                                    <td>{{ submission.status }}</td>
+                                    <td>
+                                        {% if submission.status == 'compiled' %}
+                                            <a class="ui button green" onclick="show_modal(this)">Compiled</a>
+                                            <div class="ui modal">
+                                            <div class="header">Compiled Successfully</div>
+                                            <div class="actions">
+                                                <a class="ui positive button" onclick="close_modal(this)">OK</a>
+                                            </div>
+                                            </div>
+                                        {% elif submission.status == 'failed' %}
+                                            <a class="ui button red" onclick="show_modal(this)">Failed</a>
+                                            <div class="ui modal">
+                                            <div class="header">Error</div>
+                                            <div class="description">{{ submission.infra_compile_message }}</div>
+                                            <div class="actions">
+                                                <a class="ui positive button" onclick="close_modal(this)">OK</a>
+                                            </div>
+                                            </div>
+                                        {% elif submission.status == 'uploading' %}
+                                            <a class="ui button">Uploading</a>
+                                        {% elif submission.status == 'compiling' %}
+                                            <a class="ui blue button">Compiling</a>
+                                        {% endif %}
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
