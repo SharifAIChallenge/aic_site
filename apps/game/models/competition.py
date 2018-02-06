@@ -582,15 +582,15 @@ class Match(models.Model):
 
 
 class Map(models.Model):
-    file = models.FileField(blank=False, null=True) # null False
+    file = models.FileField(blank=False, null=False)
     name = models.CharField(max_length=128, null=False, blank=False)
     token = models.CharField(max_length=256, null=True, blank=False)
     competitions = models.ManyToManyField(Competition, related_name='maps')
 
-    # def save(self, *args, **kwargs):
-    #     from apps.game import functions
-    #     #self.token = functions.upload_file(self.file)
-    #     super(Map, self).save(args, kwargs)
+    def save(self, *args, **kwargs):
+        from apps.game import functions
+        self.token = functions.upload_file(self.file)
+        super(Map, self).save(args, kwargs)
 
     def __str__(self):
         if self.name is None:
