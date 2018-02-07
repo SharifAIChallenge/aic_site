@@ -32,6 +32,9 @@ INSTALLED_APPS = [
     'mptt',
     'tagging',
     'zinnia',
+    'zinnia_tinymce',
+    'sorl.thumbnail',
+    'tinymce',
     'captcha',
 
     'apps.intro',
