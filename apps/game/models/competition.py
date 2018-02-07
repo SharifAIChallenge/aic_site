@@ -66,10 +66,15 @@ class Competition(models.Model):
                     else:
                         second_participant = second_participant[0]
 
+                    ### if you want to skip bye matches uncomment this :
+                    if first_participant is None or second_participant is None:
+                        continue
+
                     if round % 2 == 1:
                         temp = second_participant
                         second_participant = first_participant
                         first_participant = temp
+
                     new_match = Match.objects.create(
                         competition=self,
                         part1=Participant.objects.create(
@@ -95,6 +100,12 @@ class Competition(models.Model):
                             first_part[j] = first_part[j - 1]
                     if (len(teams) / 2) > 1:
                         first_part[1] = tmp_team
+
+        for match in self.matches.all():
+            if (match.part1.depend is None) or (match.part2.depend is None):
+                for single_match in match.single_matches.all():
+                    single_match.done_manually()
+
 
     def create_new_double_elimination(self, teams):
         if len(teams) < 2:
@@ -290,6 +301,11 @@ class Competition(models.Model):
         matches.append(new_match)
         for map in self.maps.all():
             SingleMatch.objects.create(match=new_match, map=map)
+
+        for match in self.matches.all():
+            if (match.part1.depend is None) or (match.part2.depend is None):
+                for single_match in match.single_matches.all():
+                    single_match.done_manually()
 
 
 class Participant(models.Model):
@@ -500,7 +516,8 @@ class Match(models.Model):
             return self.part1.submission
         elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
             return self.part2.submission
-        return ValueError('Participants\' score can\'t be equal')
+        else:
+            return ValueError('Participants\' score can\'t be equal')
 
     def loser(self):
         if self.status != 'done':
@@ -511,7 +528,8 @@ class Match(models.Model):
             return self.part2.submission
         elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
             return self.part1.submission
-        return ValueError('Participants\' score can\'t be equal')
+        else:
+            return ValueError('Participants\' score can\'t be equal')
 
     def done_match(self):
         single_matches = self.single_matches.all()
@@ -642,6 +660,19 @@ class SingleMatch(models.Model):
         elif self.match.part2 == participant:
             return self.part2_score
         return None
+
+    def done_manually(self):
+        self.status = 'done'
+        part1 = self.match.part1
+        part2 = self.match.part2
+        # None vs X
+        if (part1.depend is None) and (part2.depend is not None):
+            self.part1_score = 0
+            self.part2_score = 1
+        else:
+            self.part1_score = 1
+            self.part2_score = 0
+        self.save()
 
     def get_first_file(self):
         return self.match.part1.submission.infra_token

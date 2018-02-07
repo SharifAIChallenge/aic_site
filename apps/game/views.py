@@ -112,7 +112,7 @@ def render_league(request, competition_id):
         num_matches_per_week = int(league_size / 2)
         num_weeks = league_size - 1
     else:
-        num_matches_per_week = int((league_size + 1) / 2)
+        num_matches_per_week = int((league_size - 1) / 2)
         num_weeks = league_size
 
     num_one_round_matches = num_matches_per_week * num_weeks
