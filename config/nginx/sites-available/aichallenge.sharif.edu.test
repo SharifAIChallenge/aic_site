@@ -25,7 +25,6 @@ server {
         root            /static/root;
         access_log      on;
         log_not_found   on;
-        expires 30d;
     }
 
     location /media/ {
