@@ -26,7 +26,7 @@ jobs:
     - python manage.py test
   - stage: deploy_production
     script:
-    - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://199.247.7.212:3589/deploy_production")
+    - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://199.247.7.172:3589/deploy_production")
     - ADDRESS=$(echo $CRES | grep -o "http://[^']*txt")
     - COND="false"
     - echo "waiting for deployment server"
@@ -35,7 +35,7 @@ jobs:
     - curl $ADDRESS
   - stage: deploy_test
     script:
-    - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://199.247.7.212:3589/deploy_test")
+    - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://199.247.7.172:3589/deploy_test")
     - ADDRESS=$(echo $CRES | grep -o "http://[^']*txt")
     - COND="false"
     - echo "waiting for deployment server"
