@@ -12,8 +12,6 @@ django-tagging==0.4.6
 django-threadedcomments==1.1
 django-xmlrpc==0.1.8
 zinnia-wysiwyg-tinymce==1.4
-sorl-thumbnail==12.4.1
-django-tinymce==2.2.0
 gunicorn==19.7.1
 idna==2.6
 itypes==1.1.0
