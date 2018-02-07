@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-04 21:18+0000\n"
+"POT-Creation-Date: 2018-02-05 19:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,7 +79,7 @@ msgid "Battle history"
 msgstr "نبردها"
 
 #: apps/accounts/templates/accounts/battle_history.html:8
-#: apps/accounts/templates/accounts/panel.html:107
+#: apps/accounts/templates/accounts/panel.html:108
 msgid "Time"
 msgstr "زمان"
 
@@ -193,35 +193,35 @@ msgstr "تمام اعضا شرکت در مسابقه را تایید کرده‌
 msgid "All users haven't accepted the challenge yet!"
 msgstr "هنوز همه اعضا شرکت در مسابقه را تایید نکرده‌اند."
 
-#: apps/accounts/templates/accounts/panel.html:102
+#: apps/accounts/templates/accounts/panel.html:103
 msgid "Submissions"
 msgstr "ارسال‌ها"
 
-#: apps/accounts/templates/accounts/panel.html:106
+#: apps/accounts/templates/accounts/panel.html:107
 msgid "Selected"
 msgstr "انتخاب‌شده"
 
-#: apps/accounts/templates/accounts/panel.html:108
+#: apps/accounts/templates/accounts/panel.html:109
 msgid "Language"
 msgstr "زبان"
 
-#: apps/accounts/templates/accounts/panel.html:109
+#: apps/accounts/templates/accounts/panel.html:110
 msgid "Status"
 msgstr "وضعیت"
 
-#: apps/accounts/templates/accounts/panel.html:180
+#: apps/accounts/templates/accounts/panel.html:181
 msgid "File:"
 msgstr "فایل:"
 
-#: apps/accounts/templates/accounts/panel.html:185
+#: apps/accounts/templates/accounts/panel.html:186
 msgid "Language:"
 msgstr "زبان:"
 
-#: apps/accounts/templates/accounts/panel.html:195
+#: apps/accounts/templates/accounts/panel.html:196
 msgid "Submit"
 msgstr "ارسال"
 
-#: apps/accounts/templates/accounts/panel.html:215
+#: apps/accounts/templates/accounts/panel.html:216
 msgid "Create New Team"
 msgstr "ایجاد تیم جدید"
 

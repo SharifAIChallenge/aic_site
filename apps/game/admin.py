@@ -69,10 +69,37 @@ class CompetitionAdmin(admin.ModelAdmin):
 class MatchAdmin(admin.ModelAdmin):
     fields = ['competition', 'part1', 'part2']
 
-    list_display = ('id', 'competition', 'part1', 'part2')
+    actions = ['run_selected_matches']
+    list_display = ('id', 'competition', 'part1', 'part2', 'status', 'is_ready')
     list_filter = ['competition']
 
     # search_fields = []
+    def run_selected_matches(self, request, queryset):
+        matches = list(queryset)
+
+        if len(matches) < 1:
+            from django.contrib import messages
+            messages.error(request, _('no selected matches!'))
+            return
+
+        single_matches = []
+        for match in matches:
+            from django.contrib import messages
+
+            if (not match.is_ready()):
+                messages.error(request, _('one of selected matches is not ready!'))
+                return
+
+            if match.status == 'done':
+                messages.error(request, _('one of selected matches is done!'))
+                return
+
+        for match in matches:
+            for single_match in match.single_matches.all():
+                single_matches.append(single_match)
+
+        from apps.game import functions
+        functions.run_matches(single_matches)
 
 
 class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
