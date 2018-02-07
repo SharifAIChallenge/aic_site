@@ -539,6 +539,10 @@ class Match(models.Model):
         for participant in self.dependers.all():
             participant.update_depend()
 
+    def done_manually(self):
+        for single_match in self.single_matches.all():
+            single_match.done_manually()
+
     def get_participant(self, participant_result): # participant_result = ['winner', 'loser']
         if self.status != 'done':
             return ValueError('Match is not done completely! why do yo call it ? :/')
