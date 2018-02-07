@@ -28,7 +28,7 @@ def populate_teams():
     for user in users:
         if i % 3 == 0:
             team = Team()
-            team.name = i / 3 + 1
+            team.name = int(i / 3 + 1)
             team.save()
         participation = UserParticipatesOnTeam()
         participation.user = user
