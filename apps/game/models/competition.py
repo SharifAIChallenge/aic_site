@@ -433,7 +433,7 @@ class Match(models.Model):
             return 'done'
         status_result = ''
         if have_running:
-            status_result += 'running '
+            status_result += 'running'
         if have_waiting:
             status_result += 'waiting'
         return status_result
