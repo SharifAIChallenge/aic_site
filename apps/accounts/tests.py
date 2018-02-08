@@ -28,7 +28,7 @@ def populate_teams():
     for user in users:
         if i % 3 == 0:
             team = Team()
-            team.name = i / 3 + 1
+            team.name = int(i / 3 + 1)
             team.save()
         participation = UserParticipatesOnTeam()
         participation.user = user
@@ -163,7 +163,7 @@ class TestTeam(TransactionTestCase):
         self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 2)
         submissions = list(TeamSubmission.objects.all())
         self.assertFalse(submissions[0].is_final)
-        self.assertTrue(submissions[1].is_final)
+        self.assertFalse(submissions[1].is_final)
 
         # successful scenario coverage
         self.assertEqual(submissions[0].status, 'compiling')
@@ -182,3 +182,7 @@ class TestTeam(TransactionTestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(TeamSubmission.objects.all().first().status, 'compiled')
+
+        submissions = list(TeamSubmission.objects.all())
+        self.assertTrue(submissions[0].is_final)
+        self.assertFalse(submissions[1].is_final)

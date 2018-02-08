@@ -37,7 +37,7 @@ class SubmissionForm(ModelForm):
 
     def save(self, commit=True):
         result = super().save(commit)
-        result.set_final()
+        # result.set_final()
         result.handle()
         return result
 

@@ -112,7 +112,7 @@ def render_league(request, competition_id):
         num_matches_per_week = int(league_size / 2)
         num_weeks = league_size - 1
     else:
-        num_matches_per_week = int((league_size + 1) / 2)
+        num_matches_per_week = int((league_size - 1) / 2)
         num_weeks = league_size
 
     num_one_round_matches = num_matches_per_week * num_weeks
@@ -196,6 +196,7 @@ def report(request):
                 log = json.load(reader(logfile))
                 if len(log["errors"]) == 0:
                     submit.status = 'compiled'
+                    submit.set_final()
                 else:
                     submit.status = 'failed'
                     submit.infra_compile_message = '\n'.join(error for error in log["errors"])
