@@ -199,7 +199,7 @@ def report(request):
                     submit.set_final()
                 else:
                     submit.status = 'failed'
-                    submit.infra_compile_message = '...' + '\n'.join(error for error in log["errors"])[-1000:]
+                    submit.infra_compile_message = '...' + '<br>'.join(error for error in log["errors"])[-1000:]
         elif single_report['status'] == 3:
             submit.status = 'failed'
             submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
