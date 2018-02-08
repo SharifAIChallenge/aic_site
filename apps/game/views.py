@@ -196,6 +196,7 @@ def report(request):
                 log = json.load(reader(logfile))
                 if len(log["errors"]) == 0:
                     submit.status = 'compiled'
+                    submit.set_final()
                 else:
                     submit.status = 'failed'
                     submit.infra_compile_message = '\n'.join(error for error in log["errors"])
