@@ -123,7 +123,7 @@
                                     <td>
                                         <div class="ui checkbox">
                                             <input type="checkbox" class="submission"
-                                                   {% if not submission.team.challenge.is_submission_open %}disabled{% endif %}
+                                                   {% if not submission.team.challenge.is_submission_open or submission.status != 'compiled' %}disabled{% endif %}
                                                    {% if submission.is_final %}checked="true"{% endif %}
                                                    data-id="{{ submission.id }}" id="submission_{{ submission.id }}">
                                             <label></label>
@@ -214,7 +214,9 @@
                             </select>
 
                         </div>
-
+                        <div class="ui orange message">
+                        {% trans 'Caution: Submissions get final when they are successfully compiled!' %}
+                        </div>
                         <input type="submit" class="ui green button" value="{% trans 'Submit' %}">
                     {% endif %}
                 {% endif %}

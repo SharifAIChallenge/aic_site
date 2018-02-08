@@ -168,6 +168,7 @@ def panel(request, participation_id=None):
     if participation is not None:
         form.initial['team'] = participation
         form.fields['team'].empty_label = None
+        form.fields['file'].widget.attrs['accept'] = '.zip'
 
     context['form'] = form
     context['form_challenge'] = ChallengeATeamForm()
