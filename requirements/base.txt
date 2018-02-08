@@ -5,12 +5,14 @@ coreapi==2.2.4
 coreschema==0.0.4
 Django==1.10.7
 django-blog-zinnia==0.19
+zinnia-wysiwyg-tinymce==1.4
 django-contrib-comments==1.8.0
 django-js-asset==0.1.1
 django-mptt==0.9.0
 django-tagging==0.4.6
 django-threadedcomments==1.1
 django-xmlrpc==0.1.8
+zinnia-wysiwyg-tinymce==1.4
 gunicorn==19.7.1
 idna==2.6
 itypes==1.1.0
