@@ -22,6 +22,7 @@ class SignUpForm(UserCreationForm):
     phone_regex = RegexValidator(regex=r'^\d{8,15}$',
                                  message=_("Please enter your phone number correctly!"))
     phone_number = forms.CharField(validators=[phone_regex], required=False)
+    age = forms.IntegerField(required=True)
     captcha = ReCaptchaField()
 
     def save(self, commit=True):
@@ -52,7 +53,8 @@ class SignUpForm(UserCreationForm):
             profile = Profile(
                 user=user,
                 phone_number=self.cleaned_data['phone_number'],
-                organization=self.cleaned_data['organization']
+                organization=self.cleaned_data['organization'],
+                age=self.cleaned_data['age']
             )
             profile.save()
 
