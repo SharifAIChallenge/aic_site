@@ -135,24 +135,24 @@
                                     <td><a href="{{ submission.file.url }}">{{ submission.time }}</a></td>
                                     <td>
                                         {% if submission.language == 'java'%}
-                                            <div class="ui red button">Java</div>
+                                            <div class="ui orange label">Java</div>
                                         {% elif submission.language == 'py3'%}
-                                            <div class="ui yellow button">Python</div>
+                                            <div class="ui blue label">Python</div>
                                         {% elif submission.language == 'cpp'%}
-                                            <div dir="ltr" class="ui purple button">C++</div>
+                                            <div dir="ltr" class="ui purple label">C++</div>
                                         {% endif %}
                                     </td>
                                     <td>
                                         {% if submission.status == 'compiled' %}
-                                            <a class="ui button green" data-tooltip="{% trans 'Compiled Successfully' %}" data-inverted="">{% trans 'Compiled' %}</a>
+                                            <a class="ui green label" data-tooltip="{% trans 'Compiled Successfully' %}" data-inverted="">{% trans 'Compiled' %}</a>
                                         {% elif submission.status == 'failed' %}
                                             <div dir="ltr">
-                                                <a dir="ltr" class="ui button red" data-tooltip="{{ submission.infra_compile_message }}" data-inverted="">{% trans 'Failed' %}</a>
+                                                <a dir="ltr" class="ui red label" data-tooltip="{{ submission.infra_compile_message }}" data-inverted="">{% trans 'Failed' %}</a>
                                             </div>
                                         {% elif submission.status == 'uploading' %}
-                                            <a class="ui button" data-tooltip="{% trans 'Failed to upload. You may contact the technical team.' %}" data-inverted="">{% trans 'Failed To Upload' %}</a>
+                                            <a class="ui label" data-tooltip="{% trans 'Failed to upload. You may contact the technical team.' %}" data-inverted="">{% trans 'Failed To Upload' %}</a>
                                         {% elif submission.status == 'compiling' %}
-                                            <a class="ui blue button" data-tooltip="{% trans 'We are compiling your code! Wait and refresh your page.' %}" data-inverted="">{% trans 'Compiling' %}</a>
+                                            <a class="ui blue label" data-tooltip="{% trans 'We are compiling your code! Wait and refresh your page.' %}" data-inverted="">{% trans 'Compiling' %}</a>
                                         {% endif %}
                                     </td>
                                 </tr>
