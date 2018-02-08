@@ -100,7 +100,7 @@ class UserAcceptsTeamInChallenge(models.Model):
 
 
 def get_submission_file_directory(instance, filename):
-    return os.path.join(settings.MEDIA_ROOT, instance.team.id.__str__(), uuid.uuid4().__str__())
+    return os.path.join(instance.team.id.__str__(), uuid.uuid4().__str__())
 
 
 class TeamSubmission(models.Model):
