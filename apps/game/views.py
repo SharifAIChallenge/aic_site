@@ -193,13 +193,13 @@ def report(request):
 
                 reader = codecs.getreader('utf-8')
 
-                log = json.load(reader(logfile))
+                log = json.load(reader(logfile), strict=False)
                 if len(log["errors"]) == 0:
                     submit.status = 'compiled'
                     submit.set_final()
                 else:
                     submit.status = 'failed'
-                    submit.infra_compile_message = '\n'.join(error for error in log["errors"])
+                    submit.infra_compile_message = '...' + '\n'.join(error for error in log["errors"])[-1000:]
         elif single_report['status'] == 3:
             submit.status = 'failed'
             submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
