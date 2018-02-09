@@ -145,7 +145,7 @@
                                     <td>
                                         {% if submission.status == 'compiled' %}
                                             <a class="ui green label" data-tooltip="{% trans 'Compiled Successfully' %}" data-inverted="">{% trans 'Compiled' %}</a>
-                                        {% elif submission.status == 'compiling' %}
+                                        {% elif submission.status == 'failed' %}
                                             <a onclick="$('#submission_modal_{{ submission.id }}').toggle()" class="ui red label" data-tooltip="{% trans 'Click To View' %}" data-inverted="">{% trans 'Failed' %}</a>
                                             <div class="ui modal" id="submission_modal_{{ submission.id }}">
                                                 <i class="close icon"></i>
