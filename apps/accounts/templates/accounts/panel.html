@@ -147,7 +147,7 @@
                                             <a class="ui green label" data-tooltip="{% trans 'Compiled Successfully' %}" data-inverted="">{% trans 'Compiled' %}</a>
                                         {% elif submission.status == 'failed' %}
                                             <div dir="ltr">
-                                                <a dir="ltr" class="ui red label" data-tooltip="" data-inverted="" data-content="{{ submission.infra_compile_message }}">{% trans 'Failed' %}</a>
+                                                <a dir="ltr" class="ui red label" data-tooltip="{{ submission.infra_compile_message }}" data-inverted="">{% trans 'Failed' %}</a>
                                             </div>
                                         {% elif submission.status == 'uploading' %}
                                             <a class="ui label" data-tooltip="{% trans 'Failed to upload. You may contact the technical team.' %}" data-inverted="">{% trans 'Failed To Upload' %}</a>
