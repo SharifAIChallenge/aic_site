@@ -146,8 +146,27 @@
                                         {% if submission.status == 'compiled' %}
                                             <a class="ui green label" data-tooltip="{% trans 'Compiled Successfully' %}" data-inverted="">{% trans 'Compiled' %}</a>
                                         {% elif submission.status == 'failed' %}
-                                            <div dir="ltr">
-                                                <a dir="ltr" class="ui red label" data-tooltip="{{ submission.infra_compile_message }}" data-inverted="">{% trans 'Failed' %}</a>
+                                            <a onclick="$('#submission_modal_{{ submission.id }}').show()" class="ui red label" data-tooltip="{% trans 'Click To View' %}" data-inverted="">{% trans 'Failed' %}</a>
+                                            <div class="ui modal" id="submission_modal_{{ submission.id }}">
+                                                <div class="header">
+                                                    {% trans 'Compile Error' %}
+                                                </div>
+                                                <i class="close icon"></i>
+                                                <div class="scrolling content">
+                                                    <div class="description">
+                                                        <div class="ui header">
+                                                            {%  trans 'The Log From Compiler Is Shown Below:' %}
+                                                        </div>
+                                                        <p dir="ltr" style="float: left;">
+                                                            {{ submission.infra_compile_message }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="actions">
+                                                    <div class="ui black deny button" onclick="$('#submission_modal_{{ submission.id }}').hide()" >
+                                                        {% trans 'OK' %}
+                                                    </div>
+                                                </div>
                                             </div>
                                         {% elif submission.status == 'uploading' %}
                                             <a class="ui label" data-tooltip="{% trans 'Failed to upload. You may contact the technical team.' %}" data-inverted="">{% trans 'Failed To Upload' %}</a>
@@ -239,4 +258,5 @@
                    class="ui blue button">{% trans 'Create New Team' %}</a>
             {% endif %}
         {% endfor %}
-    {% endif %}{% endblock %}
+    {% endif %}
+{% endblock %}
