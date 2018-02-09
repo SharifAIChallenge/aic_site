@@ -106,7 +106,6 @@
 
                     {% if participation.challenge.is_submission_open or submissions|length > 0%}
                         <h2>{% trans 'Submissions' %}</h2>
-                        <div class="ui dimmer modals page" ></div>
                     {% endif %}
                     {% if submissions|length > 0 %}
                         <table class="ui center aligned table table-bordered">
@@ -146,7 +145,7 @@
                                     <td>
                                         {% if submission.status == 'compiled' %}
                                             <a class="ui green label" data-tooltip="{% trans 'Compiled Successfully' %}" data-inverted="">{% trans 'Compiled' %}</a>
-                                        {% elif submission.status == 'compiling' %}
+                                        {% elif submission.status == 'failed' %}
                                             <a onclick="$('#submission_modal_{{ submission.id }}').show()" class="ui red label" data-tooltip="{% trans 'Click To View' %}" data-inverted="">{% trans 'Failed' %}</a>
                                             <div class="ui modal" id="submission_modal_{{ submission.id }}">
                                                 <div class="header">
