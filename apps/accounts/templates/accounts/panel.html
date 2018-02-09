@@ -106,6 +106,7 @@
 
                     {% if participation.challenge.is_submission_open or submissions|length > 0%}
                         <h2>{% trans 'Submissions' %}</h2>
+                        <div class="ui dimmer modals page" ></div>
                     {% endif %}
                     {% if submissions|length > 0 %}
                         <table class="ui center aligned table table-bordered">
@@ -145,19 +146,19 @@
                                     <td>
                                         {% if submission.status == 'compiled' %}
                                             <a class="ui green label" data-tooltip="{% trans 'Compiled Successfully' %}" data-inverted="">{% trans 'Compiled' %}</a>
-                                        {% elif submission.status == 'failed' %}
-                                            <a onclick="$('#submission_modal_{{ submission.id }}').toggle()" class="ui red label" data-tooltip="{% trans 'Click To View' %}" data-inverted="">{% trans 'Failed' %}</a>
+                                        {% elif submission.status == 'compiling' %}
+                                            <a onclick="$('#submission_modal_{{ submission.id }}').show()" class="ui red label" data-tooltip="{% trans 'Click To View' %}" data-inverted="">{% trans 'Failed' %}</a>
                                             <div class="ui modal" id="submission_modal_{{ submission.id }}">
-                                                <i class="close icon"></i>
                                                 <div class="header">
                                                     {% trans 'Compile Error' %}
                                                 </div>
-                                                <div class="image content">
+                                                <i class="close icon"></i>
+                                                <div class="scrolling content">
                                                     <div class="description">
                                                         <div class="ui header">
                                                             {%  trans 'The Log From Compiler Is Shown Below:' %}
                                                         </div>
-                                                        <p dir="ltr">
+                                                        <p dir="ltr" style="float: left;">
                                                             {{ submission.infra_compile_message }}
                                                         </p>
                                                     </div>
@@ -258,4 +259,5 @@
                    class="ui blue button">{% trans 'Create New Team' %}</a>
             {% endif %}
         {% endfor %}
-    {% endif %}{% endblock %}
+    {% endif %}
+{% endblock %}
