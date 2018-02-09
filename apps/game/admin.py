@@ -220,7 +220,7 @@ class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
                                       type='league')
         new_competition.save()
         new_competition.create_new_league(
-            [team.team for team in teams]
+            [team.team for team in teams], 1
         )
 
     def create_new_double_elimination(self, request, queryset):
