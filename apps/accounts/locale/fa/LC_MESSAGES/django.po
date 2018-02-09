@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-08 05:55+0000\n"
+"POT-Creation-Date: 2018-02-09 03:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -218,42 +218,61 @@ msgid "Compiled"
 msgstr "کامپایل‌شده"
 
 #: apps/accounts/templates/accounts/panel.html:150
+msgid "Click To View"
+msgstr "برای نمایش کلیک کنید."
+
+#: apps/accounts/templates/accounts/panel.html:150
 msgid "Failed"
 msgstr "ناموفق"
 
-#: apps/accounts/templates/accounts/panel.html:153
+#: apps/accounts/templates/accounts/panel.html:154
+msgid "Compile Error"
+msgstr "کامپایل‌شده"
+
+#: apps/accounts/templates/accounts/panel.html:159
+msgid "The Log From Compiler Is Shown Below:"
+msgstr "نتیجه کار کامپایلر:"
+
+#: apps/accounts/templates/accounts/panel.html:168
+#: apps/accounts/templates/accounts/success_create_team.html:17
+msgid "OK"
+msgstr "باشه"
+
+#: apps/accounts/templates/accounts/panel.html:174
 msgid "Failed to upload. You may contact the technical team."
 msgstr "فرایند آپلود کامل نشد. لطفا این مورد را به تیم فنی اطلاع دهید."
 
-#: apps/accounts/templates/accounts/panel.html:153
+#: apps/accounts/templates/accounts/panel.html:174
 msgid "Failed To Upload"
 msgstr "آپلود ناموفق"
 
-#: apps/accounts/templates/accounts/panel.html:155
+#: apps/accounts/templates/accounts/panel.html:176
 msgid "We are compiling your code! Wait and refresh your page."
 msgstr "ما در حال کامپایل کردن کد شما هستیم. صبر کنید و صفحه را مجددا ببینید."
 
-#: apps/accounts/templates/accounts/panel.html:155
+#: apps/accounts/templates/accounts/panel.html:176
 msgid "Compiling"
 msgstr "در حال کامپایل"
 
-#: apps/accounts/templates/accounts/panel.html:203
+#: apps/accounts/templates/accounts/panel.html:224
 msgid "File:"
 msgstr "فایل:"
 
-#: apps/accounts/templates/accounts/panel.html:208
+#: apps/accounts/templates/accounts/panel.html:229
 msgid "Language:"
 msgstr "زبان:"
 
-#: apps/accounts/templates/accounts/panel.html:218
+#: apps/accounts/templates/accounts/panel.html:239
 msgid "Caution: Submissions get final when they are successfully compiled!"
-msgstr "توجه:‌ ارسالهایی که با موفقیت کامپایل شوند به عنوان ارسال نهایی شما تنظیم می‌شوند."
+msgstr ""
+"توجه:‌ ارسالهایی که با موفقیت کامپایل شوند به عنوان ارسال نهایی شما تنظیم "
+"می‌شوند."
 
-#: apps/accounts/templates/accounts/panel.html:220
+#: apps/accounts/templates/accounts/panel.html:241
 msgid "Submit"
 msgstr "ارسال"
 
-#: apps/accounts/templates/accounts/panel.html:239
+#: apps/accounts/templates/accounts/panel.html:260
 msgid "Create New Team"
 msgstr "ایجاد تیم جدید"
 
@@ -296,10 +315,6 @@ msgstr "تیم شما با موفقیت ساخته شد"
 #: apps/accounts/templates/accounts/success_create_team.html:12
 msgid "Request messages has bee sent to your teammates"
 msgstr "درخواست عضویت به هم تیمی های شما فرستاده شد"
-
-#: apps/accounts/templates/accounts/success_create_team.html:17
-msgid "OK"
-msgstr "باشه"
 
 #: apps/accounts/templates/accounts/update_profile.html:8
 msgid "Sign up"
