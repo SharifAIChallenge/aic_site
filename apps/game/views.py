@@ -234,9 +234,9 @@ def report(request):
     return HttpResponseServerError()
 
 
-def game_view():
-    return redirect(to='/static/game_graphics/game_viewer/index.html')
+def game_view(request):
+    return redirect(to='/static/files/game_graphics/game_viewer/index.html')
 
 
-def map_maker():
-    return redirect(to='/static/game_graphics/map_maker/index.html')
+def map_maker(request):
+    return redirect(to='/static/files/game_graphics/map_maker/index.html')
