@@ -156,18 +156,19 @@ def panel(request, participation_id=None):
         form = SubmissionForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            context['submissions'] = Paginator(
-                TeamSubmission.objects.filter(team=participation_id).order_by('-id'),
-                10
-            ).page(page)
-    else:
-        form = SubmissionForm()
-        form.fields['team'].queryset = TeamParticipatesChallenge.objects.filter(
-            team__in=context['accepted_participations']
-        )
-        if participation is not None:
-            form.initial['team'] = participation
-            form.fields['team'].empty_label = None
+
+    context['submissions'] = Paginator(
+        TeamSubmission.objects.filter(team_id=participation_id).order_by('-id'),
+        10
+    ).page(page)
+    form = SubmissionForm()
+    form.fields['team'].queryset = TeamParticipatesChallenge.objects.filter(
+        team__in=context['accepted_participations']
+    )
+    if participation is not None:
+        form.initial['team'] = participation
+        form.fields['team'].empty_label = None
+        form.fields['file'].widget.attrs['accept'] = '.zip'
 
     context['form'] = form
     context['form_challenge'] = ChallengeATeamForm()
