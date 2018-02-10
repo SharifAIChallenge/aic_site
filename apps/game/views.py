@@ -6,7 +6,7 @@ from operator import itemgetter
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.game import functions
@@ -232,3 +232,11 @@ def report(request):
         single_match.save()
         return JsonResponse({'success': True})
     return HttpResponseServerError()
+
+
+def game_view(request):
+    return redirect(to='/static/game_graphics/game_viewer/index.html')
+
+
+def map_maker(request):
+    return redirect(to='/static/game_graphics/map_maker/index.html')
