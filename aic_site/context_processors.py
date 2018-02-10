@@ -37,8 +37,8 @@ def menu(request):
                 _('Game'): {
                     'dropdown': {
                         _('Panel'): reverse('accounts:panel'),
-                        _('Game Viewer'): '/static/game_graphics/game_viewer/index.html',
-                        _('Map Maker'): '/static/game_graphics/map_maker/index.html',
+                        _('Game Viewer'): '/static/game/game_viewer',
+                        _('Map Maker'): '/static/game/map_maker',
                     }
                 },
                 _('Account'): {
