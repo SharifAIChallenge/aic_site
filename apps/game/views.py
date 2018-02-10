@@ -235,8 +235,8 @@ def report(request):
 
 
 def game_view(request):
-    return redirect(to='/static/files/game_graphics/game_viewer/index.html')
+    return redirect(to='/static/game_graphics/game_viewer/index.html')
 
 
 def map_maker(request):
-    return redirect(to='/static/files/game_graphics/map_maker/index.html')
+    return redirect(to='/static/game_graphics/map_maker/index.html')
