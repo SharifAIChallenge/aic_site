@@ -719,7 +719,7 @@ class SingleMatch(models.Model):
         reader = codecs.getreader('utf-8')
         log_array = json.load(reader(self.log), strict=False)
         last_row = log_array[len(log_array) - 1]
-        return float(last_row[1]), float(last_row[2])
+        return float(last_row['args'][1]), float(last_row['args'][2])
 
     def done_single_match(self):
         self.status = 'done'
