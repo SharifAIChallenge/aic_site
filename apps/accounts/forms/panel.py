@@ -62,14 +62,10 @@ class ChallengeATeamForm(forms.Form):
     def is_valid(self):
         if not super().is_valid():
             return False
-        team_par_challenge = TeamParticipatesChallenge.objects.get(
-            id=self.participation.id,
-            team__participants__user=self.user
-        )
-        if self.user.id not in [team_par_challenge.id for team_par_challenge in team_par_challenge.team.participants.all()]:
+        if self.user.id not in [participant.user.id for participant in self.participation.team.participants.all()]:
             self.add_error(None, _("You have to be one of participants."))
             return False
-        submissions = TeamSubmission.objects.filter(team__exact=team_par_challenge)
+        submissions = TeamSubmission.objects.filter(team__exact=self.participation)
         last_submission = submissions.order_by('-time')[0]
         if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA):
             self.add_error(None, _("You have to wait at least one hour between each match"))
