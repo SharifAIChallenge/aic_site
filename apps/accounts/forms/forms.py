@@ -85,6 +85,7 @@ class UpdateProfileForm(ModelForm):
         profile = user.profile
         profile.phone_number = self.cleaned_data['phone_number']
         profile.age = self.cleaned_data['age']
+        profile.organization = self.cleaned_data['organization'],
 
         if commit:
             user.save()
