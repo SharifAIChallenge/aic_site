@@ -1,10 +1,10 @@
-from django.contrib import admin
-
-from .models import Transaction
-
-
-class TransactionAdmin(admin.ModelAdmin):
-    readonly_fields = ['team', 'amount', 'status', 'order_id', 'bank', 'reference_id', 'created', 'updated']
-    list_display = ['team', 'amount', 'status', 'bank', 'reference_id', 'updated']
-
-admin.site.register(Transaction, TransactionAdmin)
+# from django.contrib import admin
+#
+# from .models import Transaction
+#
+#
+# class TransactionAdmin(admin.ModelAdmin):
+#     readonly_fields = ['team', 'amount', 'status', 'order_id', 'bank', 'reference_id', 'created', 'updated']
+#     list_display = ['team', 'amount', 'status', 'bank', 'reference_id', 'updated']
+#
+# admin.site.register(Transaction, TransactionAdmin)

@@ -62,13 +62,14 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'organization', 'phone_number', 'email', 'password1', 'password2')
+        fields = ('username', 'first_name', 'last_name', 'organization','age', 'phone_number', 'email', 'password1', 'password2')
 
 
 class UpdateProfileForm(ModelForm):
     first_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     email = forms.EmailField(max_length=254, required=True, help_text='Required. Inform a valid email address.')
+    age = forms.IntegerField(required=True)
     password1 = forms.CharField(required=False, widget=forms.PasswordInput)
     password2 = forms.CharField(required=False, widget=forms.PasswordInput)
 
@@ -83,6 +84,7 @@ class UpdateProfileForm(ModelForm):
         user = super().save(commit=False)
         profile = user.profile
         profile.phone_number = self.cleaned_data['phone_number']
+        profile.age = self.cleaned_data['age']
 
         if commit:
             user.save()
@@ -91,4 +93,4 @@ class UpdateProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'phone_number')
+        fields = ('first_name', 'last_name', 'email','phone_number','age', 'password1', 'password2')

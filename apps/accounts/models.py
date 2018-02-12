@@ -7,7 +7,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
     phone_number = models.CharField(max_length=11, null=True, blank=True)
     organization = models.CharField(max_length=128, null=False, blank=False)
-    age = models.IntegerField(null=False,blank=False, default=0)
+    age = models.IntegerField(null=True)
 
     def __str__(self):
         return self.user.username
