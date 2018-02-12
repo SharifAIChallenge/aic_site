@@ -699,7 +699,8 @@ class SingleMatch(models.Model):
                 self.status = 'running'
                 self.save()
             else:
-                logger.error(answer)
+                logger.error(json.dumps(answer))
+                print(json.dumps(answer))
                 self.status = 'failed'
                 self.save()
                 # raise Http404(str(answer))
