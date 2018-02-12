@@ -197,4 +197,4 @@ LOGGING = {
     }
 }
 # this time delta is in minutes
-SINGLE_MATCH_SUBMISSION_TIME_DELTA = 20
+SINGLE_MATCH_SUBMISSION_TIME_DELTA = 5
