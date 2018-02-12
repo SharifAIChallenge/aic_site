@@ -642,8 +642,10 @@ class SingleMatch(models.Model):
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
     part1_score = models.IntegerField(null=True, blank=True)
     part2_score = models.IntegerField(null=True, blank=True)
+    time = models.DateTimeField(auto_now_add=True)
     map = models.ForeignKey(Map)
     status = models.CharField(max_length=128, choices=STATUS_CHOICES, default='waiting')
+
 
     def __str__(self):
         str_part1 = 'None'

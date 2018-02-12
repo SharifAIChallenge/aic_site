@@ -1,4 +1,5 @@
 import logging
+from datetime import timedelta
 
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -7,8 +8,12 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.conf import settings
+from django.db.models import Q
 from django.http import HttpResponse, Http404
 from django.urls import reverse
+from django.utils.timezone import utc
+
 from apps.accounts.forms.team_forms import CreateTeamForm
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
@@ -172,12 +177,22 @@ def panel(request, participation_id=None):
 
     context['form'] = form
     context['form_challenge'] = ChallengeATeamForm()
+    team_par_chal = TeamParticipatesChallenge.objects.get(
+        id=participation_id,
+        team__participants__user=request.user
+    )
+    submissions = TeamSubmission.objects.filter(team__exact=team_par_chal)
+    last_submission = submissions.order_by('-time')[0]
+    if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA):
+        form.add_error(None, _("You have to wait at least one hour between each match"))
+        return render(request, 'accounts/panel.html', context)
     if participation is not None:
         context['challenge_teams'] = [team_part.team for team_part in
                                       TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
         context.update({
             'participation_id': participation_id,
-            'battle_history': Match.objects.all()  # TODO : ok it
+            'battle_history': Match.objects.filter(Q(part1__object_id=participation_id) |
+                                                   Q(part2__object_id=participation_id))
         })
     return render(request, 'accounts/panel.html', context)
 

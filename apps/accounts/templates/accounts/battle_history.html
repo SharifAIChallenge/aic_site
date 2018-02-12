@@ -13,21 +13,19 @@
         <tbody>
             {% for match in battle_history %}
                 <tr>
-                    <td>{{ match.part2 }}</td>
-                    <td>date</td>
-                    <td>ss</td>
+                    <td>{{ match.time }}</td>
+                    <td>
+                        {% if match.part1.object_id == participation_id %}
+                            {{ match.part2 }}
+                        {% elif match.part2.object_id == participation_id %}
+                            {{ match.part1 }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        
+                    </td>
                 </tr>
-
-
             {% endfor %}
-            <tr>
-                <td>
-                    s
-                </td>
-                <td>date</td>
-                <td>ss</td>
-            </tr>
-
         </tbody>
 
     </table>
@@ -45,4 +43,4 @@
 
 </div>
 
-<script type="text/javascript" src="{% static 'accounts/js/challenge_teams.js' %}"></script>
+{#<script type="text/javascript" src="{% static 'accounts/js/challenge_teams.js' %}"></script>#}
