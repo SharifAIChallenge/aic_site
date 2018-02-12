@@ -716,7 +716,8 @@ class SingleMatch(models.Model):
             raise Http404(str(error))
 
     def extract_score(self):
-        log_array = json.load(self.log, strict=False)
+        reader = codecs.getreader('utf-8')
+        log_array = json.load(reader(self.log), strict=False)
         last_row = log_array[len(log_array) - 1]
         return float(last_row[1]), float(last_row[2])
 
