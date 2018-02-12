@@ -1,9 +1,17 @@
-from django.forms.models import ModelForm
-from django.forms import Form
-from django import forms
+from datetime import timedelta, datetime
 
-from apps.game.models import TeamSubmission, Map, Team
-from apps.game import functions
+from django import forms
+from django.conf import settings
+from django.forms.models import ModelForm
+from django.utils.timezone import utc
+from django.utils.translation import ugettext_lazy as _
+
+from apps.game.models import TeamSubmission, Map, Team, TeamParticipatesChallenge, Match, Competition, Participant, \
+    SingleMatch
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def get_maps():
@@ -37,17 +45,71 @@ class SubmissionForm(ModelForm):
 
     def save(self, commit=True):
         result = super().save(commit)
-        # result.set_final()
         result.handle()
         return result
 
 
 class ChallengeATeamForm(forms.Form):
-    # battle_team = forms.ChoiceField(choices=[('t1','t1'), ('t2','t2'), ('t3','t3')])
-    # battle_team_maps = forms.ChoiceField(choices=[('m1','m1'), ('m2','m2'), ('m3','m3')])
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user, participation, *args, **kwargs):
         super(ChallengeATeamForm, self).__init__(*args, **kwargs)
+        self.user = user
+        self.participation = participation
         self.fields['battle_team_maps'] = forms.ChoiceField(
             choices=get_maps())
         self.fields['battle_team'] = forms.ChoiceField(
             choices=get_teams())
+
+    def is_valid(self):
+        if not super().is_valid():
+            return False
+        team_par_challenge = TeamParticipatesChallenge.objects.get(
+            id=self.participation.id,
+            team__participants__user=self.user
+        )
+        if self.user.id not in [team_par_challenge.id for team_par_challenge in team_par_challenge.team.participants.all()]:
+            self.add_error(None, _("You have to be one of participants."))
+            return False
+        submissions = TeamSubmission.objects.filter(team__exact=team_par_challenge)
+        last_submission = submissions.order_by('-time')[0]
+        if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA):
+            self.add_error(None, _("You have to wait at least one hour between each match"))
+            return False
+        return True
+
+    def save(self, commit=True):
+        try:
+            challenge = self.participation.challenge
+            competition = Competition.objects.filter(
+                challenge=challenge,
+                type='friendly'
+            ).first()
+
+            second_team = Team.objects.filter(id=self.cleaned_data['battle_team']).first()
+            second_team_participation = TeamParticipatesChallenge.objects.filter(team=second_team, challenge=challenge).first()
+
+            first_participant = Participant()
+            first_participant.depend = self.participation
+            first_participant.submission = self.participation.get_final_submission()
+            if commit:
+                first_participant.save()
+
+            second_participant = Participant()
+            second_participant.depend = second_team_participation
+            second_participant.submission = second_team_participation.get_final_submission()
+            if commit:
+                second_participant.save()
+
+            match = Match(part1=first_participant, part2=second_participant, competition=competition)
+            if commit:
+                match.save()
+
+            competition_map = Map.objects.filter(id=self.cleaned_data['battle_team_maps']).first()
+
+            single_match = SingleMatch(match=match, map=competition_map)
+            if commit:
+                single_match.save()
+
+            single_match.handle()
+
+        except Exception as e:
+            logger.error("Team failed to submit: " + str(e))

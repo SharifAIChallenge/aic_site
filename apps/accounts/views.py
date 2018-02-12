@@ -1,41 +1,31 @@
+import json
 import logging
-from datetime import timedelta
 
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.conf import settings
 from django.db.models import Q
-from django.http import HttpResponse, Http404
-from django.urls import reverse
-from django.utils.timezone import utc
-
-from apps.accounts.forms.team_forms import CreateTeamForm
+from django.http import Http404
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
-from django.utils.datetime_safe import datetime
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.views import generic
-
-from apps.accounts.forms.team_forms import CreateTeamForm, AddParticipationForm
 # Create your views here.
 from django.views.generic import FormView, RedirectView
 
 from apps.accounts.forms.forms import SignUpForm, UpdateProfileForm
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
+from apps.accounts.forms.team_forms import CreateTeamForm, AddParticipationForm
 from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 from apps.accounts.tokens import account_activation_token
-from apps.game.models import TeamSubmission, SingleMatch, Match, Participant, Map, Competition, ContentType
-import json
-from apps.game.models.challenge import TeamParticipatesChallenge, UserAcceptsTeamInChallenge
+from apps.game.models import TeamSubmission, SingleMatch, Match, Participant, Map, Competition
 from apps.game.models.challenge import Challenge
-
+from apps.game.models.challenge import TeamParticipatesChallenge
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
 logger = logging.getLogger(__name__)
@@ -176,16 +166,7 @@ def panel(request, participation_id=None):
         form.fields['file'].widget.attrs['accept'] = '.zip'
 
     context['form'] = form
-    context['form_challenge'] = ChallengeATeamForm()
-    team_par_chal = TeamParticipatesChallenge.objects.get(
-        id=participation_id,
-        team__participants__user=request.user
-    )
-    submissions = TeamSubmission.objects.filter(team__exact=team_par_chal)
-    last_submission = submissions.order_by('-time')[0]
-    if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA):
-        form.add_error(None, _("You have to wait at least one hour between each match"))
-        return render(request, 'accounts/panel.html', context)
+    context['form_challenge'] = ChallengeATeamForm(user=request.user, participation=participation)
     if participation is not None:
         context['challenge_teams'] = [team_part.team for team_part in
                                       TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
@@ -312,9 +293,6 @@ def cancel_participation_request(request, participation_id, user_id):
 
 @login_required()
 def challenge_a_team(request, participation_id):
-    # TODO : add time limit for challenging a team
-    #    return HttpResponse(request.POST['battle_team'])
-
     if participation_id is not None:
         try:
             participation = TeamParticipatesChallenge.objects.get(
@@ -326,38 +304,8 @@ def challenge_a_team(request, participation_id):
     else:
         return redirect(reverse('accounts:panel', args=[participation_id]))
 
-    try:
-        challenge = participation.challenge
-
-        team1 = participation.team
-
-        competition = Competition.objects.filter(challenge=challenge, type='friendly').first()
-
-        team2_ = Team.objects.filter(id=request.POST['battle_team']).first()
-        team2 = TeamParticipatesChallenge.objects.filter(team=team2_, challenge=challenge).first()
-
-        part1 = Participant()
-        part1.depend = participation
-        part1.submission = participation.get_final_submission()
-        part1.save()
-
-        part2 = Participant()
-        part2.depend = team2
-        part2.submission = team2.get_final_submission()
-        part2.save()
-
-        match = Match(part1=part1, part2=part2, competition=competition)
-        match.save()
-
-        competition_map = Map.objects.filter(id=request.POST['battle_team_maps']).first()
-
-        single_match = SingleMatch(match=match, map=competition_map)
-        single_match.save()
-
-        single_match.handle()
-
-    except Exception as e:
-        logger.error("Team failed to submit : " + str(e))
-
-    # single_match.
+    if request.method == 'POST':
+        form = ChallengeATeamForm(data=request.POST, user=request.user, participation=participation)
+        if form.is_valid():
+            form.save()
     return redirect(reverse('accounts:panel', args=[participation_id]))
