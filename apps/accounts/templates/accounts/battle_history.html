@@ -1,5 +1,4 @@
-{% load static i18n %}
-
+{% load i18n %}
 <div id="challenge-teams">
     <h2>{% trans 'Battle history' %}</h2>
     <table class="ui center aligned table table-bordered">
@@ -22,25 +21,33 @@
                         {% endif %}
                     </td>
                     <td>
-
+                        <a class="ui icon orange button" target="_blank">
+                            <i class="code icon"></i>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
 
     </table>
-    <div class="ui grid">
-        <div class="row">
-            <form action="{% url 'accounts:challenge_a_team' participation_id %}" method="post" >
-                {% csrf_token %}
-                {{ form_challenge.battle_team }}
-                {{ form_challenge.battle_team_maps }}
-                <input type="submit" class="ui green button" value="Submit">
-            </form>
+    <form action="{% url 'accounts:challenge_a_team' participation_id %}" method="post" >
+        {% csrf_token %}
+        <div class="field">
+            <select class="ui dropdown">
+                <option value="">Opponent</option>
+                {% for team in form_challenge.battle_team %}
+                    <option value={{ team.id }}>{{ team }}</option>
+                {% endfor %}
+            </select>
         </div>
-    </div>
-
-
+        <select class="ui dropdown">
+            <option value="">Map</option>
+            {% for map in form_challenge.battle_team_maps %}
+                <option value={{ map.id }}>{{ map }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" class="ui green button" value="Submit">
+    </form>
 </div>
 
 {#<script type="text/javascript" src="{% static 'accounts/js/challenge_teams.js' %}"></script>#}

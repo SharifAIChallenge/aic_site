@@ -191,8 +191,9 @@ def panel(request, participation_id=None):
                                       TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
         context.update({
             'participation_id': participation_id,
-            'battle_history': Match.objects.filter(Q(part1__object_id=participation_id) |
-                                                   Q(part2__object_id=participation_id))
+            # 'battle_history': Match.objects.filter(Q(part1__object_id=participation_id) |
+            #                                        Q(part2__object_id=participation_id))
+            'battle_history': Match.objects.all()
         })
     return render(request, 'accounts/panel.html', context)
 
