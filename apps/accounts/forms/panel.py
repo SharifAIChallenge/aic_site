@@ -43,11 +43,5 @@ class SubmissionForm(ModelForm):
 
 
 class ChallengeATeamForm(forms.Form):
-    # battle_team = forms.ChoiceField(choices=[('t1','t1'), ('t2','t2'), ('t3','t3')])
-    # battle_team_maps = forms.ChoiceField(choices=[('m1','m1'), ('m2','m2'), ('m3','m3')])
-    def __init__(self, *args, **kwargs):
-        super(ChallengeATeamForm, self).__init__(*args, **kwargs)
-        self.fields['battle_team_maps'] = forms.ChoiceField(
-            choices=get_maps())
-        self.fields['battle_team'] = forms.ChoiceField(
-            choices=get_teams())
+    battle_team = forms.IntegerField(required=True)
+    battle_team_maps = forms.IntegerField(required=True)

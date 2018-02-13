@@ -193,7 +193,9 @@ def panel(request, participation_id=None):
             'participation_id': participation_id,
             # 'battle_history': Match.objects.filter(Q(part1__object_id=participation_id) |
             #                                        Q(part2__object_id=participation_id))
-            'battle_history': Match.objects.all()
+            'battle_history': Match.objects.all(),
+            'battle_team_maps': Map.objects.all(),
+            'battle_team': Team.objects.all()
         })
     return render(request, 'accounts/panel.html', context)
 

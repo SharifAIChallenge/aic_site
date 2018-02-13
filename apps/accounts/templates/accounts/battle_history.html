@@ -32,18 +32,16 @@
     </table>
     <form action="{% url 'accounts:challenge_a_team' participation_id %}" method="post" >
         {% csrf_token %}
-        <div class="field">
-            <select class="ui dropdown">
+            <select class="ui dropdown search">
                 <option value="">Opponent</option>
-                {% for team in form_challenge.battle_team %}
-                    <option value={{ team.id }}>{{ team }}</option>
+                {% for team in battle_team %}
+                    <option value={{ team.id }}>{{ team.name }}</option>
                 {% endfor %}
             </select>
-        </div>
-        <select class="ui dropdown">
+        <select class="ui dropdown search">
             <option value="">Map</option>
-            {% for map in form_challenge.battle_team_maps %}
-                <option value={{ map.id }}>{{ map }}</option>
+            {% for map in battle_team_maps %}
+                <option value={{ map.id }}>{{ map.name }}</option>
             {% endfor %}
         </select>
         <input type="submit" class="ui green button" value="Submit">
