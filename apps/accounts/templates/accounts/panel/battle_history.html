@@ -1,0 +1,67 @@
+{% load static i18n %}
+
+<form class="ui form" action="{% url 'accounts:challenge_a_team' participation_id %}" method="post">
+
+
+    <h2>{% trans 'Battle history' %}</h2>
+    <table class="ui center aligned table table-bordered">
+        <thead>
+        <tr>
+            <th>{% trans 'Time' %}</th>
+            <th>{% trans 'Team' %}</th>
+            <th>{% trans 'Log' %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for match in battle_history %}
+            <tr>
+                <td>{{ match.time }}</td>
+                <td>
+                    {% if match.part1.depend == participation %}
+                        {{ match.part1 }}
+                    {% elif match.part2.depend == participation %}
+                        {{ match.part1 }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if match.single_matches.first.log %}
+                        <a class="ui green label" href="{{ match.single_matches.first.log.url }}">
+                            {% trans 'Download' %}
+                        </a>
+                    {% else %}
+                        <span class="ui blue label">{% trans 'Running' %}</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    {% csrf_token %}
+    <div class="two fields">
+        <div class="field">
+            {{ form_challenge.battle_team.errors }}
+            <label for="{{ form_challenge.battle_team.id_for_label }}">{% trans 'With:' %}
+            </label>
+            <select id="{{ form_challenge.battle_team.id_for_label }}" name="{{ form_challenge.battle_team.name }}"
+                    class="ui dropdown">
+                {% for choice in form_challenge.battle_team.field.choices %}
+                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="field">
+            {{ form_challenge.battle_team_maps.errors }}
+            <label for="{{ form_challenge.battle_team_maps.id_for_label }}">{% trans 'In:' %}
+            </label>
+            <select id="{{ form_challenge.battle_team_maps.id_for_label }}"
+                    name="{{ form_challenge.battle_team_maps.name }}" class="ui dropdown">
+                {% for choice in form_challenge.battle_team_maps.field.choices %}
+                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <input type="submit" class="ui green button" value="Submit">
+</form>

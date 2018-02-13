@@ -117,10 +117,6 @@ def panel(request, participation_id=None):
 
     page = request.GET.get('page', 1)
     context = {
-        'submissions': Paginator(
-            TeamSubmission.objects.filter(team=participation_id).order_by('-id'),
-            10
-        ).page(page),
         'participation': participation,
         'participation_members': [
             (
@@ -154,7 +150,7 @@ def panel(request, participation_id=None):
 
     context['submissions'] = Paginator(
         TeamSubmission.objects.filter(team_id=participation_id).order_by('-id'),
-        10
+        5
     ).page(page)
     form = SubmissionForm()
     form.fields['team'].queryset = TeamParticipatesChallenge.objects.filter(
