@@ -4,9 +4,9 @@
 {% block container %}
     {% if form.errors|length %}
         <div class="ui error message">
+            <strong>{% trans 'Error scheduling match.' %}</strong>
             {% for error in form.non_field_errors %}
                 <p>
-                    <strong>{% trans 'Error scheduling match.' %}</strong>
                     <br>
                     <strong>{{ error|escape }}</strong>
                 </p>

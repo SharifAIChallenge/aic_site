@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-13 15:18+0000\n"
+"POT-Creation-Date: 2018-02-13 16:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید
 msgid "You have to be one of participants."
 msgstr "شما باید یکی از طرفین باشید."
 
-#: apps/accounts/forms/panel.py:80
+#: apps/accounts/forms/panel.py:78
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each match!"
 msgstr "بین هر دو بازی دوستانه باید حداقل %(minutes)s دقیقه صبر کنید."
@@ -183,11 +183,16 @@ msgstr "حریف:"
 msgid "Map:"
 msgstr "نقشه:"
 
+#: apps/accounts/templates/accounts/panel/battle_history.html:113
+#: apps/accounts/templates/accounts/panel/submissions.html:145
+msgid "Submit"
+msgstr "ارسال"
+
 #: apps/accounts/templates/accounts/panel/challenge_feild.html:8
 msgid "Challenge:"
 msgstr "رویداد:"
 
-#: apps/accounts/templates/accounts/panel/friendly_result.html:9
+#: apps/accounts/templates/accounts/panel/friendly_result.html:7
 msgid "Error scheduling match."
 msgstr "خطا در ایجاد بازی دوستانه."
 
@@ -297,10 +302,6 @@ msgid "Caution: Submissions get final when they are successfully compiled!"
 msgstr ""
 "توجه:‌ ارسالهایی که با موفقیت کامپایل شوند به عنوان ارسال نهایی شما تنظیم "
 "می‌شوند."
-
-#: apps/accounts/templates/accounts/panel/submissions.html:145
-msgid "Submit"
-msgstr "ارسال"
 
 #: apps/accounts/templates/accounts/panel/team_management.html:5
 msgid "Team Status"

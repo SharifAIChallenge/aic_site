@@ -68,10 +68,8 @@ class ChallengeATeamForm(forms.Form):
             self.add_error(None, _("You have to be one of participants."))
             return False
         friendly_competition = Competition.objects.get(challenge=self.participation.challenge, type='friendly')
-        friendly_matches = Match.objects.filter(
-            Q(competition=friendly_competition) & (
-                    Q(part1__object_id=self.participation.id) | Q(part2__object_id=self.participation.id))).order_by(
-            '-id')
+        friendly_matches = Match.objects.filter(competition=friendly_competition,
+                                                part1__object_id=self.participation.id)
         if friendly_matches.exists():
             last_submission = friendly_matches.order_by('-time')[0]
             if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA):
