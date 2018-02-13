@@ -111,7 +111,7 @@ class StatusListFilter(SimpleListFilter):
             match_pks = [obj.pk for obj in queryset if obj.status == 'waiting']
             return queryset.filter(pk__in=match_pks)
 
-class IsReadyListFilter(SimpleListFilter):
+class IsReadyToRunListFilter(SimpleListFilter):
     # Human-readable title which will be displayed in the
     # right admin sidebar just above the filter options.
     title = _('is ready')
@@ -141,10 +141,10 @@ class IsReadyListFilter(SimpleListFilter):
         # Compare the requested value
         # to decide how to filter the queryset.
         if self.value() == 'True':
-            match_pks = [obj.pk for obj in queryset if obj.is_ready() == True]
+            match_pks = [obj.pk for obj in queryset if obj.is_ready_to_run() == True]
             return queryset.filter(pk__in=match_pks)
         if self.value() == 'False':
-            match_pks = [obj.pk for obj in queryset if obj.is_ready() == False]
+            match_pks = [obj.pk for obj in queryset if obj.is_ready_to_run() == False]
             return queryset.filter(pk__in=match_pks)
 
 class MatchAdmin(admin.ModelAdmin):
@@ -152,7 +152,7 @@ class MatchAdmin(admin.ModelAdmin):
 
     actions = ['run_selected_matches']
     list_display = ('id', 'competition', 'part1', 'part2', 'status', 'is_ready')
-    list_filter = ['competition', StatusListFilter, IsReadyListFilter]
+    list_filter = ['competition', StatusListFilter, IsReadyToRunListFilter]
 
     # search_fields = []
     def run_selected_matches(self, request, queryset):
