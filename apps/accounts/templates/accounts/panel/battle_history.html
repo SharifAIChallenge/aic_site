@@ -10,8 +10,8 @@
                 <th>{% trans 'Team' %}</th>
                 <th>{% trans 'Score' %}</th>
                 <th>{% trans 'Oponent Score' %}</th>
-                <th>{% trans 'View' %}</th>
                 <th>{% trans 'Log' %}</th>
+                <th>{% trans 'View' %}</th>
             </tr>
             </thead>
             <tbody>
@@ -32,6 +32,7 @@
                         <td>{{ match.part1.depend.team.name }}</td>
                         <td>{% if match.single_matches.first.log %}{{ match.score2 }}{% endif %}</td>
                         <td>{% if match.single_matches.first.log %}{{ match.score1 }}{% endif %}</td>
+                        <td></td>
                     {% endif %}
                     <td>
                         {% if match.single_matches.first.log %}
