@@ -80,7 +80,7 @@
     <div class="two fields">
         <div class="field">
             {{ form_challenge.battle_team.errors }}
-            <label for="{{ form_challenge.battle_team.id_for_label }}">{% trans 'With:' %}
+            <label for="{{ form_challenge.battle_team.id_for_label }}">{% trans 'Versus:' %}
             </label>
             <select id="{{ form_challenge.battle_team.id_for_label }}" name="{{ form_challenge.battle_team.name }}"
                     class="ui search dropdown">
@@ -91,7 +91,7 @@
         </div>
         <div class="field">
             {{ form_challenge.battle_team_maps.errors }}
-            <label for="{{ form_challenge.battle_team_maps.id_for_label }}">{% trans 'In:' %}
+            <label for="{{ form_challenge.battle_team_maps.id_for_label }}">{% trans 'Map:' %}
             </label>
             <select id="{{ form_challenge.battle_team_maps.id_for_label }}"
                     name="{{ form_challenge.battle_team_maps.name }}" class="ui dropdown">

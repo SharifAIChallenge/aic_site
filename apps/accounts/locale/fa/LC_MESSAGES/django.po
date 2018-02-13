@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-13 11:16+0000\n"
+"POT-Creation-Date: 2018-02-13 11:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,7 +139,7 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/panel/battle_history.html:6
 msgid "Battle history"
-msgstr "نبردها"
+msgstr "بازی‌های دوستانه"
 
 #: apps/accounts/templates/accounts/panel/battle_history.html:10
 #: apps/accounts/templates/accounts/panel/submissions.html:14
@@ -171,12 +171,12 @@ msgid "Running"
 msgstr "در حال اجرا"
 
 #: apps/accounts/templates/accounts/panel/battle_history.html:83
-msgid "With:"
-msgstr "با:"
+msgid "Versus:"
+msgstr "حریف:"
 
 #: apps/accounts/templates/accounts/panel/battle_history.html:94
-msgid "In:"
-msgstr "در:‌"
+msgid "Map:"
+msgstr "نقشه:"
 
 #: apps/accounts/templates/accounts/panel/challenge_feild.html:8
 msgid "Challenge:"
@@ -364,6 +364,12 @@ msgstr "ثبت نام"
 #: apps/accounts/templates/accounts/update_profile.html:12
 msgid "Update"
 msgstr "ذخیره"
+
+#~ msgid "With:"
+#~ msgstr "با:"
+
+#~ msgid "In:"
+#~ msgstr "در:‌"
 
 #~ msgid "Members"
 #~ msgstr "اعضا"
