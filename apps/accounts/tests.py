@@ -163,7 +163,7 @@ class TestTeam(TransactionTestCase):
         self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 2)
         submissions = list(TeamSubmission.objects.all())
         self.assertFalse(submissions[0].is_final)
-        self.assertTrue(submissions[1].is_final)
+        self.assertFalse(submissions[1].is_final)
 
         # successful scenario coverage
         self.assertEqual(submissions[0].status, 'compiling')
@@ -182,3 +182,7 @@ class TestTeam(TransactionTestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(TeamSubmission.objects.all().first().status, 'compiled')
+
+        submissions = list(TeamSubmission.objects.all())
+        self.assertTrue(submissions[0].is_final)
+        self.assertFalse(submissions[1].is_final)

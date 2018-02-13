@@ -5,8 +5,9 @@ from operator import itemgetter
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.files import File
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.game import functions
@@ -276,12 +277,13 @@ def report(request):
 
                 reader = codecs.getreader('utf-8')
 
-                log = json.load(reader(logfile))
+                log = json.load(reader(logfile), strict=False)
                 if len(log["errors"]) == 0:
                     submit.status = 'compiled'
+                    submit.set_final()
                 else:
                     submit.status = 'failed'
-                    submit.infra_compile_message = '\n'.join(error for error in log["errors"])
+                    submit.infra_compile_message = '...' + '<br>'.join(error for error in log["errors"])[-1000:]
         elif single_report['status'] == 3:
             submit.status = 'failed'
             submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
@@ -304,7 +306,7 @@ def report(request):
             if logfile is None:
                 pass
             single_match.status = 'done'
-            single_match.log = logfile
+            single_match.log.save(name='log', content=File(logfile.file))
             single_match.update_scores_from_log()
         elif single_report['status'] == 3:
             single_match.status = 'failed'
@@ -314,3 +316,16 @@ def report(request):
         single_match.save()
         return JsonResponse({'success': True})
     return HttpResponseServerError()
+
+
+def game_view(request):
+    if request.GET.urlencode().__len__() > 0:
+        return redirect(to='/static/game_graphics/game_viewer/index.html?'
+                        + request.GET.urlencode()
+                        )
+    else:
+        return redirect(to='/static/game_graphics/game_viewer/index.html')
+
+
+def map_maker(request):
+    return redirect(to='/static/game_graphics/map_maker/index.html')

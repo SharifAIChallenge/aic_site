@@ -280,3 +280,4 @@ class MapAdmin(admin.ModelAdmin):
 
 admin.site.register(Map, MapAdmin)
 admin.site.register(SingleMatch)
+admin.site.register(TeamSubmission)
