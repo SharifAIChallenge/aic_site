@@ -103,7 +103,7 @@ class UpdateProfileView(LoginRequiredMixin, generic.UpdateView):
 
 
 @login_required
-def panel(request, participation_id=None):
+def panel(request, participation_id=None, battle_form=None):
     if participation_id is not None:
         try:
             participation = TeamParticipatesChallenge.objects.get(
@@ -116,6 +116,7 @@ def panel(request, participation_id=None):
         participation = None
 
     page = request.GET.get('page', 1)
+    battles_page = request.GET.get('battles_page', 1)
     context = {
         'participation': participation,
         'participation_members': [
@@ -168,8 +169,9 @@ def panel(request, participation_id=None):
                                       TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
         context.update({
             'participation_id': participation_id,
-            'battle_history': Match.objects.filter(Q(part1__object_id=participation_id) |
-                                                   Q(part2__object_id=participation_id))
+            'battle_history': Paginator(Match.objects.filter(Q(part1__object_id=participation_id) |
+                                                             Q(part2__object_id=participation_id)).order_by('-id'),
+                                        5).page(battles_page)
         })
     return render(request, 'accounts/panel.html', context)
 

@@ -3,12 +3,14 @@
 <form class="ui form" action="{% url 'accounts:challenge_a_team' participation_id %}" method="post">
 
 
-    <h2>{% trans 'Battle history' %}</h2>
+    <h2 style="margin-top: 20px;">{% trans 'Battle history' %}</h2>
     <table class="ui center aligned table table-bordered">
         <thead>
         <tr>
             <th>{% trans 'Time' %}</th>
             <th>{% trans 'Team' %}</th>
+            <th>{% trans 'Score' %}</th>
+            <th>{% trans 'Oponent Score' %}</th>
             <th>{% trans 'Log' %}</th>
         </tr>
         </thead>
@@ -16,13 +18,15 @@
         {% for match in battle_history %}
             <tr>
                 <td>{{ match.time }}</td>
-                <td>
-                    {% if match.part1.depend == participation %}
-                        {{ match.part1 }}
-                    {% elif match.part2.depend == participation %}
-                        {{ match.part1 }}
-                    {% endif %}
-                </td>
+                {% if match.part1.depend == participation %}
+                    <td>{{ match.part2.depend.team.name }}</td>
+                    <td>{{ match.score1 }}</td>
+                    <td>{{ match.score2 }}</td>
+                {% elif match.part2.depend == participation %}
+                    <td>{{ match.part1.depend.team.name }}</td>
+                    <td>{{ match.score2 }}</td>
+                    <td>{{ match.score1 }}</td>
+                {% endif %}
                 <td>
                     {% if match.single_matches.first.log %}
                         <a class="ui green label" href="{{ match.single_matches.first.log.url }}">
@@ -35,7 +39,41 @@
             </tr>
         {% endfor %}
         </tbody>
-
+        {% if battle_history.has_other_pages %}
+            <tfoot>
+            <tr>
+                <th colspan="4">
+                    <div class="ui right floated pagination menu">
+                        {% if battle_history.has_previous %}
+                            <a class="icon item" href="?battles_page={{ battle_history.previous_page_number }}">
+                                <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+                            </a>
+                        {% else %}
+                            <a class="disabled icon item">
+                                <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+                            </a>
+                        {% endif %}
+                        {% for i in battle_history.paginator.page_range %}
+                            {% if battle_history.number == i %}
+                                <a class="active item"><span>{{ i }}</span></a>
+                            {% else %}
+                                <a class="item" href="?battles_page={{ i }}"><span>{{ i }}</span></a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if battle_history.has_next %}
+                            <a class="icon item" href="?battles_page={{ battle_history.next_page_number }}">
+                                <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+                            </a>
+                        {% else %}
+                            <a class="disabled icon item">
+                                <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        {% endif %}
     </table>
 
     {% csrf_token %}
@@ -45,7 +83,7 @@
             <label for="{{ form_challenge.battle_team.id_for_label }}">{% trans 'With:' %}
             </label>
             <select id="{{ form_challenge.battle_team.id_for_label }}" name="{{ form_challenge.battle_team.name }}"
-                    class="ui dropdown">
+                    class="ui search dropdown">
                 {% for choice in form_challenge.battle_team.field.choices %}
                     <option value="{{ choice.0 }}">{{ choice.1 }}</option>
                 {% endfor %}

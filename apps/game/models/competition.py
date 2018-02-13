@@ -614,6 +614,13 @@ class Match(models.Model):
             logger.error(e)
             raise Http404(str(e))
 
+    @property
+    def score1(self):
+        return self.get_score_for_participant(self.part1)
+
+    @property
+    def score2(self):
+        return self.get_score_for_participant(self.part1)
 
 class Map(models.Model):
     file = models.FileField(blank=False, null=False)
