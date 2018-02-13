@@ -620,7 +620,7 @@ class Match(models.Model):
 
     @property
     def score2(self):
-        return self.get_score_for_participant(self.part1)
+        return self.get_score_for_participant(self.part2)
 
 class Map(models.Model):
     file = models.FileField(blank=False, null=False)

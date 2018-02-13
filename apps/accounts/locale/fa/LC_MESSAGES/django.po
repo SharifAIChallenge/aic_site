@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-13 11:47+0000\n"
+"POT-Creation-Date: 2018-02-13 14:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید
 msgid "You have to be one of participants."
 msgstr "شما باید یکی از طرفین باشید."
 
-#: apps/accounts/forms/panel.py:79
+#: apps/accounts/forms/panel.py:80
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each match!"
 msgstr "بین هر دو بازی دوستانه باید حداقل %(minutes)s دقیقه صبر کنید."
@@ -137,44 +137,49 @@ msgstr "رمزم را فراموش کردم"
 msgid "Create New Team"
 msgstr "ایجاد تیم جدید"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:6
+#: apps/accounts/templates/accounts/panel/battle_history.html:4
 msgid "Battle history"
 msgstr "بازی‌های دوستانه"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:10
+#: apps/accounts/templates/accounts/panel/battle_history.html:9
 #: apps/accounts/templates/accounts/panel/submissions.html:14
 msgid "Time"
 msgstr "زمان"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:11
+#: apps/accounts/templates/accounts/panel/battle_history.html:10
 msgid "Team"
 msgstr "نام تیم"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:12
+#: apps/accounts/templates/accounts/panel/battle_history.html:11
 msgid "Score"
 msgstr "امتیاز"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:13
+#: apps/accounts/templates/accounts/panel/battle_history.html:12
 msgid "Oponent Score"
 msgstr "امتیاز حریف"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:14
+#: apps/accounts/templates/accounts/panel/battle_history.html:13
 msgid "Log"
 msgstr "گزارش"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:33
+#: apps/accounts/templates/accounts/panel/battle_history.html:14
+#: apps/accounts/templates/accounts/panel/battle_history.html:28
+msgid "View"
+msgstr "نمایش"
+
+#: apps/accounts/templates/accounts/panel/battle_history.html:39
 msgid "Download"
 msgstr "دانلود"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:36
+#: apps/accounts/templates/accounts/panel/battle_history.html:42
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:83
+#: apps/accounts/templates/accounts/panel/battle_history.html:92
 msgid "Versus:"
 msgstr "حریف:"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:94
+#: apps/accounts/templates/accounts/panel/battle_history.html:103
 msgid "Map:"
 msgstr "نقشه:"
 

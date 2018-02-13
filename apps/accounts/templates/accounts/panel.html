@@ -24,7 +24,7 @@
             {% if participation %}
                 {% if participation.all_members_accepted %}
                     {% block battle_history %}
-                        {% if battle_history %}
+                        {% if form_challenge %}
                             {% include 'accounts/panel/battle_history.html' %}
                         {% endif %}
                     {% endblock %}

@@ -72,14 +72,15 @@ class ChallengeATeamForm(forms.Form):
             Q(competition=friendly_competition) & (
                     Q(part1__object_id=self.participation.id) | Q(part2__object_id=self.participation.id))).order_by(
             '-id')
-        last_submission = friendly_matches.order_by('-time')[0]
-        if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA):
-            self.add_error(
-                None,
-                _("You have to wait at least %(minutes)s minutes between each match!") %
-                {'minutes': settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA}
-            )
-            return False
+        if friendly_matches.exists():
+            last_submission = friendly_matches.order_by('-time')[0]
+            if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA):
+                self.add_error(
+                    None,
+                    _("You have to wait at least %(minutes)s minutes between each match!") %
+                    {'minutes': settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA}
+                )
+                return False
         return True
 
     def save(self, commit=True):
