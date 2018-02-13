@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-13 14:04+0000\n"
+"POT-Creation-Date: 2018-02-13 15:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,7 +133,7 @@ msgstr "ثبت نام"
 msgid "I forgot my password"
 msgstr "رمزم را فراموش کردم"
 
-#: apps/accounts/templates/accounts/panel.html:37
+#: apps/accounts/templates/accounts/panel.html:33
 msgid "Create New Team"
 msgstr "ایجاد تیم جدید"
 
@@ -187,11 +187,15 @@ msgstr "نقشه:"
 msgid "Challenge:"
 msgstr "رویداد:"
 
-#: apps/accounts/templates/accounts/panel/friendly_result.html:15
+#: apps/accounts/templates/accounts/panel/friendly_result.html:9
+msgid "Error scheduling match."
+msgstr "خطا در ایجاد بازی دوستانه."
+
+#: apps/accounts/templates/accounts/panel/friendly_result.html:17
 msgid "Successfully scheduled friendly match."
 msgstr "بازی دوستان با موفقیت در صف اجرا قرار گرفت."
 
-#: apps/accounts/templates/accounts/panel/friendly_result.html:18
+#: apps/accounts/templates/accounts/panel/friendly_result.html:20
 msgid "Panel"
 msgstr "پنل"
 

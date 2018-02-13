@@ -3,10 +3,6 @@
 {% load static %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
-{% block extra_header %}
-    <script src="{% static 'accounts/js/api.js' %}"></script>
-{% endblock %}
-
 {% block container %}
     {% include 'accounts/panel/messages.html' %}
     <form method="post" enctype="multipart/form-data" class="ui form">
@@ -38,4 +34,5 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
+    <script src="{% static 'accounts/js/api.js' %}"></script>
 {% endblock %}
