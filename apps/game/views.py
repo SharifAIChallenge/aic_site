@@ -26,6 +26,9 @@ def render_scoreboard(request, competition_id):
         return render_double_elimination(request, competition_id)
     elif competition.type == 'league':
         return render_league(request, competition_id)
+    elif competition.type == 'friendly':
+        return render_friendly(request, competition_id)
+
 
 
 @login_required()
@@ -62,9 +65,89 @@ def render_double_elimination(request, competition_id):
     print(win_matches)
     print(lose_matches)
     # return [win_matches, lose_matches]
-    return render(request, 'scoreboard/bracket.html', {
-        'win_matches': win_matches,
-        'lose_matches': lose_matches
+    # return render(request, 'scoreboard/bracket.html', {
+    #     'win_matches': win_matches,
+    #     'lose_matches': lose_matches
+    # })
+
+@login_required()
+def render_friendly(request, competition_id):
+    matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
+
+    # at the end league_teams is list of teams
+    league_teams = set()
+
+    #leauge_scoreboard = [ [TeamParticipatesChallenge, team_name, score, num_wins, num_loses] , ... ]
+    league_scoreboard = []
+
+    # list of matches in a special format ( not a simple list) to pass to template for rendering
+    league_matches = []
+
+    for match in matches:
+        if match.part1.object_id is not None:
+            team1 = TeamParticipatesChallenge.objects.filter(
+                challenge=Competition.objects.get(pk=int(competition_id)).challenge,
+                pk=match.part1.object_id
+            )[0]
+
+            if team1 not in league_teams:
+                league_teams.add(team1)
+        if match.part2.object_id is not None:
+            team2 = TeamParticipatesChallenge.objects.filter(
+                challenge=Competition.objects.get(pk=int(competition_id)).challenge,
+                pk=match.part2.object_id
+            )[0]
+            if team2 not in league_teams:
+                league_teams.add(team2)
+
+    league_teams = list(league_teams)
+    league_size = len(league_teams)
+
+    for team in league_teams:
+        team_status = {}
+        team_status['team'] = team
+        team_status['score'] = 0
+        team_status['name'] = str(team.team)
+        team_status['total_num'] = 0
+        team_status['win_num'] = 0
+        team_status['lose_num'] = 0
+        league_scoreboard.append(team_status)
+
+    for match in matches:
+        match_result = match.get_match_result()
+        participants = []
+        participants.append(match_result['part1'])
+        participants.append(match_result['part2'])
+        for part_dict in participants:
+            team = part_dict['participant']
+            if team.__class__.__name__ != 'TeamParticipatesChallenge':
+                return ValueError('participant should be team!!!')
+            for team_status in league_scoreboard:
+                if team == team_status['team']:
+                    team_status['score'] = team_status['score'] + part_dict['score']
+                    team_status['total_num'] += 1
+                    if part_dict['result'] == 'winner':
+                        team_status['win_num'] += 1
+                    elif part_dict['result'] == 'loser':
+                        team_status['lose_num'] += 1
+
+
+    league_scoreboard = sorted(league_scoreboard, key=itemgetter('score'),reverse=True)
+    cnt = 1
+    for team_status in league_scoreboard:
+        team_status['rank'] = cnt
+        cnt+=1
+        print(team_status['rank'])
+        print(team_status['name'])
+        print(team_status['score'])
+        print(team_status['total_num'])
+        print(team_status['win_num'])
+        print(team_status['lose_num'])
+
+    # return [league_scoreboard, league_matches]
+
+    return render(request, 'scoreboard/group_table.html', {
+        'league_scoreboard': league_scoreboard
     })
 
 
