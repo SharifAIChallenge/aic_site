@@ -5,6 +5,7 @@ from operator import itemgetter
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.files import File
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -222,7 +223,7 @@ def report(request):
             if logfile is None:
                 pass
             single_match.status = 'done'
-            single_match.log = logfile
+            single_match.log.save(name='log', content=File(logfile.file))
             single_match.update_scores_from_log()
         elif single_report['status'] == 3:
             single_match.status = 'failed'
@@ -235,7 +236,12 @@ def report(request):
 
 
 def game_view(request):
-    return redirect(to='/static/game_graphics/game_viewer/index.html')
+    if request.GET.urlencode().__len__() > 0:
+        return redirect(to='/static/game_graphics/game_viewer/index.html?'
+                        + request.GET.urlencode()
+                        )
+    else:
+        return redirect(to='/static/game_graphics/game_viewer/index.html')
 
 
 def map_maker(request):
