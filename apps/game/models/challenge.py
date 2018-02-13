@@ -118,7 +118,7 @@ class TeamSubmission(models.Model):
         ('failed', _('Failed'))
     )
 
-    team = models.ForeignKey(TeamParticipatesChallenge)
+    team = models.ForeignKey(TeamParticipatesChallenge, related_name='submissions')
     file = models.FileField(upload_to=get_submission_file_directory)
     time = models.DateTimeField(auto_now_add=True)
     is_final = models.BooleanField(default=False)

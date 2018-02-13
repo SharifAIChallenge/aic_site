@@ -1,6 +1,9 @@
 import codecs
 import json
 
+import uuid
+
+import os
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -369,7 +372,7 @@ class Participant(models.Model):
 
 
 def get_log_file_directory(instance, filename):
-    pass
+    return os.path.join('logs', filename + str(uuid.uuid4()))
 
 
 class Match(models.Model):
@@ -380,6 +383,7 @@ class Match(models.Model):
     infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
+    time = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
         verbose_name_plural = 'matches'
@@ -610,6 +614,13 @@ class Match(models.Model):
             logger.error(e)
             raise Http404(str(e))
 
+    @property
+    def score1(self):
+        return self.get_score_for_participant(self.part1)
+
+    @property
+    def score2(self):
+        return self.get_score_for_participant(self.part2)
 
 class Map(models.Model):
     file = models.FileField(blank=False, null=False)
@@ -642,8 +653,10 @@ class SingleMatch(models.Model):
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
     part1_score = models.IntegerField(null=True, blank=True)
     part2_score = models.IntegerField(null=True, blank=True)
+    time = models.DateTimeField(auto_now_add=True)
     map = models.ForeignKey(Map)
     status = models.CharField(max_length=128, choices=STATUS_CHOICES, default='waiting')
+
 
     def __str__(self):
         str_part1 = 'None'
@@ -679,10 +692,10 @@ class SingleMatch(models.Model):
         self.save()
 
     def get_first_file(self):
-        return self.match.part1.submission.infra_token
+        return self.match.part1.submission.infra_compile_token
 
     def get_second_file(self):
-        return self.match.part2.submission.infra_token
+        return self.match.part2.submission.infra_compile_token
 
     def get_map(self):
         return self.map.token
@@ -699,7 +712,8 @@ class SingleMatch(models.Model):
                 self.status = 'running'
                 self.save()
             else:
-                logger.error(answer)
+                logger.error(json.dumps(answer))
+                print(json.dumps(answer))
                 self.status = 'failed'
                 self.save()
                 # raise Http404(str(answer))
@@ -713,7 +727,7 @@ class SingleMatch(models.Model):
         reader = codecs.getreader('utf-8')
         log_array = json.load(reader(self.log), strict=False)
         last_row = log_array[len(log_array) - 1]
-        return float(last_row[1]), float(last_row[2])
+        return float(last_row['args'][1]), float(last_row['args'][2])
 
     def done_single_match(self):
         self.status = 'done'
