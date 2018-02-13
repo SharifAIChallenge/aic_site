@@ -118,6 +118,7 @@ def panel(request, participation_id=None, battle_form=None):
     page = request.GET.get('page', 1)
     battles_page = request.GET.get('battles_page', 1)
     context = {
+        'page': page,
         'participation': participation,
         'participation_members': [
             (
@@ -163,16 +164,19 @@ def panel(request, participation_id=None, battle_form=None):
         form.fields['file'].widget.attrs['accept'] = '.zip'
 
     context['form'] = form
-    context['form_challenge'] = ChallengeATeamForm(user=request.user, participation=participation)
-    if participation is not None:
-        context['challenge_teams'] = [team_part.team for team_part in
-                                      TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
-        context.update({
-            'participation_id': participation_id,
-            'battle_history': Paginator(Match.objects.filter(Q(part1__object_id=participation_id) |
-                                                             Q(part2__object_id=participation_id)).order_by('-id'),
-                                        5).page(battles_page)
-        })
+
+    if participation.challenge.competitions.filter(type='friendly').exists():
+        context['form_challenge'] = ChallengeATeamForm(user=request.user, participation=participation)
+        if participation is not None:
+            context['challenge_teams'] = [team_part.team for team_part in
+                                          TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
+            context.update({
+                'participation_id': participation_id,
+                'battles_page': battles_page,
+                'battle_history': Paginator(Match.objects.filter(Q(part1__object_id=participation_id) |
+                                                                 Q(part2__object_id=participation_id)).order_by('-id'),
+                                            5).page(battles_page)
+            })
     return render(request, 'accounts/panel.html', context)
 
 
@@ -306,4 +310,5 @@ def challenge_a_team(request, participation_id):
         form = ChallengeATeamForm(data=request.POST, user=request.user, participation=participation)
         if form.is_valid():
             form.save()
+        return render(request, 'accounts/panel/friendly_result.html', {'form': form})
     return redirect(reverse('accounts:panel', args=[participation_id]))

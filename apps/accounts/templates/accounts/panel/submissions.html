@@ -89,7 +89,7 @@
                 <th colspan="4">
                     <div class="ui right floated pagination menu">
                         {% if submissions.has_previous %}
-                            <a class="icon item" href="?page={{ submissions.previous_page_number }}">
+                            <a class="icon item" href="?battles_page={{ battles_page }}&page={{ submissions.previous_page_number }}">
                                 <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
                             </a>
                         {% else %}
@@ -101,11 +101,11 @@
                             {% if submissions.number == i %}
                                 <a class="active item"><span>{{ i }}</span></a>
                             {% else %}
-                                <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
+                                <a class="item" href="?battles_page={{ battles_page }}&page={{ i }}"><span>{{ i }}</span></a>
                             {% endif %}
                         {% endfor %}
                         {% if submissions.has_next %}
-                            <a class="icon item" href="?page={{ submissions.next_page_number }}">
+                            <a class="icon item" href="?battles_page={{ battles_page }}&page={{ submissions.next_page_number }}">
                                 <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
                             </a>
                         {% else %}

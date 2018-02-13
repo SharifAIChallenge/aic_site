@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block container %}
+    {% if form.errors|length %}
+        <div class="ui error message">
+            {% for error in form.non_field_errors %}
+                <p>
+                    <strong>{{ error|escape }}</strong>
+                </p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="ui success message">
+            {% trans 'Successfully scheduled friendly match.' %}
+        </div>
+    {% endif %}
+    <a class="ui primary button" href="{% url 'accounts:panel' %}">{% trans 'Panel' %}</a>
+{% endblock %}

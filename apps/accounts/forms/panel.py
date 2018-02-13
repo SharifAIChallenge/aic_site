@@ -5,7 +5,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.forms.models import ModelForm
 from django.utils.timezone import utc
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from apps.game.models import TeamSubmission, Map, Team, TeamParticipatesChallenge, Match, Competition, Participant, \
     SingleMatch
@@ -74,45 +74,44 @@ class ChallengeATeamForm(forms.Form):
             '-id')
         last_submission = friendly_matches.order_by('-time')[0]
         if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA):
-            self.add_error(None, _("You have to wait at least one hour between each match"))
+            self.add_error(
+                None,
+                _("You have to wait at least %(minutes)s minutes between each match!") %
+                {'minutes': settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA}
+            )
             return False
         return True
 
     def save(self, commit=True):
-        try:
-            challenge = self.participation.challenge
-            competition = Competition.objects.filter(
-                challenge=challenge,
-                type='friendly'
-            ).first()
+        challenge = self.participation.challenge
+        competition = Competition.objects.filter(
+            challenge=challenge,
+            type='friendly'
+        ).first()
 
-            second_team = Team.objects.filter(id=self.cleaned_data['battle_team']).first()
-            second_team_participation = TeamParticipatesChallenge.objects.filter(team=second_team,
-                                                                                 challenge=challenge).first()
+        second_team_participation = TeamParticipatesChallenge.objects.filter(
+            id=self.cleaned_data['battle_team']).first()
 
-            first_participant = Participant()
-            first_participant.depend = self.participation
-            first_participant.submission = self.participation.get_final_submission()
-            if commit:
-                first_participant.save()
+        first_participant = Participant()
+        first_participant.depend = self.participation
+        first_participant.submission = self.participation.get_final_submission()
+        if commit:
+            first_participant.save()
 
-            second_participant = Participant()
-            second_participant.depend = second_team_participation
-            second_participant.submission = second_team_participation.get_final_submission()
-            if commit:
-                second_participant.save()
+        second_participant = Participant()
+        second_participant.depend = second_team_participation
+        second_participant.submission = second_team_participation.get_final_submission()
+        if commit:
+            second_participant.save()
 
-            match = Match(part1=first_participant, part2=second_participant, competition=competition)
-            if commit:
-                match.save()
+        match = Match(part1=first_participant, part2=second_participant, competition=competition)
+        if commit:
+            match.save()
 
-            competition_map = Map.objects.filter(id=self.cleaned_data['battle_team_maps']).first()
+        competition_map = Map.objects.filter(id=self.cleaned_data['battle_team_maps']).first()
 
-            single_match = SingleMatch(match=match, map=competition_map)
-            if commit:
-                single_match.save()
+        single_match = SingleMatch(match=match, map=competition_map)
+        if commit:
+            single_match.save()
 
-            single_match.handle()
-
-        except Exception as e:
-            logger.error("Team failed to submit: " + str(e))
+        single_match.handle()

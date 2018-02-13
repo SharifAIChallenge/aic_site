@@ -42,10 +42,10 @@
         {% if battle_history.has_other_pages %}
             <tfoot>
             <tr>
-                <th colspan="4">
+                <th colspan="5">
                     <div class="ui right floated pagination menu">
                         {% if battle_history.has_previous %}
-                            <a class="icon item" href="?battles_page={{ battle_history.previous_page_number }}">
+                            <a class="icon item" href="?page={{ page }}&battles_page={{ battle_history.previous_page_number }}">
                                 <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
                             </a>
                         {% else %}
@@ -57,11 +57,11 @@
                             {% if battle_history.number == i %}
                                 <a class="active item"><span>{{ i }}</span></a>
                             {% else %}
-                                <a class="item" href="?battles_page={{ i }}"><span>{{ i }}</span></a>
+                                <a class="item" href="?page={{ page }}&battles_page={{ i }}"><span>{{ i }}</span></a>
                             {% endif %}
                         {% endfor %}
                         {% if battle_history.has_next %}
-                            <a class="icon item" href="?battles_page={{ battle_history.next_page_number }}">
+                            <a class="icon item" href="?page={{ page }}&battles_page={{ battle_history.next_page_number }}">
                                 <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
                             </a>
                         {% else %}
