@@ -165,7 +165,7 @@ def panel(request, participation_id=None, battle_form=None):
 
     context['form'] = form
 
-    if participation.challenge.competitions.filter(type='friendly').exists():
+    if participation is not None and participation.challenge.competitions.filter(type='friendly').exists():
         context['form_challenge'] = ChallengeATeamForm(user=request.user, participation=participation)
         if participation is not None:
             context['challenge_teams'] = [team_part.team for team_part in
