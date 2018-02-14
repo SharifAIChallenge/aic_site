@@ -32,6 +32,7 @@ class ProfileResource(resources.ModelResource):
             'user__username',
             'user__first_name',
             'user__last_name',
+            'user__email',
             'phone_number',
             'organization',
         ]
