@@ -64,6 +64,9 @@ class ChallengeATeamForm(forms.Form):
     def is_valid(self):
         if not super().is_valid():
             return False
+        if self.participation.get_final_submission() is None:
+            self.add_error(None, _("First submit a compilable code."))
+            return False
         if self.user.id not in [participant.user.id for participant in self.participation.team.participants.all()]:
             self.add_error(None, _("You have to be one of participants."))
             return False
