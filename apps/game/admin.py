@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map, SingleMatch
+from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map, SingleMatch, \
+    TeamSubmission
 
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
@@ -151,7 +152,7 @@ class MatchAdmin(admin.ModelAdmin):
     fields = ['competition', 'part1', 'part2']
 
     actions = ['run_selected_matches']
-    list_display = ('id', 'competition', 'part1', 'part2', 'status', 'is_ready')
+    list_display = ('id', 'competition', 'part1', 'part2', 'status', 'is_ready_to_run')
     list_filter = ['competition', StatusListFilter, IsReadyToRunListFilter]
 
     # search_fields = []
