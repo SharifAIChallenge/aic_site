@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'tinymce',
     'captcha',
+    'import_export',
 
     'apps.intro',
     'apps.accounts',
