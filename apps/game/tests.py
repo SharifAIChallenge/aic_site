@@ -772,7 +772,6 @@ class TestScoreboardForFriendly(TestCase):
 
         league_teams = list(league_teams)
         league_size = len(league_teams)
-        print(league_size)
         for team in league_teams:
             team_status = {}
             team_status['team'] = team
@@ -801,21 +800,21 @@ class TestScoreboardForFriendly(TestCase):
                         elif part_dict['result'] == 'loser':
                             team_status['lose_num'] += 1
 
-        league_scoreboard = sorted(league_scoreboard, key=itemgetter('score'),reverse=True)
+        league_scoreboard = sorted(league_scoreboard, key=itemgetter('score'), reverse=True)
         cnt = 1
         for team_status in league_scoreboard:
             team_status['rank'] = cnt
             cnt += 1
-            print(team_status['rank'])
-            print(team_status['name'])
-            print(team_status['score'])
-            print(team_status['total_num'])
-            print(team_status['win_num'])
-            print(team_status['lose_num'])
+            # print(team_status['rank'])
+            # print(team_status['name'])
+            # print(team_status['score'])
+            # print(team_status['total_num'])
+            # print(team_status['win_num'])
+            # print(team_status['lose_num'])
 
         # return [league_scoreboard, league_matches]
 
-        print(league_scoreboard)
+        # print(league_scoreboard)
         # return render(request, 'scoreboard/group_table.html', {
         #     'league_scoreboard': league_scoreboard
         # })
