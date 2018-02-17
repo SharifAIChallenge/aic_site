@@ -22,10 +22,18 @@ services:
     build: .
     container_name: aic_test_web_cont
     restart: always
-#    environment:
-#    - DJANGO_SETTINGS_MODULE="aic_site.settings.production"
-    command: bash -c "cd .. && python3 manage.py migrate && python3 manage.py compilemessages && python3 manage.py collectstatic <<< yes && gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
-#    cp /patches/zinnia_fmigrations.py /usr/local/lib/python3.5/dist-packages/zinnia/migrations/0003_publication_date.py &&
+    command: bash -c "apt-get update && \
+                      apt-get install software-properties-common && \
+                      add-apt-repository ppa:jonathonf/python-3.6 && \
+                      apt-get update && \
+                      apt-get install python3.6 && \
+                      rm /usr/bin/python3 && \
+                      ln -s /usr/bin/python3.6 /usr/bin/python3 && \
+                      cd .. && \
+                      python3 manage.py migrate && \
+                      python3 manage.py compilemessages && \
+                      python3 manage.py collectstatic <<< yes && \
+                      gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
     volumes:
       - ./static/root:/root/aic_site/static/root
       - ../media_test/root:/root/aic_site/media
