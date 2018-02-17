@@ -26,18 +26,7 @@ services:
     build: .
     container_name: aic_web_cont
     restart: always
-    command: bash -c "apt-get update && \
-                      apt-get install software-properties-common && \
-                      add-apt-repository ppa:jonathonf/python-3.6 && \
-                      apt-get update && \
-                      apt-get install python3.6 && \
-                      rm /usr/bin/python3 && \
-                      ln -s /usr/bin/python3.6 /usr/bin/python3 && \
-                      cd .. && \
-                      python3 manage.py migrate && \
-                      python3 manage.py compilemessages && \
-                      python3 manage.py collectstatic <<< yes && \
-                      gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
+    command: bash -c "apt-get update && apt-get install software-properties-common && add-apt-repository ppa:jonathonf/python-3.6 && apt-get update && apt-get install python3.6 && rm /usr/bin/python3 && ln -s /usr/bin/python3.6 /usr/bin/python3 && cd .. && python3 manage.py migrate && python3 manage.py compilemessages && python3 manage.py collectstatic <<< yes && gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
     volumes:
       - ./static/root:/root/aic_site/static/root
       - ../media/root:/root/aic_site/media
