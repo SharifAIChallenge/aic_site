@@ -6,7 +6,7 @@ server {
 	listen 80;
 
 	server_name aichallenge.sharif.ir aichallenge.sharif.ac.ir;
-	return 301 $scheme://aichallenge.sharif.edu$request_uri;
+	return 301 https://aichallenge.sharif.edu$request_uri;
 }
 
 
@@ -15,7 +15,7 @@ server {
         listen 80;
 
         server_name aichallenge.sharif.edu;
-        return 302 $scheme://aichallenge.sharif.edu:443$request_uri;
+        return 302 https://aichallenge.sharif.edu:443$request_uri;
 }
 
 
@@ -23,18 +23,18 @@ server {
 	listen 2018;
 
 	server_name aichallenge.sharif.ir aichallenge.sharif.ac.ir;
-	return 301 $scheme://aichallenge.sharif.edu$request_uri;
+	return 301 https://aichallenge.sharif.edu$request_uri;
 }
 
 server {
         listen 2018;
 
         server_name aichallenge.sharif.edu;
-        return 302 $scheme://aichallenge.sharif.edu:443$request_uri;
+        return 302 https://aichallenge.sharif.edu:443$request_uri;
 }
 
 server {
-    listen 443 default_server;
+    listen 443 default_server ssl;
 
     server_name aichallenge.sharif.edu;
     client_max_body_size 8M;
