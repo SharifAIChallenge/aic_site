@@ -41,6 +41,9 @@ server {
     keepalive_timeout    69;
     error_log /var/log/aic_site/AIC_nginx.log info;
 
+    ssl_certificate     /etc/letsencrypt/live/aichallenge.sharif.edu/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/aichallenge.sharif.edu/privkey.pem;
+
 
     location / {
         proxy_redirect      off;
