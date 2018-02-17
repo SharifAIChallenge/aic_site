@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-13 16:09+0000\n"
+"POT-Creation-Date: 2018-02-14 06:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,10 +23,14 @@ msgid "Please enter your phone number correctly!"
 msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
 
 #: apps/accounts/forms/panel.py:68
+msgid "First submit a compilable code."
+msgstr "ابتدا یک کد قابل کامپایل ارسال کنید."
+
+#: apps/accounts/forms/panel.py:71
 msgid "You have to be one of participants."
 msgstr "شما باید یکی از طرفین باشید."
 
-#: apps/accounts/forms/panel.py:78
+#: apps/accounts/forms/panel.py:81
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each match!"
 msgstr "بین هر دو بازی دوستانه باید حداقل %(minutes)s دقیقه صبر کنید."
@@ -159,31 +163,31 @@ msgid "Oponent Score"
 msgstr "امتیاز حریف"
 
 #: apps/accounts/templates/accounts/panel/battle_history.html:13
-msgid "Log"
-msgstr "گزارش"
-
-#: apps/accounts/templates/accounts/panel/battle_history.html:14
 #: apps/accounts/templates/accounts/panel/battle_history.html:28
 msgid "View"
 msgstr "نمایش"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:39
+#: apps/accounts/templates/accounts/panel/battle_history.html:14
+msgid "Log"
+msgstr "گزارش"
+
+#: apps/accounts/templates/accounts/panel/battle_history.html:40
 msgid "Download"
 msgstr "دانلود"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:42
+#: apps/accounts/templates/accounts/panel/battle_history.html:43
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:92
+#: apps/accounts/templates/accounts/panel/battle_history.html:93
 msgid "Versus:"
 msgstr "حریف:"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:103
+#: apps/accounts/templates/accounts/panel/battle_history.html:104
 msgid "Map:"
 msgstr "نقشه:"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:113
+#: apps/accounts/templates/accounts/panel/battle_history.html:114
 #: apps/accounts/templates/accounts/panel/submissions.html:145
 msgid "Submit"
 msgstr "ارسال"

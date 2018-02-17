@@ -8,11 +8,11 @@ from django.contrib.auth.decorators import login_required
 from django.core.files import File
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.game import functions
-from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch
+from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch, Challenge
 
 logger = logging.getLogger(__name__)
 
@@ -323,3 +323,23 @@ def game_view(request):
 
 def map_maker(request):
     return redirect(to='/static/game_graphics/map_maker/index.html')
+
+
+@login_required
+def render_challenge_league(request, challenge_id):
+    print(challenge_id)
+    ch = Challenge.objects.first()
+    print(ch)
+    challenge = get_object_or_404(Challenge, pk=challenge_id)
+    competitions = Competition.objects.filter(challenge=challenge, type='league')
+
+    competitions_scoreboard = []
+    for competition in competitions:
+        scoreboard = {}
+        scoreboard['league_scoreboard'], scoreboard['league_matches'] = get_league_scoreboard(competition.id)
+        competitions_scoreboard.append(scoreboard)
+
+    return render(request, 'scoreboard/group_table_challenge.html', {
+        'tables': competitions_scoreboard
+    })
+
