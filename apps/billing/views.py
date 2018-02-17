@@ -28,7 +28,7 @@ def payment(request):
             if url:
                 return HttpResponseRedirect(url)
             else:
-                return render(request, 'custom/bank_payment_error.html', context={
+                return render(request, 'billing/bank_payment_error.html', context={
                     'error': t.error,
                 })
     else:
@@ -45,11 +45,11 @@ def payment(request):
             error = _("You have already paid.")
 
         if error:
-            return render(request, 'custom/bank_payment_error.html', context={
+            return render(request, 'billing/bank_payment_error.html', context={
                 'error': error,
             })
         form = UserCompletionForm(instance=request.user)
-        return render(request, 'custom/bank_payment.html', context={
+        return render(request, 'billing/bank_payment.html', context={
             'form': form
         })
 
