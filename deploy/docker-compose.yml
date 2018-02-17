@@ -18,7 +18,7 @@ services:
       - ./config/nginx/sites-available:/etc/nginx/sites-available
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ../lets_encrypt/www:/var/www/letsencrypt
-      - ../lets_encrypt/etc:/etc/letsencrypt
+      - /etc/lets_encrypt:/etc/letsencrypt
 
     depends_on:
       - aic_web
