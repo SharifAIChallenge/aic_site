@@ -345,3 +345,8 @@ def challenge_a_team(request, participation_id):
 
     # single_match.
     return redirect(reverse('accounts:panel', args=[participation_id]))
+
+
+def team_required_and_finalized():
+    raise NotImplemented
+    pass
