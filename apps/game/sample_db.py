@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 
 def create_sample_db():
-    populate_users(50)
+    populate_users(48)
     populate_teams()
     populate_games()
     populate_challenges()
@@ -115,3 +115,32 @@ def populate_competitions():
             # matches = list(competition.matches.all())
             # for match in matches:
             #     match.done_match()
+
+    competition = Competition()
+    competition.type = 'friendly'
+    competition.challenge = challenge
+    competition.save()
+    for map in maps:
+        competition.maps.add(map)
+
+    # competition.create_new_league(teams=Team.objects.all(),rounds_num=1)
+    challenge_teams = list(TeamParticipatesChallenge.objects.all())
+    teams_size = len(challenge_teams)
+    for i in range(teams_size):
+        for j in range(teams_size):
+            if i < j:
+                new_match = Match.objects.create(
+                    competition=competition,
+                    part1=Participant.objects.create(
+                        depend=challenge_teams[i],
+                        depend_method='itself'
+                    ),
+                    part2=Participant.objects.create(
+                        depend=challenge_teams[j],
+                        depend_method='itself'
+                    )
+                )
+                for map in competition.maps.all():
+                    SingleMatch.objects.create(match=new_match, map=map)
+                    # print(map.name)
+                new_match.done_match()

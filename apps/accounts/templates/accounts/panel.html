@@ -2,261 +2,37 @@
 {% load i18n %}
 {% load static %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
+
 {% block container %}
-    <script src="{% static 'accounts/js/submission_modal.js' %}"></script>
-    {% for invitation in invitations %}
-        <div class="ui info message">
-
-            <i onclick="window.location.href='{% url "accounts:reject_participation" invitation.id %}';"
-               class="close icon"></i>
-            <div class="header">
-                <p>{% trans 'You are invited to the team ' %}"{{ invitation.team }}"{% trans ' on the challenge ' %}"{{ invitation.challenge }}"{% trans ', do you accept?' %}</p>
-                <p>{% trans 'Members are:' %}</p>
-            </div>
-            <ul class="list">
-                {% for participant in invitation.team.participants.all %}
-                    <li>{{ participant.user.username }}: {{ participant.user.first_name }} {{ participant.user.last_name }}</li>
-                {% endfor %}
-            </ul>
-            <br>
-            <div class="ui buttons">
-                <a href="{% url 'accounts:accept_participation' invitation.id %}"
-                   class="ui right aligned green button">{% trans 'Accept' %}</a>
-                <a href="{% url 'accounts:reject_participation' invitation.id %}"
-                   class="ui right aligned red button">{% trans 'Reject' %}</a>
-            </div>
-        </div>
-    {% endfor %}
+    {% include 'accounts/panel/messages.html' %}
     <form method="post" enctype="multipart/form-data" class="ui form">
-    {% if accepted_participations|length > 0 %}
-            <div class="field">
-                {{ form.team.errors }}
-                <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}
-                </label>
-                <select id="{{ form.team.id_for_label }}" name="{{ form.team.name }}" class="ui dropdown">
-                    {% for choice in form.team.field.choices %}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                    {% endfor %}
-                </select>
-                <script>
-                    $('#{{ form.team.id_for_label }}').dropdown('set selected', {{ participation.id }});
-                </script>
-            </div>
+        {% if accepted_participations|length > 0 %}
+            {% include 'accounts/panel/challenge_feild.html' %}
 
-            <h2>{% trans 'Team Status' %}</h2>
-            <div>
-                <table class="ui center aligned table">
-                    <thead>
-                    <tr>
-                        <th>{% trans 'Username' %}</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for user, removable in participation_members %}
-                        <tr>
-                            <td>{{ user }}</td>
-                            <td>
-                                {% if removable %}
-
-                                    <a href="{% url 'accounts:cancel_participation_request' participation.id user.id %}"
-                                       class="ui right aligned red button tiny">
-                                        <i class="remove icon"></i>
-                                        {% trans 'Remove' %}
-                                    </a>
-                                {% else %}
-                                    <span class="ui right aligned green button tiny">
-                                    <i class="checkmark icon"></i>
-                                    {% trans 'Accepted' %}
-                                </span>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    {% if participation_members|length < participation.challenge.team_size %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'accounts:add_participation' participation.id %}"
-                                   class="ui right aligned green button tiny">
-                                    <i class="add icon"></i>
-                                    {% trans 'Add a member' %}
-                                </a>
-                            </td>
-                            <td></td>
-                        </tr>
-                    {% endif %}
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                        <th colspan="2">
-                            {% if participation %}
-                                {% if participation.all_members_accepted %}
-                                    {% trans "All users have accepted the challenge." %}
-                                {% else %}
-                                    {% trans "All users haven't accepted the challenge yet!" %}
-                                {% endif %}
-                            {% endif %}
-                        </th>
-                    </tr>
-                    </tfoot>
-                </table>
-            </div>
+            {% include 'accounts/panel/team_management.html' %}
             {% if participation %}
                 {% if participation.all_members_accepted %}
-
-                    {% if participation.challenge.is_submission_open or submissions|length > 0%}
-                        <h2>{% trans 'Submissions' %}</h2>
-                    {% endif %}
-                    {% if submissions|length > 0 %}
-                        <table class="ui center aligned table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>{% trans "Selected" %}</th>
-                                <th>{% trans "Time" %}</th>
-                                <th>{% trans "Language" %}</th>
-                                <th>{% trans "Status" %}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for submission in submissions %}
-                                <tr>
-                                    <td>
-                                        <div class="ui checkbox">
-                                            <input type="checkbox" class="submission"
-                                                   {% if not submission.team.challenge.is_submission_open or submission.status != 'compiled' %}disabled{% endif %}
-                                                   {% if submission.is_final %}checked="true"{% endif %}
-                                                   data-id="{{ submission.id }}" id="submission_{{ submission.id }}">
-                                            <label></label>
-                                        </div>
-                                    </td>
-                                    <style>
-{#                                        add_submission_api({{ submission.id }})#}
-                                    </style>
-                                    <td><a href="{{ submission.file.url }}">{{ submission.time }}</a></td>
-                                    <td>
-                                        {% if submission.language == 'java'%}
-                                            <div class="ui orange label">Java</div>
-                                        {% elif submission.language == 'py3'%}
-                                            <div class="ui blue label">Python</div>
-                                        {% elif submission.language == 'cpp'%}
-                                            <div dir="ltr" class="ui purple label">C++</div>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        {% if submission.status == 'compiled' %}
-                                            <a class="ui green label" data-tooltip="{% trans 'Compiled Successfully' %}" data-inverted="">{% trans 'Compiled' %}</a>
-                                        {% elif submission.status == 'failed' %}
-                                            <a onclick="$('#submission_modal_{{ submission.id }}').show()" class="ui red label" data-tooltip="{% trans 'Click To View' %}" data-inverted="">{% trans 'Failed' %}</a>
-                                            <div class="ui modal" id="submission_modal_{{ submission.id }}">
-                                                <div class="header">
-                                                    {% trans 'Compile Error' %}
-                                                </div>
-                                                <i class="close icon"></i>
-                                                <div class="scrolling content">
-                                                    <div class="description">
-                                                        <div class="ui header">
-                                                            {%  trans 'The Log From Compiler Is Shown Below:' %}
-                                                        </div>
-                                                        <p dir="ltr" style="float: left;">
-                                                            {{ submission.infra_compile_message }}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="actions">
-                                                    <div class="ui black deny button" onclick="$('#submission_modal_{{ submission.id }}').hide()" >
-                                                        {% trans 'OK' %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {% elif submission.status == 'uploading' %}
-                                            <a class="ui label" data-tooltip="{% trans 'Failed to upload. You may contact the technical team.' %}" data-inverted="">{% trans 'Failed To Upload' %}</a>
-                                        {% elif submission.status == 'compiling' %}
-                                            <a class="ui blue label" data-tooltip="{% trans 'We are compiling your code! Wait and refresh your page.' %}" data-inverted="">{% trans 'Compiling' %}</a>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                            {% if submissions.has_other_pages %}
-                                <tfoot>
-                                <tr>
-                                    <th colspan="4">
-                                        <div class="ui right floated pagination menu">
-                                            {% if submissions.has_previous %}
-                                                <a class="icon item" href="?page={{ submissions.previous_page_number }}">
-                                                    <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
-                                                </a>
-                                            {% else %}
-                                                <a class="disabled icon item">
-                                                    <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
-                                                </a>
-                                            {% endif %}
-                                            {% for i in submissions.paginator.page_range %}
-                                                {% if submissions.number == i %}
-                                                    <a class="active item"><span>{{ i }}</span></a>
-                                                {% else %}
-                                                    <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
-                                                {% endif %}
-                                            {% endfor %}
-                                            {% if submissions.has_next %}
-                                                <a class="icon item" href="?page={{ submissions.next_page_number }}">
-                                                    <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
-                                                </a>
-                                            {% else %}
-                                                <a class="disabled icon item">
-                                                    <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
-                                                </a>
-                                            {% endif %}
-                                        </div>
-                                    </th>
-                                </tr>
-                                </tfoot>
-                            {% endif %}
-                        </table>
-                        {{ form.non_field_errors }}
-                    {% endif %}
-                    {% if participation.challenge.is_submission_open %}
-                        {% csrf_token %}
-                        <div class="one field" >
-                            {{ form.file.errors }}
-                            <label for="{{ form.file.id_for_label }}">{% trans 'File:' %}</label>
-                            {{ form.file }}
-                        </div>
-                        <div class="one field" style="height: 100%;">
-                            {{ form.language.errors }}
-                            <label for="{{ form.language.id_for_label }}">{% trans 'Language:' %}</label>
-
-                            <select name="{{ form.language.name }}" class="ui dropdown">
-                                {% for choice in form.language.field.choices %}
-                                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                                {% endfor %}
-                            </select>
-
-                        </div>
-                        <div class="ui orange message">
-                        {% trans 'Caution: Submissions get final when they are successfully compiled!' %}
-                        </div>
-                        <input type="submit" class="ui green button" value="{% trans 'Submit' %}">
-                    {% endif %}
+                    {% include 'accounts/panel/submissions.html' %}
                 {% endif %}
             {% endif %}
-        </form>
+            </form>
 
-        {% if participation %}
-            {% if participation.all_members_accepted %}
-                {% block battle_history %}
-{#                    {% include 'accounts/battle_history.html' %}#}
-                {% endblock %}
+            {% if participation %}
+                {% if participation.all_members_accepted %}
+                    {% block battle_history %}
+                        {% if form_challenge %}
+                            {% include 'accounts/panel/battle_history.html' %}
+                        {% endif %}
+                    {% endblock %}
+                {% endif %}
             {% endif %}
+        {% else %}
+            {% for challenge in  challenges %}
+                {% if challenge.can_register %}
+                    <a href="{% url 'accounts:create_team' challenge.id %}"
+                       class="ui blue button">{% trans 'Create New Team' %}</a>
+                {% endif %}
+            {% endfor %}
         {% endif %}
-
-        <script src="{% static 'accounts/js/api.js' %}"></script>
-    {% else %}
-        {% for challenge in  challenges %}
-            {% if challenge.can_register %}
-                <a href="{% url 'accounts:create_team' challenge.id %}"
-                   class="ui blue button">{% trans 'Create New Team' %}</a>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
+    <script src="{% static 'accounts/js/api.js' %}"></script>
 {% endblock %}

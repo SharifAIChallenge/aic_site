@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map, SingleMatch
+from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map, SingleMatch, \
+    TeamSubmission
 
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
@@ -111,7 +112,7 @@ class StatusListFilter(SimpleListFilter):
             match_pks = [obj.pk for obj in queryset if obj.status == 'waiting']
             return queryset.filter(pk__in=match_pks)
 
-class IsReadyListFilter(SimpleListFilter):
+class IsReadyToRunListFilter(SimpleListFilter):
     # Human-readable title which will be displayed in the
     # right admin sidebar just above the filter options.
     title = _('is ready')
@@ -141,18 +142,18 @@ class IsReadyListFilter(SimpleListFilter):
         # Compare the requested value
         # to decide how to filter the queryset.
         if self.value() == 'True':
-            match_pks = [obj.pk for obj in queryset if obj.is_ready() == True]
+            match_pks = [obj.pk for obj in queryset if obj.is_ready_to_run() == True]
             return queryset.filter(pk__in=match_pks)
         if self.value() == 'False':
-            match_pks = [obj.pk for obj in queryset if obj.is_ready() == False]
+            match_pks = [obj.pk for obj in queryset if obj.is_ready_to_run() == False]
             return queryset.filter(pk__in=match_pks)
 
 class MatchAdmin(admin.ModelAdmin):
     fields = ['competition', 'part1', 'part2']
 
     actions = ['run_selected_matches']
-    list_display = ('id', 'competition', 'part1', 'part2', 'status', 'is_ready')
-    list_filter = ['competition', StatusListFilter, IsReadyListFilter]
+    list_display = ('id', 'competition', 'part1', 'part2', 'status', 'is_ready_to_run')
+    list_filter = ['competition', StatusListFilter, IsReadyToRunListFilter]
 
     # search_fields = []
     def run_selected_matches(self, request, queryset):
@@ -220,7 +221,7 @@ class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
                                       type='league')
         new_competition.save()
         new_competition.create_new_league(
-            [team.team for team in teams]
+            [team.team for team in teams], 1
         )
 
     def create_new_double_elimination(self, request, queryset):
@@ -280,3 +281,4 @@ class MapAdmin(admin.ModelAdmin):
 
 admin.site.register(Map, MapAdmin)
 admin.site.register(SingleMatch)
+admin.site.register(TeamSubmission)

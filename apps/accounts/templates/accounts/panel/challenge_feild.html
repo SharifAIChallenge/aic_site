@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load static %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+
+<div class="field">
+    {{ form.team.errors }}
+    <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}
+    </label>
+    <select id="{{ form.team.id_for_label }}" name="{{ form.team.name }}" class="ui dropdown">
+        {% for choice in form.team.field.choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+        {% endfor %}
+    </select>
+    <script>
+        $('#{{ form.team.id_for_label }}').dropdown('set selected', {{ participation.id }});
+    </script>
+</div>

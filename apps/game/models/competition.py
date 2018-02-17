@@ -1,6 +1,9 @@
 import codecs
 import json
 
+import uuid
+
+import os
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
@@ -100,12 +103,6 @@ class Competition(models.Model):
                             first_part[j] = first_part[j - 1]
                     if (len(teams) / 2) > 1:
                         first_part[1] = tmp_team
-
-        for match in self.matches.all():
-            if (match.part1.depend is None) or (match.part2.depend is None):
-                for single_match in match.single_matches.all():
-                    single_match.done_manually()
-
 
     def create_new_double_elimination(self, teams):
         if len(teams) < 2:
@@ -302,11 +299,6 @@ class Competition(models.Model):
         for map in self.maps.all():
             SingleMatch.objects.create(match=new_match, map=map)
 
-        for match in self.matches.all():
-            if (match.part1.depend is None) or (match.part2.depend is None):
-                for single_match in match.single_matches.all():
-                    single_match.done_manually()
-
 
 class Participant(models.Model):
     METHOD_CHOICES = (
@@ -346,7 +338,15 @@ class Participant(models.Model):
                 name = self.depend_method + ' of match ' + str(self.object_id)
         return name
 
-    def is_ready(self):
+    def get_team(self):
+        if self.depend is None:
+            return None
+        elif self.depend.__class__.__name__ == 'Match':
+            return self.depend.get_team(self.depend_method)
+        elif self.depend.__class__.__name__ == 'TeamParticipatesChallenge':
+            return self.depend
+
+    def is_ready_to_run(self):
         if self.depend is None:
             return True
         else:
@@ -369,7 +369,7 @@ class Participant(models.Model):
 
 
 def get_log_file_directory(instance, filename):
-    pass
+    return os.path.join('logs', filename + str(uuid.uuid4()))
 
 
 class Match(models.Model):
@@ -380,24 +380,10 @@ class Match(models.Model):
     infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
+    time = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
         verbose_name_plural = 'matches'
-
-    def get_participant_name(self, part):
-        name = 'None'
-        if part is None or part.object_id is None:
-            name = 'None'
-        elif part.depend.__class__.__name__ == 'TeamParticipatesChallenge':
-            name = str(part.depend)
-            if part.depend.__class__.__name__ == 'Match':  # depend is match
-                name = str(part.depend.get_participant())
-        elif part.depend.__class__.__name__ == 'Match':
-            if part.depend.status == 'done':
-                name = str(part.depend.get_participant(part.depend_method))
-            else:
-                name = part.depend_method + ' of match ' + str(part.object_id)
-        return name
 
     def __str__(self):
         str_part1 = 'None'
@@ -431,20 +417,64 @@ class Match(models.Model):
                 have_waiting = True
         if (not have_running) and (not have_failed) and (not have_waiting):
             return 'done'
-        status_result = ''
-        if have_running:
-            status_result += 'running'
+        status_result = 'waiting'
         if have_waiting:
-            status_result += 'waiting'
+            status_result = 'waiting'
+
+        if have_running:
+            status_result = 'running'
         return status_result
+
+    def get_participant_or_team(self, part):
+        res = None
+        if part is None or part.object_id is None:
+            res = part
+        elif part.depend.__class__.__name__ == 'TeamParticipatesChallenge':
+            res = part.depend
+        elif part.depend.__class__.__name__ == 'Match':
+            if part.depend.status == 'done':
+                res = part.depend.get_team(part.depend_method)
+            else:
+                res = part
+        return res
+
+    def get_participant_name(self, part):
+        name = 'None'
+        if part is None or part.object_id is None:
+            name = 'None'
+        elif part.depend.__class__.__name__ == 'TeamParticipatesChallenge':
+            name = str(part.depend)
+        elif part.depend.__class__.__name__ == 'Match':
+            if part.depend.status == 'done':
+                name = str(part.depend.get_team(part.depend_method))
+            else:
+                name = part.depend_method + ' of match ' + str(part.object_id)
+        return name
+
+    def get_team(self, participant_result): # participant_result = ['winner', 'loser'] <- depend_method
+        if self.status != 'done':
+            return ValueError('Match is not done completely! why do yo call it ? :/')
+        if participant_result != 'winner' and participant_result != 'loser':
+            return ValueError('input arg is wrong!')
+        if self.part1 is None or self.part2 is None:
+            return ValueError('Participants can\'t be None')
+
+        part1_result = self.get_participant_result(self.part1) # winner or loser
+        part2_result = self.get_participant_result(self.part2) # winner or loser
+
+        if part1_result == participant_result:
+            return self.part1.get_team()
+        elif part2_result == participant_result:
+            return self.part2.get_team()
+        else:
+            return ValueError('this is impossible due to previous conditions!')
 
     def get_score_for_participant(self, participant):
         if participant is None:
             return None
-
-        for single_match in self.single_matches.all():
-            if single_match.status != 'done':
-                return None
+        undone_score = -1
+        if self.status != 'done':
+            return undone_score
         score = 0
         if self.part1 == participant:
             for single_match in self.single_matches.all():
@@ -462,37 +492,63 @@ class Match(models.Model):
             return ValueError('this participant does not participate in this match')
 
     def get_match_result(self):
-        score1 = None
-        score2 = None
-        team2_name = 'None'
-        team1_name = 'None'
-        team1_color = 'gray'
-        team2_color = 'gray'
 
-        # bye = 'None'
-        # match
-        # team
+        match_result = {}
+        match_result['part1'] = self.get_participant_properties(self.part1)
+        match_result['part2'] = self.get_participant_properties(self.part2)
 
+        return match_result
 
-        team1_name = self.get_participant_name(self.part1)
-        team2_name = self.get_participant_name(self.part2)
+    def get_participant_properties(self, participant):
+        '''
+            format: dict
+            dict keys:
+                'participant' -> team or participant
+                'name'
+                'score'
+                'color'
+                'result'
+        '''
+        properties = {}
+        properties['participant'] = self.get_participant_or_team(participant)
+        properties['score'] = self.get_score_for_participant(participant)
+        properties['name'] = self.get_participant_name(participant)
+        properties['result'] = self.get_participant_result(participant)
+        properties['color'] = self.get_result_color(properties['result'])
 
+        return properties
+
+    def get_participant_result(self, participant):
         if self.status == 'done':
             score1 = self.get_score_for_participant(self.part1)
             score2 = self.get_score_for_participant(self.part2)
-            if score1 > score2:
-                team1_color = 'green'
-                team2_color = 'red'
+            # print(score1)
+            # print(score2)
+            if score1 != score2:
+                if score1 > score2 and self.part1 == participant:
+                    return 'winner'
+                else:
+                    return 'loser'
             else:
-                team1_color = 'red'
-                team2_color = 'green'
+                if self.part1.submission.time <= self.part2.submission.time and self.part1 == participant:
+                    return 'winner'
+                else:
+                    return 'loser'
         else:
-            score1 = -1
-            score2 = -1
-        return [team1_name, team2_name, score1, score2, team1_color, team2_color]
+            return 'undone'
+            # return ValueError('Match is not done completely!')
 
-    def is_ready(self):
-        return self.part1.is_ready() and self.part2.is_ready()
+    def get_result_color(self, result):
+        if result == 'winner':
+            return 'green'
+        elif result == 'loser':
+            return 'red'
+        else:
+            return 'gray'
+
+
+    def is_ready_to_run(self):
+        return self.part1.is_ready_to_run() and self.part2.is_ready_to_run() and self.status != 'done'
 
     def get_depends(self):
         """
@@ -543,48 +599,6 @@ class Match(models.Model):
         for single_match in self.single_matches.all():
             single_match.done_manually()
 
-    def get_participant(self, participant_result): # participant_result = ['winner', 'loser']
-        if self.status != 'done':
-            return ValueError('Match is not done completely! why do yo call it ? :/')
-        if participant_result != 'winner' and participant_result != 'loser':
-            return ValueError('input arg is wrong!')
-        if self.part1 is None or self.part2 is None:
-            return ValueError('Participants can\'t be None')
-        if participant_result == 'winner':
-            if self.part1.get_score_for_match(self) > self.part2.get_score_for_match(self):
-                if self.part1.depend is None:
-                    return None
-                elif self.part1.depend.__class__.__name__ == 'Match':
-                    return self.part1.depend.get_participant(self.part1.depend_method)
-                elif self.part1.depend.__class__.__name__ == 'TeamParticipatesChallenge':
-                    return self.part1.depend
-            elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
-                if self.part2.depend is None:
-                    return None
-                elif self.part2.depend.__class__.__name__ == 'Match':
-                    return self.part2.depend.get_participant(self.part2.depend_method)
-                elif self.part2.depend.__class__.__name__ == 'TeamParticipatesChallenge':
-                    return self.part2.depend
-            else:
-                return ValueError('match result shouldn\'t be tie')
-        elif participant_result == 'loser':
-            if self.part2.get_score_for_match(self) < self.part1.get_score_for_match(self):
-                if self.part2.depend is None:
-                    return None
-                elif self.part2.depend.__class__.__name__ == 'Match':
-                    return self.part2.depend.get_participant(self.part2.depend_method)
-                elif self.part2.depend.__class__.__name__ == 'TeamParticipatesChallenge':
-                    return self.part2.depend
-            elif self.part1.get_score_for_match(self) < self.part2.get_score_for_match(self):
-                if self.part1.depend is None:
-                    return None
-                elif self.part1.depend.__class__.__name__ == 'Match':
-                    return self.part1.depend.get_participant(self.part1.depend_method)
-                elif self.part1.depend.__class__.__name__ == 'TeamParticipatesChallenge':
-                    return self.part1.depend
-            else:
-                return ValueError('match result shouldn\'t be tie')
-
     def handle(self):
         if self.is_ready() is False:
             logger.error("Match :" + str(self) + " is not ready.")
@@ -610,6 +624,13 @@ class Match(models.Model):
             logger.error(e)
             raise Http404(str(e))
 
+    @property
+    def score1(self):
+        return self.get_score_for_participant(self.part1)
+
+    @property
+    def score2(self):
+        return self.get_score_for_participant(self.part2)
 
 class Map(models.Model):
     file = models.FileField(blank=False, null=False)
@@ -642,8 +663,10 @@ class SingleMatch(models.Model):
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
     part1_score = models.IntegerField(null=True, blank=True)
     part2_score = models.IntegerField(null=True, blank=True)
+    time = models.DateTimeField(auto_now_add=True)
     map = models.ForeignKey(Map)
     status = models.CharField(max_length=128, choices=STATUS_CHOICES, default='waiting')
+
 
     def __str__(self):
         str_part1 = 'None'
@@ -679,10 +702,10 @@ class SingleMatch(models.Model):
         self.save()
 
     def get_first_file(self):
-        return self.match.part1.submission.infra_token
+        return self.match.part1.submission.infra_compile_token
 
     def get_second_file(self):
-        return self.match.part2.submission.infra_token
+        return self.match.part2.submission.infra_compile_token
 
     def get_map(self):
         return self.map.token
@@ -699,7 +722,8 @@ class SingleMatch(models.Model):
                 self.status = 'running'
                 self.save()
             else:
-                logger.error(answer)
+                logger.error(json.dumps(answer))
+                print(json.dumps(answer))
                 self.status = 'failed'
                 self.save()
                 # raise Http404(str(answer))
@@ -713,7 +737,7 @@ class SingleMatch(models.Model):
         reader = codecs.getreader('utf-8')
         log_array = json.load(reader(self.log), strict=False)
         last_row = log_array[len(log_array) - 1]
-        return float(last_row[1]), float(last_row[2])
+        return float(last_row['args'][1]), float(last_row['args'][2])
 
     def done_single_match(self):
         self.status = 'done'
