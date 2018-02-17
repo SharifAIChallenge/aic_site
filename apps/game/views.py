@@ -124,7 +124,7 @@ def render_league(request, competition_id):
     })
 
 @login_required()
-def get_scoreboard_table(request, competition_id):
+def get_scoreboard_table(competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
 
     # at the end league_teams is list of teams
