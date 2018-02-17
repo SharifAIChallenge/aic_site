@@ -63,4 +63,8 @@ server {
         log_not_found   on;
     }
 
+    location /.well-known/ {
+        alias /var/www/letsencrypt/;
+    }
+
 }
