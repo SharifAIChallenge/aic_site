@@ -8,11 +8,11 @@ from django.contrib.auth.decorators import login_required
 from django.core.files import File
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.game import functions
-from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch
+from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch, Challenge
 
 logger = logging.getLogger(__name__)
 
@@ -146,104 +146,109 @@ def render_friendly(request, competition_id):
     })
 
 
-# @login_required()
-# def render_league(request, competition_id):
-#     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
-#     league_teams = []
-#     league_scoreboard = []
-#     league_matches = []
-#     league_size = 0
-#     cnt = 0
-#     # print(len(matches))
-#     # print(matches)
-#     while True:
-#         if cnt >= len(matches):
-#             break
-#         tmp_league_size = league_size
-#         if matches[cnt].part1.object_id is not None:
-#             team1 = TeamParticipatesChallenge.objects.filter(
-#                 challenge=Competition.objects.get(pk=int(competition_id)).challenge,
-#                 pk=matches[cnt].part1.object_id
-#             )[0]
-#             if team1 not in league_teams:
-#                 # print(team1.id)
-#                 league_teams.append(team1)
-#                 league_scoreboard.append([team1, '?', 0, 0])
-#                 league_size += 1
-#         if matches[cnt].part2.object_id is not None:
-#             team2 = TeamParticipatesChallenge.objects.filter(
-#                 challenge=Competition.objects.get(pk=int(competition_id)).challenge,
-#                 pk=matches[cnt].part2.object_id
-#             )[0]
-#             if team2 not in league_teams:
-#                 # print(team2.id)
-#                 league_teams.append(team2)
-#                 league_scoreboard.append([team2, '?', 0, 0])
-#                 league_size += 1
-#         cnt += 1
-#         if tmp_league_size == league_size:
-#             break
-#
-#     num_matches_per_week = 0
-#     num_weeks = 0
-#     if league_size % 2 == 0:
-#         num_matches_per_week = int(league_size / 2)
-#         num_weeks = league_size - 1
-#     else:
-#         num_matches_per_week = int((league_size - 1) / 2)
-#         num_weeks = league_size
-#
-#     num_one_round_matches = num_matches_per_week * num_weeks
-#     num_rounds = int(len(matches) / num_one_round_matches)
-#
-#     cnt = -1
-#     for round in range(num_rounds):
-#         league_matches.append([])
-#         for week in range(num_weeks):
-#             r = len(league_matches) - 1
-#             league_matches[r].append([])
-#             for i in range(num_matches_per_week):
-#                 cnt += 1
-#                 match_result = matches[cnt].get_match_result()
-#                 team1 = None
-#                 team2 = None
-#                 if matches[cnt].part1.object_id is not None and matches[cnt].part2.object_id is not None:
-#                     r = len(league_matches) - 1
-#                     w = len(league_matches[r]) - 1
-#                     league_matches[r][w].append(match_result)
-#
-#                 if matches[cnt].part1.object_id is not None:
-#                     team1 = TeamParticipatesChallenge.objects.filter(
-#                         challenge=Competition.objects.get(pk=int(competition_id)).challenge,
-#                         pk=matches[cnt].part1.object_id
-#                     )[0]
-#                 if matches[cnt].part2.object_id is not None:
-#                     team2 = TeamParticipatesChallenge.objects.filter(
-#                         challenge=Competition.objects.get(pk=int(competition_id)).challenge,
-#                         pk=matches[cnt].part2.object_id
-#                     )[0]
-#                 if team1 is not None and team2 is not None:
-#                     for j in range(len(league_scoreboard)):
-#                         if league_scoreboard[j][0] == team1:
-#                             league_scoreboard[j][1] = match_result[0]
-#                             if match_result[2] != -1:
-#                                 league_scoreboard[j][2] += match_result[2]
-#                             if match_result[2] > match_result[3]:
-#                                 league_scoreboard[j][3] += 1
-#                         if league_scoreboard[j][0] == team2:
-#                             league_scoreboard[j][1] = match_result[1]
-#                             if match_result[3] != -1:
-#                                 league_scoreboard[j][2] += match_result[3]
-#                             if match_result[3] > match_result[2]:
-#                                 league_scoreboard[j][3] += 1
-#
-#     league_scoreboard = sorted(league_scoreboard, key=itemgetter(2, 3, 1))
-#     # return [league_scoreboard, league_matches]
-#
-#     return render(request, 'scoreboard/group_table.html', {
-#         'league_scoreboard': league_scoreboard,
-#         'league_matches': league_matches
-#     })
+def get_league_scoreboard(competition_id):
+    matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
+    league_teams = []
+    league_scoreboard = []
+    league_matches = []
+    league_size = 0
+    cnt = 0
+    # print(len(matches))
+    # print(matches)
+    while True:
+        if cnt >= len(matches):
+            break
+        tmp_league_size = league_size
+        if matches[cnt].part1.object_id is not None:
+            team1 = TeamParticipatesChallenge.objects.filter(
+                challenge=Competition.objects.get(pk=int(competition_id)).challenge,
+                pk=matches[cnt].part1.object_id
+            )[0]
+            if team1 not in league_teams:
+                # print(team1.id)
+                league_teams.append(team1)
+                league_scoreboard.append([team1, '?', 0, 0])
+                league_size += 1
+        if matches[cnt].part2.object_id is not None:
+            team2 = TeamParticipatesChallenge.objects.filter(
+                challenge=Competition.objects.get(pk=int(competition_id)).challenge,
+                pk=matches[cnt].part2.object_id
+            )[0]
+            if team2 not in league_teams:
+                # print(team2.id)
+                league_teams.append(team2)
+                league_scoreboard.append([team2, '?', 0, 0])
+                league_size += 1
+        cnt += 1
+        if tmp_league_size == league_size:
+            break
+
+    num_matches_per_week = 0
+    num_weeks = 0
+    if league_size % 2 == 0:
+        num_matches_per_week = int(league_size / 2)
+        num_weeks = league_size - 1
+    else:
+        num_matches_per_week = int((league_size - 1) / 2)
+        num_weeks = league_size
+
+    num_one_round_matches = num_matches_per_week * num_weeks
+    num_rounds = int(len(matches) / num_one_round_matches)
+
+    cnt = -1
+    for round in range(num_rounds):
+        league_matches.append([])
+        for week in range(num_weeks):
+            r = len(league_matches) - 1
+            league_matches[r].append([])
+            for i in range(num_matches_per_week):
+                cnt += 1
+                match_result = matches[cnt].get_match_result()
+                team1 = None
+                team2 = None
+                if matches[cnt].part1.object_id is not None and matches[cnt].part2.object_id is not None:
+                    r = len(league_matches) - 1
+                    w = len(league_matches[r]) - 1
+                    league_matches[r][w].append(match_result)
+
+                if matches[cnt].part1.object_id is not None:
+                    team1 = TeamParticipatesChallenge.objects.filter(
+                        challenge=Competition.objects.get(pk=int(competition_id)).challenge,
+                        pk=matches[cnt].part1.object_id
+                    )[0]
+                if matches[cnt].part2.object_id is not None:
+                    team2 = TeamParticipatesChallenge.objects.filter(
+                        challenge=Competition.objects.get(pk=int(competition_id)).challenge,
+                        pk=matches[cnt].part2.object_id
+                    )[0]
+                if team1 is not None and team2 is not None:
+                    for j in range(len(league_scoreboard)):
+                        if league_scoreboard[j][0] == team1:
+                            league_scoreboard[j][1] = match_result[0]
+                            if match_result[2] != -1:
+                                league_scoreboard[j][2] += match_result[2]
+                            if match_result[2] > match_result[3]:
+                                league_scoreboard[j][3] += 1
+                        if league_scoreboard[j][0] == team2:
+                            league_scoreboard[j][1] = match_result[1]
+                            if match_result[3] != -1:
+                                league_scoreboard[j][2] += match_result[3]
+                            if match_result[3] > match_result[2]:
+                                league_scoreboard[j][3] += 1
+
+    league_scoreboard = sorted(league_scoreboard, key=itemgetter(2, 3, 1))
+    # return [league_scoreboard, league_matches]
+    return league_scoreboard, league_matches
+
+@login_required()
+def render_league(request, competition_id):
+
+    league_scoreboard, league_matches = get_league_scoreboard(competition_id)
+
+    return render(request, 'scoreboard/group_table.html', {
+        'league_scoreboard': league_scoreboard,
+        'league_matches': league_matches
+    })
 
 
 @csrf_exempt
@@ -323,3 +328,23 @@ def game_view(request):
 
 def map_maker(request):
     return redirect(to='/static/game_graphics/map_maker/index.html')
+
+
+@login_required
+def render_challenge_league(request, challenge_id):
+    print(challenge_id)
+    ch = Challenge.objects.first()
+    print(ch)
+    challenge = get_object_or_404(Challenge, pk=challenge_id)
+    competitions = Competition.objects.filter(challenge=challenge, type='league')
+
+    competitions_scoreboard = []
+    for competition in competitions:
+        scoreboard = {}
+        scoreboard['league_scoreboard'], scoreboard['league_matches'] = get_league_scoreboard(competition.id)
+        competitions_scoreboard.append(scoreboard)
+
+    return render(request, 'scoreboard/group_table_challenge.html', {
+        'tables': competitions_scoreboard
+    })
+
