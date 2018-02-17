@@ -77,7 +77,9 @@ server {
     }
 
     location /.well-known/ {
-        alias /var/www/letsencrypt/;
+        root            /var/www/letsencrypt/;
+        access_log      on;
+        log_not_found   on;
     }
 
 }
