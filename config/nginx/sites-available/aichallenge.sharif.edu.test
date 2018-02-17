@@ -45,5 +45,4 @@ server {
         access_log      on;
         log_not_found   on;
     }
-
 }

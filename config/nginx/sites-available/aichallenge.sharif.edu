@@ -6,7 +6,7 @@ server {
 	listen 80;
 
 	server_name aichallenge.sharif.ir aichallenge.sharif.ac.ir;
-	return 301 $scheme://aichallenge.sharif.edu$request_uri;
+	return 301 https://aichallenge.sharif.edu$request_uri;
 }
 
 
@@ -15,18 +15,34 @@ server {
         listen 80;
 
         server_name aichallenge.sharif.edu;
-        return 302 $scheme://aichallenge.sharif.edu:2018$request_uri;
+        return 302 https://aichallenge.sharif.edu:443$request_uri;
 }
 
 
 server {
+	listen 2018;
 
-    listen 2018 default_server;
+	server_name aichallenge.sharif.ir aichallenge.sharif.ac.ir;
+	return 301 https://aichallenge.sharif.edu$request_uri;
+}
+
+server {
+        listen 2018;
+
+        server_name aichallenge.sharif.edu;
+        return 302 https://aichallenge.sharif.edu:443$request_uri;
+}
+
+server {
+    listen 443 default_server ssl;
 
     server_name aichallenge.sharif.edu;
     client_max_body_size 8M;
     keepalive_timeout    69;
     error_log /var/log/aic_site/AIC_nginx.log info;
+
+    ssl_certificate     /etc/letsencrypt/live/aichallenge.sharif.edu/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/aichallenge.sharif.edu/privkey.pem;
 
 
     location / {
@@ -59,6 +75,12 @@ server {
 
     location /favicon.ico {
         root            /static/root/static/intro/image;
+        access_log      on;
+        log_not_found   on;
+    }
+
+    location /.well-known/ {
+        root            /var/www/letsencrypt/;
         access_log      on;
         log_not_found   on;
     }
