@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-17 18:32+0000\n"
+"POT-Creation-Date: 2018-02-18 07:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,6 +191,12 @@ msgstr "نقشه:"
 #: apps/accounts/templates/accounts/panel/submissions.html:145
 msgid "Submit"
 msgstr "ارسال"
+
+#: apps/accounts/templates/accounts/panel/battle_history.html:115
+#, fuzzy
+#| msgid "Score"
+msgid "Scoreboard"
+msgstr "جدول رده‌بندی"
 
 #: apps/accounts/templates/accounts/panel/challenge_feild.html:8
 msgid "Challenge:"
