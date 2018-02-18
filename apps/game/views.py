@@ -87,8 +87,8 @@ def render_league(request, competition_id):
 
     league_scoreboard = get_scoreboard_table(competition_id)
     league_size = len(league_scoreboard)
-    print(matches)
-    print(league_scoreboard)
+    # print(matches)
+    # print(league_scoreboard)
     # list of matches in a special format ( not a simple list) to pass to template for rendering
     league_matches = []
 
@@ -275,9 +275,9 @@ def map_maker(request):
 
 @login_required
 def render_challenge_league(request, challenge_id):
-    print(challenge_id)
+    # print(challenge_id)
     ch = Challenge.objects.first()
-    print(ch)
+    # print(ch)
     challenge = get_object_or_404(Challenge, pk=challenge_id)
     competitions = Competition.objects.filter(challenge=challenge, type='league')
 
