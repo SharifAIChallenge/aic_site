@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-18 01:09+0000\n"
+"POT-Creation-Date: 2018-02-17 18:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,7 +113,7 @@ msgid "Compiled"
 msgstr "کامپایل شده"
 
 #: apps/game/models/challenge.py:118 apps/game/models/competition.py:401
-#: apps/game/models/competition.py:656
+#: apps/game/models/competition.py:655
 msgid "Failed"
 msgstr "ناموفق!"
 
@@ -149,15 +149,15 @@ msgstr "بازنده"
 msgid "Itself"
 msgstr "خودش"
 
-#: apps/game/models/competition.py:400 apps/game/models/competition.py:655
+#: apps/game/models/competition.py:400 apps/game/models/competition.py:654
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: apps/game/models/competition.py:402 apps/game/models/competition.py:657
+#: apps/game/models/competition.py:402 apps/game/models/competition.py:656
 msgid "Done"
 msgstr "انجام شده"
 
-#: apps/game/models/competition.py:403 apps/game/models/competition.py:658
+#: apps/game/models/competition.py:403 apps/game/models/competition.py:657
 msgid "Waiting"
 msgstr "در حال انتظار"
 
@@ -170,8 +170,6 @@ msgid "Losers bracket"
 msgstr "دسته بازنده‌ها"
 
 #: apps/game/templates/scoreboard/friendly_match_scoreboard.html:9
-#: apps/game/templates/scoreboard/group_table.html:10
-#: apps/game/templates/scoreboard/group_table_challenge.html:10
 #, fuzzy
 #| msgid "Score"
 msgid "Scoreboard"
