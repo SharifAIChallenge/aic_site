@@ -87,7 +87,8 @@ def render_league(request, competition_id):
 
     league_scoreboard = get_scoreboard_table(competition_id)
     league_size = len(league_scoreboard)
-
+    print(matches)
+    print(league_scoreboard)
     # list of matches in a special format ( not a simple list) to pass to template for rendering
     league_matches = []
 
@@ -123,7 +124,7 @@ def render_league(request, competition_id):
         'league_matches': league_matches
     })
 
-@login_required()
+# @login_required()
 def get_scoreboard_table(competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
 
@@ -162,6 +163,8 @@ def get_scoreboard_table(competition_id):
 
     for match in matches:
         match_result = match.get_match_result()
+        if match_result['part1']['result'] == 'notdone' or match_result['part1']['participant'] == match_result['part2']['participant']:
+            continue
         participants = []
         participants.append(match_result['part1'])
         participants.append(match_result['part2'])
@@ -281,10 +284,9 @@ def render_challenge_league(request, challenge_id):
     competitions_scoreboard = []
     for competition in competitions:
         scoreboard = {}
-        scoreboard['league_scoreboard'], scoreboard['league_matches'] = get_league_scoreboard(competition.id)
+        scoreboard['league_scoreboard'] = get_scoreboard_table(competition.id)
         competitions_scoreboard.append(scoreboard)
 
     return render(request, 'scoreboard/group_table_challenge.html', {
         'tables': competitions_scoreboard
     })
-
