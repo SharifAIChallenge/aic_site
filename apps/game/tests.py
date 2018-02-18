@@ -790,7 +790,7 @@ class TestScoreboardForFriendly(TestCase):
             for part_dict in participants:
                 team = part_dict['participant']
                 if team.__class__.__name__ != 'TeamParticipatesChallenge':
-                    return ValueError('participant should be team!!!')
+                    raise ValueError('participant should be team!!!')
                 for team_status in league_scoreboard:
                     if team == team_status['team']:
                         team_status['score'] = team_status['score'] + part_dict['score']
