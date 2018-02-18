@@ -36,6 +36,8 @@ class Competition(models.Model):
         return str(self.name)
 
     def create_new_league(self, teams, rounds_num):  # algorithm for scheduling is Round-robin tournament
+        if len(self.maps.all()) == 0:
+            raise ValueError('the competition doesn\'t have any map!')
         if len(teams) < 2:
             raise ValueError('number of teams muset be at least two!')
 
@@ -105,6 +107,8 @@ class Competition(models.Model):
                         first_part[1] = tmp_team
 
     def create_new_double_elimination(self, teams):
+        if len(self.maps.all()) == 0:
+            raise ValueError('the competition doesn\'t have any map!')
         if len(teams) < 2:
             raise ValueError("Double elimtination must have at least 2 participants!")
         matches = []
