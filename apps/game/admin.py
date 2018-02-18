@@ -31,6 +31,12 @@ class MatchInline(admin.StackedInline):
     show_change_link = True
 
 
+class MapInline(admin.StackedInline):
+    model = Competition.maps.through
+    extra = 1
+    show_change_link = True
+
+
 class GameAdmin(admin.ModelAdmin):
     fields = ['name', 'infra_token']
 
@@ -60,7 +66,7 @@ class ChallengeAdmin(admin.ModelAdmin):
 class CompetitionAdmin(admin.ModelAdmin):
     fields = ['name', 'type', 'challenge']
 
-    inlines = [MatchInline]
+    inlines = [MatchInline, MapInline]
     list_display = ('name', 'type')
     list_filter = ['type']
 
