@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-18 07:31+0000\n"
+"POT-Creation-Date: 2018-02-18 17:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,15 +22,19 @@ msgstr ""
 msgid "Please enter your phone number correctly!"
 msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
 
-#: apps/accounts/forms/panel.py:68
+#: apps/accounts/forms/panel.py:47
+msgid "Max file size is 5MB."
+msgstr "بیشترین حجم فایل قابل استفاده ۵ مگابایت است."
+
+#: apps/accounts/forms/panel.py:71
 msgid "First submit a compilable code."
 msgstr "ابتدا یک کد قابل کامپایل ارسال کنید."
 
-#: apps/accounts/forms/panel.py:71
+#: apps/accounts/forms/panel.py:74
 msgid "You have to be one of participants."
 msgstr "شما باید یکی از طرفین باشید."
 
-#: apps/accounts/forms/panel.py:81
+#: apps/accounts/forms/panel.py:84
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each match!"
 msgstr "بین هر دو بازی دوستانه باید حداقل %(minutes)s دقیقه صبر کنید."
@@ -188,7 +192,7 @@ msgid "Map:"
 msgstr "نقشه:"
 
 #: apps/accounts/templates/accounts/panel/battle_history.html:114
-#: apps/accounts/templates/accounts/panel/submissions.html:145
+#: apps/accounts/templates/accounts/panel/submissions.html:151
 msgid "Submit"
 msgstr "ارسال"
 
@@ -299,15 +303,15 @@ msgstr "ما در حال کامپایل کردن کد شما هستیم. صبر 
 msgid "Compiling"
 msgstr "در حال کامپایل"
 
-#: apps/accounts/templates/accounts/panel/submissions.html:128
+#: apps/accounts/templates/accounts/panel/submissions.html:127
 msgid "File:"
 msgstr "فایل:"
 
-#: apps/accounts/templates/accounts/panel/submissions.html:133
+#: apps/accounts/templates/accounts/panel/submissions.html:136
 msgid "Language:"
 msgstr "زبان:"
 
-#: apps/accounts/templates/accounts/panel/submissions.html:143
+#: apps/accounts/templates/accounts/panel/submissions.html:149
 msgid "Caution: Submissions get final when they are successfully compiled!"
 msgstr ""
 "توجه:‌ ارسالهایی که با موفقیت کامپایل شوند به عنوان ارسال نهایی شما تنظیم "
