@@ -8,6 +8,7 @@ def menu(request):
             'navbar': {
                 _('Home'): {
                     'dropdown': {
+                        _('Main Page'): reverse('intro:index'),
                         _('Introduction'): reverse('intro:index') + '#section-intro',
                         _('Prize'): reverse('intro:index') + '#section-prizes',
                         _('History'): reverse('intro:index') + "#section-history",
