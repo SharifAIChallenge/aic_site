@@ -338,7 +338,7 @@ class Participant(models.Model):
 
     def get_team(self):
         if self.depend is None:
-            return None
+            raise ValueError('Participant depend is None and there is no team')
         elif self.depend.__class__.__name__ == 'Match':
             return self.depend.get_team(self.depend_method)
         elif self.depend.__class__.__name__ == 'TeamParticipatesChallenge':
