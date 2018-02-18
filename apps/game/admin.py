@@ -168,7 +168,7 @@ class MatchAdmin(admin.ModelAdmin):
         for match in matches:
             from django.contrib import messages
 
-            if (not match.is_ready()):
+            if (not match.is_ready_to_run()):
                 messages.error(request, _('one of selected matches is not ready!'))
                 return
 
