@@ -15,6 +15,8 @@ class Profile(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=256)
+    should_pay = models.BooleanField(default=False)
+    has_paid = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

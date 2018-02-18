@@ -14,7 +14,7 @@ from .models import Transaction
 
 
 @login_required
-@team_required_and_finalized
+# @team_required_and_finalized
 def payment(request):
     if not request.team.should_pay or request.team.has_paid:
         return HttpResponseRedirect(reverse('my_team'))
@@ -55,7 +55,7 @@ def payment(request):
 
 
 @login_required
-@team_required_and_finalized
+# @team_required_and_finalized
 def complete_payment(request):
     our_id = request.GET.get('id2', None)
     if not our_id:
@@ -65,9 +65,9 @@ def complete_payment(request):
     transaction.update_status()
 
     if transaction.status == 'v':
-        return render(request, 'custom/bank_payment_success.html')
+        return render(request, 'billing/bank_payment_success.html')
     elif transaction.status == 'c':
-        return render(request, 'custom/bank_payment_error.html', context={
+        return render(request, 'billing/bank_payment_error.html', context={
             'error': transaction.error,
         })
     else:
@@ -75,12 +75,12 @@ def complete_payment(request):
 
 
 @login_required
-@team_required_and_finalized
+# @team_required_and_finalized
 def payments_list(request):
     unknown_payments = Transaction.objects.filter(status='u')
     for transaction in unknown_payments:
         transaction.update_status()
     payments = request.team.transactions.all()
-    return render(request, 'custom/bank_payments_list.html', context={
+    return render(request, 'billing/bank_payments_list.html', context={
         'payments': payments,
     })
