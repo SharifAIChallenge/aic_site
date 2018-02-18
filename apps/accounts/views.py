@@ -145,16 +145,18 @@ def panel(request, participation_id=None, battle_form=None):
         else:
             context['accepted_participations'].append(challenge_participation.team)
 
-    if request.method == 'POST':
-        form = SubmissionForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-
     context['submissions'] = Paginator(
         TeamSubmission.objects.filter(team_id=participation_id).order_by('-id'),
         5
     ).page(page)
-    form = SubmissionForm()
+
+    if request.method == 'POST':
+        form = SubmissionForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+    else:
+        form = SubmissionForm()
+
     form.fields['team'].queryset = TeamParticipatesChallenge.objects.filter(
         team__in=context['accepted_participations']
     )
@@ -167,6 +169,7 @@ def panel(request, participation_id=None, battle_form=None):
 
     if participation is not None and participation.challenge.competitions.filter(type='friendly').exists():
         context['form_challenge'] = ChallengeATeamForm(user=request.user, participation=participation)
+        context['friendly_competition'] = participation.challenge.competitions.get(type='friendly')
         if participation is not None:
             context['challenge_teams'] = [team_part.team for team_part in
                                           TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]

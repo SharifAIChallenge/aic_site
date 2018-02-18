@@ -124,12 +124,15 @@
 {% if participation.challenge.is_submission_open %}
     {% csrf_token %}
     <div class="one field">
-        {{ form.file.errors }}
         <label for="{{ form.file.id_for_label }}">{% trans 'File:' %}</label>
+
         {{ form.file }}
+
+        {% if form.file.errors %}
+            <div class="ui red message">{{ form.file.errors }}</div>
+        {% endif %}
     </div>
     <div class="one field" style="height: 100%;">
-        {{ form.language.errors }}
         <label for="{{ form.language.id_for_label }}">{% trans 'Language:' %}</label>
 
         <select name="{{ form.language.name }}" class="ui dropdown">
@@ -138,6 +141,9 @@
             {% endfor %}
         </select>
 
+        {% if form.language.errors %}
+            <div class="ui red message">{{ form.language.errors }}</div>
+        {% endif %}
     </div>
     <div class="ui orange message">
         {% trans 'Caution: Submissions get final when they are successfully compiled!' %}

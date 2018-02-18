@@ -43,6 +43,9 @@ class SubmissionForm(ModelForm):
             return False
         if not self.cleaned_data['team'].challenge.is_submission_open:
             return False
+        if self.cleaned_data['file'].size > 5242880:
+            self.add_error('file', _('Max file size is 5MB.'))
+            return False
         return True
 
     def save(self, commit=True):
