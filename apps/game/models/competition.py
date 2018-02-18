@@ -443,10 +443,10 @@ class Match(models.Model):
         if part is None or part.object_id is None:
             name = 'None'
         elif part.depend.__class__.__name__ == 'TeamParticipatesChallenge':
-            name = str(part.depend)
+            name = str(part.depend.team.name)
         elif part.depend.__class__.__name__ == 'Match':
             if part.depend.status == 'done':
-                name = str(part.depend.get_team(part.depend_method))
+                name = str(part.depend.get_team(part.depend_method).team.name)
             else:
                 name = part.depend_method + ' of match ' + str(part.object_id)
         return name
@@ -472,9 +472,9 @@ class Match(models.Model):
     def get_score_for_participant(self, participant):
         if participant is None:
             return None
-        undone_score = -1
+        notdone_score = 0
         if self.status != 'done':
-            return undone_score
+            return notdone_score
         score = 0
         if self.part1 == participant:
             for single_match in self.single_matches.all():
@@ -535,7 +535,7 @@ class Match(models.Model):
                 else:
                     return 'loser'
         else:
-            return 'undone'
+            return 'notdone'
             # return ValueError('Match is not done completely!')
 
     def get_result_color(self, result):
@@ -547,6 +547,7 @@ class Match(models.Model):
             return 'gray'
 
 
+
     def is_ready_to_run(self):
         return self.part1.is_ready_to_run() and self.part2.is_ready_to_run() and self.status != 'done'
 
@@ -554,12 +555,12 @@ class Match(models.Model):
         """
         :rtype: list of Matches / None
         """
-        if self.is_ready():
+        if self.is_ready_to_run():
             return None
         res = []
-        if not self.part1.is_ready():
+        if not self.part1.is_ready_to_run():
             res.append(self.part1.depend)
-        if not self.part2.is_ready():
+        if not self.part2.is_ready_to_run():
             res.append(self.part2.depend)
         return res
 
@@ -600,7 +601,7 @@ class Match(models.Model):
             single_match.done_manually()
 
     def handle(self):
-        if self.is_ready() is False:
+        if self.is_ready_to_run() is False:
             logger.error("Match :" + str(self) + " is not ready.")
             raise Http404("Match :" + str(self) + " is not ready.")
         try:
