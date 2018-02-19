@@ -471,15 +471,13 @@ class Match(models.Model):
         score = 0
         if self.part1 == participant:
             for single_match in self.single_matches.all():
-                if single_match.get_score_for_participant(self.part1) is None:
-                    raise ValueError('this participant does not participate in this match')
-                score = score + single_match.get_score_for_participant(self.part1)
+                if single_match.get_score_for_participant(self.part1) is not None:
+                    score = score + single_match.get_score_for_participant(self.part1)
             return score
         elif self.part2 == participant:
             for single_match in self.single_matches.all():
-                if single_match.get_score_for_participant(self.part2) is None:
-                    raise ValueError('this participant does not participate in this match')
-                score = score + single_match.get_score_for_participant(self.part2)
+                if single_match.get_score_for_participant(self.part2) is not None:
+                    score = score + single_match.get_score_for_participant(self.part2)
             return score
         else:
             raise ValueError('this participant does not participate in this match')
