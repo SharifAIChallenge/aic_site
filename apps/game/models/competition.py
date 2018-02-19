@@ -746,3 +746,21 @@ class SingleMatch(models.Model):
         self.part1_score = 1
         self.part2_score = 0
         self.save()
+
+    def winner(self):
+        if self.status != 'done':
+            return None
+        if self.part1_score > self.part2_score:
+            return self.match.part1
+        else:
+            if self.part2_score > self.part1_score:
+                return self.match.part2
+            else:
+                return self.match.part2 if self.match.part1.submission.time > self.match.part2.submission.time else self.match.part1
+
+    def loser(self):
+        winner = self.winner()
+        if winner == self.match.part1:
+            return self.match.part1
+        else:
+            return self.match.part2
