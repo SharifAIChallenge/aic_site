@@ -150,6 +150,17 @@ def get_scoreboard_table(competition_id):
                 'lose_num': 0
             }
 
+        team = single_match.match.part2.depend.team
+        if single_match.match.part2.object_id not in teams_status:
+            teams_status[single_match.match.part2.depend.id] = {
+                'team': team,
+                'score': 0,
+                'name': team.name,
+                'total_num': 0,
+                'win_num': 0,
+                'lose_num': 0
+            }
+
         winner_participation = single_match.winner()
         loser_participation = single_match.loser()
 
