@@ -51,7 +51,3 @@ def menu(request):
     }
 
     return context
-
-BANK_USERNAME = 'fazlisaich'
-BANK_PASSWORD = 'fazlisaich@aic+6682*azxcd'
-BANK_GROUP_ID = ''
