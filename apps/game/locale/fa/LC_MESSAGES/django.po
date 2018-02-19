@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-18 17:34+0000\n"
+"POT-Creation-Date: 2018-02-19 09:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,57 +18,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/game/admin.py:74
+#: apps/game/admin.py:84
 msgid "status"
 msgstr "وضعیت"
 
-#: apps/game/admin.py:88
+#: apps/game/admin.py:98
 msgid "running"
 msgstr "در حال اجرا"
 
-#: apps/game/admin.py:89
+#: apps/game/admin.py:99
 msgid "failed"
 msgstr "ناموفق!"
 
-#: apps/game/admin.py:90
+#: apps/game/admin.py:100
 msgid "done"
 msgstr "انجام‌شده"
 
-#: apps/game/admin.py:91
+#: apps/game/admin.py:101
 #, fuzzy
 #| msgid "Waiting"
 msgid "waiting"
 msgstr "در حال انتظار"
 
-#: apps/game/admin.py:118
+#: apps/game/admin.py:128
 msgid "is ready"
 msgstr "آماده‌بودن"
 
-#: apps/game/admin.py:132
+#: apps/game/admin.py:142
 msgid "True"
 msgstr "درست"
 
-#: apps/game/admin.py:133
+#: apps/game/admin.py:143
 msgid "False"
 msgstr "نادرست"
 
-#: apps/game/admin.py:164
+#: apps/game/admin.py:174
 msgid "no selected matches!"
 msgstr "تیمی انتخاب نشده است!"
 
-#: apps/game/admin.py:172
+#: apps/game/admin.py:182
 msgid "one of selected matches is not ready!"
 msgstr "یکی از بازی‌های اننخاب شده آماده نیست."
 
-#: apps/game/admin.py:176
+#: apps/game/admin.py:186
 msgid "one of selected matches is done!"
 msgstr "یکی از بازی‌های انتخاب شده انجام شده است."
 
-#: apps/game/admin.py:211 apps/game/admin.py:231
+#: apps/game/admin.py:221 apps/game/admin.py:242
 msgid "no selected teams!"
 msgstr "تیمی انتخاب نشده است!"
 
-#: apps/game/admin.py:218 apps/game/admin.py:238
+#: apps/game/admin.py:228 apps/game/admin.py:249
 msgid "Only teams from one challenge!"
 msgstr "تنها میتوانید از تیم‌های یک چالش انتخاب کنید!"
 
@@ -112,8 +112,8 @@ msgstr "در حال کامپایل"
 msgid "Compiled"
 msgstr "کامپایل شده"
 
-#: apps/game/models/challenge.py:118 apps/game/models/competition.py:401
-#: apps/game/models/competition.py:656
+#: apps/game/models/challenge.py:118 apps/game/models/competition.py:407
+#: apps/game/models/competition.py:651
 msgid "Failed"
 msgstr "ناموفق!"
 
@@ -137,27 +137,27 @@ msgstr "لیگ"
 msgid "Friendly"
 msgstr "دوستانه"
 
-#: apps/game/models/competition.py:305
+#: apps/game/models/competition.py:315
 msgid "Winner"
 msgstr "برنده"
 
-#: apps/game/models/competition.py:306
+#: apps/game/models/competition.py:316
 msgid "Loser"
 msgstr "بازنده"
 
-#: apps/game/models/competition.py:307
+#: apps/game/models/competition.py:317
 msgid "Itself"
 msgstr "خودش"
 
-#: apps/game/models/competition.py:400 apps/game/models/competition.py:655
+#: apps/game/models/competition.py:406 apps/game/models/competition.py:650
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: apps/game/models/competition.py:402 apps/game/models/competition.py:657
+#: apps/game/models/competition.py:408 apps/game/models/competition.py:652
 msgid "Done"
 msgstr "انجام شده"
 
-#: apps/game/models/competition.py:403 apps/game/models/competition.py:658
+#: apps/game/models/competition.py:409 apps/game/models/competition.py:653
 msgid "Waiting"
 msgstr "در حال انتظار"
 
