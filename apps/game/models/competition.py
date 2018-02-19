@@ -30,6 +30,16 @@ class Competition(models.Model):
     name = models.CharField(max_length=128, null=True)
     type = models.CharField(max_length=128, choices=TYPE_CHOICES)
 
+    def save(self):
+        # print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+        super(Competition, self).save()
+        # print(self.maps.all())
+        for map in self.maps.all():
+            for match in self.matches.all():
+                # print('ooooooooooooooooooooooooooooooooooooooooooo')
+                if len(SingleMatch.objects.filter(match=match, map=map)) == 0:
+                    SingleMatch.objects.create(match=match, map=map)
+
     def __str__(self):
         if self.name is None:
             return str(self.id)
@@ -90,8 +100,8 @@ class Competition(models.Model):
                         )
                     )
                     matches.append(new_match)
-                    for map in self.maps.all():
-                        SingleMatch.objects.create(match=new_match, map=map)
+                    # for map in self.maps.all():
+                    #     SingleMatch.objects.create(match=new_match, map=map)
 
                 if len(teams) > 2:
                     tmp_team = second_part[0]
@@ -150,8 +160,8 @@ class Competition(models.Model):
                 )
             )
             matches.append(new_match)
-            for map in self.maps.all():
-                SingleMatch.objects.create(match=new_match, map=map)
+            # for map in self.maps.all():
+            #     SingleMatch.objects.create(match=new_match, map=map)
 
             new_match = Match.objects.create(
                 competition=self,
@@ -165,8 +175,8 @@ class Competition(models.Model):
                 )
             )
             matches.append(new_match)
-            for map in self.maps.all():
-                SingleMatch.objects.create(match=new_match, map=map)
+            # for map in self.maps.all():
+            #     SingleMatch.objects.create(match=new_match, map=map)
             return
 
         for i in range(cur_round_length):
@@ -196,8 +206,8 @@ class Competition(models.Model):
                 )
             )
             matches.append(new_match)
-            for map in self.maps.all():
-                SingleMatch.objects.create(match=new_match, map=map)
+            # for map in self.maps.all():
+            #     SingleMatch.objects.create(match=new_match, map=map)
 
         # for second round:
         start_round_index += cur_round_length
@@ -218,8 +228,8 @@ class Competition(models.Model):
                         depend_method='winner')
                 )
                 matches.append(new_match)
-                for map in self.maps.all():
-                    SingleMatch.objects.create(match=new_match, map=map)
+                # for map in self.maps.all():
+                #     SingleMatch.objects.create(match=new_match, map=map)
 
             # second step: (winner of)losers vs (winner of)losers
             if is_second_round:
@@ -234,8 +244,8 @@ class Competition(models.Model):
                             depend_method='loser')
                     )
                     matches.append(new_match)
-                    for map in self.maps.all():
-                        SingleMatch.objects.create(match=new_match, map=map)
+                    # for map in self.maps.all():
+                    #     SingleMatch.objects.create(match=new_match, map=map)
             else:
                 for i in range(cur_round_length):
                     new_match = Match.objects.create(
@@ -248,8 +258,8 @@ class Competition(models.Model):
                             depend_method='winner')
                     )
                     matches.append(new_match)
-                    for map in self.maps.all():
-                        SingleMatch.objects.create(match=new_match, map=map)
+                    # for map in self.maps.all():
+                    #     SingleMatch.objects.create(match=new_match, map=map)
 
             second_step_index = start_round_index + cur_round_length
             # third step: losers vs losers of winners
@@ -264,8 +274,8 @@ class Competition(models.Model):
                         depend_method='loser')
                 )
                 matches.append(new_match)
-                for map in self.maps.all():
-                    SingleMatch.objects.create(match=new_match, map=map)
+                # for map in self.maps.all():
+                #     SingleMatch.objects.create(match=new_match, map=map)
 
             previous_third_step_index = second_step_index + cur_round_length
             previous_start_round_index = start_round_index
@@ -283,8 +293,8 @@ class Competition(models.Model):
                 depend_method='winner')
         )
         matches.append(new_match)
-        for map in self.maps.all():
-            SingleMatch.objects.create(match=new_match, map=map)
+        # for map in self.maps.all():
+        #     SingleMatch.objects.create(match=new_match, map=map)
 
         new_match = Match.objects.create(
             competition=self,
@@ -296,8 +306,8 @@ class Competition(models.Model):
                 depend_method='winner')
         )
         matches.append(new_match)
-        for map in self.maps.all():
-            SingleMatch.objects.create(match=new_match, map=map)
+        # for map in self.maps.all():
+        #     SingleMatch.objects.create(match=new_match, map=map)
 
 
 class Participant(models.Model):
@@ -338,7 +348,7 @@ class Participant(models.Model):
 
     def get_team(self):
         if self.depend is None:
-            return None
+            raise ValueError('Participant depend is None and there is no team')
         elif self.depend.__class__.__name__ == 'Match':
             return self.depend.get_team(self.depend_method)
         elif self.depend.__class__.__name__ == 'TeamParticipatesChallenge':
@@ -411,7 +421,7 @@ class Match(models.Model):
                 have_done = True
             if single_match.status == 'waiting':
                 have_waiting = True
-        if (not have_running) and (not have_failed) and (not have_waiting):
+        if (not have_running) and (not have_failed) and (not have_waiting) and have_done:
             return 'done'
         status_result = 'waiting'
         if have_waiting:
@@ -536,7 +546,7 @@ class Match(models.Model):
 
 
     def is_ready_to_run(self):
-        return self.part1.is_ready_to_run() and self.part2.is_ready_to_run() and self.status != 'done'
+        return self.part1.is_ready_to_run() and self.part2.is_ready_to_run() and self.status != 'done' and len(self.single_matches.all()) > 0
 
     def get_depends(self):
         """
