@@ -44,10 +44,10 @@ class Transaction(models.Model):
             bank=bank,
             id2=random_string,
         )
-        from django.conf import settings
-        username = settings.BANK_USERNAME
-        password = settings.BANK_PASSWORD
-        group_id = settings.BANK_GROUP_ID
+        from aic_site.settings import production_secret
+        username = production_secret.BANK_USERNAME
+        password = production_secret.BANK_PASSWORD
+        group_id = production_secret.BANK_GROUP_ID
 
         phone = user.phone_number
         if len(phone) < 7:
@@ -95,10 +95,10 @@ class Transaction(models.Model):
             return '', t
 
     def update_status(self):
-        from django.conf import settings
-        username = settings.BANK_USERNAME
-        password = settings.BANK_PASSWORD
-        group_id = settings.BANK_GROUP_ID
+        from aic_site.settings import production_secret
+        username = production_secret.BANK_USERNAME
+        password = production_secret.BANK_PASSWORD
+        group_id = production_secret.BANK_GROUP_ID
 
         params = {
             'groupid': group_id,
