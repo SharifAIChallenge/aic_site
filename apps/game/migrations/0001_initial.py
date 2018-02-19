@@ -117,4 +117,4 @@ class Migration(migrations.Migration):
             name='game',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='game.Game'),
         ),
-]
+    ]
