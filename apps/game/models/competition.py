@@ -358,7 +358,7 @@ class Participant(models.Model):
         if self.depend is None:
             return True
         else:
-            if self. depend.__class__.__name__ == 'TeamParticipatesChallenge':
+            if self.depend.__class__.__name__ == 'TeamParticipatesChallenge':
                 return True
             elif self.depend.__class__.__name__ == 'Match' and self.depend.status == 'done':
                 return True
@@ -372,6 +372,9 @@ class Participant(models.Model):
         func = getattr(self.depend, self.depend_method)
         self.submission = func()
         self.save()
+
+    def itself(self):
+        return self.submission
 
 
 def get_log_file_directory(instance, filename):
@@ -431,6 +434,10 @@ class Match(models.Model):
             status_result = 'running'
         return status_result
 
+    def ensure_submissions(self):
+        self.part1.update_depend()
+        self.part2.update_depend()
+
     def get_participant_or_team(self, part):
         res = None
         if part is None or part.object_id is None:
@@ -444,7 +451,7 @@ class Match(models.Model):
                 res = part
         return res
 
-    def get_team(self, participant_result): # participant_result = ['winner', 'loser'] <- depend_method
+    def get_team(self, participant_result):  # participant_result = ['winner', 'loser'] <- depend_method
         if self.status != 'done':
             raise ValueError('Match is not done completely! why do yo call it ? :/')
         if participant_result != 'winner' and participant_result != 'loser':
@@ -452,8 +459,8 @@ class Match(models.Model):
         if self.part1 is None or self.part2 is None:
             raise ValueError('Participants can\'t be None')
 
-        part1_result = self.get_participant_result(self.part1) # winner or loser
-        part2_result = self.get_participant_result(self.part2) # winner or loser
+        part1_result = self.get_participant_result(self.part1)  # winner or loser
+        part2_result = self.get_participant_result(self.part2)  # winner or loser
 
         if part1_result == participant_result:
             return self.part1.get_team()
@@ -541,10 +548,9 @@ class Match(models.Model):
         else:
             return 'gray'
 
-
-
     def is_ready_to_run(self):
-        return self.part1.is_ready_to_run() and self.part2.is_ready_to_run() and self.status != 'done' and len(self.single_matches.all()) > 0
+        return self.part1.is_ready_to_run() and self.part2.is_ready_to_run() and self.status != 'done' and len(
+            self.single_matches.all()) > 0
 
     def get_depends(self):
         """
@@ -628,6 +634,7 @@ class Match(models.Model):
     def score2(self):
         return self.get_score_for_participant(self.part2)
 
+
 class Map(models.Model):
     file = models.FileField(blank=False, null=False)
     name = models.CharField(max_length=128, null=False, blank=False)
@@ -662,7 +669,6 @@ class SingleMatch(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     map = models.ForeignKey(Map)
     status = models.CharField(max_length=128, choices=STATUS_CHOICES, default='waiting')
-
 
     def __str__(self):
         str_part1 = 'None'
