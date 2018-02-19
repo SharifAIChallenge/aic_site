@@ -10,14 +10,16 @@ from django.shortcuts import redirect, render
 
 from apps.accounts.views import team_required_and_finalized
 from apps.billing.forms.forms import UserCompletionForm
+from apps.game.models import TeamParticipatesChallenge
 from .models import Transaction
 
 
 @login_required
 # @team_required_and_finalized
-def payment(request):
-    if not request.team.should_pay or request.team.has_paid:
-        return HttpResponseRedirect(reverse('my_team'))
+def payment(request, participation_id):
+    participation = get_object_or_404(TeamParticipatesChallenge,id = participation_id)
+    if not participation.should_pay or participation.has_paid:
+        return HttpResponseRedirect(reverse('accounts:panel'))
     if request.method == 'POST':
         form = UserCompletionForm(request.POST, instance=request.user)
         if form.is_valid():

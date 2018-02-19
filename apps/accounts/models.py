@@ -7,8 +7,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
     phone_number = models.CharField(max_length=11, null=True, blank=True)
     organization = models.CharField(max_length=128, null=False, blank=False)
-    age = models.IntegerField(null=True)
-    national_code = models.CharField(max_length=10,null=True)
+    age = models.IntegerField(null=True, blank=True)
+    national_code = models.CharField(max_length=10,null=True,blank=True)
 
     def __str__(self):
         return self.user.username
@@ -16,8 +16,7 @@ class Profile(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=256)
-    should_pay = models.BooleanField(default=False)
-    has_paid = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.name

@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericRelation
 
+from apps.billing.models import Transaction
 from .game import Game
 from django.db import models
 from django.utils.translation import ugettext_lazy as _, ugettext
@@ -28,7 +29,7 @@ class Challenge(models.Model):
     team_size = models.IntegerField()
     entrance_price = models.IntegerField()  # In Toomans, 0 for free
     game = models.ForeignKey(Game)
-    is_submission_open = models.BooleanField(null=False, blank=False,default=False)
+    is_submission_open = models.BooleanField(null=False, blank=False, default=False)
 
     def __str__(self):
         return self.title
@@ -48,6 +49,15 @@ class Challenge(models.Model):
 class TeamParticipatesChallenge(models.Model):
     team = models.ForeignKey(Team, related_name='challanges')
     challenge = models.ForeignKey(Challenge, related_name='teams')
+
+    @property
+    def should_pay(self):
+        if self.challenge.entrance_price > 0:
+            return True
+
+    @property
+    def has_paid(self):
+        return Transaction.objects.filter(team=self).exists()
 
     class Meta:
         unique_together = ('team', 'challenge')

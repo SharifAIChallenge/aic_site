@@ -1,10 +1,8 @@
-
 from django.db import models
 from django.utils.crypto import get_random_string
 
 from apps.accounts.models import Team
 from suds.client import Client
-
 
 
 class Transaction(models.Model):
@@ -17,11 +15,11 @@ class Transaction(models.Model):
         'mellat': 1, 'tejarat': 2
     }
 
-    team = models.ForeignKey(Team, related_name='transactions', null=True)
+    team = models.ForeignKey('game.challenge.TeamParticipatesChallenge', related_name='transactions', null=True)
     amount = models.PositiveIntegerField()
     status = models.CharField(choices=STATE, max_length=1)
     order_id = models.CharField(max_length=100, null=True, blank=True)
-    bank = models.CharField(max_length=20, choices=[(str(v), k) for k,v in BANK.items()])
+    bank = models.CharField(max_length=20, choices=[(str(v), k) for k, v in BANK.items()])
     reference_id = models.CharField(max_length=100)
     id2 = models.CharField(max_length=100, db_index=True, blank=True, null=True, unique=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -51,7 +49,7 @@ class Transaction(models.Model):
 
         phone = user.phone_number
         if len(phone) < 7:
-            phone = '%s%s' % ('0'*(7-len(phone)), phone)
+            phone = '%s%s' % ('0' * (7 - len(phone)), phone)
         elif len(phone) > 7:
             phone = phone[:7]
 
