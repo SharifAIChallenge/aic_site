@@ -17,7 +17,6 @@ from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmiss
 logger = logging.getLogger(__name__)
 
 
-@login_required()
 def render_scoreboard(request, competition_id):
     competition = Competition.objects.get(pk=int(competition_id))
     if competition is None:
@@ -32,7 +31,7 @@ def render_scoreboard(request, competition_id):
         return render_double_elimination(request, competition_id)
     return HttpResponse('There is not such Competition!')
 
-@login_required()
+
 def render_double_elimination(request, competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
     win_matches = []
@@ -71,9 +70,8 @@ def render_double_elimination(request, competition_id):
         'lose_matches': lose_matches
     })
 
-@login_required()
-def render_friendly(request, competition_id):
 
+def render_friendly(request, competition_id):
     league_scoreboard = get_scoreboard_table(competition_id)
 
     return render(request, 'scoreboard/friendly_match_scoreboard.html', {
@@ -81,7 +79,6 @@ def render_friendly(request, competition_id):
     })
 
 
-@login_required()
 def render_league(request, competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
 
@@ -101,7 +98,6 @@ def render_league(request, competition_id):
 
     num_one_round_matches = num_matches_per_week * num_weeks
     num_rounds = int(len(matches) / num_one_round_matches)
-
 
     cnt = -1
     for round in range(num_rounds):
@@ -124,7 +120,7 @@ def render_league(request, competition_id):
         'league_matches': league_matches
     })
 
-# @login_required()
+
 def get_scoreboard_table(competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
 
@@ -163,7 +159,8 @@ def get_scoreboard_table(competition_id):
 
     for match in matches:
         match_result = match.get_match_result()
-        if match_result['part1']['result'] == 'notdone' or match_result['part1']['participant'] == match_result['part2']['participant']:
+        if match_result['part1']['result'] == 'notdone' or match_result['part1']['participant'] == \
+                match_result['part2']['participant']:
             continue
         participants = []
         participants.append(match_result['part1'])
@@ -190,8 +187,6 @@ def get_scoreboard_table(competition_id):
     # return [league_scoreboard, league_matches]
 
     return league_scoreboard
-
-
 
 
 @csrf_exempt
@@ -263,7 +258,7 @@ def report(request):
 def game_view(request):
     if request.GET.urlencode().__len__() > 0:
         return redirect(to='/static/game_graphics/game_viewer/index.html?'
-                        + request.GET.urlencode()
+                           + request.GET.urlencode()
                         )
     else:
         return redirect(to='/static/game_graphics/game_viewer/index.html')
@@ -273,7 +268,6 @@ def map_maker(request):
     return redirect(to='/static/game_graphics/map_maker/index.html')
 
 
-@login_required
 def render_challenge_league(request, challenge_id):
     # print(challenge_id)
     ch = Challenge.objects.first()

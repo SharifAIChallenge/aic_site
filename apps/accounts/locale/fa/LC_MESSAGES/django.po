@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-19 09:54+0000\n"
+"POT-Creation-Date: 2018-02-19 15:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,6 +121,40 @@ msgstr "عضو دوم"
 msgid "Third Member"
 msgstr "عضو سوم"
 
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:4
+#: apps/accounts/templates/accounts/panel/battle_history.html:115
+#, fuzzy
+#| msgid "Score"
+msgid "Scoreboard"
+msgstr "امتیاز"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:8
+msgid "Rank"
+msgstr ""
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:9
+#, fuzzy
+#| msgid "Team Name"
+msgid "Name"
+msgstr "نام تیم"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:10
+#: apps/accounts/templates/accounts/panel/battle_history.html:11
+msgid "Score"
+msgstr "امتیاز"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:11
+msgid "total num"
+msgstr ""
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:12
+msgid "win num"
+msgstr ""
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:13
+msgid "lose num"
+msgstr ""
+
 #: apps/accounts/templates/accounts/login.html:10
 #: apps/accounts/templates/accounts/login.html:30
 msgid "Login"
@@ -158,10 +192,6 @@ msgstr "زمان"
 msgid "Team"
 msgstr "نام تیم"
 
-#: apps/accounts/templates/accounts/panel/battle_history.html:11
-msgid "Score"
-msgstr "امتیاز"
-
 #: apps/accounts/templates/accounts/panel/battle_history.html:12
 msgid "Oponent Score"
 msgstr "امتیاز حریف"
@@ -195,12 +225,6 @@ msgstr "نقشه:"
 #: apps/accounts/templates/accounts/panel/submissions.html:151
 msgid "Submit"
 msgstr "ارسال"
-
-#: apps/accounts/templates/accounts/panel/battle_history.html:115
-#, fuzzy
-#| msgid "Score"
-msgid "Scoreboard"
-msgstr "امتیاز"
 
 #: apps/accounts/templates/accounts/panel/challenge_feild.html:8
 msgid "Challenge:"
