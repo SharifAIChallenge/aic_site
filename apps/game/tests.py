@@ -124,6 +124,11 @@ class TestScheduling(TestCase):
             participation.save()
         competition = Competition(challenge=challenge, type='league')
         competition.save()
+
+        maps = list(Map.objects.all())
+        for map in maps:
+            competition.maps.add(map)
+
         competition.create_new_league(teams=Team.objects.all(), rounds_num=2)
 
         # expected result
@@ -190,6 +195,11 @@ class TestScheduling(TestCase):
 
         competition = Competition(challenge=challenge, type='double')
         competition.save()
+
+        maps = list(Map.objects.all())
+        for map in maps:
+            competition.maps.add(map)
+
         competition.create_new_double_elimination(teams=Team.objects.all())
 
         # expected result
@@ -268,14 +278,12 @@ class TestDoubleElimination(TestCase):
     def populate_competitions():
         challenge = Challenge.objects.all()[0]
         maps = list(Map.objects.all())
-        types = ['elim', 'league', 'double']
-        for i in range(3):
-            competition = Competition()
-            competition.type = types[i]
-            competition.challenge = challenge
-            competition.save()
-            for map in maps:
-                competition.maps.add(map)
+        competition = Competition()
+        competition.type = 'double'
+        competition.challenge = challenge
+        competition.save()
+        for map in maps:
+            competition.maps.add(map)
 
     def setUp(self):
         super().setUp()
@@ -293,8 +301,7 @@ class TestDoubleElimination(TestCase):
             participation.challenge = challenge
             participation.save()
 
-        competition = Competition(challenge=challenge, type='double')
-        competition.save()
+        competition = Competition.objects.all()[0]
         competition.create_new_double_elimination(teams=Team.objects.all())
 
         # expected result
@@ -790,7 +797,7 @@ class TestScoreboardForFriendly(TestCase):
             for part_dict in participants:
                 team = part_dict['participant']
                 if team.__class__.__name__ != 'TeamParticipatesChallenge':
-                    return ValueError('participant should be team!!!')
+                    raise ValueError('participant should be team!!!')
                 for team_status in league_scoreboard:
                     if team == team_status['team']:
                         team_status['score'] = team_status['score'] + part_dict['score']
