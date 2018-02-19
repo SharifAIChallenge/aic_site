@@ -172,8 +172,6 @@ msgstr "دسته بازنده‌ها"
 #: apps/game/templates/scoreboard/friendly_match_scoreboard.html:9
 #: apps/game/templates/scoreboard/group_table.html:10
 #: apps/game/templates/scoreboard/group_table_challenge.html:10
-#, fuzzy
-#| msgid "Score"
 msgid "Scoreboard"
 msgstr "جدول رده‌بندی"
 
@@ -210,8 +208,6 @@ msgstr "بردها"
 #: apps/game/templates/scoreboard/friendly_match_scoreboard.html:18
 #: apps/game/templates/scoreboard/group_table.html:19
 #: apps/game/templates/scoreboard/group_table_challenge.html:20
-#, fuzzy
-#| msgid "Loser"
 msgid "Loses"
 msgstr "باخت‌ها"
 
