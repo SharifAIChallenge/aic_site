@@ -29,8 +29,8 @@
 .banner.text.image {
     height: 100vh;
     z-index: 1;
-    -webkit-clip-path: inset(10px 0 10px 0);
-    clip-path: inset(10px 0 10px 0);
+    -webkit-clip-path: inset(20px 0 20px 0);
+    clip-path: inset(20px 0 20px 0);
 }
 
 .section.header {

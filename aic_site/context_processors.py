@@ -1,6 +1,8 @@
 from django.urls import reverse
 from django.utils.translation import ugettext as _
 
+from apps.game.models import Competition
+
 
 def menu(request):
     context = {
@@ -14,10 +16,16 @@ def menu(request):
                         _('History'): reverse('intro:index') + "#section-history",
                         _('Schedule'): reverse('intro:index') + '#section-schedule',
                         _('FAQ'): reverse('intro:faq'),
-                        _('Blog and Q&A'): '/blog',
                         _('Contact Us'): reverse('intro:index') + '#section-organizer',
                     }
-                }
+                },
+                _('Access'): {
+                    'dropdown': {
+                        _('Panel'): reverse('accounts:panel'),
+                        _('Resources'): 'https://aichallenge.sharif.edu/blog/2018/02/05/Server-Client-MapMaker/',
+                        _('Blog and Q&A'): '/blog',
+                    }
+                },
             },
             'sidebar': {
                 _('Home'): {
@@ -46,9 +54,16 @@ def menu(request):
                     'dropdown': {
                         _('Logout'): reverse('accounts:logout'),
                     }
-                }
+                },
+                _('Scoreboard'): {
+                    'dropdown': {},
+                },
             }
         }
     }
+
+    friendly_competitions = Competition.objects.filter(type='friendly')
+    for friendly_competition in friendly_competitions:
+        context['ai']['sidebar'][_('Scoreboard')]['dropdown'][friendly_competition.name] = reverse('game:scoreboard', args=[friendly_competition.id])
 
     return context
