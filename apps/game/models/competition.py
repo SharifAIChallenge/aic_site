@@ -30,6 +30,16 @@ class Competition(models.Model):
     name = models.CharField(max_length=128, null=True)
     type = models.CharField(max_length=128, choices=TYPE_CHOICES)
 
+    def save(self):
+        # print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+        super(Competition, self).save()
+        # print(self.maps.all())
+        for map in self.maps.all():
+            for match in self.matches.all():
+                # print('ooooooooooooooooooooooooooooooooooooooooooo')
+                if len(SingleMatch.objects.filter(match=match, map=map)) == 0:
+                    SingleMatch.objects.create(match=match, map=map)
+
     def __str__(self):
         if self.name is None:
             return str(self.id)
@@ -37,7 +47,7 @@ class Competition(models.Model):
 
     def create_new_league(self, teams, rounds_num):  # algorithm for scheduling is Round-robin tournament
         if len(teams) < 2:
-            return ValueError('number of teams muset be at least two!')
+            raise ValueError('number of teams muset be at least two!')
 
         matches = []
         teams = list(teams)
@@ -45,7 +55,7 @@ class Competition(models.Model):
         all_teams = list(Team.objects.all())
         for team in teams:
             if team not in all_teams:
-                return ValueError('there is a team in arguments that does not exist in Team objects')
+                raise ValueError('there is a team in arguments that does not exist in Team objects')
 
         if len(teams) % 2 == 1:
             teams.append(None)
@@ -90,8 +100,8 @@ class Competition(models.Model):
                         )
                     )
                     matches.append(new_match)
-                    for map in self.maps.all():
-                        SingleMatch.objects.create(match=new_match, map=map)
+                    # for map in self.maps.all():
+                    #     SingleMatch.objects.create(match=new_match, map=map)
 
                 if len(teams) > 2:
                     tmp_team = second_part[0]
@@ -106,7 +116,7 @@ class Competition(models.Model):
 
     def create_new_double_elimination(self, teams):
         if len(teams) < 2:
-            return ValueError("Double elimtination must have at least 2 participants!")
+            raise ValueError("Double elimtination must have at least 2 participants!")
         matches = []
         teams = list(teams)
         teams_length = len(teams)
@@ -114,7 +124,7 @@ class Competition(models.Model):
         all_teams = list(Team.objects.all())
         for team in teams:
             if team not in all_teams:
-                return ValueError('there is a team in arguments that does not exist in Team objects')
+                raise ValueError('there is a team in arguments that does not exist in Team objects')
 
         power2 = 1
         while teams_length > power2:
@@ -133,7 +143,7 @@ class Competition(models.Model):
             second_participant = TeamParticipatesChallenge.objects.filter(team=teams[1],
                                                                           challenge=self.challenge)
             if len(first_participant) == 0 or len(second_participant) == 0:
-                return ValueError('Double elimination must have at least two participant!')
+                raise ValueError('Double elimination must have at least two participant!')
 
             first_participant = first_participant[0]
             second_participant = second_participant[0]
@@ -150,8 +160,8 @@ class Competition(models.Model):
                 )
             )
             matches.append(new_match)
-            for map in self.maps.all():
-                SingleMatch.objects.create(match=new_match, map=map)
+            # for map in self.maps.all():
+            #     SingleMatch.objects.create(match=new_match, map=map)
 
             new_match = Match.objects.create(
                 competition=self,
@@ -165,8 +175,8 @@ class Competition(models.Model):
                 )
             )
             matches.append(new_match)
-            for map in self.maps.all():
-                SingleMatch.objects.create(match=new_match, map=map)
+            # for map in self.maps.all():
+            #     SingleMatch.objects.create(match=new_match, map=map)
             return
 
         for i in range(cur_round_length):
@@ -196,8 +206,8 @@ class Competition(models.Model):
                 )
             )
             matches.append(new_match)
-            for map in self.maps.all():
-                SingleMatch.objects.create(match=new_match, map=map)
+            # for map in self.maps.all():
+            #     SingleMatch.objects.create(match=new_match, map=map)
 
         # for second round:
         start_round_index += cur_round_length
@@ -218,8 +228,8 @@ class Competition(models.Model):
                         depend_method='winner')
                 )
                 matches.append(new_match)
-                for map in self.maps.all():
-                    SingleMatch.objects.create(match=new_match, map=map)
+                # for map in self.maps.all():
+                #     SingleMatch.objects.create(match=new_match, map=map)
 
             # second step: (winner of)losers vs (winner of)losers
             if is_second_round:
@@ -234,8 +244,8 @@ class Competition(models.Model):
                             depend_method='loser')
                     )
                     matches.append(new_match)
-                    for map in self.maps.all():
-                        SingleMatch.objects.create(match=new_match, map=map)
+                    # for map in self.maps.all():
+                    #     SingleMatch.objects.create(match=new_match, map=map)
             else:
                 for i in range(cur_round_length):
                     new_match = Match.objects.create(
@@ -248,8 +258,8 @@ class Competition(models.Model):
                             depend_method='winner')
                     )
                     matches.append(new_match)
-                    for map in self.maps.all():
-                        SingleMatch.objects.create(match=new_match, map=map)
+                    # for map in self.maps.all():
+                    #     SingleMatch.objects.create(match=new_match, map=map)
 
             second_step_index = start_round_index + cur_round_length
             # third step: losers vs losers of winners
@@ -264,8 +274,8 @@ class Competition(models.Model):
                         depend_method='loser')
                 )
                 matches.append(new_match)
-                for map in self.maps.all():
-                    SingleMatch.objects.create(match=new_match, map=map)
+                # for map in self.maps.all():
+                #     SingleMatch.objects.create(match=new_match, map=map)
 
             previous_third_step_index = second_step_index + cur_round_length
             previous_start_round_index = start_round_index
@@ -283,8 +293,8 @@ class Competition(models.Model):
                 depend_method='winner')
         )
         matches.append(new_match)
-        for map in self.maps.all():
-            SingleMatch.objects.create(match=new_match, map=map)
+        # for map in self.maps.all():
+        #     SingleMatch.objects.create(match=new_match, map=map)
 
         new_match = Match.objects.create(
             competition=self,
@@ -296,8 +306,8 @@ class Competition(models.Model):
                 depend_method='winner')
         )
         matches.append(new_match)
-        for map in self.maps.all():
-            SingleMatch.objects.create(match=new_match, map=map)
+        # for map in self.maps.all():
+        #     SingleMatch.objects.create(match=new_match, map=map)
 
 
 class Participant(models.Model):
@@ -328,19 +338,17 @@ class Participant(models.Model):
         if self.object_id is None:
             name = 'None'
         elif self.depend.__class__.__name__ == 'TeamParticipatesChallenge':
-            name = str(self.depend)
-            if self.depend.__class__.__name__ == 'Match':  # depend is match
-                name = str(self.depend.get_participant())
+            name = str(self.depend.team.name)
         elif self.depend.__class__.__name__ == 'Match':
             if self.depend.status == 'done':
-                name = str(self.depend.get_participant(self.depend_method))
+                name = str(self.depend.get_team(self.depend_method).team.name)
             else:
                 name = self.depend_method + ' of match ' + str(self.object_id)
         return name
 
     def get_team(self):
         if self.depend is None:
-            return None
+            raise ValueError('Participant depend is None and there is no team')
         elif self.depend.__class__.__name__ == 'Match':
             return self.depend.get_team(self.depend_method)
         elif self.depend.__class__.__name__ == 'TeamParticipatesChallenge':
@@ -356,8 +364,6 @@ class Participant(models.Model):
                 return True
             else:
                 return False
-
-
 
     def update_depend(self):
         """call it only when the parent match has done"""
@@ -415,7 +421,7 @@ class Match(models.Model):
                 have_done = True
             if single_match.status == 'waiting':
                 have_waiting = True
-        if (not have_running) and (not have_failed) and (not have_waiting):
+        if (not have_running) and (not have_failed) and (not have_waiting) and have_done:
             return 'done'
         status_result = 'waiting'
         if have_waiting:
@@ -438,26 +444,13 @@ class Match(models.Model):
                 res = part
         return res
 
-    def get_participant_name(self, part):
-        name = 'None'
-        if part is None or part.object_id is None:
-            name = 'None'
-        elif part.depend.__class__.__name__ == 'TeamParticipatesChallenge':
-            name = str(part.depend.team.name)
-        elif part.depend.__class__.__name__ == 'Match':
-            if part.depend.status == 'done':
-                name = str(part.depend.get_team(part.depend_method).team.name)
-            else:
-                name = part.depend_method + ' of match ' + str(part.object_id)
-        return name
-
     def get_team(self, participant_result): # participant_result = ['winner', 'loser'] <- depend_method
         if self.status != 'done':
-            return ValueError('Match is not done completely! why do yo call it ? :/')
+            raise ValueError('Match is not done completely! why do yo call it ? :/')
         if participant_result != 'winner' and participant_result != 'loser':
-            return ValueError('input arg is wrong!')
+            raise ValueError('input arg is wrong!')
         if self.part1 is None or self.part2 is None:
-            return ValueError('Participants can\'t be None')
+            raise ValueError('Participants can\'t be None')
 
         part1_result = self.get_participant_result(self.part1) # winner or loser
         part2_result = self.get_participant_result(self.part2) # winner or loser
@@ -467,7 +460,7 @@ class Match(models.Model):
         elif part2_result == participant_result:
             return self.part2.get_team()
         else:
-            return ValueError('this is impossible due to previous conditions!')
+            raise ValueError('this is impossible due to previous conditions!')
 
     def get_score_for_participant(self, participant):
         if participant is None:
@@ -478,18 +471,16 @@ class Match(models.Model):
         score = 0
         if self.part1 == participant:
             for single_match in self.single_matches.all():
-                if single_match.get_score_for_participant(self.part1) is None:
-                    return ValueError('this participant does not participate in this match')
-                score = score + single_match.get_score_for_participant(self.part1)
+                if single_match.get_score_for_participant(self.part1) is not None:
+                    score = score + single_match.get_score_for_participant(self.part1)
             return score
         elif self.part2 == participant:
             for single_match in self.single_matches.all():
-                if single_match.get_score_for_participant(self.part2) is None:
-                    return ValueError('this participant does not participate in this match')
-                score = score + single_match.get_score_for_participant(self.part2)
+                if single_match.get_score_for_participant(self.part2) is not None:
+                    score = score + single_match.get_score_for_participant(self.part2)
             return score
         else:
-            return ValueError('this participant does not participate in this match')
+            raise ValueError('this participant does not participate in this match')
 
     def get_match_result(self):
 
@@ -509,10 +500,14 @@ class Match(models.Model):
                 'color'
                 'result'
         '''
+
         properties = {}
         properties['participant'] = self.get_participant_or_team(participant)
         properties['score'] = self.get_score_for_participant(participant)
-        properties['name'] = self.get_participant_name(participant)
+        if participant is None:
+            properties['name'] = 'None'
+        else:
+            properties['name'] = str(participant)
         properties['result'] = self.get_participant_result(participant)
         properties['color'] = self.get_result_color(properties['result'])
 
@@ -536,7 +531,7 @@ class Match(models.Model):
                     return 'loser'
         else:
             return 'notdone'
-            # return ValueError('Match is not done completely!')
+            # raise ValueError('Match is not done completely!')
 
     def get_result_color(self, result):
         if result == 'winner':
@@ -549,7 +544,7 @@ class Match(models.Model):
 
 
     def is_ready_to_run(self):
-        return self.part1.is_ready_to_run() and self.part2.is_ready_to_run() and self.status != 'done'
+        return self.part1.is_ready_to_run() and self.part2.is_ready_to_run() and self.status != 'done' and len(self.single_matches.all()) > 0
 
     def get_depends(self):
         """
@@ -566,27 +561,27 @@ class Match(models.Model):
 
     def winner(self):
         if self.status != 'done':
-            return ValueError('Match is not done completely! why do yo call it ? :/')
+            raise ValueError('Match is not done completely! why do yo call it ? :/')
         if self.part1 is None or self.part2 is None:
-            return ValueError('Participants can\'t be None')
+            raise ValueError('Participants can\'t be None')
         elif self.part1.get_score_for_match(self) > self.part2.get_score_for_match(self):
             return self.part1.submission
         elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
             return self.part2.submission
         else:
-            return ValueError('Participants\' score can\'t be equal')
+            raise ValueError('Participants\' score can\'t be equal')
 
     def loser(self):
         if self.status != 'done':
-            return ValueError('Match is not done completely! why do yo call it ? :/')
+            raise ValueError('Match is not done completely! why do yo call it ? :/')
         if self.part1 is None or self.part2 is None:
-            return ValueError('Participants can\'t be None')
+            raise ValueError('Participants can\'t be None')
         elif self.part1.get_score_for_match(self) > self.part2.get_score_for_match(self):
             return self.part2.submission
         elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
             return self.part1.submission
         else:
-            return ValueError('Participants\' score can\'t be equal')
+            raise ValueError('Participants\' score can\'t be equal')
 
     def done_match(self):
         single_matches = self.single_matches.all()

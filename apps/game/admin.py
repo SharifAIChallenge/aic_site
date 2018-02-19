@@ -31,6 +31,13 @@ class MatchInline(admin.StackedInline):
     show_change_link = True
 
 
+
+class MapInline(admin.StackedInline):
+    model = Competition.maps.through
+    extra = 1
+    show_change_link = True
+
+
 class GameAdmin(admin.ModelAdmin):
     fields = ['name', 'infra_token']
 
@@ -60,9 +67,12 @@ class ChallengeAdmin(admin.ModelAdmin):
 class CompetitionAdmin(admin.ModelAdmin):
     fields = ['name', 'type', 'challenge']
 
-    inlines = [MatchInline]
+    inlines = [MatchInline, MapInline]
     list_display = ('name', 'type')
     list_filter = ['type']
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
 
 
 from django.utils.translation import ugettext_lazy as _
@@ -223,6 +233,7 @@ class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
         new_competition.create_new_league(
             [team.team for team in teams], 1
         )
+        new_competition.save()
 
     def create_new_double_elimination(self, request, queryset):
         teams = list(queryset)
@@ -243,6 +254,7 @@ class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
         new_competition.create_new_double_elimination(
             [team.team for team in teams]
         )
+        new_competition.save()
 
 
 

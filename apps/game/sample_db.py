@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 
 def create_sample_db():
-    populate_users(48)
+    populate_users(24)
     populate_teams()
     populate_games()
     populate_challenges()
@@ -16,7 +16,7 @@ def create_sample_db():
     populate_competitions()
 
 def populate_users(num):
-    for i in range(num * 3):
+    for i in range(num):
         user = User()
         user.username = str(i) + " test_user"
         user.save()
@@ -95,7 +95,8 @@ def populate_competitions():
     challenge = Challenge.objects.all()[0]
     maps = list(Map.objects.all())
     types = ['league', 'double']
-    team_size = [2, 4, 8, 16, 32, 3, 5, 6, 7, 15]
+    # team_size = [2, 4, 8, 16, 32, 3, 5, 6, 7, 15]
+    team_size = [4, 8]
     for k in range(2):
         for i in range(len(team_size)):
             competition = Competition()
@@ -123,11 +124,16 @@ def populate_competitions():
     for map in maps:
         competition.maps.add(map)
 
+    print('friendly_matches start')
     # competition.create_new_league(teams=Team.objects.all(),rounds_num=1)
-    challenge_teams = list(TeamParticipatesChallenge.objects.all())
-    teams_size = len(challenge_teams)
+    teams_size = min(len(TeamParticipatesChallenge.objects.all()), 8)
+    challenge_teams = list(TeamParticipatesChallenge.objects.all()[0: teams_size])
+
     for i in range(teams_size):
         for j in range(teams_size):
+            print(i)
+            print(j)
+            print(':::')
             if i < j:
                 new_match = Match.objects.create(
                     competition=competition,
