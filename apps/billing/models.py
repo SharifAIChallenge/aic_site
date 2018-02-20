@@ -4,6 +4,8 @@ from django.utils.crypto import get_random_string
 from apps.accounts.models import Team
 from suds.client import Client
 
+from apps.game.models import TeamParticipatesChallenge
+
 
 class Transaction(models.Model):
     STATE = (
@@ -15,7 +17,7 @@ class Transaction(models.Model):
         'mellat': 1, 'tejarat': 2
     }
 
-    team = models.ForeignKey('game.challenge.TeamParticipatesChallenge', related_name='transactions', null=True)
+    team = models.ForeignKey(TeamParticipatesChallenge, related_name='transactions', null=True)
     amount = models.PositiveIntegerField()
     status = models.CharField(choices=STATE, max_length=1)
     order_id = models.CharField(max_length=100, null=True, blank=True)

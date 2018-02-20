@@ -5,7 +5,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericRelation
 
-from apps.billing.models import Transaction
 from .game import Game
 from django.db import models
 from django.utils.translation import ugettext_lazy as _, ugettext
@@ -52,12 +51,12 @@ class TeamParticipatesChallenge(models.Model):
 
     @property
     def should_pay(self):
-        if self.challenge.entrance_price > 0:
-            return True
+        return self.challenge.entrance_price > 0
 
     @property
     def has_paid(self):
-        return Transaction.objects.filter(team=self).exists()
+        from apps.billing.models import Transaction
+        return Transaction.objects.filter(team=self, status='v').exists()
 
     class Meta:
         unique_together = ('team', 'challenge')
