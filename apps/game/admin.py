@@ -178,7 +178,7 @@ class MatchAdmin(admin.ModelAdmin):
         for match in matches:
             from django.contrib import messages
 
-            if (not match.is_ready_to_run()):
+            if not match.is_ready_to_run():
                 messages.error(request, _('one of selected matches is not ready!'))
                 return
 
@@ -187,6 +187,7 @@ class MatchAdmin(admin.ModelAdmin):
                 return
 
         for match in matches:
+            match.ensure_submissions()
             for single_match in match.single_matches.all():
                 single_matches.append(single_match)
 
