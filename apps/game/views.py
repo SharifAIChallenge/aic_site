@@ -165,11 +165,13 @@ def get_scoreboard_table(competition_id):
                 'lose_num': 0
             }
 
-        teams_status[winner_participant.id]['score'] += single_match.get_score_for_participant(winner_participant)
+        if winner_participant.object_id != loser_participant.object_id:
+            teams_status[winner_participant.id]['score'] += single_match.get_score_for_participant(winner_participant)
+            teams_status[loser_participant.id]['score'] += single_match.get_score_for_participant(loser_participant)
+
         teams_status[winner_participant.id]['win_num'] += 1
         teams_status[winner_participant.id]['total_num'] += 1
 
-        teams_status[loser_participant.id]['score'] += single_match.get_score_for_participant(loser_participant)
         teams_status[loser_participant.id]['lose_num'] += 1
         teams_status[loser_participant.id]['total_num'] += 1
 
