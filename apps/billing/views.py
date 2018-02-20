@@ -17,7 +17,7 @@ from .models import Transaction
 @login_required
 # @team_required_and_finalized
 def payment(request, participation_id):
-    participation = get_object_or_404(TeamParticipatesChallenge,id = participation_id)
+    participation = get_object_or_404(TeamParticipatesChallenge, id=participation_id)
     if not participation.should_pay or participation.has_paid:
         return HttpResponseRedirect(reverse('accounts:panel'))
     if request.method == 'POST':
@@ -25,8 +25,9 @@ def payment(request, participation_id):
         if form.is_valid():
             form.save()
             url, t = Transaction.begin_transaction(user=form.instance,
-                                                   amount=request.team.payment_value,
-                                                   callback_url=request.build_absolute_uri(reverse('complete_payment')) + '?')
+                                                   amount=participation.challenge.entrance_price,
+                                                   callback_url=request.build_absolute_uri(
+                                                       reverse('complete_payment')) + '?')
             if url:
                 return HttpResponseRedirect(url)
             else:
@@ -35,15 +36,15 @@ def payment(request, participation_id):
                 })
     else:
         error = None
-        unverified_transaction = request.team.transactions.filter(status='u')
+        unverified_transaction = participation.transactions.filter(status='u')
         if unverified_transaction.exists():
             unverified_transaction.all()[0].update_status()
 
-        if request.team.transactions.filter(status='u').exists():
+        if participation.transactions.filter(status='u').exists():
             error = _("You have unverified payment(s).")
-        if not request.team.should_pay:
+        if not participation.should_pay:
             error = _("There is nothing to pay for.")
-        if request.team.transactions.filter(status='v').exists():
+        if participation.transactions.filter(status='v').exists():
             error = _("You have already paid.")
 
         if error:
@@ -51,7 +52,7 @@ def payment(request, participation_id):
                 'error': error,
             })
         form = UserCompletionForm(instance=request.user)
-        return render(request, 'billing/bank_payment.html', context={
+        return render(request, 'billing/bank_payment.html', {
             'form': form
         })
 
@@ -78,11 +79,12 @@ def complete_payment(request):
 
 @login_required
 # @team_required_and_finalized
-def payments_list(request):
+def payments_list(request, participation_id):
+    participation = get_object_or_404(TeamParticipatesChallenge, id=participation_id)
     unknown_payments = Transaction.objects.filter(status='u')
     for transaction in unknown_payments:
         transaction.update_status()
-    payments = request.team.transactions.all()
-    return render(request, 'billing/bank_payments_list.html', context={
+    payments = participation.transactions.all()
+    return render(request, 'billing/bank_payments_list.html', {
         'payments': payments,
     })

@@ -13,7 +13,6 @@
     <div class="row">
         <div class="col s12 m12 l8 offset-l2">
             <div class="card-panel">
-                {% nevercache %}
                     {% if messages %}
                         <div class="messages">
                             {% for message in messages %}
@@ -25,7 +24,6 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-                {% endnevercache %}
 
                 <table class="table-striped">
                     <tr>

@@ -8,12 +8,10 @@
 {% block extra_head %}
     <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
 {% endblock %}
-
 {% block main %}
     <div class="row">
         <div class="col s12 m12 l8 offset-l2">
             <div class="card-panel">
-                {% nevercache %}
                     {% if messages %}
                         <div class="messages">
                             {% for message in messages %}
@@ -25,9 +23,8 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-                {% endnevercache %}
 
-                <p class="muted">{{ team.name }}</p>
+                <p class="muted">{{ participation.team.name }}</p>
                 <div class="row">
                     <div class="col s12 m10 l8 offset-l2 offset-m1">
                         <form method="post" action="">
@@ -35,7 +32,7 @@
                             {{ form }}
                             <div class="center-align">
                                 <p class="text muted text-muted">
-                                مبلغ قابل پرداخت (برای کل تیم): <span class="text-info">{{ request.team.payment_value }} ﷼</span>
+                                مبلغ قابل پرداخت (برای کل تیم): <span class="text-info">{{ participation.challenge.entrance_price }} ﷼</span>
                                     </p>
                                 <button type="submit" class="btn waves-effect">
                                     تکمیل مشخصات و پرداخت
