@@ -139,9 +139,13 @@ def get_scoreboard_table(competition_id):
 
     teams_status = {}
     for single_match in competition_single_matches:
-        team = single_match.match.part1.depend.team
-        if single_match.match.part1.object_id not in teams_status:
-            teams_status[single_match.match.part1.depend.id] = {
+
+        winner_participant = single_match.winner()
+        loser_participant = single_match.loser()
+
+        team = winner_participant.depend.team
+        if winner_participant.object_id not in teams_status:
+            teams_status[winner_participant.object_id] = {
                 'team': team,
                 'score': 0,
                 'name': team.name,
@@ -150,9 +154,9 @@ def get_scoreboard_table(competition_id):
                 'lose_num': 0
             }
 
-        team = single_match.match.part2.depend.team
-        if single_match.match.part2.object_id not in teams_status:
-            teams_status[single_match.match.part2.depend.id] = {
+        team = loser_participant.depend.team
+        if loser_participant.object_id not in teams_status:
+            teams_status[loser_participant.depend.id] = {
                 'team': team,
                 'score': 0,
                 'name': team.name,
@@ -161,16 +165,13 @@ def get_scoreboard_table(competition_id):
                 'lose_num': 0
             }
 
-        winner_participation = single_match.winner()
-        loser_participation = single_match.loser()
+        teams_status[winner_participant.id]['score'] += single_match.get_score_for_participant(winner_participant)
+        teams_status[winner_participant.id]['win_num'] += 1
+        teams_status[winner_participant.id]['total_num'] += 1
 
-        teams_status[winner_participation.id]['score'] += single_match.get_score_for_participant(winner_participation)
-        teams_status[winner_participation.id]['win_num'] += 1
-        teams_status[winner_participation.id]['total_num'] += 1
-
-        teams_status[loser_participation.id]['score'] += single_match.get_score_for_participant(loser_participation)
-        teams_status[loser_participation.id]['lose_num'] += 1
-        teams_status[loser_participation.id]['total_num'] += 1
+        teams_status[loser_participant.id]['score'] += single_match.get_score_for_participant(loser_participant)
+        teams_status[loser_participant.id]['lose_num'] += 1
+        teams_status[loser_participant.id]['total_num'] += 1
 
     teams_status = [value for key, value in teams_status.items()]
     return teams_status.sort(key=itemgetter('score'), reverse=True)
