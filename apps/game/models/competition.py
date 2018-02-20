@@ -761,6 +761,6 @@ class SingleMatch(models.Model):
     def loser(self):
         winner = self.winner()
         if winner == self.match.part1:
-            return self.match.part1
-        else:
             return self.match.part2
+        else:
+            return self.match.part1
