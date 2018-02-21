@@ -63,9 +63,9 @@ rm -f ../deploy_test.sh
 echo '~~~~~>   DONE'
 
 echo $LINE; echo '~~~~~>   CLONING DATABASE FROM PRODUCTION'; echo
-#docker exec aic_test_db_cont bash -c 'dropdb postgres --user=postgres'
-#docker exec aic_test_db_cont bash -c 'createdb postgres --user=postgres'
-#docker exec aic_test_db_cont bash -c 'psql -f /Database_backup_production/aic_site_postgres_backup --username=postgres'
+docker exec aic_test_db_cont bash -c 'dropdb postgres --user=postgres'
+docker exec aic_test_db_cont bash -c 'createdb postgres --user=postgres'
+docker exec aic_test_db_cont bash -c 'psql -f /Database_backup_production/aic_site_postgres_backup --username=postgres'
 echo '~~~~~>   DONE'
 
 echo $LINE; echo '~~~~~>   REMOVING OBSOLETE DOCKER IMAGES'; echo
