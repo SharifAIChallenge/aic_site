@@ -6,6 +6,8 @@ from suds.client import Client
 
 from apps.game.models import TeamParticipatesChallenge
 
+from aic_site.settings import production_secret
+
 
 class Transaction(models.Model):
     STATE = (
@@ -29,33 +31,32 @@ class Transaction(models.Model):
     error = models.CharField(max_length=100, null=True, blank=True)
 
     @classmethod
-    def begin_transaction(cls, user, amount, callback_url, bank='mellat'):
+    def begin_transaction(cls, profile, amount, callback_url, participation, bank='mellat'):
         """
-        :param user:
+        :param profile:
         :param amount: in rials
         :param bank: 'mellat' or 'tejarat'
         :return: (url, transaction)
         """
         random_string = get_random_string(length=100)
         t = Transaction.objects.create(
-            team=user.team,
+            team=participation,
             amount=amount,
             status='u',
             bank=bank,
             id2=random_string,
         )
-        from aic_site.settings import production_secret
         username = production_secret.BANK_USERNAME
         password = production_secret.BANK_PASSWORD
         group_id = production_secret.BANK_GROUP_ID
 
-        phone = user.phone_number
+        phone = profile.tel_number
         if len(phone) < 7:
             phone = '%s%s' % ('0' * (7 - len(phone)), phone)
         elif len(phone) > 7:
-            phone = phone[:7]
+            phone = phone[-7:]
 
-        mobile = user.mobile_number
+        mobile = profile.phone_number
         if mobile[:2] != '09':
             mobile = '09{}'.format(mobile)
 
@@ -66,12 +67,12 @@ class Transaction(models.Model):
             'bankid': cls.BANK[bank],
             'id2': random_string,
             'callbackurl': callback_url,
-            'nc': user.national_code,
-            'name': user.first_name,
-            'family': user.last_name,
+            'nc': profile.national_code,
+            'name': profile.user.first_name,
+            'family': profile.user.last_name,
             'tel': phone,
             'mobile': mobile,
-            'email': user.email,
+            'email': profile.user.email,
             'amount': amount,
             'Memo': t.pk,
         }
@@ -79,7 +80,7 @@ class Transaction(models.Model):
         print(params['callbackurl'])
 
         def call_webservice(params):
-            cl = Client('http://payment.sharif.ir/research/form.aspx?gid=414')
+            cl = Client('https://payment.sharif.ir/research/ws.asmx?WSDL')
             return cl.service.Request(**params)
 
         rescode, order_id = call_webservice(params).split(',')
@@ -95,7 +96,6 @@ class Transaction(models.Model):
             return '', t
 
     def update_status(self):
-        from aic_site.settings import production_secret
         username = production_secret.BANK_USERNAME
         password = production_secret.BANK_PASSWORD
         group_id = production_secret.BANK_GROUP_ID
@@ -109,7 +109,7 @@ class Transaction(models.Model):
         }
 
         def call_webservice(params):
-            cl = Client('http://payment.sharif.ir/research/form.aspx?gid=414')
+            cl = Client('https://payment.sharif.ir/research/ws.asmx')
             return cl.service.Status(**params)
 
         vercode, reference_id = call_webservice(params).split(':')

@@ -21,13 +21,14 @@ def payment(request, participation_id):
     if not participation.should_pay or participation.has_paid:
         return HttpResponseRedirect(reverse('accounts:panel'))
     if request.method == 'POST':
-        form = UserCompletionForm(request.POST, instance=request.user)
+        form = UserCompletionForm(request.POST, instance=request.user.profile)
         if form.is_valid():
-            form.save()
-            url, t = Transaction.begin_transaction(user=form.instance,
+            profile = form.save()
+            url, t = Transaction.begin_transaction(profile=profile,
                                                    amount=participation.challenge.entrance_price,
                                                    callback_url=request.build_absolute_uri(
-                                                       reverse('complete_payment')) + '?')
+                                                       reverse('complete_payment')) + '?', participation=participation,
+                                                   )
             if url:
                 return HttpResponseRedirect(url)
             else:
@@ -51,7 +52,7 @@ def payment(request, participation_id):
             return render(request, 'billing/bank_payment_error.html', context={
                 'error': error,
             })
-        form = UserCompletionForm(instance=request.user)
+        form = UserCompletionForm(instance=request.user.profile)
         return render(request, 'billing/bank_payment.html', {
             'form': form
         })
