@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-19 15:37+0000\n"
+"POT-Creation-Date: 2018-02-21 03:49+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,52 +18,48 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/accounts/templates/email/acc_active.html:9
-#: apps/accounts/templates/email/acc_active.txt:5
+#: templates/email/acc_active.html:9 templates/email/acc_active.txt:5
 msgid "Email Activation"
 msgstr "فعالسازی حساب"
 
-#: apps/accounts/templates/email/acc_active.html:13
-#: apps/accounts/templates/email/acc_active.txt:8
+#: templates/email/acc_active.html:13 templates/email/acc_active.txt:8
 msgid "Hello"
 msgstr "سلام"
 
-#: apps/accounts/templates/email/acc_active.html:14
+#: templates/email/acc_active.html:14
 msgid "Click on the  link below to activate your account:"
 msgstr "برای فعالسازی حساب خود بر روی لینک زیر کلیک کنید:"
 
-#: apps/accounts/templates/email/email_confirm.html:5
-#: apps/accounts/templates/email/email_invalid.html:5
-#: apps/accounts/templates/email/email_sent.html:5
+#: templates/email/email_confirm.html:5 templates/email/email_invalid.html:5
+#: templates/email/email_sent.html:5
 msgid "Sign Up"
 msgstr "ثبت نام"
 
-#: apps/accounts/templates/email/email_confirm.html:12
+#: templates/email/email_confirm.html:12
 msgid "Your account has been successfully verified"
 msgstr "حساب شما با موفقیت تایید شد."
 
-#: apps/accounts/templates/email/email_confirm.html:14
+#: templates/email/email_confirm.html:14
 msgid "You can now login with your account"
 msgstr "شما اکنون می‌توانید با نام کاربری و گذرواژه خود وارد سایت شوید."
 
-#: apps/accounts/templates/email/email_confirm.html:20
-#: apps/accounts/templates/email/email_invalid.html:20
-#: apps/accounts/templates/email/email_sent.html:20
+#: templates/email/email_confirm.html:20 templates/email/email_invalid.html:20
+#: templates/email/email_sent.html:20
 msgid "OK"
 msgstr "باشه"
 
-#: apps/accounts/templates/email/email_invalid.html:12
+#: templates/email/email_invalid.html:12
 msgid "The verification link is invalid"
 msgstr "لینک فعالسازی نامعتبر است. "
 
-#: apps/accounts/templates/email/email_invalid.html:14
+#: templates/email/email_invalid.html:14
 msgid "your link might have expired"
 msgstr "لینک شما ممکن است منقضی شده‌شده باشد.‌"
 
-#: apps/accounts/templates/email/email_sent.html:12
+#: templates/email/email_sent.html:12
 msgid "Your user registration was successful"
 msgstr "ثبت نام شما موفقیت‌آمیز بود."
 
-#: apps/accounts/templates/email/email_sent.html:14
+#: templates/email/email_sent.html:14
 msgid "a verification link has been sent to your Email"
 msgstr "یک ایمیل فعالسازی به رایان‌نامه شما ارسال شد."
