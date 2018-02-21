@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-19 15:37+0000\n"
+"POT-Creation-Date: 2018-02-21 08:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,57 +18,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/game/admin.py:84
+#: apps/game/admin.py:85
 msgid "status"
 msgstr "وضعیت"
 
-#: apps/game/admin.py:98
+#: apps/game/admin.py:99
 msgid "running"
 msgstr "در حال اجرا"
 
-#: apps/game/admin.py:99
+#: apps/game/admin.py:100
 msgid "failed"
 msgstr "ناموفق!"
 
-#: apps/game/admin.py:100
+#: apps/game/admin.py:101
 msgid "done"
 msgstr "انجام‌شده"
 
-#: apps/game/admin.py:101
+#: apps/game/admin.py:102
 #, fuzzy
 #| msgid "Waiting"
 msgid "waiting"
 msgstr "در حال انتظار"
 
-#: apps/game/admin.py:128
+#: apps/game/admin.py:130
 msgid "is ready"
 msgstr "آماده‌بودن"
 
-#: apps/game/admin.py:142
+#: apps/game/admin.py:144 apps/game/admin.py:230
 msgid "True"
 msgstr "درست"
 
-#: apps/game/admin.py:143
+#: apps/game/admin.py:145 apps/game/admin.py:231
 msgid "False"
 msgstr "نادرست"
 
-#: apps/game/admin.py:174
+#: apps/game/admin.py:177
 msgid "no selected matches!"
 msgstr "تیمی انتخاب نشده است!"
 
-#: apps/game/admin.py:182
+#: apps/game/admin.py:185
 msgid "one of selected matches is not ready!"
 msgstr "یکی از بازی‌های اننخاب شده آماده نیست."
 
-#: apps/game/admin.py:186
+#: apps/game/admin.py:189
 msgid "one of selected matches is done!"
 msgstr "یکی از بازی‌های انتخاب شده انجام شده است."
 
-#: apps/game/admin.py:221 apps/game/admin.py:242
+#: apps/game/admin.py:216
+msgid "submitted"
+msgstr "ارسال کرده"
+
+#: apps/game/admin.py:262 apps/game/admin.py:283
 msgid "no selected teams!"
 msgstr "تیمی انتخاب نشده است!"
 
-#: apps/game/admin.py:228 apps/game/admin.py:249
+#: apps/game/admin.py:269 apps/game/admin.py:290
 msgid "Only teams from one challenge!"
 msgstr "تنها میتوانید از تیم‌های یک چالش انتخاب کنید!"
 
@@ -84,40 +88,40 @@ msgstr "تیم:‌"
 msgid "Challenge: "
 msgstr "چالش:‌"
 
-#: apps/game/models/challenge.py:108
+#: apps/game/models/challenge.py:111
 msgid "C++"
 msgstr "++C"
 
-#: apps/game/models/challenge.py:109
+#: apps/game/models/challenge.py:112
 msgid "Java"
 msgstr "جاوا"
 
-#: apps/game/models/challenge.py:110
+#: apps/game/models/challenge.py:113
 msgid "Python 3"
 msgstr "پایتون ۳"
 
-#: apps/game/models/challenge.py:114
+#: apps/game/models/challenge.py:117
 msgid "Uploading"
 msgstr "در حال آپلود"
 
-#: apps/game/models/challenge.py:115
+#: apps/game/models/challenge.py:118
 msgid "Uploaded"
 msgstr "آپلود شده"
 
-#: apps/game/models/challenge.py:116
+#: apps/game/models/challenge.py:119
 msgid "Compiling"
 msgstr "در حال کامپایل"
 
-#: apps/game/models/challenge.py:117
+#: apps/game/models/challenge.py:120
 msgid "Compiled"
 msgstr "کامپایل شده"
 
-#: apps/game/models/challenge.py:118 apps/game/models/competition.py:407
-#: apps/game/models/competition.py:651
+#: apps/game/models/challenge.py:121 apps/game/models/competition.py:407
+#: apps/game/models/competition.py:655
 msgid "Failed"
 msgstr "ناموفق!"
 
-#: apps/game/models/challenge.py:140
+#: apps/game/models/challenge.py:143
 msgid "This submission is not compiled yet."
 msgstr "این ارسال هنوز کامپایل نشده است."
 
@@ -149,15 +153,15 @@ msgstr "بازنده"
 msgid "Itself"
 msgstr "خودش"
 
-#: apps/game/models/competition.py:406 apps/game/models/competition.py:650
+#: apps/game/models/competition.py:406 apps/game/models/competition.py:654
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: apps/game/models/competition.py:408 apps/game/models/competition.py:652
+#: apps/game/models/competition.py:408 apps/game/models/competition.py:656
 msgid "Done"
 msgstr "انجام شده"
 
-#: apps/game/models/competition.py:409 apps/game/models/competition.py:653
+#: apps/game/models/competition.py:409 apps/game/models/competition.py:657
 msgid "Waiting"
 msgstr "در حال انتظار"
 
