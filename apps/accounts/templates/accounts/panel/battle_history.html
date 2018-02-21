@@ -1,93 +1,94 @@
 {% extends 'accounts/panel/panel.html' %}
-{% load static i18n ai_filters tz%}
+{% load static i18n ai_filters tz %}
 
 {% block panel_content %}
-    <form class="ui form" action="{% url 'accounts:challenge_a_team' participation_id %}" method="post" style="width: 100% !important;">
-        <h2 style="margin-top: 20px;">{% trans 'Battle history' %}</h2>
-        {% if battle_history|length %}
-            <table class="ui center aligned table table-bordered">
-                <thead>
+    <h2 style="margin-top: 20px;">{% trans 'Battle history' %}</h2>
+    {% if battle_history|length %}
+        <table class="ui center aligned table table-bordered">
+            <thead>
+            <tr>
+                <th>{% trans 'Time' %}</th>
+                <th>{% trans 'Team' %}</th>
+                <th>{% trans 'Score' %}</th>
+                <th>{% trans 'Oponent Score' %}</th>
+                <th>{% trans 'View' %}</th>
+                <th>{% trans 'Log' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for match in battle_history %}
                 <tr>
-                    <th>{% trans 'Time' %}</th>
-                    <th>{% trans 'Team' %}</th>
-                    <th>{% trans 'Score' %}</th>
-                    <th>{% trans 'Oponent Score' %}</th>
-                    <th>{% trans 'View' %}</th>
-                    <th>{% trans 'Log' %}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for match in battle_history %}
-                    <tr>
-                        <td>{{ match.time.date|jalali }} - {{ match.time|time }}</td>
-                        {% if match.part1.depend == participation %}
-                            <td>{{ match.part2.depend.team.name }}</td>
-                            <td>{% if match.single_matches.first.log %}{{ match.score1 }}{% endif %}</td>
-                            <td>{% if match.single_matches.first.log %}{{ match.score2 }}{% endif %}</td>
-                            <td>
-                                {% if match.single_matches.first.log %}
-                                    <a class="ui label"
-                                       href="{% url 'game:game viewer' %}?log_url={{ match.single_matches.first.log.name }}&first_team={{ match.part1.depend.team.name|urlencode }}&second_team={{ match.part2.depend.team.name|urlencode }}">{% trans 'View' %}</a>
-                                {% endif %}
-                            </td>
-                        {% elif match.part2.depend == participation %}
-                            <td>{{ match.part1.depend.team.name }}</td>
-                            <td>{% if match.single_matches.first.log %}{{ match.score2 }}{% endif %}</td>
-                            <td>{% if match.single_matches.first.log %}{{ match.score1 }}{% endif %}</td>
-                            <td></td>
-                        {% endif %}
+                    <td>{{ match.time.date|jalali }} - {{ match.time|time }}</td>
+                    {% if match.part1.depend == participation %}
+                        <td>{{ match.part2.depend.team.name }}</td>
+                        <td>{% if match.single_matches.first.log %}{{ match.score1 }}{% endif %}</td>
+                        <td>{% if match.single_matches.first.log %}{{ match.score2 }}{% endif %}</td>
                         <td>
                             {% if match.single_matches.first.log %}
-                                <a class="ui green label" href="{{ match.single_matches.first.log.url }}">
-                                    {% trans 'Download' %}
-                                </a>
-                            {% else %}
-                                <span class="ui blue label">{% trans 'Running' %}</span>
+                                <a class="ui label"
+                                   href="{% url 'game:game viewer' %}?log_url={{ match.single_matches.first.log.name }}&first_team={{ match.part1.depend.team.name|urlencode }}&second_team={{ match.part2.depend.team.name|urlencode }}">{% trans 'View' %}</a>
                             {% endif %}
                         </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-                {% if battle_history.has_other_pages %}
-                    <tfoot>
-                    <tr>
-                        <th colspan="6">
-                            <div class="ui right floated pagination menu">
-                                {% if battle_history.has_previous %}
-                                    <a class="icon item"
-                                       href="?page={{ page }}&battles_page={{ battle_history.previous_page_number }}">
-                                        <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
-                                    </a>
+                    {% elif match.part2.depend == participation %}
+                        <td>{{ match.part1.depend.team.name }}</td>
+                        <td>{% if match.single_matches.first.log %}{{ match.score2 }}{% endif %}</td>
+                        <td>{% if match.single_matches.first.log %}{{ match.score1 }}{% endif %}</td>
+                        <td></td>
+                    {% endif %}
+                    <td>
+                        {% if match.single_matches.first.log %}
+                            <a class="ui green label" href="{{ match.single_matches.first.log.url }}">
+                                {% trans 'Download' %}
+                            </a>
+                        {% else %}
+                            <span class="ui blue label">{% trans 'Running' %}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            {% if battle_history.has_other_pages %}
+                <tfoot>
+                <tr>
+                    <th colspan="6">
+                        <div class="ui right floated pagination menu">
+                            {% if battle_history.has_previous %}
+                                <a class="icon item"
+                                   href="?page={{ page }}&battles_page={{ battle_history.previous_page_number }}">
+                                    <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+                                </a>
+                            {% else %}
+                                <a class="disabled icon item">
+                                    <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+                                </a>
+                            {% endif %}
+                            {% for i in battle_history.paginator.page_range %}
+                                {% if battle_history.number == i %}
+                                    <a class="active item"><span>{{ i }}</span></a>
                                 {% else %}
-                                    <a class="disabled icon item">
-                                        <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
-                                    </a>
+                                    <a class="item"
+                                       href="?page={{ page }}&battles_page={{ i }}"><span>{{ i }}</span></a>
                                 {% endif %}
-                                {% for i in battle_history.paginator.page_range %}
-                                    {% if battle_history.number == i %}
-                                        <a class="active item"><span>{{ i }}</span></a>
-                                    {% else %}
-                                        <a class="item"
-                                           href="?page={{ page }}&battles_page={{ i }}"><span>{{ i }}</span></a>
-                                    {% endif %}
-                                {% endfor %}
-                                {% if battle_history.has_next %}
-                                    <a class="icon item"
-                                       href="?page={{ page }}&battles_page={{ battle_history.next_page_number }}">
-                                        <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
-                                    </a>
-                                {% else %}
-                                    <a class="disabled icon item">
-                                        <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
-                                    </a>
-                                {% endif %}
-                            </div>
-                        </th>
-                    </tr>
-                    </tfoot>
-                {% endif %}
-            </table>
-        {% endif %}
+                            {% endfor %}
+                            {% if battle_history.has_next %}
+                                <a class="icon item"
+                                   href="?page={{ page }}&battles_page={{ battle_history.next_page_number }}">
+                                    <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+                                </a>
+                            {% else %}
+                                <a class="disabled icon item">
+                                    <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </th>
+                </tr>
+                </tfoot>
+            {% endif %}
+        </table>
+    {% endif %}
+    <form class="ui form" action="{% url 'accounts:challenge_a_team' participation_id %}" method="post"
+          style="width: 100% !important;">
         {% csrf_token %}
         <div class="two fields">
             <div class="field">

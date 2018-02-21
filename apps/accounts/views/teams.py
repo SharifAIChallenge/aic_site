@@ -9,6 +9,7 @@ from django.urls import reverse
 from apps.accounts.forms.panel import ChallengeATeamForm
 from apps.accounts.forms.team_forms import CreateTeamForm, AddParticipationForm
 from apps.accounts.models import UserParticipatesOnTeam
+from apps.accounts.views import panel
 from apps.game.models.challenge import TeamParticipatesChallenge, TeamSubmission
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
@@ -130,16 +131,21 @@ def cancel_participation_request(request, participation_id, user_id):
 
 @login_required
 def challenge_a_team(request, participation_id):
-    if participation_id is not None:
-        try:
-            participation = TeamParticipatesChallenge.objects.get(
-                id=participation_id,
-                team__participants__user=request.user
-            )
-        except TeamParticipatesChallenge.DoesNotExist:
-            return redirect('accounts:panel')
+    participation = panel.get_team_pc(request)
+    if participation is None:
+        return redirect(reverse('accounts:panel_team_management'))
     else:
-        return redirect(reverse('accounts:panel', args=[participation_id]))
+        participation_id = participation.id
+    # if participation_id is not None:
+    #     try:
+    #         participation = TeamParticipatesChallenge.objects.get(
+    #             id=participation_id,
+    #             team__participants__user=request.user
+    #         )
+    #     except TeamParticipatesChallenge.DoesNotExist:
+    #         return redirect('accounts:panel')
+    # else:
+    #     return redirect(reverse('accounts:panel', args=[participation_id]))
 
     if request.method == 'POST':
         form = ChallengeATeamForm(data=request.POST, user=request.user, participation=participation)

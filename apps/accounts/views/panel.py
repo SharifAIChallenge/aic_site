@@ -76,6 +76,7 @@ def submissions(request):
     context.update({
         'page': page,
         'participation': team_pc,
+        'participation_id': team_pc.id,
     })
 
     if request.method == 'POST':
@@ -110,6 +111,7 @@ def team_management(request, participation_id=None):
             item['active'] = True
     context.update({
         'participation': team_pc,
+        'participation_id': team_pc.id,
         'participation_members': [
             (
                 user_part.user,
@@ -148,7 +150,13 @@ def battle_history(request):
     battles_page = request.GET.get('battles_page', 1)
 
     participation = team_pc
-    participation_id = team_pc.id
+    if participation:
+        participation_id = team_pc.id
+        context.update({
+            'participation': participation,
+            'participation_id': participation_id,
+        })
+
     if participation is not None and participation.challenge.competitions.filter(type='friendly').exists():
         context['form_challenge'] = ChallengeATeamForm(user=request.user, participation=participation)
         context['friendly_competition'] = participation.challenge.competitions.get(type='friendly')
@@ -156,8 +164,6 @@ def battle_history(request):
             context['challenge_teams'] = [team_part.team for team_part in
                                           TeamParticipatesChallenge.objects.filter(challenge=participation.challenge)]
             context.update({
-                'participation': participation,
-                'participation_id': participation_id,
                 'battles_page': battles_page,
                 'battle_history': Paginator(Match.objects.filter(Q(part1__object_id=participation_id) |
                                                                  Q(part2__object_id=participation_id)).order_by('-id'),
