@@ -105,3 +105,32 @@
     color: #FFF;
 }
 
+.aic18-stamp {
+    display: inline-block;
+
+    border-radius: 20px;
+    border: 15px solid;
+
+    text-transform: uppercase;
+    font-size: 100px;
+    letter-spacing: -3px;
+
+    margin: 0 auto;
+    padding: 0 34px;
+
+    -ms-transform: rotate(-20deg);
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+    opacity: .8;
+
+    /*-webkit-filter: blur(1px);*/
+    /*filter: blur(1px);*/
+
+    background: -webkit-linear-gradient(45deg, #848caa, #b6dcd5, #eec989, #f6cca4, #a97292, #e080a0);
+    background: linear-gradient(45deg, #848caa, #b6dcd5, #eec989, #f6cca4, #a97292, #e080a0);
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    border-image:url("/static/intro/image/stamp_texture.png") 30;
+}
