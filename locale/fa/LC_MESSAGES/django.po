@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-19 15:37+0000\n"
+"POT-Creation-Date: 2018-02-21 08:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,17 +83,24 @@ msgstr "نمایشگر بازی"
 msgid "Map Maker"
 msgstr "نقشه ساز"
 
-#: aic_site/context_processors.py:53
+#: aic_site/context_processors.py:53 aic_site/context_processors.py:64
+#: aic_site/context_processors.py:66
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: aic_site/context_processors.py:55 templates/base/navbar.html:42
+#: aic_site/context_processors.py:56 aic_site/context_processors.py:70
+msgid "Scoreboard"
+msgstr "جدول رده‌بندی"
+
+#: aic_site/context_processors.py:64 templates/base/navbar.html:42
 msgid "Logout"
 msgstr "خروج"
 
-#: aic_site/context_processors.py:58 aic_site/context_processors.py:67
-msgid "Scoreboard"
-msgstr "جدول رده‌بندی"
+#: aic_site/context_processors.py:66
+#, fuzzy
+#| msgid "Login"
+msgid "login"
+msgstr "ورود"
 
 #: aic_site/settings/base.py:122
 msgid "English"
