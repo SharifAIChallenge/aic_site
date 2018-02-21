@@ -605,9 +605,8 @@ class Match(models.Model):
             logger.error("Match :" + str(self) + " is not ready.")
             raise Http404("Match :" + str(self) + " is not ready.")
         try:
-            from apps.game import functions
             single_matches = self.single_matches.all()
-
+            logger.error("I'm here")
             for single_match in single_matches:
                 single_match.handle()
             # answers = functions.run_matches(single_matches)
