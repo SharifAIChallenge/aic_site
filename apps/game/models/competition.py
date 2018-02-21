@@ -605,23 +605,25 @@ class Match(models.Model):
             logger.error("Match :" + str(self) + " is not ready.")
             raise Http404("Match :" + str(self) + " is not ready.")
         try:
-            from apps.game import functions
             single_matches = self.single_matches.all()
-            answers = functions.run_matches(single_matches)
-            logger.error(answers.__str__())
-            for i in range(len(answers)):
-                answer = answers[i]
-                single_match = single_matches[i]
-                if answer['success']:
-                    single_match.infra_token = answer['run_id']
-                    logger.error(answer.__str__())
-                    single_match.status = 'running'
-                    single_match.save()
-                else:
-                    logger.error(answer)
-                    single_match.status = 'failed'
-                    single_match.save()
-                    # raise Http404(str(answer))
+            logger.error("I'm here")
+            for single_match in single_matches:
+                single_match.handle()
+            # answers = functions.run_matches(single_matches)
+            # logger.error(answers.__str__())
+            # for i in range(len(answers)):
+            #     answer = answers[i]
+            #     single_match = single_matches[i]
+            #     if answer['success']:
+            #         single_match.infra_token = answer['run_id']
+            #         logger.error(answer.__str__())
+            #         single_match.status = 'running'
+            #         single_match.save()
+            #     else:
+            #         logger.error(answer)
+            #         single_match.status = 'failed'
+            #         single_match.save()
+            #         # raise Http404(str(answer))
 
         except Exception as e:
             logger.error(e)
