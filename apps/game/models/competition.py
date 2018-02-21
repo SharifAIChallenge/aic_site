@@ -402,12 +402,12 @@ class Match(models.Model):
 
     @property
     def status(self):
-        STATUS_CHOICES = (
-            ('running', _('Running')),
-            ('failed', _('Failed')),
-            ('done', _('Done')),
-            ('waiting', _('Waiting')),
-        )
+        # STATUS_CHOICES = (
+        #     ('running', _('Running')),
+        #     ('failed', _('Failed')),
+        #     ('done', _('Done')),
+        #     ('waiting', _('Waiting')),
+        # )
         have_running = False
         have_failed = False
         have_done = False
@@ -421,14 +421,17 @@ class Match(models.Model):
                 have_done = True
             if single_match.status == 'waiting':
                 have_waiting = True
+
         if (not have_running) and (not have_failed) and (not have_waiting) and have_done:
             return 'done'
-        status_result = 'waiting'
-        if have_waiting:
-            status_result = 'waiting'
 
         if have_running:
             status_result = 'running'
+        if have_waiting:
+            status_result = 'waiting'
+        if have_failed:
+            status_result = 'failed'
+
         return status_result
 
     def ensure_submissions(self):

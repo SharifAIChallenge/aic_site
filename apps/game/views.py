@@ -187,16 +187,15 @@ def get_scoreboard_table(competition_id):
 
 @csrf_exempt
 def report(request):
-    logger.debug("Someone calling report")
     if request.META.get('HTTP_AUTHORIZATION') != settings.INFRA_AUTH_TOKEN:
         return HttpResponseBadRequest()
-    logger.debug("BODY: " + request.body.decode("utf-8"))
+
     single_report = json.loads(request.body.decode("utf-8"), strict=False)
-    logger.debug("Deserialized json")
+
     if single_report['operation'] == 'compile':
         if TeamSubmission.objects.filter(infra_compile_token=single_report['id']).count() != 1:
             logger.error('Error while finding team submission in report view')
-            return HttpResponseServerError()
+            return JsonResponse({'success': False})
 
         submit = TeamSubmission.objects.get(infra_compile_token=single_report['id'])
         try:
@@ -224,19 +223,18 @@ def report(request):
         except BaseException as error:
             submit.status = 'failed'
             submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
-            logger.error(error.__str__())
+            logger.exception(error)
+            return JsonResponse({'success': False})
         submit.save()
         return JsonResponse({'success': True})
 
     elif single_report['operation'] == 'run':
-        logger.debug("Getting run report")
         try:
             single_match = SingleMatch.objects.get(infra_token=single_report['id'])
             logger.debug("Obtained relevant single match")
         except Exception as exception:
             logger.exception(exception)
-            return HttpResponseBadRequest()
-            pass
+            return JsonResponse({'success': False})
 
         try:
             if single_report['status'] == 2:
@@ -253,6 +251,9 @@ def report(request):
         except BaseException as error:
             logger.exception(error)
             single_match.status = 'failed'
+            single_match.save()
+            return JsonResponse({'success': False})
+
         single_match.save()
         return JsonResponse({'success': True})
     return HttpResponseServerError()
