@@ -31,12 +31,11 @@ class Competition(models.Model):
     type = models.CharField(max_length=128, choices=TYPE_CHOICES)
 
     def save(self):
-        # print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         super(Competition, self).save()
-        # print(self.maps.all())
+        if self.type == 'friendly':
+            return
         for map in self.maps.all():
             for match in self.matches.all():
-                # print('ooooooooooooooooooooooooooooooooooooooooooo')
                 if len(SingleMatch.objects.filter(match=match, map=map)) == 0:
                     SingleMatch.objects.create(match=match, map=map)
 
