@@ -106,31 +106,56 @@
 }
 
 .aic18-stamp {
-    display: inline-block;
+    --scale-factor: 3px;
+    --scale-factor_npx: 3;
+    --scale-factor_prc: 3%;
+    position: fixed;
+    margin-top: -40% !important;
+    margin-left: -15% !important;
 
-    border-radius: 20px;
-    border: 15px solid;
+    width: 300px;
+
+    line-height: calc(13*var(--scale-factor));
+    height: calc(17*var(--scale-factor));
+
+    border-radius: calc(2*var(--scale-factor));
+    border: calc(1.5*var(--scale-factor)) solid;
 
     text-transform: uppercase;
-    font-size: 100px;
-    letter-spacing: -3px;
+    font-size: calc(10*var(--scale-factor));
+    letter-spacing: calc(-0.3*var(--scale-factor));
 
-    margin: 0 auto;
-    padding: 0 34px;
+    -ms-transform: rotate(-35deg);
+    -webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+    opacity: 1;
 
-    -ms-transform: rotate(-20deg);
-    -webkit-transform: rotate(-20deg);
-    transform: rotate(-20deg);
-    opacity: .8;
-
-    /*-webkit-filter: blur(1px);*/
-    /*filter: blur(1px);*/
-
-    background: -webkit-linear-gradient(45deg, #848caa, #b6dcd5, #eec989, #f6cca4, #a97292, #e080a0);
-    background: linear-gradient(45deg, #848caa, #b6dcd5, #eec989, #f6cca4, #a97292, #e080a0);
+    background: -webkit-linear-gradient(45deg, #59648c, #a4d4d3, #eab05f, #efc35f, #991e38, #f19681);
+    background: linear-gradient(45deg, #59648c, #a4d4d3, #eab05f, #efc35f, #991e38, #f19681);
 
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: white;
 
-    border-image:url("/static/intro/image/stamp_texture.png") 30;
+    -webkit-text-stroke: 4px white;
+    -webkit-text-stroke-color: transparent;
+
+    background-color: white;
+    border-image:url("/static/intro/image/stamp_texture.png") calc(3*var(--scale-factor_npx));
 }
+
+/*.aic18-stamp-back {*/
+    /*--scale-factor: 3px;*/
+    /*--scale-factor_npx: 3;*/
+
+    /*width: 40%;*/
+    /*margin-top: -20% !important;*/
+
+    /*height: calc(17*var(--scale-factor));*/
+
+    /*-ms-transform: rotate(-20deg);*/
+    /*-webkit-transform: rotate(-20deg);*/
+    /*transform: rotate(-20deg);*/
+    /*opacity: 0.9;*/
+
+    /*background: white;*/
+/*}*/
