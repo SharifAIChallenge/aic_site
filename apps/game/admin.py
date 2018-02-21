@@ -28,6 +28,7 @@ class TeamParticipatesChallengeInline(admin.StackedInline):
 
 class MatchInline(admin.StackedInline):
     model = Match
+    raw_id_fields = ['part1', 'part2']
     extra = 1
     show_change_link = True
 
@@ -163,6 +164,7 @@ class IsReadyToRunListFilter(SimpleListFilter):
 
 class MatchAdmin(admin.ModelAdmin):
     fields = ['competition', 'part1', 'part2']
+    raw_id_fields = ['part1', 'part2']
 
     actions = ['run_selected_matches']
     list_display = ('id', 'competition', 'part1', 'part2', 'status', 'is_ready_to_run')
