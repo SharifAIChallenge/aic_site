@@ -608,6 +608,7 @@ class Match(models.Model):
             from apps.game import functions
             single_matches = self.single_matches.all()
             answers = functions.run_matches(single_matches)
+            logger.error(answers.__str__())
             for i in range(len(answers)):
                 answer = answers[i]
                 single_match = single_matches[i]
