@@ -613,6 +613,7 @@ class Match(models.Model):
                 single_match = single_matches[i]
                 if answer['success']:
                     single_match.infra_token = answer['run_id']
+                    logger.error(answer.__str__())
                     single_match.status = 'running'
                     single_match.save()
                 else:
@@ -720,6 +721,7 @@ class SingleMatch(models.Model):
             answer = functions.run_matches([self])[0]
             if answer['success']:
                 self.infra_token = answer['run_id']
+                logger.error(answer.__str__())
                 self.status = 'running'
                 self.save()
             else:
