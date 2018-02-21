@@ -149,12 +149,14 @@ def panel(request, participation_id=None, battle_form=None):
         form = SubmissionForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+    else:
+        form = SubmissionForm()
 
     context['submissions'] = Paginator(
         TeamSubmission.objects.filter(team_id=participation_id).order_by('-id'),
         5
     ).page(page)
-    form = SubmissionForm()
+
     form.fields['team'].queryset = TeamParticipatesChallenge.objects.filter(
         team__in=context['accepted_participations']
     )

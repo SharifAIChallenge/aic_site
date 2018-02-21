@@ -6,23 +6,23 @@ from operator import itemgetter
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.files import File
+from django.db import connection
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.game import functions
-from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch, Challenge
+from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch, Challenge, Team
 
 logger = logging.getLogger(__name__)
 
 
-@login_required()
 def render_scoreboard(request, competition_id):
     competition = Competition.objects.get(pk=int(competition_id))
     if competition is None:
         # error handling in template #
-        return ValueError('There is not such Competition')
+        raise ValueError('There is not such Competition')
 
     if competition.type == 'league':
         return render_league(request, competition_id)
@@ -32,7 +32,7 @@ def render_scoreboard(request, competition_id):
         return render_double_elimination(request, competition_id)
     return HttpResponse('There is not such Competition!')
 
-@login_required()
+
 def render_double_elimination(request, competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
     win_matches = []
@@ -71,9 +71,8 @@ def render_double_elimination(request, competition_id):
         'lose_matches': lose_matches
     })
 
-@login_required()
-def render_friendly(request, competition_id):
 
+def render_friendly(request, competition_id):
     league_scoreboard = get_scoreboard_table(competition_id)
 
     return render(request, 'scoreboard/friendly_match_scoreboard.html', {
@@ -81,7 +80,6 @@ def render_friendly(request, competition_id):
     })
 
 
-@login_required()
 def render_league(request, competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
 
@@ -101,7 +99,6 @@ def render_league(request, competition_id):
 
     num_one_round_matches = num_matches_per_week * num_weeks
     num_rounds = int(len(matches) / num_one_round_matches)
-
 
     cnt = -1
     for round in range(num_rounds):
@@ -124,74 +121,68 @@ def render_league(request, competition_id):
         'league_matches': league_matches
     })
 
-# @login_required()
+
+def dictfetchall(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
+
 def get_scoreboard_table(competition_id):
-    matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
+    competition_single_matches = SingleMatch.objects.filter(match__competition_id=competition_id).prefetch_related(
+        'match').prefetch_related(
+        'match__part1__depend__team').prefetch_related(
+        'match__part2__depend__team').filter(status='done')
 
-    # at the end league_teams is list of teams
-    league_teams = set()
-    league_scoreboard = []
+    teams_status = {}
+    for single_match in competition_single_matches:
 
-    for match in matches:
-        if match.part1.object_id is not None:
-            team1 = TeamParticipatesChallenge.objects.filter(
-                challenge=Competition.objects.get(pk=int(competition_id)).challenge,
-                pk=match.part1.object_id
-            )[0]
+        winner_participant = single_match.winner()
+        loser_participant = single_match.loser()
 
-            if team1 not in league_teams:
-                league_teams.add(team1)
-        if match.part2.object_id is not None:
-            team2 = TeamParticipatesChallenge.objects.filter(
-                challenge=Competition.objects.get(pk=int(competition_id)).challenge,
-                pk=match.part2.object_id
-            )[0]
-            if team2 not in league_teams:
-                league_teams.add(team2)
+        team = winner_participant.depend.team
+        if winner_participant.object_id not in teams_status:
+            teams_status[winner_participant.object_id] = {
+                'team': team,
+                'score': 0,
+                'name': team.name,
+                'total_num': 0,
+                'win_num': 0,
+                'lose_num': 0
+            }
 
-    league_teams = list(league_teams)
+        team = loser_participant.depend.team
+        if loser_participant.object_id not in teams_status:
+            teams_status[loser_participant.depend.id] = {
+                'team': team,
+                'score': 0,
+                'name': team.name,
+                'total_num': 0,
+                'win_num': 0,
+                'lose_num': 0
+            }
 
-    for team in league_teams:
-        team_status = {}
-        team_status['team'] = team
-        team_status['score'] = 0
-        team_status['name'] = str(team.team)
-        team_status['total_num'] = 0
-        team_status['win_num'] = 0
-        team_status['lose_num'] = 0
-        league_scoreboard.append(team_status)
+        if winner_participant.object_id != loser_participant.object_id:
+            teams_status[winner_participant.object_id]['score'] += single_match.get_score_for_participant(winner_participant)
+            teams_status[loser_participant.object_id]['score'] += single_match.get_score_for_participant(loser_participant)
 
-    for match in matches:
-        match_result = match.get_match_result()
-        if match_result['part1']['result'] == 'notdone' or match_result['part1']['participant'] == match_result['part2']['participant']:
-            continue
-        participants = []
-        participants.append(match_result['part1'])
-        participants.append(match_result['part2'])
-        for part_dict in participants:
-            team = part_dict['participant']
-            if team.__class__.__name__ != 'TeamParticipatesChallenge':
-                return ValueError('participant should be team!!!')
-            for team_status in league_scoreboard:
-                if team == team_status['team']:
-                    team_status['score'] = team_status['score'] + part_dict['score']
-                    team_status['total_num'] += 1
-                    if part_dict['result'] == 'winner':
-                        team_status['win_num'] += 1
-                    elif part_dict['result'] == 'loser':
-                        team_status['lose_num'] += 1
+        teams_status[winner_participant.object_id]['win_num'] += 1
+        teams_status[winner_participant.object_id]['total_num'] += 1
 
-    league_scoreboard = sorted(league_scoreboard, key=itemgetter('score'), reverse=True)
-    cnt = 1
-    for team_status in league_scoreboard:
-        team_status['rank'] = cnt
-        cnt += 1
+        teams_status[loser_participant.object_id]['lose_num'] += 1
+        teams_status[loser_participant.object_id]['total_num'] += 1
 
-    # return [league_scoreboard, league_matches]
+    teams_status = [value for key, value in teams_status.items()]
+    teams_status = sorted(teams_status, key=itemgetter('score'), reverse=True)
+    count = 1
+    for team_status in teams_status:
+        team_status['rank'] = count
+        count += 1
 
-    return league_scoreboard
-
-
+    return teams_status
 
 
 @csrf_exempt
@@ -263,7 +254,7 @@ def report(request):
 def game_view(request):
     if request.GET.urlencode().__len__() > 0:
         return redirect(to='/static/game_graphics/game_viewer/index.html?'
-                        + request.GET.urlencode()
+                           + request.GET.urlencode()
                         )
     else:
         return redirect(to='/static/game_graphics/game_viewer/index.html')
@@ -273,7 +264,6 @@ def map_maker(request):
     return redirect(to='/static/game_graphics/map_maker/index.html')
 
 
-@login_required
 def render_challenge_league(request, challenge_id):
     # print(challenge_id)
     ch = Challenge.objects.first()
