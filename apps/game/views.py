@@ -199,27 +199,32 @@ def report(request):
             return HttpResponseServerError()
 
         submit = TeamSubmission.objects.get(infra_compile_token=single_report['id'])
-        if single_report['status'] == 2:
-            submit.infra_compile_token = single_report['parameters'].get('code_compiled_zip', None)
-            if submit.status == 'compiling':
-                try:
-                    logfile = functions.download_file(single_report['parameters']['code_log'])
-                except Exception as e:
-                    logger.error('Error while download log of compile: %s' % e)
-                    return HttpResponseServerError()
+        try:
+            if single_report['status'] == 2:
+                submit.infra_compile_token = single_report['parameters'].get('code_compiled_zip', None)
+                if submit.status == 'compiling':
+                    try:
+                        logfile = functions.download_file(single_report['parameters']['code_log'])
+                    except Exception as e:
+                        logger.error('Error while download log of compile: %s' % e)
+                        return HttpResponseServerError()
 
-                reader = codecs.getreader('utf-8')
+                    reader = codecs.getreader('utf-8')
 
-                log = json.load(reader(logfile), strict=False)
-                if len(log["errors"]) == 0:
-                    submit.status = 'compiled'
-                    submit.set_final()
-                else:
-                    submit.status = 'failed'
-                    submit.infra_compile_message = '...' + '<br>'.join(error for error in log["errors"])[-1000:]
-        elif single_report['status'] == 3:
+                    log = json.load(reader(logfile), strict=False)
+                    if len(log["errors"]) == 0:
+                        submit.status = 'compiled'
+                        submit.set_final()
+                    else:
+                        submit.status = 'failed'
+                        submit.infra_compile_message = '...' + '<br>'.join(error for error in log["errors"])[-1000:]
+            elif single_report['status'] == 3:
+                submit.status = 'failed'
+                submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
+        except BaseException as error:
             submit.status = 'failed'
             submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
+            logger.error(error.__str__())
         submit.save()
         return JsonResponse({'success': True})
 
@@ -229,23 +234,25 @@ def report(request):
             single_match = SingleMatch.objects.get(infra_token=single_report['id'])
             logger.debug("Obtained relevant single match")
         except Exception as exception:
-            logger.error(exception)
+            logger.exception(exception)
             return HttpResponseBadRequest()
             pass
 
-        if single_report['status'] == 2:
-            logger.debug("Report status is OK")
-            logfile = functions.download_file(single_report['parameters']['game_log'])
-            if logfile is None:
-                pass
-            single_match.status = 'done'
-            single_match.log.save(name='log', content=File(logfile.file))
-            single_match.update_scores_from_log()
-        elif single_report['status'] == 3:
+        try:
+            if single_report['status'] == 2:
+                logger.debug("Report status is OK")
+                logfile = functions.download_file(single_report['parameters']['game_log'])
+                single_match.status = 'done'
+                single_match.log.save(name='log', content=File(logfile.file))
+                single_match.update_scores_from_log()
+            elif single_report['status'] == 3:
+                single_match.status = 'failed'
+                single_match.infra_match_message = single_report['log']
+            else:
+                return JsonResponse({'success': False, 'error': 'Invalid Status.'})
+        except BaseException as error:
+            logger.exception(error)
             single_match.status = 'failed'
-            single_match.infra_match_message = single_report['log']
-        else:
-            return JsonResponse({'success': False, 'error': 'Invalid Status.'})
         single_match.save()
         return JsonResponse({'success': True})
     return HttpResponseServerError()
