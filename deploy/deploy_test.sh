@@ -67,5 +67,5 @@ echo $LINE; echo '~~~~~>   CLONING DATABASE FROM PRODUCTION'; echo
 echo '~~~~~>   DONE'
 
 echo $LINE; echo '~~~~~>   REMOVING OBSOLETE DOCKER IMAGES'; echo
-docker rmi $(docker images | egrep -v "(ubuntu|nginx|postgres|aic_aic_web|aictest_aic_test_web)" | awk '{print $3}')
+docker rmi $(docker images | egrep -v "(ubuntu|python|nginx|postgres|aic_aic_web|aictest_aic_test_web)" | awk '{print $3}')
 echo '~~~~~>   DONE'

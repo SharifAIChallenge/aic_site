@@ -386,9 +386,6 @@ class Match(models.Model):
     part1 = models.ForeignKey(Participant, related_name='mathces_as_first')
     part2 = models.ForeignKey(Participant, related_name='matches_as_second')
     dependers = GenericRelation(Participant, related_query_name='depends')
-    infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
-    infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
-    log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
     time = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:

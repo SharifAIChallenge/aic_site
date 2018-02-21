@@ -51,9 +51,7 @@ def menu(request):
                     }
                 },
                 _('Account'): {
-                    'dropdown': {
-                        _('Logout'): reverse('accounts:logout'),
-                    }
+                    'dropdown': {}
                 },
                 _('Scoreboard'): {
                     'dropdown': {},
@@ -61,6 +59,11 @@ def menu(request):
             }
         }
     }
+
+    if request.user.is_authenticated():
+        context['ai']['sidebar'][_('Account')]['dropdown'][_('Logout')] = reverse('accounts:logout')
+    else:
+        context['ai']['sidebar'][_('Account')]['dropdown'][_('Login')] = reverse('accounts:login')
 
     friendly_competitions = Competition.objects.filter(type='friendly')
     for friendly_competition in friendly_competitions:
