@@ -27,13 +27,17 @@ def payment(request, participation_id):
             url, t = Transaction.begin_transaction(profile=profile,
                                                    amount=participation.challenge.entrance_price,
                                                    callback_url=request.build_absolute_uri(
-                                                       reverse('complete_payment')) + '?', participation=participation,
+                                                       reverse('billing:complete_payment',
+                                                               args=[participation_id])) + '?',
+                                                   participation=participation,
                                                    )
             if url:
                 return HttpResponseRedirect(url)
             else:
                 return render(request, 'billing/bank_payment_error.html', context={
                     'error': t.error,
+                    'participation': participation,
+                    'participation_id': participation_id,
                 })
     else:
         error = None
@@ -51,16 +55,20 @@ def payment(request, participation_id):
         if error:
             return render(request, 'billing/bank_payment_error.html', context={
                 'error': error,
+                'participation': participation,
+                'participation_id': participation_id,
             })
         form = UserCompletionForm(instance=request.user.profile)
         return render(request, 'billing/bank_payment.html', {
-            'form': form
+            'form': form,
+            'participation': participation
         })
 
 
 @login_required
 # @team_required_and_finalized
-def complete_payment(request):
+def complete_payment(request, participation_id):
+    participation = get_object_or_404(TeamParticipatesChallenge, id=participation_id)
     our_id = request.GET.get('id2', None)
     if not our_id:
         raise PermissionDenied()
@@ -73,9 +81,11 @@ def complete_payment(request):
     elif transaction.status == 'c':
         return render(request, 'billing/bank_payment_error.html', context={
             'error': transaction.error,
+            'participation': participation,
+            'participation_id': participation_id
         })
     else:
-        return redirect('payments_list')
+        return redirect('billing:payments_list')
 
 
 @login_required
@@ -88,4 +98,5 @@ def payments_list(request, participation_id):
     payments = participation.transactions.all()
     return render(request, 'billing/bank_payments_list.html', {
         'payments': payments,
+        'participation': participation
     })

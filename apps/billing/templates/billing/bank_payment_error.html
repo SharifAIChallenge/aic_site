@@ -13,7 +13,6 @@
     <div class="row">
         <div class="col s12 m12 l8 offset-l2">
             <div class="card-panel">
-{#                {% nevercache %}#}
                     {% if messages %}
                         <div class="messages">
                             {% for message in messages %}
@@ -25,18 +24,17 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-{#                {% endnevercache %}#}
 
                 <p>
 {#                    todo: translation #}
                     پرداخت شما با خطای زیر مواجه شده است:
                 </p>
-                <p class="muted">{{ team.name }}</p>
+                <p class="muted">{{ participation.team.name }}</p>
                 <p>
                     برای دیدن پرداخت‌ها به
-                    <a href="{% url 'payments_list' %}">این صفحه</a>
+                    <a href="{% url 'billing:payments_list' participation_id=participation_id %}">این صفحه</a>
                     و برای پرداخت دوباره به
-                    <a href="{% url 'request_payment' %}">این صفحه</a>
+                    <a href="{% url 'billing:request_payment' participation_id=participation_id %}">این صفحه</a>
                     بروید.
                 </p>
 
