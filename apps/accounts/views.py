@@ -176,9 +176,13 @@ def panel(request, participation_id=None, battle_form=None):
             context.update({
                 'participation_id': participation_id,
                 'battles_page': battles_page,
-                'battle_history': Paginator(Match.objects.filter(Q(part1__object_id=participation_id) |
-                                                                 Q(part2__object_id=participation_id)).order_by('-id'),
-                                            5).page(battles_page)
+                'battle_history': Paginator(
+                    Match.objects.filter(
+                        Q(part1__object_id=participation_id) |
+                        Q(part2__object_id=participation_id)).order_by('-id').filter(
+                        competition__type='friendly'
+                    ),
+                    5).page(battles_page)
             })
     return render(request, 'accounts/panel.html', context)
 
