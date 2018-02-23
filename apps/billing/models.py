@@ -109,7 +109,7 @@ class Transaction(models.Model):
         }
 
         def call_webservice(params):
-            cl = Client('https://payment.sharif.ir/research/ws.asmx')
+            cl = Client('https://payment.sharif.ir/research/ws.asmx?WSDL')
             return cl.service.Status(**params)
 
         vercode, reference_id = call_webservice(params).split(':')
