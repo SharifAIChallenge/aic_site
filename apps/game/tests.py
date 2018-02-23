@@ -2,6 +2,7 @@ import json
 import time
 
 from datetime import timedelta
+from operator import itemgetter
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -123,6 +124,11 @@ class TestScheduling(TestCase):
             participation.save()
         competition = Competition(challenge=challenge, type='league')
         competition.save()
+
+        maps = list(Map.objects.all())
+        for map in maps:
+            competition.maps.add(map)
+
         competition.create_new_league(teams=Team.objects.all(), rounds_num=2)
 
         # expected result
@@ -140,30 +146,44 @@ class TestScheduling(TestCase):
         # 3 -> 4
 
         matches = list(Match.objects.all())
+
         self.assertEqual(matches[0].part1.object_id, 1)
         self.assertEqual(matches[0].part2.object_id, 3)
-        self.assertEqual(matches[1].part1.object_id, 2)
-        self.assertEqual(matches[1].part2.object_id, None)
+        self.assertEqual(matches[1].part1.object_id, 3)
+        self.assertEqual(matches[1].part2.object_id, 2)
         self.assertEqual(matches[2].part1.object_id, 1)
-        self.assertEqual(matches[2].part2.object_id, None)
+        self.assertEqual(matches[2].part2.object_id, 2)
+        self.assertEqual(matches[3].part2.object_id, 1)
         self.assertEqual(matches[3].part1.object_id, 3)
-        self.assertEqual(matches[3].part2.object_id, 2)
-        self.assertEqual(matches[4].part1.object_id, 1)
-        self.assertEqual(matches[4].part2.object_id, 2)
-        self.assertEqual(matches[5].part1.object_id, None)
-        self.assertEqual(matches[5].part2.object_id, 3)
-        self.assertEqual(matches[6].part2.object_id, 1)
-        self.assertEqual(matches[6].part1.object_id, 3)
-        self.assertEqual(matches[7].part2.object_id, 2)
-        self.assertEqual(matches[7].part1.object_id, None)
-        self.assertEqual(matches[8].part2.object_id, 1)
-        self.assertEqual(matches[8].part1.object_id, None)
-        self.assertEqual(matches[9].part2.object_id, 3)
-        self.assertEqual(matches[9].part1.object_id, 2)
-        self.assertEqual(matches[10].part2.object_id, 1)
-        self.assertEqual(matches[10].part1.object_id, 2)
-        self.assertEqual(matches[11].part2.object_id, None)
-        self.assertEqual(matches[11].part1.object_id, 3)
+        self.assertEqual(matches[4].part2.object_id, 3)
+        self.assertEqual(matches[4].part1.object_id, 2)
+        self.assertEqual(matches[5].part2.object_id, 1)
+        self.assertEqual(matches[5].part1.object_id, 2)
+
+        # self.assertEqual(matches[0].part1.object_id, 1)
+        # self.assertEqual(matches[0].part2.object_id, 3)
+        # self.assertEqual(matches[1].part1.object_id, 2)
+        # self.assertEqual(matches[1].part2.object_id, None)
+        # self.assertEqual(matches[2].part1.object_id, 1)
+        # self.assertEqual(matches[2].part2.object_id, None)
+        # self.assertEqual(matches[3].part1.object_id, 3)
+        # self.assertEqual(matches[3].part2.object_id, 2)
+        # self.assertEqual(matches[4].part1.object_id, 1)
+        # self.assertEqual(matches[4].part2.object_id, 2)
+        # self.assertEqual(matches[5].part1.object_id, None)
+        # self.assertEqual(matches[5].part2.object_id, 3)
+        # self.assertEqual(matches[6].part2.object_id, 1)
+        # self.assertEqual(matches[6].part1.object_id, 3)
+        # self.assertEqual(matches[7].part2.object_id, 2)
+        # self.assertEqual(matches[7].part1.object_id, None)
+        # self.assertEqual(matches[8].part2.object_id, 1)
+        # self.assertEqual(matches[8].part1.object_id, None)
+        # self.assertEqual(matches[9].part2.object_id, 3)
+        # self.assertEqual(matches[9].part1.object_id, 2)
+        # self.assertEqual(matches[10].part2.object_id, 1)
+        # self.assertEqual(matches[10].part1.object_id, 2)
+        # self.assertEqual(matches[11].part2.object_id, None)
+        # self.assertEqual(matches[11].part1.object_id, 3)
 
     def test_create_new_double_elimination(self):
         challenge = Challenge.objects.all()[0]
@@ -175,6 +195,11 @@ class TestScheduling(TestCase):
 
         competition = Competition(challenge=challenge, type='double')
         competition.save()
+
+        maps = list(Map.objects.all())
+        for map in maps:
+            competition.maps.add(map)
+
         competition.create_new_double_elimination(teams=Team.objects.all())
 
         # expected result
@@ -217,7 +242,7 @@ class TestDoubleElimination(TestCase):
         for user in users:
             if i % 3 == 0:
                 team = Team()
-                team.name = i / 3 + 1
+                team.name = int(i / 3 + 1)
                 team.save()
             participation = UserParticipatesOnTeam()
             participation.user = user
@@ -253,14 +278,12 @@ class TestDoubleElimination(TestCase):
     def populate_competitions():
         challenge = Challenge.objects.all()[0]
         maps = list(Map.objects.all())
-        types = ['elim', 'league', 'double']
-        for i in range(3):
-            competition = Competition()
-            competition.type = types[i]
-            competition.challenge = challenge
-            competition.save()
-            for map in maps:
-                competition.maps.add(map)
+        competition = Competition()
+        competition.type = 'double'
+        competition.challenge = challenge
+        competition.save()
+        for map in maps:
+            competition.maps.add(map)
 
     def setUp(self):
         super().setUp()
@@ -278,8 +301,7 @@ class TestDoubleElimination(TestCase):
             participation.challenge = challenge
             participation.save()
 
-        competition = Competition(challenge=challenge, type='double')
-        competition.save()
+        competition = Competition.objects.all()[0]
         competition.create_new_double_elimination(teams=Team.objects.all())
 
         # expected result
@@ -627,3 +649,179 @@ class TestScoreboard(TestCase):
     #                 print('match = ' + str(m))
     #                 for i in range(len(league_matches[r][w][m])):
     #                     print('i = ' + str(i) + ' , ' + str(league_matches[r][w][m][i]))
+
+
+class TestScoreboardForFriendly(TestCase):
+    def populate_users(self):
+        for i in range(48):
+            user = User()
+            user.username = str(i) + "DummyCamelCaseTeamForTest"
+            user.save()
+
+    def populate_teams(self):
+        users = User.objects.all()
+        i = 0
+        team = None
+        for user in users:
+            if i % 3 == 0:
+                team = Team()
+                team.name = int(i / 3 + 1)
+                team.save()
+            participation = UserParticipatesOnTeam()
+            participation.user = user
+            participation.team = team
+            participation.save()
+            i += 1
+
+    def populate_challenges(self):
+        challenge = Challenge()
+        challenge.title = "Dummiest Challenge created ever"
+        challenge.start_time = timezone.now()
+        challenge.end_time = timezone.now() + timedelta(days=1)
+        challenge.registration_start_time = challenge.start_time
+        challenge.registration_end_time = challenge.end_time
+        challenge.registration_open = True
+        challenge.team_size = 3
+        challenge.entrance_price = 1000
+        game = Game()
+        game.name = "AIC Game 2018"
+        game.save()
+        challenge.game = game
+        challenge.save()
+
+    def populate_maps(self):
+        for i in range(3):
+            map = Map()
+            map.name = 'map ' + str(i)
+            map.save()
+
+    def populate_competitions(self):
+        challenge = Challenge.objects.all()[0]
+        maps = list(Map.objects.all())
+        competition = Competition()
+        competition.type = 'friendly'
+        competition.challenge = challenge
+        competition.save()
+        for map in maps:
+            competition.maps.add(map)
+
+    def setUp(self):
+        super().setUp()
+        self.populate_users()
+        self.populate_teams()
+        self.populate_challenges()
+        self.populate_maps()
+        self.populate_competitions()
+
+    def test_scoreboard_friendly(self):
+        challenge = Challenge.objects.all()[0]
+        for team in Team.objects.all():
+            participation = TeamParticipatesChallenge()
+            participation.team = team
+            participation.challenge = challenge
+            participation.save()
+
+        competition = Competition.objects.all()[0]
+        # competition.create_new_league(teams=Team.objects.all(),rounds_num=1)
+        challenge_teams = list(TeamParticipatesChallenge.objects.all())
+        teams_size = len(challenge_teams)
+        for i in range(teams_size):
+            for j in range(teams_size):
+                if i<j:
+                    new_match = Match.objects.create(
+                        competition=competition,
+                        part1=Participant.objects.create(
+                            depend=challenge_teams[i],
+                            depend_method='itself'
+                        ),
+                        part2=Participant.objects.create(
+                            depend=challenge_teams[j],
+                            depend_method='itself'
+                        )
+                    )
+                    for map in competition.maps.all():
+                        SingleMatch.objects.create(match=new_match, map=map)
+                        # print(map.name)
+                    new_match.done_match()
+
+        list_matches = list(Match.objects.all())
+        # from apps.game.views import render_friendly
+        self.render_friendly(competition.pk)
+
+    def render_friendly(self, competition_id):
+        matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
+
+        # at the end league_teams is list of teams
+        league_teams = set()
+
+        # leauge_scoreboard = [ [TeamParticipatesChallenge, team_name, score, num_wins, num_loses] , ... ]
+        league_scoreboard = []
+
+        # list of matches in a special format ( not a simple list) to pass to template for rendering
+        league_matches = []
+
+        for match in matches:
+            if match.part1.object_id is not None:
+                team1 = TeamParticipatesChallenge.objects.filter(
+                    challenge=Competition.objects.get(pk=int(competition_id)).challenge,
+                    pk=match.part1.object_id
+                )[0]
+
+                if team1 not in league_teams:
+                    league_teams.add(team1)
+            if match.part2.object_id is not None:
+                team2 = TeamParticipatesChallenge.objects.filter(
+                    challenge=Competition.objects.get(pk=int(competition_id)).challenge,
+                    pk=match.part2.object_id
+                )[0]
+                if team2 not in league_teams:
+                    league_teams.add(team2)
+
+        league_teams = list(league_teams)
+        league_size = len(league_teams)
+        for team in league_teams:
+            team_status = {}
+            team_status['team'] = team
+            team_status['score'] = 0
+            team_status['name'] = str(team.team)
+            team_status['total_num'] = 0
+            team_status['win_num'] = 0
+            team_status['lose_num'] = 0
+            league_scoreboard.append(team_status)
+
+        for match in matches:
+            match_result = match.get_match_result()
+            participants = []
+            participants.append(match_result['part1'])
+            participants.append(match_result['part2'])
+            for part_dict in participants:
+                team = part_dict['participant']
+                if team.__class__.__name__ != 'TeamParticipatesChallenge':
+                    raise ValueError('participant should be team!!!')
+                for team_status in league_scoreboard:
+                    if team == team_status['team']:
+                        team_status['score'] = team_status['score'] + part_dict['score']
+                        team_status['total_num'] += 1
+                        if part_dict['result'] == 'winner':
+                            team_status['win_num'] += 1
+                        elif part_dict['result'] == 'loser':
+                            team_status['lose_num'] += 1
+
+        league_scoreboard = sorted(league_scoreboard, key=itemgetter('score'), reverse=True)
+        cnt = 1
+        for team_status in league_scoreboard:
+            team_status['rank'] = cnt
+            cnt += 1
+            # print(team_status['rank'])
+            # print(team_status['name'])
+            # print(team_status['score'])
+            # print(team_status['total_num'])
+            # print(team_status['win_num'])
+            # print(team_status['lose_num'])
+
+        # return [league_scoreboard, league_matches]
+
+        # print(league_scoreboard)
+        # return render(request, 'scoreboard/group_table.html', {
+        #     'league_scoreboard': league_scoreboard
+        # })

@@ -17,6 +17,8 @@ services:
       - ./config/nginx/sites-enabled:/etc/nginx/sites-enabled
       - ./config/nginx/sites-available:/etc/nginx/sites-available
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ../lets_encrypt/www:/var/www/letsencrypt
+      - /etc/letsencrypt:/etc/letsencrypt
 
     depends_on:
       - aic_web
@@ -24,10 +26,7 @@ services:
     build: .
     container_name: aic_web_cont
     restart: always
-#    environment:
-#    - DJANGO_SETTINGS_MODULE="aic_site.settings.production"
     command: bash -c "cd .. && python3 manage.py migrate && python3 manage.py compilemessages && python3 manage.py collectstatic <<< yes && gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
-#    cp /patches/zinnia_migrations.py /usr/local/lib/python3.5/dist-packages/zinnia/migrations/0003_publication_date.py &&
     volumes:
       - ./static/root:/root/aic_site/static/root
       - ../media/root:/root/aic_site/media

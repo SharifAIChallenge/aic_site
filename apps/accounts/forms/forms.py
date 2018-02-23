@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
@@ -24,6 +25,14 @@ class SignUpForm(UserCreationForm):
     phone_number = forms.CharField(validators=[phone_regex], required=False)
     age = forms.IntegerField(required=True)
     captcha = ReCaptchaField()
+
+    def is_valid(self):
+        if not super().is_valid():
+            return False
+        if not settings.ENABLE_REGISTRATION:
+            self.add_error(None, _('Registration is closed. See you next year.'))
+            return False
+        return True
 
     def save(self, commit=True):
         user = super().save(commit=False)

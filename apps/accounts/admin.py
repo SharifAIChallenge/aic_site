@@ -1,4 +1,7 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin, ExportMixin
+
 from apps.accounts.models import Profile, Team, UserParticipatesOnTeam
 
 
@@ -19,5 +22,24 @@ class TeamAdmin(admin.ModelAdmin):
     # search_fields = []
 
 
-admin.site.register(Profile)
 admin.site.register(Team, TeamAdmin)
+
+
+class ProfileResource(resources.ModelResource):
+    class Meta:
+        model = Profile
+        fields = [
+            'user__username',
+            'user__first_name',
+            'user__last_name',
+            'user__email',
+            'phone_number',
+            'organization',
+        ]
+
+
+class ProfileAdmin(ImportExportModelAdmin):
+    resource_class = ProfileResource
+
+
+admin.site.register(Profile, ProfileAdmin)

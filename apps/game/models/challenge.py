@@ -99,6 +99,9 @@ class TeamParticipatesChallenge(models.Model):
     def itself(self):
         return self.get_final_submission()
 
+    def has_submitted(self):
+        return self.get_final_submission() is not None
+
 
 class UserAcceptsTeamInChallenge(models.Model):
     team = models.ForeignKey(TeamParticipatesChallenge, related_name='users_acceptance')
@@ -109,7 +112,7 @@ class UserAcceptsTeamInChallenge(models.Model):
 
 
 def get_submission_file_directory(instance, filename):
-    return os.path.join(settings.MEDIA_ROOT, instance.team.id.__str__(), uuid.uuid4().__str__())
+    return os.path.join(instance.team.id.__str__(), filename + uuid.uuid4().__str__() + '.zip')
 
 
 class TeamSubmission(models.Model):
@@ -127,7 +130,7 @@ class TeamSubmission(models.Model):
         ('failed', _('Failed'))
     )
 
-    team = models.ForeignKey(TeamParticipatesChallenge)
+    team = models.ForeignKey(TeamParticipatesChallenge, related_name='submissions')
     file = models.FileField(upload_to=get_submission_file_directory)
     time = models.DateTimeField(auto_now_add=True)
     is_final = models.BooleanField(default=False)
@@ -145,6 +148,8 @@ class TeamSubmission(models.Model):
             Use this method instead of changing the is_final attribute directly
             This makes sure that only one instance of TeamSubmission has is_final flag set to True
         """
+        if self.status != 'compiled':
+            raise ValueError(_('This submission is not compiled yet.'))
         TeamSubmission.objects.filter(is_final=True, team=self.team).update(is_final=False)
         self.is_final = True
         self.save()

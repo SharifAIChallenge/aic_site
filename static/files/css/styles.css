@@ -87,8 +87,8 @@ This set of fonts are used in this project under the license: RC4QT
 #navbar {
     z-index: 99;
 
-    padding-right: 30px;
-    padding-left: 30px;
+    padding-right: 5px;
+    padding-left: 5px;
 
     width: 100vw !important;
 
@@ -211,4 +211,8 @@ This set of fonts are used in this project under the license: RC4QT
 
 .vertical.menu {
     font-size: medium;
+}
+
+.ui.modal {
+    top: 35%;
 }
