@@ -421,7 +421,7 @@ class Match(models.Model):
             if single_match.status == 'waiting':
                 have_waiting = True
 
-        if (not have_running) and (not have_failed) and (not have_waiting) and have_done:
+        if (not have_running) and (not have_failed) and (not have_waiting):
             return 'done'
 
         if have_running:
