@@ -3,16 +3,12 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 
-<div class="field">
-    {{ form.team.errors }}
-    <label for="{{ form.team.id_for_label }}">{% trans 'Challenge:' %}
-    </label>
-    <select id="{{ form.team.id_for_label }}" name="{{ form.team.name }}" class="ui dropdown">
-        {% for choice in form.team.field.choices %}
-            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+<div id="last_teampc" class="ui fluid selection dropdown">
+    <div class="text">{{ participation }}</div>
+    <i class="dropdown icon"></i>
+    <div class="menu">
+        {% for choice in user_pcs %}
+            <a class="item{% if choice == participation %} active{% endif %}" href="{% url 'accounts:panel_change_team_pc' choice.id %}">{{ choice }}</a>
         {% endfor %}
-    </select>
-    <script>
-        $('#{{ form.team.id_for_label }}').dropdown('set selected', {{ participation.id }});
-    </script>
+    </div>
 </div>

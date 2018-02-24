@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.test import TransactionTestCase, Client
 from django.utils import timezone
 
-from apps.accounts.models import Team, UserParticipatesOnTeam
+from apps.accounts.models import Team, UserParticipatesOnTeam, Profile
 from apps.game import functions
 from apps.game.models import Challenge, Competition, Match, Game, Participant, TeamSubmission, Map
 from apps.game.models.challenge import TeamParticipatesChallenge
@@ -19,6 +19,9 @@ def populate_users():
         user = User()
         user.username = str(i) + "DummyCamelCaseTeamForTest"
         user.save()
+        profile = Profile()
+        profile.user = user
+        profile.save()
 
 
 def populate_teams():
@@ -136,29 +139,31 @@ class TestTeam(TransactionTestCase):
         # test that it says OK
         client.force_login(User.objects.all()[0])
         response = client.get('/accounts/panel/')
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)  # changed from 302
         participation = TeamParticipatesChallenge.objects.all()[0]
+        client.get('/accounts/panel/'+str(participation.id))  # to change participation in site
         response = client.post(
-            '/accounts/panel/' + str(participation.id),
+            '/accounts/panel/submissions',
             {
                 'file': io.StringIO("Log the game"),
                 'team': participation.id,
                 'language': 'cpp'
             }
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)  # after submission should redirect, to prevent form resubmissions
         # test that it functions
         time.sleep(0.4)
         self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 1)
+        client.get('/accounts/panel/' + str(participation.id))  # to change participation in site
         response = client.post(
-            '/accounts/panel/' + str(participation.id),
+            '/accounts/panel/submissions',
             {
                 'file': io.StringIO("Log the game"),
                 'team': participation.id,
                 'language': 'cpp'
             }
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)  # after submission should redirect, to prevent form resubmissions
         time.sleep(0.4)
         self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 2)
         submissions = list(TeamSubmission.objects.all())
