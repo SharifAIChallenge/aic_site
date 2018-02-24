@@ -51,7 +51,7 @@ def get_shared_context(request):
     if request.user.profile.panel_active_teampc.challenge.competitions.filter(
         type='friendly'
     ).exists():
-        context.append(
+        context['menu_items'].append(
             {
                 'name': 'friendly_scoreboard',
                 'link': reverse('game:scoreboard', args=[
