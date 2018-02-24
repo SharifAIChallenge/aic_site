@@ -1,0 +1,46 @@
+{% if battle_history.has_previous %}
+    <a class="icon item"
+       href="?page={{ page }}&battles_page={{ battle_history.previous_page_number }}">
+        <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+    </a>
+{% else %}
+    <a class="disabled icon item">
+        <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+    </a>
+{% endif %}
+
+
+{% if battle_history.paginator.num_pages <= 5 %}
+    {% for i in battle_history.paginator.page_range %}
+        {% if battle_history.number == i %}
+            <a class="active item"><span>{{ i }}</span></a>
+        {% else %}
+            <a class="item"
+               href="?page={{ page }}&battles_page={{ i }}"><span>{{ i }}</span></a>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {% for i in '123'|make_list %}
+        {% if battle_history.number == forloop.counter %}
+            <a class="active item"><span>{{ i }}</span></a>
+        {% else %}
+            <a class="item" href="?page={{ page }}&battles_page={{ i }}"><span>{{ i }}</span></a>
+        {% endif %}
+    {% endfor %}
+    <a class="disabled item">...</a>
+    {% with battle_history.paginator.num_pages as i %}
+        <a class="item" href="?page={{ page }}&battles_page={{ i }}"><span>{{ i }}</span></a>
+    {% endwith %}
+{% endif %}
+
+
+{% if battle_history.has_next %}
+    <a class="icon item"
+       href="?page={{ page }}&battles_page={{ battle_history.next_page_number }}">
+        <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+    </a>
+{% else %}
+    <a class="disabled icon item">
+        <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+    </a>
+{% endif %}

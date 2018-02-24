@@ -1,5 +1,6 @@
 {% extends 'accounts/panel/panel.html' %}
 {% load static i18n ai_filters tz %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block panel_content %}
     <h2 style="margin-top: 20px;">{% trans 'Battle history' %}</h2>
@@ -18,7 +19,11 @@
             <tbody>
             {% for match in battle_history %}
                 <tr>
+                    {% if LANGUAGE_BIDI %}
                     <td>{{ match.time.date|jalali }} - {{ match.time|time }}</td>
+                    {% else %}
+                    <td>{{ match.time.date }} - {{ match.time|time }}</td>
+                    {% endif %}
                     {% if match.part1.depend == participation %}
                         <td>{{ match.part2.depend.team.name }}</td>
                         <td>{% if match.single_matches.first.log %}{{ match.score1 }}{% endif %}</td>
@@ -57,34 +62,7 @@
                 <tr>
                     <th colspan="6">
                         <div class="ui right floated pagination menu">
-                            {% if battle_history.has_previous %}
-                                <a class="icon item"
-                                   href="?page={{ page }}&battles_page={{ battle_history.previous_page_number }}">
-                                    <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
-                                </a>
-                            {% else %}
-                                <a class="disabled icon item">
-                                    <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
-                                </a>
-                            {% endif %}
-                            {% for i in battle_history.paginator.page_range %}
-                                {% if battle_history.number == i %}
-                                    <a class="active item"><span>{{ i }}</span></a>
-                                {% else %}
-                                    <a class="item"
-                                       href="?page={{ page }}&battles_page={{ i }}"><span>{{ i }}</span></a>
-                                {% endif %}
-                            {% endfor %}
-                            {% if battle_history.has_next %}
-                                <a class="icon item"
-                                   href="?page={{ page }}&battles_page={{ battle_history.next_page_number }}">
-                                    <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
-                                </a>
-                            {% else %}
-                                <a class="disabled icon item">
-                                    <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
-                                </a>
-                            {% endif %}
+                            {% include 'accounts/panel/battle_history_paginator.html' %}
                         </div>
                     </th>
                 </tr>
