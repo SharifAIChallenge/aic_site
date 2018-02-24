@@ -104,6 +104,8 @@ def submissions(request):
 
 @login_required
 def team_management(request, participation_id=None):
+    if participation_id is not None:
+        return change_team_pc(request, participation_id)
     team_pc = get_team_pc(request)
     context = get_shared_context(request)
     for item in context['menu_items']:
