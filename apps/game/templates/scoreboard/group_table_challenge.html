@@ -9,7 +9,7 @@
 {% block container %}
     <h2>{% trans 'Scoreboard' %}</h2>
     {% for table in tables %}
-        <table class="ui red selectable unstackable table" style="margin-bottom:20px;">
+        <table class="ui red center aligned selectable unstackable table" style="margin-bottom:20px;">
             <thead>
             <tr>
                 <th class="collapsing">{% trans 'Rank' %}</th>
@@ -32,26 +32,32 @@
                 </tr>
             {% endfor %}
             </tbody>
-            <tfoot>
+            <tr>
                 <tr>
                     <td colspan="5">‌<a onclick="$('.results_{{ table.id }}').toggle()"><i class="ui eye icon"></i>{% trans 'View/Hide Games' %}</a></td>
                 </tr>
-                {% for single_match in table.single_matches %}
-                    <tr class="results_{{ table.id }}">
-                        <td>{{ single_match.match.part1.depend.team.name }}</td>
-                        <td>VS</td>
-                        <td>{{ single_match.match.part2.depend.team.name }}</td>
-                        <td>{% trans 'In ' %} {{ single_match.map.name }}</td>
-                        <td>
-                            {% if single_match.log %}
-                                <a class="ui label"
-                                   href="{% url 'game:game viewer' %}?log_url={{ single_match.first.log.name }}&first_team={{ single_match.match.part1.depend.team.name|urlencode }}&second_team={{ single_match.match.part2.depend.team.name|urlencode }}">{% trans 'View' %}</a>
-                            {% else %}
-                                <div class="ui label"></div>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
+                <tr>
+                    <td colspan="5">
+                        <table class="ui table">
+                            {% for single_match in table.single_matches %}
+                                <tr class="results_{{ table.id }}" style="display:none;">
+                                    <td>{{ single_match.match.part1.depend.team.name }}</td>
+                                    <td>VS</td>
+                                    <td>{{ single_match.match.part2.depend.team.name }}</td>
+                                    <td>{% trans 'In ' %} {{ single_match.map.name }}</td>
+                                    <td>
+                                        {% if single_match.log %}
+                                            <a class="ui label"
+                                               href="{% url 'game:game viewer' %}?log_url={{ single_match.first.log.name }}&first_team={{ single_match.match.part1.depend.team.name|urlencode }}&second_team={{ single_match.match.part2.depend.team.name|urlencode }}">{% trans 'View' %}</a>
+                                        {% else %}
+                                            <div class="ui label"></div>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
             </tfoot>
         </table>
     {% endfor %}

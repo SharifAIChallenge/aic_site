@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-21 08:36+0000\n"
+"POT-Creation-Date: 2018-02-24 22:29+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,10 +96,9 @@ msgstr "جدول رده‌بندی"
 msgid "Logout"
 msgstr "خروج"
 
-#: aic_site/context_processors.py:66
-#, fuzzy
-#| msgid "Login"
-msgid "login"
+#: aic_site/context_processors.py:66 templates/base/navbar.html:47
+#: templates/zinnia/login.html:34
+msgid "Login"
 msgstr "ورود"
 
 #: aic_site/settings/base.py:122
@@ -170,10 +169,6 @@ msgstr ""
 "\n"
 "تمامی حقوق  برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
 "مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. "
-
-#: templates/base/navbar.html:47 templates/zinnia/login.html:34
-msgid "Login"
-msgstr "ورود"
 
 #: templates/base/navbar.html:51
 msgid "Register"
@@ -992,6 +987,11 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
+
+#, fuzzy
+#~| msgid "Login"
+#~ msgid "login"
+#~ msgstr "ورود"
 
 #~ msgid "Welcome!"
 #~ msgstr "خوش‌ آمدید!"
