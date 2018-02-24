@@ -17,6 +17,13 @@
                     </a>
                 {% endfor %}
             </div>
+            <div class="ui secondary pointing fluid menu mobile-only">
+                {% for item in menu_items %}
+                    <a class="item{% if item.active %} active{% endif %}" href="{{ item.link }}">
+                        {{ item.text }}
+                    </a>
+                {% endfor %}
+            </div>
         </div>
         <div class="twelve wide column">
             {% block panel_content %}
