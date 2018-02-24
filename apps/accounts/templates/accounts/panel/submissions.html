@@ -74,9 +74,6 @@
                             <label></label>
                         </div>
                     </td>
-                    <style>
-                        {#                                        add_submission_api({{ submission.id }})#}
-                    </style>
                     <td><a href="{{ submission.file.url }}">{{ submission.time.date|jalali }} - {{ submission.time|time }}</a></td>
                     <td>
                         {% if submission.language == 'java' %}
