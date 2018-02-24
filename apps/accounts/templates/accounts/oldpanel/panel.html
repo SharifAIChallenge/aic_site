@@ -4,15 +4,15 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block container %}
-    {% include 'accounts/panel/messages.html' %}
+    {% include 'accounts/oldpanel/messages.html' %}
     <form method="post" enctype="multipart/form-data" class="ui form">
         {% if accepted_participations|length > 0 %}
-            {% include 'accounts/panel/challenge_feild.html' %}
+            {% include 'accounts/oldpanel/challenge_feild.html' %}
 
-            {% include 'accounts/panel/team_management.html' %}
+            {% include 'accounts/oldpanel/team_management.html' %}
             {% if participation %}
                 {% if participation.all_members_accepted %}
-                    {% include 'accounts/panel/submissions.html' %}
+                    {% include 'accounts/oldpanel/submissions.html' %}
                 {% endif %}
             {% endif %}
             </form>
@@ -21,7 +21,7 @@
                 {% if participation.all_members_accepted %}
                     {% block battle_history %}
                         {% if form_challenge %}
-                            {% include 'accounts/panel/battle_history.html' %}
+                            {% include 'accounts/oldpanel/battle_history.html' %}
                         {% endif %}
                     {% endblock %}
                 {% endif %}
