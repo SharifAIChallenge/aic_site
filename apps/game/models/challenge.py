@@ -90,6 +90,9 @@ class TeamParticipatesChallenge(models.Model):
     def itself(self):
         return self.get_final_submission()
 
+    def has_submitted(self):
+        return self.get_final_submission() is not None
+
 
 class UserAcceptsTeamInChallenge(models.Model):
     team = models.ForeignKey(TeamParticipatesChallenge, related_name='users_acceptance')

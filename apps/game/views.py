@@ -6,13 +6,14 @@ from operator import itemgetter
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.files import File
+from django.db import connection
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.game import functions
-from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch, Challenge
+from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch, Challenge, Team
 
 logger = logging.getLogger(__name__)
 
@@ -121,135 +122,139 @@ def render_league(request, competition_id):
     })
 
 
+def dictfetchall(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
+
 def get_scoreboard_table(competition_id):
-    matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
+    competition_single_matches = SingleMatch.objects.filter(match__competition_id=competition_id).prefetch_related(
+        'match').prefetch_related(
+        'match__part1__depend__team').prefetch_related(
+        'match__part2__depend__team').filter(status='done')
 
-    # at the end league_teams is list of teams
-    league_teams = set()
-    league_scoreboard = []
+    teams_status = {}
+    for single_match in competition_single_matches:
 
-    for match in matches:
-        if match.part1.object_id is not None:
-            team1 = TeamParticipatesChallenge.objects.filter(
-                challenge=Competition.objects.get(pk=int(competition_id)).challenge,
-                pk=match.part1.object_id
-            )[0]
+        winner_participant = single_match.winner()
+        loser_participant = single_match.loser()
 
-            if team1 not in league_teams:
-                league_teams.add(team1)
-        if match.part2.object_id is not None:
-            team2 = TeamParticipatesChallenge.objects.filter(
-                challenge=Competition.objects.get(pk=int(competition_id)).challenge,
-                pk=match.part2.object_id
-            )[0]
-            if team2 not in league_teams:
-                league_teams.add(team2)
+        team = winner_participant.depend.team
+        if winner_participant.object_id not in teams_status:
+            teams_status[winner_participant.object_id] = {
+                'team': team,
+                'score': 0,
+                'name': team.name,
+                'total_num': 0,
+                'win_num': 0,
+                'lose_num': 0
+            }
 
-    league_teams = list(league_teams)
+        team = loser_participant.depend.team
+        if loser_participant.object_id not in teams_status:
+            teams_status[loser_participant.depend.id] = {
+                'team': team,
+                'score': 0,
+                'name': team.name,
+                'total_num': 0,
+                'win_num': 0,
+                'lose_num': 0
+            }
 
-    for team in league_teams:
-        team_status = {}
-        team_status['team'] = team
-        team_status['score'] = 0
-        team_status['name'] = str(team.team)
-        team_status['total_num'] = 0
-        team_status['win_num'] = 0
-        team_status['lose_num'] = 0
-        league_scoreboard.append(team_status)
+        if winner_participant.object_id != loser_participant.object_id:
+            teams_status[winner_participant.object_id]['score'] += single_match.get_score_for_participant(winner_participant)
+            teams_status[loser_participant.object_id]['score'] += single_match.get_score_for_participant(loser_participant)
 
-    for match in matches:
-        match_result = match.get_match_result()
-        if match_result['part1']['result'] == 'notdone' or match_result['part1']['participant'] == \
-                match_result['part2']['participant']:
-            continue
-        participants = []
-        participants.append(match_result['part1'])
-        participants.append(match_result['part2'])
-        for part_dict in participants:
-            team = part_dict['participant']
-            if team.__class__.__name__ != 'TeamParticipatesChallenge':
-                raise ValueError('participant should be team!!!')
-            for team_status in league_scoreboard:
-                if team == team_status['team']:
-                    team_status['score'] = team_status['score'] + part_dict['score']
-                    team_status['total_num'] += 1
-                    if part_dict['result'] == 'winner':
-                        team_status['win_num'] += 1
-                    elif part_dict['result'] == 'loser':
-                        team_status['lose_num'] += 1
+        teams_status[winner_participant.object_id]['win_num'] += 1
+        teams_status[winner_participant.object_id]['total_num'] += 1
 
-    league_scoreboard = sorted(league_scoreboard, key=itemgetter('score'), reverse=True)
-    cnt = 1
-    for team_status in league_scoreboard:
-        team_status['rank'] = cnt
-        cnt += 1
+        teams_status[loser_participant.object_id]['lose_num'] += 1
+        teams_status[loser_participant.object_id]['total_num'] += 1
 
-    # return [league_scoreboard, league_matches]
+    teams_status = [value for key, value in teams_status.items()]
+    teams_status = sorted(teams_status, key=itemgetter('score'), reverse=True)
+    count = 1
+    for team_status in teams_status:
+        team_status['rank'] = count
+        count += 1
 
-    return league_scoreboard
+    return teams_status
 
 
 @csrf_exempt
 def report(request):
-    logger.debug("Someone calling report")
     if request.META.get('HTTP_AUTHORIZATION') != settings.INFRA_AUTH_TOKEN:
         return HttpResponseBadRequest()
-    logger.debug("BODY: " + request.body.decode("utf-8"))
+
     single_report = json.loads(request.body.decode("utf-8"), strict=False)
-    logger.debug("Deserialized json")
+
     if single_report['operation'] == 'compile':
         if TeamSubmission.objects.filter(infra_compile_token=single_report['id']).count() != 1:
             logger.error('Error while finding team submission in report view')
-            return HttpResponseServerError()
+            return JsonResponse({'success': False})
 
         submit = TeamSubmission.objects.get(infra_compile_token=single_report['id'])
-        if single_report['status'] == 2:
-            submit.infra_compile_token = single_report['parameters'].get('code_compiled_zip', None)
-            if submit.status == 'compiling':
-                try:
-                    logfile = functions.download_file(single_report['parameters']['code_log'])
-                except Exception as e:
-                    logger.error('Error while download log of compile: %s' % e)
-                    return HttpResponseServerError()
+        try:
+            if single_report['status'] == 2:
+                submit.infra_compile_token = single_report['parameters'].get('code_compiled_zip', None)
+                if submit.status == 'compiling':
+                    try:
+                        logfile = functions.download_file(single_report['parameters']['code_log'])
+                    except Exception as e:
+                        logger.error('Error while download log of compile: %s' % e)
+                        return HttpResponseServerError()
 
-                reader = codecs.getreader('utf-8')
+                    reader = codecs.getreader('utf-8')
 
-                log = json.load(reader(logfile), strict=False)
-                if len(log["errors"]) == 0:
-                    submit.status = 'compiled'
-                    submit.set_final()
-                else:
-                    submit.status = 'failed'
-                    submit.infra_compile_message = '...' + '<br>'.join(error for error in log["errors"])[-1000:]
-        elif single_report['status'] == 3:
+                    log = json.load(reader(logfile), strict=False)
+                    if len(log["errors"]) == 0:
+                        submit.status = 'compiled'
+                        submit.set_final()
+                    else:
+                        submit.status = 'failed'
+                        submit.infra_compile_message = '...' + '<br>'.join(error for error in log["errors"])[-1000:]
+            elif single_report['status'] == 3:
+                submit.status = 'failed'
+                submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
+        except BaseException as error:
             submit.status = 'failed'
             submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
+            logger.exception(error)
+            submit.save()
+            return JsonResponse({'success': False})
         submit.save()
         return JsonResponse({'success': True})
 
     elif single_report['operation'] == 'run':
-        logger.debug("Getting run report")
         try:
             single_match = SingleMatch.objects.get(infra_token=single_report['id'])
             logger.debug("Obtained relevant single match")
         except Exception as exception:
-            logger.error(exception)
-            return HttpResponseBadRequest()
-            pass
+            logger.exception(exception)
+            return JsonResponse({'success': False})
 
-        if single_report['status'] == 2:
-            logger.debug("Report status is OK")
-            logfile = functions.download_file(single_report['parameters']['game_log'])
-            if logfile is None:
-                pass
-            single_match.status = 'done'
-            single_match.log.save(name='log', content=File(logfile.file))
-            single_match.update_scores_from_log()
-        elif single_report['status'] == 3:
+        try:
+            if single_report['status'] == 2:
+                logger.debug("Report status is OK")
+                logfile = functions.download_file(single_report['parameters']['game_log'])
+                single_match.status = 'done'
+                single_match.log.save(name='log', content=File(logfile.file))
+                single_match.update_scores_from_log()
+            elif single_report['status'] == 3:
+                single_match.status = 'failed'
+                single_match.infra_match_message = single_report['log']
+            else:
+                return JsonResponse({'success': False, 'error': 'Invalid Status.'})
+        except BaseException as error:
+            logger.exception(error)
             single_match.status = 'failed'
-            single_match.infra_match_message = single_report['log']
-        else:
-            return JsonResponse({'success': False, 'error': 'Invalid Status.'})
+            single_match.save()
+            return JsonResponse({'success': False})
+
         single_match.save()
         return JsonResponse({'success': True})
     return HttpResponseServerError()
