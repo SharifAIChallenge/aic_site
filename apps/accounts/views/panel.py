@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
-from apps.game.models import TeamSubmission, Match, TeamParticipatesChallenge
+from apps.game.models import TeamSubmission, Match, TeamParticipatesChallenge, Competition
 from django.core.paginator import Paginator
 from django.db.models import Q
 from apps.game.models.challenge import Challenge, UserAcceptsTeamInChallenge
@@ -46,8 +46,22 @@ def get_shared_context(request):
         {'name': 'team_management', 'link': reverse('accounts:panel_team_management'), 'text': _('Team Status')},
         {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
         {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
-        {'name': 'friendly_scoreboard', 'link': reverse('game:scoreboard', args=[2]), 'text': _('Friendly Scoreboard')}
     ]
+
+    if request.user.profile.panel_active_teampc.challenge.competitions.filter(
+        type='friendly'
+    ).exists():
+        context.append(
+            {
+                'name': 'friendly_scoreboard',
+                'link': reverse('game:scoreboard', args=[
+                    request.user.profile.panel_active_teampc.challenge.competitions.get(
+                        type='friendly'
+                    ).id
+                ]),
+                'text': _('Friendly Scoreboard')
+            }
+        )
 
     return context
 
