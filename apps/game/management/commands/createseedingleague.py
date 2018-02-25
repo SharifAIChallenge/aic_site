@@ -67,7 +67,7 @@ class Command(BaseCommand):
             competition = Competition(
                 challenge=challenge,
                 type='league',
-                name='گروه {} لیگ اولیه انتخابی' % i
+                name='گروه %d لیگ اولیه انتخابی' % i
             )
             competition.save()
             for map in Map.objects.filter(name__in=options['map_name']):

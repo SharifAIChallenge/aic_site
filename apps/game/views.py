@@ -278,7 +278,7 @@ def render_challenge_league(request, challenge_id):
     ch = Challenge.objects.first()
     # print(ch)
     challenge = get_object_or_404(Challenge, pk=challenge_id)
-    competitions = Competition.objects.filter(challenge=challenge, type='league')
+    competitions = Competition.objects.filter(challenge=challenge, type='league').order_by('-id')
 
     competitions_scoreboard = []
     for competition in competitions:

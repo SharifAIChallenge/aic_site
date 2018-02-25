@@ -38,7 +38,7 @@
                     <td colspan="5">
                         ‌<a onclick="$('#results_{{ table.id }}').toggle(300)"><i class="ui eye icon"></i>{% trans 'View/Hide Games' %}</a>
                         <br>
-                        <table class="ui table" id="results_{{ table.id }}" style="display: none;">
+                        <table class="ui center aligned table" id="results_{{ table.id }}" style="display: none;">
                             {% for single_match in table.single_matches %}
                                 <tr>
                                     <td>{{ single_match.match.part1.depend.team.name }}</td>
