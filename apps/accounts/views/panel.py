@@ -110,7 +110,7 @@ def submissions(request):
     if request.method == 'POST':
         form = SubmissionForm(request.POST, request.FILES)
         if form.is_valid() and form.cleaned_data['team'] == team_pc:
-            # form.save()
+            form.save()
             return redirect('accounts:panel_submissions')
     else:
         form = SubmissionForm()
