@@ -574,19 +574,13 @@ class Match(models.Model):
         elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
             return self.part2.submission
         else:
-            raise ValueError('Participants\' score can\'t be equal')
+            return self.part1.submission if self.part1.submission.time < self.part2.submission.time \
+                else self.part2.submission
 
     def loser(self):
-        if self.status != 'done':
-            raise ValueError('Match is not done completely! why do yo call it ? :/')
-        if self.part1 is None or self.part2 is None:
-            raise ValueError('Participants can\'t be None')
-        elif self.part1.get_score_for_match(self) > self.part2.get_score_for_match(self):
-            return self.part2.submission
-        elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
-            return self.part1.submission
-        else:
-            raise ValueError('Participants\' score can\'t be equal')
+        winner = self.winner()
+        return self.part2.submission if winner == self.part1.submission \
+            else self.part1.submission
 
     def done_match(self):
         single_matches = self.single_matches.all()
@@ -687,11 +681,10 @@ class SingleMatch(models.Model):
         self.save()
 
     def get_score_for_participant(self, participant):
-        if self.match.part1 == participant:
-            return self.part1_score
-        elif self.match.part2 == participant:
-            return self.part2_score
-        return None
+        if self.winner() == participant:
+            return 1
+        else:
+            return 0
 
     def done_manually(self):
         self.status = 'done'
