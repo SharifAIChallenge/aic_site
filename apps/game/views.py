@@ -282,8 +282,11 @@ def render_challenge_league(request, challenge_id):
 
     competitions_scoreboard = []
     for competition in competitions:
-        scoreboard = {}
-        scoreboard['league_scoreboard'] = get_scoreboard_table(competition.id)
+        scoreboard = {
+            'id': competition.id,
+            'league_scoreboard': get_scoreboard_table(competition.id),
+            'single_matches': SingleMatch.objects.filter(match__competition=competition),
+        }
         competitions_scoreboard.append(scoreboard)
 
     return render(request, 'scoreboard/group_table_challenge.html', {
