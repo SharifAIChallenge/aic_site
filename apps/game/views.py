@@ -284,6 +284,7 @@ def render_challenge_league(request, challenge_id):
     for competition in competitions:
         scoreboard = {
             'id': competition.id,
+            'name': competition.name,
             'league_scoreboard': get_scoreboard_table(competition.id),
             'single_matches': SingleMatch.objects.filter(match__competition=competition),
         }
