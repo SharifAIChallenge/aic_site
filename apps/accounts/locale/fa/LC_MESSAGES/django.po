@@ -158,7 +158,7 @@ msgstr "خطا در ایجاد بازی دوستانه."
 #: templates/accounts/oldpanel/friendly_result.html:17
 #: templates/accounts/panel/friendly_result.html:17
 msgid "Successfully scheduled friendly match."
-msgstr "بازی دوستان با موفقیت در صف اجرا قرار گرفت."
+msgstr "بازی دوستانه با موفقیت در صف اجرا قرار گرفت."
 
 #: templates/accounts/oldpanel/friendly_result.html:20
 #: templates/accounts/panel/friendly_result.html:20
