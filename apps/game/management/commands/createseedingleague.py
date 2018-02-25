@@ -9,6 +9,11 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
+            'tag',
+            type=str,
+            help='tag to recognize the league'
+        )
+        parser.add_argument(
             'test_team_pc_id',
             type=int,
             help='id of dummy team to complete groups.'
@@ -50,7 +55,7 @@ class Command(BaseCommand):
         for team_pc in team_pcs:
             if team_pc.has_submitted():
                 if team_pc != dummy_team:
-                    submitters.append(team_pc)
+                    submitters.append(team_pc.team)
 
         shuffle(submitters)
 
@@ -65,6 +70,7 @@ class Command(BaseCommand):
 
         for i in range(groups.__len__()):
             competition = Competition(
+                tag=options['tag'],
                 challenge=challenge,
                 type='league',
                 name='گروه %d لیگ اولیه انتخابی' % i

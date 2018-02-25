@@ -29,6 +29,7 @@ class Competition(models.Model):
     challenge = models.ForeignKey(Challenge, related_name='competitions')
     name = models.CharField(max_length=128, null=True)
     type = models.CharField(max_length=128, choices=TYPE_CHOICES)
+    tag = models.CharField(max_length=128, null=True)
 
     def save(self):
         super(Competition, self).save()
