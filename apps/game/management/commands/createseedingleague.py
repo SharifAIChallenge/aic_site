@@ -33,7 +33,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         challenge_id = options['challenge_id']
-        print((challenge_id))
         try:
             challenge = Challenge.objects.get(id=challenge_id)
         except Challenge.DoesNotExist:
@@ -43,7 +42,7 @@ class Command(BaseCommand):
 
         try:
             dummy_team = TeamParticipatesChallenge.objects.get(
-                id=options['test_team_pc_id'])
+                id=options['test_team_pc_id']).team
         except TeamParticipatesChallenge.DoesNotExist:
             raise CommandError('Dummy team "%s" does not exist.' % options['test_team_pc_id'])
 
@@ -80,5 +79,6 @@ class Command(BaseCommand):
                 competition.maps.add(map)
             competition.save()
             competition.create_new_league(groups[i], 1)
+            competition.save()
 
-        self.stdout.write(self.style.SUCCESS('Successfully closed poll "%s".' % challenge_id))
+        self.stdout.write(self.style.SUCCESS('Successfully created seeding league.'))
