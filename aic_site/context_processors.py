@@ -69,11 +69,12 @@ def menu(request):
     for friendly_competition in friendly_competitions:
         context['ai']['sidebar'][_('Scoreboard')]['dropdown'][friendly_competition.name] = reverse('game:scoreboard', args=[friendly_competition.id])
 
-    if request.user.profile.panel_active_teampc.challenge.competitions.filter(
-        type='league'
-    ).exists():
-        context['ai']['sidebar'][_('Scoreboard')]['dropdown'][_('League')] = reverse('game:league_scoreboard', args=[
-                    request.user.profile.panel_active_teampc.challenge.id
-                ])
+    if request.user.is_authenticated:
+        if request.user.profile.panel_active_teampc.challenge.competitions.filter(
+            type='league'
+        ).exists():
+            context['ai']['sidebar'][_('Scoreboard')]['dropdown'][_('League')] = reverse('game:league_scoreboard', args=[
+                        request.user.profile.panel_active_teampc.challenge.id
+                    ])
 
     return context
