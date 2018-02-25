@@ -5,49 +5,49 @@
 
 {% block panel_content %}
 
-    {% if participation.challenge.is_submission_open %}
-        <h2>{% trans 'Submit' %}</h2>
-        {% if form.errors %}
-            {% for field in form %}
-                {% for error in field.errors %}
-                    <div class="ui red message">
-                        <strong>{{ error|escape }}</strong>
-                    </div>
-                {% endfor %}
-            {% endfor %}
-            {% for error in form.non_field_errors %}
-                <div class="ui red message">
-                    <strong>{{ error|escape }}</strong>
-                </div>
-            {% endfor %}
-        {% endif %}
-        <form method="post" enctype="multipart/form-data" class="ui form" style="width: 100% !important;">
-            {% csrf_token %}
-            <div class="fields">
-                <div class="eight wide field">
-                    <label for="{{ form.file.id_for_label }}">{% trans 'File:' %}</label>
-                    {{ form.file }}
-                </div>
-                <div class="five wide field" style="height: 100%">
-                    <label for="{{ form.language.id_for_label }}">{% trans 'Language:' %}</label>
-                    <select name="{{ form.language.name }}" class="ui dropdown">
-                        {% for choice in form.language.field.choices %}
-                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="three wide field">
-                    <label><i class="submit icon"></i></label>
-                    <button type="submit" class="ui green button">{% trans 'Submit' %}</button>
-                </div>
-            </div>
-
-            <input type="hidden" value="{{ team_pc.id }}" name="{{ form.team.name }}">
-        </form>
-        <div class="ui orange message">
-            {% trans 'Caution: Submissions get final when they are successfully compiled!' %}
-        </div>
-    {% endif %}
+{#    {% if participation.challenge.is_submission_open %}#}
+{#        <h2>{% trans 'Submit' %}</h2>#}
+{#        {% if form.errors %}#}
+{#            {% for field in form %}#}
+{#                {% for error in field.errors %}#}
+{#                    <div class="ui red message">#}
+{#                        <strong>{{ error|escape }}</strong>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            {% endfor %}#}
+{#            {% for error in form.non_field_errors %}#}
+{#                <div class="ui red message">#}
+{#                    <strong>{{ error|escape }}</strong>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% endif %}#}
+{#        <form method="post" enctype="multipart/form-data" class="ui form" style="width: 100% !important;">#}
+{#            {% csrf_token %}#}
+{#            <div class="fields">#}
+{#                <div class="eight wide field">#}
+{#                    <label for="{{ form.file.id_for_label }}">{% trans 'File:' %}</label>#}
+{#                    {{ form.file }}#}
+{#                </div>#}
+{#                <div class="five wide field" style="height: 100%">#}
+{#                    <label for="{{ form.language.id_for_label }}">{% trans 'Language:' %}</label>#}
+{#                    <select name="{{ form.language.name }}" class="ui dropdown">#}
+{#                        {% for choice in form.language.field.choices %}#}
+{#                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>#}
+{#                        {% endfor %}#}
+{#                    </select>#}
+{#                </div>#}
+{#                <div class="three wide field">#}
+{#                    <label><i class="submit icon"></i></label>#}
+{#                    <button type="submit" class="ui green button">{% trans 'Submit' %}</button>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <input type="hidden" value="{{ team_pc.id }}" name="{{ form.team.name }}">#}
+{#        </form>#}
+{#        <div class="ui orange message">#}
+{#            {% trans 'Caution: Submissions get final when they are successfully compiled!' %}#}
+{#        </div>#}
+{#    {% endif %}#}
     {% if submissions|length > 0 %}
         <hr>
         <h2>{% trans 'Submissions' %}</h2>
