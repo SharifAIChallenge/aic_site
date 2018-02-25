@@ -63,6 +63,20 @@ def get_shared_context(request):
             }
         )
 
+    if request.user.profile.panel_active_teampc.challenge.competitions.filter(
+        type='league'
+    ).exists():
+        context['menu_items'].append(
+            {
+                'name': 'friendly_scoreboard',
+                'link': reverse('game:league_scoreboard', args=[
+                    request.user.profile.panel_active_teampc.challenge.id
+                ]),
+                'text': _('League')
+            }
+        )
+
+
     return context
 
 

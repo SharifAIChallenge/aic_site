@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-24 22:29+0330\n"
+"POT-Creation-Date: 2018-02-25 10:43+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,6 +89,7 @@ msgid "Account"
 msgstr "حساب کاربری"
 
 #: aic_site/context_processors.py:56 aic_site/context_processors.py:70
+#: aic_site/context_processors.py:75
 msgid "Scoreboard"
 msgstr "جدول رده‌بندی"
 
@@ -100,6 +101,10 @@ msgstr "خروج"
 #: templates/zinnia/login.html:34
 msgid "Login"
 msgstr "ورود"
+
+#: aic_site/context_processors.py:75
+msgid "League"
+msgstr "لیگ"
 
 #: aic_site/settings/base.py:122
 msgid "English"
@@ -987,6 +992,9 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
+
+#~ msgid "Test League"
+#~ msgstr "لیگ آزمایشی"
 
 #, fuzzy
 #~| msgid "Login"

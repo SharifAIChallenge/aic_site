@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-24 22:29+0330\n"
+"POT-Creation-Date: 2018-02-25 10:43+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,58 +222,58 @@ msgid "Status"
 msgstr "وضعیت"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:46
-#: apps/accounts/templates/accounts/panel/submissions.html:92
+#: apps/accounts/templates/accounts/panel/submissions.html:89
 msgid "Compiled Successfully"
 msgstr "با موفقیت کامپایل شد"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:47
-#: apps/accounts/templates/accounts/panel/submissions.html:93
+#: apps/accounts/templates/accounts/panel/submissions.html:90
 msgid "Compiled"
 msgstr "کامپایل‌شده"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:50
-#: apps/accounts/templates/accounts/panel/submissions.html:96
+#: apps/accounts/templates/accounts/panel/submissions.html:93
 msgid "Click To View"
 msgstr "برای نمایش کلیک کنید."
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:50
-#: apps/accounts/templates/accounts/panel/submissions.html:96
+#: apps/accounts/templates/accounts/panel/submissions.html:93
 msgid "Failed"
 msgstr "ناموفق"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:53
-#: apps/accounts/templates/accounts/panel/submissions.html:99
+#: apps/accounts/templates/accounts/panel/submissions.html:96
 msgid "Compile Error"
 msgstr "کامپایل‌شده"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:59
-#: apps/accounts/templates/accounts/panel/submissions.html:105
+#: apps/accounts/templates/accounts/panel/submissions.html:102
 msgid "The Log From Compiler Is Shown Below:"
 msgstr "نتیجه کار کامپایلر:"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:69
-#: apps/accounts/templates/accounts/panel/submissions.html:115
+#: apps/accounts/templates/accounts/panel/submissions.html:112
 #: apps/accounts/templates/accounts/teams/success_create_team.html:17
 msgid "OK"
 msgstr "باشه"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:75
-#: apps/accounts/templates/accounts/panel/submissions.html:121
+#: apps/accounts/templates/accounts/panel/submissions.html:118
 msgid "Failed to upload. You may contact the technical team."
 msgstr "فرایند آپلود کامل نشد. لطفا این مورد را به تیم فنی اطلاع دهید."
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:76
-#: apps/accounts/templates/accounts/panel/submissions.html:122
+#: apps/accounts/templates/accounts/panel/submissions.html:119
 msgid "Failed To Upload"
 msgstr "آپلود ناموفق"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:79
-#: apps/accounts/templates/accounts/panel/submissions.html:125
+#: apps/accounts/templates/accounts/panel/submissions.html:122
 msgid "We are compiling your code! Wait and refresh your page."
 msgstr "ما در حال کامپایل کردن کد شما هستیم. صبر کنید و صفحه را مجددا ببینید."
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:80
-#: apps/accounts/templates/accounts/panel/submissions.html:126
+#: apps/accounts/templates/accounts/panel/submissions.html:123
 msgid "Compiling"
 msgstr "در حال کامپایل"
 
@@ -451,6 +451,10 @@ msgstr "درخواست عضویت به هم تیمی های شما فرستاد�
 #: apps/accounts/views/panel.py:62
 msgid "Friendly Scoreboard"
 msgstr "رده‌بندی دوستانه"
+
+#: apps/accounts/views/panel.py:75
+msgid "League"
+msgstr "لیگ"
 
 #, fuzzy
 #~| msgid "Team Name"
