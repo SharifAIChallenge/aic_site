@@ -8,6 +8,8 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=11, null=True, blank=True)
     organization = models.CharField(max_length=128, null=False, blank=False)
 
+    panel_active_teampc = models.ForeignKey('game.TeamParticipatesChallenge', null=True, blank=True, default=None)
+
     def __str__(self):
         return self.user.username
 
