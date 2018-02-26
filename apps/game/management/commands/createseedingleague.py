@@ -72,7 +72,7 @@ class Command(BaseCommand):
                 tag=options['tag'],
                 challenge=challenge,
                 type='league',
-                name='گروه %d لیگ اولیه انتخابی' % i
+                name='گروه %d لیگ اولیه انتخابی' % (i+1)
             )
             competition.save()
             for map in Map.objects.filter(name__in=options['map_name']):
