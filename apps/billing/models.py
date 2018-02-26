@@ -6,7 +6,7 @@ from suds.client import Client
 
 from apps.game.models import TeamParticipatesChallenge
 
-from aic_site.settings import production_secret
+from django.conf import settings
 
 
 class Transaction(models.Model):
@@ -46,9 +46,9 @@ class Transaction(models.Model):
             bank=bank,
             id2=random_string,
         )
-        username = production_secret.BANK_USERNAME
-        password = production_secret.BANK_PASSWORD
-        group_id = production_secret.BANK_GROUP_ID
+        username = settings.BANK_USERNAME
+        password = settings.BANK_PASSWORD
+        group_id = settings.BANK_GROUP_ID
 
         phone = profile.tel_number
         if len(phone) < 7:
