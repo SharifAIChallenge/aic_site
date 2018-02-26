@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-26 19:26+0330\n"
+"POT-Creation-Date: 2018-02-27 00:57+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,7 +119,6 @@ msgid "First name"
 msgstr "نام"
 
 #: apps/billing/forms/forms.py:9
-#| msgid "Last entries"
 msgid "Last name"
 msgstr "نام خانوادگی"
 
@@ -549,7 +548,8 @@ msgstr "نوشته‌های اخیر"
 msgid "Recent comments"
 msgstr "نظرات اخیر"
 
-#: templates/zinnia/category_list.html:4 templates/zinnia/category_list.html:11
+#: templates/zinnia/category_list.html:4
+#: templates/zinnia/category_list.html:11
 msgid "Category list"
 msgstr "لیست موضوعات"
 
@@ -649,7 +649,8 @@ msgstr "هفته قبل"
 msgid "Next week"
 msgstr "هفته بعد"
 
-#: templates/zinnia/entry_archive_year.html:15 templates/zinnia/sitemap.html:38
+#: templates/zinnia/entry_archive_year.html:15
+#: templates/zinnia/sitemap.html:38
 msgid "Monthly archives"
 msgstr "بایگانی ماهانه"
 

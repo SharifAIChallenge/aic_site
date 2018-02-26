@@ -16,15 +16,11 @@ class Transaction(models.Model):
         ('v', 'valid'),
         ('c', 'cancelled'),
     )
-    BANK = {
-        'mellat': 1, 'tejarat': 2
-    }
 
     team = models.ForeignKey(TeamParticipatesChallenge, related_name='transactions', null=True)
     amount = models.PositiveIntegerField()
     status = models.CharField(choices=STATE, max_length=1)
     order_id = models.CharField(max_length=100, null=True, blank=True)
-    bank = models.CharField(max_length=20, choices=[(str(v), k) for k, v in BANK.items()])
     reference_id = models.CharField(max_length=100)
     id2 = models.CharField(max_length=100, db_index=True, blank=True, null=True, unique=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -32,11 +28,12 @@ class Transaction(models.Model):
     error = models.CharField(max_length=100, null=True, blank=True)
 
     @classmethod
-    def begin_transaction(cls, profile, amount, callback_url, participation, bank='mellat'):
+    def begin_transaction(cls, profile, amount, callback_url, participation):
         """
+        :param callback_url:
+        :param participation:
         :param profile:
         :param amount: in rials
-        :param bank: 'mellat' or 'tejarat'
         :return: (url, transaction)
         """
         random_string = get_random_string(length=100)
@@ -44,7 +41,6 @@ class Transaction(models.Model):
             team=participation,
             amount=amount,
             status='u',
-            bank=bank,
             id2=random_string,
         )
         username = settings.BANK_USERNAME
@@ -65,7 +61,7 @@ class Transaction(models.Model):
             'groupid': group_id,
             'username': username,
             'password': password,
-            'bankid': cls.BANK[bank],
+            'bankid': 1,
             'id2': random_string,
             'callbackurl': callback_url,
             'nc': profile.national_code,
@@ -77,8 +73,6 @@ class Transaction(models.Model):
             'amount': amount,
             'Memo': t.pk,
         }
-        print('callbackurl: ')
-        print(params['callbackurl'])
 
         def call_webservice(params):
             cl = Client('https://payment.sharif.ir/research/ws.asmx?WSDL')
@@ -105,7 +99,7 @@ class Transaction(models.Model):
             'groupid': group_id,
             'username': username,
             'password': password,
-            'bankid': self.BANK[self.bank],
+            'bankid': 1,
             'orderid': self.order_id
         }
 

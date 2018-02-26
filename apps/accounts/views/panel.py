@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
@@ -50,33 +51,35 @@ def get_shared_context(request):
         {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
     ]
 
-    if request.user.profile.panel_active_teampc.challenge.competitions.filter(
-            type='friendly'
-    ).exists():
-        context['menu_items'].append(
-            {
-                'name': 'friendly_scoreboard',
-                'link': reverse('game:scoreboard', args=[
-                    request.user.profile.panel_active_teampc.challenge.competitions.get(
-                        type='friendly'
-                    ).id
-                ]),
-                'text': _('Friendly Scoreboard')
-            }
-        )
+    if request.user.profile:
+        if request.user.profile.panel_active_teampc:
+            if request.user.profile.panel_active_teampc.challenge.competitions.filter(
+                    type='friendly'
+            ).exists():
+                context['menu_items'].append(
+                    {
+                        'name': 'friendly_scoreboard',
+                        'link': reverse('game:scoreboard', args=[
+                            request.user.profile.panel_active_teampc.challenge.competitions.get(
+                                type='friendly'
+                            ).id
+                        ]),
+                        'text': _('Friendly Scoreboard')
+                    }
+                )
 
-    if request.user.profile.panel_active_teampc.challenge.competitions.filter(
-            type='league'
-    ).exists():
-        context['menu_items'].append(
-            {
-                'name': 'friendly_scoreboard',
-                'link': reverse('game:league_scoreboard', args=[
-                    request.user.profile.panel_active_teampc.challenge.id
-                ]),
-                'text': _('League')
-            }
-        )
+            if request.user.profile.panel_active_teampc.challenge.competitions.filter(
+                    type='league'
+            ).exists():
+                context['menu_items'].append(
+                    {
+                        'name': 'friendly_scoreboard',
+                        'link': reverse('game:league_scoreboard', args=[
+                            request.user.profile.panel_active_teampc.challenge.id
+                        ]),
+                        'text': _('League')
+                    }
+                )
 
     return context
 
@@ -137,6 +140,16 @@ def team_management(request, participation_id=None):
     if participation_id is not None:
         return change_team_pc(request, participation_id)
     team_pc = get_team_pc(request)
+    if team_pc is None:
+        if Challenge.objects.filter(is_submission_open=True).exists():
+            return HttpResponseRedirect(
+                reverse(
+                    'accounts:create_team',
+                    args=[Challenge.objects.get(is_submission_open=True).id]
+                )
+            )
+        else:
+            return Http404()
     context = get_shared_context(request)
     for item in context['menu_items']:
         if item['name'] == 'team_management':

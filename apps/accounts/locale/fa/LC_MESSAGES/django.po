@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-26 19:26+0330\n"
+"POT-Creation-Date: 2018-02-27 00:57+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,7 +92,6 @@ msgid "National code‌"
 msgstr "کد ملی"
 
 #: apps/accounts/models.py:13
-#| msgid "Phone Number"
 msgid "Telephone number‌"
 msgstr "شماره ی تلفن ثابت"
 

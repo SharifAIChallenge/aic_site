@@ -23,7 +23,7 @@ class SignUpForm(UserCreationForm):
     phone_regex = RegexValidator(regex=r'^\d{8,15}$',
                                  message=_("Please enter your phone number correctly!"))
     phone_number = forms.CharField(validators=[phone_regex], required=False)
-    age = forms.IntegerField(required=True)
+    age = forms.IntegerField(required=False)
     captcha = ReCaptchaField()
 
     def is_valid(self):
@@ -78,7 +78,7 @@ class UpdateProfileForm(ModelForm):
     first_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     email = forms.EmailField(max_length=254, required=True, help_text='Required. Inform a valid email address.')
-    age = forms.IntegerField(required=True)
+    age = forms.IntegerField()
     password1 = forms.CharField(required=False, widget=forms.PasswordInput)
     password2 = forms.CharField(required=False, widget=forms.PasswordInput)
 
