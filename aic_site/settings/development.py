@@ -34,6 +34,3 @@ LOGGING['handlers'] = {
 }
 
 INFRA_AUTH_TOKEN = 'test_token'
-
-if TESTING:
-    RECAPTCHA_TESTING = True

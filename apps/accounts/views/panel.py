@@ -149,7 +149,9 @@ def team_management(request, participation_id=None):
                 )
             )
         else:
-            return Http404()
+            return HttpResponseRedirect(reverse(
+                'intro:index'
+            ))
     context = get_shared_context(request)
     for item in context['menu_items']:
         if item['name'] == 'team_management':

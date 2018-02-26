@@ -120,7 +120,7 @@ class TestTeam(TransactionTestCase):
 
         self.assertEqual(len(team0_matches), 2)
 
-    def test_panel(self):
+    def test_panel_submission(self):
         # prepare data
         teams = Team.objects.all()
         challenge = Challenge.objects.all()[0]
