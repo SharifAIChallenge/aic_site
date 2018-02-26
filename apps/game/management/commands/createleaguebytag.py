@@ -54,11 +54,12 @@ class Command(BaseCommand):
         if group_size < 1:
             raise CommandError('group_size should be more than 0')
 
-
         teams_status = get_scoreboard_table_tag(options['ref_tag'])
 
-        submitters = list(map(lambda x: x['team'],teams_status))
+        submitters = list(map(lambda x: x['team'], teams_status))
         submitters.remove(dummy_team)
+        for submitter in submitters:
+            print(submitter.name)
 
         n = submitters.__len__()
         submitters += [dummy_team for i in range((group_size - n % group_size) % group_size)]
@@ -74,7 +75,7 @@ class Command(BaseCommand):
                 tag=options['tag'],
                 challenge=challenge,
                 type='league',
-                name='گروه %d لیگ اولیه انتخابی' % (i+1)
+                name='گروه %d لیگ اولیه انتخابی' % (i + 1)
             )
             competition.save()
             for map in Map.objects.filter(name__in=options['map_name']):
