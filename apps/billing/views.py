@@ -58,7 +58,10 @@ def payment(request, participation_id):
                 'participation': participation,
                 'participation_id': participation_id,
             })
-        form = UserCompletionForm(instance=request.user.profile)
+        form = UserCompletionForm(instance=request.user.profile, initial={
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name,
+        })
         return render(request, 'billing/bank_payment.html', {
             'form': form,
             'participation': participation

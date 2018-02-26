@@ -1,15 +1,16 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Q
+from django.utils.translation import ugettext_lazy as _
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
-    phone_number = models.CharField(max_length=11, null=True, blank=True)
-    organization = models.CharField(max_length=128, null=False, blank=False)
-    age = models.IntegerField(null=True, blank=True)
-    national_code = models.CharField(max_length=10, null=True, blank=True)
-    tel_number = models.CharField(max_length=20, null=True, blank=True)
+    phone_number = models.CharField(max_length=11, null=True, blank=True, verbose_name=_('Mobile number‌'))
+    organization = models.CharField(max_length=128, null=False, blank=False, verbose_name=_('Organization‌'))
+    age = models.IntegerField(null=True, blank=True, verbose_name=_('Age‌'))
+    national_code = models.CharField(max_length=10, null=True, blank=True, verbose_name=_('National code‌'))
+    tel_number = models.CharField(max_length=20, null=True, blank=True, verbose_name=_('Telephone number‌'))
     panel_active_teampc = models.ForeignKey('game.TeamParticipatesChallenge', null=True, blank=True, default=None)
 
     @property

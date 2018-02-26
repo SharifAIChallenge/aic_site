@@ -24,20 +24,24 @@
                         </div>
                     {% endif %}
 
-                <p >{{ participation.team.name }}</p>
                 <div >
 
                     <div >
 
                         <form method="post" action="" class="ui form">
+
+                            <h2>{% blocktrans with team_name=participation.team.name %}
+                                    You are paying for team {{ team_name }}.
+                                {% endblocktrans %}
+                            </h2>
                             {% csrf_token %}
                             {{ form }}
                             <div class="center-align">
                                 <p class="text muted text-muted">
-                                مبلغ قابل پرداخت (برای کل تیم): <span class="text-info">{{ participation.challenge.entrance_price }} ﷼</span>
+                                    {% trans 'Amount (for all members):' %} <span class="text-info">{{ participation.challenge.entrance_price }} {% trans 'Rials' %}</span>
                                     </p>
                                 <button type="submit" class="btn waves-effect">
-                                    تکمیل مشخصات و پرداخت
+                                    {% trans 'Complete profile and pay' %}
                                 </button>
                             </div>
                         </form>

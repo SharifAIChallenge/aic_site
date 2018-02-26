@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-25 10:43+0330\n"
+"POT-Creation-Date: 2018-02-26 19:26+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,26 +83,26 @@ msgstr "نمایشگر بازی"
 msgid "Map Maker"
 msgstr "نقشه ساز"
 
-#: aic_site/context_processors.py:53 aic_site/context_processors.py:64
-#: aic_site/context_processors.py:66
+#: aic_site/context_processors.py:53 aic_site/context_processors.py:65
+#: aic_site/context_processors.py:67
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: aic_site/context_processors.py:56 aic_site/context_processors.py:70
-#: aic_site/context_processors.py:75
+#: aic_site/context_processors.py:56 aic_site/context_processors.py:71
+#: aic_site/context_processors.py:78
 msgid "Scoreboard"
 msgstr "جدول رده‌بندی"
 
-#: aic_site/context_processors.py:64 templates/base/navbar.html:42
+#: aic_site/context_processors.py:65 templates/base/navbar.html:42
 msgid "Logout"
 msgstr "خروج"
 
-#: aic_site/context_processors.py:66 templates/base/navbar.html:47
+#: aic_site/context_processors.py:67 templates/base/navbar.html:47
 #: templates/zinnia/login.html:34
 msgid "Login"
 msgstr "ورود"
 
-#: aic_site/context_processors.py:75
+#: aic_site/context_processors.py:78
 msgid "League"
 msgstr "لیگ"
 
@@ -114,55 +114,114 @@ msgstr "انگلیسی"
 msgid "Persian"
 msgstr "فارسی"
 
+#: apps/billing/forms/forms.py:8
+msgid "First name"
+msgstr "نام"
+
+#: apps/billing/forms/forms.py:9
+#| msgid "Last entries"
+msgid "Last name"
+msgstr "نام خانوادگی"
+
+#: apps/billing/forms/forms.py:18
+msgid "Entered national code is not valid"
+msgstr "کد ملی وارد شده معتبر نیست."
+
+#: apps/billing/templates/billing/bank_payment.html:6
+#: apps/billing/templates/billing/bank_payment.html:7
+#: apps/billing/templates/billing/bank_payment_error.html:6
+#: apps/billing/templates/billing/bank_payment_error.html:7
+#: apps/billing/templates/billing/bank_payment_success.html:6
+#: apps/billing/templates/billing/bank_payment_success.html:7
+#: apps/billing/templates/billing/bank_payments_list.html:6
+#: apps/billing/templates/billing/bank_payments_list.html:7
+msgid "Bank payment"
+msgstr "پرداخت بانکی"
+
+#: apps/billing/templates/billing/bank_payment.html:33
+#, python-format
+msgid ""
+"\n"
+"                                    You are paying for team %(team_name)s.\n"
+"                                "
+msgstr ""
+"\n"
+"                     پرداخت برای تیم %(team_name)s\n"
+"                "
+
+#: apps/billing/templates/billing/bank_payment.html:41
+msgid "Amount (for all members):"
+msgstr "مبلغ قابل پرداخت (برای کل اعضای تیم):"
+
+#: apps/billing/templates/billing/bank_payment.html:41
+msgid "Rials"
+msgstr "ریالً"
+
+#: apps/billing/templates/billing/bank_payment.html:44
+msgid "Complete profile and pay"
+msgstr "تکمیل مشخصات و پرداخت"
+
+#: apps/billing/views.py:49
+msgid "You have unverified payment(s)."
+msgstr "شما پرداختهایی تاییدنشده دارید."
+
+#: apps/billing/views.py:51
+msgid "There is nothing to pay for."
+msgstr "چیزی برای پرداخت وجود ندارد."
+
+#: apps/billing/views.py:53
+msgid "You have already paid."
+msgstr "شما قبلا پرداخت کرده اید."
+
 #: templates/400.html:6
 msgid "400"
-msgstr ""
+msgstr "۴۰۰"
 
 #: templates/400.html:7
 msgid "Bad request"
-msgstr ""
+msgstr "درخواست نادرست"
 
 #: templates/400.html:9
 msgid "Sorry, but the request was malformed."
-msgstr ""
+msgstr "متاسفیم اما درخواست شما ساختار درستی نداشت"
 
 #: templates/403.html:6
 msgid "403"
-msgstr ""
+msgstr "۴۰۳"
 
 #: templates/403.html:7
 msgid "Permission denied"
-msgstr ""
+msgstr "دسترسی ممنوع است."
 
 #: templates/403.html:9
 msgid "Sorry, but you don't have the permission to do this action."
-msgstr ""
+msgstr "متاسفیم اما شما دسترسی ندارید."
 
 #: templates/404.html:6
 msgid "404"
-msgstr ""
+msgstr "۴۰۴"
 
 #: templates/404.html:7
 msgid "Page not found"
-msgstr ""
+msgstr "صفحه مورد نظر یافت نشد."
 
 #: templates/404.html:9
 msgid "Sorry, but the requested page could not be found."
-msgstr ""
+msgstr "متاسفیم اما صفحه مورد نظر یافت نشد."
 
 #: templates/500.html:6
 msgid "500"
-msgstr ""
+msgstr "۵۰۰"
 
 #: templates/500.html:7
 msgid "Server error"
-msgstr ""
+msgstr "ایراد سرور"
 
 #: templates/500.html:8
 msgid ""
 "There's been an error. It's been reported to the site administrators via e-"
 "mail and should be fixed shortly. Thanks for your patience."
-msgstr ""
+msgstr "مشکلی داخلی در سرور رخ داد."
 
 #: templates/base/footer.html:20
 msgid ""
@@ -1117,12 +1176,3 @@ msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
 
 #~ msgid "Greetings, "
 #~ msgstr "خوش آمدید "
-
-#~ msgid ""
-#~ "\n"
-#~ "                    Greetings, %(name)s\n"
-#~ "                "
-#~ msgstr ""
-#~ "\n"
-#~ "                    %(name)s، خوش آمدید!\n"
-#~ "                "

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-25 10:43+0330\n"
+"POT-Creation-Date: 2018-02-26 19:26+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Please enter your phone number correctly!"
 msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
 
-#: apps/accounts/forms/forms.py:32
+#: apps/accounts/forms/forms.py:33
 msgid "Registration is closed. See you next year."
 msgstr "ثبت نام هم‌اکنون باز نیست. به امید دیدار شما در رقابت بعدی."
 
@@ -75,9 +75,30 @@ msgstr "بعضی از کاربران انتخاب شده قبلا در این ر
 msgid "No more capacity in this challenge."
 msgstr "تیم در این چالش دیگر ظرفیت ندارد!"
 
+#: apps/accounts/models.py:9
+msgid "Mobile number‌"
+msgstr "شماره موبایل"
+
+#: apps/accounts/models.py:10
+msgid "Organization‌"
+msgstr "سازمان"
+
+#: apps/accounts/models.py:11
+msgid "Age‌"
+msgstr "سن"
+
+#: apps/accounts/models.py:12
+msgid "National code‌"
+msgstr "کد ملی"
+
+#: apps/accounts/models.py:13
+#| msgid "Phone Number"
+msgid "Telephone number‌"
+msgstr "شماره ی تلفن ثابت"
+
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:4
 #: apps/accounts/templates/accounts/panel/battle_history.html:6
-#: apps/accounts/views/panel.py:48
+#: apps/accounts/views/panel.py:50
 msgid "Battle history"
 msgstr "بازی‌های دوستانه"
 
@@ -202,7 +223,7 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:7
 #: apps/accounts/templates/accounts/panel/submissions.html:53
-#: apps/accounts/views/panel.py:47
+#: apps/accounts/views/panel.py:49
 msgid "Submissions"
 msgstr "ارسال‌ها"
 
@@ -296,7 +317,7 @@ msgstr ""
 
 #: apps/accounts/templates/accounts/oldpanel/team_management.html:5
 #: apps/accounts/templates/accounts/panel/team_management.html:6
-#: apps/accounts/views/panel.py:46
+#: apps/accounts/views/panel.py:48
 msgid "Team Status"
 msgstr "وضعیت تیم"
 
@@ -448,11 +469,11 @@ msgstr "تیم شما با موفقیت ساخته شد"
 msgid "Request messages has bee sent to your teammates"
 msgstr "درخواست عضویت به هم تیمی های شما فرستاده شد"
 
-#: apps/accounts/views/panel.py:62
+#: apps/accounts/views/panel.py:64
 msgid "Friendly Scoreboard"
 msgstr "رده‌بندی دوستانه"
 
-#: apps/accounts/views/panel.py:75
+#: apps/accounts/views/panel.py:77
 msgid "League"
 msgstr "لیگ"
 

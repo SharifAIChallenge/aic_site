@@ -7,6 +7,7 @@ from suds.client import Client
 from apps.game.models import TeamParticipatesChallenge
 
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 
 class Transaction(models.Model):
@@ -96,9 +97,9 @@ class Transaction(models.Model):
             return '', t
 
     def update_status(self):
-        username = production_secret.BANK_USERNAME
-        password = production_secret.BANK_PASSWORD
-        group_id = production_secret.BANK_GROUP_ID
+        username = settings.BANK_USERNAME
+        password = settings.BANK_PASSWORD
+        group_id = settings.BANK_GROUP_ID
 
         params = {
             'groupid': group_id,

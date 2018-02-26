@@ -5,8 +5,8 @@ from apps.accounts.models import Profile
 
 
 class UserCompletionForm(forms.ModelForm):
-    first_name = forms.CharField(required=True)
-    last_name = forms.CharField(required=True)
+    first_name = forms.CharField(required=True, label=_('First name'))
+    last_name = forms.CharField(required=True, label=_('Last name'))
 
     class Meta:
         model = Profile
@@ -26,3 +26,4 @@ class UserCompletionForm(forms.ModelForm):
             result.user.save()
 
         return result
+
