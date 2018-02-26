@@ -53,7 +53,7 @@ class Command(BaseCommand):
         submitters = []
         for team_pc in team_pcs:
             if team_pc.has_submitted():
-                if team_pc != dummy_team:
+                if team_pc.team != dummy_team:
                     submitters.append(team_pc.team)
 
         shuffle(submitters)
