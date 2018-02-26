@@ -107,7 +107,7 @@ def add_participation(request, participation_id):
 def success_create_team(request):
     return render(request, 'accounts/teams/success_create_team.html',
                   {
-                      'last_participation_id': TeamParticipatesChallenge.objects.last().id
+                      'last_participation_id': request.user.profile.panel_active_teampc.id
                   })
 
 

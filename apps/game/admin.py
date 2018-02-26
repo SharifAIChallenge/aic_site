@@ -168,7 +168,7 @@ class MatchAdmin(admin.ModelAdmin):
 
     actions = ['run_selected_matches']
     list_display = ('id', 'competition', 'part1', 'part2', 'status', 'is_ready_to_run')
-    list_filter = ['competition', StatusListFilter, IsReadyToRunListFilter]
+    list_filter = ['competition', 'competition__tag', StatusListFilter, IsReadyToRunListFilter]
 
     # search_fields = []
     def run_selected_matches(self, request, queryset):
