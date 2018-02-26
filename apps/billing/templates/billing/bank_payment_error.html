@@ -29,7 +29,7 @@
 {#                    todo: translation #}
                     پرداخت شما با خطای زیر مواجه شده است:
                 </p>
-                <p class="muted">{{ participation.team.name }}</p>
+                <p class="muted">{{ error }}</p>
                 <p>
                     برای دیدن پرداخت‌ها به
                     <a href="{% url 'billing:payments_list' participation_id=participation_id %}">این صفحه</a>
