@@ -81,12 +81,6 @@ class TeamParticipatesChallenge(models.Model):
             ok &= UserAcceptsTeamInChallenge.objects.filter(team=self, user=user_participation.user).exists()
         return ok
 
-    def has_payed(self):
-        """
-        :rtype: bool
-        """
-        pass
-
     def get_final_submission(self):
         """
         :rtype: TeamSubmission

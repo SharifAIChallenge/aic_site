@@ -8,11 +8,21 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=11, null=True, blank=True)
     organization = models.CharField(max_length=128, null=False, blank=False)
     age = models.IntegerField(null=True, blank=True)
-    national_code = models.CharField(max_length=10,null=True,blank=True)
+    national_code = models.CharField(max_length=10, null=True, blank=True)
     tel_number = models.CharField(max_length=20, null=True, blank=True)
-
-
     panel_active_teampc = models.ForeignKey('game.TeamParticipatesChallenge', null=True, blank=True, default=None)
+
+    @property
+    def is_complete(self):
+        if self.phone_number is None:
+            return False
+        if self.age is None:
+            return False
+        if self.national_code is None:
+            return False
+        if self.tel_number is None:
+            return False
+        return True
 
     def __str__(self):
         return self.user.username
@@ -20,7 +30,6 @@ class Profile(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=256)
-
 
     def __str__(self):
         return self.name

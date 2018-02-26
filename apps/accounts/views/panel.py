@@ -4,9 +4,11 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
+from apps.billing.decorators import payment_required
 from apps.game.models import TeamSubmission, Match, TeamParticipatesChallenge, Competition
 from django.core.paginator import Paginator
 from django.db.models import Q
+
 from apps.game.models.challenge import Challenge, UserAcceptsTeamInChallenge
 
 
@@ -49,7 +51,7 @@ def get_shared_context(request):
     ]
 
     if request.user.profile.panel_active_teampc.challenge.competitions.filter(
-        type='friendly'
+            type='friendly'
     ).exists():
         context['menu_items'].append(
             {
@@ -64,7 +66,7 @@ def get_shared_context(request):
         )
 
     if request.user.profile.panel_active_teampc.challenge.competitions.filter(
-        type='league'
+            type='league'
     ).exists():
         context['menu_items'].append(
             {
@@ -75,7 +77,6 @@ def get_shared_context(request):
                 'text': _('League')
             }
         )
-
 
     return context
 
@@ -91,6 +92,7 @@ def change_team_pc(request, team_pc):
     return redirect('accounts:panel_team_management')
 
 
+@payment_required
 @login_required
 def submissions(request):
     team_pc = get_team_pc(request)
