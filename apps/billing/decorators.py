@@ -6,7 +6,7 @@ from apps.game.models import TeamParticipatesChallenge
 
 def payment_required(view):
     def wrap(request, *args, **kwargs):
-        if kwargs['participation_id']:
+        if 'participation_id' in kwargs:
             participation_id = kwargs['participation_id']
             participation = TeamParticipatesChallenge.objects.get(id=participation_id)
         else:
@@ -15,7 +15,7 @@ def payment_required(view):
         if (not participation.should_pay) or participation.has_paid:
             return view(request, *args, **kwargs)
         else:
-            return HttpResponseRedirect(reverse('billing:request_payment', args=[participation_id]))
+            return HttpResponseRedirect(reverse('billing:request_payment', args=[participation.id]))
 
     wrap.__doc__ = view.__doc__
     wrap.__name__ = view.__name__

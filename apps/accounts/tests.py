@@ -50,7 +50,7 @@ def populate_challenges():
     challenge.registration_end_time = challenge.end_time
     challenge.registration_open = True
     challenge.team_size = 3
-    challenge.entrance_price = 1000
+    challenge.entrance_price = 0
     game = Game()
     game.name = "AIC 2018"
     game.save()
