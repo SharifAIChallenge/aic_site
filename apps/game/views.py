@@ -72,10 +72,18 @@ def render_double_elimination(request, competition_id):
     })
 
 
-def render_friendly(request, competition_id):
-    league_scoreboard = get_scoreboard_table(competition_id)
+def render_tag(request, tag_name):
+    league_scoreboard = get_scoreboard_table_tag(tag_name)
 
-    return render(request, 'scoreboard/friendly_match_scoreboard.html', {
+    return render(request, 'scoreboard/match_scoreboard.html', {
+        'league_scoreboard': league_scoreboard
+    })
+
+
+def render_friendly(request, competition_id):
+    league_scoreboard = get_scoreboard_table_competition(competition_id)
+
+    return render(request, 'scoreboard/match_scoreboard.html', {
         'league_scoreboard': league_scoreboard
     })
 
@@ -83,7 +91,7 @@ def render_friendly(request, competition_id):
 def render_league(request, competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
 
-    league_scoreboard = get_scoreboard_table(competition_id)
+    league_scoreboard = get_scoreboard_table_competition(competition_id)
     league_size = len(league_scoreboard)
     # print(matches)
     # print(league_scoreboard)
@@ -131,12 +139,7 @@ def dictfetchall(cursor):
     ]
 
 
-def get_scoreboard_table(competition_id):
-    competition_single_matches = SingleMatch.objects.filter(match__competition_id=competition_id).prefetch_related(
-        'match').prefetch_related(
-        'match__part1__depend__team').prefetch_related(
-        'match__part2__depend__team').filter(status='done')
-
+def get_scoreboard_table_from_single_matches(competition_single_matches):
     teams_status = {}
     for single_match in competition_single_matches:
 
@@ -183,6 +186,22 @@ def get_scoreboard_table(competition_id):
         count += 1
 
     return teams_status
+
+
+def get_scoreboard_table_competition(competition_id):
+    competition_single_matches = SingleMatch.objects.filter(match__competition_id=competition_id).prefetch_related(
+        'match').prefetch_related(
+        'match__part1__depend__team').prefetch_related(
+        'match__part2__depend__team').filter(status='done')
+    return get_scoreboard_table_from_single_matches(competition_single_matches)
+
+
+def get_scoreboard_table_tag(tag):
+    competition_single_matches = SingleMatch.objects.filter(match__competition__tag__exact=tag).prefetch_related(
+        'match').prefetch_related(
+        'match__part1__depend__team').prefetch_related(
+        'match__part2__depend__team').filter(status='done')
+    return get_scoreboard_table_from_single_matches(competition_single_matches)
 
 
 @csrf_exempt
@@ -285,7 +304,7 @@ def render_challenge_league(request, challenge_id):
         scoreboard = {
             'id': competition.id,
             'name': competition.name,
-            'league_scoreboard': get_scoreboard_table(competition.id),
+            'league_scoreboard': get_scoreboard_table_competition(competition.id),
             'single_matches': SingleMatch.objects.filter(match__competition=competition),
         }
         competitions_scoreboard.append(scoreboard)
