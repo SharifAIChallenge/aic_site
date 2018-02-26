@@ -53,7 +53,7 @@ class Command(BaseCommand):
         submitters = []
         for team_pc in team_pcs:
             if team_pc.has_submitted():
-                if team_pc != dummy_team:
+                if team_pc.team != dummy_team:
                     submitters.append(team_pc.team)
 
         shuffle(submitters)
@@ -72,7 +72,7 @@ class Command(BaseCommand):
                 tag=options['tag'],
                 challenge=challenge,
                 type='league',
-                name='گروه %d لیگ اولیه انتخابی' % i
+                name='گروه %d لیگ اولیه انتخابی' % (i+1)
             )
             competition.save()
             for map in Map.objects.filter(name__in=options['map_name']):
