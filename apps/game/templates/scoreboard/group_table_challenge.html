@@ -41,7 +41,7 @@
             <table class="ui center aligned table" id="results_{{ table.id }}" style="display: none;">
                 {% for single_match in table.single_matches %}
                 <tr>
-                    {% if single_match.winner == single_match.match.part1.depend %}
+                    {% if single_match.winner == single_match.match.part1 %}
                     <td style="background: cyan">{{ single_match.match.part1.depend.team.name }}</td>
                     <td>VS</td>
                     <td style="background: pink">{{ single_match.match.part2.depend.team.name }}</td>
