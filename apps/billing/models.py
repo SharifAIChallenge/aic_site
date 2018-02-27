@@ -47,13 +47,24 @@ class Transaction(models.Model):
         password = settings.BANK_PASSWORD
         group_id = settings.BANK_GROUP_ID
 
-        phone = profile.tel_number
+        table = {1776: 48,  # 0
+                 1777: 49,  # 1
+                 1778: 50,  # 2
+                 1779: 51,  # 3
+                 1780: 52,  # 4
+                 1781: 53,  # 5
+                 1782: 54,  # 6
+                 1783: 55,  # 7
+                 1784: 56,  # 8
+                 1785: 57}  # 9
+
+        phone = profile.tel_number.translate(table)
         if len(phone) < 7:
             phone = '%s%s' % ('0' * (7 - len(phone)), phone)
         elif len(phone) > 7:
             phone = phone[-7:]
 
-        mobile = profile.phone_number
+        mobile = profile.phone_number.translate(table)
         if mobile[:2] != '09':
             mobile = '09{}'.format(mobile)
 
@@ -64,7 +75,7 @@ class Transaction(models.Model):
             'bankid': 1,
             'id2': random_string,
             'callbackurl': callback_url,
-            'nc': profile.national_code,
+            'nc': profile.national_code.translate(table),
             'name': profile.user.first_name,
             'family': profile.user.last_name,
             'tel': phone,
