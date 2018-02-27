@@ -1,19 +1,18 @@
 import codecs
 import json
 import logging
-from operator import itemgetter
 
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
 from django.core.files import File
-from django.db import connection
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.game import functions
-from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch, Challenge, Team
+from apps.game.models import Competition, TeamSubmission, SingleMatch, Challenge
+from apps.game.utils import get_scoreboard_table_competition, get_scoreboard_table_tag, \
+    get_scoreboard_table_from_single_matches
 
 logger = logging.getLogger(__name__)
 
@@ -72,10 +71,18 @@ def render_double_elimination(request, competition_id):
     })
 
 
-def render_friendly(request, competition_id):
-    league_scoreboard = get_scoreboard_table(competition_id)
+def render_tag(request, tag_name):
+    league_scoreboard = get_scoreboard_table_tag(tag_name)
 
-    return render(request, 'scoreboard/friendly_match_scoreboard.html', {
+    return render(request, 'scoreboard/match_scoreboard.html', {
+        'league_scoreboard': league_scoreboard
+    })
+
+
+def render_friendly(request, competition_id):
+    league_scoreboard = get_scoreboard_table_competition(competition_id)
+
+    return render(request, 'scoreboard/match_scoreboard.html', {
         'league_scoreboard': league_scoreboard
     })
 
@@ -83,7 +90,7 @@ def render_friendly(request, competition_id):
 def render_league(request, competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
 
-    league_scoreboard = get_scoreboard_table(competition_id)
+    league_scoreboard = get_scoreboard_table_competition(competition_id)
     league_size = len(league_scoreboard)
     # print(matches)
     # print(league_scoreboard)
@@ -131,60 +138,6 @@ def dictfetchall(cursor):
     ]
 
 
-def get_scoreboard_table(competition_id):
-    competition_single_matches = SingleMatch.objects.filter(match__competition_id=competition_id).prefetch_related(
-        'match').prefetch_related(
-        'match__part1__depend__team').prefetch_related(
-        'match__part2__depend__team').filter(status='done')
-
-    teams_status = {}
-    for single_match in competition_single_matches:
-
-        winner_participant = single_match.winner()
-        loser_participant = single_match.loser()
-
-        team = winner_participant.depend.team
-        if winner_participant.object_id not in teams_status:
-            teams_status[winner_participant.object_id] = {
-                'team': team,
-                'score': 0,
-                'name': team.name,
-                'total_num': 0,
-                'win_num': 0,
-                'lose_num': 0
-            }
-
-        team = loser_participant.depend.team
-        if loser_participant.object_id not in teams_status:
-            teams_status[loser_participant.depend.id] = {
-                'team': team,
-                'score': 0,
-                'name': team.name,
-                'total_num': 0,
-                'win_num': 0,
-                'lose_num': 0
-            }
-
-        if winner_participant.object_id != loser_participant.object_id:
-            teams_status[winner_participant.object_id]['score'] += single_match.get_score_for_participant(winner_participant)
-            teams_status[loser_participant.object_id]['score'] += single_match.get_score_for_participant(loser_participant)
-
-        teams_status[winner_participant.object_id]['win_num'] += 1
-        teams_status[winner_participant.object_id]['total_num'] += 1
-
-        teams_status[loser_participant.object_id]['lose_num'] += 1
-        teams_status[loser_participant.object_id]['total_num'] += 1
-
-    teams_status = [value for key, value in teams_status.items()]
-    teams_status = sorted(teams_status, key=itemgetter('score'), reverse=True)
-    count = 1
-    for team_status in teams_status:
-        team_status['rank'] = count
-        count += 1
-
-    return teams_status
-
-
 @csrf_exempt
 def report(request):
     if request.META.get('HTTP_AUTHORIZATION') != settings.INFRA_AUTH_TOKEN:
@@ -224,6 +177,7 @@ def report(request):
             submit.status = 'failed'
             submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
             logger.exception(error)
+            submit.save()
             return JsonResponse({'success': False})
         submit.save()
         return JsonResponse({'success': True})
@@ -273,18 +227,37 @@ def map_maker(request):
 
 
 def render_challenge_league(request, challenge_id):
-    # print(challenge_id)
-    ch = Challenge.objects.first()
-    # print(ch)
-    challenge = get_object_or_404(Challenge, pk=challenge_id)
-    competitions = Competition.objects.filter(challenge=challenge, type='league')
+    single_matches = SingleMatch.objects.filter(
+        match__competition__challenge_id=challenge_id,
+        match__competition__type='league'
+    ).prefetch_related(
+        'match').prefetch_related(
+        'match__part1__depend__team').prefetch_related(
+        'match__part2__depend__team').prefetch_related(
+        'match__competition').prefetch_related(
+    ).filter(status='done')
 
-    competitions_scoreboard = []
-    for competition in competitions:
-        scoreboard = {}
-        scoreboard['league_scoreboard'] = get_scoreboard_table(competition.id)
-        competitions_scoreboard.append(scoreboard)
+    competitions_scoreboard = {}
+
+    for single_match in single_matches:
+        competition_id = single_match.match.competition_id
+        if competition_id not in competitions_scoreboard:
+            competitions_scoreboard[competition_id] = {
+                'id': competition_id,
+                'name': single_match.match.competition.name,
+                'league_scoreboard': None,
+                'single_matches': [],
+            }
+        competitions_scoreboard[competition_id]['single_matches'].append(
+            single_match
+        )
+
+    competitions_scoreboard = list(competitions_scoreboard.values())
+    for competition_data in competitions_scoreboard:
+        competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
+            competition_data['single_matches']
+        )
 
     return render(request, 'scoreboard/group_table_challenge.html', {
-        'tables': competitions_scoreboard
+        'tables': sorted(competitions_scoreboard, key=lambda x: -x['id'])
     })

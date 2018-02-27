@@ -124,7 +124,7 @@ LANGUAGES = (
 )
 LANGUAGE_CODE = 'fa'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -200,5 +200,8 @@ LOGGING = {
 # this time delta is in minutes
 SINGLE_MATCH_SUBMISSION_TIME_DELTA = 20
 
-ENABLE_REGISTRATION = False
+ENABLE_REGISTRATION = True
 
+if TESTING:
+    RECAPTCHA_TESTING = True
+    LANGUAGE_CODE = 'en'
