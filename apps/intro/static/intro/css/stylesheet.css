@@ -159,3 +159,74 @@
 
     /*background: white;*/
 /*}*/
+
+
+/*Counter*/
+.countdown {
+    /*display: block;*/
+    /*position: relative;*/
+    /*clear: both;*/
+    /*height: auto;*/
+    /*padding-top: 100px;*/
+    /*background-size: cover;*/
+}
+
+#clockdiv {
+    display: block;
+    color: #fff;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+
+#clockdiv > div {
+    padding: 10px;
+    border-radius: 3px;
+    display: inline-block;
+    width: 90px;
+}
+
+#clockdiv div > span {
+    padding: 15px;
+    border-radius: 3px;
+    display: inline-block;
+    width: 70px;
+}
+
+.smalltext {
+    padding-top: 5px;
+    font-size: 16px;
+}
+
+
+.days {
+    background-color: #991e38;
+}
+
+.days_div{
+    background-color: #e07384;
+}
+
+.hours {
+    background-color: #de8731;
+}
+
+.hours_div{
+    background-color: #f1cd6e;
+}
+
+.minutes {
+    background-color: #61a6a1;
+}
+
+.minutes_div{
+    background-color: #aad0b9;
+}
+
+.seconds {
+    background-color: #1f5590;
+}
+
+.seconds_div{
+    background-color: #55a8d1;
+}
