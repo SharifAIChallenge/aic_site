@@ -35,8 +35,10 @@ def get_scoreboard_table_from_single_matches(competition_single_matches):
             }
 
         if winner_participant.object_id != loser_participant.object_id:
-            teams_status[winner_participant.object_id]['score'] += single_match.get_score_for_participant(winner_participant)
-            teams_status[loser_participant.object_id]['score'] += single_match.get_score_for_participant(loser_participant)
+            teams_status[winner_participant.object_id]['score'] += single_match.get_score_for_participant(
+                winner_participant)
+            teams_status[loser_participant.object_id]['score'] += single_match.get_score_for_participant(
+                loser_participant)
 
         teams_status[winner_participant.object_id]['win_num'] += 1
         teams_status[winner_participant.object_id]['total_num'] += 1
@@ -45,7 +47,15 @@ def get_scoreboard_table_from_single_matches(competition_single_matches):
         teams_status[loser_participant.object_id]['total_num'] += 1
 
     teams_status = [value for key, value in teams_status.items()]
-    teams_status = sorted(teams_status, key=lambda x: (-x['score'], x['team_pc'].get_final_submission().time))
+
+    def compare(x, y):
+        if x['score'] > y['score'] or x['team_pc'].get_final_submission().time < y['team_pc'].get_final_submission().time:
+            return -1
+        else:
+            return 1
+
+    import functools
+    teams_status = sorted(teams_status, key=functools.cmp_to_key(compare))
     count = 1
     for team_status in teams_status:
         team_status['rank'] = count
