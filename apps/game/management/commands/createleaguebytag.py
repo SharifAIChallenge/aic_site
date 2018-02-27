@@ -56,7 +56,7 @@ class Command(BaseCommand):
 
         teams_status = get_scoreboard_table_tag(options['ref_tag'])
 
-        submitters = list(m(lambda x: x['team'], teams_status))
+        submitters = list(map(lambda x: x['team'], teams_status))
         submitters.remove(dummy_team)
         for submitter in submitters:
             print(submitter.name)
