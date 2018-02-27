@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 00:57+0330\n"
+"POT-Creation-Date: 2018-02-27 03:30+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,6 @@ msgid "done"
 msgstr "انجام‌شده"
 
 #: apps/game/admin.py:103
-#| msgid "Waiting"
 msgid "waiting"
 msgstr "در حال انتظار"
 

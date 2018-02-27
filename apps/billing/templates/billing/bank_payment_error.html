@@ -24,22 +24,15 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-
-                <p>
-{#                    todo: translation #}
-                    پرداخت شما با خطای زیر مواجه شده است:
-                </p>
-                <p class="muted">{{ error }}</p>
-                <p>
-                    برای دیدن پرداخت‌ها به
-                    <a href="{% url 'billing:payments_list' participation_id=participation_id %}">این صفحه</a>
-                    و برای پرداخت دوباره به
-                    <a href="{% url 'billing:request_payment' participation_id=participation_id %}">این صفحه</a>
-                    بروید.
-                </p>
-
-                <div>{{ error }}</div>
-
+                <div class="ui red message">
+                    <p>
+                        {% trans 'Transaction failed with this message: ' %}
+                    </p>
+                    <p class="muted">{{ error }}</p>
+                </div>
+                <div>
+                    <a href="{% url 'billing:request_payment' participation_id=participation_id %}" class="ui primary button">{% trans 'Try again' %}</a>
+                </div>
             </div>
         </div>
     </div>

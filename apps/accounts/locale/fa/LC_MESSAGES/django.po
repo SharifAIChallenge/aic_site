@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 00:57+0330\n"
+"POT-Creation-Date: 2018-02-27 03:30+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr "شماره ی تلفن ثابت"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:4
 #: apps/accounts/templates/accounts/panel/battle_history.html:6
-#: apps/accounts/views/panel.py:50
+#: apps/accounts/views/panel.py:51
 msgid "Battle history"
 msgstr "بازی‌های دوستانه"
 
@@ -222,7 +222,7 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:7
 #: apps/accounts/templates/accounts/panel/submissions.html:53
-#: apps/accounts/views/panel.py:49
+#: apps/accounts/views/panel.py:50
 msgid "Submissions"
 msgstr "ارسال‌ها"
 
@@ -316,7 +316,7 @@ msgstr ""
 
 #: apps/accounts/templates/accounts/oldpanel/team_management.html:5
 #: apps/accounts/templates/accounts/panel/team_management.html:6
-#: apps/accounts/views/panel.py:48
+#: apps/accounts/views/panel.py:49
 msgid "Team Status"
 msgstr "وضعیت تیم"
 
@@ -468,11 +468,11 @@ msgstr "تیم شما با موفقیت ساخته شد"
 msgid "Request messages has bee sent to your teammates"
 msgstr "درخواست عضویت به هم تیمی های شما فرستاده شد"
 
-#: apps/accounts/views/panel.py:64
+#: apps/accounts/views/panel.py:67
 msgid "Friendly Scoreboard"
 msgstr "رده‌بندی دوستانه"
 
-#: apps/accounts/views/panel.py:77
+#: apps/accounts/views/panel.py:80
 msgid "League"
 msgstr "لیگ"
 
