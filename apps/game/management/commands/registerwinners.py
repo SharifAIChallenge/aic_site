@@ -36,16 +36,18 @@ class Command(BaseCommand):
         teams = [team_status['team'] for team_status in teams_status]
 
         try:
-            challege = Challenge.objects.get(id=options['challenge_id'])
+            challenge = Challenge.objects.get(id=options['challenge_id'])
         except Challenge.DoesNotExist:
             raise CommandError('Invalid challenge id')
 
         for team in teams:
-            team_pc = Challenge.objects.create(team=team, challege=challege)
+            team_pc = TeamParticipatesChallenge.objects.create(team=team, challenge=challenge)
             for participation in team.participants.all():
                 UserAcceptsTeamInChallenge.objects.create(
                     user=participation.user,
                     team=team_pc
                 )
+                participation.user.profile.panel_active_teampc = team_pc
+                participation.user.profile.save()
 
         self.stdout.write(self.style.SUCCESS('Successfully registered users.'))
