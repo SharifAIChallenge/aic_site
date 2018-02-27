@@ -11,7 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from apps.game import functions
 from apps.game.models import Competition, TeamSubmission, SingleMatch, Challenge
-from apps.game.utils import get_scoreboard_table_competition, get_scoreboard_table_tag
+from apps.game.utils import get_scoreboard_table_competition, get_scoreboard_table_tag, \
+    get_scoreboard_table_from_single_matches
 
 logger = logging.getLogger(__name__)
 
@@ -226,22 +227,37 @@ def map_maker(request):
 
 
 def render_challenge_league(request, challenge_id):
-    # print(challenge_id)
-    ch = Challenge.objects.first()
-    # print(ch)
-    challenge = get_object_or_404(Challenge, pk=challenge_id)
-    competitions = Competition.objects.filter(challenge=challenge, type='league').order_by('-id')
+    single_matches = SingleMatch.objects.filter(
+        match__competition__challenge_id=challenge_id,
+        match__competition__type='league'
+    ).prefetch_related(
+        'match').prefetch_related(
+        'match__part1__depend__team').prefetch_related(
+        'match__part2__depend__team').prefetch_related(
+        'match__competition').prefetch_related(
+    ).filter(status='done')
 
-    competitions_scoreboard = []
-    for competition in competitions:
-        scoreboard = {
-            'id': competition.id,
-            'name': competition.name,
-            'league_scoreboard': get_scoreboard_table_competition(competition.id),
-            'single_matches': SingleMatch.objects.filter(match__competition=competition),
-        }
-        competitions_scoreboard.append(scoreboard)
+    competitions_scoreboard = {}
+
+    for single_match in single_matches:
+        competition_id = single_match.match.competition_id
+        if competition_id not in competitions_scoreboard:
+            competitions_scoreboard[competition_id] = {
+                'id': competition_id,
+                'name': single_match.match.competition.name,
+                'league_scoreboard': None,
+                'single_matches': [],
+            }
+        competitions_scoreboard[competition_id]['single_matches'].append(
+            single_match
+        )
+
+    competitions_scoreboard = list(competitions_scoreboard.values())
+    for competition_data in competitions_scoreboard:
+        competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
+            competition_data['competition']
+        )
 
     return render(request, 'scoreboard/group_table_challenge.html', {
-        'tables': competitions_scoreboard
+        'tables': reversed(competitions_scoreboard)
     })
