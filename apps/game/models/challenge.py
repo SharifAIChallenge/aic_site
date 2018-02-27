@@ -58,6 +58,10 @@ class TeamParticipatesChallenge(models.Model):
         from apps.billing.models import Transaction
         return Transaction.objects.filter(team=self, status='v').exists()
 
+    @property
+    def is_complete(self):
+        return self.team.participants.count() == self.challenge.team_size
+
     class Meta:
         unique_together = ('team', 'challenge')
         verbose_name_plural = 'Team Participates In Challenges'

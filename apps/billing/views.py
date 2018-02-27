@@ -3,19 +3,17 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-
+from django.shortcuts import redirect, render
 from django.utils.translation import ugettext_lazy as _
 
-from django.shortcuts import redirect, render
-
-from apps.accounts.decorators import complete_profile_required
-from apps.accounts.views import team_required_and_finalized
+from apps.accounts.decorators import complete_team_required
 from apps.billing.forms.forms import UserCompletionForm
 from apps.game.models import TeamParticipatesChallenge
 from .models import Transaction
 
 
 @login_required
+@complete_team_required
 def payment(request, participation_id):
     participation = get_object_or_404(TeamParticipatesChallenge, id=participation_id)
     if not participation.should_pay or participation.has_paid:

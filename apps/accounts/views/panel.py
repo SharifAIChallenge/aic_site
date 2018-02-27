@@ -53,6 +53,8 @@ def get_shared_context(request):
 
     if request.user.profile:
         if request.user.profile.panel_active_teampc:
+            if request.user.profile.panel_active_teampc.should_pay and not request.user.profile.panel_active_teampc.has_paid:
+                context['payment'] = request.user.profile.panel_active_teampc
             if request.user.profile.panel_active_teampc.challenge.competitions.filter(
                     type='friendly'
             ).exists():
@@ -99,6 +101,8 @@ def change_team_pc(request, team_pc):
 @login_required
 def submissions(request):
     team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
     context = get_shared_context(request)
 
     for item in context['menu_items']:
@@ -135,23 +139,27 @@ def submissions(request):
     return render(request, 'accounts/panel/submissions.html', context)
 
 
+def redirect_to_somewhere_better(request):
+    if Challenge.objects.filter(is_submission_open=True).exists():
+        return HttpResponseRedirect(
+            reverse(
+                'accounts:create_team',
+                args=[Challenge.objects.get(is_submission_open=True).id]
+            )
+        )
+    else:
+        return HttpResponseRedirect(reverse(
+            'intro:index'
+        ))
+
+
 @login_required
 def team_management(request, participation_id=None):
     if participation_id is not None:
         return change_team_pc(request, participation_id)
     team_pc = get_team_pc(request)
     if team_pc is None:
-        if Challenge.objects.filter(is_submission_open=True).exists():
-            return HttpResponseRedirect(
-                reverse(
-                    'accounts:create_team',
-                    args=[Challenge.objects.get(is_submission_open=True).id]
-                )
-            )
-        else:
-            return HttpResponseRedirect(reverse(
-                'intro:index'
-            ))
+        return redirect_to_somewhere_better(request)
     context = get_shared_context(request)
     for item in context['menu_items']:
         if item['name'] == 'team_management':
@@ -186,9 +194,12 @@ def team_management(request, participation_id=None):
     return render(request, 'accounts/panel/team_management.html', context)
 
 
+@payment_required
 @login_required
 def battle_history(request):
     team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
     context = get_shared_context(request)
     for item in context['menu_items']:
         if item['name'] == 'battle_history':

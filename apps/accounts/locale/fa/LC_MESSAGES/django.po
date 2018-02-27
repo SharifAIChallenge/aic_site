@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 03:30+0330\n"
+"POT-Creation-Date: 2018-02-27 04:20+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -353,6 +353,18 @@ msgstr "تمام اعضا شرکت در مسابقه را تایید کرده‌
 msgid "All users haven't accepted the challenge yet!"
 msgstr "هنوز همه اعضا شرکت در مسابقه را تایید نکرده‌اند."
 
+#: apps/accounts/templates/accounts/panel/messages.html:31
+msgid "You have to complete the team and pay to continue to this challenge."
+msgstr "برای ادامه کار در این چالش باید تیم خود را تکمیل کرده و پرداخت کنید."
+
+#: apps/accounts/templates/accounts/panel/messages.html:37
+msgid "Pay"
+msgstr "پرداخت"
+
+#: apps/accounts/templates/accounts/panel/messages.html:39
+msgid "Complete team"
+msgstr "تکمیل تیم"
+
 #: apps/accounts/templates/accounts/panel/team_management.html:66
 msgid "You have not participated in this challenge yet."
 msgstr "شما در این چالش شرکت نکرده‌اید."
@@ -468,11 +480,11 @@ msgstr "تیم شما با موفقیت ساخته شد"
 msgid "Request messages has bee sent to your teammates"
 msgstr "درخواست عضویت به هم تیمی های شما فرستاده شد"
 
-#: apps/accounts/views/panel.py:67
+#: apps/accounts/views/panel.py:69
 msgid "Friendly Scoreboard"
 msgstr "رده‌بندی دوستانه"
 
-#: apps/accounts/views/panel.py:80
+#: apps/accounts/views/panel.py:82
 msgid "League"
 msgstr "لیگ"
 
