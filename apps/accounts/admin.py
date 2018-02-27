@@ -42,5 +42,8 @@ class ProfileAdmin(ImportExportModelAdmin):
     list_filter = ['user__teams__team__challenges__challenge']
     resource_class = ProfileResource
 
+    def lookup_allowed(self, lookup, value):
+        return True
+
 
 admin.site.register(Profile, ProfileAdmin)
