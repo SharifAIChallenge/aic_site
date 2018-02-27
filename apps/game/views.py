@@ -255,7 +255,7 @@ def render_challenge_league(request, challenge_id):
     competitions_scoreboard = list(competitions_scoreboard.values())
     for competition_data in competitions_scoreboard:
         competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
-            competition_data['competition']
+            competition_data['single_matches']
         )
 
     return render(request, 'scoreboard/group_table_challenge.html', {
