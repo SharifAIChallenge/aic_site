@@ -49,6 +49,19 @@ class TeamParticipatesChallenge(models.Model):
     team = models.ForeignKey(Team, related_name='challanges')
     challenge = models.ForeignKey(Challenge, related_name='teams')
 
+    @property
+    def should_pay(self):
+        return self.challenge.entrance_price > 0
+
+    @property
+    def has_paid(self):
+        from apps.billing.models import Transaction
+        return Transaction.objects.filter(team=self, status='v').exists()
+
+    @property
+    def is_complete(self):
+        return self.team.participants.count() == self.challenge.team_size
+
     class Meta:
         unique_together = ('team', 'challenge')
         verbose_name_plural = 'Team Participates In Challenges'
@@ -71,12 +84,6 @@ class TeamParticipatesChallenge(models.Model):
         for user_participation in user_participations:
             ok &= UserAcceptsTeamInChallenge.objects.filter(team=self, user=user_participation.user).exists()
         return ok
-
-    def has_payed(self):
-        """
-        :rtype: bool
-        """
-        pass
 
     def get_final_submission(self):
         """

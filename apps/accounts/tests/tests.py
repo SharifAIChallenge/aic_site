@@ -50,7 +50,7 @@ def populate_challenges():
     challenge.registration_end_time = challenge.end_time
     challenge.registration_open = True
     challenge.team_size = 3
-    challenge.entrance_price = 1000
+    challenge.entrance_price = 0
     game = Game()
     game.name = "AIC 2018"
     game.save()
@@ -120,7 +120,7 @@ class TestTeam(TransactionTestCase):
 
         self.assertEqual(len(team0_matches), 2)
 
-    def test_panel(self):
+    def test_panel_submission(self):
         # prepare data
         teams = Team.objects.all()
         challenge = Challenge.objects.all()[0]

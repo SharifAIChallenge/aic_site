@@ -3,25 +3,41 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% for invitation in invitations %}
-        <div class="ui info message">
-            <i onclick="window.location.href='{% url "accounts:reject_participation" invitation.id %}';"
-               class="close icon"></i>
-            <div class="header">
-                <p>{% trans 'You are invited to the team ' %}"{{ invitation.team }}"{% trans ' on the challenge ' %}"{{ invitation.challenge }}"{% trans ', do you accept?' %}</p>
-                <p>{% trans 'Members are:' %}</p>
-            </div>
-            <ul class="list">
-                {% for participant in invitation.team.participants.all %}
-                    <li>{{ participant.user.username }}: {{ participant.user.first_name }} {{ participant.user.last_name }}</li>
-                {% endfor %}
-            </ul>
-            <br>
-            <div class="ui buttons">
-                <a href="{% url 'accounts:accept_participation' invitation.id %}"
-                   class="ui right aligned green button">{% trans 'Accept' %}</a>
-                <a href="{% url 'accounts:reject_participation' invitation.id %}"
-                   class="ui right aligned red button">{% trans 'Reject' %}</a>
-            </div>
+    <div class="ui info message">
+        <i onclick="window.location.href='{% url "accounts:reject_participation" invitation.id %}';"
+           class="close icon"></i>
+        <div class="header">
+            <p>{% trans 'You are invited to the team ' %}"{{ invitation.team }}"{% trans ' on the challenge ' %}"{{ invitation.challenge }}"{% trans ', do you accept?' %}</p>
+            <p>{% trans 'Members are:' %}</p>
         </div>
+        <ul class="list">
+            {% for participant in invitation.team.participants.all %}
+                <li>{{ participant.user.username }}: {{ participant.user.first_name }} {{ participant.user.last_name }}</li>
+            {% endfor %}
+        </ul>
+        <br>
+        <div class="ui buttons">
+            <a href="{% url 'accounts:accept_participation' invitation.id %}"
+               class="ui right aligned green button">{% trans 'Accept' %}</a>
+            <a href="{% url 'accounts:reject_participation' invitation.id %}"
+               class="ui right aligned red button">{% trans 'Reject' %}</a>
+        </div>
+    </div>
 {% endfor %}
-    
+
+{% if payment %}
+    <div class="ui info message">
+        <div class="header">
+            <p>{% trans 'You have to complete the team and pay to continue to this challenge.' %}</p>
+        </div>
+        <br>
+        <a href="{% url 'billing:request_payment' payment.id %}"
+           class="ui right aligned green button">
+            {% if payment.is_complete %}
+                {% trans 'Pay' %}
+            {% else %}
+                {% trans 'Complete team' %}
+            {% endif %}
+        </a>
+    </div>
+{% endif %}
