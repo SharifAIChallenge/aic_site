@@ -9,7 +9,7 @@ from django.urls import reverse
 from apps.accounts.forms.panel import ChallengeATeamForm
 from apps.accounts.forms.team_forms import CreateTeamForm, AddParticipationForm
 from apps.accounts.models import UserParticipatesOnTeam
-from apps.accounts.views import panel
+from apps.accounts.views import panel, get_team_pc
 from apps.game.models.challenge import TeamParticipatesChallenge, TeamSubmission
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
 
@@ -105,6 +105,7 @@ def add_participation(request, participation_id):
 
 @login_required
 def success_create_team(request):
+    get_team_pc(request)
     return render(request, 'accounts/teams/success_create_team.html',
                   {
                       'last_participation_id': request.user.profile.panel_active_teampc.id

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-25 10:43+0330\n"
+"POT-Creation-Date: 2018-02-27 15:50+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,8 +35,6 @@ msgid "done"
 msgstr "انجام‌شده"
 
 #: apps/game/admin.py:103
-#, fuzzy
-#| msgid "Waiting"
 msgid "waiting"
 msgstr "در حال انتظار"
 
@@ -76,51 +74,51 @@ msgstr "تیمی انتخاب نشده است!"
 msgid "Only teams from one challenge!"
 msgstr "تنها میتوانید از تیم‌های یک چالش انتخاب کنید!"
 
-#: apps/game/models/challenge.py:57 apps/game/models/challenge.py:60
+#: apps/game/models/challenge.py:72 apps/game/models/challenge.py:75
 msgid "None"
 msgstr "هیچ!"
 
-#: apps/game/models/challenge.py:63
+#: apps/game/models/challenge.py:78
 msgid "Team: "
 msgstr "تیم:‌"
 
-#: apps/game/models/challenge.py:63
+#: apps/game/models/challenge.py:78
 msgid "Challenge: "
 msgstr "چالش:‌"
 
-#: apps/game/models/challenge.py:111
+#: apps/game/models/challenge.py:120
 msgid "C++"
 msgstr "++C"
 
-#: apps/game/models/challenge.py:112
+#: apps/game/models/challenge.py:121
 msgid "Java"
 msgstr "جاوا"
 
-#: apps/game/models/challenge.py:113
+#: apps/game/models/challenge.py:122
 msgid "Python 3"
 msgstr "پایتون ۳"
 
-#: apps/game/models/challenge.py:117
+#: apps/game/models/challenge.py:126
 msgid "Uploading"
 msgstr "در حال آپلود"
 
-#: apps/game/models/challenge.py:118
+#: apps/game/models/challenge.py:127
 msgid "Uploaded"
 msgstr "آپلود شده"
 
-#: apps/game/models/challenge.py:119
+#: apps/game/models/challenge.py:128
 msgid "Compiling"
 msgstr "در حال کامپایل"
 
-#: apps/game/models/challenge.py:120
+#: apps/game/models/challenge.py:129
 msgid "Compiled"
 msgstr "کامپایل شده"
 
-#: apps/game/models/challenge.py:121 apps/game/models/competition.py:661
+#: apps/game/models/challenge.py:130 apps/game/models/competition.py:656
 msgid "Failed"
 msgstr "ناموفق!"
 
-#: apps/game/models/challenge.py:143
+#: apps/game/models/challenge.py:152
 msgid "This submission is not compiled yet."
 msgstr "این ارسال هنوز کامپایل نشده است."
 
@@ -140,27 +138,27 @@ msgstr "لیگ"
 msgid "Friendly"
 msgstr "دوستانه"
 
-#: apps/game/models/competition.py:314
+#: apps/game/models/competition.py:315
 msgid "Winner"
 msgstr "برنده"
 
-#: apps/game/models/competition.py:315
+#: apps/game/models/competition.py:316
 msgid "Loser"
 msgstr "بازنده"
 
-#: apps/game/models/competition.py:316
+#: apps/game/models/competition.py:317
 msgid "Itself"
 msgstr "خودش"
 
-#: apps/game/models/competition.py:660
+#: apps/game/models/competition.py:655
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: apps/game/models/competition.py:662
+#: apps/game/models/competition.py:657
 msgid "Done"
 msgstr "انجام شده"
 
-#: apps/game/models/competition.py:663
+#: apps/game/models/competition.py:658
 msgid "Waiting"
 msgstr "در حال انتظار"
 
@@ -172,56 +170,55 @@ msgstr "دسته برنده‌ها"
 msgid "Losers bracket"
 msgstr "دسته بازنده‌ها"
 
-#: apps/game/templates/scoreboard/friendly_match_scoreboard.html:9
 #: apps/game/templates/scoreboard/group_table.html:10
 #: apps/game/templates/scoreboard/group_table_challenge.html:10
+#: apps/game/templates/scoreboard/match_scoreboard.html:9
 msgid "Scoreboard"
 msgstr "جدول رده‌بندی"
 
-#: apps/game/templates/scoreboard/friendly_match_scoreboard.html:13
 #: apps/game/templates/scoreboard/group_table.html:14
-#: apps/game/templates/scoreboard/group_table_challenge.html:15
+#: apps/game/templates/scoreboard/group_table_challenge.html:18
+#: apps/game/templates/scoreboard/match_scoreboard.html:13
 msgid "Rank"
 msgstr "رتبه"
 
-#: apps/game/templates/scoreboard/friendly_match_scoreboard.html:14
 #: apps/game/templates/scoreboard/group_table.html:15
-#: apps/game/templates/scoreboard/group_table_challenge.html:16
+#: apps/game/templates/scoreboard/group_table_challenge.html:19
+#: apps/game/templates/scoreboard/match_scoreboard.html:14
 msgid "Name"
 msgstr "نام تیم"
 
-#: apps/game/templates/scoreboard/friendly_match_scoreboard.html:15
 #: apps/game/templates/scoreboard/group_table.html:16
-#: apps/game/templates/scoreboard/group_table_challenge.html:17
+#: apps/game/templates/scoreboard/match_scoreboard.html:15
 msgid "Score"
 msgstr "امتیاز"
 
-#: apps/game/templates/scoreboard/friendly_match_scoreboard.html:16
 #: apps/game/templates/scoreboard/group_table.html:17
+#: apps/game/templates/scoreboard/match_scoreboard.html:16
 msgid "Total"
 msgstr "مجموع"
 
-#: apps/game/templates/scoreboard/friendly_match_scoreboard.html:17
 #: apps/game/templates/scoreboard/group_table.html:18
-#: apps/game/templates/scoreboard/group_table_challenge.html:18
+#: apps/game/templates/scoreboard/group_table_challenge.html:20
+#: apps/game/templates/scoreboard/match_scoreboard.html:17
 msgid "Wins"
 msgstr "بردها"
 
-#: apps/game/templates/scoreboard/friendly_match_scoreboard.html:18
 #: apps/game/templates/scoreboard/group_table.html:19
-#: apps/game/templates/scoreboard/group_table_challenge.html:19
+#: apps/game/templates/scoreboard/group_table_challenge.html:21
+#: apps/game/templates/scoreboard/match_scoreboard.html:18
 msgid "Loses"
 msgstr "باخت‌ها"
 
-#: apps/game/templates/scoreboard/group_table_challenge.html:38
+#: apps/game/templates/scoreboard/group_table_challenge.html:39
 msgid "View/Hide Games"
 msgstr "نمایش/مخفی‌کردن بازی‌ها"
 
-#: apps/game/templates/scoreboard/group_table_challenge.html:46
+#: apps/game/templates/scoreboard/group_table_challenge.html:47
 msgid "In "
 msgstr "در "
 
-#: apps/game/templates/scoreboard/group_table_challenge.html:50
+#: apps/game/templates/scoreboard/group_table_challenge.html:51
 msgid "View"
 msgstr "نمایش"
 

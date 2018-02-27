@@ -60,6 +60,7 @@ def menu(request):
         }
     }
 
+
     if request.user.is_authenticated():
         context['ai']['sidebar'][_('Account')]['dropdown'][_('Logout')] = reverse('accounts:logout')
     else:

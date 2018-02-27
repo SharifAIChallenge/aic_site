@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block meta_title %}{% trans 'Bank payment' %}{% endblock %}
+{% block title %}{% trans 'Bank payment' %}{% endblock %}
+{% block extra_head %}
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <div class="col s12 m12 l8 offset-l2">
+            <div class="card-panel">
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">&times;</button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                <p>{{  participation.team.name}}</p>
+                <table class="table-striped">
+                    <tr>
+                        <th>تاریخ</th>
+                        <th>مبلغ</th>
+                        <th>وضعیت</th>
+                    </tr>
+                {% for transaction in payments %}
+                    <tr>
+                        <td>{{ transaction.created }}</td>
+                        <td>{{ transaction.amount }}</td>
+                        <td>
+                            {% if transaction.status == 'v' %}
+                                موفق
+                            {% elif transaction.status == 'u' %}
+                                ناشناخته
+                            {% else %}
+                                ناموفق
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </table>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
