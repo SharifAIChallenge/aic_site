@@ -259,5 +259,5 @@ def render_challenge_league(request, challenge_id):
         )
 
     return render(request, 'scoreboard/group_table_challenge.html', {
-        'tables': reversed(competitions_scoreboard)
+        'tables': sorted(competitions_scoreboard, key=lambda x: -x['id'])
     })
