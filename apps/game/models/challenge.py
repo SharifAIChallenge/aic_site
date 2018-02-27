@@ -46,7 +46,7 @@ class Challenge(models.Model):
 
 
 class TeamParticipatesChallenge(models.Model):
-    team = models.ForeignKey(Team, related_name='challanges')
+    team = models.ForeignKey(Team, related_name='challenges')
     challenge = models.ForeignKey(Challenge, related_name='teams')
 
     @property
