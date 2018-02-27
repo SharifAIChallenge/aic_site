@@ -43,13 +43,13 @@
                 {% for single_match in table.single_matches %}
                 <tr>
                     {% if single_match.winner == single_match.match.part1.depend %}
-                    <td class="ui background green">{{ single_match.match.part1.depend.team.name }}</td>
+                    <td style="background: cyan">{{ single_match.match.part1.depend.team.name }}</td>
                     <td>VS</td>
-                    <td class="ui background red">{{ single_match.match.part2.depend.team.name }}</td>
+                    <td style="background: pink">{{ single_match.match.part2.depend.team.name }}</td>
                     {% else %}
-                    <td class="ui background red">{{ single_match.match.part1.depend.team.name }}</td>
+                    <td style="background: pink">{{ single_match.match.part1.depend.team.name }}</td>
                     <td>VS</td>
-                    <td class="ui background green">{{ single_match.match.part2.depend.team.name }}</td>
+                    <td style="background: cyan">{{ single_match.match.part2.depend.team.name }}</td>
                     {% endif %}
 
                     <td>{% trans 'In ' %} {{ single_match.map.name }}</td>
