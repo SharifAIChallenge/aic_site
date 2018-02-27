@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 04:20+0330\n"
+"POT-Creation-Date: 2018-02-27 15:50+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -490,8 +490,7 @@ msgstr "نوشته‌های اخیر"
 msgid "Recent comments"
 msgstr "نظرات اخیر"
 
-#: templates/zinnia/category_list.html:4
-#: templates/zinnia/category_list.html:11
+#: templates/zinnia/category_list.html:4 templates/zinnia/category_list.html:11
 msgid "Category list"
 msgstr "لیست موضوعات"
 
@@ -591,8 +590,7 @@ msgstr "هفته قبل"
 msgid "Next week"
 msgstr "هفته بعد"
 
-#: templates/zinnia/entry_archive_year.html:15
-#: templates/zinnia/sitemap.html:38
+#: templates/zinnia/entry_archive_year.html:15 templates/zinnia/sitemap.html:38
 msgid "Monthly archives"
 msgstr "بایگانی ماهانه"
 

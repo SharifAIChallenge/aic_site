@@ -1,4 +1,5 @@
 from .base import *
+from .production_secret import *
 
 DEBUG = True
 ALLOWED_HOSTS = ['*']

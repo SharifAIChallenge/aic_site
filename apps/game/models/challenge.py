@@ -60,7 +60,9 @@ class TeamParticipatesChallenge(models.Model):
 
     @property
     def is_complete(self):
-        return self.team.participants.count() == self.challenge.team_size
+        return UserAcceptsTeamInChallenge.objects.filter(
+            team=self
+        ).count() == self.challenge.team_size
 
     class Meta:
         unique_together = ('team', 'challenge')
