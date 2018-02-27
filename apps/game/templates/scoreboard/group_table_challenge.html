@@ -55,8 +55,7 @@
                     <td>
                         {% if single_match.log %}
                         <a class="ui label"
-                           href="{% url 'game:game viewer' %}?log_url={{ single_match.log.name }}&first_team={{ single_match.match.part1.depend.team.name|urlencode }}&second_team={{ single_match.match.part2.depend.team.name|urlencode }}">{%
-                            trans 'View' %}</a>
+                           href="{% url 'game:game viewer' %}?log_url={{ single_match.log.name }}&first_team={{ single_match.match.part1.depend.team.name|urlencode }}&second_team={{ single_match.match.part2.depend.team.name|urlencode }}">{% trans 'View' %}</a>
                         {% else %}
                         <div class="ui label">{{ single_match.status }}</div>
                         {% endif %}
