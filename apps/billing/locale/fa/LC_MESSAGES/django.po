@@ -54,7 +54,7 @@ msgstr ""
 
 #: apps/billing/templates/billing/bank_payment.html:41
 msgid "Amount (for all members):"
-msgstr "مبلغ قابل پرداخت (برای کل اعضای تیم):"
+msgstr "مبلغ قابل پرداخت (این مبلغ برای کل تیم است و کافی است یکی از اعضای تیم این مبلغ را پرداخت کند تا ثبت‌نام نهائی گردد):"
 
 #: apps/billing/templates/billing/bank_payment.html:41
 msgid "Rials"
