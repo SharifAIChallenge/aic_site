@@ -88,13 +88,11 @@ class AddParticipationForm(Form):
 
     def is_valid(self):
         valid = super(Form, self).is_valid()
-        if not self.challenge.can_register():
-            self.add_error(None, _("Registration is not open."))
-            return False
-        member1_username = self.cleaned_data.get('member1', '')
-
         if not valid:
             return valid
+
+        member1_username = self.cleaned_data.get('member1', '')
+
         if UserAcceptsTeamInChallenge.objects.filter(user__username=member1_username,
                                                      team__challenge=self.challenge).count() > 0:
             self.add_error(None, _("The user is already participating in this challenge"))
