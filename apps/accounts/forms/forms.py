@@ -52,13 +52,7 @@ class SignUpForm(UserCreationForm):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user)
             })
-            send_mail(subject='Activate Your Account',
-                      message=email_text,
-                      from_email='Sharif AI Challenge <info@aichallenge.ir>',
-                      recipient_list=[user.email],
-                      fail_silently=False,
-                      html_message=email_html
-                      )
+
             profile = Profile(
                 user=user,
                 phone_number=self.cleaned_data['phone_number'],
@@ -66,6 +60,14 @@ class SignUpForm(UserCreationForm):
                 age=self.cleaned_data['age']
             )
             profile.save()
+
+            send_mail(subject='Activate Your Account',
+                      message=email_text,
+                      from_email='Sharif AI Challenge <info@aichallenge.ir>',
+                      recipient_list=[user.email],
+                      fail_silently=False,
+                      html_message=email_html
+                      )
 
         return user
 
