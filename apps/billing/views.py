@@ -11,6 +11,10 @@ from apps.billing.forms.forms import UserCompletionForm
 from apps.game.models import TeamParticipatesChallenge
 from .models import Transaction
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 @login_required
 @complete_team_required
@@ -22,11 +26,17 @@ def payment(request, participation_id):
         form = UserCompletionForm(request.POST, instance=request.user.profile)
         if form.is_valid():
             profile = form.save()
+            callback_url = request.build_absolute_uri(
+                reverse(
+                    'billing:complete_payment',
+                    args=[participation_id]
+                )) + '?'
+
+            logger.error(callback_url)
+
             url, t = Transaction.begin_transaction(profile=profile,
                                                    amount=participation.challenge.entrance_price,
-                                                   callback_url=request.build_absolute_uri(
-                                                       reverse('billing:complete_payment',
-                                                               args=[participation_id])) + '?',
+                                                   callback_url=callback_url,
                                                    participation=participation,
                                                    )
             if url:
