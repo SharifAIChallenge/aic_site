@@ -10,7 +10,7 @@ class UserCompletionForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'phone_number', 'tel_number', 'national_code')
+        fields = ('first_name', 'last_name', 'phone_number', 'tel_number', 'national_code', 'organization')
 
     def clean_national_code(self):
         national_code = self.cleaned_data['national_code']
