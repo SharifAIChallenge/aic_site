@@ -81,7 +81,7 @@ msgstr "شماره موبایل"
 
 #: apps/accounts/models.py:10
 msgid "Organization‌"
-msgstr "سازمان"
+msgstr "دانشگاه/مدرسه"
 
 #: apps/accounts/models.py:11
 msgid "Age‌"
