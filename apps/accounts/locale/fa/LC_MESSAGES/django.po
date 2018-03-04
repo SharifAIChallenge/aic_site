@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 15:50+0330\n"
+"POT-Creation-Date: 2018-03-04 15:58+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,7 +47,7 @@ msgstr "بین هر دو بازی دوستانه باید حداقل %(minutes)s
 msgid "Required,Choose a suitable name for your team"
 msgstr "انتخاب نام تیم لازم است!"
 
-#: apps/accounts/forms/team_forms.py:20 apps/accounts/forms/team_forms.py:92
+#: apps/accounts/forms/team_forms.py:20
 msgid "Registration is not open."
 msgstr "ثبت نام هم‌اکنون باز نیست."
 
@@ -67,11 +67,11 @@ msgstr "لطفا دو کاربر تکراری برای تیم انتخاب نک�
 msgid "Some of the users are already participating in this challenge"
 msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
 
-#: apps/accounts/forms/team_forms.py:100
+#: apps/accounts/forms/team_forms.py:98
 msgid "The user is already participating in this challenge"
 msgstr "بعضی از کاربران انتخاب شده قبلا در این رقابت شرکت کرده‌اند!"
 
-#: apps/accounts/forms/team_forms.py:103
+#: apps/accounts/forms/team_forms.py:101
 msgid "No more capacity in this challenge."
 msgstr "تیم در این چالش دیگر ظرفیت ندارد!"
 
