@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-27 15:50+0330\n"
+"POT-Creation-Date: 2018-03-04 15:58+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,9 @@ msgstr ""
 
 #: apps/billing/templates/billing/bank_payment.html:41
 msgid "Amount (for all members):"
-msgstr "مبلغ قابل پرداخت (این مبلغ برای کل تیم است و کافی است یکی از اعضای تیم این مبلغ را پرداخت کند تا ثبت‌نام نهائی گردد):"
+msgstr ""
+"مبلغ قابل پرداخت (این مبلغ برای کل تیم است و کافی است یکی از اعضای تیم این "
+"مبلغ را پرداخت کند تا ثبت‌نام نهائی گردد):"
 
 #: apps/billing/templates/billing/bank_payment.html:41
 msgid "Rials"
@@ -76,15 +78,15 @@ msgstr "تلاش مجدد"
 msgid "Transaction was successful. You will be returned to panel."
 msgstr "تراکنش موفق بود. شما به زودی به پنل بازخواهید گشت."
 
-#: apps/billing/views.py:47
+#: apps/billing/views.py:57
 msgid "You have unverified payment(s)."
 msgstr "شما تراکنشهایی تاییدنشده دارید."
 
-#: apps/billing/views.py:49
+#: apps/billing/views.py:59
 msgid "There is nothing to pay for."
 msgstr "چیزی برای پرداخت وجود ندارد."
 
-#: apps/billing/views.py:51
+#: apps/billing/views.py:61
 msgid "You have already paid."
 msgstr "شما قبلا پرداخت کرده‌اید."
 
