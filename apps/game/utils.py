@@ -1,6 +1,8 @@
 from operator import itemgetter
 
-from apps.game.models import SingleMatch
+from django.utils import timezone
+
+from apps.game.models import SingleMatch, Competition
 
 
 def get_scoreboard_table_from_single_matches(competition_single_matches):
@@ -69,16 +71,26 @@ def get_scoreboard_table_from_single_matches(competition_single_matches):
 
 
 def get_scoreboard_table_competition(competition_id):
-    competition_single_matches = SingleMatch.objects.filter(match__competition_id=competition_id).prefetch_related(
-        'match').prefetch_related(
-        'match__part1__depend__team').prefetch_related(
-        'match__part2__depend__team').filter(status='done')
-    return get_scoreboard_table_from_single_matches(competition_single_matches)
+    return get_scoreboard_table({
+        'id': competition_id
+    })
 
 
 def get_scoreboard_table_tag(tag):
-    competition_single_matches = SingleMatch.objects.filter(match__competition__tag__exact=tag).prefetch_related(
-        'match').prefetch_related(
-        'match__part1__depend__team').prefetch_related(
-        'match__part2__depend__team').filter(status='done')
+    return get_scoreboard_table({
+        'tag__exact': tag
+    })
+
+
+def get_scoreboard_table(args):
+    competition = Competition.objects.get(**args)
+    freeze_time = timezone.now() if competition.get_freeze_time() is None else competition.get_freeze_time()
+
+    competition_single_matches = SingleMatch.objects \
+        .filter(match__competition=competition) \
+        .prefetch_related('match') \
+        .prefetch_related('match__part1__depend__team') \
+        .prefetch_related('match__part2__depend__team') \
+        .filter(status='done') \
+        .filter(time__lte=freeze_time)
     return get_scoreboard_table_from_single_matches(competition_single_matches)
