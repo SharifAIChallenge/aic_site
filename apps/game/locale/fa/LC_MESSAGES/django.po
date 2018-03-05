@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-04 15:58+0330\n"
+"POT-Creation-Date: 2018-03-05 14:54+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,14 +139,14 @@ msgid "Friendly"
 msgstr "دوستانه"
 
 #: apps/game/models/competition.py:315
-#: apps/game/templates/scoreboard/group_table_challenge.html:49
-#: apps/game/templates/scoreboard/group_table_challenge.html:73
+#: apps/game/templates/scoreboard/group_table_challenge.html:48
+#: apps/game/templates/scoreboard/group_table_challenge.html:72
 msgid "Winner"
 msgstr "برنده"
 
 #: apps/game/models/competition.py:316
-#: apps/game/templates/scoreboard/group_table_challenge.html:57
-#: apps/game/templates/scoreboard/group_table_challenge.html:65
+#: apps/game/templates/scoreboard/group_table_challenge.html:56
+#: apps/game/templates/scoreboard/group_table_challenge.html:64
 msgid "Loser"
 msgstr "بازنده"
 
@@ -214,20 +214,22 @@ msgstr "بردها"
 msgid "Loses"
 msgstr "باخت‌ها"
 
-#: apps/game/templates/scoreboard/group_table_challenge.html:81
-#: apps/game/templates/scoreboard/group_table_challenge.html:89
+#: apps/game/templates/scoreboard/group_table_challenge.html:39
+msgid "View/Hide Games"
+msgstr "نمایش/مخفی‌کردن بازی‌ها"
+
+#: apps/game/templates/scoreboard/group_table_challenge.html:80
+#: apps/game/templates/scoreboard/group_table_challenge.html:88
 msgid "Unknown"
 msgstr "نامعلوم"
 
-#: apps/game/templates/scoreboard/group_table_challenge.html:95
+#: apps/game/templates/scoreboard/group_table_challenge.html:94
 msgid "In "
 msgstr "در "
 
-#~ msgid "View/Hide Games"
-#~ msgstr "نمایش/مخفی‌کردن بازی‌ها"
-
-#~ msgid "View"
-#~ msgstr "نمایش"
+#: apps/game/templates/scoreboard/group_table_challenge.html:98
+msgid "View"
+msgstr "نمایش"
 
 #~ msgid "Team"
 #~ msgstr "تیم"
