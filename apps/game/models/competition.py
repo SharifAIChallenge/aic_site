@@ -426,7 +426,10 @@ class Match(models.Model):
                 have_waiting = True
 
         if (not have_running) and (not have_failed) and (not have_waiting):
-            return 'done'
+            if have_done:
+                return 'done'
+            else:
+                return 'waiting'
 
         if have_running:
             status_result = 'running'
