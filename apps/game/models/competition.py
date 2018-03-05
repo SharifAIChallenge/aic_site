@@ -525,20 +525,11 @@ class Match(models.Model):
 
     def get_participant_result(self, participant):
         if self.status == 'done':
-            score1 = self.get_score_for_participant(self.part1)
-            score2 = self.get_score_for_participant(self.part2)
-            # print(score1)
-            # print(score2)
-            if score1 != score2:
-                if score1 > score2 and self.part1 == participant:
-                    return 'winner'
-                else:
-                    return 'loser'
+            winner = self.winner()
+            if winner == participant.submission:
+                return 'winner'
             else:
-                if self.part1.submission.time <= self.part2.submission.time and self.part1 == participant:
-                    return 'winner'
-                else:
-                    return 'loser'
+                return 'loser'
         else:
             return 'notdone'
             # raise ValueError('Match is not done completely!')
