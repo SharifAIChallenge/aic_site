@@ -341,7 +341,10 @@ class Participant(models.Model):
             name = str(self.depend.team.name)
         elif self.depend.__class__.__name__ == 'Match':
             if self.depend.status == 'done':
-                name = str(self.depend.get_team(self.depend_method).team.name)
+                try:
+                    name = str(self.depend.get_team(self.depend_method).team.name)
+                except AttributeError:
+                    name = self.depend_method + ' of match ' + str(self.object_id)
             else:
                 name = self.depend_method + ' of match ' + str(self.object_id)
         return name
