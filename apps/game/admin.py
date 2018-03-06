@@ -52,7 +52,7 @@ class GameAdmin(admin.ModelAdmin):
 
 class ChallengeAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Challenge', {'fields': ['title', 'description', 'registration_open']}),
+        ('Challenge', {'fields': ['title', 'description', 'registration_open', 'scoreboard_freeze_time']}),
         ('Challenge Information', {'fields': ['game', 'team_size', 'entrance_price']}),
         ('Challenge Timing', {'fields': ['registration_start_time', 'registration_end_time',
                                          'start_time', 'end_time', 'is_submission_open']})
@@ -66,7 +66,7 @@ class ChallengeAdmin(admin.ModelAdmin):
 
 
 class CompetitionAdmin(admin.ModelAdmin):
-    fields = ['name', 'type', 'challenge']
+    fields = ['name', 'type', 'challenge', 'scoreboard_freeze_time']
 
     inlines = [MatchInline, MapInline]
     list_display = ('name', 'type')
