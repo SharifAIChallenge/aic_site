@@ -242,7 +242,6 @@ def render_challenge_league(request, challenge_id):
     single_matches = SingleMatch.objects.filter(
         match__competition__challenge_id=challenge_id,
         match__competition__type='league',
-        time__lte=freeze_time
     ).prefetch_related(
         'match').prefetch_related(
         'match__part1__depend__team').prefetch_related(
@@ -261,20 +260,18 @@ def render_challenge_league(request, challenge_id):
                 'league_scoreboard': None,
                 'single_matches': [],
             }
-        competitions_scoreboard[competition_id]['single_matches'].append(
-            single_match
-        )
+        if single_match.time <= freeze_time:
+            competitions_scoreboard[competition_id]['single_matches'].append(
+                single_match
+            )
 
     for competition_data in competitions_scoreboard.values():
         competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
             competition_data['single_matches']
         )
+        competition_data['single_matches'] = []
 
     if request.user.is_staff:
-        single_matches = SingleMatch.objects.filter(
-            match__competition__challenge_id=challenge_id,
-            match__competition__type='league'
-        )
         for single_match in single_matches:
             competition_id = single_match.match.competition_id
             if competition_id not in competitions_scoreboard:
