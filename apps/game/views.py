@@ -50,6 +50,14 @@ def render_double_elimination(request, competition_id):
         .prefetch_related('match__part2__depend__team') \
         .filter(status='done') \
         .filter(time__lte=freeze_time)
+    freeze_time = timezone.now() if competition.get_freeze_time() is None or request.user.is_staff else competition.get_freeze_time()
+    single_matches = SingleMatch.objects \
+        .filter(match__competition=competition) \
+        .prefetch_related('match') \
+        .prefetch_related('match__part1__depend__team') \
+        .prefetch_related('match__part2__depend__team') \
+        .filter(status='done') \
+        .filter(time__lte=freeze_time)
     win_matches = []
     lose_matches = []
     cur_round_length = int((len(matches) + 1) / 4)  # for 16 teams there is 31 matches and cur_round_length is 8
@@ -271,7 +279,7 @@ def render_challenge_league(request, challenge_id):
                 single_match
             )
 
-    for competition_data in competitions_scoreboard.values():
+    for competition_key, competition_data in competitions_scoreboard.values():
         competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
             competition_data['single_matches']
         )
@@ -290,6 +298,27 @@ def render_challenge_league(request, challenge_id):
             competitions_scoreboard[competition_id]['single_matches'].append(
                 single_match
             )
+
+    competitions_scoreboard = list(competitions_scoreboard.values())
+
+    if request.user.is_staff:
+        single_matches = SingleMatch.objects.filter(
+            match__competition__challenge_id=challenge_id,
+            match__competition__type='league'
+        )
+        for single_match in single_matches:
+            competition_id = single_match.match.competition_id
+            if competition_id not in competitions_scoreboard:
+                competitions_scoreboard[competition_id] = {
+                    'id': competition_id,
+                    'name': single_match.match.competition.name,
+                    'league_scoreboard': None,
+                    'single_matches': [],
+                }
+            competitions_scoreboard[competition_id]['single_matches'].append(
+                single_match
+            )
+        pass
 
     competitions_scoreboard = list(competitions_scoreboard.values())
 
