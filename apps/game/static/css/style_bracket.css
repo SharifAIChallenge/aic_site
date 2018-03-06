@@ -1,8 +1,51 @@
-#two_brackets {
-    margin-top: 50px;
+#two_brackets .ui.bottom.attached.segment {
     overflow-y:scroll;
 }
 
-#bracket_1, #bracket_2 {
-    min-width: 1100px;
+div.bracket{
+    min-width: 2600px;
 }
+
+.bot .ui.image.mini.label{
+    width: 100% !important;
+}
+
+
+
+/*****/
+.bracket-game {
+  max-width: 185px;
+  margin: 10px 0;
+}
+.player {
+  height: 21px;
+  min-width: 185px;
+  /* border: 1px solid #AAA; */
+  padding-left: 0px;
+}
+.player.top {
+  /* border-radius: 0px 0px 0 0; */
+}
+.player.bot {
+  /* border-radius: 0 0 0px 0px; */
+}
+.player .score {
+  display: inline;
+  float: right;
+  border-left: 1px solid #AAA;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: #EEE;
+}
+.player.win {
+  /* background-color: #B8F2B8; */
+}
+.player.loss {
+  /* background-color: #F2B8B8; */
+}
+.connectors {
+  float: left;
+  min-width: 35px;
+}
+
+/******/

@@ -96,7 +96,7 @@ function initializeClock(id, endtime) {
 
 // start date of SAIC18 wednesday 16 Esfand 96 (7 Mars 2018)
 
-var deadline = new Date(Date.parse(new Date("Febuary 22, 2018 09:00:00")) + 15 * 24 * 60 * 60 * 1000);
+var deadline = new Date(Date.parse(new Date(2018, 1, 21, 20, 0, 0, 0)) + 15 * 24 * 60 * 60 * 1000);
 initializeClock('clockdiv', deadline);
 
 

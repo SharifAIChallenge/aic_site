@@ -21,3 +21,8 @@ msgstr ""
 #: aic_site/context_processors.py:9
 msgid "Home"
 msgstr "خانه"
+
+#: aic_site/apps/game/template/scoreboard/single_match_table.html:46
+#: aic_site/apps/game/template/scoreboard/single_match_table.html:54
+msgid "Unknown"
+msgstr "نامعلوم"

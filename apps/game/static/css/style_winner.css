@@ -49,43 +49,6 @@
     margin-top: 400px;
 }
 
-/*****/
-#bracket_1 .bracket-game {
-  max-width: 125px;
-  margin: 10px 0;
-}
-#bracket_1 .player {
-  height: 21px;
-  min-width: 100px;
-  /* border: 1px solid #AAA; */
-  padding-left: 0px;
-}
-#bracket_1 .player.top {
-  /* border-radius: 0px 0px 0 0; */
-}
-#bracket_1 .player.bot {
-  /* border-radius: 0 0 0px 0px; */
-}
-#bracket_1 .player .score {
-  display: inline;
-  float: right;
-  border-left: 1px solid #AAA;
-  padding-left: 10px;
-  padding-right: 10px;
-  background: #EEE;
-}
-#bracket_1 .player.win {
-  /* background-color: #B8F2B8; */
-}
-#bracket_1 .player.loss {
-  /* background-color: #F2B8B8; */
-}
-#bracket_1 .connectors {
-  float: left;
-  min-width: 35px;
-}
-
-/******/
 
 #bracket_1 .connectors.layer2 .top-line {
   position: relative;
