@@ -265,7 +265,7 @@ def render_challenge_league(request, challenge_id):
             single_match
         )
 
-    for competition_key, competition_data in competitions_scoreboard:
+    for competition_data in competitions_scoreboard.values():
         competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
             competition_data['single_matches']
         )
@@ -287,7 +287,6 @@ def render_challenge_league(request, challenge_id):
             competitions_scoreboard[competition_id]['single_matches'].append(
                 single_match
             )
-        pass
 
     competitions_scoreboard = list(competitions_scoreboard.values())
 
