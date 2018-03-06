@@ -29,14 +29,14 @@ class Competition(models.Model):
     challenge = models.ForeignKey(Challenge, related_name='competitions')
     name = models.CharField(max_length=128, null=True)
     type = models.CharField(max_length=128, choices=TYPE_CHOICES)
+    tag = models.CharField(max_length=128, null=True)
 
     def save(self):
-        # print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         super(Competition, self).save()
-        # print(self.maps.all())
+        if self.type == 'friendly':
+            return
         for map in self.maps.all():
             for match in self.matches.all():
-                # print('ooooooooooooooooooooooooooooooooooooooooooo')
                 if len(SingleMatch.objects.filter(match=match, map=map)) == 0:
                     SingleMatch.objects.create(match=match, map=map)
 
@@ -402,12 +402,12 @@ class Match(models.Model):
 
     @property
     def status(self):
-        STATUS_CHOICES = (
-            ('running', _('Running')),
-            ('failed', _('Failed')),
-            ('done', _('Done')),
-            ('waiting', _('Waiting')),
-        )
+        # STATUS_CHOICES = (
+        #     ('running', _('Running')),
+        #     ('failed', _('Failed')),
+        #     ('done', _('Done')),
+        #     ('waiting', _('Waiting')),
+        # )
         have_running = False
         have_failed = False
         have_done = False
@@ -421,14 +421,17 @@ class Match(models.Model):
                 have_done = True
             if single_match.status == 'waiting':
                 have_waiting = True
-        if (not have_running) and (not have_failed) and (not have_waiting) and have_done:
+
+        if (not have_running) and (not have_failed) and (not have_waiting):
             return 'done'
-        status_result = 'waiting'
-        if have_waiting:
-            status_result = 'waiting'
 
         if have_running:
             status_result = 'running'
+        if have_waiting:
+            status_result = 'waiting'
+        if have_failed:
+            status_result = 'failed'
+
         return status_result
 
     def ensure_submissions(self):
@@ -572,19 +575,13 @@ class Match(models.Model):
         elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
             return self.part2.submission
         else:
-            raise ValueError('Participants\' score can\'t be equal')
+            return self.part1.submission if self.part1.submission.time < self.part2.submission.time \
+                else self.part2.submission
 
     def loser(self):
-        if self.status != 'done':
-            raise ValueError('Match is not done completely! why do yo call it ? :/')
-        if self.part1 is None or self.part2 is None:
-            raise ValueError('Participants can\'t be None')
-        elif self.part1.get_score_for_match(self) > self.part2.get_score_for_match(self):
-            return self.part2.submission
-        elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
-            return self.part1.submission
-        else:
-            raise ValueError('Participants\' score can\'t be equal')
+        winner = self.winner()
+        return self.part2.submission if winner == self.part1.submission \
+            else self.part1.submission
 
     def done_match(self):
         single_matches = self.single_matches.all()
@@ -603,21 +600,25 @@ class Match(models.Model):
             logger.error("Match :" + str(self) + " is not ready.")
             raise Http404("Match :" + str(self) + " is not ready.")
         try:
-            from apps.game import functions
             single_matches = self.single_matches.all()
-            answers = functions.run_matches(single_matches)
-            for i in range(len(answers)):
-                answer = answers[i]
-                single_match = single_matches[i]
-                if answer['success']:
-                    single_match.infra_token = answer['run_id']
-                    single_match.status = 'running'
-                    single_match.save()
-                else:
-                    logger.error(answer)
-                    single_match.status = 'failed'
-                    single_match.save()
-                    # raise Http404(str(answer))
+            logger.error("I'm here")
+            for single_match in single_matches:
+                single_match.handle()
+            # answers = functions.run_matches(single_matches)
+            # logger.error(answers.__str__())
+            # for i in range(len(answers)):
+            #     answer = answers[i]
+            #     single_match = single_matches[i]
+            #     if answer['success']:
+            #         single_match.infra_token = answer['run_id']
+            #         logger.error(answer.__str__())
+            #         single_match.status = 'running'
+            #         single_match.save()
+            #     else:
+            #         logger.error(answer)
+            #         single_match.status = 'failed'
+            #         single_match.save()
+            #         # raise Http404(str(answer))
 
         except Exception as e:
             logger.error(e)
@@ -681,11 +682,10 @@ class SingleMatch(models.Model):
         self.save()
 
     def get_score_for_participant(self, participant):
-        if self.match.part1 == participant:
-            return self.part1_score
-        elif self.match.part2 == participant:
-            return self.part2_score
-        return None
+        if self.winner() == participant:
+            return 1
+        else:
+            return 0
 
     def done_manually(self):
         self.status = 'done'
@@ -718,6 +718,7 @@ class SingleMatch(models.Model):
             answer = functions.run_matches([self])[0]
             if answer['success']:
                 self.infra_token = answer['run_id']
+                logger.error(answer.__str__())
                 self.status = 'running'
                 self.save()
             else:

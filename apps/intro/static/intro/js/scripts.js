@@ -38,4 +38,67 @@ $(document).ready(function(){
 
 
 
+function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    'total': t,
+    'days': days,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+
+function englishToPersian(value) {
+    var nValue = "";
+    for (var i = 0; i < value.length; i++) {
+        var ch = value.charCodeAt(i);
+        if (ch >= 48 && ch <= 57) { // For Persian digits.
+            var nChar = ch + 1728;
+            nValue = nValue + String.fromCharCode(nChar);
+        } else if (ch >= 1632 && ch <= 1641) { // For Arabic & Unix digits.
+            var newChar = ch + 144;
+            nValue = nValue + String.fromCharCode(newChar);
+        } else {
+            nValue = nValue + String.fromCharCode(ch);
+        }
+    }
+    return nValue;
+}
+
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector('.days');
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+
+    daysSpan.innerHTML = englishToPersian(t.days.toString());
+    hoursSpan.innerHTML = englishToPersian(('0' + t.hours).slice(-2));
+    minutesSpan.innerHTML = englishToPersian(('0' + t.minutes).slice(-2));
+    secondsSpan.innerHTML = englishToPersian(('0' + t.seconds).slice(-2));
+
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
+
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+
+// start date of SAIC18 wednesday 16 Esfand 96 (7 Mars 2018)
+
+var deadline = new Date(Date.parse(new Date("Febuary 22, 2018 09:00:00")) + 15 * 24 * 60 * 60 * 1000);
+initializeClock('clockdiv', deadline);
+
+
+
 

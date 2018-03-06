@@ -168,7 +168,7 @@ class MatchAdmin(admin.ModelAdmin):
 
     actions = ['run_selected_matches']
     list_display = ('id', 'competition', 'part1', 'part2', 'status', 'is_ready_to_run')
-    list_filter = ['competition', StatusListFilter, IsReadyToRunListFilter]
+    list_filter = ['competition', 'competition__tag', StatusListFilter, IsReadyToRunListFilter]
 
     # search_fields = []
     def run_selected_matches(self, request, queryset):
@@ -193,19 +193,20 @@ class MatchAdmin(admin.ModelAdmin):
 
         for match in matches:
             match.ensure_submissions()
-            for single_match in match.single_matches.all():
-                single_matches.append(single_match)
+            match.handle()
+            # for single_match in match.single_matches.all():
+            #     single_matches.append(single_match)
 
-        from apps.game import functions
-        matches_details = functions.run_matches(single_matches)
+        # from apps.game import functions
+        # matches_details = functions.run_matches(single_matches)
         # print(matches_details)
-        cnt = 0
-        for match in matches:
-            for single_match in match.single_matches.all():
-                if matches_details[cnt]['success'] == True:
-                    single_match.status = 'running'
-                    single_match.save()
-                cnt += 1
+        # cnt = 0
+        # for match in matches:
+        #     for single_match in match.single_matches.all():
+        #         if matches_details[cnt]['success'] == True:
+        #             single_match.status = 'running'
+        #             single_match.save()
+        #         cnt += 1
         # for match in matches:
         #     for single_match in match.single_matches.all():
         #         print(single_match.status)

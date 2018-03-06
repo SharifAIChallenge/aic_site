@@ -22,7 +22,7 @@ services:
     build: .
     container_name: aic_test_web_cont
     restart: always
-    command: bash -c "cd .. && python3 manage.py migrate && python3 manage.py compilemessages && python3 manage.py collectstatic <<< yes && gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
+    command: bash -c "cd .. && python3 manage.py compilemessages && python3 manage.py collectstatic <<< yes && gunicorn -b 0.0.0.0:8000 --workers=4 aic_site.wsgi"
     volumes:
       - ./static/root:/root/aic_site/static/root
       - ../media_test/root:/root/aic_site/media
