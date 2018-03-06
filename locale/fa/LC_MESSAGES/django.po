@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-19 09:54+0000\n"
+"POT-Creation-Date: 2018-03-05 14:54+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,70 +18,93 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: aic_site/context_processors.py:9 aic_site/context_processors.py:23
+#: aic_site/context_processors.py:11 aic_site/context_processors.py:31
 msgid "Home"
 msgstr "خانه"
 
-#: aic_site/context_processors.py:11
+#: aic_site/context_processors.py:13
 msgid "Main Page"
 msgstr "صفحه‌ی اصلی"
 
-#: aic_site/context_processors.py:12 aic_site/context_processors.py:25
+#: aic_site/context_processors.py:14 aic_site/context_processors.py:33
 msgid "Introduction"
 msgstr "معرفی"
 
-#: aic_site/context_processors.py:13 aic_site/context_processors.py:26
+#: aic_site/context_processors.py:15 aic_site/context_processors.py:34
 msgid "Prize"
 msgstr "جایزه"
 
-#: aic_site/context_processors.py:14 aic_site/context_processors.py:27
+#: aic_site/context_processors.py:16 aic_site/context_processors.py:35
 msgid "History"
 msgstr "تاریخ"
 
-#: aic_site/context_processors.py:15 aic_site/context_processors.py:28
+#: aic_site/context_processors.py:17 aic_site/context_processors.py:36
 msgid "Schedule"
 msgstr "برنامه"
 
-#: aic_site/context_processors.py:16 aic_site/context_processors.py:34
+#: aic_site/context_processors.py:18 aic_site/context_processors.py:42
 msgid "FAQ"
 msgstr "سوالات متداول"
 
-#: aic_site/context_processors.py:17 aic_site/context_processors.py:35
+#: aic_site/context_processors.py:19 aic_site/context_processors.py:37
+msgid "Contact Us"
+msgstr "تماس با ما"
+
+#: aic_site/context_processors.py:22
+msgid "Access"
+msgstr "دسترسی"
+
+#: aic_site/context_processors.py:24 aic_site/context_processors.py:48
+msgid "Panel"
+msgstr "پنل"
+
+#: aic_site/context_processors.py:25
+msgid "Resources"
+msgstr "منابع"
+
+#: aic_site/context_processors.py:26 aic_site/context_processors.py:43
 #: templates/base/navbar.html:59
 msgid "Blog and Q&A"
 msgstr "وبلاگ و پرسش و پاسخ"
 
-#: aic_site/context_processors.py:18 aic_site/context_processors.py:29
-msgid "Contact Us"
-msgstr "تماس با ما"
-
-#: aic_site/context_processors.py:32 templates/zinnia/base.html:26
+#: aic_site/context_processors.py:40 templates/zinnia/base.html:26
 msgid "Blog"
 msgstr "بلاگ"
 
-#: aic_site/context_processors.py:38
+#: aic_site/context_processors.py:46
 msgid "Game"
 msgstr "بازی"
 
-#: aic_site/context_processors.py:40 templates/base/navbar.html:23
-msgid "Panel"
-msgstr "پنل"
-
-#: aic_site/context_processors.py:41
+#: aic_site/context_processors.py:49
 msgid "Game Viewer"
 msgstr "نمایشگر بازی"
 
-#: aic_site/context_processors.py:42
+#: aic_site/context_processors.py:50
 msgid "Map Maker"
 msgstr "نقشه ساز"
 
-#: aic_site/context_processors.py:45
+#: aic_site/context_processors.py:53 aic_site/context_processors.py:65
+#: aic_site/context_processors.py:67
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: aic_site/context_processors.py:47 templates/base/navbar.html:42
+#: aic_site/context_processors.py:56 aic_site/context_processors.py:71
+#: aic_site/context_processors.py:78
+msgid "Scoreboard"
+msgstr "جدول رده‌بندی"
+
+#: aic_site/context_processors.py:65 templates/base/navbar.html:42
 msgid "Logout"
 msgstr "خروج"
+
+#: aic_site/context_processors.py:67 templates/base/navbar.html:47
+#: templates/zinnia/login.html:34
+msgid "Login"
+msgstr "ورود"
+
+#: aic_site/context_processors.py:78
+msgid "League"
+msgstr "لیگ"
 
 #: aic_site/settings/base.py:122
 msgid "English"
@@ -93,53 +116,53 @@ msgstr "فارسی"
 
 #: templates/400.html:6
 msgid "400"
-msgstr ""
+msgstr "۴۰۰"
 
 #: templates/400.html:7
 msgid "Bad request"
-msgstr ""
+msgstr "درخواست نادرست"
 
 #: templates/400.html:9
 msgid "Sorry, but the request was malformed."
-msgstr ""
+msgstr "متاسفیم اما درخواست شما ساختار درستی نداشت"
 
 #: templates/403.html:6
 msgid "403"
-msgstr ""
+msgstr "۴۰۳"
 
 #: templates/403.html:7
 msgid "Permission denied"
-msgstr ""
+msgstr "دسترسی ممنوع است."
 
 #: templates/403.html:9
 msgid "Sorry, but you don't have the permission to do this action."
-msgstr ""
+msgstr "متاسفیم اما شما دسترسی ندارید."
 
 #: templates/404.html:6
 msgid "404"
-msgstr ""
+msgstr "۴۰۴"
 
 #: templates/404.html:7
 msgid "Page not found"
-msgstr ""
+msgstr "صفحه مورد نظر یافت نشد."
 
 #: templates/404.html:9
 msgid "Sorry, but the requested page could not be found."
-msgstr ""
+msgstr "متاسفیم اما صفحه مورد نظر یافت نشد."
 
 #: templates/500.html:6
 msgid "500"
-msgstr ""
+msgstr "۵۰۰"
 
 #: templates/500.html:7
 msgid "Server error"
-msgstr ""
+msgstr "ایراد سرور"
 
 #: templates/500.html:8
 msgid ""
 "There's been an error. It's been reported to the site administrators via e-"
 "mail and should be fixed shortly. Thanks for your patience."
-msgstr ""
+msgstr "مشکلی داخلی در سرور رخ داد."
 
 #: templates/base/footer.html:20
 msgid ""
@@ -151,10 +174,6 @@ msgstr ""
 "\n"
 "تمامی حقوق  برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
 "مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. "
-
-#: templates/base/navbar.html:47 templates/zinnia/login.html:34
-msgid "Login"
-msgstr "ورود"
 
 #: templates/base/navbar.html:51
 msgid "Register"
@@ -974,6 +993,59 @@ msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
 
+#~ msgid "First name"
+#~ msgstr "نام"
+
+#~ msgid "Last name"
+#~ msgstr "نام خانوادگی"
+
+#~ msgid "Entered national code is not valid"
+#~ msgstr "کد ملی وارد شده معتبر نیست."
+
+#~ msgid "Bank payment"
+#~ msgstr "پرداخت بانکی"
+
+#~ msgid ""
+#~ "\n"
+#~ "                                    You are paying for team "
+#~ "%(team_name)s.\n"
+#~ "                                "
+#~ msgstr ""
+#~ "\n"
+#~ "                     پرداخت برای تیم %(team_name)s\n"
+#~ "                "
+
+#~ msgid "Amount (for all members):"
+#~ msgstr "مبلغ قابل پرداخت (برای کل اعضای تیم):"
+
+#~ msgid "Rials"
+#~ msgstr "ریالً"
+
+#~ msgid "Complete profile and pay"
+#~ msgstr "تکمیل مشخصات و پرداخت"
+
+#~ msgid "Transaction was successful. You will be returned to panel."
+#~ msgstr ""
+#~ "پرداخت شما با موفقیت انجام شد. بعد از ۵ ثانیه به صفحه‌ی تیم خود هدایت "
+#~ "خواهید شد."
+
+#~ msgid "You have unverified payment(s)."
+#~ msgstr "شما پرداختهایی تاییدنشده دارید."
+
+#~ msgid "There is nothing to pay for."
+#~ msgstr "چیزی برای پرداخت وجود ندارد."
+
+#~ msgid "You have already paid."
+#~ msgstr "شما قبلا پرداخت کرده اید."
+
+#~ msgid "Test League"
+#~ msgstr "لیگ آزمایشی"
+
+#, fuzzy
+#~| msgid "Login"
+#~ msgid "login"
+#~ msgstr "ورود"
+
 #~ msgid "Welcome!"
 #~ msgstr "خوش‌ آمدید!"
 
@@ -1090,12 +1162,3 @@ msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
 
 #~ msgid "Greetings, "
 #~ msgstr "خوش آمدید "
-
-#~ msgid ""
-#~ "\n"
-#~ "                    Greetings, %(name)s\n"
-#~ "                "
-#~ msgstr ""
-#~ "\n"
-#~ "                    %(name)s، خوش آمدید!\n"
-#~ "                "

@@ -30,6 +30,8 @@ class Challenge(models.Model):
     game = models.ForeignKey(Game)
     is_submission_open = models.BooleanField(null=False, blank=False, default=False)
 
+    scoreboard_freeze_time = models.DateTimeField(null=True, blank=True)
+
     def __str__(self):
         return self.title
 
@@ -46,8 +48,23 @@ class Challenge(models.Model):
 
 
 class TeamParticipatesChallenge(models.Model):
-    team = models.ForeignKey(Team, related_name='challanges')
+    team = models.ForeignKey(Team, related_name='challenges')
     challenge = models.ForeignKey(Challenge, related_name='teams')
+
+    @property
+    def should_pay(self):
+        return self.challenge.entrance_price > 0
+
+    @property
+    def has_paid(self):
+        from apps.billing.models import Transaction
+        return Transaction.objects.filter(team=self, status='v').exists()
+
+    @property
+    def is_complete(self):
+        return UserAcceptsTeamInChallenge.objects.filter(
+            team=self
+        ).count() == self.challenge.team_size
 
     class Meta:
         unique_together = ('team', 'challenge')
@@ -72,12 +89,6 @@ class TeamParticipatesChallenge(models.Model):
             ok &= UserAcceptsTeamInChallenge.objects.filter(team=self, user=user_participation.user).exists()
         return ok
 
-    def has_payed(self):
-        """
-        :rtype: bool
-        """
-        pass
-
     def get_final_submission(self):
         """
         :rtype: TeamSubmission
@@ -89,6 +100,9 @@ class TeamParticipatesChallenge(models.Model):
 
     def itself(self):
         return self.get_final_submission()
+
+    def has_submitted(self):
+        return self.get_final_submission() is not None
 
 
 class UserAcceptsTeamInChallenge(models.Model):

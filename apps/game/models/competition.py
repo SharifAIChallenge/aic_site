@@ -8,7 +8,8 @@ from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelatio
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.http import HttpResponseServerError, Http404
-from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _, ugettext
 
 from apps.accounts.models import Team
 from apps.game.models.challenge import Challenge, TeamSubmission, TeamParticipatesChallenge
@@ -29,14 +30,21 @@ class Competition(models.Model):
     challenge = models.ForeignKey(Challenge, related_name='competitions')
     name = models.CharField(max_length=128, null=True)
     type = models.CharField(max_length=128, choices=TYPE_CHOICES)
+    tag = models.CharField(max_length=128, null=True)
+
+    scoreboard_freeze_time = models.DateTimeField(null=True, blank=True)
+
+    def get_freeze_time(self):
+        if self.scoreboard_freeze_time is not None:
+            return self.scoreboard_freeze_time
+        return self.challenge.scoreboard_freeze_time
 
     def save(self):
-        # print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
         super(Competition, self).save()
-        # print(self.maps.all())
+        if self.type == 'friendly':
+            return
         for map in self.maps.all():
             for match in self.matches.all():
-                # print('ooooooooooooooooooooooooooooooooooooooooooo')
                 if len(SingleMatch.objects.filter(match=match, map=map)) == 0:
                     SingleMatch.objects.create(match=match, map=map)
 
@@ -341,9 +349,12 @@ class Participant(models.Model):
             name = str(self.depend.team.name)
         elif self.depend.__class__.__name__ == 'Match':
             if self.depend.status == 'done':
-                name = str(self.depend.get_team(self.depend_method).team.name)
+                try:
+                    name = str(self.depend.get_team(self.depend_method).team.name)
+                except AttributeError:
+                    name = ugettext('Unknown')
             else:
-                name = self.depend_method + ' of match ' + str(self.object_id)
+                name = ugettext('Unknown')
         return name
 
     def get_team(self):
@@ -358,7 +369,7 @@ class Participant(models.Model):
         if self.depend is None:
             return True
         else:
-            if self. depend.__class__.__name__ == 'TeamParticipatesChallenge':
+            if self.depend.__class__.__name__ == 'TeamParticipatesChallenge':
                 return True
             elif self.depend.__class__.__name__ == 'Match' and self.depend.status == 'done':
                 return True
@@ -373,6 +384,9 @@ class Participant(models.Model):
         self.submission = func()
         self.save()
 
+    def itself(self):
+        return self.submission
+
 
 def get_log_file_directory(instance, filename):
     return os.path.join('logs', filename + str(uuid.uuid4()))
@@ -383,9 +397,6 @@ class Match(models.Model):
     part1 = models.ForeignKey(Participant, related_name='mathces_as_first')
     part2 = models.ForeignKey(Participant, related_name='matches_as_second')
     dependers = GenericRelation(Participant, related_query_name='depends')
-    infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
-    infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
-    log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
     time = models.DateTimeField(auto_now_add=True, null=True)
 
     class Meta:
@@ -402,17 +413,18 @@ class Match(models.Model):
 
     @property
     def status(self):
-        STATUS_CHOICES = (
-            ('running', _('Running')),
-            ('failed', _('Failed')),
-            ('done', _('Done')),
-            ('waiting', _('Waiting')),
-        )
+        # STATUS_CHOICES = (
+        #     ('running', _('Running')),
+        #     ('failed', _('Failed')),
+        #     ('done', _('Done')),
+        #     ('waiting', _('Waiting')),
+        # )
+        freeze_time = timezone.now() if self.competition.get_freeze_time() is None else self.competition.get_freeze_time()
         have_running = False
         have_failed = False
         have_done = False
         have_waiting = False
-        for single_match in self.single_matches.all():
+        for single_match in self.single_matches.filter(time__lte=freeze_time):
             if single_match.status == 'running':
                 have_running = True
             if single_match.status == 'failed':
@@ -421,15 +433,25 @@ class Match(models.Model):
                 have_done = True
             if single_match.status == 'waiting':
                 have_waiting = True
-        if (not have_running) and (not have_failed) and (not have_waiting) and have_done:
-            return 'done'
-        status_result = 'waiting'
-        if have_waiting:
-            status_result = 'waiting'
+
+        if (not have_running) and (not have_failed) and (not have_waiting):
+            if have_done:
+                return 'done'
+            else:
+                return 'waiting'
 
         if have_running:
             status_result = 'running'
+        if have_waiting:
+            status_result = 'waiting'
+        if have_failed:
+            status_result = 'failed'
+
         return status_result
+
+    def ensure_submissions(self):
+        self.part1.update_depend()
+        self.part2.update_depend()
 
     def get_participant_or_team(self, part):
         res = None
@@ -444,7 +466,7 @@ class Match(models.Model):
                 res = part
         return res
 
-    def get_team(self, participant_result): # participant_result = ['winner', 'loser'] <- depend_method
+    def get_team(self, participant_result):  # participant_result = ['winner', 'loser'] <- depend_method
         if self.status != 'done':
             raise ValueError('Match is not done completely! why do yo call it ? :/')
         if participant_result != 'winner' and participant_result != 'loser':
@@ -452,8 +474,8 @@ class Match(models.Model):
         if self.part1 is None or self.part2 is None:
             raise ValueError('Participants can\'t be None')
 
-        part1_result = self.get_participant_result(self.part1) # winner or loser
-        part2_result = self.get_participant_result(self.part2) # winner or loser
+        part1_result = self.get_participant_result(self.part1)  # winner or loser
+        part2_result = self.get_participant_result(self.part2)  # winner or loser
 
         if part1_result == participant_result:
             return self.part1.get_team()
@@ -483,15 +505,15 @@ class Match(models.Model):
             raise ValueError('this participant does not participate in this match')
 
     def get_match_result(self):
-
-        match_result = {}
-        match_result['part1'] = self.get_participant_properties(self.part1)
-        match_result['part2'] = self.get_participant_properties(self.part2)
+        match_result = {
+            'part1': self.get_participant_properties(self.part1),
+            'part2': self.get_participant_properties(self.part2)
+        }
 
         return match_result
 
     def get_participant_properties(self, participant):
-        '''
+        """
             format: dict
             dict keys:
                 'participant' -> team or participant
@@ -499,11 +521,12 @@ class Match(models.Model):
                 'score'
                 'color'
                 'result'
-        '''
+        """
 
-        properties = {}
-        properties['participant'] = self.get_participant_or_team(participant)
-        properties['score'] = self.get_score_for_participant(participant)
+        properties = {
+            'participant': self.get_participant_or_team(participant),
+            'score': self.get_score_for_participant(participant)
+        }
         if participant is None:
             properties['name'] = 'None'
         else:
@@ -515,20 +538,11 @@ class Match(models.Model):
 
     def get_participant_result(self, participant):
         if self.status == 'done':
-            score1 = self.get_score_for_participant(self.part1)
-            score2 = self.get_score_for_participant(self.part2)
-            # print(score1)
-            # print(score2)
-            if score1 != score2:
-                if score1 > score2 and self.part1 == participant:
-                    return 'winner'
-                else:
-                    return 'loser'
+            winner = self.winner()
+            if winner == participant.submission:
+                return 'winner'
             else:
-                if self.part1.submission.time <= self.part2.submission.time and self.part1 == participant:
-                    return 'winner'
-                else:
-                    return 'loser'
+                return 'loser'
         else:
             return 'notdone'
             # raise ValueError('Match is not done completely!')
@@ -541,10 +555,9 @@ class Match(models.Model):
         else:
             return 'gray'
 
-
-
     def is_ready_to_run(self):
-        return self.part1.is_ready_to_run() and self.part2.is_ready_to_run() and self.status != 'done' and len(self.single_matches.all()) > 0
+        return self.part1.is_ready_to_run() and self.part2.is_ready_to_run() and self.status != 'done' and len(
+            self.single_matches.all()) > 0
 
     def get_depends(self):
         """
@@ -569,19 +582,13 @@ class Match(models.Model):
         elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
             return self.part2.submission
         else:
-            raise ValueError('Participants\' score can\'t be equal')
+            return self.part1.submission if self.part1.submission.time < self.part2.submission.time \
+                else self.part2.submission
 
     def loser(self):
-        if self.status != 'done':
-            raise ValueError('Match is not done completely! why do yo call it ? :/')
-        if self.part1 is None or self.part2 is None:
-            raise ValueError('Participants can\'t be None')
-        elif self.part1.get_score_for_match(self) > self.part2.get_score_for_match(self):
-            return self.part2.submission
-        elif self.part2.get_score_for_match(self) > self.part1.get_score_for_match(self):
-            return self.part1.submission
-        else:
-            raise ValueError('Participants\' score can\'t be equal')
+        winner = self.winner()
+        return self.part2.submission if winner == self.part1.submission \
+            else self.part1.submission
 
     def done_match(self):
         single_matches = self.single_matches.all()
@@ -600,21 +607,25 @@ class Match(models.Model):
             logger.error("Match :" + str(self) + " is not ready.")
             raise Http404("Match :" + str(self) + " is not ready.")
         try:
-            from apps.game import functions
             single_matches = self.single_matches.all()
-            answers = functions.run_matches(single_matches)
-            for i in range(len(answers)):
-                answer = answers[i]
-                single_match = single_matches[i]
-                if answer['success']:
-                    single_match.infra_token = answer['run_id']
-                    single_match.status = 'running'
-                    single_match.save()
-                else:
-                    logger.error(answer)
-                    single_match.status = 'failed'
-                    single_match.save()
-                    # raise Http404(str(answer))
+            logger.error("I'm here")
+            for single_match in single_matches:
+                single_match.handle()
+            # answers = functions.run_matches(single_matches)
+            # logger.error(answers.__str__())
+            # for i in range(len(answers)):
+            #     answer = answers[i]
+            #     single_match = single_matches[i]
+            #     if answer['success']:
+            #         single_match.infra_token = answer['run_id']
+            #         logger.error(answer.__str__())
+            #         single_match.status = 'running'
+            #         single_match.save()
+            #     else:
+            #         logger.error(answer)
+            #         single_match.status = 'failed'
+            #         single_match.save()
+            #         # raise Http404(str(answer))
 
         except Exception as e:
             logger.error(e)
@@ -627,6 +638,7 @@ class Match(models.Model):
     @property
     def score2(self):
         return self.get_score_for_participant(self.part2)
+
 
 class Map(models.Model):
     file = models.FileField(blank=False, null=False)
@@ -659,10 +671,9 @@ class SingleMatch(models.Model):
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
     part1_score = models.IntegerField(null=True, blank=True)
     part2_score = models.IntegerField(null=True, blank=True)
-    time = models.DateTimeField(auto_now_add=True)
+    time = models.DateTimeField(auto_now=True)
     map = models.ForeignKey(Map)
     status = models.CharField(max_length=128, choices=STATUS_CHOICES, default='waiting')
-
 
     def __str__(self):
         str_part1 = 'None'
@@ -678,11 +689,10 @@ class SingleMatch(models.Model):
         self.save()
 
     def get_score_for_participant(self, participant):
-        if self.match.part1 == participant:
-            return self.part1_score
-        elif self.match.part2 == participant:
-            return self.part2_score
-        return None
+        if self.winner() == participant:
+            return 1
+        else:
+            return 0
 
     def done_manually(self):
         self.status = 'done'
@@ -715,6 +725,7 @@ class SingleMatch(models.Model):
             answer = functions.run_matches([self])[0]
             if answer['success']:
                 self.infra_token = answer['run_id']
+                logger.error(answer.__str__())
                 self.status = 'running'
                 self.save()
             else:
@@ -740,3 +751,21 @@ class SingleMatch(models.Model):
         self.part1_score = 1
         self.part2_score = 0
         self.save()
+
+    def winner(self):
+        if self.status != 'done':
+            return None
+        if self.part1_score > self.part2_score:
+            return self.match.part1
+        else:
+            if self.part2_score > self.part1_score:
+                return self.match.part2
+            else:
+                return self.match.part2 if self.match.part1.submission.time > self.match.part2.submission.time else self.match.part1
+
+    def loser(self):
+        winner = self.winner()
+        if winner == self.match.part1:
+            return self.match.part2
+        else:
+            return self.match.part1

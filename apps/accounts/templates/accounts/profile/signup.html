@@ -6,6 +6,13 @@
 
 {% block container %}
     <form method="post" class="ui form error">
+        {% if form.non_field_errors|length %}
+            <div class="ui red message">
+            {% for error in form.non_field_errors %}
+                {{ error }}
+            {% endfor %}
+            </div>
+        {% endif %}
         {% csrf_token %}
         <h3 class="ui dividing header">{% trans 'SignUp Form' %}</h3>
         <div class="field required">

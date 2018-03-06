@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
@@ -22,7 +23,16 @@ class SignUpForm(UserCreationForm):
     phone_regex = RegexValidator(regex=r'^\d{8,15}$',
                                  message=_("Please enter your phone number correctly!"))
     phone_number = forms.CharField(validators=[phone_regex], required=False)
+    age = forms.IntegerField(required=False)
     captcha = ReCaptchaField()
+
+    def is_valid(self):
+        if not super().is_valid():
+            return False
+        if not settings.ENABLE_REGISTRATION:
+            self.add_error(None, _('Registration is closed. See you next year.'))
+            return False
+        return True
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -42,6 +52,15 @@ class SignUpForm(UserCreationForm):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user)
             })
+
+            profile = Profile(
+                user=user,
+                phone_number=self.cleaned_data['phone_number'],
+                organization=self.cleaned_data['organization'],
+                age=self.cleaned_data['age']
+            )
+            profile.save()
+
             send_mail(subject='Activate Your Account',
                       message=email_text,
                       from_email='Sharif AI Challenge <info@aichallenge.ir>',
@@ -49,24 +68,19 @@ class SignUpForm(UserCreationForm):
                       fail_silently=False,
                       html_message=email_html
                       )
-            profile = Profile(
-                user=user,
-                phone_number=self.cleaned_data['phone_number'],
-                organization=self.cleaned_data['organization']
-            )
-            profile.save()
 
         return user
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'organization', 'phone_number', 'email', 'password1', 'password2')
+        fields = ('username', 'first_name', 'last_name', 'organization','age', 'phone_number', 'email', 'password1', 'password2')
 
 
 class UpdateProfileForm(ModelForm):
     first_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
     email = forms.EmailField(max_length=254, required=True, help_text='Required. Inform a valid email address.')
+    age = forms.IntegerField()
     password1 = forms.CharField(required=False, widget=forms.PasswordInput)
     password2 = forms.CharField(required=False, widget=forms.PasswordInput)
 
@@ -81,6 +95,8 @@ class UpdateProfileForm(ModelForm):
         user = super().save(commit=False)
         profile = user.profile
         profile.phone_number = self.cleaned_data['phone_number']
+        profile.age = self.cleaned_data['age']
+        profile.organization = self.cleaned_data['organization']
 
         if commit:
             user.save()
@@ -89,4 +105,4 @@ class UpdateProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'phone_number')
+        fields = ('first_name', 'last_name', 'email','phone_number','age', 'password1', 'password2')

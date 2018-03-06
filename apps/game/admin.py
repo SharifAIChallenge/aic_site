@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map, SingleMatch, \
+from apps.game.models import Challenge, Game, Competition, Participant, Match, TeamParticipatesChallenge, Map, \
+    SingleMatch, \
     TeamSubmission
 
 from apps.game.models.challenge import UserAcceptsTeamInChallenge
@@ -27,9 +28,9 @@ class TeamParticipatesChallengeInline(admin.StackedInline):
 
 class MatchInline(admin.StackedInline):
     model = Match
+    raw_id_fields = ['part1', 'part2']
     extra = 1
     show_change_link = True
-
 
 
 class MapInline(admin.StackedInline):
@@ -51,7 +52,7 @@ class GameAdmin(admin.ModelAdmin):
 
 class ChallengeAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Challenge', {'fields': ['title', 'description', 'registration_open']}),
+        ('Challenge', {'fields': ['title', 'description', 'registration_open', 'scoreboard_freeze_time']}),
         ('Challenge Information', {'fields': ['game', 'team_size', 'entrance_price']}),
         ('Challenge Timing', {'fields': ['registration_start_time', 'registration_end_time',
                                          'start_time', 'end_time', 'is_submission_open']})
@@ -65,7 +66,7 @@ class ChallengeAdmin(admin.ModelAdmin):
 
 
 class CompetitionAdmin(admin.ModelAdmin):
-    fields = ['name', 'type', 'challenge']
+    fields = ['name', 'type', 'challenge', 'scoreboard_freeze_time']
 
     inlines = [MatchInline, MapInline]
     list_display = ('name', 'type')
@@ -77,6 +78,7 @@ class CompetitionAdmin(admin.ModelAdmin):
 
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin import SimpleListFilter
+
 
 class StatusListFilter(SimpleListFilter):
     # Human-readable title which will be displayed in the
@@ -122,6 +124,7 @@ class StatusListFilter(SimpleListFilter):
             match_pks = [obj.pk for obj in queryset if obj.status == 'waiting']
             return queryset.filter(pk__in=match_pks)
 
+
 class IsReadyToRunListFilter(SimpleListFilter):
     # Human-readable title which will be displayed in the
     # right admin sidebar just above the filter options.
@@ -158,12 +161,14 @@ class IsReadyToRunListFilter(SimpleListFilter):
             match_pks = [obj.pk for obj in queryset if obj.is_ready_to_run() == False]
             return queryset.filter(pk__in=match_pks)
 
+
 class MatchAdmin(admin.ModelAdmin):
     fields = ['competition', 'part1', 'part2']
+    raw_id_fields = ['part1', 'part2']
 
     actions = ['run_selected_matches']
     list_display = ('id', 'competition', 'part1', 'part2', 'status', 'is_ready_to_run')
-    list_filter = ['competition', StatusListFilter, IsReadyToRunListFilter]
+    list_filter = ['competition', 'competition__tag', StatusListFilter, IsReadyToRunListFilter]
 
     # search_fields = []
     def run_selected_matches(self, request, queryset):
@@ -178,7 +183,7 @@ class MatchAdmin(admin.ModelAdmin):
         for match in matches:
             from django.contrib import messages
 
-            if (not match.is_ready_to_run()):
+            if not match.is_ready_to_run():
                 messages.error(request, _('one of selected matches is not ready!'))
                 return
 
@@ -187,23 +192,62 @@ class MatchAdmin(admin.ModelAdmin):
                 return
 
         for match in matches:
-            for single_match in match.single_matches.all():
-                single_matches.append(single_match)
+            match.ensure_submissions()
+            match.handle()
+            # for single_match in match.single_matches.all():
+            #     single_matches.append(single_match)
 
-        from apps.game import functions
-        matches_details = functions.run_matches(single_matches)
+        # from apps.game import functions
+        # matches_details = functions.run_matches(single_matches)
         # print(matches_details)
-        cnt = 0
-        for match in matches:
-            for single_match in match.single_matches.all():
-                if matches_details[cnt]['success'] == True:
-                    single_match.status = 'running'
-                    single_match.save()
-                cnt += 1
+        # cnt = 0
+        # for match in matches:
+        #     for single_match in match.single_matches.all():
+        #         if matches_details[cnt]['success'] == True:
+        #             single_match.status = 'running'
+        #             single_match.save()
+        #         cnt += 1
         # for match in matches:
         #     for single_match in match.single_matches.all():
         #         print(single_match.status)
         #     print(match.status)
+
+
+class HasSubmittedListFilter(SimpleListFilter):
+    # Human-readable title which will be displayed in the
+    # right admin sidebar just above the filter options.
+    title = _('submitted')
+
+    # Parameter for the filter that will be used in the URL query.
+    parameter_name = 'submitted'
+
+    def lookups(self, request, team_pc_admin):
+        """
+        Returns a list of tuples. The first element in each
+        tuple is the coded value for the option that will
+        appear in the URL query. The second element is the
+        human-readable name for the option that will appear
+        in the right sidebar.
+        """
+        return (
+            ('True', _('True')),
+            ('False', _('False')),
+        )
+
+    def queryset(self, request, queryset):
+        """
+        Returns the filtered queryset based on the value
+        provided in the query string and retrievable via
+        `self.value()`.
+        """
+        # Compare the requested value
+        # to decide how to filter the queryset.
+        if self.value() == 'True':
+            match_pks = [obj.pk for obj in queryset if obj.has_submitted() == True]
+            return queryset.filter(pk__in=match_pks)
+        if self.value() == 'False':
+            match_pks = [obj.pk for obj in queryset if obj.has_submitted() == False]
+            return queryset.filter(pk__in=match_pks)
 
 
 class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
@@ -211,7 +255,7 @@ class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
 
     actions = ['create_new_league', 'create_new_double_elimination']
     list_display = ('id', 'team', 'challenge')
-    list_filter = ['challenge']
+    list_filter = ['challenge', HasSubmittedListFilter]
 
     def create_new_league(self, request, queryset):
         teams = list(queryset)
@@ -255,8 +299,6 @@ class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
             [team.team for team in teams]
         )
         new_competition.save()
-
-
 
         # search_fields = []
 

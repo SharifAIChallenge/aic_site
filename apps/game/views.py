@@ -1,23 +1,23 @@
 import codecs
 import json
 import logging
-from operator import itemgetter
 
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
 from django.core.files import File
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.game import functions
-from apps.game.models import Competition, TeamParticipatesChallenge, TeamSubmission, SingleMatch, Challenge
+from apps.game.models import Competition, TeamSubmission, SingleMatch, Challenge
+from apps.game.utils import get_scoreboard_table_competition, get_scoreboard_table_tag, \
+    get_scoreboard_table_from_single_matches
 
 logger = logging.getLogger(__name__)
 
 
-@login_required()
 def render_scoreboard(request, competition_id):
     competition = Competition.objects.get(pk=int(competition_id))
     if competition is None:
@@ -32,9 +32,18 @@ def render_scoreboard(request, competition_id):
         return render_double_elimination(request, competition_id)
     return HttpResponse('There is not such Competition!')
 
-@login_required()
+
 def render_double_elimination(request, competition_id):
-    matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
+    competition = Competition.objects.get(pk=int(competition_id))
+    matches = list(competition.matches.all())
+    freeze_time = timezone.now() if competition.get_freeze_time() is None or request.user.is_staff else competition.get_freeze_time()
+    single_matches = SingleMatch.objects \
+        .filter(match__competition=competition) \
+        .prefetch_related('match') \
+        .prefetch_related('match__part1__depend__team') \
+        .prefetch_related('match__part2__depend__team') \
+        .filter(status='done') \
+        .filter(time__lte=freeze_time)
     win_matches = []
     lose_matches = []
     cur_round_length = int((len(matches) + 1) / 4)  # for 16 teams there is 31 matches and cur_round_length is 8
@@ -68,24 +77,39 @@ def render_double_elimination(request, competition_id):
     # return [win_matches, lose_matches]
     return render(request, 'scoreboard/bracket.html', {
         'win_matches': win_matches,
-        'lose_matches': lose_matches
+        'lose_matches': lose_matches,
+        'table': {
+            'single_matches': single_matches,
+        },
+        'freeze_time': freeze_time,
     })
 
-@login_required()
-def render_friendly(request, competition_id):
 
-    league_scoreboard = get_scoreboard_table(competition_id)
+def render_tag(request, tag_name):
+    challenge = Competition.objects.filter(tag=tag_name).first().challenge
+    freeze_time = timezone.now() if challenge.scoreboard_freeze_time is None or request.user.is_staff else challenge.scoreboard_freeze_time
+    league_scoreboard = get_scoreboard_table_tag(
+        freeze_time=freeze_time,
+        tag=tag_name
+    )
 
-    return render(request, 'scoreboard/friendly_match_scoreboard.html', {
+    return render(request, 'scoreboard/match_scoreboard.html', {
         'league_scoreboard': league_scoreboard
     })
 
 
-@login_required()
+def render_friendly(request, competition_id):
+    league_scoreboard = get_scoreboard_table_competition(competition_id)
+
+    return render(request, 'scoreboard/match_scoreboard.html', {
+        'league_scoreboard': league_scoreboard
+    })
+
+
 def render_league(request, competition_id):
     matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
 
-    league_scoreboard = get_scoreboard_table(competition_id)
+    league_scoreboard = get_scoreboard_table_competition(competition_id)
     league_size = len(league_scoreboard)
     # print(matches)
     # print(league_scoreboard)
@@ -101,7 +125,6 @@ def render_league(request, competition_id):
 
     num_one_round_matches = num_matches_per_week * num_weeks
     num_rounds = int(len(matches) / num_one_round_matches)
-
 
     cnt = -1
     for round in range(num_rounds):
@@ -124,137 +147,77 @@ def render_league(request, competition_id):
         'league_matches': league_matches
     })
 
-# @login_required()
-def get_scoreboard_table(competition_id):
-    matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
-
-    # at the end league_teams is list of teams
-    league_teams = set()
-    league_scoreboard = []
-
-    for match in matches:
-        if match.part1.object_id is not None:
-            team1 = TeamParticipatesChallenge.objects.filter(
-                challenge=Competition.objects.get(pk=int(competition_id)).challenge,
-                pk=match.part1.object_id
-            )[0]
-
-            if team1 not in league_teams:
-                league_teams.add(team1)
-        if match.part2.object_id is not None:
-            team2 = TeamParticipatesChallenge.objects.filter(
-                challenge=Competition.objects.get(pk=int(competition_id)).challenge,
-                pk=match.part2.object_id
-            )[0]
-            if team2 not in league_teams:
-                league_teams.add(team2)
-
-    league_teams = list(league_teams)
-
-    for team in league_teams:
-        team_status = {}
-        team_status['team'] = team
-        team_status['score'] = 0
-        team_status['name'] = str(team.team)
-        team_status['total_num'] = 0
-        team_status['win_num'] = 0
-        team_status['lose_num'] = 0
-        league_scoreboard.append(team_status)
-
-    for match in matches:
-        match_result = match.get_match_result()
-        if match_result['part1']['result'] == 'notdone' or match_result['part1']['participant'] == match_result['part2']['participant']:
-            continue
-        participants = []
-        participants.append(match_result['part1'])
-        participants.append(match_result['part2'])
-        for part_dict in participants:
-            team = part_dict['participant']
-            if team.__class__.__name__ != 'TeamParticipatesChallenge':
-                raise ValueError('participant should be team!!!')
-            for team_status in league_scoreboard:
-                if team == team_status['team']:
-                    team_status['score'] = team_status['score'] + part_dict['score']
-                    team_status['total_num'] += 1
-                    if part_dict['result'] == 'winner':
-                        team_status['win_num'] += 1
-                    elif part_dict['result'] == 'loser':
-                        team_status['lose_num'] += 1
-
-    league_scoreboard = sorted(league_scoreboard, key=itemgetter('score'), reverse=True)
-    cnt = 1
-    for team_status in league_scoreboard:
-        team_status['rank'] = cnt
-        cnt += 1
-
-    # return [league_scoreboard, league_matches]
-
-    return league_scoreboard
-
-
-
 
 @csrf_exempt
 def report(request):
-    logger.debug("Someone calling report")
     if request.META.get('HTTP_AUTHORIZATION') != settings.INFRA_AUTH_TOKEN:
         return HttpResponseBadRequest()
-    logger.debug("BODY: " + request.body.decode("utf-8"))
+
     single_report = json.loads(request.body.decode("utf-8"), strict=False)
-    logger.debug("Deserialized json")
+
     if single_report['operation'] == 'compile':
         if TeamSubmission.objects.filter(infra_compile_token=single_report['id']).count() != 1:
             logger.error('Error while finding team submission in report view')
-            return HttpResponseServerError()
+            return JsonResponse({'success': False})
 
         submit = TeamSubmission.objects.get(infra_compile_token=single_report['id'])
-        if single_report['status'] == 2:
-            submit.infra_compile_token = single_report['parameters'].get('code_compiled_zip', None)
-            if submit.status == 'compiling':
-                try:
-                    logfile = functions.download_file(single_report['parameters']['code_log'])
-                except Exception as e:
-                    logger.error('Error while download log of compile: %s' % e)
-                    return HttpResponseServerError()
+        try:
+            if single_report['status'] == 2:
+                submit.infra_compile_token = single_report['parameters'].get('code_compiled_zip', None)
+                if submit.status == 'compiling':
+                    try:
+                        logfile = functions.download_file(single_report['parameters']['code_log'])
+                    except Exception as e:
+                        logger.error('Error while download log of compile: %s' % e)
+                        return HttpResponseServerError()
 
-                reader = codecs.getreader('utf-8')
+                    reader = codecs.getreader('utf-8')
 
-                log = json.load(reader(logfile), strict=False)
-                if len(log["errors"]) == 0:
-                    submit.status = 'compiled'
-                    submit.set_final()
-                else:
-                    submit.status = 'failed'
-                    submit.infra_compile_message = '...' + '<br>'.join(error for error in log["errors"])[-1000:]
-        elif single_report['status'] == 3:
+                    log = json.load(reader(logfile), strict=False)
+                    if len(log["errors"]) == 0:
+                        submit.status = 'compiled'
+                        submit.set_final()
+                    else:
+                        submit.status = 'failed'
+                        submit.infra_compile_message = '...' + '<br>'.join(error for error in log["errors"])[-1000:]
+            elif single_report['status'] == 3:
+                submit.status = 'failed'
+                submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
+        except BaseException as error:
             submit.status = 'failed'
             submit.infra_compile_message = 'Unknown error occurred maybe compilation timed out'
+            logger.exception(error)
+            submit.save()
+            return JsonResponse({'success': False})
         submit.save()
         return JsonResponse({'success': True})
 
     elif single_report['operation'] == 'run':
-        logger.debug("Getting run report")
         try:
             single_match = SingleMatch.objects.get(infra_token=single_report['id'])
             logger.debug("Obtained relevant single match")
         except Exception as exception:
-            logger.error(exception)
-            return HttpResponseBadRequest()
-            pass
+            logger.exception(exception)
+            return JsonResponse({'success': False})
 
-        if single_report['status'] == 2:
-            logger.debug("Report status is OK")
-            logfile = functions.download_file(single_report['parameters']['game_log'])
-            if logfile is None:
-                pass
-            single_match.status = 'done'
-            single_match.log.save(name='log', content=File(logfile.file))
-            single_match.update_scores_from_log()
-        elif single_report['status'] == 3:
+        try:
+            if single_report['status'] == 2:
+                logger.debug("Report status is OK")
+                logfile = functions.download_file(single_report['parameters']['game_log'])
+                single_match.status = 'done'
+                single_match.log.save(name='log', content=File(logfile.file))
+                single_match.update_scores_from_log()
+            elif single_report['status'] == 3:
+                single_match.status = 'failed'
+                single_match.infra_match_message = single_report['log']
+            else:
+                return JsonResponse({'success': False, 'error': 'Invalid Status.'})
+        except BaseException as error:
+            logger.exception(error)
             single_match.status = 'failed'
-            single_match.infra_match_message = single_report['log']
-        else:
-            return JsonResponse({'success': False, 'error': 'Invalid Status.'})
+            single_match.save()
+            return JsonResponse({'success': False})
+
         single_match.save()
         return JsonResponse({'success': True})
     return HttpResponseServerError()
@@ -263,7 +226,7 @@ def report(request):
 def game_view(request):
     if request.GET.urlencode().__len__() > 0:
         return redirect(to='/static/game_graphics/game_viewer/index.html?'
-                        + request.GET.urlencode()
+                           + request.GET.urlencode()
                         )
     else:
         return redirect(to='/static/game_graphics/game_viewer/index.html')
@@ -273,20 +236,62 @@ def map_maker(request):
     return redirect(to='/static/game_graphics/map_maker/index.html')
 
 
-@login_required
 def render_challenge_league(request, challenge_id):
-    # print(challenge_id)
-    ch = Challenge.objects.first()
-    # print(ch)
-    challenge = get_object_or_404(Challenge, pk=challenge_id)
-    competitions = Competition.objects.filter(challenge=challenge, type='league')
+    challenge = Challenge.objects.get(id=challenge_id)
+    freeze_time = timezone.now() if challenge.scoreboard_freeze_time is None else challenge.scoreboard_freeze_time
+    single_matches = SingleMatch.objects.filter(
+        match__competition__challenge_id=challenge_id,
+        match__competition__type='league',
+        time__lte=freeze_time
+    ).prefetch_related(
+        'match').prefetch_related(
+        'match__part1__depend__team').prefetch_related(
+        'match__part2__depend__team').prefetch_related(
+        'match__competition').prefetch_related(
+    ).filter(status='done')
 
-    competitions_scoreboard = []
-    for competition in competitions:
-        scoreboard = {}
-        scoreboard['league_scoreboard'] = get_scoreboard_table(competition.id)
-        competitions_scoreboard.append(scoreboard)
+    competitions_scoreboard = {}
+
+    for single_match in single_matches:
+        competition_id = single_match.match.competition_id
+        if competition_id not in competitions_scoreboard:
+            competitions_scoreboard[competition_id] = {
+                'id': competition_id,
+                'name': single_match.match.competition.name,
+                'league_scoreboard': None,
+                'single_matches': [],
+            }
+        competitions_scoreboard[competition_id]['single_matches'].append(
+            single_match
+        )
+
+    for competition_key, competition_data in competitions_scoreboard:
+        competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
+            competition_data['single_matches']
+        )
+
+    if request.user.is_staff:
+        single_matches = SingleMatch.objects.filter(
+            match__competition__challenge_id=challenge_id,
+            match__competition__type='league'
+        )
+        for single_match in single_matches:
+            competition_id = single_match.match.competition_id
+            if competition_id not in competitions_scoreboard:
+                competitions_scoreboard[competition_id] = {
+                    'id': competition_id,
+                    'name': single_match.match.competition.name,
+                    'league_scoreboard': None,
+                    'single_matches': [],
+                }
+            competitions_scoreboard[competition_id]['single_matches'].append(
+                single_match
+            )
+        pass
+
+    competitions_scoreboard = list(competitions_scoreboard.values())
 
     return render(request, 'scoreboard/group_table_challenge.html', {
-        'tables': competitions_scoreboard
+        'tables': sorted(competitions_scoreboard, key=lambda x: -x['id']),
+        'freeze_time': freeze_time,
     })

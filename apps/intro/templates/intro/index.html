@@ -12,7 +12,35 @@
 
 <div class="odd banner section" align="center">
     <img class="banner text image{% if LANGUAGE_BIDI %} bidi{% endif %}"
-         src="{% static 'intro/image/banner-text.png' %}">
+         src="{% static 'intro/image/banner-text-closed.png' %}">
+    <!--<div class="ui section">-->
+    <!--<div class="ui center aligned grid"></div>-->
+    <!--<div class="ui center aligned grid aic18-stamp">-->
+    <!--ثبت نام به پایان رسید!-->
+    <!--</div>-->
+    <!--</div>-->
+
+
+    <div class="countdown">
+        <div id="clockdiv">
+            <div class="seconds_div">
+                <span class="seconds"></span>
+                <div class="smalltext">ثانیه</div>
+            </div>
+            <div class="minutes_div">
+                <span class="minutes"></span>
+                <div class="smalltext">دقیقه</div>
+            </div>
+            <div class="hours_div">
+                <span class="hours"></span>
+                <div class="smalltext">ساعت</div>
+            </div>
+            <div class="days_div">
+                <span class="days"></span>
+                <div class="smalltext">روز</div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="even section" id="section-intro">

@@ -22,6 +22,7 @@ from apps.accounts import urls as account_urls
 from apps.game import urls as game_urls
 from zinnia import urls as zinnia_urls
 from apps.game import urls as game_urls
+from apps.billing import urls as billing_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -39,6 +40,7 @@ urlpatterns = [
     url(r'^articles/comments/', include('django_comments.urls')),
     url(r'^tinymce/filebrowser/', include('zinnia_tinymce.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^billing/', include(billing_urls))
 ]
 
 if settings.DEBUG:

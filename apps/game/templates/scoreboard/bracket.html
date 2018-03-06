@@ -3,61 +3,65 @@
 
 {% block extra_header %}
     <link rel="stylesheet" href="{% static 'css/style_bracket.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_loser.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_winner.css' %}">
 {% endblock %}
 
 {% block container %}
+    <div dir="ltr">
+        <div class="ui grid right aligned" id="two_brackets">
 
-    <div class="ui grid right aligned" id="two_brackets">
-
-        <div class="ui top attached small tabular menu" >
-		  <a class="item active" onclick="changeGroup(1)" id="menu_item_1">{% trans 'Winners bracket'  %}</a>
-		  <a class="item" onclick="changeGroup(2)" id="menu_item_2">{% trans 'Losers bracket' %}</a>
-		</div>
-
-		<div class="ui bottom attached segment" style="min-width: 1100px;display: none;" id="bracket_2">
-            {% block looser %}
-                {% include "scoreboard/bracket_looser.html" %}
-            {% endblock %}
-		</div>
-
-		<div class="ui bottom attached segment" style="display: block" id="bracket_1">
-            {% block winner %}
-                {% include "scoreboard/bracket_winner.html" %}
-            {% endblock %}
-		</div>
+            <div class="ui top attached small tabular menu">
+                <a class="item active" onclick="changeGroup(1)" id="menu_item_1">{% trans 'Winners bracket' %}</a>
+                <a class="item" onclick="changeGroup(2)" id="menu_item_2">{% trans 'Losers bracket' %}</a>
+            </div>
 
 
+            <div class="ui bottom attached segment" style="display: block" id="bracket_1">
+                {% block winner %}
+                    {% include "scoreboard/bracket_winner.html" %}
+                {% endblock %}
+            </div>
+
+            <div class="ui bottom attached segment" style="display: none;"  id="bracket_2">
+                {% block looser %}
+                    {% include "scoreboard/bracket_looser.html" %}
+                {% endblock %}
+            </div>
+
+
+        </div>
     </div>
-
+    {% include 'scoreboard/single_matches_table.html' %}
     <script>
-	function changeGroup(x) {
+        function changeGroup(x) {
 
-		var x1 = document.getElementById("bracket_1");
-		var x2 = document.getElementById("bracket_2");
+            var x1 = document.getElementById("bracket_1");
+            var x2 = document.getElementById("bracket_2");
 
-		var c1 = document.getElementById("menu_item_1");
-		var c2 = document.getElementById("menu_item_2");
+            var c1 = document.getElementById("menu_item_1");
+            var c2 = document.getElementById("menu_item_2");
 
-		switch (x) {
-			case 1:
-				x1.style.display = "block";
-				x2.style.display = "none";
+            switch (x) {
+                case 1:
+                    x1.style.display = "block";
+                    x2.style.display = "none";
 
-				c1.className = "item active";
-				c2.className = "item";
-				break;
-			case 2:
-				x1.style.display = "none";
-				x2.style.display = "block";
+                    c1.className = "item active";
+                    c2.className = "item";
+                    break;
+                case 2:
+                    x1.style.display = "none";
+                    x2.style.display = "block";
 
-				c1.className = "item";
-				c2.className = "item active";
-				break;
-			default:
+                    c1.className = "item";
+                    c2.className = "item active";
+                    break;
+                default:
 
-		}
+            }
 
-	}
-	</script>
+        }
+    </script>
 
 {% endblock %}

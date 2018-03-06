@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block meta_title %}{% trans 'Bank payment' %}{% endblock %}
+{% block title %}{% trans 'Bank payment' %}{% endblock %}
+{% block extra_head %}
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+{% endblock %}
+
+{% block container %}
+    <div class="row">
+        <div class="col s12 m12 l8 offset-l2">
+            <div class="card-panel">
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">&times;</button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                <div class="ui red message">
+                    <p>
+                        {% trans 'Transaction failed with this message: ' %}
+                    </p>
+                    <p class="muted">{{ error }}</p>
+                </div>
+                <div>
+                    <a href="{% url 'billing:request_payment' participation_id=participation_id %}" class="ui primary button">{% trans 'Try again' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
