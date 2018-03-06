@@ -1,10 +1,8 @@
 {% load static i18n %}
 
-{% block extra_header %}
-    <link rel="stylesheet" href="{% static 'css/style_loser.css' %}">
-{% endblock %}
+<div class="bracket">
 
-<div class="round layer_1">
+<div class="round loser_layer_1">
 
     {% for match in lose_matches.0 %}
         <div class="bracket-game">
@@ -24,7 +22,7 @@
     {% endfor %}
 </div>
 
-<div class="connectors layer_2">
+<div class="connectors loser_layer_2">
     <div class="top-line"></div>
     <div class="clear"></div>
     <div class="bottom-line"></div>
@@ -34,18 +32,7 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer2_connector_space"></div>
-
-    <div class="top-line"></div>
-    <div class="clear"></div>
-    <div class="bottom-line"></div>
-    <div class="clear"></div>
-    <div class="vert-line"></div>
-    <div class="clear"></div>
-    <div class="next-line"></div>
-    <div class="clear"></div>
-
-    <div class="layer2_connector_space"></div>
+    <div class="loser_layer2_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -56,7 +43,7 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer2_connector_space"></div>
+    <div class="loser_layer2_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -67,7 +54,7 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer2_connector_space"></div>
+    <div class="loser_layer2_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -78,7 +65,7 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer2_connector_space"></div>
+    <div class="loser_layer2_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -89,7 +76,7 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer2_connector_space"></div>
+    <div class="loser_layer2_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -100,7 +87,18 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer2_connector_space"></div>
+    <div class="loser_layer2_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="loser_layer2_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -113,7 +111,7 @@
 
 </div>
 
-<div class="round layer_2">
+<div class="round loser_layer_2">
     {% for match in lose_matches.1 %}
         <div class="bracket-game">
             <div class="player bot win">
@@ -130,12 +128,12 @@
             </div>
         </div>
 
-{#        <div class="layer2_top_space"></div>#}
+{#        <div class="loser_layer2_top_space"></div>#}
 
     {% endfor %}
 </div>
 
-<div class="connectors layer_3">
+<div class="connectors loser_layer_3">
     <div class="top-line"></div>
     <div class="clear"></div>
     <div class="bottom-line"></div>
@@ -145,18 +143,7 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer3_connector_space"></div>
-
-    <div class="top-line"></div>
-    <div class="clear"></div>
-    <div class="bottom-line"></div>
-    <div class="clear"></div>
-    <div class="vert-line"></div>
-    <div class="clear"></div>
-    <div class="next-line"></div>
-    <div class="clear"></div>
-
-    <div class="layer3_connector_space"></div>
+    <div class="loser_layer3_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -167,7 +154,18 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer3_connector_space"></div>
+    <div class="loser_layer3_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="loser_layer3_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -181,7 +179,7 @@
 </div>
 
 
-<div class="round layer_3">
+<div class="round loser_layer_3">
 
     {% for match in lose_matches.2 %}
         <div class="bracket-game">
@@ -199,12 +197,12 @@
             </div>
         </div>
 
-{#        <div class="layer3_top_space"></div>#}
+        <div class="loser_layer3_top_space"></div>
 
     {% endfor %}
 </div>
 
-<div class="connectors layer_4">
+<div class="connectors loser_layer_4">
     <div class="top-line"></div>
     <div class="clear"></div>
     <div class="bottom-line"></div>
@@ -214,18 +212,7 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer4_connector_space"></div>
-
-    <div class="top-line"></div>
-    <div class="clear"></div>
-    <div class="bottom-line"></div>
-    <div class="clear"></div>
-    <div class="vert-line"></div>
-    <div class="clear"></div>
-    <div class="next-line"></div>
-    <div class="clear"></div>
-
-    <div class="layer4_connector_space"></div>
+    <div class="loser_layer4_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -236,7 +223,18 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer4_connector_space"></div>
+    <div class="loser_layer4_connector_space"></div>
+
+    <div class="top-line"></div>
+    <div class="clear"></div>
+    <div class="bottom-line"></div>
+    <div class="clear"></div>
+    <div class="vert-line"></div>
+    <div class="clear"></div>
+    <div class="next-line"></div>
+    <div class="clear"></div>
+
+    <div class="loser_layer4_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -249,7 +247,7 @@
 
 </div>
 
-<div class="round layer_4">
+<div class="round loser_layer_4">
 
     {% for match in lose_matches.3 %}
         <div class="bracket-game">
@@ -267,12 +265,12 @@
             </div>
         </div>
 
-{#        <div class="layer4_top_space"></div>#}
+        <div class="loser_layer4_top_space"></div>
 
     {% endfor %}
 </div>
 
-<div class="connectors layer_5">
+<div class="connectors loser_layer_5">
     <div class="top-line"></div>
     <div class="clear"></div>
     <div class="bottom-line"></div>
@@ -282,7 +280,7 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer5_connector_space"></div>
+    <div class="loser_layer5_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -296,7 +294,7 @@
 
 </div>
 
-<div class="round layer_5">
+<div class="round loser_layer_5">
 
     {% for match in lose_matches.4 %}
         <div class="bracket-game">
@@ -314,12 +312,12 @@
             </div>
         </div>
 
-{#        <div class="layer5_top_space"></div>#}
+        <div class="loser_layer5_top_space"></div>
 
     {% endfor %}
 </div>
 
-<div class="connectors layer_6">
+<div class="connectors loser_layer_6">
     <div class="top-line"></div>
     <div class="clear"></div>
     <div class="bottom-line"></div>
@@ -329,7 +327,7 @@
     <div class="next-line"></div>
     <div class="clear"></div>
 
-    <div class="layer6_connector_space"></div>
+    <div class="loser_layer6_connector_space"></div>
 
     <div class="top-line"></div>
     <div class="clear"></div>
@@ -342,7 +340,7 @@
 
 </div>
 
-<div class="round layer_6">
+<div class="round loser_layer_6">
 
     {% for match in lose_matches.5 %}
         <div class="bracket-game">
@@ -360,12 +358,12 @@
             </div>
         </div>
 
-{#        <div class="layer5_top_space"></div>#}
+        <div class="loser_layer5_top_space"></div>
 
     {% endfor %}
 </div>
 
-<div class="connectors layer_7">
+<div class="connectors loser_layer_7">
     <div class="top-line"></div>
     <div class="clear"></div>
     <div class="bottom-line"></div>
@@ -377,7 +375,7 @@
 
 </div>
 
-<div class="round layer_7">
+<div class="round loser_layer_7">
 
     {% for match in lose_matches.6 %}
         <div class="bracket-game">
@@ -395,12 +393,12 @@
             </div>
         </div>
 
-{#        <div class="layer7_top_space"></div>#}
+        <div class="loser_layer7_top_space"></div>
 
     {% endfor %}
 </div>
 
-<div class="connectors layer_8">
+<div class="connectors loser_layer_8">
     <div class="top-line"></div>
     <div class="clear"></div>
     <div class="bottom-line"></div>
@@ -412,7 +410,7 @@
 
 </div>
 
-<div class="round layer_8">
+<div class="round loser_layer_8">
 
     {% for match in lose_matches.7 %}
         <div class="bracket-game">
@@ -430,7 +428,9 @@
             </div>
         </div>
 
-{#        <div class="layer5_top_space"></div>#}
+        <div class="loser_layer5_top_space"></div>
 
     {% endfor %}
+</div>
+
 </div>

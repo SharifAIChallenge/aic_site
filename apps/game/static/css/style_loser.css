@@ -1,138 +1,100 @@
 .round {
   float: left;
 }
-.round.layer_1 {
+.round.loser_layer_1 {
     margin-top: 13px;
 }
-.round.layer_2 {
+.round.loser_layer_2 {
     margin-top: 2px;
 }
 
-.round.layer_3 {
+.round.loser_layer_3 {
   margin-top: 25px;
 }
 
-.round.layer_4 {
+.round.loser_layer_4 {
   margin-top: 15px;
 }
 
-.round.layer_5 {
+.round.loser_layer_5 {
   margin-top: 77px;
 }
 
-.round.layer_6 {
+.round.loser_layer_6 {
   margin-top: 66px;
 }
 
-.round.layer_7 {
+.round.loser_layer_7 {
   margin-top: 181px;
 }
 
-.round.layer_8 {
+.round.loser_layer_8 {
   margin-top: 170px;
 }
 
 /******/
 
-.layer2_top_space{
+.loser_layer2_top_space{
     margin-top: 62px;
 }
-.layer2_connector_space{
+.loser_layer2_connector_space{
     margin-top: 50px;
 }
-.layer3_top_space{
+.loser_layer3_top_space{
     margin-top: 62px;
 }
-.layer3_connector_space{
+.loser_layer3_connector_space{
     margin-top: 44px;
 }
 
-.layer4_top_space{
+.loser_layer4_top_space{
     margin-top: 62px;
 }
-.layer4_connector_space{
+.loser_layer4_connector_space{
     margin-top: 102px;
 }
 
-.layer5_top_space{
+.loser_layer5_top_space{
     margin-top: 166px;
 }
-.layer5_connector_space{
+.loser_layer5_connector_space{
     margin-top: 96px;
 }
 
-.layer6_top_space{
+.loser_layer6_top_space{
     margin-top: 166px;
 }
-.layer6_connector_space{
+.loser_layer6_connector_space{
     margin-top: 206px;
 }
 
-.layer7_top_space{
+.loser_layer7_top_space{
     margin-top: 166px;
 }
-.layer7_connector_space{
+.loser_layer7_connector_space{
     margin-top: 206px;
 }
 
-/*****/
-.bracket-game {
-  max-width: 125px;
-  margin: 10px 0;
-}
-.player {
-  height: 21px;
-  min-width: 100px;
-  /* border: 1px solid #AAA; */
-  padding-left: 0px;
-}
-.player.top {
-  /* border-radius: 0px 0px 0 0; */
-}
-.player.bot {
-  /* border-radius: 0 0 0px 0px; */
-}
-.player .score {
-  display: inline;
-  float: right;
-  border-left: 1px solid #AAA;
-  padding-left: 10px;
-  padding-right: 10px;
-  background: #EEE;
-}
-.player.win {
-  /* background-color: #B8F2B8; */
-}
-.player.loss {
-  /* background-color: #F2B8B8; */
-}
-.connectors {
-  float: left;
-  min-width: 35px;
-}
-
-/******/
-
-.connectors.layer_2 .top-line {
+.connectors.loser_layer_2 .top-line {
   position: relative;
   top: 42px;
   width: 34px;
   border: 1px solid #AAA;
 }
-/* .connectors.layer_2 .bottom-line {
+/* .connectors.loser_layer_2 .bottom-line {
   position: relative;
   top: 80px;
   width: 17px;
   border: 1px solid #AAA;
 }
-.connectors.layer_2 .vert-line {
+.connectors.loser_layer_2 .vert-line {
   position: relative;
   top: 26px;
   left: -16px;
   height: 54px;
   border-right: 2px solid #AAA;
 }
-.connectors.layer_2 .next-line {
+.connectors.loser_layer_2 .next-line {
   position: relative;
   top: -4px;
   left: 17px;
@@ -141,26 +103,26 @@
 } */
 
 
-.connectors.layer_3 .top-line {
+.connectors.loser_layer_3 .top-line {
   position: relative;
   top: 31px;
   width: 17px;
   border: 1px solid #AAA;
 }
-.connectors.layer_3 .bottom-line {
+.connectors.loser_layer_3 .bottom-line {
   position: relative;
   top: 81px;
   width: 17px;
   border: 1px solid #AAA;
 }
-.connectors.layer_3 .vert-line {
+.connectors.loser_layer_3 .vert-line {
   position: relative;
   top: 27px;
   left: -16px;
   height: 54px;
   border-right: 2px solid #AAA;
 }
-.connectors.layer_3 .next-line {
+.connectors.loser_layer_3 .next-line {
   position: relative;
   top: -4px;
   left: 17px;
@@ -168,26 +130,26 @@
   border: 1px solid #AAA;
 }
 
-.connectors.layer_4 .top-line {
+.connectors.loser_layer_4 .top-line {
   position: relative;
   top: 54px;
   width: 34px;
   border: 1px solid #AAA;
 }
-/* .connectors.layer_4 .bottom-line {
+/* .connectors.loser_layer_4 .bottom-line {
   position: relative;
   top: 305px;
   width: 17px;
   border: 1px solid #AAA;
 }
-.connectors.layer_4 .vert-line {
+.connectors.loser_layer_4 .vert-line {
   position: relative;
   top: 101px;
   left: -16px;
   height: 204px;
   border-right: 2px solid #AAA;
 }
-.connectors.layer_4 .next-line {
+.connectors.loser_layer_4 .next-line {
   position: relative;
   top: -4px;
   left: 17px;
@@ -195,26 +157,26 @@
   border: 1px solid #AAA;
 } */
 
-.connectors.layer_5 .top-line {
+.connectors.loser_layer_5 .top-line {
   position: relative;
   top: 44px;
   width: 17px;
   border: 1px solid #AAA;
 }
-.connectors.layer_5 .bottom-line {
+.connectors.loser_layer_5 .bottom-line {
   position: relative;
   top: 146px;
   width: 17px;
   border: 1px solid #AAA;
 }
-.connectors.layer_5 .vert-line {
+.connectors.loser_layer_5 .vert-line {
   position: relative;
   top: 40px;
   left: -16px;
   height: 106px;
   border-right: 2px solid #AAA;
 }
-.connectors.layer_5 .next-line {
+.connectors.loser_layer_5 .next-line {
   position: relative;
   top: -4px;
   left: 17px;
@@ -222,27 +184,27 @@
   border: 1px solid #AAA;
 }
 
-.connectors.layer_6 .top-line {
+.connectors.loser_layer_6 .top-line {
   position: relative;
   top: 106px;
   width: 34px;
   border: 1px solid #AAA;
 }
 /*
-.connectors.layer_6 .bottom-line {
+.connectors.loser_layer_6 .bottom-line {
   position: relative;
   top: 305px;
   width: 17px;
   border: 1px solid #AAA;
 }
-.connectors.layer_6 .vert-line {
+.connectors.loser_layer_6 .vert-line {
   position: relative;
   top: 101px;
   left: -16px;
   height: 204px;
   border-right: 2px solid #AAA;
 }
-.connectors.layer_6 .next-line {
+.connectors.loser_layer_6 .next-line {
   position: relative;
   top: -4px;
   left: 17px;
@@ -251,26 +213,26 @@
 }
 */
 
-.connectors.layer_7 .top-line {
+.connectors.loser_layer_7 .top-line {
   position: relative;
   top: 95px;
   width: 17px;
   border: 1px solid #AAA;
 }
-.connectors.layer_7 .bottom-line {
+.connectors.loser_layer_7 .bottom-line {
   position: relative;
   top: 301px;
   width: 17px;
   border: 1px solid #AAA;
 }
-.connectors.layer_7 .vert-line {
+.connectors.loser_layer_7 .vert-line {
   position: relative;
   top: 91px;
   left: -16px;
   height: 210px;
   border-right: 2px solid #AAA;
 }
-.connectors.layer_7 .next-line {
+.connectors.loser_layer_7 .next-line {
   position: relative;
   top: -4px;
   left: 17px;
@@ -278,26 +240,26 @@
   border: 1px solid #AAA;
 }
 
-.connectors.layer_8 .top-line {
+.connectors.loser_layer_8 .top-line {
   position: relative;
   top: 210px;
   width: 34px;
   border: 1px solid #AAA;
 }
-/* .connectors.layer_8 .bottom-line {
+/* .connectors.loser_layer_8 .bottom-line {
   position: relative;
   top: 301px;
   width: 17px;
   border: 1px solid #AAA;
 }
-.connectors.layer_8 .vert-line {
+.connectors.loser_layer_8 .vert-line {
   position: relative;
   top: 91px;
   left: -16px;
   height: 210px;
   border-right: 2px solid #AAA;
 }
-.connectors.layer_8 .next-line {
+.connectors.loser_layer_8 .next-line {
   position: relative;
   top: -4px;
   left: 17px;
