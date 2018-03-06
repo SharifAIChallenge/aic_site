@@ -8,7 +8,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelatio
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.http import HttpResponseServerError, Http404
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, ugettext
 
 from apps.accounts.models import Team
 from apps.game.models.challenge import Challenge, TeamSubmission, TeamParticipatesChallenge
@@ -351,9 +351,9 @@ class Participant(models.Model):
                 try:
                     name = str(self.depend.get_team(self.depend_method).team.name)
                 except AttributeError:
-                    name = self.depend_method + ' of match ' + str(self.object_id)
+                    name = ugettext('Unknown')
             else:
-                name = self.depend_method + ' of match ' + str(self.object_id)
+                name = ugettext('Unknown')
         return name
 
     def get_team(self):
