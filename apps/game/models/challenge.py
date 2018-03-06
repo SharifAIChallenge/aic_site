@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericRelation
 
+from apps.game.tasks import handle_submission
 from .game import Game
 from django.db import models
 from django.utils.translation import ugettext_lazy as _, ugettext
@@ -160,11 +161,7 @@ class TeamSubmission(models.Model):
         return self
 
     def handle(self):
-        try:
-            self.upload()
-            self.compile()
-        except Exception as error:
-            logger.error(error)
+        handle_submission.delay(self.id)
 
     def upload(self):
         from apps.game import functions

@@ -3,6 +3,7 @@ import string
 import time
 
 import coreapi
+from celery import shared_task
 from django.conf import settings
 
 from apps.game.models import TeamSubmission, Match
