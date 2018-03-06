@@ -8,6 +8,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelatio
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.http import HttpResponseServerError, Http404
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _, ugettext
 
 from apps.accounts.models import Team
@@ -418,11 +419,12 @@ class Match(models.Model):
         #     ('done', _('Done')),
         #     ('waiting', _('Waiting')),
         # )
+        freeze_time = timezone.now() if self.competition.get_freeze_time() is None else self.competition.get_freeze_time()
         have_running = False
         have_failed = False
         have_done = False
         have_waiting = False
-        for single_match in self.single_matches.all():
+        for single_match in self.single_matches.filter(time__lte=freeze_time):
             if single_match.status == 'running':
                 have_running = True
             if single_match.status == 'failed':
@@ -503,15 +505,15 @@ class Match(models.Model):
             raise ValueError('this participant does not participate in this match')
 
     def get_match_result(self):
-
-        match_result = {}
-        match_result['part1'] = self.get_participant_properties(self.part1)
-        match_result['part2'] = self.get_participant_properties(self.part2)
+        match_result = {
+            'part1': self.get_participant_properties(self.part1),
+            'part2': self.get_participant_properties(self.part2)
+        }
 
         return match_result
 
     def get_participant_properties(self, participant):
-        '''
+        """
             format: dict
             dict keys:
                 'participant' -> team or participant
@@ -519,11 +521,12 @@ class Match(models.Model):
                 'score'
                 'color'
                 'result'
-        '''
+        """
 
-        properties = {}
-        properties['participant'] = self.get_participant_or_team(participant)
-        properties['score'] = self.get_score_for_participant(participant)
+        properties = {
+            'participant': self.get_participant_or_team(participant),
+            'score': self.get_score_for_participant(participant)
+        }
         if participant is None:
             properties['name'] = 'None'
         else:

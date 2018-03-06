@@ -5,9 +5,9 @@ from django.utils import timezone
 from apps.game.models import SingleMatch, Competition
 
 
-def get_scoreboard_table_from_single_matches(competition_single_matches):
+def get_scoreboard_table_from_single_matches(single_matches):
     teams_status = {}
-    for single_match in competition_single_matches:
+    for single_match in single_matches:
 
         winner_participant = single_match.winner()
         loser_participant = single_match.loser()
@@ -79,9 +79,7 @@ def get_scoreboard_table_competition(competition_id):
     )
 
 
-def get_scoreboard_table_tag(tag):
-    challenge = Competition.objects.filter(tag=tag).first().challenge
-    freeze_time = timezone.now() if challenge.scoreboard_freeze_time is None else challenge.scoreboard_freeze_time
+def get_scoreboard_table_tag(freeze_time, tag):
     return get_scoreboard_table(
         freeze_time=freeze_time,
         match__competition__tag__exact=tag
