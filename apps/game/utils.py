@@ -69,7 +69,7 @@ def get_scoreboard_table_from_single_matches(single_matches):
 
 
 def get_scoreboard_table_competition(competition_id):
-    competition = Competition.objects.get(id=competition_id).get_freeze_time()
+    competition = Competition.objects.get(id=competition_id)
     freeze_time = timezone.now() if competition.get_freeze_time() is None else competition.get_freeze_time()
     return get_scoreboard_table(
         freeze_time=freeze_time,
