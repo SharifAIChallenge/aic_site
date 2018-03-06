@@ -35,7 +35,13 @@ def render_scoreboard(request, competition_id):
 
 def render_double_elimination(request, competition_id):
     competition = Competition.objects.get(pk=int(competition_id))
-    matches = list(competition.matches.all())
+    matches = list(competition.matches.all().order_by('id').prefetch_related(
+        'single_matches'
+    ).prefetch_related(
+        'part1__depend'
+    ).prefetch_related(
+        'part2__depend'
+    ))
     freeze_time = timezone.now() if competition.get_freeze_time() is None or request.user.is_staff else competition.get_freeze_time()
     single_matches = SingleMatch.objects \
         .filter(match__competition=competition) \
