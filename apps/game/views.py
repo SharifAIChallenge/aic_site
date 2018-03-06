@@ -7,6 +7,7 @@ from django.core.files import File
 from django.http import HttpResponse
 from django.http import HttpResponseBadRequest, HttpResponseServerError, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
 from apps.game import functions
@@ -33,7 +34,16 @@ def render_scoreboard(request, competition_id):
 
 
 def render_double_elimination(request, competition_id):
-    matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
+    competition = Competition.objects.get(pk=int(competition_id))
+    matches = list(competition.matches.all())
+    freeze_time = timezone.now() if competition.get_freeze_time() is None or request.user.is_staff else competition.get_freeze_time()
+    single_matches = SingleMatch.objects \
+        .filter(match__competition=competition) \
+        .prefetch_related('match') \
+        .prefetch_related('match__part1__depend__team') \
+        .prefetch_related('match__part2__depend__team') \
+        .filter(status='done') \
+        .filter(time__lte=freeze_time)
     win_matches = []
     lose_matches = []
     cur_round_length = int((len(matches) + 1) / 4)  # for 16 teams there is 31 matches and cur_round_length is 8
@@ -67,12 +77,21 @@ def render_double_elimination(request, competition_id):
     # return [win_matches, lose_matches]
     return render(request, 'scoreboard/bracket.html', {
         'win_matches': win_matches,
-        'lose_matches': lose_matches
+        'lose_matches': lose_matches,
+        'table': {
+            'single_matches': single_matches,
+        },
+        'freeze_time': freeze_time,
     })
 
 
 def render_tag(request, tag_name):
-    league_scoreboard = get_scoreboard_table_tag(tag_name)
+    challenge = Competition.objects.filter(tag=tag_name).first().challenge
+    freeze_time = timezone.now() if challenge.scoreboard_freeze_time is None or request.user.is_staff else challenge.scoreboard_freeze_time
+    league_scoreboard = get_scoreboard_table_tag(
+        freeze_time=freeze_time,
+        tag=tag_name
+    )
 
     return render(request, 'scoreboard/match_scoreboard.html', {
         'league_scoreboard': league_scoreboard
@@ -127,15 +146,6 @@ def render_league(request, competition_id):
         'league_scoreboard': league_scoreboard,
         'league_matches': league_matches
     })
-
-
-def dictfetchall(cursor):
-    "Return all rows from a cursor as a dict"
-    columns = [col[0] for col in cursor.description]
-    return [
-        dict(zip(columns, row))
-        for row in cursor.fetchall()
-    ]
 
 
 @csrf_exempt
@@ -227,9 +237,12 @@ def map_maker(request):
 
 
 def render_challenge_league(request, challenge_id):
+    challenge = Challenge.objects.get(id=challenge_id)
+    freeze_time = timezone.now() if challenge.scoreboard_freeze_time is None else challenge.scoreboard_freeze_time
     single_matches = SingleMatch.objects.filter(
         match__competition__challenge_id=challenge_id,
-        match__competition__type='league'
+        match__competition__type='league',
+        time__lte=freeze_time
     ).prefetch_related(
         'match').prefetch_related(
         'match__part1__depend__team').prefetch_related(
@@ -252,12 +265,33 @@ def render_challenge_league(request, challenge_id):
             single_match
         )
 
-    competitions_scoreboard = list(competitions_scoreboard.values())
-    for competition_data in competitions_scoreboard:
+    for competition_key, competition_data in competitions_scoreboard:
         competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
             competition_data['single_matches']
         )
 
+    if request.user.is_staff:
+        single_matches = SingleMatch.objects.filter(
+            match__competition__challenge_id=challenge_id,
+            match__competition__type='league'
+        )
+        for single_match in single_matches:
+            competition_id = single_match.match.competition_id
+            if competition_id not in competitions_scoreboard:
+                competitions_scoreboard[competition_id] = {
+                    'id': competition_id,
+                    'name': single_match.match.competition.name,
+                    'league_scoreboard': None,
+                    'single_matches': [],
+                }
+            competitions_scoreboard[competition_id]['single_matches'].append(
+                single_match
+            )
+        pass
+
+    competitions_scoreboard = list(competitions_scoreboard.values())
+
     return render(request, 'scoreboard/group_table_challenge.html', {
-        'tables': sorted(competitions_scoreboard, key=lambda x: -x['id'])
+        'tables': sorted(competitions_scoreboard, key=lambda x: -x['id']),
+        'freeze_time': freeze_time,
     })
