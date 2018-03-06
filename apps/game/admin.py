@@ -66,7 +66,7 @@ class ChallengeAdmin(admin.ModelAdmin):
 
 
 class CompetitionAdmin(admin.ModelAdmin):
-    fields = ['name', 'type', 'challenge']
+    fields = ['name', 'type', 'challenge', 'scoreboard_freeze_time']
 
     inlines = [MatchInline, MapInline]
     list_display = ('name', 'type')

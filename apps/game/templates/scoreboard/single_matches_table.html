@@ -7,7 +7,7 @@
 <table class="ui center aligned table" id="results_{{ table.id }}" {% if table.id %}style="display: none;"{% endif %}>
     {% for single_match in table.single_matches %}
     <tr>
-        {% if single_match.winner == single_match.match.part1 and freeze_time > single_match.time %}
+        {% if single_match.winner == single_match.match.part1 and single_match.match.status != 'waiting' %}
         <td>
             <a class="ui yellow circular label">
                 <i class="icon large star"></i>
@@ -23,7 +23,7 @@
             </a>
         </td>
         <td>{{ single_match.match.part2.depend.team.name }}</td>
-        {% elif single_match.winner == single_match.match.part2 and freeze_time > single_match.time %}
+        {% elif single_match.winner == single_match.match.part2 and single_match.match.status != 'waiting' %}
         <td>
             <a class="ui grey circular label">
                 <i class="icon large star"></i>
