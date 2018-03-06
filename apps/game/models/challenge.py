@@ -30,6 +30,8 @@ class Challenge(models.Model):
     game = models.ForeignKey(Game)
     is_submission_open = models.BooleanField(null=False, blank=False, default=False)
 
+    scoreboard_freeze_time = models.DateTimeField(null=True, blank=True)
+
     def __str__(self):
         return self.title
 

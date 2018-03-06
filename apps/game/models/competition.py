@@ -31,6 +31,13 @@ class Competition(models.Model):
     type = models.CharField(max_length=128, choices=TYPE_CHOICES)
     tag = models.CharField(max_length=128, null=True)
 
+    scoreboard_freeze_time = models.DateTimeField(null=True, blank=True)
+
+    def get_freeze_time(self):
+        if self.scoreboard_freeze_time is not None:
+            return self.scoreboard_freeze_time
+        return self.challenge.scoreboard_freeze_time
+
     def save(self):
         super(Competition, self).save()
         if self.type == 'friendly':
@@ -661,7 +668,7 @@ class SingleMatch(models.Model):
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
     part1_score = models.IntegerField(null=True, blank=True)
     part2_score = models.IntegerField(null=True, blank=True)
-    time = models.DateTimeField(auto_now_add=True)
+    time = models.DateTimeField(auto_now=True)
     map = models.ForeignKey(Map)
     status = models.CharField(max_length=128, choices=STATUS_CHOICES, default='waiting')
 
