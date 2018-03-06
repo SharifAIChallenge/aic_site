@@ -238,7 +238,7 @@ def map_maker(request):
 
 def render_challenge_league(request, challenge_id):
     challenge = Challenge.objects.get(id=challenge_id)
-    freeze_time = timezone.now() if challenge.scoreboard_freeze_time is None or request.user.is_staff else challenge.scoreboard_freeze_time
+    freeze_time = timezone.now() if challenge.scoreboard_freeze_time is None else challenge.scoreboard_freeze_time
     single_matches = SingleMatch.objects.filter(
         match__competition__challenge_id=challenge_id,
         match__competition__type='league',
@@ -265,22 +265,31 @@ def render_challenge_league(request, challenge_id):
             single_match
         )
 
+    for competition_key, competition_data in competitions_scoreboard:
+        competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
+            competition_data['single_matches']
+        )
+
     if request.user.is_staff:
         single_matches = SingleMatch.objects.filter(
             match__competition__challenge_id=challenge_id,
             match__competition__type='league'
         )
+        for single_match in single_matches:
+            competition_id = single_match.match.competition_id
+            if competition_id not in competitions_scoreboard:
+                competitions_scoreboard[competition_id] = {
+                    'id': competition_id,
+                    'name': single_match.match.competition.name,
+                    'league_scoreboard': None,
+                    'single_matches': [],
+                }
+            competitions_scoreboard[competition_id]['single_matches'].append(
+                single_match
+            )
+        pass
 
     competitions_scoreboard = list(competitions_scoreboard.values())
-    for competition_data in competitions_scoreboard:
-        competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
-            competition_data['single_matches']
-        )
-        if request.user.is_staff:
-            competition_data['single_matches'] = []
-            for single_match in single_matches:
-                if single_match.match.competition_id == competition_data['id']:
-                    competition_data['single_matches'].append(single_match)
 
     return render(request, 'scoreboard/group_table_challenge.html', {
         'tables': sorted(competitions_scoreboard, key=lambda x: -x['id']),
