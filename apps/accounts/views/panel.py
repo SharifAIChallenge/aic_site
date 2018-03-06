@@ -172,7 +172,7 @@ def team_management(request, participation_id=None):
                 user_part.user,
                 not UserAcceptsTeamInChallenge.objects.filter(
                     user=user_part.user,
-                    team__team=team_pc.team
+                    team=team_pc
                 ).exists()
             )
             for user_part in team_pc.team.participants.all()] if team_pc else [],

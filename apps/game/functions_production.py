@@ -1,8 +1,8 @@
 import random
+import json
 import string
-import threading
+import requests
 import time
-import uuid
 
 import coreapi
 from django.conf import settings
@@ -93,11 +93,12 @@ def upload_file(file):
     :param file: File field from TeamSubmission model
     :return: file token or raises error with error message
     """
-    client, schema = create_infra_client()
-    response = client.action(schema,
-                             ['storage', 'new_file', 'update'],
-                             params={'file': file})
-    return response['token']
+    headers = {'Authorization': 'Token {}'.format(settings.INFRA_AUTH_TOKEN)}
+    response = requests.put(
+        '{}/api/storage/new_file/'.format(settings.INFRA_IP),
+        files={'upload_file': file}, headers=headers)
+    result = json.loads(response.text)
+    return result['token']
 
 
 def download_file(file_token):

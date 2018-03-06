@@ -11,7 +11,9 @@ class Profile(models.Model):
     age = models.IntegerField(null=True, blank=True, verbose_name=_('Age‌'))
     national_code = models.CharField(max_length=10, null=True, blank=True, verbose_name=_('National code‌'))
     tel_number = models.CharField(max_length=20, null=True, blank=True, verbose_name=_('Telephone number‌'))
-    panel_active_teampc = models.ForeignKey('game.TeamParticipatesChallenge', null=True, blank=True, default=None)
+    panel_active_teampc = models.ForeignKey(
+        'game.TeamParticipatesChallenge', null=True, blank=True, default=None, on_delete=models.SET_NULL
+    )
 
     @property
     def is_complete(self):
