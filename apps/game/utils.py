@@ -71,26 +71,29 @@ def get_scoreboard_table_from_single_matches(competition_single_matches):
 
 
 def get_scoreboard_table_competition(competition_id):
-    return get_scoreboard_table({
-        'id': competition_id
-    })
+    competition = Competition.objects.get(id=competition_id).get_freeze_time()
+    freeze_time = timezone.now() if competition.get_freeze_time() is None else competition.get_freeze_time()
+    return get_scoreboard_table(
+        freeze_time=freeze_time,
+        match__competition__id=competition_id
+    )
 
 
 def get_scoreboard_table_tag(tag):
-    return get_scoreboard_table({
-        'tag__exact': tag
-    })
+    challenge = Competition.objects.filter(tag=tag).first().challenge
+    freeze_time = timezone.now() if challenge.scoreboard_freeze_time is None else challenge.scoreboard_freeze_time
+    return get_scoreboard_table(
+        freeze_time=freeze_time,
+        match__competition__tag__exact=tag
+    )
 
 
-def get_scoreboard_table(args):
-    competition = Competition.objects.get(**args)
-    freeze_time = timezone.now() if competition.get_freeze_time() is None else competition.get_freeze_time()
-
-    competition_single_matches = SingleMatch.objects \
-        .filter(match__competition=competition) \
+def get_scoreboard_table(freeze_time, **single_match_query):
+    single_matches = SingleMatch.objects \
+        .filter(**single_match_query) \
         .prefetch_related('match') \
         .prefetch_related('match__part1__depend__team') \
         .prefetch_related('match__part2__depend__team') \
         .filter(status='done') \
         .filter(time__lte=freeze_time)
-    return get_scoreboard_table_from_single_matches(competition_single_matches)
+    return get_scoreboard_table_from_single_matches(single_matches)
