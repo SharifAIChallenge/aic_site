@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-05 14:54+0330\n"
+"POT-Creation-Date: 2018-03-07 07:16+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -278,12 +278,10 @@ msgid "OK"
 msgstr "باشه"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:75
-#: apps/accounts/templates/accounts/panel/submissions.html:118
 msgid "Failed to upload. You may contact the technical team."
 msgstr "فرایند آپلود کامل نشد. لطفا این مورد را به تیم فنی اطلاع دهید."
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:76
-#: apps/accounts/templates/accounts/panel/submissions.html:119
 msgid "Failed To Upload"
 msgstr "آپلود ناموفق"
 
@@ -364,6 +362,14 @@ msgstr "پرداخت"
 #: apps/accounts/templates/accounts/panel/messages.html:39
 msgid "Complete team"
 msgstr "تکمیل تیم"
+
+#: apps/accounts/templates/accounts/panel/submissions.html:118
+msgid "Uploading, Wait and refresh the page."
+msgstr "ما در حال آپلود کردن کد شما هستیم. صبر کنید و صفحه را مجددا ببینید."
+
+#: apps/accounts/templates/accounts/panel/submissions.html:119
+msgid "Uploading"
+msgstr "در حال آپلود"
 
 #: apps/accounts/templates/accounts/panel/team_management.html:66
 msgid "You have not participated in this challenge yet."
