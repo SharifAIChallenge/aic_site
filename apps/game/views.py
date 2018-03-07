@@ -78,6 +78,9 @@ def render_double_elimination(request, competition_id):
             )
         start_round_index += 3 * cur_round_length
         cur_round_length = int(cur_round_length / 2)
+    win_matches.append([])
+    win_matches[len(win_matches) - 1].append(matches[start_round_index].get_match_result())
+    win_matches[len(win_matches) - 1].append(matches[start_round_index + 1].get_match_result())
     # print(win_matches)
     # print(lose_matches)
     # return [win_matches, lose_matches]
