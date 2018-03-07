@@ -1,7 +1,5 @@
 from celery import shared_task
 
-from apps.game.models import TeamSubmission
-
 import logging
 
 logger = logging.getLogger(__name__)
@@ -9,6 +7,7 @@ logger = logging.getLogger(__name__)
 
 @shared_task
 def handle_submission(submission_id):
+    from apps.game.models import TeamSubmission
     submission = TeamSubmission.objects.get(id=submission_id)
     try:
         submission.upload()
