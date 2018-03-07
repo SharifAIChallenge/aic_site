@@ -56,8 +56,15 @@ class Command(BaseCommand):
 
         teams_status = get_scoreboard_table_tag(options['ref_tag'])
 
-        submitters = list(m(lambda x: x['team'], teams_status))
+        submitters = list(map(lambda x: x['team'], teams_status))
+
+        challenge_teams = list(map(lambda x: x.team, challenge.teams.all()))
+        submitters = list(filter(lambda x: x in challenge_teams, submitters))
+
         submitters.remove(dummy_team)
+
+        print("Submitters len is", len(submitters))
+
         for submitter in submitters:
             print(submitter.name)
 
