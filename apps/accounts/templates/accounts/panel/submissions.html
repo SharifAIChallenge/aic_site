@@ -115,8 +115,8 @@
                             </div>
                         {% elif submission.status == 'uploading' %}
                             <a class="ui label"
-                               data-tooltip="{% trans 'Failed to upload. You may contact the technical team.' %}"
-                               data-inverted="">{% trans 'Failed To Upload' %}</a>
+                               data-tooltip="{% trans 'Uploading, Wait and refresh the page.' %}"
+                               data-inverted="">{% trans 'Uploading' %}</a>
                         {% elif submission.status == 'compiling' %}
                             <a class="ui blue label"
                                data-tooltip="{% trans 'We are compiling your code! Wait and refresh your page.' %}"

@@ -1,8 +1,6 @@
 import random
 import string
-import threading
 import time
-import uuid
 
 import coreapi
 from django.conf import settings

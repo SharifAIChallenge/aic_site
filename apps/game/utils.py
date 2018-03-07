@@ -1,11 +1,11 @@
-from operator import itemgetter
+from django.utils import timezone
 
-from apps.game.models import SingleMatch
+from apps.game.models import SingleMatch, Competition
 
 
-def get_scoreboard_table_from_single_matches(competition_single_matches):
+def get_scoreboard_table_from_single_matches(single_matches):
     teams_status = {}
-    for single_match in competition_single_matches:
+    for single_match in single_matches:
 
         winner_participant = single_match.winner()
         loser_participant = single_match.loser()
@@ -69,16 +69,27 @@ def get_scoreboard_table_from_single_matches(competition_single_matches):
 
 
 def get_scoreboard_table_competition(competition_id):
-    competition_single_matches = SingleMatch.objects.filter(match__competition_id=competition_id).prefetch_related(
-        'match').prefetch_related(
-        'match__part1__depend__team').prefetch_related(
-        'match__part2__depend__team').filter(status='done')
-    return get_scoreboard_table_from_single_matches(competition_single_matches)
+    competition = Competition.objects.get(id=competition_id)
+    freeze_time = timezone.now() if competition.get_freeze_time() is None else competition.get_freeze_time()
+    return get_scoreboard_table(
+        freeze_time=freeze_time,
+        match__competition__id=competition_id
+    )
 
 
-def get_scoreboard_table_tag(tag):
-    competition_single_matches = SingleMatch.objects.filter(match__competition__tag__exact=tag).prefetch_related(
-        'match').prefetch_related(
-        'match__part1__depend__team').prefetch_related(
-        'match__part2__depend__team').filter(status='done')
-    return get_scoreboard_table_from_single_matches(competition_single_matches)
+def get_scoreboard_table_tag(freeze_time, tag):
+    return get_scoreboard_table(
+        freeze_time=freeze_time,
+        match__competition__tag__exact=tag
+    )
+
+
+def get_scoreboard_table(freeze_time, **single_match_query):
+    single_matches = SingleMatch.objects \
+        .filter(**single_match_query) \
+        .prefetch_related('match') \
+        .prefetch_related('match__part1__depend__team') \
+        .prefetch_related('match__part2__depend__team') \
+        .filter(status='done') \
+        .filter(time__lte=freeze_time)
+    return get_scoreboard_table_from_single_matches(single_matches)

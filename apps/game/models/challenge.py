@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericRelation
 
+from apps.game.tasks import handle_submission
 from .game import Game
 from django.db import models
 from django.utils.translation import ugettext_lazy as _, ugettext
@@ -29,6 +30,8 @@ class Challenge(models.Model):
     entrance_price = models.IntegerField()  # In Toomans, 0 for free
     game = models.ForeignKey(Game)
     is_submission_open = models.BooleanField(null=False, blank=False, default=False)
+
+    scoreboard_freeze_time = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -158,11 +161,14 @@ class TeamSubmission(models.Model):
         return self
 
     def handle(self):
-        try:
-            self.upload()
-            self.compile()
-        except Exception as error:
-            logger.error(error)
+        if settings.TESTING:
+            try:
+                self.upload()
+                self.compile()
+            except Exception as error:
+                logger.error(error)
+        else:
+            handle_submission.delay(self.id)
 
     def upload(self):
         from apps.game import functions

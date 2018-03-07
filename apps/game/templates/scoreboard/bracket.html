@@ -3,6 +3,8 @@
 
 {% block extra_header %}
     <link rel="stylesheet" href="{% static 'css/style_bracket.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_loser.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_winner.css' %}">
 {% endblock %}
 
 {% block container %}
@@ -14,11 +16,6 @@
                 <a class="item" onclick="changeGroup(2)" id="menu_item_2">{% trans 'Losers bracket' %}</a>
             </div>
 
-            <div class="ui bottom attached segment" style="min-width: 1100px;display: none;" id="bracket_2">
-                {% block looser %}
-                    {% include "scoreboard/bracket_looser.html" %}
-                {% endblock %}
-            </div>
 
             <div class="ui bottom attached segment" style="display: block" id="bracket_1">
                 {% block winner %}
@@ -26,9 +23,16 @@
                 {% endblock %}
             </div>
 
+            <div class="ui bottom attached segment" style="display: none;"  id="bracket_2">
+                {% block looser %}
+                    {% include "scoreboard/bracket_looser.html" %}
+                {% endblock %}
+            </div>
+
 
         </div>
     </div>
+    {% include 'scoreboard/single_matches_table.html' %}
     <script>
         function changeGroup(x) {
 

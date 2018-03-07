@@ -1,3 +1,5 @@
+from random import shuffle
+
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
@@ -52,7 +54,7 @@ class GameAdmin(admin.ModelAdmin):
 
 class ChallengeAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Challenge', {'fields': ['title', 'description', 'registration_open']}),
+        ('Challenge', {'fields': ['title', 'description', 'registration_open', 'scoreboard_freeze_time']}),
         ('Challenge Information', {'fields': ['game', 'team_size', 'entrance_price']}),
         ('Challenge Timing', {'fields': ['registration_start_time', 'registration_end_time',
                                          'start_time', 'end_time', 'is_submission_open']})
@@ -66,7 +68,7 @@ class ChallengeAdmin(admin.ModelAdmin):
 
 
 class CompetitionAdmin(admin.ModelAdmin):
-    fields = ['name', 'type', 'challenge']
+    fields = ['name', 'type', 'challenge', 'scoreboard_freeze_time']
 
     inlines = [MatchInline, MapInline]
     list_display = ('name', 'type')
@@ -259,7 +261,7 @@ class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
 
     def create_new_league(self, request, queryset):
         teams = list(queryset)
-
+        shuffle(teams)
         if len(teams) < 1:
             from django.contrib import messages
             messages.error(request, _('no selected teams!'))
