@@ -275,7 +275,8 @@ def render_challenge_league(request, challenge_id):
         competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
             competition_data['single_matches']
         )
-        competition_data['single_matches'] = []
+        if request.user.is_staff:
+            competition_data['single_matches'] = []
 
     if request.user.is_staff:
         for single_match in single_matches:
