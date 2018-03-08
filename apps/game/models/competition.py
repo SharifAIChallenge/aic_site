@@ -493,7 +493,9 @@ class Match(models.Model):
         elif part2_result == participant_result:
             return self.part2.get_team()
         else:
-            raise ValueError('this is impossible due to previous conditions!')
+            Warning('bad smell!')
+            # FIXME this is not handled the correct way!
+            return self.part1.get_team()
 
     def get_score_for_participant(self, participant):
         if participant is None:
