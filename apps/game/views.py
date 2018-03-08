@@ -28,7 +28,7 @@ def render_scoreboard(request, competition_id):
         return render_league(request, competition_id)
     if competition.type == 'friendly':
         return render_friendly(request, competition_id)
-    if competition.type == 'double':
+    if competition.type == 'double' or competition.type == 'elim':
         return render_double_elimination(request, competition_id)
     return HttpResponse('There is not such Competition!')
 
@@ -41,6 +41,10 @@ def render_double_elimination(request, competition_id):
         'part1__depend'
     ).prefetch_related(
         'part2__depend'
+    ).prefetch_related(
+        'part1__submission__team__team'
+    ).prefetch_related(
+        'part2__submission__team__team'
     ))
     freeze_time = timezone.now() if competition.get_freeze_time() is None or request.user.is_staff else competition.get_freeze_time()
     single_matches = SingleMatch.objects \
@@ -89,6 +93,7 @@ def render_double_elimination(request, competition_id):
             'single_matches': single_matches,
         },
         'freeze_time': freeze_time,
+        'is_double': (competition.type == 'double'),
     })
 
 

@@ -12,8 +12,14 @@
         <div class="ui grid right aligned" id="two_brackets">
 
             <div class="ui top attached small tabular menu">
-                <a class="item active" onclick="changeGroup(1)" id="menu_item_1">{% trans 'Winners bracket' %}</a>
-                <a class="item" onclick="changeGroup(2)" id="menu_item_2">{% trans 'Losers bracket' %}</a>
+
+                {% if is_double %}
+                    <a class="item active" onclick="changeGroup(1)" id="menu_item_1">{% trans 'Winners bracket' %}</a>
+                    <a class="item" onclick="changeGroup(2)" id="menu_item_2">{% trans 'Losers bracket' %}</a>
+                {% else %}
+                    <a class="item active" onclick="changeGroup(1)" id="menu_item_1">{% trans 'Elimination bracket' %}</a>
+                {% endif %}
+
             </div>
 
 
@@ -23,12 +29,15 @@
                 {% endblock %}
             </div>
 
+
+            {% if is_double %}
+
             <div class="ui bottom attached segment" style="display: none;"  id="bracket_2">
                 {% block looser %}
                     {% include "scoreboard/bracket_looser.html" %}
                 {% endblock %}
             </div>
-
+            {% endif %}
 
         </div>
     </div>
