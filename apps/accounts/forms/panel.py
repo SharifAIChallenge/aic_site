@@ -41,7 +41,7 @@ class SubmissionForm(ModelForm):
         is_valid = super().is_valid()
         if not is_valid:
             return False
-        if not settings.ENABLE_REGISTRATION:
+        if not settings.ENABLE_SUBMISSION:
             self.add_error(None, _('Submission is closed.'))
             return False
         if not self.cleaned_data['team'].challenge.is_submission_open:
