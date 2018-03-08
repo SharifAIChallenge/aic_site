@@ -1,3 +1,5 @@
+from random import shuffle
+
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
@@ -259,7 +261,7 @@ class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
 
     def create_new_league(self, request, queryset):
         teams = list(queryset)
-
+        shuffle(teams)
         if len(teams) < 1:
             from django.contrib import messages
             messages.error(request, _('no selected teams!'))

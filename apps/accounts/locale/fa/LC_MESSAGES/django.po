@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-05 14:54+0330\n"
+"POT-Creation-Date: 2018-03-08 09:00+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,19 +26,23 @@ msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید
 msgid "Registration is closed. See you next year."
 msgstr "ثبت نام هم‌اکنون باز نیست. به امید دیدار شما در رقابت بعدی."
 
-#: apps/accounts/forms/panel.py:47
+#: apps/accounts/forms/panel.py:45
+msgid "Submission is closed."
+msgstr "اکنون امکان ارسال وجود ندارد."
+
+#: apps/accounts/forms/panel.py:50
 msgid "Max file size is 5MB."
 msgstr "بیشترین حجم فایل قابل استفاده ۵ مگابایت است."
 
-#: apps/accounts/forms/panel.py:71
+#: apps/accounts/forms/panel.py:74
 msgid "First submit a compilable code."
 msgstr "ابتدا یک کد قابل کامپایل ارسال کنید."
 
-#: apps/accounts/forms/panel.py:74
+#: apps/accounts/forms/panel.py:77
 msgid "You have to be one of participants."
 msgstr "شما باید یکی از طرفین باشید."
 
-#: apps/accounts/forms/panel.py:84
+#: apps/accounts/forms/panel.py:87
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each match!"
 msgstr "بین هر دو بازی دوستانه باید حداقل %(minutes)s دقیقه صبر کنید."
@@ -278,12 +282,10 @@ msgid "OK"
 msgstr "باشه"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:75
-#: apps/accounts/templates/accounts/panel/submissions.html:118
 msgid "Failed to upload. You may contact the technical team."
 msgstr "فرایند آپلود کامل نشد. لطفا این مورد را به تیم فنی اطلاع دهید."
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:76
-#: apps/accounts/templates/accounts/panel/submissions.html:119
 msgid "Failed To Upload"
 msgstr "آپلود ناموفق"
 
@@ -364,6 +366,14 @@ msgstr "پرداخت"
 #: apps/accounts/templates/accounts/panel/messages.html:39
 msgid "Complete team"
 msgstr "تکمیل تیم"
+
+#: apps/accounts/templates/accounts/panel/submissions.html:118
+msgid "Uploading, Wait and refresh the page."
+msgstr "ما در حال آپلود کردن کد شما هستیم. صبر کنید و صفحه را مجددا ببینید."
+
+#: apps/accounts/templates/accounts/panel/submissions.html:119
+msgid "Uploading"
+msgstr "در حال آپلود"
 
 #: apps/accounts/templates/accounts/panel/team_management.html:66
 msgid "You have not participated in this challenge yet."
