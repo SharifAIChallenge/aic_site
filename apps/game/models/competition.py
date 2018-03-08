@@ -453,6 +453,17 @@ class Match(models.Model):
         self.part1.update_depend()
         self.part2.update_depend()
 
+    @property
+    def part1_name(self):
+        properties = self.get_participant_properties(self.part1)
+        return properties['name']
+
+    @property
+    def part2_name(self):
+        properties = self.get_participant_properties(self.part2)
+        return properties['name']
+
+
     def get_participant_or_team(self, part):
         res = None
         if part is None or part.object_id is None:

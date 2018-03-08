@@ -41,8 +41,9 @@ class SubmissionForm(ModelForm):
         is_valid = super().is_valid()
         if not is_valid:
             return False
-        self.add_error(None, 'Submission is closed.')
-        return False
+        if not settings.ENABLE_SUBMISSION:
+            self.add_error(None, _('Submission is closed.'))
+            return False
         if not self.cleaned_data['team'].challenge.is_submission_open:
             return False
         if self.cleaned_data['file'].size > 5242880:

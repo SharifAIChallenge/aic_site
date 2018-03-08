@@ -1,6 +1,8 @@
 from random import shuffle
 
 from django.core.management.base import BaseCommand, CommandError
+from django.utils import timezone
+
 from apps.game.models import Challenge, TeamParticipatesChallenge, Competition, Map
 from apps.game.utils import get_scoreboard_table_tag
 
@@ -54,7 +56,10 @@ class Command(BaseCommand):
         if group_size < 1:
             raise CommandError('group_size should be more than 0')
 
-        teams_status = get_scoreboard_table_tag(options['ref_tag'])
+        teams_status = get_scoreboard_table_tag(
+            freeze_time=timezone.now(),
+            tag=options['ref_tag'],
+        )
 
         submitters = list(map(lambda x: x['team'], teams_status))
 

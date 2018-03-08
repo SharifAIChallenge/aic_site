@@ -46,8 +46,8 @@ def render_double_elimination(request, competition_id):
     single_matches = SingleMatch.objects \
         .filter(match__competition=competition) \
         .prefetch_related('match') \
-        .prefetch_related('match__part1__depend__team') \
-        .prefetch_related('match__part2__depend__team') \
+        .prefetch_related('match__part1__depend') \
+        .prefetch_related('match__part2__depend') \
         .filter(status='done') \
         .filter(time__lte=freeze_time)
     win_matches = []
