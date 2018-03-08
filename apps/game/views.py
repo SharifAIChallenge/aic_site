@@ -53,7 +53,8 @@ def render_double_elimination(request, competition_id):
         .prefetch_related('match__part1__depend') \
         .prefetch_related('match__part2__depend') \
         .filter(status='done') \
-        .filter(time__lte=freeze_time)
+        .filter(time__lte=freeze_time) \
+        .order_by('time')
     win_matches = []
     lose_matches = []
     cur_round_length = int((len(matches) + 1) / 4)  # for 16 teams there is 31 matches and cur_round_length is 8
