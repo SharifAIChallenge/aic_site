@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-08 09:00+0330\n"
+"POT-Creation-Date: 2018-03-08 11:31+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -172,13 +172,17 @@ msgstr "انجام شده"
 msgid "Waiting"
 msgstr "در حال انتظار"
 
-#: apps/game/templates/scoreboard/bracket.html:15
+#: apps/game/templates/scoreboard/bracket.html:17
 msgid "Winners bracket"
 msgstr "دسته برنده‌ها"
 
-#: apps/game/templates/scoreboard/bracket.html:16
+#: apps/game/templates/scoreboard/bracket.html:18
 msgid "Losers bracket"
 msgstr "دسته بازنده‌ها"
+
+#: apps/game/templates/scoreboard/bracket.html:20
+msgid "Elimination bracket"
+msgstr "حذفی"
 
 #: apps/game/templates/scoreboard/group_table.html:10
 #: apps/game/templates/scoreboard/group_table_challenge.html:10

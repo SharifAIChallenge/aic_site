@@ -28,7 +28,7 @@ def render_scoreboard(request, competition_id):
         return render_league(request, competition_id)
     if competition.type == 'friendly':
         return render_friendly(request, competition_id)
-    if competition.type == 'double':
+    if competition.type == 'double' or competition.type == 'elim':
         return render_double_elimination(request, competition_id)
     return HttpResponse('There is not such Competition!')
 
@@ -88,6 +88,7 @@ def render_double_elimination(request, competition_id):
             'single_matches': single_matches,
         },
         'freeze_time': freeze_time,
+        'is_double': (competition.type == 'double'),
     })
 
 
