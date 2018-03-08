@@ -41,6 +41,10 @@ def render_double_elimination(request, competition_id):
         'part1__depend'
     ).prefetch_related(
         'part2__depend'
+    ).prefetch_related(
+        'part1__submission__team__team'
+    ).prefetch_related(
+        'part2__submission__team__team'
     ))
     freeze_time = timezone.now() if competition.get_freeze_time() is None or request.user.is_staff else competition.get_freeze_time()
     single_matches = SingleMatch.objects \

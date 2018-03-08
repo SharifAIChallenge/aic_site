@@ -455,13 +455,11 @@ class Match(models.Model):
 
     @property
     def part1_name(self):
-        properties = self.get_participant_properties(self.part1)
-        return properties['name']
+        return self.part1.submission.team.team.name
 
     @property
     def part2_name(self):
-        properties = self.get_participant_properties(self.part2)
-        return properties['name']
+        return self.part2.submission.team.team.name
 
 
     def get_participant_or_team(self, part):
