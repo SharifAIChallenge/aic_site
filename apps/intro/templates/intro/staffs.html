@@ -1,87 +1,729 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block container %}
+    <div class="ui pointing secondary menu">
+        <a class="item active" data-tab="tech">{% trans 'Technical' %}</a>
+        <a class="item" data-tab="exe">{%  trans 'Executive' %}</a>
+        <a class="item" data-tab="head">{%  trans 'Head Of Committee' %}</a>
+    </div>
+    <div class="ui tab segment" data-tab="exe">
     <div class="ui four column stackable grid">
         <div class="column">
             <div class="ui fluid card">
                 <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
+                    <img src="{% static 'intro/image/Elahe_Khodaei.jpg' %}">
                 </div>
-                <div class="content">علی احمدی</div>
+                <div class="content">الهه خدایی</div>
             </div>
             <div class="ui fluid card">
                 <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
+                    <img src="{% static 'intro/image/Majid_Garoosi.jpg' %}">
                 </div>
-                <div class="content">علی احمدی</div>
+                <div class="content">مجید گروسی</div>
             </div>
             <div class="ui fluid card">
                 <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
+                    <img src="{% static 'intro/image/Kimia_Yazdani.jpg' %}">
                 </div>
-                <div class="content">علی احمدی</div>
+                <div class="content">کیمیا یزدانی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Amir_Alamolhoda.jpg' %}">
+                </div>
+                <div class="content">امیر اعلم الهدی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Arghavan_Rezvani.jpg' %}">
+                </div>
+                <div class="content">ارغوان رضوانی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ali_Gorji.jpg' %}">
+                </div>
+                <div class="content">علی گرجی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Hasan_Zaker.jpg' %}">
+                </div>
+                <div class="content">حسن ذاکر زواردهی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Sabrine_Mokhtari.jpg' %}">
+                </div>
+                <div class="content">صبرینه مختاری</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Mahsa_DF.jpg' %}">
+                </div>
+                <div class="content">مهسا دلیرروی فرد</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">محمد صادق صابریان</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Mohammad_Zavvari.jpg' %}">
+                </div>
+                <div class="content">محمد زواری</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">علی وزوایی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Amirreza_Mozayyeni.jpg' %}">
+                </div>
+                <div class="content">امیررضا مزینی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Fereshte_Forghani.jpg' %}">
+                </div>
+                <div class="content">فرشته فرقانی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ali_GH_AB.jpg' %}">
+                </div>
+                <div class="content">علی قربان پور</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Parsa_Salavati.jpg' %}">
+                </div>
+                <div class="content">پارسا صلواتی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ali_GH_AB.jpg' %}">
+                </div>
+                <div class="content">علی عباسی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Arshiya_Moghimi.jpg' %}">
+                </div>
+                <div class="content">ارشیا مقیمی</div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Mohammad_Haddadiyan.jpg' %}">
+                </div>
+                <div class="content">محمد حدادیان</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Amirhossein_Asemyousefi.jpg' %}">
+                </div>
+                <div class="content">امیرحسین عاصم یوسفی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ali_Babaei.jpg' %}">
+                </div>
+                <div class="content">علی بابایی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ali_Salehi.jpg' %}">
+                </div>
+                <div class="content">علی صالحی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Hossein_Sandani.jpg' %}">
+                </div>
+                <div class="content">محمد حسین سندانی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Farnoosh_Hashemi.jpg' %}">
+                </div>
+                <div class="content">فرنوش هاشمی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Mohammadsaleh_Sagharchi.jpg' %}">
+                </div>
+                <div class="content">محمد صالح ساغرچی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Parsa_Eskandar.jpg' %}">
+                </div>
+                <div class="content">پارسا اسکندر</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Sepehr_Feli.jpg' %}">
+                </div>
+                <div class="content">سپهر فعلی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ali_Behrouz.jpg' %}">
+                </div>
+                <div class="content">علی بهروز</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Amirhossein_Asemyousefi.jpg' %}">
+                </div>
+                <div class="content">امیرحسین عاصم یوسفی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">مهدی فرح بخش</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Fahime_T.jpg' %}">
+                </div>
+                <div class="content">فهیمه طلوعی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Armin_Moradi.jpg' %}">
+                </div>
+                <div class="content">آرمین مرادی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ariya_Kosari.jpg' %}">
+                </div>
+                <div class="content">آریا کوثری</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Mohammad_Azari.jpg' %}">
+                </div>
+                <div class="content">محمد آذری</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">حامد خانکی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Mahtab_Bigverdi.jpg' %}">
+                </div>
+                <div class="content">مهتاب بیگوردی</div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Aynaz_Eftekhar.jpg' %}">
+                </div>
+                <div class="content">آیناز افتخار</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Alireza_Daqiq.jpg' %}">
+                </div>
+                <div class="content">علیرضا دقیق فرسوده</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Sara_Rajabzade.jpg' %}">
+                </div>
+                <div class="content">سارا رجب زاده</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Mohammadreza_Jafarzade.jpg' %}">
+                </div>
+                <div class="content">محمدرضا جعفرزاده</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Leyli_Goli.jpg' %}">
+                </div>
+                <div class="content">لیلی گلی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Kiyarash_Golzade.jpg' %}">
+                </div>
+                <div class="content">کیارش گل زاده</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Zahra_Delbari.jpg' %}">
+                </div>
+                <div class="content">زهرا دلبری</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Fateme_Saghayi.jpg' %}">
+                </div>
+                <div class="content">فاطمه سقایی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Hoora_Aboutalebi.jpg' %}">
+                </div>
+                <div class="content">حورا ابوطالبی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Rasoul_Akhavan.jpg' %}">
+                </div>
+                <div class="content">رسول اخوان مهدوی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">امیرعباس جلالی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Fateme_Zardbani.jpg' %}">
+                </div>
+                <div class="content">فاطمه زردبانی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Mahtab_Movahediyan.jpg' %}">
+                </div>
+                <div class="content">مهتاب موحدیان</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">مصطفی قدیمی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Sajjad_Rezvani.jpg' %}">
+                </div>
+                <div class="content">سجاد رضوانی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ashkan_Mirzayi.jpg' %}">
+                </div>
+                <div class="content">اشکان میرزایی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Amir_Afsari.jpg' %}">
+                </div>
+                <div class="content">امیر افسری</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ali_Mirzayi.jpg' %}">
+                </div>
+                <div class="content">علی میرزایی</div>
             </div>
         </div>
         <div class="column">
             <div class="ui fluid card">
                 <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
+                    <img src="{% static 'intro/image/Amirali_Gatmiri.jpg' %}">
                 </div>
-                <div class="content">علی احمدی</div>
+                <div class="content">امیرعلی گتمیری</div>
             </div>
             <div class="ui fluid card">
                 <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
+                    <img src="{% static 'intro/image/Mohammadamin_Borghei.jpg' %}">
                 </div>
-                <div class="content">علی احمدی</div>
+                <div class="content">محمد امین برقعی</div>
             </div>
             <div class="ui fluid card">
                 <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
                 </div>
-                <div class="content">علی احمدی</div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="ui fluid card">
-                <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
-                </div>
-                <div class="content">علی احمدی</div>
+                <div class="content">شروین منظوری شلمانی</div>
             </div>
             <div class="ui fluid card">
                 <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
+                    <img src="{% static 'intro/image/Sajjad_Vahedifard.jpg' %}">
                 </div>
-                <div class="content">علی احمدی</div>
+                <div class="content">سجاد واحدی فرد</div>
             </div>
             <div class="ui fluid card">
                 <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
                 </div>
-                <div class="content">علی احمدی</div>
-            </div>
-        </div>
-                <div class="column">
-            <div class="ui fluid card">
-                <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
-                </div>
-                <div class="content">علی احمدی</div>
+                <div class="content">حمید شجاعی</div>
             </div>
             <div class="ui fluid card">
                 <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
+                    <img src="{% static 'intro/image/Roudabe_Safavi.jpg' %}">
                 </div>
-                <div class="content">علی احمدی</div>
+                <div class="content">رودابه صفوی</div>
             </div>
             <div class="ui fluid card">
                 <div class="image">
-                    <img src="{% static 'intro/staffs/exmaple_staff.png' %}">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
                 </div>
-                <div class="content">علی احمدی</div>
+                <div class="content">علی علی رضایی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ahmad_Haji.jpg' %}">
+                </div>
+                <div class="content">احمد حاجی محمد خانی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">دانیال فامیل خلیلی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Sana_Ayremloo.jpg' %}">
+                </div>
+                <div class="content">سنا آیرملو</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Mohammadreza_Talebi.jpg' %}">
+                </div>
+                <div class="content">محمدرضا طالبی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">کیارش امینی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Amirhossein_Pouya.jpg' %}">
+                </div>
+                <div class="content">امیرحسین پویا</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">میلاد چراغعلیخانی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Kianoosh_Abbasi.jpg' %}">
+                </div>
+                <div class="content">کیانوش عباسی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Sahar_Zargarzade.jpg' %}">
+                </div>
+                <div class="content">سحر زرگرزاده</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">امیرحسین امیری</div>
             </div>
         </div>
     </div>
+    </div>
+    <div class="ui tab segment active" data-tab="tech">
+    <div class="ui top attached tabular menu">
+        <a class="item active" data-tab="tech/site">{% trans 'Website Team' %}</a>
+        <a class="item" data-tab="tech/infra">{% trans 'Infrastructure Team' %}</a>
+        <a class="item" data-tab="tech/server">{% trans 'Server Team' %}</a>
+        <a class="item" data-tab="tech/client">{% trans 'Client Team' %}</a>
+        <a class="item" data-tab="tech/graphic">{% trans 'Graphic Team' %}</a>
+        <a class="item" data-tab="tech/game">{% trans 'Game Design Team' %}</a>
+        <a class="item" data-tab="tech/test">{% trans 'Test' %}</a>
+    </div>
+    <div class="ui bottom attached tab segment active" data-tab="tech/site">
+    <div class="ui four column stackable grid">
+        <div class="column">
+            <div class="ui fluid card">
+            <div class="image">
+                <img src="{% static 'intro/image/Ali Asgari.jpg' %}">
+            </div>
+            <div class="content">علی عسگری</div>
+        </div>
+        <div class="ui fluid card">
+            <div class="image">
+                <img src="{% static 'intro/image/Alireza_Khoshghalb.jpg' %}">
+            </div>
+            <div class="content">علیرضا خوش قلب</div>
+        </div>
+        </div>
+        <div class="column">
+            <div class="ui fluid card">
+            <div class="image">
+                <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+            </div>
+            <div class="content">امیر حسین استیری</div>
+        </div>
+        <div class="ui fluid card">
+            <div class="image">
+                <img src="{% static 'intro/image/Mohammadmahdi_Faryabi.jpg' %}">
+            </div>
+            <div class="content">محمد مهدی فاریابی</div>
+        </div>
+        </div>
+        <div class="column">
+            <div class="ui fluid card">
+            <div class="image">
+                <img src="{% static 'intro/image/Sadegh_Mahdavi.jpg' %} ">
+            </div>
+            <div class="content">صادق مهدوی</div>
+        </div>
+            <div class="ui fluid card">
+            <div class="image">
+                <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+            </div>
+            <div class="content">مصطفی قدیمی</div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui fluid card">
+            <div class="image">
+                <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+            </div>
+            <div class="content">احسان سلطان آقایی</div>
+            </div>
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Amin_Isayi.jpg' %}">
+                </div>
+                <div class="content">محمد امین عیسایی</div>
+            </div>
+    </div>
+    </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="tech/infra">
+        <div class="ui four column stackable grid">
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">علی اسدی</div>
+                </div>
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">کیارش گل زردی</div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Female_Avatar.jpg' %}">
+                </div>
+                <div class="content">کیمیا حمیدیه</div>
+                </div>
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">مهدی قربانی</div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Female_Avatar.jpg' %}">
+                </div>
+                <div class="content">سیده یاسمین طباطبایی</div>
+                </div>
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Majid_Garoosi.jpg' %}">
+                </div>
+                <div class="content">مجید گروسی</div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Iman_Gholami.jpg' %}">
+                </div>
+                <div class="content">ایمان غلامی</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="tech/server">
+    <div class="ui four column stackable grid">
+        <div class="column">
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Roohollah_Sekaleshfar.jpg' %}">
+                </div>
+                <div class="content">روح الله سکالش فر</div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">محسن نقی پور</div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="tech/client">
+        <div class="ui four column stackable grid">
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Kiarash Korki.jpg' %}">
+                </div>
+                <div class="content">کیارش کرکی</div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Parsa_Morsal.jpg' %}">
+                </div>
+                <div class="content">پارسا مرسل</div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Ariyan_Tajmir.jpg' %}">
+                </div>
+                <div class="content">آرین تاجمیر ریاحی</div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="tech/graphic">
+        <div class="ui four column stackable grid">
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Soroush_Omranpour.jpg' %}">
+                </div>
+                <div class="content">سروش عمران پور</div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Parsa_Aliyan.jpg' %}">
+                </div>
+                <div class="content">پارسا عالیان</div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="tech/game">
+        <div class="ui four column stackable grid">
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">پویا شتی</div>
+                </div>
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">مهدی جوانمردی</div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Hamid_Hashemi.jpg' %}">
+                </div>
+                <div class="content">حمید هاشمی</div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">پرهام قاسملو</div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Alireza_Zohri.jpg' %}">
+                </div>
+                <div class="content">علیرضا ظهری</div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="tech/test">
+        <div class="ui four column stackable grid">
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">محمد رسول قاسمی مفرد</div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="ui tab segment" data-tab="head">
+        <div class="ui four column stackable grid">
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">
+                    <div class="header"></div>
+                    <div class="description"></div>
+                </div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="ui fluid card">
+                <div class="image">
+                    <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
+                </div>
+                <div class="content">
+                    <div class="header"></div>
+                    <div class="description"></div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $('.menu .item').tab();
+    });
+    </script>
 {% endblock %}

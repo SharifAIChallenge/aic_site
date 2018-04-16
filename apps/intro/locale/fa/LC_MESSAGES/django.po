@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-08 09:00+0330\n"
+"POT-Creation-Date: 2018-04-16 22:36+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -336,6 +336,46 @@ msgstr "ایمیل:"
 #: apps/intro/templates/intro/index.html:384
 msgid "Phone: "
 msgstr "شماره تماس:"
+
+#: apps/intro/templates/intro/staffs.html:7
+msgid "Technical"
+msgstr "فنی"
+
+#: apps/intro/templates/intro/staffs.html:8
+msgid "Executive"
+msgstr "اجرایی"
+
+#: apps/intro/templates/intro/staffs.html:9
+msgid "Head Of Committee"
+msgstr "راس کمیته"
+
+#: apps/intro/templates/intro/staffs.html:453
+msgid "Website Team"
+msgstr "تیم وبسایت"
+
+#: apps/intro/templates/intro/staffs.html:454
+msgid "Infrastructure Team"
+msgstr "تیم زیرساخت"
+
+#: apps/intro/templates/intro/staffs.html:455
+msgid "Server Team"
+msgstr "تیم سرور"
+
+#: apps/intro/templates/intro/staffs.html:456
+msgid "Client Team"
+msgstr "تیم کلاینت"
+
+#: apps/intro/templates/intro/staffs.html:457
+msgid "Graphic Team"
+msgstr "تیم گرافیک"
+
+#: apps/intro/templates/intro/staffs.html:458
+msgid "Game Design Team"
+msgstr "تیم طراحی بازی"
+
+#: apps/intro/templates/intro/staffs.html:459
+msgid "Test"
+msgstr "تیم تست"
 
 #~ msgid "View Schedule"
 #~ msgstr "مشاهده زمان‌بندی"

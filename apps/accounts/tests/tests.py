@@ -150,44 +150,48 @@ class TestTeam(TransactionTestCase):
                 'language': 'cpp'
             }
         )
-        self.assertEqual(response.status_code, 302)  # after submission should redirect, to prevent form resubmissions
-        # test that it functions
-        time.sleep(0.4)
-        self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 1)
-        client.get('/accounts/panel/' + str(participation.id))  # to change participation in site
-        response = client.post(
-            '/accounts/panel/submissions',
-            {
-                'file': io.StringIO("Log the game"),
-                'team': participation.id,
-                'language': 'cpp'
-            }
-        )
-        self.assertEqual(response.status_code, 302)  # after submission should redirect, to prevent form resubmissions
-        time.sleep(0.4)
-        self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 2)
-        submissions = list(TeamSubmission.objects.all())
-        self.assertFalse(submissions[0].is_final)
-        self.assertFalse(submissions[1].is_final)
+        if settings.ENABLE_SUBMISSION:
+            self.assertEqual(response.status_code, 302)  # after submission should redirect, to prevent form resubmissions
+            # test that it functions
+            time.sleep(0.4)
+            self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 1)
+            client.get('/accounts/panel/' + str(participation.id))  # to change participation in site
+            response = client.post(
+                '/accounts/panel/submissions',
+                {
+                    'file': io.StringIO("Log the game"),
+                    'team': participation.id,
+                    'language': 'cpp'
+                }
+            )
+            self.assertEqual(response.status_code,
+                             302)  # after submission should redirect, to prevent form resubmissions
+            time.sleep(0.4)
+            self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 2)
+            submissions = list(TeamSubmission.objects.all())
+            self.assertFalse(submissions[0].is_final)
+            self.assertFalse(submissions[1].is_final)
 
-        # successful scenario coverage
-        self.assertEqual(submissions[0].status, 'compiling')
+            # successful scenario coverage
+            self.assertEqual(submissions[0].status, 'compiling')
 
-        json_str = json.dumps({
-            'id': submissions[0].infra_compile_token,
-            'operation': 'compile',
-            'status': 2,
-            'parameters': {
-                'code_compiled_zip': functions.random_token(),
-                'code_log': functions.random_token()
-            }
-        })
-        response = client.post('/game/api/report', data=json_str, content_type='application/json',
-                               **{'HTTP_AUTHORIZATION': settings.INFRA_AUTH_TOKEN})
+            json_str = json.dumps({
+                'id': submissions[0].infra_compile_token,
+                'operation': 'compile',
+                'status': 2,
+                'parameters': {
+                    'code_compiled_zip': functions.random_token(),
+                    'code_log': functions.random_token()
+                }
+            })
+            response = client.post('/game/api/report', data=json_str, content_type='application/json',
+                                   **{'HTTP_AUTHORIZATION': settings.INFRA_AUTH_TOKEN})
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(TeamSubmission.objects.all().first().status, 'compiled')
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(TeamSubmission.objects.all().first().status, 'compiled')
 
-        submissions = list(TeamSubmission.objects.all())
-        self.assertTrue(submissions[0].is_final)
-        self.assertFalse(submissions[1].is_final)
+            submissions = list(TeamSubmission.objects.all())
+            self.assertTrue(submissions[0].is_final)
+            self.assertFalse(submissions[1].is_final)
+        else:
+            self.assertEqual(response.status_code, 200)  # in case it is denied
