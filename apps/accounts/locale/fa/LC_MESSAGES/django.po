@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-08 09:00+0330\n"
+"POT-Creation-Date: 2018-04-16 22:36+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,8 +27,10 @@ msgid "Registration is closed. See you next year."
 msgstr "ثبت نام هم‌اکنون باز نیست. به امید دیدار شما در رقابت بعدی."
 
 #: apps/accounts/forms/panel.py:45
+#, fuzzy
+#| msgid "Submissions"
 msgid "Submission is closed."
-msgstr "اکنون امکان ارسال وجود ندارد."
+msgstr "ارسال‌ها"
 
 #: apps/accounts/forms/panel.py:50
 msgid "Max file size is 5MB."
@@ -99,6 +101,39 @@ msgstr "کد ملی"
 msgid "Telephone number‌"
 msgstr "شماره ی تلفن ثابت"
 
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:4
+#: apps/accounts/templates/accounts/oldpanel/battle_history.html:115
+msgid "Scoreboard"
+msgstr "جدول امتیازات"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:8
+msgid "Rank"
+msgstr "رتبه"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:9
+#, fuzzy
+#| msgid "Team Name"
+msgid "Name"
+msgstr "نام تیم"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:10
+#: apps/accounts/templates/accounts/oldpanel/battle_history.html:11
+#: apps/accounts/templates/accounts/panel/battle_history.html:13
+msgid "Score"
+msgstr "امتیاز"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:11
+msgid "total num"
+msgstr "مجموع"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:12
+msgid "win num"
+msgstr "برد"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:13
+msgid "lose num"
+msgstr "باخت"
+
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:4
 #: apps/accounts/templates/accounts/panel/battle_history.html:6
 #: apps/accounts/views/panel.py:51
@@ -116,11 +151,6 @@ msgstr "زمان"
 #: apps/accounts/templates/accounts/panel/battle_history.html:12
 msgid "Team"
 msgstr "نام تیم"
-
-#: apps/accounts/templates/accounts/oldpanel/battle_history.html:11
-#: apps/accounts/templates/accounts/panel/battle_history.html:13
-msgid "Score"
-msgstr "امتیاز"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:12
 #: apps/accounts/templates/accounts/panel/battle_history.html:14
@@ -166,10 +196,6 @@ msgstr "نقشه:"
 #: apps/accounts/templates/accounts/panel/submissions.html:41
 msgid "Submit"
 msgstr "ارسال"
-
-#: apps/accounts/templates/accounts/oldpanel/battle_history.html:115
-msgid "Scoreboard"
-msgstr "جدول امتیازات"
 
 #: apps/accounts/templates/accounts/oldpanel/challenge_feild.html:8
 msgid "Challenge:"
@@ -368,12 +394,14 @@ msgid "Complete team"
 msgstr "تکمیل تیم"
 
 #: apps/accounts/templates/accounts/panel/submissions.html:118
+#, fuzzy
+#| msgid "We are compiling your code! Wait and refresh your page."
 msgid "Uploading, Wait and refresh the page."
-msgstr "ما در حال آپلود کردن کد شما هستیم. صبر کنید و صفحه را مجددا ببینید."
+msgstr "ما در حال کامپایل کردن کد شما هستیم. صبر کنید و صفحه را مجددا ببینید."
 
 #: apps/accounts/templates/accounts/panel/submissions.html:119
 msgid "Uploading"
-msgstr "در حال آپلود"
+msgstr ""
 
 #: apps/accounts/templates/accounts/panel/team_management.html:66
 msgid "You have not participated in this challenge yet."
@@ -497,11 +525,6 @@ msgstr "رده‌بندی دوستانه"
 #: apps/accounts/views/panel.py:82
 msgid "League"
 msgstr "لیگ"
-
-#, fuzzy
-#~| msgid "Team Name"
-#~ msgid "Name"
-#~ msgstr "نام تیم"
 
 #~ msgid "With:"
 #~ msgstr "با:"
