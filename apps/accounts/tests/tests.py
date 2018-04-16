@@ -150,8 +150,11 @@ class TestTeam(TransactionTestCase):
                 'language': 'cpp'
             }
         )
-        self.assertEqual(response.status_code, 302)  # after submission should redirect, to prevent form resubmissions
-        # test that it functions
+        if settings.ENABLE_SUBMISSION:
+            self.assertEqual(response.status_code, 302)  # after submission should redirect, to prevent form resubmissions
+        else:
+            self.assertEqual(response.status_code, 200)  # in case it is denied
+# test that it functions
         time.sleep(0.4)
         self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 1)
         client.get('/accounts/panel/' + str(participation.id))  # to change participation in site
