@@ -453,6 +453,15 @@ class Match(models.Model):
         self.part1.update_depend()
         self.part2.update_depend()
 
+    @property
+    def part1_name(self):
+        return self.part1.submission.team.team.name
+
+    @property
+    def part2_name(self):
+        return self.part2.submission.team.team.name
+
+
     def get_participant_or_team(self, part):
         res = None
         if part is None or part.object_id is None:
@@ -482,7 +491,9 @@ class Match(models.Model):
         elif part2_result == participant_result:
             return self.part2.get_team()
         else:
-            raise ValueError('this is impossible due to previous conditions!')
+            Warning('bad smell!')
+            # FIXME this is not handled the correct way!
+            return self.part1.get_team()
 
     def get_score_for_participant(self, participant):
         if participant is None:
