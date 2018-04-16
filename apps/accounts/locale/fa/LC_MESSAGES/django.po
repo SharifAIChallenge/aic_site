@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-05 14:54+0330\n"
+"POT-Creation-Date: 2018-04-16 22:19+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,6 +95,39 @@ msgstr "کد ملی"
 msgid "Telephone number‌"
 msgstr "شماره ی تلفن ثابت"
 
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:4
+#: apps/accounts/templates/accounts/oldpanel/battle_history.html:115
+msgid "Scoreboard"
+msgstr "جدول امتیازات"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:8
+msgid "Rank"
+msgstr "رتبه"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:9
+#, fuzzy
+#| msgid "Team Name"
+msgid "Name"
+msgstr "نام تیم"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:10
+#: apps/accounts/templates/accounts/oldpanel/battle_history.html:11
+#: apps/accounts/templates/accounts/panel/battle_history.html:13
+msgid "Score"
+msgstr "امتیاز"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:11
+msgid "total num"
+msgstr "مجموع"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:12
+msgid "win num"
+msgstr "برد"
+
+#: apps/accounts/templates/accounts/friendly_match_scoreboard.html:13
+msgid "lose num"
+msgstr "باخت"
+
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:4
 #: apps/accounts/templates/accounts/panel/battle_history.html:6
 #: apps/accounts/views/panel.py:51
@@ -112,11 +145,6 @@ msgstr "زمان"
 #: apps/accounts/templates/accounts/panel/battle_history.html:12
 msgid "Team"
 msgstr "نام تیم"
-
-#: apps/accounts/templates/accounts/oldpanel/battle_history.html:11
-#: apps/accounts/templates/accounts/panel/battle_history.html:13
-msgid "Score"
-msgstr "امتیاز"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:12
 #: apps/accounts/templates/accounts/panel/battle_history.html:14
@@ -162,10 +190,6 @@ msgstr "نقشه:"
 #: apps/accounts/templates/accounts/panel/submissions.html:41
 msgid "Submit"
 msgstr "ارسال"
-
-#: apps/accounts/templates/accounts/oldpanel/battle_history.html:115
-msgid "Scoreboard"
-msgstr "جدول امتیازات"
 
 #: apps/accounts/templates/accounts/oldpanel/challenge_feild.html:8
 msgid "Challenge:"
@@ -487,11 +511,6 @@ msgstr "رده‌بندی دوستانه"
 #: apps/accounts/views/panel.py:82
 msgid "League"
 msgstr "لیگ"
-
-#, fuzzy
-#~| msgid "Team Name"
-#~ msgid "Name"
-#~ msgstr "نام تیم"
 
 #~ msgid "With:"
 #~ msgstr "با:"

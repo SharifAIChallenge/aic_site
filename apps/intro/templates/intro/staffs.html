@@ -1,11 +1,12 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block container %}
     <div class="ui pointing secondary menu">
-        <a class="item active" data-tab="tech">Technical</a>
-        <a class="item" data-tab="exe">Executive</a>
-        <a class="item" data-tab="head">Head Of Committee</a>
+        <a class="item active" data-tab="tech">{% trans 'Technical' %}</a>
+        <a class="item" data-tab="exe">{%  trans 'Executive' %}</a>
+        <a class="item" data-tab="head">{%  trans 'Head Of Committee' %}</a>
     </div>
     <div class="ui tab segment" data-tab="exe">
     <div class="ui four column stackable grid">
@@ -449,13 +450,13 @@
     </div>
     <div class="ui tab segment active" data-tab="tech">
     <div class="ui top attached tabular menu">
-        <a class="item active" data-tab="tech/site">Website Team</a>
-        <a class="item" data-tab="tech/infra">Infrastructure Team</a>
-        <a class="item" data-tab="tech/server">Server Team</a>
-        <a class="item" data-tab="tech/client">Client Team</a>
-        <a class="item" data-tab="tech/graphic">Graphic Team</a>
-        <a class="item" data-tab="tech/game">Game Design Team</a>
-        <a class="item" data-tab="tech/test">Test</a>
+        <a class="item active" data-tab="tech/site">{% trans 'Website Team' %}</a>
+        <a class="item" data-tab="tech/infra">{% trans 'Infrastructure Team' %}</a>
+        <a class="item" data-tab="tech/server">{% trans 'Server Team' %}</a>
+        <a class="item" data-tab="tech/client">{% trans 'Client Team' %}</a>
+        <a class="item" data-tab="tech/graphic">{% trans 'Graphic Team' %}</a>
+        <a class="item" data-tab="tech/game">{% trans 'Game Design Team' %}</a>
+        <a class="item" data-tab="tech/test">{% trans 'Test' %}</a>
     </div>
     <div class="ui bottom attached tab segment active" data-tab="tech/site">
     <div class="ui four column stackable grid">
@@ -646,7 +647,7 @@
                 <div class="image">
                     <img src="{% static 'intro/image/Male_Avatar.jpg' %}">
                 </div>
-                <div class="content">پویا شطی</div>
+                <div class="content">پویا شتی</div>
                 </div>
                 <div class="ui fluid card">
                 <div class="image">

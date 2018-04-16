@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-06 04:00+0330\n"
+"POT-Creation-Date: 2018-04-16 22:19+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgstr "در حال کامپایل"
 msgid "Compiled"
 msgstr "کامپایل شده"
 
-#: apps/game/models/challenge.py:132 apps/game/models/competition.py:660
+#: apps/game/models/challenge.py:132 apps/game/models/competition.py:663
 msgid "Failed"
 msgstr "ناموفق!"
 
@@ -122,53 +122,53 @@ msgstr "ناموفق!"
 msgid "This submission is not compiled yet."
 msgstr "این ارسال هنوز کامپایل نشده است."
 
-#: apps/game/models/competition.py:23
+#: apps/game/models/competition.py:24
 msgid "Elimination"
 msgstr "حذفی"
 
-#: apps/game/models/competition.py:24
+#: apps/game/models/competition.py:25
 msgid "Double Elimination"
 msgstr "دوحذفی"
 
-#: apps/game/models/competition.py:25
+#: apps/game/models/competition.py:26
 msgid "League"
 msgstr "لیگ"
 
-#: apps/game/models/competition.py:26
+#: apps/game/models/competition.py:27
 msgid "Friendly"
 msgstr "دوستانه"
 
-#: apps/game/models/competition.py:322
-#: apps/game/templates/scoreboard/group_table_challenge.html:48
-#: apps/game/templates/scoreboard/group_table_challenge.html:72
+#: apps/game/models/competition.py:323
+#: apps/game/templates/scoreboard/single_matches_table.html:14
+#: apps/game/templates/scoreboard/single_matches_table.html:38
 msgid "Winner"
 msgstr "برنده"
 
-#: apps/game/models/competition.py:323
-#: apps/game/templates/scoreboard/group_table_challenge.html:56
-#: apps/game/templates/scoreboard/group_table_challenge.html:64
+#: apps/game/models/competition.py:324
+#: apps/game/templates/scoreboard/single_matches_table.html:22
+#: apps/game/templates/scoreboard/single_matches_table.html:30
 msgid "Loser"
 msgstr "بازنده"
 
-#: apps/game/models/competition.py:324
+#: apps/game/models/competition.py:325
 msgid "Itself"
 msgstr "خودش"
 
-#: apps/game/models/competition.py:354 apps/game/models/competition.py:356
-#: apps/game/templates/scoreboard/group_table_challenge.html:80
-#: apps/game/templates/scoreboard/group_table_challenge.html:88
+#: apps/game/models/competition.py:355 apps/game/models/competition.py:357
+#: apps/game/templates/scoreboard/single_matches_table.html:46
+#: apps/game/templates/scoreboard/single_matches_table.html:54
 msgid "Unknown"
 msgstr "نامعلوم"
 
-#: apps/game/models/competition.py:659
+#: apps/game/models/competition.py:662
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: apps/game/models/competition.py:661
+#: apps/game/models/competition.py:664
 msgid "Done"
 msgstr "انجام شده"
 
-#: apps/game/models/competition.py:662
+#: apps/game/models/competition.py:665
 msgid "Waiting"
 msgstr "در حال انتظار"
 
@@ -220,15 +220,15 @@ msgstr "بردها"
 msgid "Loses"
 msgstr "باخت‌ها"
 
-#: apps/game/templates/scoreboard/group_table_challenge.html:39
+#: apps/game/templates/scoreboard/single_matches_table.html:4
 msgid "View/Hide Games"
 msgstr "نمایش/مخفی‌کردن بازی‌ها"
 
-#: apps/game/templates/scoreboard/group_table_challenge.html:94
+#: apps/game/templates/scoreboard/single_matches_table.html:60
 msgid "In "
 msgstr "در "
 
-#: apps/game/templates/scoreboard/group_table_challenge.html:98
+#: apps/game/templates/scoreboard/single_matches_table.html:64
 msgid "View"
 msgstr "نمایش"
 
