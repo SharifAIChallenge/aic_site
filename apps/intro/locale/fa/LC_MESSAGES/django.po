@@ -347,7 +347,7 @@ msgstr "اجرایی"
 
 #: apps/intro/templates/intro/staffs.html:9
 msgid "Head Of Committee"
-msgstr "راس کمیته"
+msgstr "کمیته برگزاری"
 
 #: apps/intro/templates/intro/staffs.html:453
 msgid "Website Team"
