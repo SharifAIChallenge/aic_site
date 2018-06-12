@@ -87,3 +87,9 @@ The model `Game` contains informatoin about a specific game logic which such as 
 The modeling inside the `Competition`s is quite well defined and extensible. But the implementation has weeknesses and some names such as `depends` field can be confusing. The design was to have dags of `Match`es to represent all types of `Competition`s. This general form can cover leagues, torenoments, eliminations, double eliminations, etc. The edges between `Match`es show that the winner or the loser of the required `Match` should attend the dependant `Match`.
 
 Each `Match` consists of several `SingleMatch`es for each of the maps of the competition. We were careful about it to keep it consistent and all matches have the appropriate `SingleMatch`es. Tht model `SingleMatch` is the equalant for the model `Run` in the infrustructure.
+
+## UI/UX and management
+
+We used trello to track issues, user strories and tasks. You may request for the trello board if you  are reading this document. 
+
+We held sessions on the UX. We simply copied things from the old site and extracted user stories in sentences in a session. Submodules of the site were defined by the technical head of the event. The site team had almost weekly sessions on the site and had extreme times of development. 
