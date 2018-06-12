@@ -14,7 +14,7 @@
 pip install -r requirements/production.txt
 python manage.py migrate
 python manage.py runserver
-```CSRF_TRUSTED_ORIGINS =
+```
 
 ## Explanations
 
@@ -68,7 +68,7 @@ All the settings that now are present are necessary for the SSL configuration sp
 
 ## Architecture
 
-The site contains only the control logic for the games to be run and does communicate with another party named middle brain to run games. `game_runner` is up on the middle brain. The API between can be found [here](https://github.com/SharifAIChallenge/AIC_game_runner). 
+The site contains only the control logic for the games to be run and does communicate with another party named middle brain to run games. AIC_game_runner would be up on the middle brain. The API between can be found [here](https://github.com/SharifAIChallenge/AIC_game_runner). 
 
 ## About modeling
 
@@ -82,4 +82,8 @@ We have used a `Payment` model to show if there is a valid payment for a `TeamPa
 
 ### Game
 
-The model `Game` contains informatoin about a specific game logic which such as a token to tell the infrustructure that what `Game` is mentioned in the request.
+The model `Game` contains informatoin about a specific game logic which such as a token to tell the infrustructure that what `Game` is mentioned in the request. There are `Competition`s in a challenge indicating game units. A `Competition` can be of types double elimination and league. There are some issues with the double elimination to be considered. There is a week design here with the leages with multiple groups due to constraints at the time of development. The weekness is that the `Competitions` are tagged and the `Competitions` which are assumed to be in the same super league are indicated with their common tags. These tags are used to perform scheduling with management commands.
+
+The modeling inside the `Competition`s is quite well defined and extensible. But the implementation has weeknesses and some names such as `depends` field can be confusing. The design was to have dags of `Match`es to represent all types of `Competition`s. This general form can cover leagues, torenoments, eliminations, double eliminations, etc. The edges between `Match`es show that the winner or the loser of the required `Match` should attend the dependant `Match`.
+
+Each `Match` consists of several `SingleMatch`es for each of the maps of the competition. We were careful about it to keep it consistent and all matches have the appropriate `SingleMatch`es. Tht model `SingleMatch` is the equalant for the model `Run` in the infrustructure.
