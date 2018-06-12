@@ -2,14 +2,13 @@
 
 ---
 
-# Requirements
+## Requirements
 
-+  create virtual environment
+*  python version 3.6.3 virtual env,
+*  postgresql database (production)
 
-    base python version is 3.6.3
 
-
-# RUN
+## Test
 
 ```
 pip install -r requirements/production.txt
@@ -17,7 +16,9 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-# Explanations from developers
+## Explanations
+
+### Persian docs obtained from developers 
 
 <p dir='rtl' align='right'>
 قسمت بلاگ :<br>
@@ -44,3 +45,20 @@ python manage.py runserver
 در پیاده سازی این قسمت از امکان ajax ای که semantic ui دارد استفاده کردیم. برای صفحه‌بندی ارسال‌ها هم از ‌‌ Paginator  جنگو در ویوی مربوط استفاده کردیم. فایلهای ارسال شده را هم با نام خودشان به علاوه رشته ای تصادفی ذخیره می کنیم. 
 نحوه نهایی شدن یک ارسال را می‌توانید با مطالعه طراحی و مدلسازی سایت و جزئیات ارتباط سایت و زیرساخت  ببینید.
 </p>
+
+### Deployment
+
+Deployment is done with the aim of travis ci. You can find its logic at .travis.yml
+
+When we were developing this project travis prevented us from performing `ssh` to the production machine so we had to have a deployment server which deployed the site to the production after receiving a web signal. 
+
+Furthure documents and deployment server logic could be found at `deployment/README.md`.
+
+### Integration with graphics
+
+The graphic part of the game was a pure js application which loaded a file from local or downloaded a file from the website and played it. So the integration was done simply by adding a page. The path to the file to be downloaded was provided to the script with `GET` parameters.
+
+### SSL configuration
+
+It was done using let's encrypt and the key files were generated manully and was put in the deployment server as secret files. This scenario goes for other secret files such as `SECRET_KEY` settings for Django. 
+
