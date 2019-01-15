@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.0.0/css/bootstrap.min.css" integrity="sha384-P4uhUIGk/q1gaD/NdgkBIl3a6QywJjlsFJFk7SPRdruoGddvRVSwv5qFnvZ73cpz" crossorigin="anonymous">
+</head>
+<body dir="rtl">
+<div style="align:center; background-color: #00ae8b; margin: 20px; padding: 20px; border-radius: 10px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        <div class="form-group col-md-5">
+            <label for="formGroupExampleInput">نام و نام خانوادگی (فارسی)</label>
+            <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">تیم</label>
+            <select id="inputState" name="team" class="form-control">
+                <option selected>اجرایی</option>
+                <option>سایت</option>
+                <option>گرافیک</option>
+                <option>طراحی بازی</option>
+                <option>زیرساخت</option>
+                <option>تست</option>
+                <option>محتوا</option>
+                <option>سرور و کلاینت</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="exampleFormControlFile1">عکس(۱۰۰ × ۱۰۰)</label>
+            <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-right: 15px;">Submit</button>
+    </form>
+
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.rtlcss.com/bootstrap/v4.0.0/js/bootstrap.min.js" integrity="sha384-54+cucJ4QbVb99v8dcttx/0JRx4FHMmhOWi4W+xrXpKcsKQodCBwAvu3xxkZAwsH" crossorigin="anonymous"></script>
+</html>
