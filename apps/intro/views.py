@@ -1,5 +1,5 @@
-from io import StringIO
 import logging
+from io import BytesIO
 
 from PIL import Image
 from django.contrib.auth.models import User
@@ -37,9 +37,8 @@ def not_found(request):
 
 def staffs(request):
     staff = Staff.objects.all()
-    if request.POST and str(request.POST.get('team')) != 'همه':
+    if request.POST and str(request.POST.get('team')) != 'all':
         staff = Staff.objects.filter(team=request.POST.get('team'))
-    print(staff.count())
     return render(request, 'intro/staffs.html', {
         "staff": staff
     })
@@ -48,7 +47,16 @@ def add_staff(request):
     form = StaffForm(request.POST, request.FILES)
     if request.POST:
         if form.is_valid():
-            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=form.cleaned_data['image'])
+            image_field = form.cleaned_data['image']
+            image_file = BytesIO(image_field.file.read())
+            image = Image.open(image_file)
+            size = image.size[1]
+            image = image.crop((0, 0, size, size)).resize((size, size), Image.ANTIALIAS)
+            image_file = BytesIO()
+            image.save(image_file, 'PNG')
+            image_field.file = image_file
+            image_field.image = image
+            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field)
     return render(request, 'intro/staff-form.html', {
         'form':form
     })
