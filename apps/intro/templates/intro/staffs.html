@@ -7,6 +7,8 @@
 {% endblock %}
 
 {% block container %}
+
+
     <div style="margin: 70px;">
         <form class="form-inline" method="post">{% csrf_token %}
             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">تیم</label>
@@ -33,6 +35,24 @@
         </div>
         {% endfor %}
     </div>
+    <div class="card col-sm-3 col-md-2"  style="display:inline-block;width:200px; border-radius: 25px;-webkit-box-shadow: -22px 9px 47px 2px rgba(0,0,0,0.75);-moz-box-shadow: -22px 9px 47px 2px rgba(0,0,0,0.75);box-shadow: -22px 9px 47px 2px rgba(0,0,0,0.75);background-color: #7f757f">
+        <img class="card-img-top rounded-circle" src="https://aichallenge.sharif.edu/static/intro/image/Male_Avatar.jpg" alt="Card image">
+        <div class="card-body">
+            <div class="caption" style="text-align: center;">
+                <h3 style="margin: 0!important;font-size: 15px;">پارسا اسکندر</h3>
+                <p>فنی</p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
 {% endblock %}
 
 
