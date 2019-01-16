@@ -39,14 +39,13 @@ def staffs(request):
     staff = Staff.objects.all()
     if request.POST and str(request.POST.get('team')) != 'همه':
         staff = Staff.objects.filter(team=request.POST.get('team'))
-
+    print(staff.count())
     return render(request, 'intro/staffs.html', {
         "staff": staff
     })
 
 def add_staff(request):
     form = StaffForm(request.POST, request.FILES)
-    Staff.objects.create()
     if request.POST:
         if form.is_valid():
             Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=form.cleaned_data['image'])
