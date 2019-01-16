@@ -37,7 +37,7 @@ def not_found(request):
 
 def staffs(request):
     staff = Staff.objects.all()
-    if request.POST and str(request.POST.get('team')) != 'همه':
+    if request.POST and str(request.POST.get('team')) != 'all':
         staff = Staff.objects.filter(team=request.POST.get('team'))
     print(staff.count())
     return render(request, 'intro/staffs.html', {
