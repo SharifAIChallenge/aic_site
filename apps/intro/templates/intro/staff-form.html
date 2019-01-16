@@ -8,27 +8,28 @@
 <body dir="rtl">
 <div style="align:center; background-color: #00ae8b; margin: 20px; padding: 20px; border-radius: 10px; box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
-        <div class="form-group col-md-5">
-            <label for="formGroupExampleInput">نام و نام خانوادگی (فارسی)</label>
-            <input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-        </div>
-        <div class="form-group col-md-4">
-            <label for="inputState">تیم</label>
-            <select id="inputState" name="team" class="form-control">
-                <option selected>اجرایی</option>
-                <option>سایت</option>
-                <option>گرافیک</option>
-                <option>طراحی بازی</option>
-                <option>زیرساخت</option>
-                <option>تست</option>
-                <option>محتوا</option>
-                <option>سرور و کلاینت</option>
-            </select>
-        </div>
-        <div class="form-group col-md-4">
-            <label for="exampleFormControlFile1">عکس(۱۰۰ × ۱۰۰)</label>
-            <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">
-        </div>
+        {{ form.as_ul }}
+        <!--<div class="form-group col-md-5">-->
+            <!--<label for="formGroupExampleInput">نام و نام خانوادگی (فارسی)</label>-->
+            <!--<input type="text" name="name" class="form-control" id="formGroupExampleInput" placeholder="Example input">-->
+        <!--</div>-->
+        <!--<div class="form-group col-md-4">-->
+            <!--<label for="inputState">تیم</label>-->
+            <!--<select id="inputState" name="team" class="form-control">-->
+                <!--<option selected>اجرایی</option>-->
+                <!--<option>سایت</option>-->
+                <!--<option>گرافیک</option>-->
+                <!--<option>طراحی بازی</option>-->
+                <!--<option>زیرساخت</option>-->
+                <!--<option>تست</option>-->
+                <!--<option>محتوا</option>-->
+                <!--<option>سرور و کلاینت</option>-->
+            <!--</select>-->
+        <!--</div>-->
+        <!--<div class="form-group col-md-4">-->
+            <!--<label for="exampleFormControlFile1">عکس(۱۰۰ × ۱۰۰)</label>-->
+            <!--<input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">-->
+        <!--</div>-->
         <button type="submit" class="btn btn-primary" style="margin-right: 15px;">Submit</button>
     </form>
 

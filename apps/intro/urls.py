@@ -1,4 +1,7 @@
 from django.conf.urls import url, include
+from django.conf.urls.static import static
+
+from aic_site.settings import base
 from . import views
 app_name = "intro"
 urlpatterns = [
@@ -8,4 +11,4 @@ urlpatterns = [
     url(r'^test404/', views.not_found),
     url(r'^staff$', views.staffs),
     url(r'^staff-form$', views.add_staff),
-]
+] + static(base.MEDIA_URL, document_root=base.MEDIA_ROOT)
