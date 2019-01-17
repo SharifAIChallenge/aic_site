@@ -4,14 +4,15 @@
 
 {% block extra_header %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'intro/css/profile.css' %}">
 {% endblock %}
 
 {% block container %}
 
 
     <div style="margin: 70px;">
-        <form class="form-inline" method="post">{% csrf_token %}
-            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">تیم</label>
+        <form class="form-inline" method="post" style="margin: 10px;">{% csrf_token %}
+            <label class="my-1 mr-2" for="inlineFormCustomSelectPref" style="margin: 5px">تیم</label>
             <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="team">
                 <option selected>all</option>
                 <option>executive</option>
@@ -23,35 +24,24 @@
                 <option>content</option>
                 <option>server and client</option>
             </select>
-            <button type="submit" class="btn btn-primary my-1">فیلتر</button>
+            <button type="submit" class="btn btn-primary my-1" style="margin: 5px">فیلتر</button>
         </form>
-        {% for member in staff %}
-        <div>
-            <ul style="list-style-type: none">
-                <li> <img src="media/{{ member.image }}" alt="{{ member.name }}" style="width: 100px; height:100px;"> </li>
-                <li> <label>{{ member.name }}</label> </li>
-                <li> <label>{{ member.team }}</label> </li>
-            </ul>
-        </div>
-        {% endfor %}
-    </div>
-    <div class="card col-sm-3 col-md-2"  style="display:inline-block;width:200px; border-radius: 25px;-webkit-box-shadow: -22px 9px 47px 2px rgba(0,0,0,0.75);-moz-box-shadow: -22px 9px 47px 2px rgba(0,0,0,0.75);box-shadow: -22px 9px 47px 2px rgba(0,0,0,0.75);background-color: #7f757f">
-        <img class="card-img-top rounded-circle" src="https://aichallenge.sharif.edu/static/intro/image/Male_Avatar.jpg" alt="Card image">
-        <div class="card-body">
-            <div class="caption" style="text-align: center;">
-                <h3 style="margin: 0!important;font-size: 15px;">پارسا اسکندر</h3>
-                <p>فنی</p>
+        <div class="container">
+            {% for member in staff %}
+            <div style="display: inline-flex">
+                <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
+                    <img class="card-img-top rounded-circle profpic" src="media/{{ member.image }}" alt="Card image">
+                    <div class="layer" style="background: {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
+                            <div class="caption info" style="text-align: center; align-self: auto; margin-top: 35%">
+                                    <h3 style="font-size: 200%;">{{ member.name }}</h3>
+                                    <p style="font-size: 100%">{{ member.team }}</p>
+                                </div>
+                    </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
-
     </div>
-
-
-
-
-
-
-
 
 {% endblock %}
 

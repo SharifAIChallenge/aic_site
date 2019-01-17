@@ -4,8 +4,6 @@ from io import BytesIO
 from PIL import Image
 from django.contrib.auth.models import User
 from django.shortcuts import render
-from django.utils.translation import ugettext_lazy as _
-
 from apps.accounts.models import Team
 from apps.game.models import TeamSubmission
 from apps.intro.form import StaffForm
@@ -56,7 +54,7 @@ def add_staff(request):
             image.save(image_file, 'PNG')
             image_field.file = image_file
             image_field.image = image
-            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field)
+            member = Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field)
     return render(request, 'intro/staff-form.html', {
         'form':form
     })
