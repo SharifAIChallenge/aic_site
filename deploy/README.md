@@ -196,3 +196,9 @@ systemctl stop deploy_server.service
 systemctl status deploy_server.services
 ```
 
+You should also install sshpass in deployment server:
+```
+sudo apt install sshpass
+```
+
+Also you have to get build.sh files from the one in charge. (ToDo: upload it here)  
