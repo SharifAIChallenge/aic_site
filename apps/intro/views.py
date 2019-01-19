@@ -35,10 +35,12 @@ def not_found(request):
 
 def staffs(request):
     staff = Staff.objects.all()
-    if request.POST and str(request.POST.get('team')) != 'all':
-        staff = Staff.objects.filter(team=request.POST.get('team'))
+    tech = ['site','graphic','game design','infrastructure','test','content','server and client']
+    exe = ['executive']
     return render(request, 'intro/staffs.html', {
-        "staff": staff
+        "staff":staff,
+        "tech":tech,
+        "exe":exe
     })
 
 def add_staff(request):
@@ -49,12 +51,12 @@ def add_staff(request):
             image_file = BytesIO(image_field.file.read())
             image = Image.open(image_file)
             size = image.size[1]
-            image = image.crop((0, 0, size, size)).resize((size, size), Image.ANTIALIAS)
+            image = image.crop((0, 0, size, size)).resize((size, size), Image.ANTIALIAS).resize((300, 300), Image.ANTIALIAS)
             image_file = BytesIO()
             image.save(image_file, 'PNG')
             image_field.file = image_file
             image_field.image = image
-            member = Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field)
+            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field)
     return render(request, 'intro/staff-form.html', {
         'form':form
     })

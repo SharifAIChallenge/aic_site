@@ -10,46 +10,62 @@
 {% block container %}
 
 {#its just a comment#}
-    <div style="margin: 70px;">
-        <form class="form-inline" method="post" style="margin: 10px;">{% csrf_token %}
-            <label class="my-1 mr-2" for="inlineFormCustomSelectPref" style="margin: 5px">تیم</label>
-            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="team">
-                <option selected>all</option>
-                <option>executive</option>
-                <option>site</option>
-                <option>graphic</option>
-                <option>game design</option>
-                <option>infrastructure</option>
-                <option>test</option>
-                <option>content</option>
-                <option>server and client</option>
-            </select>
-            <button type="submit" class="btn btn-primary my-1" style="margin: 5px">فیلتر</button>
-        </form>
-        <div class="container">
-            {% for member in staff %}
-            <div style="display: inline-flex">
-                <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
-                    <img class="card-img-top rounded-circle profpic" src="media/{{ member.image }}" alt="Card image">
-                    <div class="layer" style="background: {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
-                            <div class="caption info" style="text-align: center; align-self: auto; margin-top: 35%">
-                                    <h3 style="font-size: 200%;">{{ member.name }}</h3>
-                                    <p style="font-size: 100%">{{ member.team }}</p>
-                                </div>
-                    </div>
+<div class="ui pointing secondary menu">
+            <a class="item active" data-tab="tech">{% trans 'Technical' %}</a>
+            <a class="item" data-tab="exe">{% trans 'Executive' %}</a>
+</div>
+<div class="ui tab segment active" data-tab="tech">
+    {% for sec in tech %}
+    <h3 class="ui dividing header" style="margin: 20px">
+        {{ sec }}
+    </h3>
+    {% for member in staff %}
+    {% if member.team == sec %}
+    <div class="d-sm-inline-block" style="margin: 3%">
+        <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
+            <img class="card-img-top rounded-circle profpic" src="media/{{ member.image }}" alt="Card image">
+            <div class="layer" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
+                <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">
+                    <h3 class="text-font">{{ member.name }}</h3>
                 </div>
             </div>
-            {% endfor %}
         </div>
     </div>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</div>
+<div class="ui tab segment" data-tab="exe">
+    {% for sec in exe %}
+    <h3 class="ui dividing header" style="margin: 20px">
+        {{ sec }}
+    </h3>
+    {% for member in staff %}
+    {% if member.team == sec %}
+    <div class="d-sm-inline-block" style="margin: 3%">
+        <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
+            <img class="card-img-top rounded-circle profpic" src="media/{{ member.image }}" alt="Card image">
+            <div class="layer" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
+                <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">
+                    <h3 class="text-font">{{ member.name }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</div>
 
 {% endblock %}
 
 
 {% block footer_scripts %}
 {{ block.super }}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script>
+        $(document).ready(function () {
+            $('.menu .item').tab({history:false});
+        });
+    </script>
 {% endblock %}
 

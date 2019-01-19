@@ -502,6 +502,7 @@ msgstr "لیست موضوعات"
 msgid "Categories"
 msgstr "موضوعات"
 
+
 #: templates/zinnia/category_list.html:17
 #: templates/zinnia/tags/categories.html:6
 #: templates/zinnia/tags/categories_tree.html:7
