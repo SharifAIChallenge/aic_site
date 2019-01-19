@@ -40,6 +40,7 @@ $(document).ready(function(){
 
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
+  if (t < 0) t = 0;
   var seconds = Math.floor((t / 1000) % 60);
   var minutes = Math.floor((t / 1000 / 60) % 60);
   var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
@@ -94,9 +95,9 @@ function initializeClock(id, endtime) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-// start date of SAIC18 wednesday 16 Esfand 96 (7 Mars 2018)
+// start date of SAIC18 wednesday 22 Esfand 97 (13 Mars 2019)
 
-var deadline = new Date(Date.parse(new Date(2018, 1, 21, 20, 0, 0, 0)) + 15 * 24 * 60 * 60 * 1000);
+var deadline = new Date(Date.parse(new Date(2019, 2, 13, 8, 0, 0, 0)));
 initializeClock('clockdiv', deadline);
 
 

@@ -22,7 +22,7 @@ jobs:
     - python manage.py test
   - stage: deploy_production
     script:
-    - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://208.167.255.253:3589/deploy_production")
+    - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://193.70.90.145:3589/deploy_production")
     - ADDRESS=$(echo $CRES | grep -o "http://[^']*txt")
     - COND="false"
     - echo "waiting for deployment server"
@@ -31,7 +31,7 @@ jobs:
     - curl $ADDRESS
   - stage: deploy_test
     script:
-    - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://208.167.255.253:3589/deploy_test")
+    - CRES=$(eval "curl -H 'X-token:${TOKEN}' -X GET http://193.70.90.145:3589/deploy_test")
     - ADDRESS=$(echo $CRES | grep -o "http://[^']*txt")
     - COND="false"
     - echo "waiting for deployment server"
