@@ -228,218 +228,187 @@
     </div>
 </div>
 
-<div class="even section" id="section-history"
-     style="height: 100vh !important; background: url('{% static 'intro/image/banner-background.png' %}'); background-repeat: no-repeat; background-position: 90%;">
-    <div class="ui section header">
-        <a class="ui big ai button" href="#section-history">
-            {% trans 'History' %}
-        </a>
-    </div>
-    <div class="ui fluid segment" style="padding: 0px 70px; border: none; background: transparent;">
-        <div class="ui fluid styled accordion">
-            <div class="title">
-                <i class="dropdown icon"></i>
-                {% trans 'First 3 Years' %}
-            </div>
-            <div class="ui stackable grid content">
-                <div class="ui two column row">
-                    <div class="ten wide column">
-                        <div class="ui header">
-                            {% trans 'In the University' %}
-                        </div>
-                        {% blocktrans %}
-                        <p><span class="red">8 years ago, </span>
-                            the need for an exciting and challenging inter-university competition in the CE
-                            department
-                            was a starting point for the "Sharif AI Challenge". This later became possible
-                            thanks to the
-                            efforts of the Student's Scientific Chapter(SSC) of this department. The students
-                            took
-                            advantage
-                            of this opportunity in order to evaluate their skills in programming and improve
-                            upon them.
-                            Participation was so impressive that the "Sharif AI Challenge" soon became an annual
-                            event.
-                        </p>
-                        {% endblocktrans %}
-                    </div>
-                    <div class="mobile-hidden six wide column">
-                        <img src="{% static 'intro/image/history1.jpg' %}">
-                    </div>
-                </div>
-            </div>
-
-            <div class="title">
-                <i class="dropdown icon"></i>
-                {% trans '4th to 6th Challenge' %}
-            </div>
-            <div class="ui stackable grid content">
-                <div class="ui two column row">
-                    <div class="ten wide column">
-
-                        <div class="ui header">
-                            {% trans 'With Teams From Others Universities of Tehran' %}
-                        </div>
-                        {% blocktrans %}
-                        <p>
-                            The <span class="red">4<sup>th</sup> year </span> of the competition was introduced
-                            as the "Java Challenge".
-                            Due to its high level and credibility, the event went further than collegiate
-                            level and witnessed the participation of other teams from Tehran. The <span
-                                class="red">5<sup>th</sup> tournament</span> was
-                            organized and held in a similar way. During all this time, the level and quality of
-                            the "AI Challenge" was immensely improved. With the efforts of the Student's
-                            Scientific
-                            Chapter of the CE department and widespread advertisement, the <span
-                                class="red">6<sup>th</sup> year </span>
-                            was finally organized and held nationally. The participation of teams from Tehran
-                            and other
-                            provinces brought upon a new spirit of nationality to the competition.
-
-                        </p>
-                        {% endblocktrans %}
-                    </div>
-                    <div class="mobile-hidden six wide column">
-                        <img src="{% static 'intro/image/history2.jpg' %}">
-                    </div>
-                </div>
-            </div>
-            <div class="title">
-                <i class="dropdown icon"></i>
-                {% trans '7th year' %}
-            </div>
-            <div class="ui stackable grid content">
-                <div class="ui two column row">
-                    <div class="ten wide column">
-
-                        <div class="ui header">
-                            {% trans 'Supporting C++ and Python' %}
-                        </div>
-                        {% blocktrans %}
-                        <p>"Sharif AI Challenge" national competition continuously advanced and in its <span
-                                class="red">7<sup>th</sup> year </span>,
-                            thanks to the efforts of the technical team, C++ and Python were added to the
-                            competition's
-                            supported languages as well. This round of the "Sharif AI Challenge" was met with
-                            good reception and approximately 158 teams from 28 universities participated in
-                            the selection phase.
-                            <br>
-                            The Documentation of this competition (Java Challenge 2015) is available
-                            <a href="http://bayanbox.ir/view/992459135507989458/JavaChallenge2015-en.pdf"
-                               style="color: blue">here</a>.
-                        </p>
-                        {% endblocktrans %}
-                    </div>
-                    <div class="mobile-hidden six wide column">
-                        <img src="{% static 'intro/image/history3.jpg' %}">
-                    </div>
-                </div>
-            </div>
-
-            <div class="title active">
-                <i class="dropdown icon"></i>
-                {% trans 'Last 2 Years' %}
-            </div>
-            <div class="ui stackable grid active content">
-                <div class="ui two column row">
-                    <div class="ten wide column">
-
-                        <div class="ui active header">
-                            {% trans 'Sharif AI Challenge, a New Title' %}
-                        </div>
-                        {% blocktrans %}
-                        <p>Since the added benefit of supporting other languages in the competition
-                            was a success, the <span class="red">8<sup>th</sup> tournament</span> was held under
-                            the
-                            name
-                            "Sharif AI Challenge".
-                        </p>
-                        {% endblocktrans %}
-                    </div>
-                    <div class="mobile-hidden six wide column">
-                        <img src="{% static 'intro/image/history4.jpg' %}">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-    <div class="odd section" id="section-schedule">
-        <div class="ui section header" id="schedule-title">
-            <a class="circular ui big dark ai button" href="#section-schedule">
-                {% trans 'Schedule' %}
-            </a>
-        </div>
-        <section>
-            <div class="ui container">
-               {% comment %} <center>
-                    <a class="ui circular big ai button " id="schedule-header" href="#section-schedule">
-                        {% trans 'Schedule' %}
-                    </a>
-                </center>{% endcomment %}
-                <div class="timeline">
-                    <span class="line"></span>
-                    <article class="entry red">
-                        <div class="timelinecontent header"  style="background-color: var(--red)">
-                            ثبت نام<br/>‏۱۷ بهمن
-                        </div>
-                    </article>
-                    <article class="entry yellow" dir="auto">
-                        <div class="timelinecontent header">
-                        مرحله غیرحضوری
-                            <br/>
-                            ۱۷ تا ۲۸ بهمن
-                        </div>
-                    </article>
-                    <article class="entry green">
-                        <div class="timelinecontent" style="">
-                        مرحله غیرحضوری
-                            <br/>
-                            ۱۷ تا ۲۸ بهمن
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-        {% comment %}
-    <div class="ui container">
-        <table class="ui inverted grey table"
-               style="background-color: #813800; font-size: 1.3em; text-align: center">
-            <tbody>
-            <tr>
-                <td>
-                    {% trans 'Jan30 - Feb17' %}
-                </td>
-                <td>
-                    {% trans 'Registration' %}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {% trans 'Feb3 - Feb21' %}
-                </td>
-                <td>
-                    {% trans 'Online Phase' %}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {% trans 'March7 - March8' %}
-                </td>
-                <td>
-                    {% trans 'Sharif On-Site Phase' %}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="ui center aligned container">
-            <a href="{% url 'intro:faq' %}" class="ui centered violet button">
+    <div class="odd section" id="section-faq"
+    >
+        <div class="ui section header">
+            <a class="circular ui big ai blue button" href="#section-faq">
                 {% trans 'FAQ' %}
             </a>
         </div>
+        <div class="ui inverted segment" style="padding: 0px 70px; border: none; background: transparent;">
+            <div class="title" style="text-align:center">
+                <b class="ui active header" style="color:#F8981D">
+                    نبرد هوش مصنوعی شریف (AI Challenge) چیست؟
+                </b>
+            </div>
+            <div class="ui hidden divider"></div>
+
+            <div class="ui stackable grid content">
+                <div class="ui two column row">
+                    <div class="sixteen wide column">
+                        <p style="text-align: center">نبرد هوش مصنوعی شریف مسابقه‌ای تیمی است که در آن تیم‌ها
+                            استراتژی‌های خود را برای پیروزی
+                            در یک نبرد استراتژیک طراحی و در قالب کد پیاده‌سازی می‌کنند.
+                            هر تیم با استفاده از ایده‌های خلاقانه و استراتژی‌های متفاوت سعی می‌کند یک هوش مصنوعی
+                            قدرتمند طراحی کند که تا جای ممکن بر تیم‌های حریف چیره شود و به مرحلهٔ حضوری مسابقات راه
+                            پیدا کند.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted divider"></div>
+            <div class="title" style="text-align: center">
+                <b class="ui active header" style="color:#F8981D">
+                    در AI Challenge از چه زبان‌های برنامه‌نویسی‌ پشتیبانی می‌شود؟
+                </b>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui stackable grid content" style="text-align: center">
+                <div class="ui two column row">
+                    <div class="sixteen wide column">
+                        شما می‌توانید به زبان‌های python ،java و ++C برنامه‌های خود را بنویسید.
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted divider"></div>
+            <div class="title" style="text-align: center">
+                <b class="ui active header" style="color:#F8981D">
+                    پس نبرد هوش مصنوعی نوعی مسابقه کدها از طریق هوش مصنوعی است، اما بازی در نظر گرفته شده
+                    چیست؟
+                </b>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui stackable grid content" style="text-align: center">
+                <div class="ui two column row">
+                    <div class="sixteen wide column">
+                        پاسخ دقیق به این سوال تا روز شروع مسابقهٔ غیرحضوری ممکن نیست اما می‌توان گفت که نوعی بازی
+                        استراتژیک قهرمان‌محور برای مسابقه امسال در نظر گرفته شده است.
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted divider"></div>
+            <div class="title" style="text-align: center">
+                <b class="ui active header" style="color:#F8981D">
+                    آیا برای شرکت در AI Challenge نیاز به دانستن برنامه‌نویسی حرفه‌ای است؟ </b>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui stackable grid content" style="text-align: center">
+                <div class="ui two column row">
+                    <div class="sixteen wide column">
+                        داشتن تجربهٔ برنامه‌نویسی حرفه‌ای قطعا به شما کمک خواهد کرد اما ساختار مسابقه طوری طراحی شده
+                        که با دانستن مفاهیم ابتدایی برنامه‌نویسی همه می‌توانند در آن شرکت کنند، همچنین محتواهای
+                        آموزشی بسیاری برای یادگیری بیشتر در تمام سطوح در این دوره آماده شده است.
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted divider"></div>
+            <div class="title" style="text-align: center">
+                <b class="ui active header" style="color:#F8981D">
+                    آیا نداشتن سابقه در هوش مصنوعی مشکلی ایجاد نمی‌کند؟
+                </b>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui stackable grid content" style="text-align: center">
+                <div class="ui two column row">
+                    <div class="sixteen wide column">
+                        اصلا، بسیاری از شرکت‌کنندگان سابقه‌ای در کار با الگوریتم‌های هوش مصنوعی ندارند به همین دلیل
+                        بازی طوری طراحی شده که راه حل یکتایی برای پیروزی در آن وجود ندارد و با الگوریتم‌های ابتدایی
+                        هم می‌توان در مسابقه به موفقیت رسید؛ همچنین در طول مسابقه محتواهای آموزشی در زمینه ‌آشنایی
+                        با هوش مصنوعی در اختیار شرکت‌کنندگان قرار می‌گیرد.
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted divider"></div>
+            <div class="title" style="text-align: center">
+                <b class="ui active header" style="color:#F8981D">
+                    فرمت نبرد هوش مصنوعی شریف چگونه است؟
+                </b>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui stackable grid content" style="text-align: center">
+                <div class="ui two column row">
+                    <div class="sixteen wide column">
+                        اصلا، بسیاری از شرکت‌کنندگان سابقه‌ای در کار با الگوریتم‌های هوش مصنوعی ندارند به همین دلیل
+                        بازی طوری طراحی شده که راه حل یکتایی برای پیروزی در آن وجود ندارد و با الگوریتم‌های ابتدایی
+                        هم می‌توان در مسابقه به موفقیت رسید؛ همچنین در طول مسابقه محتواهای آموزشی در زمینه ‌آشنایی
+                        با هوش مصنوعی در اختیار شرکت‌کنندگان قرار می‌گیرد.
+                    </div>
+                </div>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui inverted divider"></div>
+            <div class="title" style="text-align: center">
+                <b class="ui active header" style="color:#F8981D">
+                    آیا برای شرکت در مسابقه باید به در دانشگاه شریف حضور داشته باشم؟ </b>
+            </div>
+            <div class="ui stackable grid content" style="text-align: center">
+                <div class="ui two column row">
+                    <div class="sixteen wide column">
+                        ثبت‌نام و شرکت در مسابقه در مرحله اول به صورت غیرحضوری انجام می‌شود و نیازی به حضور فیزیکی
+                        در دانشگاه شریف نیست؛ برای مرحلهٔ حضوری هم تمهیدات لازم برای رفاه دانشجویان غیر تهرانی در
+                        نظر گرفته شده است.
+                    </div>
+                </div>
+            </div>
+            <div class="ui inverted divider"></div>
+            <div class="title" style="text-align: center">
+                <b class="ui active header" style="color:#F8981D">
+                    چطور باید در AI Challenge ثبت‌نام کنم؟ </b>
+            </div>
+            <div class="ui hidden divider"></div>
+            <div class="ui stackable grid content" style="text-align: center">
+                <div class="ui two column row">
+                    <div class="sixteen wide column">
+                        شما می‌توانید از ۱۵ ام بهمن ماه به صورت اینترنتی در مسابقه به صورت رایگان ثبت‌نام کنید.
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-{% endcomment %}
+
+    <div class="even section" id="section-schedule">
+        <div class="ui section header">
+            <a class="circular ui big ai red button" href="#section-schedule">
+                {% trans 'Schedule' %}
+            </a>
+        </div>
+        <div class="ui container">
+            <table class="ui inverted grey table"
+                   style="background-color: #813800; font-size: 1.3em; text-align: center">
+                <tbody>
+                <tr>
+                    <td>
+                        {% trans 'Jan30 - Feb17' %}
+                    </td>
+                    <td>
+                        {% trans 'Registration' %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% trans 'Feb3 - Feb21' %}
+                    </td>
+                    <td>
+                        {% trans 'Online Phase' %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% trans 'March7 - March8' %}
+                    </td>
+                    <td>
+                        {% trans 'Sharif On-Site Phase' %}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            {#            <div class="ui center aligned container">#}
+            {#                <a href="{% url 'intro:faq' %}" class="ui centered violet button">#}
+            {#                    {% trans 'FAQ' %}#}
+            {#                </a>#}
+            {#            </div>#}
+        </div>
+    </div>
     </div>
 
 <div class="even section tablet computer only" id="section-organizer">
