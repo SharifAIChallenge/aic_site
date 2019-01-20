@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui action input" style="margin: 25px">
+        <div class="ui action input" style="margin: 25px; width: 400px; height: 50px">
             <input type="text" placeholder="ایمیل"
                    style=" border-bottom-right-radius: 20px;border-top-right-radius: 20px; background-color: #fff3d9">
             <button class="ui button"
@@ -107,21 +107,19 @@
 
         <div class="ui center aligned stackable grid">
             <div class="circle" id="purple">
-                {% trans 'Users' %}<br/>
+
                 <a style="padding-right: 20px">
                     {{ users_count }}
                 </a>
                 <br/>{% trans 'Users' %}
             </div>
             <div class="circle" id="yellow">
-                {% trans 'Submissions' %}<br/>
                 <a style="padding-right: 15px">
                     {{ submits_count }}
                 </a>
                 <br/>{% trans 'Submissions' %}
             </div>
             <div class="circle" id="blue">
-                {% trans 'Teams' %}<br/>
                 <a style="padding-right: 15px">
                     {{ teams_count }}
                 </a>
@@ -191,7 +189,7 @@
         </div>
     </div>
 
-    {% comment %}<div class="odd section" id="section-prizes">
+    <div class="odd section" id="section-prizes">
         <div class="ui section header">
             <a class="ui big ai button" href="#section-prizes">
                 {% trans 'Prizes' %}
@@ -235,7 +233,7 @@
                 </div>
             </div>
         </div>
-    </div>{% endcomment %}
+    </div>
 
     <div class="even section" id="section-prizes">
         <div class="ui section header">
