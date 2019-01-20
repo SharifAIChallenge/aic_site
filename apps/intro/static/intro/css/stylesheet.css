@@ -5,11 +5,11 @@
 }
 
 .odd {
-    background-color: #F0F0F0;
+    background-color: black;
 }
 
 .even {
-    background-color: #ffffff;
+    background-color: #222222;
 }
 
 .odd.banner.section {
