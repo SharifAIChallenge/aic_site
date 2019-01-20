@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-21 01:17+0330\n"
+"POT-Creation-Date: 2019-01-21 01:28+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/intro/templates/intro/index.html:43
+msgid "seconds"
+msgstr "ثانیه"
+
+#: apps/intro/templates/intro/index.html:47
+msgid "minutes"
+msgstr "دقیقه"
+
+#: apps/intro/templates/intro/index.html:51
+msgid "hours"
+msgstr "ساعت"
+
+#: apps/intro/templates/intro/index.html:55
+msgid "days"
+msgstr "روز"
 
 #: apps/intro/templates/intro/index.html:64
 msgid "Notify me"
