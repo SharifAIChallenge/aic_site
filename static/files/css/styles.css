@@ -174,7 +174,7 @@ body {
 
 #footer {
     width: 100vw;
-    min-height: 30vh !important;
+    min-height: 130px !important;
     background-color: rgba(0,0,0,0);
     background-size: 100% 100% !important;;
     background-repeat: no-repeat;

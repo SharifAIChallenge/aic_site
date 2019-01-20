@@ -11,6 +11,11 @@
     padding-bottom: 50px !important;
 }
 
+.start-section {
+    height: auto;
+    width: 100vw !important;
+}
+
 .odd {
     background-color: black;
 }
