@@ -362,7 +362,7 @@
     position: absolute;
     width: 2rem;
     height: 2rem;
-    right: -1rem;
+    right: 0rem;
     background-color: white;
     border: 4px solid black;
     top: 1.75rem;
