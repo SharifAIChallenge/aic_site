@@ -100,6 +100,13 @@ This set of fonts are used in this project under the license: RC4QT
     }
 }
 
+body {
+    color: #FFF3D9;
+}
+
+.ui.header {
+    color: #FFF3D9;
+}
 #navbar {
     z-index: 99;
 
@@ -144,13 +151,19 @@ This set of fonts are used in this project under the license: RC4QT
 
 .ai.button {
     background-color: #40444d !important;
-    color: #ffffff;
-    border-radius: 3px;
+    color: #FFF0DC;
     z-index: 6;
 }
 
 .ai.button:hover {
-    color: #c2c2c2 !important;
+    color: #ffffff !important;
+}
+
+.ai.red.button {
+    background-color: #ED1A3A !important;
+    z-index: 6;
+    font-weight: bold;
+    color: #FFF3D9;
 }
 
 #footer {
