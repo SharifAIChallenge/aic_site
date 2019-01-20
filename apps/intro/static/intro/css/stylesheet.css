@@ -307,21 +307,20 @@
     width: 50%;
     display: inline-block;
 }
-.right-card-pic
+.card-pic
 {
     width:10rem;
     position: relative;
     top:-10rem;
-    right:20rem;
     margin-bottom: -10rem;
 }
-.left-card-pic
+.right.card-pic
 {
-    width:10rem;
-    position: relative;
-    top:-10rem;
+    right:20rem;
+}
+.left.card-pic
+{
     left:20rem;
-    margin-bottom: -10rem;
 }
 .entry::after, .single-entry::after {
     content: '';
@@ -462,6 +461,13 @@
 
     .entry:nth-child(even) {
         left: 0%;
+    }
+    .card-pic
+    {
+        width: 6rem;
+        top:-12rem;
+        right: 16rem !important;
+        left:auto;
     }
 }
 
