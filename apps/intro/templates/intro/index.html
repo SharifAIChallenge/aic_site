@@ -92,46 +92,6 @@
                         {% endblocktrans %}
                     </p>
 
-                    <div class="ui center aligned container">
-                        <a href="
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                {% if request.user.is_authenticated %}{% url 'accounts:panel' %}{% else %}{% url 'accounts:signup' %}{% endif %}"
-                           class="ui centered massive animated violet button">
-                            {% if request.user.is_authenticated %}
-                                <div class="visible content">
-                                    {% trans 'Panel' %}
-                                </div>
-                                <div class="hidden content">
-                                    {% trans 'Panel' %}
-                                </div>
-                            {% else %}
-                                <div class="visible content">
-                                    {% trans 'Participate' %}
-                                </div>
-                                <div class="hidden content">
-                                    {% trans 'Register' %}
-                                </div>
-                            {% endif %}
-                        </a>
-                    </div>
 
                 </div>
                 <div class="eight wide column">
