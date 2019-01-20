@@ -7,7 +7,7 @@
 {% block extra_header %}
 
     <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
-
+    <script src="{% static 'js/scrollreveal.js' %}"></script>
 {% endblock %}
 
 {% block container %}
@@ -106,20 +106,20 @@
     <div class="odd section" id="section-intro">
 
         <div class="ui center aligned stackable grid">
-            <div class="circle" id="purple">
+            <div class="circle faded-d1" id="purple">
 
                 <a style="padding-right: 20px">
                     {{ users_count }}
                 </a>
                 <br/>{% trans 'Users' %}
             </div>
-            <div class="circle" id="yellow">
+            <div class="circle faded-d2" id="yellow">
                 <a style="padding-right: 15px">
                     {{ submits_count }}
                 </a>
                 <br/>{% trans 'Submissions' %}
             </div>
-            <div class="circle" id="blue">
+            <div class="circle faded-d3" id="blue">
                 <a style="padding-right: 15px">
                     {{ teams_count }}
                 </a>
@@ -138,21 +138,21 @@
         </div>
         <div class="ui stackable grid container ai-feature">
             <div class="two wide column"></div>
-            <div class="four wide column" style="text-align: center;">
+            <div class="four wide column faded-d1" style="text-align: center;">
                 <i class="huge users icon"></i>
                 <br>
                 <h1>{% trans "There's no I in success" %}</h1>
                 <br>
                 <p>{% trans "Practice teamwork in a group of 3 people" %}</p>
             </div>
-            <div class="four wide column" style="text-align: center;">
+            <div class="four wide column faded-d2" style="text-align: center;">
                 <i class="huge university icon"></i>
                 <br>
                 <h1>{% trans "Clash of Giants" %}</h1>
                 <br>
                 <p>{% trans "Experience two memorable days on the on-site round, in Sharif University of Technology" %}</p>
             </div>
-            <div class="four wide column" style="text-align: center;">
+            <div class="four wide column faded-d3" style="text-align: center;">
                 <i class="huge terminal icon"></i>
                 <br>
                 <h1>{% trans "Code, Code to Victory" %}</h1>
@@ -162,21 +162,21 @@
         </div>
         <div class="ui stackable grid container ai-feature">
             <div class="two wide column"></div>
-            <div class="four wide column" style="text-align: center;">
+            <div class="four wide column faded-d3" style="text-align: center;">
                 <i class="huge lightbulb icon"></i>
                 <br>
                 <h1>{% trans "The Challenge of Strategies" %}</h1>
                 <br>
                 <p>{% trans "Face different challenges and overcome them with your wits and creativity" %}</p>
             </div>
-            <div class="four wide column" style="text-align: center;">
+            <div class="four wide column faded-d2" style="text-align: center;">
                 <i class="huge book icon"></i>
                 <br>
                 <h1>{% trans "To learn is to earn" %}</h1>
                 <br>
                 <p>{% trans "Learn many different things about programming and AI" %}</p>
             </div>
-            <div class="four wide column" style="text-align: center;">
+            <div class="four wide column faded-d1" style="text-align: center;">
                 <i class="huge icons">
                     <i class="sticky note outline icon"></i>
                     <i class="tiny trophy icon"></i>
@@ -195,8 +195,9 @@
                 {% trans 'Prizes' %}
             </a>
         </div>
-        <div class="ui stackable three column grid container" style="display: flex">
-            <div id="second-cup" class="five wide column bottom aligned second-prize" style="text-align: center;">
+        <div class="ui stackable three column grid container " style="display: flex">
+            <div id="second-cup" class="five wide column bottom aligned second-prize faded-d2"
+                 style="text-align: center;">
 
                 <div class="image">
                     <img src="{% static 'intro/image/Cup2.png' %}" style="max-width:50%">
@@ -208,7 +209,7 @@
                     {% trans '5 Million Tomans' %}
                 </div>
             </div>
-            <div id="champion-cup" class="six wide column bottom aligned  first-prize" style="text-align: center;">
+            <div id="champion-cup" class="six wide column bottom aligned  first-prize " style="text-align: center;">
                 <div class="image">
                     <img src="{% static 'intro/image/Cup1.png' %}" style="max-width:50%">
                 </div>
@@ -220,7 +221,8 @@
                     <br><br>
                 </div>
             </div>
-            <div id="third-cup" class="five wide column bottom aligned third-prize" style="text-align: center;">
+            <div id="third-cup" class="five wide column bottom aligned third-prize faded-d3"
+                 style="text-align: center;">
                 <div class="image">
                     <img src="{% static 'intro/image/Cup3.png' %}" style="max-width:50%">
                 </div>
@@ -244,7 +246,7 @@
             <div class="ui container">
                 <div class="timeline">
                     <span class="line"></span>
-                    <article class="entry red">
+                    <article class="entry red faded-d1">
                         <div class="timelinecontent header">
                             {% blocktrans %}
                                 Registration
@@ -254,7 +256,7 @@
                         </div>
                         <img src="{% static "intro/image/id-card.svg" %}" class="right card-pic">
                     </article>
-                    <article class="entry yellow" dir="rtl">
+                    <article class="entry yellow faded-d2" dir="rtl">
                         <div class="timelinecontent header">
                             {% blocktrans %}
                                 Online Phase
@@ -264,7 +266,7 @@
                         </div>
                         <img src="{% static "intro/image/laptop.svg" %}" class="left card-pic">
                     </article>
-                    <article class="entry green">
+                    <article class="entry green faded-d3">
                         <div class="timelinecontent" style="">
                             {% blocktrans %}
                                 On-Site Phase
@@ -555,36 +557,45 @@
 
     <div class="odd section tablet computer only" id="section-organizer">
 
-        <div class="ui section header">
+        <div class="ui section header ">
             <a class="circular ui big ai blue button" href="#section-organizer">
                 {% trans 'Contact Us' %}
             </a>
         </div>
         <div class="ui center aligned stackable grid">
             <div class="eight wide column">
-                <h1 class="ui header">{% trans 'Organizer' %}</h1>
-                <a href="http://ssc.ce.sharif.edu/"><img class="ui centered medium image"
-                                                         src="{% static 'intro/image/SSC.png' %}" alt="SSC Image"></a>
-                <div class="ui horizontal divider"></div>
-                <h1 class="ui header">{% trans 'Sponsor' %}</h1>
-                <a href="https://www.yektanet.com/"><img class="ui centered medium image"
-                                                         src="{% static 'intro/image/sponsor.png' %}"></a>
+                <div class="faded-d1"><h1 class="ui header">{% trans 'Organizer' %}</h1>
+                    <a href="http://ssc.ce.sharif.edu/"><img class="ui centered medium image"
+                                                             src="{% static 'intro/image/SSC.png' %}"
+                                                             alt="SSC Image"></a>
+                </div>
+                <div class="faded-d2">
+                    <div class="ui horizontal divider"></div>
+                    <h1 class="ui header">{% trans 'Sponsor' %}</h1>
+                    <a href="https://www.yektanet.com/"><img class="ui centered medium image"
+                                                             src="{% static 'intro/image/sponsor.png' %}"></a>
+                </div>
             </div>
             <div class="eight wide column">
-                <h1 class="ui header">{% trans 'Location' %}</h1>
-                <iframe id="google_maps_iframe" src=""
-                        frameborder="0" style="border: 0"></iframe>
-                <p>
-                    {% trans 'Address: ' %}
-                    {% blocktrans %}
-                        Dept. of Computer Eng., Sharif University of Technology<br>
-                        Azadi St, Tehran
-                    {% endblocktrans %}<br>
-                </p>
-                <div class="ui horizontal divider"></div>
-                <h1 class="ui header">{% trans 'Contact Info' %}</h1>
-                <b><i class="envelope icon"></i><a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
-                <br><b><i class="phone icon"></i><span dir="ltr">021-6616-5781</span></b></p>
+                <div class="faded-d2">
+                    <h1 class="ui header">{% trans 'Location' %}</h1>
+                    <iframe id="google_maps_iframe" src=""
+                            frameborder="0" style="border: 0"></iframe>
+                    <p>
+                        {% trans 'Address: ' %}
+                        {% blocktrans %}
+                            Dept. of Computer Eng., Sharif University of Technology<br>
+                            Azadi St, Tehran
+                        {% endblocktrans %}<br>
+                    </p>
+                </div>
+                <div class="faded-d1">
+                    <div class="ui horizontal divider"></div>
+                    <h1 class="ui header">{% trans 'Contact Info' %}</h1>
+                    <b><i class="envelope icon"></i><a
+                            href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
+                    <br><b><i class="phone icon"></i><span dir="ltr">021-6616-5781</span></b></p>
+                </div>
             </div>
         </div>
     </div>
@@ -594,4 +605,10 @@
 {% block footer_scripts %}
     {{ block.super }}
     <script src="{% static 'intro/js/scripts.js' %}"></script>
+    <script>
+        ScrollReveal().reveal('.faded-d1', {delay: 250});
+        ScrollReveal().reveal('.faded-d2', {delay: 500});
+        ScrollReveal().reveal('.faded-d3', {delay: 750});
+
+    </script>
 {% endblock %}
