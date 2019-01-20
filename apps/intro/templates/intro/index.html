@@ -5,9 +5,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block extra_header %}
-
 <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
-
 {% endblock %}
 
 {% block container %}
@@ -45,7 +43,7 @@
     </div>
     <div class="ui action input" style="margin: 25px">
         <input type="text" placeholder="ایمیل" style=" border-bottom-right-radius: 20px;border-top-right-radius: 20px; background-color: #fff3d9">
-        <button class="ui button" style="border-bottom-left-radius: 20px;border-top-left-radius: 20px; color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold">باخبرم کن</button>
+        <button class="ui button" style="border-bottom-left-radius: 20px;border-top-left-radius: 20px; color: #fff3d9; background-color: #ED1A3A">باخبرم کن</button>
     </div>
 </div>
 
@@ -362,12 +360,44 @@
     </div>
 </div>
 
-<div class="odd section" id="section-schedule">
-    <div class="ui section header">
-        <a class="ui big ai button" href="#section-schedule">
-            {% trans 'Schedule' %}
-        </a>
-    </div>
+    <div class="odd section" id="section-schedule">
+        <div class="ui section header" id="schedule-title">
+            <a class="circular ui big dark ai button" href="#section-schedule">
+                {% trans 'Schedule' %}
+            </a>
+        </div>
+        <section>
+            <div class="ui container">
+               {% comment %} <center>
+                    <a class="ui circular big ai button " id="schedule-header" href="#section-schedule">
+                        {% trans 'Schedule' %}
+                    </a>
+                </center>{% endcomment %}
+                <div class="timeline">
+                    <span class="line"></span>
+                    <article class="entry red">
+                        <div class="timelinecontent header"  style="background-color: var(--red)">
+                            ثبت نام<br/>‏۱۷ بهمن
+                        </div>
+                    </article>
+                    <article class="entry yellow" dir="auto">
+                        <div class="timelinecontent header">
+                        مرحله غیرحضوری
+                            <br/>
+                            ۱۷ تا ۲۸ بهمن
+                        </div>
+                    </article>
+                    <article class="entry green">
+                        <div class="timelinecontent" style="">
+                        مرحله غیرحضوری
+                            <br/>
+                            ۱۷ تا ۲۸ بهمن
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        {% comment %}
     <div class="ui container">
         <table class="ui inverted grey table"
                style="background-color: #813800; font-size: 1.3em; text-align: center">
@@ -404,9 +434,10 @@
             </a>
         </div>
     </div>
-</div>
+{% endcomment %}
+    </div>
 
-<div class="even section tablet computer only" id="section-organizer">
+<div class="even section" id="section-organizer">
 
     <div class="ui section header">
         <a class="ui big ai button" href="#section-organizer">
