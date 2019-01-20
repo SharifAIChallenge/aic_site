@@ -14,6 +14,18 @@ $(document)
 
         $('time').attr("dir", "ltr");
 
+        var img = $('#pattern');
+        images = ['pattern1.png','pattern2.png','pattern3.png','pattern4.png','pattern5.png'];
+        var i = 0;
+        setInterval(function(){
+        img.css('background-image', 'url(/static/images/' + images[i] +')');
+        if(i == (images.length - 1)){
+            i = 0;
+        } else {
+            i++;
+        }
+    }, 1000);
+
     })
     .scroll(function(){
         var navbar = $('#navbar');
