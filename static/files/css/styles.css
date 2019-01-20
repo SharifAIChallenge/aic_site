@@ -175,7 +175,7 @@ body {
 #footer {
     width: 100vw;
     min-height: 30vh !important;
-    background: url('/static/images/ai-background.png');
+    background-color: rgba(0,0,0,0);
     background-size: 100% 100% !important;;
     background-repeat: no-repeat;
 }
@@ -268,4 +268,11 @@ body {
     position:absolute;
     opacity:0.2;
     background-attachment:fixed;
+}
+
+@media (min-width: 800px) {
+    .socialformobile{
+        display: none;
+    }
+    
 }

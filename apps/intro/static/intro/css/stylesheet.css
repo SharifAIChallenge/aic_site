@@ -113,7 +113,7 @@
 
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
     [class*="faq-mobile-visible"] {
         visibility: hidden;
         height: 0px;
