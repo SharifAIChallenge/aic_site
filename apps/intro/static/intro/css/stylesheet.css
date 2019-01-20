@@ -409,6 +409,7 @@
 }
 
 .timelinecontent {
+    direction: rtl;
     padding: 1.5rem 2rem;
     position: relative;
     background-color: white;
