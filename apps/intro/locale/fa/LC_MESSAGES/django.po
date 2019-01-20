@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-20 23:49+0330\n"
+"POT-Creation-Date: 2019-01-21 00:35+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/intro/templates/intro/index.html:64
+msgid "Notify me"
+msgstr "با خبرم کن"
 
 #: apps/intro/templates/intro/index.html:73
 msgid "Introduction"
@@ -69,8 +73,8 @@ msgid "Teams"
 msgstr "تیم‌ها"
 
 #: apps/intro/templates/intro/index.html:138
-msgid "چرا نبرد هوش مصنوعی شریف؟"
-msgstr ""
+msgid "Why Sharif AI Challenge?"
+msgstr "چرا نبرد هوش مصنوعی شریف؟"
 
 #: apps/intro/templates/intro/index.html:244
 msgid "Prizes"
@@ -115,34 +119,76 @@ msgstr ""
 "\n"
 "ثبت نام\n"
 "<br>\n"
-"\n‫۱۶ بهمن"
-""
+"\n"
+"‫۱۶ بهمن"
 
-#: apps/intro/templates/intro/index.html:331
+#: apps/intro/templates/intro/index.html:308
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                                Registration\n"
+#| "                                <br/>\n"
+#| "                                February 5\n"
+#| "                            "
+msgid ""
+"\n"
+"                                Online Phase\n"
+"                                <br/>\n"
+"                                February 8 - February 17\n"
+"                            "
+msgstr ""
+"\n"
+"ثبت نام\n"
+"<br>\n"
+"\n"
+"‫۱۶ بهمن"
+
+#: apps/intro/templates/intro/index.html:318
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                                Registration\n"
+#| "                                <br/>\n"
+#| "                                February 5\n"
+#| "                            "
+msgid ""
+"\n"
+"                                On-Site Phase\n"
+"                                <br/>\n"
+"                                March 13 & March 14\n"
+"                            "
+msgstr ""
+"\n"
+"ثبت نام\n"
+"<br>\n"
+"\n"
+"‫۱۶ بهمن"
+
+#: apps/intro/templates/intro/index.html:335
 msgid "FAQ"
 msgstr "سوالات متداول"
 
-#: apps/intro/templates/intro/index.html:604
+#: apps/intro/templates/intro/index.html:608
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: apps/intro/templates/intro/index.html:609
+#: apps/intro/templates/intro/index.html:613
 msgid "Organizer"
 msgstr "برگزارکننده"
 
-#: apps/intro/templates/intro/index.html:613
+#: apps/intro/templates/intro/index.html:617
 msgid "Sponsor"
 msgstr "حامی مالی"
 
-#: apps/intro/templates/intro/index.html:618
+#: apps/intro/templates/intro/index.html:622
 msgid "Location"
 msgstr "مکان"
 
-#: apps/intro/templates/intro/index.html:622
+#: apps/intro/templates/intro/index.html:626
 msgid "Address: "
 msgstr "نشانی:"
 
-#: apps/intro/templates/intro/index.html:623
+#: apps/intro/templates/intro/index.html:627
 msgid ""
 "\n"
 "                        Dept. of Computer Eng., Sharif University of "
@@ -153,7 +199,7 @@ msgstr ""
 "\n"
 "تهران،خیابان آزادی،دانشگاه صنعتی شریف،دانشکده مهندسی کامپیوتر"
 
-#: apps/intro/templates/intro/index.html:629
+#: apps/intro/templates/intro/index.html:633
 msgid "Contact Info"
 msgstr "اطلاعات تماس"
 
@@ -337,8 +383,8 @@ msgstr "کمیته برگزاری"
 #~ msgid "March7 - March8"
 #~ msgstr "۱۶ و ۱۷ اسفند"
 
-msgid "Sharif On-Site Phase"
-msgstr "مرحله حضوری در دانشگاه شریف"
+#~ msgid "Sharif On-Site Phase"
+#~ msgstr "مرحله حضوری در دانشگاه شریف"
 
 #~ msgid "Email: "
 #~ msgstr "ایمیل:"
