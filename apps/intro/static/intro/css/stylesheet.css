@@ -33,6 +33,11 @@
     clip-path: inset(20px 0 20px 0);
 }
 
+.banner-image{
+    margin-top:2%;
+    z-index: 1;
+}
+
 .section.header {
     height: auto !important;
     text-align: center;

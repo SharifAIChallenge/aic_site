@@ -20,16 +20,14 @@
 
     {% block extra_header %}{% endblock %}
 </head>
-<body {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<body {% if LANGUAGE_BIDI %}dir="rtl"{% endif %} class="body-image">
+<div class="body-pattern"></div>
 {% block sidebar %}
     {% include 'base/sidebar.html' %}
 {% endblock %}
 {% block body %}
     <div class="pusher">
     <div id="main">
-    {% block header %}
-        {% include 'base/header.html' %}
-    {% endblock %}
 
     {% block navbar %}
         {% include 'base/navbar.html' %}
