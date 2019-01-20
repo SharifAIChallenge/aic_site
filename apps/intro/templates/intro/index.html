@@ -36,7 +36,7 @@
     </div>
 
     <div class="odd section" style="padding-top: 20px" align="center">
-        <div class="countdown">
+        <div class="countdown container">
             <div id="clockdiv">
                 <div class="seconds_div" style="margin-top: 10px">
                     <span class="seconds"></span>
@@ -282,7 +282,82 @@
         </div>
     </div>
 
-    <div class="odd section" id="section-faq"
+    <div class="odd section" id="section-schedule">
+        <div class="ui section header" id="schedule-title">
+            <a class="circular ui big dark ai button" href="#section-schedule">
+                {% trans 'Schedule' %}
+            </a>
+        </div>
+        <section>
+            <div class="ui container">
+                <div class="timeline">
+                    <span class="line"></span>
+                    <article class="entry red">
+                        <div class="timelinecontent header">
+                            ثبت نام<br/>‏۱۷ بهمن
+                        </div>
+                        <img src="{% static "intro/image/id-card.svg" %}" class="right card-pic">
+                    </article>
+                    <article class="entry yellow" dir="auto">
+                        <div class="timelinecontent header">
+                            مرحله غیرحضوری
+                            <br/>
+                            ۱۷ تا ۲۸ بهمن
+                        </div>
+                        <img src="{% static "intro/image/laptop.svg" %}" class="left card-pic">
+                    </article>
+                    <article class="entry green">
+                        <div class="timelinecontent" style="">
+                            مرحله غیرحضوری
+                            <br/>
+                            ۱۷ تا ۲۸ بهمن
+                        </div>
+                        <img src="{% static "intro/image/team.svg" %}" class="right card-pic">
+                    </article>
+                </div>
+            </div>
+        </section>
+        {% comment %}
+    <div class="ui container">
+        <table class="ui inverted grey table"
+               style="background-color: #813800; font-size: 1.3em; text-align: center">
+            <tbody>
+            <tr>
+                <td>
+                    {% trans 'Jan30 - Feb17' %}
+                </td>
+                <td>
+                    {% trans 'Registration' %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% trans 'Feb3 - Feb21' %}
+                </td>
+                <td>
+                    {% trans 'Online Phase' %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% trans 'March7 - March8' %}
+                </td>
+                <td>
+                    {% trans 'Sharif On-Site Phase' %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="ui center aligned container">
+            <a href="{% url 'intro:faq' %}" class="ui centered violet button">
+                {% trans 'FAQ' %}
+            </a>
+        </div>
+    </div>
+{% endcomment %}
+    </div>
+
+    <div class="even section" id="section-faq"
     >
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-faq">
@@ -554,80 +629,6 @@
         </div>
     </div>
 
-    <div class="even section" id="section-schedule">
-        <div class="ui section header" id="schedule-title">
-            <a class="circular ui big dark ai button" href="#section-schedule">
-                {% trans 'Schedule' %}
-            </a>
-        </div>
-        <section>
-            <div class="ui container">
-                <div class="timeline">
-                    <span class="line"></span>
-                    <article class="entry red">
-                        <div class="timelinecontent header">
-                            ثبت نام<br/>‏۱۷ بهمن
-                        </div>
-                        <img src="{% static "intro/image/id-card.svg" %}" class="right card-pic">
-                    </article>
-                    <article class="entry yellow" dir="auto">
-                        <div class="timelinecontent header">
-                            مرحله غیرحضوری
-                            <br/>
-                            ۱۷ تا ۲۸ بهمن
-                        </div>
-                        <img src="{% static "intro/image/laptop.svg" %}" class="left card-pic">
-                    </article>
-                    <article class="entry green">
-                        <div class="timelinecontent" style="">
-                            مرحله غیرحضوری
-                            <br/>
-                            ۱۷ تا ۲۸ بهمن
-                        </div>
-                        <img src="{% static "intro/image/team.svg" %}" class="right card-pic">
-                    </article>
-                </div>
-            </div>
-        </section>
-        {% comment %}
-    <div class="ui container">
-        <table class="ui inverted grey table"
-               style="background-color: #813800; font-size: 1.3em; text-align: center">
-            <tbody>
-            <tr>
-                <td>
-                    {% trans 'Jan30 - Feb17' %}
-                </td>
-                <td>
-                    {% trans 'Registration' %}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {% trans 'Feb3 - Feb21' %}
-                </td>
-                <td>
-                    {% trans 'Online Phase' %}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {% trans 'March7 - March8' %}
-                </td>
-                <td>
-                    {% trans 'Sharif On-Site Phase' %}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="ui center aligned container">
-            <a href="{% url 'intro:faq' %}" class="ui centered violet button">
-                {% trans 'FAQ' %}
-            </a>
-        </div>
-    </div>
-{% endcomment %}
-    </div>
 
     <div class="odd section tablet computer only" id="section-organizer">
 
@@ -642,7 +643,7 @@
                 <a href="http://ssc.ce.sharif.edu/"><img class="ui centered medium image"
                                                          src="{% static 'intro/image/SSC.png' %}" alt="SSC Image"></a>
                 <div class="ui horizontal divider"></div>
-                <h1 class="ui header">{% trans 'Sponsors' %}</h1>
+                <h1 class="ui header">{% trans 'Sponsor' %}</h1>
                 <a href="https://cafebazaar.ir/"><img class="ui centered medium image"
                                                       src="{% static 'intro/image/sponsors.png' %}"></a>
             </div>
@@ -659,8 +660,8 @@
                 </p>
                 <div class="ui horizontal divider"></div>
                 <h1 class="ui header">{% trans 'Contact Info' %}</h1>
-                <b>{% trans 'Email: ' %}<a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
-                <br><b>{% trans 'Phone: ' %}<span dir="ltr">021-6616-5781</span></b></p>
+                <b><i class="envelope icon"></i><a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
+                <br><b><i class="phone icon"></i><span dir="ltr">021-6616-5781</span></b></p>
             </div>
         </div>
     </div>
