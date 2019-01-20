@@ -75,12 +75,34 @@
     padding-top: 50px;
 }
 
+.first-prize{
+
+}
+
+.second-prize{
+
+}
+
+.third-prize{
+
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="circle"] {
         margin-bottom: -65px;
         margin-bottom: -65px;
     }
+    [class*="second-prize"] {
+        order: 2;
+    }
+    [class*="first-prize"] {
+        order: 1;
+    }
+    [class*="third-prize"] {
+        order: 3;
+    }
+
 }
 
 .circle a {
