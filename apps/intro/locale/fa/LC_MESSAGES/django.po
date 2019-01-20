@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-21 00:35+0330\n"
+"POT-Creation-Date: 2019-01-21 01:04+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,58 +57,106 @@ msgstr ""
 "این مسابقه توسط انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف(SSC)، "
 "امسال دهمین دوره‌ این مسابقه در دو مرحله‌ غیرحضوری و حضوری برگزار خواهد شد."
 
-#: apps/intro/templates/intro/index.html:110
 #: apps/intro/templates/intro/index.html:114
 msgid "Users"
 msgstr "کاربران"
 
-#: apps/intro/templates/intro/index.html:117
-#: apps/intro/templates/intro/index.html:121
+#: apps/intro/templates/intro/index.html:120
 msgid "Submissions"
 msgstr "ارسال‌ها"
 
-#: apps/intro/templates/intro/index.html:124
-#: apps/intro/templates/intro/index.html:128
+#: apps/intro/templates/intro/index.html:126
 msgid "Teams"
 msgstr "تیم‌ها"
 
-#: apps/intro/templates/intro/index.html:138
+#: apps/intro/templates/intro/index.html:136
 msgid "Why Sharif AI Challenge?"
 msgstr "چرا نبرد هوش مصنوعی شریف؟"
 
-#: apps/intro/templates/intro/index.html:244
+#: apps/intro/templates/intro/index.html:144
+msgid "There's no I in success"
+msgstr "ما به جای من"
+
+#: apps/intro/templates/intro/index.html:146
+msgid "Practice teamwork in a group of 3 people"
+msgstr "قراره توی یک تیم سه نفره، کار کردن گروهی رو تجربه کنی"
+
+#: apps/intro/templates/intro/index.html:151
+msgid "Clash of Giants"
+msgstr "بازی بزرگان"
+
+#: apps/intro/templates/intro/index.html:153
+msgid ""
+"Experience two memorable days on the on-site round, in Sharif University of "
+"Technology"
+msgstr "در مرحله‌ی حضوری در دانشگاه شریف، دو روز به‌یادماندنی رو تجربه می‌کنی"
+
+#: apps/intro/templates/intro/index.html:158
+msgid "Code, Code to Victory"
+msgstr "کد، کد، تا پیروزی"
+
+#: apps/intro/templates/intro/index.html:160
+msgid "Increase your programming skills in this competition"
+msgstr "توی این مسابقه، مهارت برنامه‌نویسیت رو ارتقا میدی"
+
+#: apps/intro/templates/intro/index.html:168
+msgid "The Challenge of Strategies"
+msgstr "چالش، استراتژی"
+
+#: apps/intro/templates/intro/index.html:170
+msgid ""
+"Face different challenges and overcome them with your wits and creativity"
+msgstr "با چالش‌های زیادی مواجه میشی و باید با خلاقیت‌ اونا رو حل کنی "
+
+#: apps/intro/templates/intro/index.html:175
+msgid "To learn is to earn"
+msgstr "یادگیری، یادگاری"
+
+#: apps/intro/templates/intro/index.html:177
+msgid "Learn many different things about programming and AI"
+msgstr "مطالب زیادی درباره‌ی هوش مصنوعی و برنامه‌نویسی یاد می‌گیری"
+
+#: apps/intro/templates/intro/index.html:185
+msgid "Prestige for future"
+msgstr "اعتباری برای آینده"
+
+#: apps/intro/templates/intro/index.html:187
+msgid "Get a credible certificate by participating in this competition"
+msgstr "گواهی معتبری از شرکت تو مسابقه می‌گیری"
+
+#: apps/intro/templates/intro/index.html:195
 msgid "Prizes"
 msgstr "جوایز"
 
-#: apps/intro/templates/intro/index.html:254
+#: apps/intro/templates/intro/index.html:205
 msgid "Second Place"
 msgstr "تیم دوم"
 
-#: apps/intro/templates/intro/index.html:257
+#: apps/intro/templates/intro/index.html:208
 msgid "5 Million Tomans"
 msgstr "۵ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:265
+#: apps/intro/templates/intro/index.html:216
 msgid "Champion"
 msgstr "تیم قهرمان"
 
-#: apps/intro/templates/intro/index.html:268
+#: apps/intro/templates/intro/index.html:219
 msgid "7 Million Tomans"
 msgstr "۷ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:277
+#: apps/intro/templates/intro/index.html:228
 msgid "Third Place"
 msgstr "تیم سوم"
 
-#: apps/intro/templates/intro/index.html:280
+#: apps/intro/templates/intro/index.html:231
 msgid "3 Million Tomans"
 msgstr "۳ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:289
+#: apps/intro/templates/intro/index.html:240
 msgid "Schedule"
 msgstr "زمان بندی"
 
-#: apps/intro/templates/intro/index.html:298
+#: apps/intro/templates/intro/index.html:249
 msgid ""
 "\n"
 "                                Registration\n"
@@ -122,7 +170,7 @@ msgstr ""
 "\n"
 "‫۱۶ بهمن"
 
-#: apps/intro/templates/intro/index.html:308
+#: apps/intro/templates/intro/index.html:259
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -143,7 +191,7 @@ msgstr ""
 "\n"
 "‫۱۶ بهمن"
 
-#: apps/intro/templates/intro/index.html:318
+#: apps/intro/templates/intro/index.html:269
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -164,31 +212,31 @@ msgstr ""
 "\n"
 "‫۱۶ بهمن"
 
-#: apps/intro/templates/intro/index.html:335
+#: apps/intro/templates/intro/index.html:286
 msgid "FAQ"
 msgstr "سوالات متداول"
 
-#: apps/intro/templates/intro/index.html:608
+#: apps/intro/templates/intro/index.html:559
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: apps/intro/templates/intro/index.html:613
+#: apps/intro/templates/intro/index.html:564
 msgid "Organizer"
 msgstr "برگزارکننده"
 
-#: apps/intro/templates/intro/index.html:617
+#: apps/intro/templates/intro/index.html:568
 msgid "Sponsor"
 msgstr "حامی مالی"
 
-#: apps/intro/templates/intro/index.html:622
+#: apps/intro/templates/intro/index.html:573
 msgid "Location"
 msgstr "مکان"
 
-#: apps/intro/templates/intro/index.html:626
+#: apps/intro/templates/intro/index.html:577
 msgid "Address: "
 msgstr "نشانی:"
 
-#: apps/intro/templates/intro/index.html:627
+#: apps/intro/templates/intro/index.html:578
 msgid ""
 "\n"
 "                        Dept. of Computer Eng., Sharif University of "
@@ -199,7 +247,7 @@ msgstr ""
 "\n"
 "تهران،خیابان آزادی،دانشگاه صنعتی شریف،دانشکده مهندسی کامپیوتر"
 
-#: apps/intro/templates/intro/index.html:633
+#: apps/intro/templates/intro/index.html:584
 msgid "Contact Info"
 msgstr "اطلاعات تماس"
 
