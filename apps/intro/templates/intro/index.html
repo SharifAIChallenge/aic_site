@@ -5,7 +5,9 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block extra_header %}
+
 <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
+
 {% endblock %}
 
 {% block container %}
@@ -46,7 +48,7 @@
     </div>
     <div class="ui action input" style="margin: 25px">
         <input type="text" placeholder="ایمیل" style=" border-bottom-right-radius: 20px;border-top-right-radius: 20px; background-color: #fff3d9">
-        <button class="ui button" style="border-bottom-left-radius: 20px;border-top-left-radius: 20px; color: #fff3d9; background-color: #ED1A3A">باخبرم کن</button>
+        <button class="ui button" style="border-bottom-left-radius: 20px;border-top-left-radius: 20px; color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold">باخبرم کن</button>
     </div>
 </div>
 
@@ -440,7 +442,7 @@
 {% endcomment %}
     </div>
 
-<div class="even section" id="section-organizer">
+<div class="even section tablet computer only" id="section-organizer">
 
     <div class="ui section header">
         <a class="ui big ai button" href="#section-organizer">
