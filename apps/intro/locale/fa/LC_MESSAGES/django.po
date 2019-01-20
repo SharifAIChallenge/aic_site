@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-16 22:36+0430\n"
+"POT-Creation-Date: 2019-01-20 23:49+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/intro/templates/intro/index.html:50
+#: apps/intro/templates/intro/index.html:73
 msgid "Introduction"
 msgstr "معرفی رویداد"
 
-#: apps/intro/templates/intro/index.html:57
+#: apps/intro/templates/intro/index.html:80
 msgid ""
 "\n"
-"                    Sharif AI Challenge is a programming competition for all "
-"who are interested in artificial\n"
-"                    intelligence.<br><br>This competition is held in two "
-"phases annually. Including an online\n"
-"                    and an\n"
-"                    on-site phase in which competitors will compete in teams "
-"of three in a game designed by our\n"
-"                    technical team.<br><br>\n"
-"                    The only pre-requisite to enter this competition is "
-"familiarity with programming using C++,\n"
-"                    Java\n"
-"                    or python. But obviously, knowledge of algorithmic "
-"thinking and artificial intelligence will\n"
-"                    be\n"
-"                    a great asset for any of the participating teams. The "
-"registration for online competition is\n"
-"                    free.\n"
-"                    "
+"                            Sharif AI Challenge is a programming competition "
+"for all who are interested in artificial\n"
+"                            intelligence.<br><br>This competition is held in "
+"two phases annually. Including an online\n"
+"                            and an\n"
+"                            on-site phase in which competitors will compete "
+"in teams of three in a game designed by our\n"
+"                            technical team.<br><br>\n"
+"                            The only pre-requisite to enter this competition "
+"is familiarity with programming using C++,\n"
+"                            Java\n"
+"                            or python. But obviously, knowledge of "
+"algorithmic thinking and artificial intelligence will\n"
+"                            be\n"
+"                            a great asset for any of the participating "
+"teams. The registration for online competition is\n"
+"                            free.\n"
+"                        "
 msgstr ""
 "\n"
 "نبرد هوش مصنوعی شریف یا Sharif AI Challenge، یک مسابقه‌ برنامه‌نویسی است که "
@@ -53,329 +53,319 @@ msgstr ""
 "این مسابقه توسط انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف(SSC)، "
 "امسال دهمین دوره‌ این مسابقه در دو مرحله‌ غیرحضوری و حضوری برگزار خواهد شد."
 
-#: apps/intro/templates/intro/index.html:77
-#: apps/intro/templates/intro/index.html:80
-msgid "Panel"
-msgstr ""
-
-#: apps/intro/templates/intro/index.html:84
-msgid "Participate"
-msgstr "شرکت در مسابقه"
-
-#: apps/intro/templates/intro/index.html:87
-msgid "Register"
-msgstr "ثبت نام"
-
-#: apps/intro/templates/intro/index.html:105
+#: apps/intro/templates/intro/index.html:110
+#: apps/intro/templates/intro/index.html:114
 msgid "Users"
 msgstr "کاربران"
 
-#: apps/intro/templates/intro/index.html:111
+#: apps/intro/templates/intro/index.html:117
+#: apps/intro/templates/intro/index.html:121
 msgid "Submissions"
 msgstr "ارسال‌ها"
 
-#: apps/intro/templates/intro/index.html:117
+#: apps/intro/templates/intro/index.html:124
+#: apps/intro/templates/intro/index.html:128
 msgid "Teams"
 msgstr "تیم‌ها"
 
-#: apps/intro/templates/intro/index.html:129
+#: apps/intro/templates/intro/index.html:138
+msgid "چرا نبرد هوش مصنوعی شریف؟"
+msgstr ""
+
+#: apps/intro/templates/intro/index.html:244
 msgid "Prizes"
 msgstr "جوایز"
 
-#: apps/intro/templates/intro/index.html:140
+#: apps/intro/templates/intro/index.html:254
 msgid "Second Place"
 msgstr "تیم دوم"
 
-#: apps/intro/templates/intro/index.html:143
+#: apps/intro/templates/intro/index.html:257
 msgid "5 Million Tomans"
 msgstr "۵ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:151
+#: apps/intro/templates/intro/index.html:265
 msgid "Champion"
 msgstr "تیم قهرمان"
 
-#: apps/intro/templates/intro/index.html:154
+#: apps/intro/templates/intro/index.html:268
 msgid "7 Million Tomans"
 msgstr "۷ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:162
+#: apps/intro/templates/intro/index.html:277
 msgid "Third Place"
 msgstr "تیم سوم"
 
-#: apps/intro/templates/intro/index.html:165
+#: apps/intro/templates/intro/index.html:280
 msgid "3 Million Tomans"
 msgstr "۳ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:176
-msgid "History"
-msgstr "تاریخچه"
-
-#: apps/intro/templates/intro/index.html:183
-msgid "First 3 Years"
-msgstr "۳ سال اول"
-
-#: apps/intro/templates/intro/index.html:189
-msgid "In the University"
-msgstr "در دانشگاه"
-
-#: apps/intro/templates/intro/index.html:191
-msgid ""
-"\n"
-"                        <p><span class=\"red\">8 years ago, </span>\n"
-"                            the need for an exciting and challenging inter-"
-"university competition in the CE\n"
-"                            department\n"
-"                            was a starting point for the \"Sharif AI "
-"Challenge\". This later became possible\n"
-"                            thanks to the\n"
-"                            efforts of the Student's Scientific Chapter(SSC) "
-"of this department. The students\n"
-"                            took\n"
-"                            advantage\n"
-"                            of this opportunity in order to evaluate their "
-"skills in programming and improve\n"
-"                            upon them.\n"
-"                            Participation was so impressive that the "
-"\"Sharif AI Challenge\" soon became an annual\n"
-"                            event.\n"
-"                        </p>\n"
-"                        "
-msgstr ""
-"\n"
-"<p><span class=\"red\">نه سال پیش</span>                            پیش "
-"احساس نیاز به برگزاری یک مسابقه دانشجویی جذاب، پرهیجان در دانشکده کامپیوتر  "
-"نقطه سرآغازی برای مسابقات \"نبرد هوش مصنوعی شریف\" در سطح دانشکده بود که به "
-"همت انجمن علمی این دانشکده حیات خود را آغاز کرد. دانشجویان نیز از این فرصت "
-"پیش آمده در جهت سنجش و تقویت مهارت های برنامه نویسی استفاده کردند و با "
-"استقبال چشمگیر دانشجویان، \" نبرد هوش مصنوعی شریف\" به رویدادی سالیانه تبدیل "
-"شد.                            </p>"
-
-#: apps/intro/templates/intro/index.html:215
-msgid "4th to 6th Challenge"
-msgstr "4امین تا 6امین نبرد"
-
-#: apps/intro/templates/intro/index.html:222
-msgid "With Teams From Others Universities of Tehran"
-msgstr "با دیگر تیم ها از دانشگاه های شهر تهران"
-
-#: apps/intro/templates/intro/index.html:224
-msgid ""
-"\n"
-"                        <p>\n"
-"                            The <span class=\"red\">4<sup>th</sup> year </"
-"span> of the competition was introduced\n"
-"                            as the \"Java Challenge\".\n"
-"                            Due to its high level and credibility, the event "
-"went further than collegiate\n"
-"                            level and witnessed the participation of other "
-"teams from Tehran. The <span\n"
-"                                class=\"red\">5<sup>th</sup> tournament</"
-"span> was\n"
-"                            organized and held in a similar way. During all "
-"this time, the level and quality of\n"
-"                            the \"AI Challenge\" was immensely improved. "
-"With the efforts of the Student's\n"
-"                            Scientific\n"
-"                            Chapter of the CE department and widespread "
-"advertisement, the <span\n"
-"                                class=\"red\">6<sup>th</sup> year </span>\n"
-"                            was finally organized and held nationally. The "
-"participation of teams from Tehran\n"
-"                            and other\n"
-"                            provinces brought upon a new spirit of "
-"nationality to the competition.\n"
-"\n"
-"                        </p>\n"
-"                        "
-msgstr ""
-"\n"
-"دوره چهارم مسابقه با عنوان «نبرد به زبان جاوا» معرفی شد و به دلیل اعتبار و "
-"سطح مسابقه، این رویداد از مرحله ی دانشگاهی فراتر رفت و تیم هایی از دانشگاه "
-"های دیگر استان تهران در آن شرکت کردند. دوره پنجم هم به همین نحو برنامه ریزی "
-"و برگزار شد که طی تمامی این دوران کیفیت، سطح و روند برگزاری\"نبرد هوش مصنوعی "
-"شریف \"به صورت چشم گیری پیشرفت داشت. با تلاش انجمن علمی دانشکده مهندسی "
-"کامپیوتر و تبلیغات گسترده نهایتا این رویداد در دوره ششم خود در سطح ملی "
-"برنامه ریزی شد و به مرحله اجرا رسید تا با حضور تیمهایی از دانشگاه های تهران "
-"و خارج از تهران این مسابقه رنگ و بویی ملی به خود بگیرد. "
-
-#: apps/intro/templates/intro/index.html:250
-msgid "7th year"
-msgstr "سال ۷ام"
-
-#: apps/intro/templates/intro/index.html:257
-msgid "Supporting C++ and Python"
-msgstr "پشتیبانی از زبان های برنامه نویسی C++ و پایتون"
-
-#: apps/intro/templates/intro/index.html:259
-msgid ""
-"\n"
-"                        <p>\"Sharif AI Challenge\" national competition "
-"continuously advanced and in its <span\n"
-"                                class=\"red\">7<sup>th</sup> year </span>,\n"
-"                            thanks to the efforts of the technical team, C++ "
-"and Python were added to the\n"
-"                            competition's\n"
-"                            supported languages as well. This round of the "
-"\"Sharif AI Challenge\" was met with\n"
-"                            good reception and approximately 158 teams from "
-"28 universities participated in\n"
-"                            the selection phase.\n"
-"                            <br>\n"
-"                            The Documentation of this competition (Java "
-"Challenge 2015) is available\n"
-"                            <a href=\"http://bayanbox.ir/"
-"view/992459135507989458/JavaChallenge2015-en.pdf\"\n"
-"                               style=\"color: blue\">here</a>.\n"
-"                        </p>\n"
-"                        "
-msgstr ""
-"\n"
-"مسابقه ی ملی\"نبرد هوش مصنوعی شریف\" در هفتمین دوره‌ی خود همچنان به مسیر "
-"پیشرفت خود به خوبی ادامه داد و در این زمان، به همت تیم فنی، زبان های C++ و "
-"Python هم در مسابقه پشتیبانی شدند. در این دوره از\"نبرد هوش مصنوعی شریف"
-"\"استقبال خوبی به عمل آمد و قریب به 158 تیم از 28 دانشگاه کشور در مرحله غیر "
-"حضوری شرکت کردند. مستند این مسابقه از طریق<a style=\"color:blue\" href="
-"\"http://bayanbox.ir/view/8601289253364961637/JavaChallenge2015-fa.pdf\">این "
-"لینک</a>قابل مشاهده است."
-
-#: apps/intro/templates/intro/index.html:282
-msgid "Last 2 Years"
-msgstr "2 سال اخیر"
-
 #: apps/intro/templates/intro/index.html:289
-msgid "Sharif AI Challenge, a New Title"
-msgstr "نبرد هوش مصنوعی شریف،عنوانی جدید"
-
-#: apps/intro/templates/intro/index.html:291
-msgid ""
-"\n"
-"                        <p>Since the added benefit of supporting other "
-"languages in the competition\n"
-"                            was a success, the <span class=\"red\">8<sup>th</"
-"sup> tournament</span> was held under\n"
-"                            the\n"
-"                            name\n"
-"                            \"Sharif AI Challenge\".\n"
-"                        </p>\n"
-"                        "
-msgstr ""
-"\n"
-" با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه "
-"نویسی، دوره‌ی هشتم با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار شد. "
-
-#: apps/intro/templates/intro/index.html:312
 msgid "Schedule"
 msgstr "زمان بندی"
 
-#: apps/intro/templates/intro/index.html:321
-msgid "Jan30 - Feb17"
-msgstr "۱۰ بهمن - ۲۸ بهمن"
+#: apps/intro/templates/intro/index.html:298
+msgid ""
+"\n"
+"                                Registration\n"
+"                                <br/>\n"
+"                                5 February\n"
+"                            "
+msgstr ""
+"\n"
+"ثبت نام\n"
+"<br>\n"
+"\n‫۱۶ بهمن"
+""
 
-#: apps/intro/templates/intro/index.html:324
-msgid "Registration"
-msgstr "ثبت نام"
-
-#: apps/intro/templates/intro/index.html:329
-msgid "Feb3 - Feb21"
-msgstr "۱۴ بهمن - ۲ اسفند"
-
-#: apps/intro/templates/intro/index.html:332
-msgid "Online Phase"
-msgstr "مرحله غیر‌حضوری (آنلاین)"
-
-#: apps/intro/templates/intro/index.html:337
-msgid "March7 - March8"
-msgstr "۱۶ و ۱۷ اسفند"
-
-#: apps/intro/templates/intro/index.html:340
-msgid "Sharif On-Site Phase"
-msgstr "مرحله حضوری در دانشگاه شریف"
-
-#: apps/intro/templates/intro/index.html:347
+#: apps/intro/templates/intro/index.html:331
 msgid "FAQ"
 msgstr "سوالات متداول"
 
-#: apps/intro/templates/intro/index.html:357
+#: apps/intro/templates/intro/index.html:604
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: apps/intro/templates/intro/index.html:362
+#: apps/intro/templates/intro/index.html:609
 msgid "Organizer"
 msgstr "برگزارکننده"
 
-#: apps/intro/templates/intro/index.html:366
-msgid "Sponsors"
-msgstr "حامیان مالی"
+#: apps/intro/templates/intro/index.html:613
+msgid "Sponsor"
+msgstr "حامی مالی"
 
-#: apps/intro/templates/intro/index.html:371
+#: apps/intro/templates/intro/index.html:618
 msgid "Location"
 msgstr "مکان"
 
-#: apps/intro/templates/intro/index.html:375
+#: apps/intro/templates/intro/index.html:622
 msgid "Address: "
 msgstr "نشانی:"
 
-#: apps/intro/templates/intro/index.html:376
+#: apps/intro/templates/intro/index.html:623
 msgid ""
 "\n"
-"                Dept. of Computer Eng., Sharif University of Technology<br>\n"
-"                Azadi St, Tehran\n"
-"                "
+"                        Dept. of Computer Eng., Sharif University of "
+"Technology<br>\n"
+"                        Azadi St, Tehran\n"
+"                    "
 msgstr ""
 "\n"
 "تهران،خیابان آزادی،دانشگاه صنعتی شریف،دانشکده مهندسی کامپیوتر"
 
-#: apps/intro/templates/intro/index.html:382
+#: apps/intro/templates/intro/index.html:629
 msgid "Contact Info"
 msgstr "اطلاعات تماس"
 
-#: apps/intro/templates/intro/index.html:383
-msgid "Email: "
-msgstr "ایمیل:"
-
-#: apps/intro/templates/intro/index.html:384
-msgid "Phone: "
-msgstr "شماره تماس:"
-
 #: apps/intro/templates/intro/staffs.html:7
-msgid "Technical"
-msgstr "فنی"
-
-#: apps/intro/templates/intro/staffs.html:8
 msgid "Executive"
 msgstr "اجرایی"
+
+#: apps/intro/templates/intro/staffs.html:8
+msgid "Technical"
+msgstr "فنی"
 
 #: apps/intro/templates/intro/staffs.html:9
 msgid "Head Of Committee"
 msgstr "کمیته برگزاری"
 
-#: apps/intro/templates/intro/staffs.html:453
-msgid "Website Team"
-msgstr "تیم وبسایت"
+#~ msgid "Participate"
+#~ msgstr "شرکت در مسابقه"
 
-#: apps/intro/templates/intro/staffs.html:454
-msgid "Infrastructure Team"
-msgstr "تیم زیرساخت"
+#~ msgid "Register"
+#~ msgstr "ثبت نام"
 
-#: apps/intro/templates/intro/staffs.html:455
-msgid "Server Team"
-msgstr "تیم سرور"
+#~ msgid "History"
+#~ msgstr "تاریخچه"
 
-#: apps/intro/templates/intro/staffs.html:456
-msgid "Client Team"
-msgstr "تیم کلاینت"
+#~ msgid "First 3 Years"
+#~ msgstr "۳ سال اول"
 
-#: apps/intro/templates/intro/staffs.html:457
-msgid "Graphic Team"
-msgstr "تیم گرافیک"
+#~ msgid "In the University"
+#~ msgstr "در دانشگاه"
 
-#: apps/intro/templates/intro/staffs.html:458
-msgid "Game Design Team"
-msgstr "تیم طراحی بازی"
+#~ msgid ""
+#~ "\n"
+#~ "                        <p><span class=\"red\">8 years ago, </span>\n"
+#~ "                            the need for an exciting and challenging "
+#~ "inter-university competition in the CE\n"
+#~ "                            department\n"
+#~ "                            was a starting point for the \"Sharif AI "
+#~ "Challenge\". This later became possible\n"
+#~ "                            thanks to the\n"
+#~ "                            efforts of the Student's Scientific "
+#~ "Chapter(SSC) of this department. The students\n"
+#~ "                            took\n"
+#~ "                            advantage\n"
+#~ "                            of this opportunity in order to evaluate "
+#~ "their skills in programming and improve\n"
+#~ "                            upon them.\n"
+#~ "                            Participation was so impressive that the "
+#~ "\"Sharif AI Challenge\" soon became an annual\n"
+#~ "                            event.\n"
+#~ "                        </p>\n"
+#~ "                        "
+#~ msgstr ""
+#~ "\n"
+#~ "<p><span class=\"red\">نه سال پیش</span>                            پیش "
+#~ "احساس نیاز به برگزاری یک مسابقه دانشجویی جذاب، پرهیجان در دانشکده "
+#~ "کامپیوتر  نقطه سرآغازی برای مسابقات \"نبرد هوش مصنوعی شریف\" در سطح "
+#~ "دانشکده بود که به همت انجمن علمی این دانشکده حیات خود را آغاز کرد. "
+#~ "دانشجویان نیز از این فرصت پیش آمده در جهت سنجش و تقویت مهارت های برنامه "
+#~ "نویسی استفاده کردند و با استقبال چشمگیر دانشجویان، \" نبرد هوش مصنوعی شریف"
+#~ "\" به رویدادی سالیانه تبدیل شد.                            </p>"
 
-#: apps/intro/templates/intro/staffs.html:459
-msgid "Test"
-msgstr "تیم تست"
+#~ msgid "4th to 6th Challenge"
+#~ msgstr "4امین تا 6امین نبرد"
+
+#~ msgid "With Teams From Others Universities of Tehran"
+#~ msgstr "با دیگر تیم ها از دانشگاه های شهر تهران"
+
+#~ msgid ""
+#~ "\n"
+#~ "                        <p>\n"
+#~ "                            The <span class=\"red\">4<sup>th</sup> year </"
+#~ "span> of the competition was introduced\n"
+#~ "                            as the \"Java Challenge\".\n"
+#~ "                            Due to its high level and credibility, the "
+#~ "event went further than collegiate\n"
+#~ "                            level and witnessed the participation of "
+#~ "other teams from Tehran. The <span\n"
+#~ "                                class=\"red\">5<sup>th</sup> tournament</"
+#~ "span> was\n"
+#~ "                            organized and held in a similar way. During "
+#~ "all this time, the level and quality of\n"
+#~ "                            the \"AI Challenge\" was immensely improved. "
+#~ "With the efforts of the Student's\n"
+#~ "                            Scientific\n"
+#~ "                            Chapter of the CE department and widespread "
+#~ "advertisement, the <span\n"
+#~ "                                class=\"red\">6<sup>th</sup> year </"
+#~ "span>\n"
+#~ "                            was finally organized and held nationally. "
+#~ "The participation of teams from Tehran\n"
+#~ "                            and other\n"
+#~ "                            provinces brought upon a new spirit of "
+#~ "nationality to the competition.\n"
+#~ "\n"
+#~ "                        </p>\n"
+#~ "                        "
+#~ msgstr ""
+#~ "\n"
+#~ "دوره چهارم مسابقه با عنوان «نبرد به زبان جاوا» معرفی شد و به دلیل اعتبار "
+#~ "و سطح مسابقه، این رویداد از مرحله ی دانشگاهی فراتر رفت و تیم هایی از "
+#~ "دانشگاه های دیگر استان تهران در آن شرکت کردند. دوره پنجم هم به همین نحو "
+#~ "برنامه ریزی و برگزار شد که طی تمامی این دوران کیفیت، سطح و روند برگزاری"
+#~ "\"نبرد هوش مصنوعی شریف \"به صورت چشم گیری پیشرفت داشت. با تلاش انجمن علمی "
+#~ "دانشکده مهندسی کامپیوتر و تبلیغات گسترده نهایتا این رویداد در دوره ششم "
+#~ "خود در سطح ملی برنامه ریزی شد و به مرحله اجرا رسید تا با حضور تیمهایی از "
+#~ "دانشگاه های تهران و خارج از تهران این مسابقه رنگ و بویی ملی به خود بگیرد. "
+
+#~ msgid "7th year"
+#~ msgstr "سال ۷ام"
+
+#~ msgid "Supporting C++ and Python"
+#~ msgstr "پشتیبانی از زبان های برنامه نویسی C++ و پایتون"
+
+#~ msgid ""
+#~ "\n"
+#~ "                        <p>\"Sharif AI Challenge\" national competition "
+#~ "continuously advanced and in its <span\n"
+#~ "                                class=\"red\">7<sup>th</sup> year </"
+#~ "span>,\n"
+#~ "                            thanks to the efforts of the technical team, C"
+#~ "++ and Python were added to the\n"
+#~ "                            competition's\n"
+#~ "                            supported languages as well. This round of "
+#~ "the \"Sharif AI Challenge\" was met with\n"
+#~ "                            good reception and approximately 158 teams "
+#~ "from 28 universities participated in\n"
+#~ "                            the selection phase.\n"
+#~ "                            <br>\n"
+#~ "                            The Documentation of this competition (Java "
+#~ "Challenge 2015) is available\n"
+#~ "                            <a href=\"http://bayanbox.ir/"
+#~ "view/992459135507989458/JavaChallenge2015-en.pdf\"\n"
+#~ "                               style=\"color: blue\">here</a>.\n"
+#~ "                        </p>\n"
+#~ "                        "
+#~ msgstr ""
+#~ "\n"
+#~ "مسابقه ی ملی\"نبرد هوش مصنوعی شریف\" در هفتمین دوره‌ی خود همچنان به مسیر "
+#~ "پیشرفت خود به خوبی ادامه داد و در این زمان، به همت تیم فنی، زبان های C++ "
+#~ "و Python هم در مسابقه پشتیبانی شدند. در این دوره از\"نبرد هوش مصنوعی شریف"
+#~ "\"استقبال خوبی به عمل آمد و قریب به 158 تیم از 28 دانشگاه کشور در مرحله "
+#~ "غیر حضوری شرکت کردند. مستند این مسابقه از طریق<a style=\"color:blue\" "
+#~ "href=\"http://bayanbox.ir/view/8601289253364961637/JavaChallenge2015-fa."
+#~ "pdf\">این لینک</a>قابل مشاهده است."
+
+#~ msgid "Last 2 Years"
+#~ msgstr "2 سال اخیر"
+
+#~ msgid "Sharif AI Challenge, a New Title"
+#~ msgstr "نبرد هوش مصنوعی شریف،عنوانی جدید"
+
+#~ msgid ""
+#~ "\n"
+#~ "                        <p>Since the added benefit of supporting other "
+#~ "languages in the competition\n"
+#~ "                            was a success, the <span class=\"red"
+#~ "\">8<sup>th</sup> tournament</span> was held under\n"
+#~ "                            the\n"
+#~ "                            name\n"
+#~ "                            \"Sharif AI Challenge\".\n"
+#~ "                        </p>\n"
+#~ "                        "
+#~ msgstr ""
+#~ "\n"
+#~ " با توجه به تجربه ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف "
+#~ "برنامه نویسی، دوره‌ی هشتم با تغییر نام به «نبرد هوش مصنوعی شریف» برگزار "
+#~ "شد. "
+
+#~ msgid "Jan30 - Feb17"
+#~ msgstr "۱۰ بهمن - ۲۸ بهمن"
+
+#~ msgid "Registration"
+#~ msgstr "ثبت نام"
+
+#~ msgid "Feb3 - Feb21"
+#~ msgstr "۱۴ بهمن - ۲ اسفند"
+
+#~ msgid "Online Phase"
+#~ msgstr "مرحله غیر‌حضوری (آنلاین)"
+
+#~ msgid "March7 - March8"
+#~ msgstr "۱۶ و ۱۷ اسفند"
+
+#~ msgid "Sharif On-Site Phase"
+#~ msgstr "مرحله حضوری در دانشگاه شریف"
+
+#~ msgid "Email: "
+#~ msgstr "ایمیل:"
+
+#~ msgid "Phone: "
+#~ msgstr "شماره تماس:"
+
+#~ msgid "Website Team"
+#~ msgstr "تیم وبسایت"
+
+#~ msgid "Infrastructure Team"
+#~ msgstr "تیم زیرساخت"
+
+#~ msgid "Server Team"
+#~ msgstr "تیم سرور"
+
+#~ msgid "Client Team"
+#~ msgstr "تیم کلاینت"
+
+#~ msgid "Graphic Team"
+#~ msgstr "تیم گرافیک"
+
+#~ msgid "Game Design Team"
+#~ msgstr "تیم طراحی بازی"
+
+#~ msgid "Test"
+#~ msgstr "تیم تست"
 
 #~ msgid "View Schedule"
 #~ msgstr "مشاهده زمان‌بندی"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-16 22:36+0430\n"
+"POT-Creation-Date: 2019-01-20 23:49+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -168,7 +168,7 @@ msgid ""
 "mail and should be fixed shortly. Thanks for your patience."
 msgstr "مشکلی داخلی در سرور رخ داد."
 
-#: templates/base/footer.html:20
+#: templates/base/footer.html:18
 msgid ""
 "\n"
 "            © All rights reserved for <a href=\\\"http://ssc.ce.sharif.edu"
