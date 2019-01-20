@@ -171,6 +171,12 @@ body {
     font-weight: bold;
     color: #FFF3D9;
 }
+.ai.yellow.button {
+    background-color: #F8981D !important;
+    z-index: 6;
+    font-weight: bold;
+    color: #FFF3D9;
+}
 
 #footer {
     width: 100vw;

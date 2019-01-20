@@ -32,7 +32,7 @@
         <input type="hidden" name="language" value="{% if LANGUAGE_CODE == "fa" %}en{% else %}fa{% endif %}"/>
     </form>
 
-    <!--<div class="right menu" id="right-navbar">-->
+    <div class="right menu" id="right-navbar">
         <!--<div class="ui dropdown fitted item">-->
             <!--<i class="user icon large-icon"></i>-->
             <!--<div class="ui inverted menu" style="margin-right: -60px;">-->
@@ -52,10 +52,10 @@
                     <!--</a>-->
                 <!--{% endif %}-->
             <!--</div>-->
-        <!--</div>-->
-        <!--<a class="fitted item popup-link" onclick="document.changeLang.submit();" href="#" data-tooltip="{% trans 'Change Language' %}" data-position="left center" data-inverted="">-->
-            <!--<i class="world icon large-icon"></i>-->
-        <!--</a>-->
+        </div>
+        <a class="fitted item popup-link" onclick="document.changeLang.submit();" href="#" data-tooltip="{% trans 'Change Language' %}" data-position="left center" data-inverted="">
+            <i class="world icon large-icon"></i>
+        </a>
         <!--<a class="fitted item popup-link" href="/blog" data-tooltip="{% trans 'Blog and Q&A' %}" data-position="left center" data-inverted="">-->
             <!--<i class="help icon large-icon"></i>-->
         <!--</a>-->
