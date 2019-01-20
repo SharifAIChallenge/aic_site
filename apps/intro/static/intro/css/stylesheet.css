@@ -196,37 +196,38 @@
 .smalltext {
     padding-top: 5px;
     font-size: 16px;
+    color: #000000;
 }
 
 
 .days {
-    background-color: #991e38;
+    background-color: #000000;
 }
 
 .days_div{
-    background-color: #e07384;
+    background-color: #FFF3D9;
 }
 
 .hours {
-    background-color: #de8731;
+    background-color: #000000;
 }
 
 .hours_div{
-    background-color: #f1cd6e;
+    background-color: #FFF3D9;
 }
 
 .minutes {
-    background-color: #61a6a1;
+    background-color: #000000;;
 }
 
 .minutes_div{
-    background-color: #aad0b9;
+    background-color: #FFF3D9;
 }
 
 .seconds {
-    background-color: #1f5590;
+    background-color: #000000;;
 }
 
 .seconds_div{
-    background-color: #55a8d1;
+    background-color: #FFF3D9;
 }

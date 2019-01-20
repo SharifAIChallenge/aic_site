@@ -165,6 +165,13 @@ body {
     color: #FFF3D9;
 }
 
+.ai.blue.button {
+    background-color: #009d8a !important;
+    z-index: 6;
+    font-weight: bold;
+    color: #FFF3D9;
+}
+
 #footer {
     width: 100vw;
     min-height: 30vh !important;
