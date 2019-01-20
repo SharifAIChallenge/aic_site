@@ -490,8 +490,8 @@
     {
         width: 6rem;
         top:-12rem;
-        right: 16rem !important;
-        left:auto;
+        right: 75% !important;
+        left:auto !important;
     }
 }
 
