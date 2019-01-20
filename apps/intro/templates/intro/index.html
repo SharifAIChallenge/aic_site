@@ -11,14 +11,17 @@
 {% endblock %}
 
 {% block container %}
-    	  	<div class="mysocial" >
-	  		<ul  align="center" >
-	  			<li style= "margin-top: 25px"><a target="_blank" href="https://mobile.twitter.com/AiChallenge"><i class="big inverted white twitter icon socialicon" ></i></a></li>
-	  			<li style= "margin-top: 25px"><a target="_blank" href="https://www.instagram.com/aichallenge/"><i class="big inverted white instagram icon  socialicon" ></i></a></li>
-	  			<li style= "margin-top: 25px"><a target="_blank" href="https://t.me/aichallenge"><i class="big inverted white telegram plane icon socialicon" ></i></a></li>
-	  		</ul>
+    <div class="mysocial">
+        <ul align="center">
+            <li style="margin-top: 25px"><a target="_blank" href="https://mobile.twitter.com/AiChallenge"><i
+                    class="big inverted white twitter icon socialicon"></i></a></li>
+            <li style="margin-top: 25px"><a target="_blank" href="https://www.instagram.com/aichallenge/"><i
+                    class="big inverted white instagram icon  socialicon"></i></a></li>
+            <li style="margin-top: 25px"><a target="_blank" href="https://t.me/aichallenge"><i
+                    class="big inverted white telegram plane icon socialicon"></i></a></li>
+        </ul>
 
-	  </div>
+    </div>
     <div align="center">
         <img class=" text image{% if LANGUAGE_BIDI %} bidi{% endif %}"
              src="{% static 'intro/image/banner-text-2019.png' %}" width="30%" ; height="30%" style="margin-top: 5%;">
@@ -89,44 +92,6 @@
                         {% endblocktrans %}
                     </p>
 
-                    <div class="ui center aligned container">
-                        <a href="
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                {% if request.user.is_authenticated %}{% url 'accounts:panel' %}{% else %}{% url 'accounts:signup' %}{% endif %}"
-                           class="ui centered massive animated violet button">
-                            {% if request.user.is_authenticated %}
-                                <div class="visible content">
-                                    {% trans 'Panel' %}
-                                </div>
-                                <div class="hidden content">
-                                    {% trans 'Panel' %}
-                                </div>
-                            {% else %}
-                                <div class="visible content">
-                                    {% trans 'Participate' %}
-                                </div>
-                                <div class="hidden content">
-                                    {% trans 'Register' %}
-                                </div>
-                            {% endif %}
-                        </a>
-                    </div>
 
                 </div>
                 <div class="eight wide column">
@@ -317,7 +282,82 @@
         </div>
     </div>
 
-    <div class="odd section" id="section-faq"
+    <div class="odd section" id="section-schedule">
+        <div class="ui section header" id="schedule-title">
+            <a class="circular ui big dark ai button" href="#section-schedule">
+                {% trans 'Schedule' %}
+            </a>
+        </div>
+        <section>
+            <div class="ui container">
+                <div class="timeline">
+                    <span class="line"></span>
+                    <article class="entry red">
+                        <div class="timelinecontent header">
+                            ثبت نام<br/>‏۱۷ بهمن
+                        </div>
+                        <img src="{% static "intro/image/id-card.svg" %}" class="right card-pic">
+                    </article>
+                    <article class="entry yellow" dir="auto">
+                        <div class="timelinecontent header">
+                            مرحله غیرحضوری
+                            <br/>
+                            ۱۷ تا ۲۸ بهمن
+                        </div>
+                        <img src="{% static "intro/image/laptop.svg" %}" class="left card-pic">
+                    </article>
+                    <article class="entry green">
+                        <div class="timelinecontent" style="">
+                            مرحله غیرحضوری
+                            <br/>
+                            ۱۷ تا ۲۸ بهمن
+                        </div>
+                        <img src="{% static "intro/image/team.svg" %}" class="right card-pic">
+                    </article>
+                </div>
+            </div>
+        </section>
+        {% comment %}
+    <div class="ui container">
+        <table class="ui inverted grey table"
+               style="background-color: #813800; font-size: 1.3em; text-align: center">
+            <tbody>
+            <tr>
+                <td>
+                    {% trans 'Jan30 - Feb17' %}
+                </td>
+                <td>
+                    {% trans 'Registration' %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% trans 'Feb3 - Feb21' %}
+                </td>
+                <td>
+                    {% trans 'Online Phase' %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% trans 'March7 - March8' %}
+                </td>
+                <td>
+                    {% trans 'Sharif On-Site Phase' %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="ui center aligned container">
+            <a href="{% url 'intro:faq' %}" class="ui centered violet button">
+                {% trans 'FAQ' %}
+            </a>
+        </div>
+    </div>
+{% endcomment %}
+    </div>
+
+    <div class="even section" id="section-faq"
     >
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-faq">
@@ -335,7 +375,7 @@
 
             <div class="ui stackable center aligned grid content">
                 <div class="ui two column row">
-                    <div class="ten wide center column">
+                    <div class="ten wide center column faq-text">
                         <p style="text-align: center">نبرد هوش مصنوعی شریف مسابقه‌ای تیمی است که در آن تیم‌ها
                             استراتژی‌های خود را برای پیروزی
                             در یک نبرد استراتژیک طراحی و در قالب کد پیاده‌سازی می‌کنند.
@@ -355,7 +395,7 @@
             <div class="ui hidden divider"></div>
             <div class="ui stackable center aligned grid content" style="text-align: center">
                 <div class="ui two column row">
-                    <div class="ten wide center column">
+                    <div class="ten wide center column faq-text">
                         شما می‌توانید به زبان‌های python ،java و ++C برنامه‌های خود را بنویسید.
                     </div>
                 </div>
@@ -370,7 +410,7 @@
             <div class="ui hidden divider"></div>
             <div class="ui stackable center aligned grid content" style="text-align: center">
                 <div class="ui two column row">
-                    <div class="ten wide center column">
+                    <div class="ten wide center column faq-text">
                         پاسخ دقیق به این سوال تا روز شروع مسابقهٔ غیرحضوری ممکن نیست اما می‌توان گفت که نوعی بازی
                         استراتژیک قهرمان‌محور برای مسابقه امسال در نظر گرفته شده است.
                     </div>
@@ -381,10 +421,9 @@
                 <b class="ui active header" style="color:#F8981D">
                     آیا برای شرکت در AI Challenge نیاز به دانستن برنامه‌نویسی حرفه‌ای است؟ </b>
             </div>
-            <div class="ui hidden divider"></div>
             <div class="ui stackable center aligned grid content" style="text-align: center">
                 <div class="ui two column row">
-                    <div class="ten wide center column">
+                    <div class="ten wide center column faq-text">
                         داشتن تجربهٔ برنامه‌نویسی حرفه‌ای قطعا به شما کمک خواهد کرد اما ساختار مسابقه طوری طراحی شده
                         که با دانستن مفاهیم ابتدایی برنامه‌نویسی همه می‌توانند در آن شرکت کنند، همچنین محتواهای
                         آموزشی بسیاری برای یادگیری بیشتر در تمام سطوح در این دوره آماده شده است.
@@ -400,7 +439,7 @@
             <div class="ui hidden divider"></div>
             <div class="ui stackable center aligned grid content" style="text-align: center">
                 <div class="ui two column row">
-                    <div class="ten wide center column">
+                    <div class="ten wide center column faq-text">
                         اصلا، بسیاری از شرکت‌کنندگان سابقه‌ای در کار با الگوریتم‌های هوش مصنوعی ندارند به همین دلیل
                         بازی طوری طراحی شده که راه حل یکتایی برای پیروزی در آن وجود ندارد و با الگوریتم‌های ابتدایی
                         هم می‌توان در مسابقه به موفقیت رسید؛ همچنین در طول مسابقه محتواهای آموزشی در زمینه ‌آشنایی
@@ -417,7 +456,7 @@
             <div class="ui hidden divider"></div>
             <div class="ui stackable center aligned grid content" style="text-align: center">
                 <div class="ui two column row">
-                    <div class="ten wide center column">
+                    <div class="ten wide center column faq-text">
                         اصلا، بسیاری از شرکت‌کنندگان سابقه‌ای در کار با الگوریتم‌های هوش مصنوعی ندارند به همین دلیل
                         بازی طوری طراحی شده که راه حل یکتایی برای پیروزی در آن وجود ندارد و با الگوریتم‌های ابتدایی
                         هم می‌توان در مسابقه به موفقیت رسید؛ همچنین در طول مسابقه محتواهای آموزشی در زمینه ‌آشنایی
@@ -431,9 +470,10 @@
                 <b class="ui active header" style="color:#F8981D">
                     آیا برای شرکت در مسابقه باید به در دانشگاه شریف حضور داشته باشم؟ </b>
             </div>
+            <div class="ui hidden divider"></div>
             <div class="ui stackable center aligned grid content" style="text-align: center">
                 <div class="ui two column row">
-                    <div class="ten wide center column">
+                    <div class="ten wide center column faq-text">
                         ثبت‌نام و شرکت در مسابقه در مرحله اول به صورت غیرحضوری انجام می‌شود و نیازی به حضور فیزیکی
                         در دانشگاه شریف نیست؛ برای مرحلهٔ حضوری هم تمهیدات لازم برای رفاه دانشجویان غیر تهرانی در
                         نظر گرفته شده است.
@@ -448,7 +488,7 @@
             <div class="ui hidden divider"></div>
             <div class="ui stackable center aligned grid content" style="text-align: center">
                 <div class="ui two column row">
-                    <div class="ten wide center column">
+                    <div class="ten wide center column faq-text">
                         شما می‌توانید از ۱۵ ام بهمن ماه به صورت اینترنتی در مسابقه به صورت رایگان ثبت‌نام کنید.
                     </div>
                 </div>
@@ -589,80 +629,6 @@
         </div>
     </div>
 
-    <div class="even section" id="section-schedule">
-        <div class="ui section header" id="schedule-title">
-            <a class="circular ui big dark ai button" href="#section-schedule">
-                {% trans 'Schedule' %}
-            </a>
-        </div>
-        <section>
-            <div class="ui container">
-                <div class="timeline">
-                    <span class="line"></span>
-                    <article class="entry red">
-                        <div class="timelinecontent header">
-                            ثبت نام<br/>‏۱۷ بهمن
-                        </div>
-                        <img src="{% static "intro/image/id-card.svg" %}" class="right card-pic">
-                    </article>
-                    <article class="entry yellow" dir="auto">
-                        <div class="timelinecontent header">
-                            مرحله غیرحضوری
-                            <br/>
-                            ۱۷ تا ۲۸ بهمن
-                        </div>
-                        <img src="{% static "intro/image/laptop.svg" %}" class="left card-pic">
-                    </article>
-                    <article class="entry green">
-                        <div class="timelinecontent" style="">
-                            مرحله غیرحضوری
-                            <br/>
-                            ۱۷ تا ۲۸ بهمن
-                        </div>
-                        <img src="{% static "intro/image/team.svg" %}" class="right card-pic">
-                    </article>
-                </div>
-            </div>
-        </section>
-        {% comment %}
-    <div class="ui container">
-        <table class="ui inverted grey table"
-               style="background-color: #813800; font-size: 1.3em; text-align: center">
-            <tbody>
-            <tr>
-                <td>
-                    {% trans 'Jan30 - Feb17' %}
-                </td>
-                <td>
-                    {% trans 'Registration' %}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {% trans 'Feb3 - Feb21' %}
-                </td>
-                <td>
-                    {% trans 'Online Phase' %}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {% trans 'March7 - March8' %}
-                </td>
-                <td>
-                    {% trans 'Sharif On-Site Phase' %}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="ui center aligned container">
-            <a href="{% url 'intro:faq' %}" class="ui centered violet button">
-                {% trans 'FAQ' %}
-            </a>
-        </div>
-    </div>
-{% endcomment %}
-    </div>
 
     <div class="odd section tablet computer only" id="section-organizer">
 
