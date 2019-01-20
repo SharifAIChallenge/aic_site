@@ -102,6 +102,30 @@
     [class*="third-prize"] {
         order: 3;
     }
+    [class*="faq-mobile-hidden"] {
+        visibility: hidden;
+        height: 0px;
+    }
+    [class*="faq-mobile-visible"] {
+        visibility: visible;
+    }
+
+}
+
+@media only screen and (min-width: 768px) {
+    [class*="faq-mobile-visible"] {
+        visibility: hidden;
+        height: 0px;
+    }
+    [class*="faq-mobile-hidden"] {
+        visibility: visible;
+    }
+}
+
+.faq-mobile-hidden {
+}
+
+.faq-mobile-visible{
 
 }
 

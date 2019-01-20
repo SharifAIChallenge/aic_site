@@ -59,7 +59,7 @@
     <div class="odd section" id="section-intro">
 
         <div class="ui section header">
-            <a class="circular ui big ai blue button" href="#section-intro" style="background-color: #009d8a">
+            <a class="circular ui big ai blue button" href="#section-intro" style="background-color: #FFFF3D9">
                 {% trans 'Introduction' %}
             </a>
         </div>
@@ -84,6 +84,15 @@
 
                     <div class="ui center aligned container">
                         <a href="
+
+
+
+
+
+
+
+
+
                                 {% if request.user.is_authenticated %}{% url 'accounts:panel' %}{% else %}{% url 'accounts:signup' %}{% endif %}"
                            class="ui centered massive animated violet button">
                             {% if request.user.is_authenticated %}
@@ -290,14 +299,15 @@
         </div>
     </div>
 
-     <div class="odd section" id="section-faq"
+    <div class="odd section" id="section-faq"
     >
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-faq">
                 {% trans 'FAQ' %}
             </a>
         </div>
-        <div class="ui inverted segment" style="padding: 0px 70px; border: none; background: transparent;">
+        <div class="ui inverted segment faq-mobile-hidden"
+             style="padding: 0px 70px; border: none; background: transparent;">
             <div class="title" style="text-align:center">
                 <b class="ui active header" style="color:#F8981D">
                     نبرد هوش مصنوعی شریف (AI Challenge) چیست؟
@@ -422,6 +432,132 @@
                 <div class="ui two column row">
                     <div class="sixteen wide column">
                         شما می‌توانید از ۱۵ ام بهمن ماه به صورت اینترنتی در مسابقه به صورت رایگان ثبت‌نام کنید.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui inverted accordion faq-mobile-visible">
+            <div class="ui inverted segment"
+                 style="padding: 0px 70px; border: none; background: transparent;">
+                <div class="title" style="text-align:center">
+                    <i class="dropdown icon" style="color: #FFFF3D9"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        نبرد هوش مصنوعی شریف (AI Challenge) چیست؟
+                    </b>
+                </div>
+
+                <div class="ui stackable grid content">
+                    <div class="ui two column row">
+                        <div class="sixteen wide column">
+                            <p style="text-align: center">نبرد هوش مصنوعی شریف مسابقه‌ای تیمی است که در آن تیم‌ها
+                                استراتژی‌های خود را برای پیروزی
+                                در یک نبرد استراتژیک طراحی و در قالب کد پیاده‌سازی می‌کنند.
+                                هر تیم با استفاده از ایده‌های خلاقانه و استراتژی‌های متفاوت سعی می‌کند یک هوش مصنوعی
+                                قدرتمند طراحی کند که تا جای ممکن بر تیم‌های حریف چیره شود و به مرحلهٔ حضوری مسابقات راه
+                                پیدا کند.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="title" style="text-align: center">
+                    <i class="dropdown icon" style="color: #FFFF3D9"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        در AI Challenge از چه زبان‌های برنامه‌نویسی‌ پشتیبانی می‌شود؟
+                    </b>
+                </div>
+                <div class="ui stackable grid content" style="text-align: center">
+                    <div class="ui two column row">
+                        <div class="sixteen wide column">
+                            شما می‌توانید به زبان‌های python ،java و ++C برنامه‌های خود را بنویسید.
+                        </div>
+                    </div>
+                </div>
+                <div class="title" style="text-align: center">
+                    <i class="dropdown icon" style="color: #FFFF3D9"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        پس نبرد هوش مصنوعی نوعی مسابقه کدها از طریق هوش مصنوعی است، اما بازی در نظر گرفته شده
+                        چیست؟
+                    </b>
+                </div>
+                <div class="ui stackable grid content" style="text-align: center">
+                    <div class="ui two column row">
+                        <div class="sixteen wide column">
+                            پاسخ دقیق به این سوال تا روز شروع مسابقهٔ غیرحضوری ممکن نیست اما می‌توان گفت که نوعی بازی
+                            استراتژیک قهرمان‌محور برای مسابقه امسال در نظر گرفته شده است.
+                        </div>
+                    </div>
+                </div>
+                <div class="title" style="text-align: center">
+                    <i class="dropdown icon" style="color: #FFFF3D9"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        آیا برای شرکت در AI Challenge نیاز به دانستن برنامه‌نویسی حرفه‌ای است؟ </b>
+                </div>
+                <div class="ui stackable grid content" style="text-align: center">
+                    <div class="ui two column row">
+                        <div class="sixteen wide column">
+                            داشتن تجربهٔ برنامه‌نویسی حرفه‌ای قطعا به شما کمک خواهد کرد اما ساختار مسابقه طوری طراحی شده
+                            که با دانستن مفاهیم ابتدایی برنامه‌نویسی همه می‌توانند در آن شرکت کنند، همچنین محتواهای
+                            آموزشی بسیاری برای یادگیری بیشتر در تمام سطوح در این دوره آماده شده است.
+                        </div>
+                    </div>
+                </div>
+                <div class="title" style="text-align: center">
+                    <i class="dropdown icon" style="color: #FFFF3D9"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        آیا نداشتن سابقه در هوش مصنوعی مشکلی ایجاد نمی‌کند؟
+                    </b>
+                </div>
+                <div class="ui stackable grid content" style="text-align: center">
+                    <div class="ui two column row">
+                        <div class="sixteen wide column">
+                            اصلا، بسیاری از شرکت‌کنندگان سابقه‌ای در کار با الگوریتم‌های هوش مصنوعی ندارند به همین دلیل
+                            بازی طوری طراحی شده که راه حل یکتایی برای پیروزی در آن وجود ندارد و با الگوریتم‌های ابتدایی
+                            هم می‌توان در مسابقه به موفقیت رسید؛ همچنین در طول مسابقه محتواهای آموزشی در زمینه ‌آشنایی
+                            با هوش مصنوعی در اختیار شرکت‌کنندگان قرار می‌گیرد.
+                        </div>
+                    </div>
+                </div>
+                <div class="title" style="text-align: center">
+                    <i class="dropdown icon" style="color: #FFFF3D9"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        فرمت نبرد هوش مصنوعی شریف چگونه است؟
+                    </b>
+                </div>
+                <div class="ui stackable grid content" style="text-align: center">
+                    <div class="ui two column row">
+                        <div class="sixteen wide column">
+                            اصلا، بسیاری از شرکت‌کنندگان سابقه‌ای در کار با الگوریتم‌های هوش مصنوعی ندارند به همین دلیل
+                            بازی طوری طراحی شده که راه حل یکتایی برای پیروزی در آن وجود ندارد و با الگوریتم‌های ابتدایی
+                            هم می‌توان در مسابقه به موفقیت رسید؛ همچنین در طول مسابقه محتواهای آموزشی در زمینه ‌آشنایی
+                            با هوش مصنوعی در اختیار شرکت‌کنندگان قرار می‌گیرد.
+                        </div>
+                    </div>
+                </div>
+                <div class="title" style="text-align: center">
+                    <i class="dropdown icon" style="color: #FFFF3D9"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        آیا برای شرکت در مسابقه باید به در دانشگاه شریف حضور داشته باشم؟ </b>
+                </div>
+                <div class="ui stackable grid content" style="text-align: center">
+                    <div class="ui two column row">
+                        <div class="sixteen wide column">
+                            ثبت‌نام و شرکت در مسابقه در مرحله اول به صورت غیرحضوری انجام می‌شود و نیازی به حضور فیزیکی
+                            در دانشگاه شریف نیست؛ برای مرحلهٔ حضوری هم تمهیدات لازم برای رفاه دانشجویان غیر تهرانی در
+                            نظر گرفته شده است.
+                        </div>
+                    </div>
+                </div>
+                <div class="title" style="text-align: center">
+                    <i class="dropdown icon" style="color: #FFF3D9"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        چطور باید در AI Challenge ثبت‌نام کنم؟ </b>
+                </div>
+                <div class="ui stackable grid content" style="text-align: center">
+                    <div class="ui two column row">
+                        <div class="sixteen wide column">
+                            شما می‌توانید از ۱۵ ام بهمن ماه به صورت اینترنتی در مسابقه به صورت رایگان ثبت‌نام کنید.
+                        </div>
                     </div>
                 </div>
             </div>
