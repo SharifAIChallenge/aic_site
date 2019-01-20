@@ -12,7 +12,7 @@ $(document)
         var navbar = $('#navbar');
         navbar.css('z-index', '999');
 
-        $('time').attr("dir", "ltr")
+        $('time').attr("dir", "ltr");
 
     })
     .scroll(function(){
@@ -31,6 +31,7 @@ $(document)
             navbar.removeClass('reverse-navbar-color');
         }
 
-});
+    });
+
 
 

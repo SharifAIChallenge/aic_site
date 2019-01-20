@@ -259,7 +259,7 @@ body {
 }
 
 .body-pattern{
-    background-image: url(/static/images/pattern.svg);
+    background-image: url(/static/images/pattern1.png);
     width: 100vw;
     height: 100vh;
     background-repeat: repeat;
