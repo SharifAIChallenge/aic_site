@@ -126,7 +126,7 @@ body {
 }
 
 .reverse-navbar-color {
-    background-color: #40444d !important;
+    background-color: rgb(0,0,0) !important;
 }
 
 /*.reverse-navbar-color * {*/
@@ -138,7 +138,7 @@ body {
 }
 
 .navbar-color * {
-    color: #40444d !important;
+    color: rgb(255,255,255) !important;
 }
 
 .ai.background {
@@ -255,7 +255,7 @@ body {
 .body-image{
     background-image: url(/static/images/backg.png);
     background-repeat: repeat-y;
-    background-size: 100%;
+    background-size: 105%;
 }
 
 .body-pattern{
