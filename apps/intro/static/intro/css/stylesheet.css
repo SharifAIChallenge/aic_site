@@ -69,6 +69,7 @@
     color: var(--cream);
     line-height: 25px;
     text-align: center;
+    background: #ff43d8;
     margin: 42px;
     /*margin-right: 100px;*/
     /*margin-left: 100px;*/
@@ -266,6 +267,7 @@
     font-size: 16px;
     color: #000000;
 }
+
 
 .days {
     background-color: #000000;
@@ -505,3 +507,23 @@
 .ai-feature{
     margin: 30px;
 }
+.socialicon:hover{
+		-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+	}
+.mysocial{
+	position: fixed;
+   right: 10px;
+   bottom: 10px;
+
+   color: white;
+  align-items: center;
+  text-align: center;
+	/*background-color: rgba(240, 245, 245,0.2);*/
+    /*border: solid ;*/
+    /*border-color: rgba(240, 245, 245,0.8);*/
+    /*border-radius: 40px;*/
+    padding: 10px;
+
+}
+.mysocial ul { margin: 0; padding: 0; list-style: none; }
