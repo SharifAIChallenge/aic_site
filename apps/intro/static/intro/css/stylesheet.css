@@ -115,19 +115,11 @@
     [class*="faq-mobile-visible"] {
         visibility: visible;
     }
-    [class*="banner-text-mobile"] {
-        width: 60%;
-        padding-top: 8%;
-    }
 
 }
 
-@media only screen and (min-width: 768px) and (max-width:991px) {
-    [class*="banner-text-mobile"] {
-        width: 50%;
-        padding-top: 5%;
-    }
-        [class*="faq-mobile-visible"] {
+@media only screen and (min-width: 769px) {
+    [class*="faq-mobile-visible"] {
         visibility: hidden;
         height: 0px;
     }
@@ -135,22 +127,6 @@
         visibility: visible;
     }
 }
-@media only screen and (min-width: 992px) and (max-width:1200px) {
-    [class*="banner-text-mobile"] {
-        width: 40%;
-    }
-        [class*="faq-mobile-visible"] {
-        visibility: hidden;
-        height: 0px;
-    }
-    [class*="faq-mobile-hidden"] {
-        visibility: visible;
-    }
-}
-
-.banner-text-mobile{
-}
-
 
 .faq-mobile-hidden {
 }
@@ -386,7 +362,7 @@
     position: absolute;
     width: 2rem;
     height: 2rem;
-    right: 0rem;
+    right: 1rem;
     background-color: white;
     border: 4px solid black;
     top: 1.75rem;

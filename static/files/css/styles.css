@@ -264,21 +264,14 @@ body {
     background-size: 105%;
 }
 
-.body-pattern{
+.body-pattern {
     background-image: url(/static/images/pattern1.png);
     width: 100vw;
     height: 100vh;
     background-repeat: repeat;
-    background-size:25%;
-    z-index:-1;
-    position:absolute;
-    opacity:0.2;
-    background-attachment:fixed;
-}
-
-@media (min-width: 800px) {
-    .socialformobile{
-        display: none;
-    }
-    
+    background-size: 25%;
+    z-index: -1;
+    position: absolute;
+    opacity: 0.2;
+    background-attachment: fixed;
 }
