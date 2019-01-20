@@ -69,7 +69,7 @@
     color: var(--cream);
     line-height: 25px;
     text-align: center;
-    background: #ff43d8;
+    /*background: #ff43d8;*/
     margin: 42px;
     /*margin-right: 100px;*/
     /*margin-left: 100px;*/
@@ -268,6 +268,10 @@
     color: #000000;
 }
 
+.faq-text {
+    font-size: 16px;
+    color: var(--cream);
+}
 
 .days {
     background-color: #000000;
