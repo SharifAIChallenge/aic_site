@@ -66,7 +66,7 @@
     background-size: cover !important;
     font-weight: bold;
     font-size: 20px;
-    color: #fff;
+    color: var(--cream);
     line-height: 25px;
     text-align: center;
     margin: 42px;
@@ -108,7 +108,7 @@
 .circle a {
     line-height: 65px;
     font-size: 60px;
-    color: #fff;
+    color: var(--cream);
 }
 
 .circle#purple a {
