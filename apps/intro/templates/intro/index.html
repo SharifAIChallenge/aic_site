@@ -105,29 +105,29 @@
 
     <div class="odd section" id="section-intro">
 
-            <div class="ui center aligned stackable grid">
-                <div class="circle" id="purple">
-                                    {% trans 'Users' %}<br/>
-                    <a style="padding-right: 20px">
-                        {{ users_count }}
-                    </a>
-                    <br/>{% trans 'Users' %}
-                </div>
-                <div class="circle" id="yellow">
-                                    {% trans 'Submissions' %}<br/>
-                    <a style="padding-right: 15px">
-                        {{ submits_count }}
-                    </a>
-                    <br/>{% trans 'Submissions' %}
-                </div>
-                <div class="circle" id="blue">
-                                    {% trans 'Teams' %}<br/>
-                    <a style="padding-right: 15px">
-                        {{ teams_count }}
-                    </a>
-                    <br/>{% trans 'Teams' %}
-                </div>
+        <div class="ui center aligned stackable grid">
+            <div class="circle" id="purple">
+                {% trans 'Users' %}<br/>
+                <a style="padding-right: 20px">
+                    {{ users_count }}
+                </a>
+                <br/>{% trans 'Users' %}
             </div>
+            <div class="circle" id="yellow">
+                {% trans 'Submissions' %}<br/>
+                <a style="padding-right: 15px">
+                    {{ submits_count }}
+                </a>
+                <br/>{% trans 'Submissions' %}
+            </div>
+            <div class="circle" id="blue">
+                {% trans 'Teams' %}<br/>
+                <a style="padding-right: 15px">
+                    {{ teams_count }}
+                </a>
+                <br/>{% trans 'Teams' %}
+            </div>
+        </div>
 
     </div>
 
@@ -372,7 +372,6 @@
                 </b>
             </div>
             <div class="ui hidden divider"></div>
-
             <div class="ui stackable center aligned grid content">
                 <div class="ui two column row">
                     <div class="ten wide center column faq-text">
@@ -421,6 +420,7 @@
                 <b class="ui active header" style="color:#F8981D">
                     آیا برای شرکت در AI Challenge نیاز به دانستن برنامه‌نویسی حرفه‌ای است؟ </b>
             </div>
+            <div class="ui hidden divider"></div>
             <div class="ui stackable center aligned grid content" style="text-align: center">
                 <div class="ui two column row">
                     <div class="ten wide center column faq-text">
@@ -457,10 +457,10 @@
             <div class="ui stackable center aligned grid content" style="text-align: center">
                 <div class="ui two column row">
                     <div class="ten wide center column faq-text">
-                        اصلا، بسیاری از شرکت‌کنندگان سابقه‌ای در کار با الگوریتم‌های هوش مصنوعی ندارند به همین دلیل
-                        بازی طوری طراحی شده که راه حل یکتایی برای پیروزی در آن وجود ندارد و با الگوریتم‌های ابتدایی
-                        هم می‌توان در مسابقه به موفقیت رسید؛ همچنین در طول مسابقه محتواهای آموزشی در زمینه ‌آشنایی
-                        با هوش مصنوعی در اختیار شرکت‌کنندگان قرار می‌گیرد.
+                        تیم‌ها از اواسط بهمن تا نیمه اسفند به نبرد غیرحضوری با یکدیگر می‌پردازند، بازی‌های دوستانه و
+                        مسابقه‌های مختلف برای بهتر شدن عملکرد تیم‌ها در این مدت برگزار می‌شود، در انتهای مرحله غیرحضوری
+                        مسابقه انتخابی بین همهٔ تیم‌ها برگزار می‌شود و ۴۸ تیم برتر به مرحله حضوری که اواخر اسفند در
+                        دانشگاه شریف برگزار می‌شود راه می‌یابند.
                     </div>
                 </div>
             </div>
@@ -645,7 +645,7 @@
                 <div class="ui horizontal divider"></div>
                 <h1 class="ui header">{% trans 'Sponsor' %}</h1>
                 <a href="https://www.yektanet.com/"><img class="ui centered medium image"
-                                                      src="{% static 'intro/image/sponsor.png' %}"></a>
+                                                         src="{% static 'intro/image/sponsor.png' %}"></a>
             </div>
             <div class="eight wide column">
                 <h1 class="ui header">{% trans 'Location' %}</h1>
