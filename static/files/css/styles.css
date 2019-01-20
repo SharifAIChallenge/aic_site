@@ -150,7 +150,7 @@ body {
 .ai.button {
     background-color: #40444d !important;
     color: #FFF0DC;
-    font-family: URWGeometric-Bold;
+    font-weight: bold;
     z-index: 6;
 }
 
@@ -161,7 +161,7 @@ body {
 .ai.red.button {
     background-color: #ED1A3A !important;
     z-index: 6;
-    font-family: URWGeometric;
+    font-weight: bold;
     color: #FFF3D9;
 }
 

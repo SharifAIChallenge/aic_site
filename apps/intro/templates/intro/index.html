@@ -23,7 +23,7 @@
     <!--</div>-->
 </div>
 
-<div class="even section" style="padding-top: 20px" align="center">
+<div class="odd section" style="padding-top: 20px" align="center">
     <div class="countdown">
         <div id="clockdiv">
             <div class="seconds_div" style="margin-top: 10px">
@@ -363,12 +363,44 @@
     </div>
 </div>
 
-<div class="odd section" id="section-schedule">
-    <div class="ui section header">
-        <a class="ui big ai button" href="#section-schedule">
-            {% trans 'Schedule' %}
-        </a>
-    </div>
+    <div class="odd section" id="section-schedule">
+        <div class="ui section header" id="schedule-title">
+            <a class="circular ui big dark ai button" href="#section-schedule">
+                {% trans 'Schedule' %}
+            </a>
+        </div>
+        <section>
+            <div class="ui container">
+               {% comment %} <center>
+                    <a class="ui circular big ai button " id="schedule-header" href="#section-schedule">
+                        {% trans 'Schedule' %}
+                    </a>
+                </center>{% endcomment %}
+                <div class="timeline">
+                    <span class="line"></span>
+                    <article class="entry red">
+                        <div class="timelinecontent header"  style="background-color: var(--red)">
+                            ثبت نام<br/>‏۱۷ بهمن
+                        </div>
+                    </article>
+                    <article class="entry yellow" dir="auto">
+                        <div class="timelinecontent header">
+                        مرحله غیرحضوری
+                            <br/>
+                            ۱۷ تا ۲۸ بهمن
+                        </div>
+                    </article>
+                    <article class="entry green">
+                        <div class="timelinecontent" style="">
+                        مرحله غیرحضوری
+                            <br/>
+                            ۱۷ تا ۲۸ بهمن
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        {% comment %}
     <div class="ui container">
         <table class="ui inverted grey table"
                style="background-color: #813800; font-size: 1.3em; text-align: center">
@@ -405,7 +437,8 @@
             </a>
         </div>
     </div>
-</div>
+{% endcomment %}
+    </div>
 
 <div class="even section" id="section-organizer">
 
