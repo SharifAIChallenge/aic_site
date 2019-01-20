@@ -31,15 +31,13 @@ This set of fonts are used in this project under the license: RC4QT
 @font-face {
     font-family: URWGeometric;
     font-style: normal;
-    font-weight: normal;
     src: url('../fonts/eot/URWGeometricArabic-Medium.eot');
     src: url('../fonts/eot/URWGeometricArabic-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../fonts/woff2/URWGeometricArabic-Medium.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../fonts/woff/URWGeometricArabic-Medium.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/ttf/URWGeometricArabic-Medium.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: URWGeometric;
+    font-family: URWGeometric-Bold;
     font-style: normal;
-    font-weight: bold;
     src: url('../fonts/eot/URWGeometricArabic-Bold.eot');
     src: url('../fonts/eot/URWGeometricArabic-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../fonts/woff2/URWGeometricArabic-Bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../fonts/woff/URWGeometricArabic-Bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/ttf/URWGeometricArabic-Bold.ttf') format('truetype');
 }
@@ -152,6 +150,7 @@ body {
 .ai.button {
     background-color: #40444d !important;
     color: #FFF0DC;
+    font-family: URWGeometric-Bold;
     z-index: 6;
 }
 
@@ -162,7 +161,7 @@ body {
 .ai.red.button {
     background-color: #ED1A3A !important;
     z-index: 6;
-    font-weight: bold;
+    font-family: URWGeometric;
     color: #FFF3D9;
 }
 
