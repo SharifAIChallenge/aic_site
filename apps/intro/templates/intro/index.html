@@ -6,190 +6,195 @@
 
 {% block extra_header %}
 
-<link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
+    <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
 
 {% endblock %}
 
 {% block container %}
 
-<div align="center">
-    <img class=" text image{% if LANGUAGE_BIDI %} bidi{% endif %}"
-         src="{% static 'intro/image/banner-text-2019.png' %}" width="30%"; height="30%" style="margin-top: 5%;">
-    <img class=" text banner-image{% if LANGUAGE_BIDI %} bidi{% endif %}"
-         src="{% static 'intro/image/troop.png' %}" width="100%">
-    <!--<div class="ui section">-->
-    <!--<div class="ui center aligned grid"></div>-->
-    <!--<div class="ui center aligned grid aic18-stamp">-->
-    <!--ثبت نام به پایان رسید!-->
-    <!--</div>-->
-    <!--</div>-->
-</div>
+    <div align="center">
+        <img class=" text image{% if LANGUAGE_BIDI %} bidi{% endif %}"
+             src="{% static 'intro/image/banner-text-2019.png' %}" width="30%" ; height="30%" style="margin-top: 5%;">
+        <img class=" text banner-image{% if LANGUAGE_BIDI %} bidi{% endif %}"
+             src="{% static 'intro/image/troop.png' %}" width="100%">
+        <!--<div class="ui section">-->
+        <!--<div class="ui center aligned grid"></div>-->
+        <!--<div class="ui center aligned grid aic18-stamp">-->
+        <!--ثبت نام به پایان رسید!-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
 
-<div class="odd section" style="padding-top: 20px" align="center">
-    <div class="countdown">
-        <div id="clockdiv">
-            <div class="seconds_div" style="margin-top: 10px">
-                <span class="seconds"></span>
-                <div class="smalltext">ثانیه</div>
-            </div>
-            <div class="minutes_div" style="margin-top: 10px">
-                <span class="minutes"></span>
-                <div class="smalltext">دقیقه</div>
-            </div>
-            <div class="hours_div" style="margin-top: 10px">
-                <span class="hours"></span>
-                <div class="smalltext">ساعت</div>
-            </div>
-            <div class="days_div" style="margin-top: 10px">
-                <span class="days"></span>
-                <div class="smalltext">روز</div>
+    <div class="odd section" style="padding-top: 20px" align="center">
+        <div class="countdown">
+            <div id="clockdiv">
+                <div class="seconds_div" style="margin-top: 10px">
+                    <span class="seconds"></span>
+                    <div class="smalltext">ثانیه</div>
+                </div>
+                <div class="minutes_div" style="margin-top: 10px">
+                    <span class="minutes"></span>
+                    <div class="smalltext">دقیقه</div>
+                </div>
+                <div class="hours_div" style="margin-top: 10px">
+                    <span class="hours"></span>
+                    <div class="smalltext">ساعت</div>
+                </div>
+                <div class="days_div" style="margin-top: 10px">
+                    <span class="days"></span>
+                    <div class="smalltext">روز</div>
+                </div>
             </div>
         </div>
+        <div class="ui action input" style="margin: 25px">
+            <input type="text" placeholder="ایمیل"
+                   style=" border-bottom-right-radius: 20px;border-top-right-radius: 20px; background-color: #fff3d9">
+            <button class="ui button"
+                    style="border-bottom-left-radius: 20px;border-top-left-radius: 20px; color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold">
+                باخبرم کن
+            </button>
+        </div>
     </div>
-    <div class="ui action input" style="margin: 25px">
-        <input type="text" placeholder="ایمیل" style=" border-bottom-right-radius: 20px;border-top-right-radius: 20px; background-color: #fff3d9">
-        <button class="ui button" style="border-bottom-left-radius: 20px;border-top-left-radius: 20px; color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold">باخبرم کن</button>
-    </div>
-</div>
 
-<div class="odd section" id="section-intro">
+    <div class="odd section" id="section-intro">
 
-    <div class="ui section header" >
-        <a class="circular ui big ai blue button" href="#section-intro" style="background-color: #009d8a">
-            {% trans 'Introduction' %}
-        </a>
-    </div>
-    <div class="ui stackable grid container">
-        <div class="two column row">
-            <div class="eight wide column">
-                <p style="font-size: 1.3em;">
-                    {% blocktrans %}
-                    Sharif AI Challenge is a programming competition for all who are interested in artificial
-                    intelligence.<br><br>This competition is held in two phases annually. Including an online
-                    and an
-                    on-site phase in which competitors will compete in teams of three in a game designed by our
-                    technical team.<br><br>
-                    The only pre-requisite to enter this competition is familiarity with programming using C++,
-                    Java
-                    or python. But obviously, knowledge of algorithmic thinking and artificial intelligence will
-                    be
-                    a great asset for any of the participating teams. The registration for online competition is
-                    free.
-                    {% endblocktrans %}
-                </p>
+        <div class="ui section header">
+            <a class="circular ui big ai blue button" href="#section-intro" style="background-color: #009d8a">
+                {% trans 'Introduction' %}
+            </a>
+        </div>
+        <div class="ui stackable grid container">
+            <div class="two column row">
+                <div class="eight wide column">
+                    <p style="font-size: 1.3em;">
+                        {% blocktrans %}
+                            Sharif AI Challenge is a programming competition for all who are interested in artificial
+                            intelligence.<br><br>This competition is held in two phases annually. Including an online
+                            and an
+                            on-site phase in which competitors will compete in teams of three in a game designed by our
+                            technical team.<br><br>
+                            The only pre-requisite to enter this competition is familiarity with programming using C++,
+                            Java
+                            or python. But obviously, knowledge of algorithmic thinking and artificial intelligence will
+                            be
+                            a great asset for any of the participating teams. The registration for online competition is
+                            free.
+                        {% endblocktrans %}
+                    </p>
 
-                <div class="ui center aligned container">
-                    <a href="{% if request.user.is_authenticated %}{% url 'accounts:panel' %}{% else %}{% url 'accounts:signup' %}{% endif %}"
-                       class="ui centered massive animated violet button">
-                        {% if request.user.is_authenticated %}
-                        <div class="visible content">
-                            {% trans 'Panel' %}
-                        </div>
-                        <div class="hidden content">
-                            {% trans 'Panel' %}
-                        </div>
-                        {% else %}
-                        <div class="visible content">
-                            {% trans 'Participate' %}
-                        </div>
-                        <div class="hidden content">
-                            {% trans 'Register' %}
-                        </div>
-                        {% endif %}
-                    </a>
+                    <div class="ui center aligned container">
+                        <a href="
+                                {% if request.user.is_authenticated %}{% url 'accounts:panel' %}{% else %}{% url 'accounts:signup' %}{% endif %}"
+                           class="ui centered massive animated violet button">
+                            {% if request.user.is_authenticated %}
+                                <div class="visible content">
+                                    {% trans 'Panel' %}
+                                </div>
+                                <div class="hidden content">
+                                    {% trans 'Panel' %}
+                                </div>
+                            {% else %}
+                                <div class="visible content">
+                                    {% trans 'Participate' %}
+                                </div>
+                                <div class="hidden content">
+                                    {% trans 'Register' %}
+                                </div>
+                            {% endif %}
+                        </a>
+                    </div>
+
+                </div>
+                <div class="eight wide column">
+                    <div id="15171308283766309"></div>
                 </div>
 
             </div>
-            <div class="eight wide column">
-                <div id="15171308283766309"></div>
-            </div>
 
         </div>
-
     </div>
-</div>
 
-<div class="odd section" id="section-intro">
-    <div class="ui section header">
-        <div class="ui center aligned grid">
-            <div class="circle" id="purple">
-{#                {% trans 'Users' %}<br/>#}
-                <a style="padding-right: 20px">
-                    {{ users_count }}
-                </a>
-                <br/>{% trans 'Users' %}
-            </div>
-            <div class="circle" id="yellow">
-{#                {% trans 'Submissions' %}<br/>#}
-                <a style="padding-right: 15px">
-                    {{ submits_count }}
-                </a>
-                <br/>{% trans 'Submissions' %}
-            </div>
-            <div class="circle" id="blue">
-{#                {% trans 'Teams' %}<br/>#}
-                <a style="padding-right: 15px">
-                    {{ teams_count }}
-                </a>
-                <br/>{% trans 'Teams' %}
+    <div class="odd section" id="section-intro">
+        <div class="ui section header">
+            <div class="ui center aligned grid">
+                <div class="circle" id="purple">
+                    {#                {% trans 'Users' %}<br/>#}
+                    <a style="padding-right: 20px">
+                        {{ users_count }}
+                    </a>
+                    <br/>{% trans 'Users' %}
+                </div>
+                <div class="circle" id="yellow">
+                    {#                {% trans 'Submissions' %}<br/>#}
+                    <a style="padding-right: 15px">
+                        {{ submits_count }}
+                    </a>
+                    <br/>{% trans 'Submissions' %}
+                </div>
+                <div class="circle" id="blue">
+                    {#                {% trans 'Teams' %}<br/>#}
+                    <a style="padding-right: 15px">
+                        {{ teams_count }}
+                    </a>
+                    <br/>{% trans 'Teams' %}
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-{#<div class="odd section" id="section-prizes">#}
-{#    <div class="ui section header">#}
-{#        <a class="ui big ai button" href="#section-prizes">#}
-{#            {% trans 'Prizes' %}#}
-{#        </a>#}
-{#    </div>#}
-{#    <div class="ui stackable grid container" style="padding: 30px;">#}
-{#        <div class="three column row">#}
-{#            <div id="second-cup" class="five wide column" style="text-align: center;">#}
-{##}
-{#                <div class="image">#}
-{#                    <img src="{% static 'intro/image/Cup2.png' %}" style="max-width:50%">#}
-{#                </div>#}
-{#                <div class="ui horizontal divider header">#}
-{#                    {% trans 'Second Place' %}#}
-{#                </div>#}
-{#                <div class="ui large header">#}
-{#                    {% trans '5 Million Tomans' %}#}
-{#                </div>#}
-{#            </div>#}
-{#            <div id="champion-cup" class="six wide column" style="text-align: center;">#}
-{#                <div class="image">#}
-{#                    <img src="{% static 'intro/image/Cup1.png' %}" style="max-width:50%">#}
-{#                </div>#}
-{#                <div class="ui horizontal divider header">#}
-{#                    {% trans 'Champion' %}#}
-{#                </div>#}
-{#                <div id="seven-million" class="ui large header">#}
-{#                    {% trans '7 Million Tomans' %}#}
-{#                </div>#}
-{#            </div>#}
-{#            <div id="third-cup" class="five wide column" style="text-align: center;">#}
-{#                <div class="image">#}
-{#                    <img src="{% static 'intro/image/Cup3.png' %}" style="max-width:50%;">#}
-{#                </div>#}
-{#                <div class="ui horizontal divider header">#}
-{#                    {% trans 'Third Place' %}#}
-{#                </div>#}
-{#                <div class="ui large header">#}
-{#                    {% trans '3 Million Tomans' %}#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
+    {#<div class="odd section" id="section-prizes">#}
+    {#    <div class="ui section header">#}
+    {#        <a class="ui big ai button" href="#section-prizes">#}
+    {#            {% trans 'Prizes' %}#}
+    {#        </a>#}
+    {#    </div>#}
+    {#    <div class="ui stackable grid container" style="padding: 30px;">#}
+    {#        <div class="three column row">#}
+    {#            <div id="second-cup" class="five wide column" style="text-align: center;">#}
+    {##}
+    {#                <div class="image">#}
+    {#                    <img src="{% static 'intro/image/Cup2.png' %}" style="max-width:50%">#}
+    {#                </div>#}
+    {#                <div class="ui horizontal divider header">#}
+    {#                    {% trans 'Second Place' %}#}
+    {#                </div>#}
+    {#                <div class="ui large header">#}
+    {#                    {% trans '5 Million Tomans' %}#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div id="champion-cup" class="six wide column" style="text-align: center;">#}
+    {#                <div class="image">#}
+    {#                    <img src="{% static 'intro/image/Cup1.png' %}" style="max-width:50%">#}
+    {#                </div>#}
+    {#                <div class="ui horizontal divider header">#}
+    {#                    {% trans 'Champion' %}#}
+    {#                </div>#}
+    {#                <div id="seven-million" class="ui large header">#}
+    {#                    {% trans '7 Million Tomans' %}#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div id="third-cup" class="five wide column" style="text-align: center;">#}
+    {#                <div class="image">#}
+    {#                    <img src="{% static 'intro/image/Cup3.png' %}" style="max-width:50%;">#}
+    {#                </div>#}
+    {#                <div class="ui horizontal divider header">#}
+    {#                    {% trans 'Third Place' %}#}
+    {#                </div>#}
+    {#                <div class="ui large header">#}
+    {#                    {% trans '3 Million Tomans' %}#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {#</div>#}
 
-<div class="even section" id="section-prizes">
-    <div class="ui section header">
-        <a class="circular ui big ai red button" href="#section-prizes">
-            {% trans 'Prizes' %}
-        </a>
-    </div>
-    <div class="ui stackable three column grid container" style="display: flex">
+    <div class="even section" id="section-prizes">
+        <div class="ui section header">
+            <a class="circular ui big ai red button" href="#section-prizes">
+                {% trans 'Prizes' %}
+            </a>
+        </div>
+        <div class="ui stackable three column grid container" style="display: flex">
             <div id="second-cup" class="five wide column bottom aligned second-prize" style="text-align: center;">
 
                 <div class="image">
@@ -225,231 +230,265 @@
                     {% trans '3 Million Tomans' %}
                 </div>
             </div>
+        </div>
     </div>
-</div>
 
-    <div class="odd section" id="section-faq"
-    >
+    <div class="even section" id="section-history"
+         style="height: 100vh !important; background: url('{% static 'intro/image/banner-background.png' %}'); background-repeat: no-repeat; background-position: 90%;">
         <div class="ui section header">
-            <a class="circular ui big ai blue button" href="#section-faq">
-                {% trans 'FAQ' %}
+            <a class="ui big ai button" href="#section-history">
+                {% trans 'History' %}
             </a>
         </div>
-        <div class="ui inverted segment" style="padding: 0px 70px; border: none; background: transparent;">
-            <div class="title" style="text-align:center">
-                <b class="ui active header" style="color:#F8981D">
-                    نبرد هوش مصنوعی شریف (AI Challenge) چیست؟
-                </b>
-            </div>
-            <div class="ui hidden divider"></div>
+        <div class="ui fluid segment" style="padding: 0px 70px; border: none; background: transparent;">
+            <div class="ui fluid styled accordion">
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    {% trans 'First 3 Years' %}
+                </div>
+                <div class="ui stackable grid content">
+                    <div class="ui two column row">
+                        <div class="ten wide column">
+                            <div class="ui header">
+                                {% trans 'In the University' %}
+                            </div>
+                            {% blocktrans %}
+                                <p><span class="red">8 years ago, </span>
+                                    the need for an exciting and challenging inter-university competition in the CE
+                                    department
+                                    was a starting point for the "Sharif AI Challenge". This later became possible
+                                    thanks to the
+                                    efforts of the Student's Scientific Chapter(SSC) of this department. The students
+                                    took
+                                    advantage
+                                    of this opportunity in order to evaluate their skills in programming and improve
+                                    upon them.
+                                    Participation was so impressive that the "Sharif AI Challenge" soon became an annual
+                                    event.
+                                </p>
+                            {% endblocktrans %}
+                        </div>
+                        <div class="mobile-hidden six wide column">
+                            <img src="{% static 'intro/image/history1.jpg' %}">
+                        </div>
+                    </div>
+                </div>
 
-            <div class="ui stackable grid content">
-                <div class="ui two column row">
-                    <div class="sixteen wide column">
-                        <p style="text-align: center">نبرد هوش مصنوعی شریف مسابقه‌ای تیمی است که در آن تیم‌ها
-                            استراتژی‌های خود را برای پیروزی
-                            در یک نبرد استراتژیک طراحی و در قالب کد پیاده‌سازی می‌کنند.
-                            هر تیم با استفاده از ایده‌های خلاقانه و استراتژی‌های متفاوت سعی می‌کند یک هوش مصنوعی
-                            قدرتمند طراحی کند که تا جای ممکن بر تیم‌های حریف چیره شود و به مرحلهٔ حضوری مسابقات راه
-                            پیدا کند.
-                        </p>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    {% trans '4th to 6th Challenge' %}
+                </div>
+                <div class="ui stackable grid content">
+                    <div class="ui two column row">
+                        <div class="ten wide column">
+
+                            <div class="ui header">
+                                {% trans 'With Teams From Others Universities of Tehran' %}
+                            </div>
+                            {% blocktrans %}
+                                <p>
+                                    The <span class="red">4<sup>th</sup> year </span> of the competition was introduced
+                                    as the "Java Challenge".
+                                    Due to its high level and credibility, the event went further than collegiate
+                                    level and witnessed the participation of other teams from Tehran. The <span
+                                        class="red">5<sup>th</sup> tournament</span> was
+                                    organized and held in a similar way. During all this time, the level and quality of
+                                    the "AI Challenge" was immensely improved. With the efforts of the Student's
+                                    Scientific
+                                    Chapter of the CE department and widespread advertisement, the <span
+                                        class="red">6<sup>th</sup> year </span>
+                                    was finally organized and held nationally. The participation of teams from Tehran
+                                    and other
+                                    provinces brought upon a new spirit of nationality to the competition.
+
+                                </p>
+                            {% endblocktrans %}
+                        </div>
+                        <div class="mobile-hidden six wide column">
+                            <img src="{% static 'intro/image/history2.jpg' %}">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="ui inverted divider"></div>
-            <div class="title" style="text-align: center">
-                <b class="ui active header" style="color:#F8981D">
-                    در AI Challenge از چه زبان‌های برنامه‌نویسی‌ پشتیبانی می‌شود؟
-                </b>
-            </div>
-            <div class="ui hidden divider"></div>
-            <div class="ui stackable grid content" style="text-align: center">
-                <div class="ui two column row">
-                    <div class="sixteen wide column">
-                        شما می‌توانید به زبان‌های python ،java و ++C برنامه‌های خود را بنویسید.
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    {% trans '7th year' %}
+                </div>
+                <div class="ui stackable grid content">
+                    <div class="ui two column row">
+                        <div class="ten wide column">
+
+                            <div class="ui header">
+                                {% trans 'Supporting C++ and Python' %}
+                            </div>
+                            {% blocktrans %}
+                                <p>"Sharif AI Challenge" national competition continuously advanced and in its <span
+                                        class="red">7<sup>th</sup> year </span>,
+                                    thanks to the efforts of the technical team, C++ and Python were added to the
+                                    competition's
+                                    supported languages as well. This round of the "Sharif AI Challenge" was met with
+                                    good reception and approximately 158 teams from 28 universities participated in
+                                    the selection phase.
+                                    <br>
+                                    The Documentation of this competition (Java Challenge 2015) is available
+                                    <a href="http://bayanbox.ir/view/992459135507989458/JavaChallenge2015-en.pdf"
+                                       style="color: blue">here</a>.
+                                </p>
+                            {% endblocktrans %}
+                        </div>
+                        <div class="mobile-hidden six wide column">
+                            <img src="{% static 'intro/image/history3.jpg' %}">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="ui inverted divider"></div>
-            <div class="title" style="text-align: center">
-                <b class="ui active header" style="color:#F8981D">
-                    پس نبرد هوش مصنوعی نوعی مسابقه کدها از طریق هوش مصنوعی است، اما بازی در نظر گرفته شده
-                    چیست؟
-                </b>
-            </div>
-            <div class="ui hidden divider"></div>
-            <div class="ui stackable grid content" style="text-align: center">
-                <div class="ui two column row">
-                    <div class="sixteen wide column">
-                        پاسخ دقیق به این سوال تا روز شروع مسابقهٔ غیرحضوری ممکن نیست اما می‌توان گفت که نوعی بازی
-                        استراتژیک قهرمان‌محور برای مسابقه امسال در نظر گرفته شده است.
-                    </div>
+
+                <div class="title active">
+                    <i class="dropdown icon"></i>
+                    {% trans 'Last 2 Years' %}
                 </div>
-            </div>
-            <div class="ui inverted divider"></div>
-            <div class="title" style="text-align: center">
-                <b class="ui active header" style="color:#F8981D">
-                    آیا برای شرکت در AI Challenge نیاز به دانستن برنامه‌نویسی حرفه‌ای است؟ </b>
-            </div>
-            <div class="ui hidden divider"></div>
-            <div class="ui stackable grid content" style="text-align: center">
-                <div class="ui two column row">
-                    <div class="sixteen wide column">
-                        داشتن تجربهٔ برنامه‌نویسی حرفه‌ای قطعا به شما کمک خواهد کرد اما ساختار مسابقه طوری طراحی شده
-                        که با دانستن مفاهیم ابتدایی برنامه‌نویسی همه می‌توانند در آن شرکت کنند، همچنین محتواهای
-                        آموزشی بسیاری برای یادگیری بیشتر در تمام سطوح در این دوره آماده شده است.
-                    </div>
-                </div>
-            </div>
-            <div class="ui inverted divider"></div>
-            <div class="title" style="text-align: center">
-                <b class="ui active header" style="color:#F8981D">
-                    آیا نداشتن سابقه در هوش مصنوعی مشکلی ایجاد نمی‌کند؟
-                </b>
-            </div>
-            <div class="ui hidden divider"></div>
-            <div class="ui stackable grid content" style="text-align: center">
-                <div class="ui two column row">
-                    <div class="sixteen wide column">
-                        اصلا، بسیاری از شرکت‌کنندگان سابقه‌ای در کار با الگوریتم‌های هوش مصنوعی ندارند به همین دلیل
-                        بازی طوری طراحی شده که راه حل یکتایی برای پیروزی در آن وجود ندارد و با الگوریتم‌های ابتدایی
-                        هم می‌توان در مسابقه به موفقیت رسید؛ همچنین در طول مسابقه محتواهای آموزشی در زمینه ‌آشنایی
-                        با هوش مصنوعی در اختیار شرکت‌کنندگان قرار می‌گیرد.
-                    </div>
-                </div>
-            </div>
-            <div class="ui inverted divider"></div>
-            <div class="title" style="text-align: center">
-                <b class="ui active header" style="color:#F8981D">
-                    فرمت نبرد هوش مصنوعی شریف چگونه است؟
-                </b>
-            </div>
-            <div class="ui hidden divider"></div>
-            <div class="ui stackable grid content" style="text-align: center">
-                <div class="ui two column row">
-                    <div class="sixteen wide column">
-                        اصلا، بسیاری از شرکت‌کنندگان سابقه‌ای در کار با الگوریتم‌های هوش مصنوعی ندارند به همین دلیل
-                        بازی طوری طراحی شده که راه حل یکتایی برای پیروزی در آن وجود ندارد و با الگوریتم‌های ابتدایی
-                        هم می‌توان در مسابقه به موفقیت رسید؛ همچنین در طول مسابقه محتواهای آموزشی در زمینه ‌آشنایی
-                        با هوش مصنوعی در اختیار شرکت‌کنندگان قرار می‌گیرد.
-                    </div>
-                </div>
-            </div>
-            <div class="ui hidden divider"></div>
-            <div class="ui inverted divider"></div>
-            <div class="title" style="text-align: center">
-                <b class="ui active header" style="color:#F8981D">
-                    آیا برای شرکت در مسابقه باید به در دانشگاه شریف حضور داشته باشم؟ </b>
-            </div>
-            <div class="ui stackable grid content" style="text-align: center">
-                <div class="ui two column row">
-                    <div class="sixteen wide column">
-                        ثبت‌نام و شرکت در مسابقه در مرحله اول به صورت غیرحضوری انجام می‌شود و نیازی به حضور فیزیکی
-                        در دانشگاه شریف نیست؛ برای مرحلهٔ حضوری هم تمهیدات لازم برای رفاه دانشجویان غیر تهرانی در
-                        نظر گرفته شده است.
-                    </div>
-                </div>
-            </div>
-            <div class="ui inverted divider"></div>
-            <div class="title" style="text-align: center">
-                <b class="ui active header" style="color:#F8981D">
-                    چطور باید در AI Challenge ثبت‌نام کنم؟ </b>
-            </div>
-            <div class="ui hidden divider"></div>
-            <div class="ui stackable grid content" style="text-align: center">
-                <div class="ui two column row">
-                    <div class="sixteen wide column">
-                        شما می‌توانید از ۱۵ ام بهمن ماه به صورت اینترنتی در مسابقه به صورت رایگان ثبت‌نام کنید.
+                <div class="ui stackable grid active content">
+                    <div class="ui two column row">
+                        <div class="ten wide column">
+
+                            <div class="ui active header">
+                                {% trans 'Sharif AI Challenge, a New Title' %}
+                            </div>
+                            {% blocktrans %}
+                                <p>Since the added benefit of supporting other languages in the competition
+                                    was a success, the <span class="red">8<sup>th</sup> tournament</span> was held under
+                                    the
+                                    name
+                                    "Sharif AI Challenge".
+                                </p>
+                            {% endblocktrans %}
+                        </div>
+                        <div class="mobile-hidden six wide column">
+                            <img src="{% static 'intro/image/history4.jpg' %}">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="even section" id="section-schedule">
-        <div class="ui section header">
-            <a class="circular ui big ai red button" href="#section-schedule">
+    <div class="odd section" id="section-schedule">
+        <div class="ui section header" id="schedule-title">
+            <a class="circular ui big dark ai button" href="#section-schedule">
                 {% trans 'Schedule' %}
             </a>
         </div>
-        <div class="ui container">
-            <table class="ui inverted grey table"
-                   style="background-color: #813800; font-size: 1.3em; text-align: center">
-                <tbody>
-                <tr>
-                    <td>
-                        {% trans 'Jan30 - Feb17' %}
-                    </td>
-                    <td>
-                        {% trans 'Registration' %}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {% trans 'Feb3 - Feb21' %}
-                    </td>
-                    <td>
-                        {% trans 'Online Phase' %}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {% trans 'March7 - March8' %}
-                    </td>
-                    <td>
-                        {% trans 'Sharif On-Site Phase' %}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            {#            <div class="ui center aligned container">#}
-            {#                <a href="{% url 'intro:faq' %}" class="ui centered violet button">#}
-            {#                    {% trans 'FAQ' %}#}
-            {#                </a>#}
-            {#            </div>#}
+        <section>
+            <div class="ui container">
+                {% comment %} <center>
+                    <a class="ui circular big ai button " id="schedule-header" href="#section-schedule">
+                        {% trans 'Schedule' %}
+                    </a>
+                </center>{% endcomment %}
+                <div class="timeline">
+                    <span class="line"></span>
+                    <article class="entry red">
+                        <div class="timelinecontent header">
+                            ثبت نام<br/>‏۱۷ بهمن
+                        </div>
+                        <img src="{% static "intro/image/id-card.svg" %}" class="right-card-pic">
+                    </article>
+                    <article class="entry yellow" dir="auto">
+                        <div class="timelinecontent header">
+                            مرحله غیرحضوری
+                            <br/>
+                            ۱۷ تا ۲۸ بهمن
+                        </div>
+                        <img src="{% static "intro/image/laptop.svg" %}" class="left-card-pic">
+                    </article>
+                    <article class="entry green">
+                        <div class="timelinecontent" style="">
+                            مرحله غیرحضوری
+                            <br/>
+                            ۱۷ تا ۲۸ بهمن
+                        </div>
+                        <img src="{% static "intro/image/team.svg" %}" class="right-card-pic">
+                    </article>
+                </div>
+            </div>
+        </section>
+        {% comment %}
+    <div class="ui container">
+        <table class="ui inverted grey table"
+               style="background-color: #813800; font-size: 1.3em; text-align: center">
+            <tbody>
+            <tr>
+                <td>
+                    {% trans 'Jan30 - Feb17' %}
+                </td>
+                <td>
+                    {% trans 'Registration' %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% trans 'Feb3 - Feb21' %}
+                </td>
+                <td>
+                    {% trans 'Online Phase' %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% trans 'March7 - March8' %}
+                </td>
+                <td>
+                    {% trans 'Sharif On-Site Phase' %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="ui center aligned container">
+            <a href="{% url 'intro:faq' %}" class="ui centered violet button">
+                {% trans 'FAQ' %}
+            </a>
         </div>
     </div>
+{% endcomment %}
     </div>
 
-<div class="even section tablet computer only" id="section-organizer">
+    <div class="even section tablet computer only" id="section-organizer">
 
-    <div class="ui section header">
-        <a class="ui big ai button" href="#section-organizer">
-            {% trans 'Contact Us' %}
-        </a>
-    </div>
-    <div class="ui center aligned stackable grid">
-        <div class="eight wide column">
-            <h1 class="ui header">{% trans 'Organizer' %}</h1>
-            <a href="http://ssc.ce.sharif.edu/"><img class="ui centered medium image"
-                                                     src="{% static 'intro/image/SSC.png' %}" alt="SSC Image"></a>
-            <div class="ui horizontal divider"></div>
-            <h1 class="ui header">{% trans 'Sponsors' %}</h1>
-            <a href="https://cafebazaar.ir/"><img class="ui centered medium image"
-                                                  src="{% static 'intro/image/sponsors.png' %}"></a>
+        <div class="ui section header">
+            <a class="ui big ai button" href="#section-organizer">
+                {% trans 'Contact Us' %}
+            </a>
         </div>
-        <div class="eight wide column">
-            <h1 class="ui header">{% trans 'Location' %}</h1>
-            <iframe id="google_maps_iframe" src=""
-                    frameborder="0" style="border: 0"></iframe>
-            <p>
-                {% trans 'Address: ' %}
-                {% blocktrans %}
-                Dept. of Computer Eng., Sharif University of Technology<br>
-                Azadi St, Tehran
-                {% endblocktrans %}<br>
-            </p>
-            <div class="ui horizontal divider"></div>
-            <h1 class="ui header">{% trans 'Contact Info' %}</h1>
-            <b>{% trans 'Email: ' %}<a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
-            <br><b>{% trans 'Phone: ' %}<span dir="ltr">021-6616-5781</span></b></p>
+        <div class="ui center aligned stackable grid">
+            <div class="eight wide column">
+                <h1 class="ui header">{% trans 'Organizer' %}</h1>
+                <a href="http://ssc.ce.sharif.edu/"><img class="ui centered medium image"
+                                                         src="{% static 'intro/image/SSC.png' %}" alt="SSC Image"></a>
+                <div class="ui horizontal divider"></div>
+                <h1 class="ui header">{% trans 'Sponsors' %}</h1>
+                <a href="https://cafebazaar.ir/"><img class="ui centered medium image"
+                                                      src="{% static 'intro/image/sponsors.png' %}"></a>
+            </div>
+            <div class="eight wide column">
+                <h1 class="ui header">{% trans 'Location' %}</h1>
+                <iframe id="google_maps_iframe" src=""
+                        frameborder="0" style="border: 0"></iframe>
+                <p>
+                    {% trans 'Address: ' %}
+                    {% blocktrans %}
+                        Dept. of Computer Eng., Sharif University of Technology<br>
+                        Azadi St, Tehran
+                    {% endblocktrans %}<br>
+                </p>
+                <div class="ui horizontal divider"></div>
+                <h1 class="ui header">{% trans 'Contact Info' %}</h1>
+                <b>{% trans 'Email: ' %}<a href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
+                <br><b>{% trans 'Phone: ' %}<span dir="ltr">021-6616-5781</span></b></p>
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
 
 {% block footer_scripts %}
-{{ block.super }}
-<script src="{% static 'intro/js/scripts.js' %}"></script>
+    {{ block.super }}
+    <script src="{% static 'intro/js/scripts.js' %}"></script>
 {% endblock %}

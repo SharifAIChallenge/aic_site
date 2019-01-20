@@ -305,8 +305,24 @@
     padding: 1rem 3rem;
     position: relative;
     width: 50%;
+    display: inline-block;
 }
-
+.right-card-pic
+{
+    width:10rem;
+    position: relative;
+    top:-10rem;
+    right:20rem;
+    margin-bottom: -10rem;
+}
+.left-card-pic
+{
+    width:10rem;
+    position: relative;
+    top:-10rem;
+    left:20rem;
+    margin-bottom: -10rem;
+}
 .entry::after, .single-entry::after {
     content: '';
     position: absolute;
@@ -453,3 +469,4 @@
     background-color: var(--cream) !important;
     color: #40444d;
 }
+
