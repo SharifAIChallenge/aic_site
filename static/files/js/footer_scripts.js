@@ -15,6 +15,8 @@ $(document)
         $('time').attr("dir", "ltr");
 
         var img = $('#pattern');
+
+
         images = ['pattern1.png','pattern2.png','pattern3.png','pattern4.png','pattern5.png'];
         var i = 0;
         setInterval(function(){

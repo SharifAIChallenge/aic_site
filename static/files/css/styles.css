@@ -272,6 +272,6 @@ body {
     background-size: 25%;
     z-index: -1;
     position: absolute;
-    opacity: 0.2;
+    opacity: 0.5;
     background-attachment: fixed;
 }
