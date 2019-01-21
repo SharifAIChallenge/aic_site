@@ -202,43 +202,6 @@
     color: #FFF;
 }
 
-.aic18-stamp {
-    --scale-factor: 3px;
-    --scale-factor_npx: 3;
-    --scale-factor_prc: 3%;
-    position: fixed;
-    margin-top: -40% !important;
-    margin-left: -15% !important;
-
-    width: 300px;
-
-    line-height: calc(13 * var(--scale-factor));
-    height: calc(17 * var(--scale-factor));
-
-    border-radius: calc(2 * var(--scale-factor));
-    border: calc(1.5 * var(--scale-factor)) solid;
-
-    text-transform: uppercase;
-    font-size: calc(10 * var(--scale-factor));
-    letter-spacing: calc(-0.3 * var(--scale-factor));
-
-    -ms-transform: rotate(-35deg);
-    -webkit-transform: rotate(-35deg);
-    transform: rotate(-35deg);
-    opacity: 1;
-
-    background: -webkit-linear-gradient(45deg, #59648c, #a4d4d3, #eab05f, #efc35f, #991e38, #f19681);
-    background: linear-gradient(45deg, #59648c, #a4d4d3, #eab05f, #efc35f, #991e38, #f19681);
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: white;
-
-    -webkit-text-stroke: 4px white;
-    -webkit-text-stroke-color: transparent;
-
-    background-color: white;
-    border-image: url("/static/intro/image/stamp_texture.png") calc(3 * var(--scale-factor_npx));
-}
 
 /*.aic18-stamp-back {*/
 /*--scale-factor: 3px;*/
@@ -384,7 +347,7 @@
     position: absolute;
     width: 2rem;
     height: 2rem;
-    right: 1rem;
+    right: -1rem;
     background-color: white;
     border: 4px solid black;
     top: 1.75rem;

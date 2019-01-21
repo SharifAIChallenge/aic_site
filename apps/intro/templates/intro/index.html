@@ -27,12 +27,6 @@
              src="{% static 'intro/image/banner-text-2019.png' %}" width="30%" ; height="30%" style="margin-top: 5%;">
         <img class=" text banner-image{% if LANGUAGE_BIDI %} bidi{% endif %}"
              src="{% static 'intro/image/troop.png' %}" width="100%" style="margin-bottom:-30px">
-        <!--<div class="ui section">-->
-        <!--<div class="ui center aligned grid"></div>-->
-        <!--<div class="ui center aligned grid aic18-stamp">-->
-        <!--ثبت نام به پایان رسید!-->
-        <!--</div>-->
-        <!--</div>-->
     </div>
 
     <div class="odd section" style="padding-top: 20px" align="center">
@@ -77,7 +71,6 @@
             <div class="sixteen column row">
                 <div class="five wide column right-rival" style="margin-top: -100px">
                 </div>
-{#                <div class="one wide column"></div>#}
                 <div class="six wide column" style="text-align: center; padding-bottom: 30px;">
                     <div class="intro-text-mobile">
                     <img src="/static/intro/image/ui_0000_Group-4-copy-2.png" style="width: 200px; height: 150px; margin-bottom: 50px; margin-top: -20px;">
@@ -100,12 +93,8 @@
 
 
                 </div>
-{#                <div class="one wide column"></div>#}
                 <div class="five wide column left-rival" style="margin-top: -100px">
                     </div>
-{#                <div class="eight wide column">#}
-{#                    <div id="15171308283766309"></div>#}
-{#                </div>#}
 
             </div>
 
@@ -168,6 +157,7 @@
                 <br>
                 <p>{% trans "Increase your programming skills in this competition" %}</p>
             </div>
+            <div class="two wide column"></div>
         </div>
         <div class="ui stackable grid container ai-feature">
             <div class="two wide column"></div>
@@ -195,6 +185,7 @@
                 <br>
                 <p>{% trans "Get a credible certificate by participating in this competition" %}</p>
             </div>
+            <div class="two wide column"></div>
         </div>
     </div>
 
@@ -290,8 +281,7 @@
         </section>
     </div>
 
-    <div class="even section" id="section-faq"
-    >
+    <div class="even section" id="section-faq">
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-faq">
                 {% trans 'FAQ' %}
