@@ -1,3 +1,5 @@
+
+
 function setAnimation(selector, animation, delay=0) {
     $(selector).on('inview', function(event, isInView) {
       if (isInView) {
@@ -95,10 +97,49 @@ function initializeClock(id, endtime) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-// start date of SAIC18 wednesday 22 Esfand 97 (13 Mars 2019)
-
-var deadline = new Date(Date.parse(new Date(2019, 2, 13, 8, 0, 0, 0)));
+// start date of SAIC18
+var deadline = new Date(Date.parse(new Date(2019, 1, 5, 8, 0, 0, 0)));
 initializeClock('clockdiv', deadline);
+
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+$('#button').click(function (e) {
+    e.preventDefault();
+            if(validateEmail($('#email').val())){
+                $.ajax({
+                    type:'POST',
+                    url:'/notify',
+                    data:{
+                        email:$('#email').val(),
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success:function () {
+
+                    }
+
+                });
+                document.getElementById('message').innerText = 'success';
+            }else{
+                document.getElementById('message').innerText = 'fail';
+                document.getElementById('content').style.backgroundColor = '#ED1A3A';
+            }
+            document.getElementById('modal').style.display = "block";
+            document.getElementById('email').value = '';
+
+});
+
+document.getElementsByClassName("close")[0].onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+            modal.style.display = "none";
+    }
+}
 
 
 

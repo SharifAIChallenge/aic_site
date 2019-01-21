@@ -33,3 +33,7 @@ LOGGING['handlers'] = {
 }
 
 INFRA_AUTH_TOKEN = 'test_token'
+
+
+# set the default Django settings module for the 'celery' program.
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'aic_site.settings.development')

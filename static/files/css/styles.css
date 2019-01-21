@@ -28,6 +28,20 @@ This set of fonts are used in this project under the license: RC4QT
     src: url('../fonts/eot/IRANSansWeb_Bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../fonts/woff2/IRANSansWeb_Bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../fonts/woff/IRANSansWeb_Bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/ttf/IRANSansWeb_Bold.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: URWGeometric;
+    font-style: normal;
+    src: url('../fonts/eot/URWGeometricArabic-Medium.eot');
+    src: url('../fonts/eot/URWGeometricArabic-Medium.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../fonts/woff2/URWGeometricArabic-Medium.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../fonts/woff/URWGeometricArabic-Medium.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/ttf/URWGeometricArabic-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: URWGeometric-Bold;
+    font-style: normal;
+    src: url('../fonts/eot/URWGeometricArabic-Bold.eot');
+    src: url('../fonts/eot/URWGeometricArabic-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-8 */ url('../fonts/woff2/URWGeometricArabic-Bold.woff2') format('woff2'), /* FF39+,Chrome36+, Opera24+*/ url('../fonts/woff/URWGeometricArabic-Bold.woff') format('woff'), /* FF3.6+, IE9, Chrome6+, Saf5.1+*/ url('../fonts/ttf/URWGeometricArabic-Bold.ttf') format('truetype');
+}
+
 /*@font-face {*/
 /*font-family: IRANSans;*/
 /*font-style: normal;*/
@@ -84,6 +98,13 @@ This set of fonts are used in this project under the license: RC4QT
     }
 }
 
+body {
+    color: #FFF3D9;
+}
+
+.ui.header {
+    color: #FFF3D9;
+}
 #navbar {
     z-index: 99;
 
@@ -105,7 +126,7 @@ This set of fonts are used in this project under the license: RC4QT
 }
 
 .reverse-navbar-color {
-    background-color: #40444d !important;
+    background-color: rgb(0,0,0) !important;
 }
 
 /*.reverse-navbar-color * {*/
@@ -117,7 +138,7 @@ This set of fonts are used in this project under the license: RC4QT
 }
 
 .navbar-color * {
-    color: #40444d !important;
+    color: rgb(255,255,255) !important;
 }
 
 .ai.background {
@@ -128,19 +149,39 @@ This set of fonts are used in this project under the license: RC4QT
 
 .ai.button {
     background-color: #40444d !important;
-    color: #ffffff;
-    border-radius: 3px;
+    color: #FFF0DC;
+    font-weight: bold;
     z-index: 6;
 }
 
 .ai.button:hover {
-    color: #c2c2c2 !important;
+    color: #ffffff !important;
+}
+
+.ai.red.button {
+    background-color: #ED1A3A !important;
+    z-index: 6;
+    font-weight: bold;
+    color: #FFF3D9;
+}
+
+.ai.blue.button {
+    background-color: #009d8a !important;
+    z-index: 6;
+    font-weight: bold;
+    color: #FFF3D9;
+}
+.ai.yellow.button {
+    background-color: #F8981D !important;
+    z-index: 6;
+    font-weight: bold;
+    color: #FFF3D9;
 }
 
 #footer {
     width: 100vw;
-    min-height: 30vh !important;
-    background: url('/static/images/ai-background.png');
+    min-height: 130px !important;
+    background-color: rgba(0,0,0,0);
     background-size: 100% 100% !important;;
     background-repeat: no-repeat;
 }
@@ -203,7 +244,7 @@ This set of fonts are used in this project under the license: RC4QT
     background-color: #518799;
     color: white;
 }
-  
+
 #navbar .large-icon {
     font-size: 1.5em;
 }
@@ -215,4 +256,32 @@ This set of fonts are used in this project under the license: RC4QT
 
 .ui.modal {
     top: 35%;
+}
+
+body {
+    height: auto!important;
+}
+
+.body-image{
+    background-image: url(/static/images/backg.png);
+    background-repeat: repeat;
+    width: 100vw;
+    height: 200%;
+    background-size: 100%;
+    background-attachment: fixed;
+    position: fixed;
+    background-position: center;
+    z-index: -1000;
+}
+
+.body-pattern {
+    background-image: url(/static/images/pattern1.png);
+    width: 100vw;
+    height: 200%;
+    background-repeat: repeat;
+    background-size: 700px;
+    z-index: -1;
+    position: fixed;
+    opacity: 0.5;
+    background-attachment: fixed;
 }
