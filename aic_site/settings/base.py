@@ -5,7 +5,6 @@ Django settings for AIC18_Site project.
 import os
 import sys
 
-import djcelery
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
@@ -38,7 +37,6 @@ INSTALLED_APPS = [
     'tinymce',
     'captcha',
     'import_export',
-    'django_celery_results',
 
     'apps.intro',
     'apps.accounts',
