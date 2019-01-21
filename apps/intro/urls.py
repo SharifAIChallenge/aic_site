@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n', namespace='i18n')),
     url(r'^test404/', views.not_found),
     url(r'^staff$', views.staffs),
+    url(r'^notify$', views.notify),
 ]

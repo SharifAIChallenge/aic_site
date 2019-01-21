@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
 
+
 from apps.accounts.models import Team
 from apps.game.models import TeamSubmission
 
@@ -29,6 +30,11 @@ def not_found(request):
     logger.debug("hello")
     logger.warning("hello")
     return render(request, '404.html')
+
+def notify(request):
+    if request.POST:
+        print(request.POST['email'])
+    return render(request, 'intro/staffs.html')
 
 
 def staffs(request):
