@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-21 18:00+0330\n"
+"POT-Creation-Date: 2019-01-21 18:33+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -322,6 +322,8 @@ msgstr ""
 "این دوره آماده شده است.\n"
 "                            "
 
+#: apps/intro/templates/intro/index.html:389
+#: apps/intro/templates/intro/index.html:561
 msgid ""
 "\n"
 "                            Is AI Challenge only for Computer Science and "
@@ -329,11 +331,10 @@ msgid ""
 "                        "
 msgstr ""
 "\n"
-"آیا مسابقه فقط مخصوص دانشجویان کامپیوتر است؟"
-""
-"                        "
+"آیا مسابقه فقط مخصوص دانشجویان کامپیوتر است؟                        "
 
 #: apps/intro/templates/intro/index.html:397
+#: apps/intro/templates/intro/index.html:569
 msgid ""
 "\n"
 "                                Of course not. Everybody including graduated "
@@ -346,11 +347,13 @@ msgid ""
 "                            "
 msgstr ""
 "\n"
-"خیر، همه افراد اعم از دانشجویان، فارغ‌التحصیلان و دانش‌آموزان می‌توانند در این مسابقه شرکت کنند، شرکت در این مسابقه به علت یادگیری برنامه‌نویسی حرفه‌ای به تمامی دانشجویان رشته‌های مهندسی و علوم کامپیوتر، برق، صنایع و ریاضی و کسانی که تمایل به یادگیری بیشتر دارند پیشنهاد می‌شود."
-"                            "
+"خیر، همه افراد اعم از دانشجویان، فارغ‌التحصیلان و دانش‌آموزان می‌توانند در این "
+"مسابقه شرکت کنند، شرکت در این مسابقه به علت یادگیری برنامه‌نویسی حرفه‌ای به "
+"تمامی دانشجویان رشته‌های مهندسی و علوم کامپیوتر، برق، صنایع و ریاضی و کسانی "
+"که تمایل به یادگیری بیشتر دارند پیشنهاد می‌شود.                            "
 
 #: apps/intro/templates/intro/index.html:408
-#: apps/intro/templates/intro/index.html:560
+#: apps/intro/templates/intro/index.html:581
 msgid ""
 "\n"
 "                            Is any prior knowledge of AI necessary?\n"
@@ -361,7 +364,7 @@ msgstr ""
 "                        "
 
 #: apps/intro/templates/intro/index.html:416
-#: apps/intro/templates/intro/index.html:568
+#: apps/intro/templates/intro/index.html:589
 msgid ""
 "\n"
 "                                Not at all. Since many contestants have no "
@@ -380,7 +383,7 @@ msgstr ""
 "                            "
 
 #: apps/intro/templates/intro/index.html:426
-#: apps/intro/templates/intro/index.html:578
+#: apps/intro/templates/intro/index.html:599
 msgid ""
 "\n"
 "                            How many rounds is the competition composed of?\n"
@@ -391,7 +394,7 @@ msgstr ""
 "                        "
 
 #: apps/intro/templates/intro/index.html:434
-#: apps/intro/templates/intro/index.html:586
+#: apps/intro/templates/intro/index.html:607
 msgid ""
 "\n"
 "                                The teams will be competing online from "
@@ -412,7 +415,7 @@ msgstr ""
 "                            "
 
 #: apps/intro/templates/intro/index.html:444
-#: apps/intro/templates/intro/index.html:596
+#: apps/intro/templates/intro/index.html:617
 msgid ""
 "\n"
 "                            Is attendance at Sharif University of Technology "
@@ -424,7 +427,7 @@ msgstr ""
 "                        "
 
 #: apps/intro/templates/intro/index.html:452
-#: apps/intro/templates/intro/index.html:604
+#: apps/intro/templates/intro/index.html:625
 msgid ""
 "\n"
 "                                The registration and the online round of the "
@@ -440,7 +443,7 @@ msgstr ""
 "                            "
 
 #: apps/intro/templates/intro/index.html:462
-#: apps/intro/templates/intro/index.html:614
+#: apps/intro/templates/intro/index.html:635
 msgid ""
 "\n"
 "                            How must one register to compete in AI "
@@ -452,7 +455,7 @@ msgstr ""
 "                        "
 
 #: apps/intro/templates/intro/index.html:470
-#: apps/intro/templates/intro/index.html:622
+#: apps/intro/templates/intro/index.html:643
 msgid ""
 "\n"
 "                                You may register online starting February "
@@ -464,27 +467,27 @@ msgstr ""
 "ثبت‌نام کنید.\n"
 "                            "
 
-#: apps/intro/templates/intro/index.html:637
+#: apps/intro/templates/intro/index.html:658
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: apps/intro/templates/intro/index.html:642
+#: apps/intro/templates/intro/index.html:663
 msgid "Organizer"
 msgstr "برگزارکننده"
 
-#: apps/intro/templates/intro/index.html:649
+#: apps/intro/templates/intro/index.html:670
 msgid "Sponsor"
-msgstr "حامی مالی"
+msgstr "حامی"
 
-#: apps/intro/templates/intro/index.html:656
+#: apps/intro/templates/intro/index.html:677
 msgid "Location"
 msgstr "مکان"
 
-#: apps/intro/templates/intro/index.html:660
+#: apps/intro/templates/intro/index.html:681
 msgid "Address: "
 msgstr "نشانی:"
 
-#: apps/intro/templates/intro/index.html:661
+#: apps/intro/templates/intro/index.html:682
 msgid ""
 "\n"
 "                            Dept. of Computer Eng., Sharif University of "
@@ -495,7 +498,7 @@ msgstr ""
 "\n"
 "تهران، خیابان آزادی، دانشگاه صنعتی شریف، دانشکده مهندسی کامپیوتر"
 
-#: apps/intro/templates/intro/index.html:669
+#: apps/intro/templates/intro/index.html:690
 msgid "Contact Info"
 msgstr "اطلاعات تماس"
 
