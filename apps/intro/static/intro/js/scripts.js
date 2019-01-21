@@ -106,31 +106,6 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-$('#button').click(function (e) {
-    e.preventDefault();
-            if(validateEmail($('#email').val())){
-                $.ajax({
-                    type:'POST',
-                    url:'/notify',
-                    data:{
-                        email:$('#email').val(),
-                        csrfmiddlewaretoken: '{{ csrf_token }}'
-                    },
-                    success:function () {
-
-                    }
-
-                });
-                document.getElementById('message').innerText = 'ایمیل شما با موفقیت ثبت شد.';
-            }else{
-                document.getElementById('message').innerText = 'ایمیل به درستی وارد نشده‌است.';
-                document.getElementById('content').style.backgroundColor = '#ED1A3A';
-            }
-            document.getElementById('modal').style.display = "block";
-            document.getElementById('email').value = '';
-
-});
-
 document.getElementsByClassName("close")[0].onclick = function() {
     modal.style.display = "none";
 }
