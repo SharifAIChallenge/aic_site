@@ -13,20 +13,19 @@ def menu(request):
                         _('Main Page'): reverse('intro:index'),
                         _('Introduction'): reverse('intro:index') + '#section-intro',
                         _('Prize'): reverse('intro:index') + '#section-prizes',
-                        _('History'): reverse('intro:index') + "#section-history",
+                        _('FAQ'): reverse('intro:index') + "#section-faq",
                         _('Schedule'): reverse('intro:index') + '#section-schedule',
-                        _('FAQ'): reverse('intro:faq'),
                         _('Contact Us'): reverse('intro:index') + '#section-organizer',
                     }
                 },
-                _('Access'): {
-                    'dropdown': {
-                        _('Panel'): reverse('accounts:panel'),
-                        _('Resources'): 'https://aichallenge.sharif.edu/blog/2018/02/05/Server-Client-MapMaker/',
-                        _('Blog and Q&A'): '/blog',
-                        _('Staff'): '/staff',
-                    }
-                },
+                # _('Access'): {
+                #     'dropdown': {
+                #         _('Panel'): reverse('accounts:panel'),
+                #         _('Resources'): 'https://aichallenge.sharif.edu/blog/2018/02/05/Server-Client-MapMaker/',
+                #         _('Blog and Q&A'): '/blog',
+                #         _('Staff'): '/staff',
+                #     }
+                # },
             },
             'sidebar': {
                 _('Home'): {
