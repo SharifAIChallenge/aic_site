@@ -23,7 +23,8 @@
 
     {% block extra_header %}{% endblock %}
 </head>
-<body {% if LANGUAGE_BIDI %}dir="rtl"{% endif %} class="body-image">
+<body {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<div class="body-image"></div>
 <div class="body-pattern" id="pattern"></div>
 {#{% block sidebar %}#}
 {#    {% include 'base/sidebar.html' %}#}
