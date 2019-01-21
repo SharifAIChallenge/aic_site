@@ -121,9 +121,9 @@ $('#button').click(function (e) {
                     }
 
                 });
-                document.getElementById('message').innerText = 'success';
+                document.getElementById('message').innerText = 'ایمیل شما با موفقیت ثبت شد.';
             }else{
-                document.getElementById('message').innerText = 'fail';
+                document.getElementById('message').innerText = 'ایمیل به درستی وارد نشده‌است.';
                 document.getElementById('content').style.backgroundColor = '#ED1A3A';
             }
             document.getElementById('modal').style.display = "block";
