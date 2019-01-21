@@ -97,9 +97,8 @@ function initializeClock(id, endtime) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-// start date of SAIC18 wednesday 22 Esfand 97 (13 Mars 2019)
-
-var deadline = new Date(Date.parse(new Date(2019, 2, 13, 8, 0, 0, 0)));
+// start date of SAIC18
+var deadline = new Date(Date.parse(new Date(2019, 1, 5, 8, 0, 0, 0)));
 initializeClock('clockdiv', deadline);
 
 function validateEmail(email) {

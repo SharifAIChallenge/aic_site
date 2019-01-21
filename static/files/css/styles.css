@@ -279,7 +279,7 @@ body {
     width: 100vw;
     height: 200%;
     background-repeat: repeat;
-    background-size: 25%;
+    background-size: 700px;
     z-index: -1;
     position: fixed;
     opacity: 0.5;
