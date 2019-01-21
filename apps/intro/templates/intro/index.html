@@ -119,36 +119,36 @@
         </div>
     </div>
 
-    <div class="odd section" id="section-intro">
-
-        <div class="ui center aligned stackable grid">
-            <div class="circle faded-d1" id="purple">
-
-                <a style="padding-right: 20px">
-                    {{ users_count }}
-                </a>
-                <br/>{% trans 'Users' %}
-            </div>
-            <div class="circle faded-d2" id="yellow">
-                <a style="padding-right: 15px">
-                    {{ submits_count }}
-                </a>
-                <br/>{% trans 'Submissions' %}
-            </div>
-            <div class="circle faded-d3" id="blue">
-                <a style="padding-right: 15px">
-                    {{ teams_count }}
-                </a>
-                <br/>{% trans 'Teams' %}
-            </div>
-        </div>
-
-    </div>
+{#    <div class="odd section" id="section-intro">#}
+{##}
+{#        <div class="ui center aligned stackable grid">#}
+{#            <div class="circle faded-d1" id="purple">#}
+{##}
+{#                <a style="padding-right: 20px">#}
+{#                    {{ users_count }}#}
+{#                </a>#}
+{#                <br/>{% trans 'Users' %}#}
+{#            </div>#}
+{#            <div class="circle faded-d2" id="yellow">#}
+{#                <a style="padding-right: 15px">#}
+{#                    {{ submits_count }}#}
+{#                </a>#}
+{#                <br/>{% trans 'Submissions' %}#}
+{#            </div>#}
+{#            <div class="circle faded-d3" id="blue">#}
+{#                <a style="padding-right: 15px">#}
+{#                    {{ teams_count }}#}
+{#                </a>#}
+{#                <br/>{% trans 'Teams' %}#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </div>#}
 
 
     <div class="odd section">
         <div class="ui section header">
-            <a class="circular ui big ai button">
+            <a class="circular ui big ai red button">
                 {% trans 'Why Sharif AI Challenge?' %}
             </a>
         </div>
@@ -209,7 +209,7 @@
 
     <div class="even section" id="section-prizes">
         <div class="ui section header">
-            <a class="circular ui big ai red button" href="#section-prizes">
+            <a class="circular ui big ai blue button" href="#section-prizes">
                 {% trans 'Prizes' %}
             </a>
         </div>
@@ -256,7 +256,7 @@
 
     <div class="odd section" id="section-schedule">
         <div class="ui section header" id="schedule-title">
-            <a class="circular ui big dark ai button" href="#section-schedule">
+            <a class="circular ui big ai red button" href="#section-schedule">
                 {% trans 'Schedule' %}
             </a>
         </div>
@@ -279,7 +279,7 @@
                             {% blocktrans %}
                                 Online Phase
                                 <br/>
-                                February 8 - February 17
+                                February 8 - March 1
                             {% endblocktrans %}
                         </div>
                         <img src="{% static "intro/image/laptop.svg" %}" class="left card-pic">
@@ -378,6 +378,25 @@
                         <div class=" sixteen wide column faq-text">
                             {% blocktrans %}
                                 Although such knowledge would surely help, but the structure of the challenge is such that basic knowledge of programing is enough to compete. Additionally, many educational content in different levels of expertise will be made available to contestants in the course of the competition.
+                            {% endblocktrans %}
+                        </div>
+                    </div>
+                </div>
+                <div class="ui inverted divider"></div>
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        {% blocktrans %}
+                            Is AI Challenge only for Computer Science and Engineering students?
+                        {% endblocktrans %}
+                    </b>
+                </div>
+                <div class="ui stackable aligned grid content">
+                    <div class="ui two column row">
+                        <div class=" sixteen wide column faq-text">
+                            {% blocktrans %}
+                                Of course not. Everybody including graduated students, all the other major students and even high school student can participate in this contest.
+                                Since there is a lot of learning in this competition we recommend this contest to every student in the field of Computer Science and Engineering, Electrical Engineering, Math and Industrial Engineering who seeks to learn more and practice better.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -614,7 +633,7 @@
     <div class="odd section tablet computer only" id="section-organizer">
 
         <div class="ui section header ">
-            <a class="circular ui big ai blue button" href="#section-organizer">
+            <a class="circular ui big ai red button" href="#section-organizer">
                 {% trans 'Contact Us' %}
             </a>
         </div>
