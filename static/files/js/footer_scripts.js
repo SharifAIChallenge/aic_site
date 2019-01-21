@@ -20,13 +20,17 @@ $(document)
         images = ['pattern1.png','pattern2.png','pattern3.png','pattern4.png','pattern5.png'];
         var i = 0;
         setInterval(function(){
-        img.css('background-image', 'url(/static/images/' + images[i] +')');
+        //img.css('background-image', 'url(/static/images/' + images[i] +')');
+        img.fadeTo(100, 0.1, function()
+        {
+            $(this).css('background-image', 'url(/static/images/' + images[i] +')');
+        }).fadeTo(100, 1);
         if(i == (images.length - 1)){
             i = 0;
         } else {
             i++;
         }
-    }, 5000);
+    }, 3000);
 
     })
     .scroll(function(){
