@@ -50,7 +50,11 @@
                 </div>
             </div>
         </div>
-        <div class="ui action input" style="margin-top: 25px; margin-bottom: 25px; width: 300px; height: 50px">
+        <div style="margin-top: 20px; margin-bottom: 10px">
+            <h1>{% trans "Till registration" %}</h1>
+            <p> {% trans "Stay in touch with us with email" %} </p>
+        </div>
+        <div class="ui action input" style="margin-top: 0px; margin-bottom: 25px; width: 350px; height: 50px">
             <form method="post" id="notify">{% csrf_token %}
             </form>
 
@@ -641,7 +645,7 @@
                     <div class="ui two column row">
                         <div class="sixteen wide column">
                             {% blocktrans %}
-                                You may register online starting February 4th. The registration for the online round is free.
+                                You may register online starting February 5th. The registration for the online round is free.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -678,7 +682,7 @@
                     <iframe id="google_maps_iframe" src=""
                             frameborder="0" style="border: 0"></iframe>
                     <p>
-                        {% trans 'Address: ' %}
+                        {% trans 'Address: ' %}s
                         {% blocktrans %}
                             Dept. of Computer Eng., Sharif University of Technology<br>
                             Azadi St, Tehran
