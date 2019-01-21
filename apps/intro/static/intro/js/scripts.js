@@ -1,3 +1,5 @@
+
+
 function setAnimation(selector, animation, delay=0) {
     $(selector).on('inview', function(event, isInView) {
       if (isInView) {
