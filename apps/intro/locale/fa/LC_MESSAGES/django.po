@@ -454,14 +454,6 @@ msgstr ""
 "چطور باید در AI Challenge ثبت‌نام کنم؟\n"
 "                        "
 
-#: apps/intro/templates/intro/index.html:470
-#: apps/intro/templates/intro/index.html:643
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "                                You may register online starting February "
-#| "5th. The registration for the online round is free.\n"
-#| "                            "
 msgid ""
 "\n"
 "                                You may register online starting February "
@@ -525,17 +517,6 @@ msgstr "باقی‌مانده تا ثبت‌نام"
 
 msgid "Stay in touch with us with email"
 msgstr "با ثبت ایمیلتان با ما همراه باشید!"
-
-#~ msgid ""
-#~ "\n"
-#~ "                                You may register online starting February "
-#~ "5th. The registration for the online round is free.\n"
-#~ "                            "
-#~ msgstr ""
-#~ "\n"
-#~ "شما می‌توانید از ۱۶ ام بهمن ماه به صورت اینترنتی در مسابقه به صورت رایگان "
-#~ "ثبت‌نام کنید.\n"
-#~ "                            "
 
 #~ msgid "Users"
 #~ msgstr "کاربران"
