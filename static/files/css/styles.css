@@ -261,7 +261,7 @@ body {
 .body-image{
     background-image: url(/static/images/backg.png);
     background-repeat: repeat-y;
-    background-size: 105%;
+    background-size: 100%;
 }
 
 .body-pattern {
