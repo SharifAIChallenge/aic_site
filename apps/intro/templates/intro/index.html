@@ -50,16 +50,7 @@
                 </div>
             </div>
         </div>
-
-        <div style="margin-top: 10px; margin-bottom: 1px;">
-            <h2>{% trans "Till registration" %}</h2>
-            <p>
-                {% trans "Stay in touch with us with email" %}
-            </p>
-        </div>
-
-
-        <div class="ui action input" style="margin-top: 10px; margin-bottom: 25px; width: 350px; height: 50px">
+        <div class="ui action input" style="margin-top: 25px; margin-bottom: 25px; width: 300px; height: 50px">
             <form method="post" id="notify">{% csrf_token %}
             </form>
 
@@ -477,7 +468,7 @@
                     <div class="ui two column row">
                         <div class=" sixteen wide column faq-text">
                             {% blocktrans %}
-                                You may register online starting February 5th. The registration for the online round is free.
+                                You may register online starting February 4th. The registration for the online round is free.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -709,7 +700,11 @@
 
 {% block footer_scripts %}
     {{ block.super }}
-    <script src="{% static 'intro/js/scripts.js' %}"></script>
+    {% if LANGUAGE_BIDI %}
+        <script src="{% static 'intro/js/scripts.js' %}"></script>
+    {% else %}
+        <script src="{% static 'intro/js/scriptsEN.js' %}"></script>
+    {% endif %}
     <script>
         ScrollReveal().reveal('.faded-d1', {delay: 250});
         ScrollReveal().reveal('.faded-d2', {delay: 500});

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-21 19:13+0330\n"
+"POT-Creation-Date: 2019-01-21 19:32+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,23 +34,15 @@ msgstr "ساعت"
 msgid "days"
 msgstr "روز"
 
-#: apps/intro/templates/intro/index.html:55
-msgid "Till registration"
-msgstr "باقی‌مانده تا ثبت‌نام"
-
-#: apps/intro/templates/intro/index.html:57
-msgid "Stay in touch with us with email"
-msgstr "با ثبت ایمیلتان با ما همراه باشید!"
-
-#: apps/intro/templates/intro/index.html:70
+#: apps/intro/templates/intro/index.html:61
 msgid "Notify me"
 msgstr "با خبرم کن"
 
-#: apps/intro/templates/intro/index.html:87
+#: apps/intro/templates/intro/index.html:78
 msgid "Introduction"
 msgstr "معرفی رویداد"
 
-#: apps/intro/templates/intro/index.html:100
+#: apps/intro/templates/intro/index.html:91
 msgid ""
 "\n"
 "                                Sharif AI Challenge is a programming "
@@ -85,94 +77,94 @@ msgstr ""
 "هوش مصنوعی قدرتمند طراحی کند که تا جای ممکن بر تیم‌های حریف چیره شود و به "
 "مرحلهٔ حضوری مسابقات راه پیدا کند.                              "
 
-#: apps/intro/templates/intro/index.html:161
+#: apps/intro/templates/intro/index.html:152
 msgid "Why Sharif AI Challenge?"
 msgstr "چرا نبرد هوش مصنوعی شریف؟"
 
-#: apps/intro/templates/intro/index.html:169
+#: apps/intro/templates/intro/index.html:160
 msgid "There's no I in success"
 msgstr "ما به جای من"
 
-#: apps/intro/templates/intro/index.html:171
+#: apps/intro/templates/intro/index.html:162
 msgid "Practice teamwork in a group of 3 people"
 msgstr "قراره توی یک تیم سه نفره، کار کردن گروهی رو تجربه کنی"
 
-#: apps/intro/templates/intro/index.html:176
+#: apps/intro/templates/intro/index.html:167
 msgid "Clash of Giants"
 msgstr "بازی بزرگان"
 
-#: apps/intro/templates/intro/index.html:178
+#: apps/intro/templates/intro/index.html:169
 msgid ""
 "Experience two memorable days on the on-site round, in Sharif University of "
 "Technology"
 msgstr "در مرحله‌ی حضوری در دانشگاه شریف، دو روز به‌یادماندنی رو تجربه می‌کنی"
 
-#: apps/intro/templates/intro/index.html:183
+#: apps/intro/templates/intro/index.html:174
 msgid "Code, Code to Victory"
 msgstr "کد، کد، تا پیروزی"
 
-#: apps/intro/templates/intro/index.html:185
+#: apps/intro/templates/intro/index.html:176
 msgid "Increase your programming skills in this competition"
 msgstr "توی این مسابقه، مهارت برنامه‌نویسیت رو ارتقا میدی"
 
-#: apps/intro/templates/intro/index.html:194
+#: apps/intro/templates/intro/index.html:185
 msgid "The Challenge of Strategies"
 msgstr "چالش، استراتژی"
 
-#: apps/intro/templates/intro/index.html:196
+#: apps/intro/templates/intro/index.html:187
 msgid ""
 "Face different challenges and overcome them with your wits and creativity"
 msgstr "با چالش‌های زیادی مواجه میشی و باید با خلاقیت‌ اونا رو حل کنی "
 
-#: apps/intro/templates/intro/index.html:201
+#: apps/intro/templates/intro/index.html:192
 msgid "To learn is to earn"
 msgstr "یادگیری، یادگاری"
 
-#: apps/intro/templates/intro/index.html:203
+#: apps/intro/templates/intro/index.html:194
 msgid "Learn many different things about programming and AI"
 msgstr "مطالب زیادی درباره‌ی هوش مصنوعی و برنامه‌نویسی یاد می‌گیری"
 
-#: apps/intro/templates/intro/index.html:211
+#: apps/intro/templates/intro/index.html:202
 msgid "Prestige for future"
 msgstr "اعتباری برای آینده"
 
-#: apps/intro/templates/intro/index.html:213
+#: apps/intro/templates/intro/index.html:204
 msgid "Get a credible certificate by participating in this competition"
 msgstr "گواهی معتبری از شرکت تو مسابقه می‌گیری"
 
-#: apps/intro/templates/intro/index.html:222
+#: apps/intro/templates/intro/index.html:213
 msgid "Prizes"
 msgstr "جوایز"
 
-#: apps/intro/templates/intro/index.html:233
+#: apps/intro/templates/intro/index.html:224
 msgid "Second Place"
 msgstr "تیم دوم"
 
-#: apps/intro/templates/intro/index.html:236
+#: apps/intro/templates/intro/index.html:227
 msgid "5 Million Tomans"
 msgstr "۵ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:244
+#: apps/intro/templates/intro/index.html:235
 msgid "Champion"
 msgstr "تیم قهرمان"
 
-#: apps/intro/templates/intro/index.html:247
+#: apps/intro/templates/intro/index.html:238
 msgid "7 Million Tomans"
 msgstr "۷ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:257
+#: apps/intro/templates/intro/index.html:248
 msgid "Third Place"
 msgstr "تیم سوم"
 
-#: apps/intro/templates/intro/index.html:260
+#: apps/intro/templates/intro/index.html:251
 msgid "3 Million Tomans"
 msgstr "۳ میلیون تومان"
 
-#: apps/intro/templates/intro/index.html:269
+#: apps/intro/templates/intro/index.html:260
 msgid "Schedule"
 msgstr "زمان بندی"
 
-#: apps/intro/templates/intro/index.html:278
+#: apps/intro/templates/intro/index.html:269
 msgid ""
 "\n"
 "                                Registration\n"
@@ -186,7 +178,7 @@ msgstr ""
 "‫۱۶ بهمن\n"
 "                            "
 
-#: apps/intro/templates/intro/index.html:288
+#: apps/intro/templates/intro/index.html:279
 msgid ""
 "\n"
 "                                Online Phase\n"
@@ -200,7 +192,7 @@ msgstr ""
 "۱۹ بهمن تا ۱۰ اسفند\n"
 "                            "
 
-#: apps/intro/templates/intro/index.html:298
+#: apps/intro/templates/intro/index.html:289
 msgid ""
 "\n"
 "                                On-Site Phase\n"
@@ -214,12 +206,12 @@ msgstr ""
 "۲۲ و ۲۳ اسفند\n"
 "                            "
 
-#: apps/intro/templates/intro/index.html:314
+#: apps/intro/templates/intro/index.html:305
 msgid "FAQ"
 msgstr "سوالات متداول"
 
-#: apps/intro/templates/intro/index.html:323
-#: apps/intro/templates/intro/index.html:493
+#: apps/intro/templates/intro/index.html:314
+#: apps/intro/templates/intro/index.html:484
 msgid ""
 "\n"
 "                            What is AI Challenge?\n"
@@ -229,8 +221,8 @@ msgstr ""
 "نبرد هوش مصنوعی شریف (AI Challenge) "
 "چیست؟                                                "
 
-#: apps/intro/templates/intro/index.html:332
-#: apps/intro/templates/intro/index.html:503
+#: apps/intro/templates/intro/index.html:323
+#: apps/intro/templates/intro/index.html:494
 msgid ""
 "\n"
 "                                    Sharif AI Challenge is a team "
@@ -248,8 +240,8 @@ msgstr ""
 "قدرتمند طراحی کند که تا جای ممکن بر تیم‌های حریف چیره شود و به مرحلهٔ حضوری "
 "مسابقات راه پیدا کند.                                "
 
-#: apps/intro/templates/intro/index.html:344
-#: apps/intro/templates/intro/index.html:515
+#: apps/intro/templates/intro/index.html:335
+#: apps/intro/templates/intro/index.html:506
 msgid ""
 "\n"
 "                            Which programming languages are supported in AI "
@@ -260,8 +252,8 @@ msgstr ""
 "در AI Challenge از چه زبان‌های برنامه‌نویسی‌ پشتیبانی "
 "می‌شود؟                        "
 
-#: apps/intro/templates/intro/index.html:352
-#: apps/intro/templates/intro/index.html:523
+#: apps/intro/templates/intro/index.html:343
+#: apps/intro/templates/intro/index.html:514
 msgid ""
 "\n"
 "                                You may write your code using Java, Python, "
@@ -272,8 +264,8 @@ msgstr ""
 "شما می‌توانید به زبان‌های python ،java و ++C برنامه‌های خود را "
 "بنویسید.                            "
 
-#: apps/intro/templates/intro/index.html:362
-#: apps/intro/templates/intro/index.html:533
+#: apps/intro/templates/intro/index.html:353
+#: apps/intro/templates/intro/index.html:524
 msgid ""
 "\n"
 "                            If AI Challenge is a battle between codes, what "
@@ -285,8 +277,8 @@ msgstr ""
 "گرفته شده چیست؟\n"
 "                        "
 
-#: apps/intro/templates/intro/index.html:370
-#: apps/intro/templates/intro/index.html:541
+#: apps/intro/templates/intro/index.html:361
+#: apps/intro/templates/intro/index.html:532
 msgid ""
 "\n"
 "                                The exact answer to this question will not "
@@ -300,8 +292,8 @@ msgstr ""
 "که نوعی بازی استراتژیک قهرمان‌محور برای مسابقه امسال در نظر گرفته شده است.\n"
 "                            "
 
-#: apps/intro/templates/intro/index.html:380
-#: apps/intro/templates/intro/index.html:551
+#: apps/intro/templates/intro/index.html:371
+#: apps/intro/templates/intro/index.html:542
 msgid ""
 "\n"
 "                            Is professional knowledge of programming "
@@ -312,8 +304,8 @@ msgstr ""
 "آیا برای شرکت در AI Challenge نیاز به دانستن برنامه‌نویسی حرفه‌ای است؟ \n"
 "                        "
 
-#: apps/intro/templates/intro/index.html:388
-#: apps/intro/templates/intro/index.html:559
+#: apps/intro/templates/intro/index.html:379
+#: apps/intro/templates/intro/index.html:550
 msgid ""
 "\n"
 "                                Although such knowledge would surely help, "
@@ -330,8 +322,8 @@ msgstr ""
 "این دوره آماده شده است.\n"
 "                            "
 
-#: apps/intro/templates/intro/index.html:398
-#: apps/intro/templates/intro/index.html:570
+#: apps/intro/templates/intro/index.html:389
+#: apps/intro/templates/intro/index.html:561
 msgid ""
 "\n"
 "                            Is AI Challenge only for Computer Science and "
@@ -341,8 +333,8 @@ msgstr ""
 "\n"
 "آیا مسابقه فقط مخصوص دانشجویان کامپیوتر است؟                        "
 
-#: apps/intro/templates/intro/index.html:406
-#: apps/intro/templates/intro/index.html:578
+#: apps/intro/templates/intro/index.html:397
+#: apps/intro/templates/intro/index.html:569
 msgid ""
 "\n"
 "                                Of course not. Everybody including graduated "
@@ -360,8 +352,8 @@ msgstr ""
 "تمامی دانشجویان رشته‌های مهندسی و علوم کامپیوتر، برق، صنایع و ریاضی و کسانی "
 "که تمایل به یادگیری بیشتر دارند پیشنهاد می‌شود.                            "
 
-#: apps/intro/templates/intro/index.html:417
-#: apps/intro/templates/intro/index.html:590
+#: apps/intro/templates/intro/index.html:408
+#: apps/intro/templates/intro/index.html:581
 msgid ""
 "\n"
 "                            Is any prior knowledge of AI necessary?\n"
@@ -371,8 +363,8 @@ msgstr ""
 "آیا نداشتن سابقه در هوش مصنوعی مشکلی ایجاد نمی‌کند؟\n"
 "                        "
 
-#: apps/intro/templates/intro/index.html:425
-#: apps/intro/templates/intro/index.html:598
+#: apps/intro/templates/intro/index.html:416
+#: apps/intro/templates/intro/index.html:589
 msgid ""
 "\n"
 "                                Not at all. Since many contestants have no "
@@ -390,8 +382,8 @@ msgstr ""
 "شرکت‌کنندگان قرار می‌گیرد.\n"
 "                            "
 
-#: apps/intro/templates/intro/index.html:435
-#: apps/intro/templates/intro/index.html:608
+#: apps/intro/templates/intro/index.html:426
+#: apps/intro/templates/intro/index.html:599
 msgid ""
 "\n"
 "                            How many rounds is the competition composed of?\n"
@@ -401,8 +393,8 @@ msgstr ""
 "فرمت نبرد هوش مصنوعی شریف چگونه است؟\n"
 "                        "
 
-#: apps/intro/templates/intro/index.html:443
-#: apps/intro/templates/intro/index.html:616
+#: apps/intro/templates/intro/index.html:434
+#: apps/intro/templates/intro/index.html:607
 msgid ""
 "\n"
 "                                The teams will be competing online from "
@@ -422,8 +414,8 @@ msgstr ""
 "می‌شود راه می‌یابند.\n"
 "                            "
 
-#: apps/intro/templates/intro/index.html:453
-#: apps/intro/templates/intro/index.html:626
+#: apps/intro/templates/intro/index.html:444
+#: apps/intro/templates/intro/index.html:617
 msgid ""
 "\n"
 "                            Is attendance at Sharif University of Technology "
@@ -434,8 +426,8 @@ msgstr ""
 "آیا برای شرکت در مسابقه باید به در دانشگاه شریف حضور داشته باشم؟\n"
 "                        "
 
-#: apps/intro/templates/intro/index.html:461
-#: apps/intro/templates/intro/index.html:634
+#: apps/intro/templates/intro/index.html:452
+#: apps/intro/templates/intro/index.html:625
 msgid ""
 "\n"
 "                                The registration and the online round of the "
@@ -450,8 +442,8 @@ msgstr ""
 "دانشجویان غیر تهرانی در نظر گرفته شده است.\n"
 "                            "
 
-#: apps/intro/templates/intro/index.html:471
-#: apps/intro/templates/intro/index.html:644
+#: apps/intro/templates/intro/index.html:462
+#: apps/intro/templates/intro/index.html:635
 msgid ""
 "\n"
 "                            How must one register to compete in AI "
@@ -462,19 +454,8 @@ msgstr ""
 "چطور باید در AI Challenge ثبت‌نام کنم؟\n"
 "                        "
 
-#: apps/intro/templates/intro/index.html:479
-msgid ""
-"\n"
-"                                You may register online starting February "
-"5th. The registration for the online round is free.\n"
-"                            "
-msgstr ""
-"\n"
-"شما می‌توانید از ۱۶ ام بهمن ماه به صورت اینترنتی در مسابقه به صورت رایگان "
-"ثبت‌نام کنید.\n"
-"                            "
-
-#: apps/intro/templates/intro/index.html:652
+#: apps/intro/templates/intro/index.html:470
+#: apps/intro/templates/intro/index.html:643
 #, fuzzy
 #| msgid ""
 #| "\n"
@@ -492,27 +473,27 @@ msgstr ""
 "ثبت‌نام کنید.\n"
 "                            "
 
-#: apps/intro/templates/intro/index.html:667
+#: apps/intro/templates/intro/index.html:658
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: apps/intro/templates/intro/index.html:672
+#: apps/intro/templates/intro/index.html:663
 msgid "Organizer"
 msgstr "برگزارکننده"
 
-#: apps/intro/templates/intro/index.html:679
+#: apps/intro/templates/intro/index.html:670
 msgid "Sponsor"
 msgstr "حامی"
 
-#: apps/intro/templates/intro/index.html:686
+#: apps/intro/templates/intro/index.html:677
 msgid "Location"
 msgstr "مکان"
 
-#: apps/intro/templates/intro/index.html:690
+#: apps/intro/templates/intro/index.html:681
 msgid "Address: "
 msgstr "نشانی:"
 
-#: apps/intro/templates/intro/index.html:691
+#: apps/intro/templates/intro/index.html:682
 msgid ""
 "\n"
 "                            Dept. of Computer Eng., Sharif University of "
@@ -523,7 +504,7 @@ msgstr ""
 "\n"
 "تهران، خیابان آزادی، دانشگاه صنعتی شریف، دانشکده مهندسی کامپیوتر"
 
-#: apps/intro/templates/intro/index.html:699
+#: apps/intro/templates/intro/index.html:690
 msgid "Contact Info"
 msgstr "اطلاعات تماس"
 
@@ -538,6 +519,23 @@ msgstr "فنی"
 #: apps/intro/templates/intro/staffs.html:9
 msgid "Head Of Committee"
 msgstr "کمیته برگزاری"
+
+#~ msgid "Till registration"
+#~ msgstr "باقی‌مانده تا ثبت‌نام"
+
+#~ msgid "Stay in touch with us with email"
+#~ msgstr "با ثبت ایمیلتان با ما همراه باشید!"
+
+#~ msgid ""
+#~ "\n"
+#~ "                                You may register online starting February "
+#~ "5th. The registration for the online round is free.\n"
+#~ "                            "
+#~ msgstr ""
+#~ "\n"
+#~ "شما می‌توانید از ۱۶ ام بهمن ماه به صورت اینترنتی در مسابقه به صورت رایگان "
+#~ "ثبت‌نام کنید.\n"
+#~ "                            "
 
 #~ msgid "Users"
 #~ msgstr "کاربران"
