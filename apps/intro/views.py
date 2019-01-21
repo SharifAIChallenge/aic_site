@@ -2,6 +2,8 @@ import logging
 
 from django.contrib.auth.models import User
 from django import forms
+from django.db import IntegrityError
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
 
@@ -35,14 +37,18 @@ def not_found(request):
 
 def notify(request):
     if request.POST:
-        send_mail = True
+        valid = True
         try:
             forms.EmailField().clean(request.POST['email'])
-        except:
-            send_mail = False
-        if send_mail:
-            Notification.objects.create(email=request.POST['email'])
-    return render(request, '')
+        except Exception as e:
+            valid = False
+        if valid:
+            try:
+                Notification.objects.create(email=request.POST['email'])
+            except IntegrityError:
+                return JsonResponse({'success': False})
+            return JsonResponse({'success': True })
+    return JsonResponse({'success': False})
 
 
 def staffs(request):
