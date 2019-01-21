@@ -62,9 +62,9 @@
             </button>
 
             <div id="modal" class="modal">
-                <div class="modal-content">
+                <div class="modal-content" id="content">
                     <span class="close">&times;</span>
-                    <p>Some text in the Modal..</p>
+                    <p id="message" >Some text in the Modal..</p>
                 </div>
             </div>
 
@@ -667,37 +667,5 @@
         ScrollReveal().reveal('.faded-d3', {delay: 750});
 
     </script>
-    <script type="text/javascript">
-        $('#button').click(function (e) {
-            e.preventDefault();
-            if($('#email').val() != ''){
-                $.ajax({
-                    type:'POST',
-                    url:'/notify',
-                    data:{
-                        email:$('#email').val(),
-                        csrfmiddlewaretoken: '{{ csrf_token }}'
-                    },
-                    success:function () {
 
-                    }
-
-                });
-
-                document.getElementById('modal').style.display = "block";
-                document.getElementById('email').value = '';
-            }
-
-        });
-
-        document.getElementsByClassName("close")[0].onclick = function() {
-          modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
-    </script>
 {% endblock %}
