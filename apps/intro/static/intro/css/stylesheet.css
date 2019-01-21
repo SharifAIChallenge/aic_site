@@ -115,6 +115,9 @@
     [class*="faq-mobile-visible"] {
         visibility: visible;
     }
+    [class*="banner-text-mobile"] {
+        width: 80%;
+    }
 
 }
 
@@ -147,6 +150,18 @@
     }
     [class*="faq-mobile-hidden"] {
         visibility: visible;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 990px){
+    [class*="banner-text-mobile"] {
+        width: 60%;
+    }
+}
+
+@media only screen and (min-width: 991px) and (max-width: 1200px){
+    [class*="banner-text-mobile"] {
+        width: 50%;
     }
 }
 
