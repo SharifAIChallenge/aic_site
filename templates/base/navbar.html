@@ -1,7 +1,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-<div class="ui attached inverted sticky borderless menu navbar-color" id="navbar">
+<div class="ui inverted sticky borderless menu navbar-color" id="navbar">
     {% for title, link in ai.navbar.items %}
         {% if not link.dropdown %}
             <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>
