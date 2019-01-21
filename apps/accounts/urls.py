@@ -1,11 +1,16 @@
 from django.conf.urls import url
 from apps.accounts import views
+from apps.intro.views import not_found
 
 app_name = "accounts"
 urlpatterns = [
-    url(r'^signup/$', views.SignupView.as_view(), name='signup'),
-    url(r'^login/$', views.LoginView.as_view(), name='login'),
-    url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
+    url(r'^signup/$', not_found, name='signup'),
+    url(r'^login/$', not_found, name='login'),
+    url(r'^logout/$', not_found, name='logout'),
+
+    # url(r'^signup/$', views.SignupView.as_view(), name='signup'),
+    # url(r'^login/$', views.LoginView.as_view(), name='login'),
+    # url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
     url(r'^update_profile/$', views.UpdateProfileView.as_view(), name='update_profile'),
     url(r'^create_team/(?P<challenge_id>[0-9]+)$', views.create_team, name='create_team'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
