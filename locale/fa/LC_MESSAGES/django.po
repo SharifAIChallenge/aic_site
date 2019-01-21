@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-21 18:33+0330\n"
+"POT-Creation-Date: 2019-01-21 18:56+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,11 +97,11 @@ msgstr "ورود"
 msgid "League"
 msgstr "لیگ"
 
-#: aic_site/settings/base.py:122
+#: aic_site/settings/base.py:124
 msgid "English"
 msgstr "انگلیسی"
 
-#: aic_site/settings/base.py:123
+#: aic_site/settings/base.py:125
 msgid "Persian"
 msgstr "فارسی"
 
@@ -155,10 +155,17 @@ msgid ""
 "mail and should be fixed shortly. Thanks for your patience."
 msgstr "مشکلی داخلی در سرور رخ داد."
 
+#: templates/base/footer.html:18
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "            © All rights reserved for <a href=\\\"http://ssc.ce.sharif.edu"
+#| "\">Students' Scientific Chapter (SSC)</a>, 2019\n"
+#| "\t"
 msgid ""
 "\n"
-"            © All rights reserved for <a href=\\\"http://ssc.ce.sharif.edu"
-"\">Students' Scientific Chapter (SSC)</a>, 2019\n"
+"            © All rights reserved for <a href=\\\"http://ssc.ce.sharif.edu\" "
+"style=\"opacity: 1;\" >Students' Scientific Chapter (SSC)</a>, 2019\n"
 "\t"
 msgstr ""
 "\n"

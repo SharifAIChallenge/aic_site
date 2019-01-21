@@ -50,7 +50,16 @@
                 </div>
             </div>
         </div>
-        <div class="ui action input" style="margin-top: 25px; margin-bottom: 25px; width: 300px; height: 50px">
+
+        <div style="margin-top: 10px; margin-bottom: 1px;">
+            <h2>{% trans "Till registration" %}</h2>
+            <p>
+                {% trans "Stay in touch with us with email" %}
+            </p>
+        </div>
+
+
+        <div class="ui action input" style="margin-top: 10px; margin-bottom: 25px; width: 350px; height: 50px">
             <form method="post" id="notify">{% csrf_token %}
             </form>
 
