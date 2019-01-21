@@ -13,9 +13,11 @@
 {% block container %}
     <div class="mysocial">
         <ul align="center">
-            <li style="margin-top: 25px"><a target="_blank" href="https://mobile.twitter.com/AiChallenge" target="_blank"><i
+            <li style="margin-top: 25px"><a target="_blank" href="https://mobile.twitter.com/AiChallenge"
+                                            target="_blank"><i
                     class="big inverted white twitter icon socialicon"></i></a></li>
-            <li style="margin-top: 25px"><a target="_blank" href="https://www.instagram.com/aichallenge/" target="_blank"><i
+            <li style="margin-top: 25px"><a target="_blank" href="https://www.instagram.com/aichallenge/"
+                                            target="_blank"><i
                     class="big inverted white instagram icon  socialicon"></i></a></li>
             <li style="margin-top: 25px"><a target="_blank" href="https://t.me/aichallenge" target="_blank"><i
                     class="big inverted white telegram plane icon socialicon"></i></a></li>
@@ -54,25 +56,28 @@
             <h1>{% trans "Till registration" %}</h1>
             <p> {% trans "Stay in touch with us with email" %} </p>
         </div>
-        <div class="ui action input" style="margin-top: 0px; margin-bottom: 25px; width: 350px; height: 50px">
-            <form method="post" id="notify">{% csrf_token %}
-            </form>
+        <div id="modal" class="modal">
+            <div class="modal-content" id="content">
+                <span class="close" id="modalclose">&times;</span>
+                <p id="message">Some text in the Modal..</p>
+            </div>
+        </div>
+        <form class="ui form" method="post" id="notify">{% csrf_token %}
+            <div class="field">
+                <div class="ui action input" style="margin-top: 0px; margin-bottom: 25px;height: 50px; width: 350px;">
 
-              <input type="email" placeholder="ایمیل"
-                   style=" border-bottom-right-radius: 20px;border-top-right-radius: 20px; background-color: #fff3d9" id="email" name="email">
-            <button class="ui button" type="submit" id="button"
-                    style="border-bottom-left-radius: 20px;border-top-left-radius: 20px; color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold">
-                {% trans 'Notify me' %}
-            </button>
+                    <input type="email" placeholder="ایمیل"
+                           style=" border-bottom-right-radius: 20px;border-top-right-radius: 20px; background-color: #fff3d9"
+                           id="email" name="email">
 
-            <div id="modal" class="modal">
-                <div class="modal-content" id="content">
-                    <span class="close">&times;</span>
-                    <p id="message" >Some text in the Modal..</p>
+                    <button class="ui button" type="submit" id="button"
+                            style="border-bottom-left-radius: 20px;border-top-left-radius: 20px; color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold">
+                        {% trans 'Notify me' %}
+                    </button>
+
                 </div>
             </div>
-
-        </div>
+        </form>
     </div>
 
     <div class="even section" id="section-intro" style="padding-bottom: 0px!important;">
@@ -84,7 +89,7 @@
         </div>
         <div class="sixteen ui stackable grid introduct">
             <div class="sixteen column row">
-                <div class="five wide column right-rival" style="margin-top: -100px;" >
+                <div class="five wide column right-rival" style="margin-top: -100px;">
                 </div>
                 <div class="six wide column" style="text-align: center; padding-bottom: 30px;">
                     <div class="intro-text-mobile">
@@ -123,31 +128,31 @@
         </div>
     </div>
 
-{#    <div class="odd section" id="section-intro">#}
-{##}
-{#        <div class="ui center aligned stackable grid">#}
-{#            <div class="circle faded-d1" id="purple">#}
-{##}
-{#                <a style="padding-right: 20px">#}
-{#                    {{ users_count }}#}
-{#                </a>#}
-{#                <br/>{% trans 'Users' %}#}
-{#            </div>#}
-{#            <div class="circle faded-d2" id="yellow">#}
-{#                <a style="padding-right: 15px">#}
-{#                    {{ submits_count }}#}
-{#                </a>#}
-{#                <br/>{% trans 'Submissions' %}#}
-{#            </div>#}
-{#            <div class="circle faded-d3" id="blue">#}
-{#                <a style="padding-right: 15px">#}
-{#                    {{ teams_count }}#}
-{#                </a>#}
-{#                <br/>{% trans 'Teams' %}#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#    </div>#}
+    {#    <div class="odd section" id="section-intro">#}
+    {##}
+    {#        <div class="ui center aligned stackable grid">#}
+    {#            <div class="circle faded-d1" id="purple">#}
+    {##}
+    {#                <a style="padding-right: 20px">#}
+    {#                    {{ users_count }}#}
+    {#                </a>#}
+    {#                <br/>{% trans 'Users' %}#}
+    {#            </div>#}
+    {#            <div class="circle faded-d2" id="yellow">#}
+    {#                <a style="padding-right: 15px">#}
+    {#                    {{ submits_count }}#}
+    {#                </a>#}
+    {#                <br/>{% trans 'Submissions' %}#}
+    {#            </div>#}
+    {#            <div class="circle faded-d3" id="blue">#}
+    {#                <a style="padding-right: 15px">#}
+    {#                    {{ teams_count }}#}
+    {#                </a>#}
+    {#                <br/>{% trans 'Teams' %}#}
+    {#            </div>#}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
 
 
     <div class="odd section">
@@ -325,8 +330,11 @@
                         <div class=" sixteen wide center column faq-text">
                             <p>
                                 {% blocktrans %}
-                                    Sharif AI Challenge is a team competition in which each team designs their strategy in order to win in a strategic challenge. These strategies are implemented as running codes.
-                                    Each team attempts to devise a strong AI which can triumph against other AIs in a game in order to make it to the on-site competition.
+                                    Sharif AI Challenge is a team competition in which each team designs their strategy
+                                    in order to win in a strategic challenge. These strategies are implemented as
+                                    running codes.
+                                    Each team attempts to devise a strong AI which can triumph against other AIs in a
+                                    game in order to make it to the on-site competition.
                                 {% endblocktrans %}
                             </p>
                         </div>
@@ -363,7 +371,9 @@
                     <div class="ui two column row">
                         <div class=" sixteen wide column faq-text">
                             {% blocktrans %}
-                                The exact answer to this question will not be revealed until the beginning of the online round of the competition; however, the game this year will most likely be hero-based and of a strategic nature.
+                                The exact answer to this question will not be revealed until the beginning of the online
+                                round of the competition; however, the game this year will most likely be hero-based and
+                                of a strategic nature.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -381,7 +391,10 @@
                     <div class="ui two column row">
                         <div class=" sixteen wide column faq-text">
                             {% blocktrans %}
-                                Although such knowledge would surely help, but the structure of the challenge is such that basic knowledge of programing is enough to compete. Additionally, many educational content in different levels of expertise will be made available to contestants in the course of the competition.
+                                Although such knowledge would surely help, but the structure of the challenge is such
+                                that basic knowledge of programing is enough to compete. Additionally, many educational
+                                content in different levels of expertise will be made available to contestants in the
+                                course of the competition.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -399,8 +412,11 @@
                     <div class="ui two column row">
                         <div class=" sixteen wide column faq-text">
                             {% blocktrans %}
-                                Of course not. Everybody including graduated students, all the other major students and even high school student can participate in this contest.
-                                Since there is a lot of learning in this competition we recommend this contest to every student in the field of Computer Science and Engineering, Electrical Engineering, Math and Industrial Engineering who seeks to learn more and practice better.
+                                Of course not. Everybody including graduated students, all the other major students and
+                                even high school student can participate in this contest.
+                                Since there is a lot of learning in this competition we recommend this contest to every
+                                student in the field of Computer Science and Engineering, Electrical Engineering, Math
+                                and Industrial Engineering who seeks to learn more and practice better.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -418,7 +434,10 @@
                     <div class="ui two column row">
                         <div class=" sixteen wide column faq-text">
                             {% blocktrans %}
-                                Not at all. Since many contestants have no prior experience in working with AI algorithms, the game is designed to have more than one winning strategy. The game can therefore be won using even the basic algorithms. AI-related educational content will also be made available to the contestants in the course of the competition.
+                                Not at all. Since many contestants have no prior experience in working with AI
+                                algorithms, the game is designed to have more than one winning strategy. The game can
+                                therefore be won using even the basic algorithms. AI-related educational content will
+                                also be made available to the contestants in the course of the competition.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -436,7 +455,11 @@
                     <div class="ui two column row">
                         <div class=" sixteen wide column faq-text">
                             {% blocktrans %}
-                                The teams will be competing online from early February till early March. Friendly games will be held in this period to improve the outcomes of the teams. At the end of this stage, a selective competition will take place and the 48 top teams will make it to the on-site round of the competition. This ﬁnal round, in which the selected teams are expected to attend, will take place in mid February at Sharif University of Technology.
+                                The teams will be competing online from early February till early March. Friendly games
+                                will be held in this period to improve the outcomes of the teams. At the end of this
+                                stage, a selective competition will take place and the 48 top teams will make it to the
+                                on-site round of the competition. This ﬁnal round, in which the selected teams are
+                                expected to attend, will take place in mid February at Sharif University of Technology.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -454,7 +477,9 @@
                     <div class="ui two column row">
                         <div class=" sixteen wide column faq-text">
                             {% blocktrans %}
-                                The registration and the online round of the competition do not require attendance. But in order to compete in the on-site round, attendance is required. Contestants who are not from Tehran will be provided with the needed facilities.
+                                The registration and the online round of the competition do not require attendance. But
+                                in order to compete in the on-site round, attendance is required. Contestants who are
+                                not from Tehran will be provided with the needed facilities.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -472,7 +497,8 @@
                     <div class="ui two column row">
                         <div class=" sixteen wide column faq-text">
                             {% blocktrans %}
-                                You may register online starting February 5th. The registration for the online round is free.
+                                You may register online starting February 5th. The registration for the online round is
+                                free.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -496,8 +522,11 @@
                         <div class="sixteen wide column">
                             <p>
                                 {% blocktrans %}
-                                    Sharif AI Challenge is a team competition in which each team designs their strategy in order to win in a strategic challenge. These strategies are implemented as running codes.
-                                    Each team attempts to devise a strong AI which can triumph against other AIs in a game in order to make it to the on-site competition.
+                                    Sharif AI Challenge is a team competition in which each team designs their strategy
+                                    in order to win in a strategic challenge. These strategies are implemented as
+                                    running codes.
+                                    Each team attempts to devise a strong AI which can triumph against other AIs in a
+                                    game in order to make it to the on-site competition.
                                 {% endblocktrans %}
                             </p>
                         </div>
@@ -534,7 +563,9 @@
                     <div class="ui two column row">
                         <div class="sixteen wide column">
                             {% blocktrans %}
-                                The exact answer to this question will not be revealed until the beginning of the online round of the competition; however, the game this year will most likely be hero-based and of a strategic nature.
+                                The exact answer to this question will not be revealed until the beginning of the online
+                                round of the competition; however, the game this year will most likely be hero-based and
+                                of a strategic nature.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -552,7 +583,10 @@
                     <div class="ui two column row">
                         <div class="sixteen wide column">
                             {% blocktrans %}
-                                Although such knowledge would surely help, but the structure of the challenge is such that basic knowledge of programing is enough to compete. Additionally, many educational content in different levels of expertise will be made available to contestants in the course of the competition.
+                                Although such knowledge would surely help, but the structure of the challenge is such
+                                that basic knowledge of programing is enough to compete. Additionally, many educational
+                                content in different levels of expertise will be made available to contestants in the
+                                course of the competition.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -571,8 +605,11 @@
                     <div class="ui two column row">
                         <div class="sixteen wide column">
                             {% blocktrans %}
-                                Of course not. Everybody including graduated students, all the other major students and even high school student can participate in this contest.
-                                Since there is a lot of learning in this competition we recommend this contest to every student in the field of Computer Science and Engineering, Electrical Engineering, Math and Industrial Engineering who seeks to learn more and practice better.
+                                Of course not. Everybody including graduated students, all the other major students and
+                                even high school student can participate in this contest.
+                                Since there is a lot of learning in this competition we recommend this contest to every
+                                student in the field of Computer Science and Engineering, Electrical Engineering, Math
+                                and Industrial Engineering who seeks to learn more and practice better.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -591,7 +628,10 @@
                     <div class="ui two column row">
                         <div class="sixteen wide column">
                             {% blocktrans %}
-                                Not at all. Since many contestants have no prior experience in working with AI algorithms, the game is designed to have more than one winning strategy. The game can therefore be won using even the basic algorithms. AI-related educational content will also be made available to the contestants in the course of the competition.
+                                Not at all. Since many contestants have no prior experience in working with AI
+                                algorithms, the game is designed to have more than one winning strategy. The game can
+                                therefore be won using even the basic algorithms. AI-related educational content will
+                                also be made available to the contestants in the course of the competition.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -609,7 +649,11 @@
                     <div class="ui two column row">
                         <div class="sixteen wide column">
                             {% blocktrans %}
-                                The teams will be competing online from early February till early March. Friendly games will be held in this period to improve the outcomes of the teams. At the end of this stage, a selective competition will take place and the 48 top teams will make it to the on-site round of the competition. This ﬁnal round, in which the selected teams are expected to attend, will take place in mid February at Sharif University of Technology.
+                                The teams will be competing online from early February till early March. Friendly games
+                                will be held in this period to improve the outcomes of the teams. At the end of this
+                                stage, a selective competition will take place and the 48 top teams will make it to the
+                                on-site round of the competition. This ﬁnal round, in which the selected teams are
+                                expected to attend, will take place in mid February at Sharif University of Technology.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -627,7 +671,9 @@
                     <div class="ui two column row">
                         <div class=" sixteen wide center column">
                             {% blocktrans %}
-                                The registration and the online round of the competition do not require attendance. But in order to compete in the on-site round, attendance is required. Contestants who are not from Tehran will be provided with the needed facilities.
+                                The registration and the online round of the competition do not require attendance. But
+                                in order to compete in the on-site round, attendance is required. Contestants who are
+                                not from Tehran will be provided with the needed facilities.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -645,7 +691,8 @@
                     <div class="ui two column row">
                         <div class="sixteen wide column">
                             {% blocktrans %}
-                                You may register online starting February 5th. The registration for the online round is free.
+                                You may register online starting February 5th. The registration for the online round is
+                                free.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -665,15 +712,16 @@
         <div class="ui center aligned stackable grid">
             <div class="eight wide column">
                 <div class="faded-d1"><h1 class="ui header">{% trans 'Organizer' %}</h1>
-                    <a href="http://ssc.ce.sharif.edu/" target="_blank"><img class="ui centered image" style="max-width: 200px;"
-                                                             src="{% static 'intro/image/SSC.png' %}"
-                                                             alt="SSC Image"></a>
+                    <a href="http://ssc.ce.sharif.edu/" target="_blank"><img class="ui centered image"
+                                                                             style="max-width: 200px;"
+                                                                             src="{% static 'intro/image/SSC.png' %}"
+                                                                             alt="SSC Image"></a>
                 </div>
                 <div class="faded-d2">
                     <div class="ui horizontal divider"></div>
                     <h1 class="ui header">{% trans 'Sponsor' %}</h1>
                     <a href="https://www.yektanet.com/" target="_blank"><img class="ui centered medium image"
-                                                             src="{% static 'intro/image/sponsor.png' %}"></a>
+                                                                             src="{% static 'intro/image/sponsor.png' %}"></a>
                 </div>
             </div>
             <div class="eight wide column">
@@ -714,6 +762,39 @@
         ScrollReveal().reveal('.faded-d2', {delay: 500});
         ScrollReveal().reveal('.faded-d3', {delay: 750});
 
+        $('#button').click(function (e) {
+            e.preventDefault();
+            if (validateEmail($('#email').val())) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/notify',
+                    data: {
+                        email: $('#email').val(),
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function (data) {
+                        if (data['success'] == true) {
+                            document.getElementById('message').innerText = 'ایمیل شما با موفقیت ثبت شد.';
+                            document.getElementById('content').style.backgroundColor = '#009D8A';
+                        } else {
+                            document.getElementById('message').innerText = 'ایمیل شما قبلا ثبت شده‌است.';
+                            document.getElementById('content').style.backgroundColor = '#ED1A3A';
+                        }
+                    },
+                    error: function (data) {
+                        document.getElementById('message').innerText = 'ارتباط با سایت برقرار نشد.';
+                        document.getElementById('content').style.backgroundColor = '#ED1A3A';
+                    }
+                });
+            } else {
+                document.getElementById('message').innerText = 'ایمیل به درستی وارد نشده‌است.';
+                document.getElementById('content').style.backgroundColor = '#ED1A3A';
+            }
+            document.getElementById('modal').style.display = "block";
+            document.getElementById('email').value = '';
+            document.getElementById('modalclose').focus();
+
+        });
     </script>
 
 {% endblock %}
