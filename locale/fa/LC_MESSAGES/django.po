@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-16 22:36+0430\n"
+"POT-Creation-Date: 2019-01-21 19:32+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: aic_site/context_processors.py:11 aic_site/context_processors.py:32
+#: aic_site/context_processors.py:11 aic_site/context_processors.py:31
 msgid "Home"
 msgstr "خانه"
 
@@ -26,95 +26,82 @@ msgstr "خانه"
 msgid "Main Page"
 msgstr "صفحه‌ی اصلی"
 
-#: aic_site/context_processors.py:14 aic_site/context_processors.py:34
+#: aic_site/context_processors.py:14 aic_site/context_processors.py:33
 msgid "Introduction"
 msgstr "معرفی"
 
-#: aic_site/context_processors.py:15 aic_site/context_processors.py:35
+#: aic_site/context_processors.py:15 aic_site/context_processors.py:34
 msgid "Prize"
 msgstr "جایزه"
 
-#: aic_site/context_processors.py:16 aic_site/context_processors.py:36
-msgid "History"
-msgstr "تاریخ"
-
-#: aic_site/context_processors.py:17 aic_site/context_processors.py:37
-msgid "Schedule"
-msgstr "برنامه"
-
-#: aic_site/context_processors.py:18 aic_site/context_processors.py:43
+#: aic_site/context_processors.py:16 aic_site/context_processors.py:42
 msgid "FAQ"
 msgstr "سوالات متداول"
 
-#: aic_site/context_processors.py:19 aic_site/context_processors.py:38
+#: aic_site/context_processors.py:17 aic_site/context_processors.py:36
+msgid "Schedule"
+msgstr "برنامه"
+
+#: aic_site/context_processors.py:18 aic_site/context_processors.py:37
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: aic_site/context_processors.py:22
-msgid "Access"
-msgstr "دسترسی"
+#: aic_site/context_processors.py:35
+msgid "History"
+msgstr "تاریخ"
 
-#: aic_site/context_processors.py:24 aic_site/context_processors.py:49
-msgid "Panel"
-msgstr "پنل"
-
-#: aic_site/context_processors.py:25
-msgid "Resources"
-msgstr "منابع"
-
-#: aic_site/context_processors.py:26 aic_site/context_processors.py:44
-#: templates/base/navbar.html:59
-msgid "Blog and Q&A"
-msgstr "وبلاگ و پرسش و پاسخ"
-
-#: aic_site/context_processors.py:27
-msgid "Staff"
-msgstr "استف‌ها"
-
-#: aic_site/context_processors.py:41 templates/zinnia/base.html:26
+#: aic_site/context_processors.py:40 templates/zinnia/base.html:26
 msgid "Blog"
 msgstr "بلاگ"
 
-#: aic_site/context_processors.py:47
+#: aic_site/context_processors.py:43 templates/base/navbar.html:59
+msgid "Blog and Q&A"
+msgstr "وبلاگ و پرسش و پاسخ"
+
+#: aic_site/context_processors.py:46
 msgid "Game"
 msgstr "بازی"
 
-#: aic_site/context_processors.py:50
+#: aic_site/context_processors.py:48
+msgid "Panel"
+msgstr "پنل"
+
+#: aic_site/context_processors.py:49
 msgid "Game Viewer"
 msgstr "نمایشگر بازی"
 
-#: aic_site/context_processors.py:51
+#: aic_site/context_processors.py:50
 msgid "Map Maker"
 msgstr "نقشه ساز"
 
-#: aic_site/context_processors.py:54 aic_site/context_processors.py:66
-#: aic_site/context_processors.py:68
+#: aic_site/context_processors.py:53 aic_site/context_processors.py:65
+#: aic_site/context_processors.py:67
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: aic_site/context_processors.py:57 aic_site/context_processors.py:72
-#: aic_site/context_processors.py:79
+#: aic_site/context_processors.py:56 aic_site/context_processors.py:71
+#: aic_site/context_processors.py:78
 msgid "Scoreboard"
 msgstr "جدول رده‌بندی"
 
-#: aic_site/context_processors.py:66 templates/base/navbar.html:42
+#: aic_site/context_processors.py:65 templates/base/navbar.html:42
 msgid "Logout"
 msgstr "خروج"
 
-#: aic_site/context_processors.py:68 templates/base/navbar.html:47
+#: aic_site/context_processors.py:67 templates/base/navbar.html:47
 #: templates/zinnia/login.html:34
 msgid "Login"
 msgstr "ورود"
 
-#: aic_site/context_processors.py:79
+#: aic_site/context_processors.py:78
 msgid "League"
 msgstr "لیگ"
 
-#: aic_site/settings/base.py:122
+#: aic_site/settings/base.py:124
 msgid "English"
 msgstr "انگلیسی"
 
-#: aic_site/settings/base.py:123
+#: aic_site/settings/base.py:125
 msgid "Persian"
 msgstr "فارسی"
 
@@ -168,11 +155,17 @@ msgid ""
 "mail and should be fixed shortly. Thanks for your patience."
 msgstr "مشکلی داخلی در سرور رخ داد."
 
-#: templates/base/footer.html:20
+#: templates/base/footer.html:18
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "            © All rights reserved for <a href=\\\"http://ssc.ce.sharif.edu"
+#| "\">Students' Scientific Chapter (SSC)</a>, 2019\n"
+#| "\t"
 msgid ""
 "\n"
-"            © All rights reserved for <a href=\\\"http://ssc.ce.sharif.edu"
-"\">Students' Scientific Chapter (SSC)</a>, 2018\n"
+"            © All rights reserved for <a href=\\\"http://ssc.ce.sharif.edu\" "
+"style=\"opacity: 1;\" >Students' Scientific Chapter (SSC)</a>, 2019\n"
 "\t"
 msgstr ""
 "\n"
@@ -996,6 +989,15 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
+
+#~ msgid "Access"
+#~ msgstr "دسترسی"
+
+#~ msgid "Resources"
+#~ msgstr "منابع"
+
+#~ msgid "Staff"
+#~ msgstr "استف‌ها"
 
 #~ msgid "First name"
 #~ msgstr "نام"

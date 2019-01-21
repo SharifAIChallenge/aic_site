@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.2.13 - Popup
+ * # Semantic UI 2.4.2 - Popup
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -38,7 +38,7 @@
 }
 .ui.popup > .header {
   padding: 0em;
-  font-family: 'IRANSans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 1.14285714em;
   line-height: 1.2;
   font-weight: bold;

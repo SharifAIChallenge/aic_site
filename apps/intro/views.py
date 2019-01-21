@@ -1,11 +1,14 @@
 import logging
 
 from django.contrib.auth.models import User
+from django import forms
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
 
+
 from apps.accounts.models import Team
 from apps.game.models import TeamSubmission
+from apps.intro.models import Notification
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +32,17 @@ def not_found(request):
     logger.debug("hello")
     logger.warning("hello")
     return render(request, '404.html')
+
+def notify(request):
+    if request.POST:
+        send_mail = True
+        try:
+            forms.EmailField().clean(request.POST['email'])
+        except:
+            send_mail = False
+        if send_mail:
+            Notification.objects.create(email=request.POST['email'])
+    return render(request, '')
 
 
 def staffs(request):

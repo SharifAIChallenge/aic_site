@@ -5,42 +5,32 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MXQDDPG');</script>
-    <!-- End Google Tag Manager -->
-    <title>{% block head_title %}AI Challenge 2018{% endblock %}</title>
+    <title>{% block head_title %}AI Challenge 2019{% endblock %}</title>
     <meta name="description"
-          content="{% block head_description %}{% endblock %}">
-    <meta content="text/html" charset="UTF-8">
+          content="{% block head_description %}{% endblock %}"/>
+    <meta content="text/html" charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="fontiran.com:license" content="RC4QT">
+    <meta name="fontiran.com:license" content="RC4QT"/>
     <link rel="stylesheet" href="
             {% if LANGUAGE_BIDI %}{% static 'semantic/semantic.rtl.min.css' %}{% else %}{% static 'semantic/semantic.min.css' %}{% endif %}">
+
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
+
+
     <script src="{% static 'js/scripts.js' %}"></script>
 
     {% block extra_header %}{% endblock %}
 </head>
 <body {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXQDDPG"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-{% block sidebar %}
-    {% include 'base/sidebar.html' %}
-{% endblock %}
+<div class="body-image"></div>
+<div class="body-pattern" id="pattern"></div>
+{#{% block sidebar %}#}
+{#    {% include 'base/sidebar.html' %}#}
+{#{% endblock %}#}
 {% block body %}
-    <div class="pusher">
     <div id="main">
-    {% block header %}
-        {% include 'base/header.html' %}
-    {% endblock %}
 
     {% block navbar %}
         {% include 'base/navbar.html' %}
@@ -57,9 +47,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     {% block footer %}
         {% include 'base/footer.html' %}
     {% endblock %}
+</div>
 {% endblock %}
-</div>
-</div>
+
 <script src="{% static 'js/jquery.inview.min.js' %}"></script>
 <script src="{% static 'js/footer_scripts.js' %}"></script>
 {% block footer_scripts %}{% endblock %}

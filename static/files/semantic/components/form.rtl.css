@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.2.13 - Form
+ * # Semantic UI 2.4.2 - Form
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -99,7 +99,7 @@
 .ui.form input[type="text"],
 .ui.form input[type="file"],
 .ui.form input[type="url"] {
-  font-family: 'IRANSans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   margin: 0em;
   outline: none;
   -webkit-appearance: none;
@@ -317,7 +317,7 @@
   color: rgba(191, 191, 191, 0.87);
 }
 .ui.form :-ms-input-placeholder {
-  color: rgba(191, 191, 191, 0.87);
+  color: rgba(191, 191, 191, 0.87) !important;
 }
 .ui.form ::-moz-placeholder {
   color: rgba(191, 191, 191, 0.87);
@@ -326,7 +326,7 @@
   color: rgba(115, 115, 115, 0.87);
 }
 .ui.form :focus:-ms-input-placeholder {
-  color: rgba(115, 115, 115, 0.87);
+  color: rgba(115, 115, 115, 0.87) !important;
 }
 .ui.form :focus::-moz-placeholder {
   color: rgba(115, 115, 115, 0.87);
