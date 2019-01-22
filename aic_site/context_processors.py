@@ -23,7 +23,7 @@ def menu(request):
 
                 _('FAQ'): reverse('intro:index') + '#section-faq',
 
-                _('Contact Us'): reverse('intro:index') + '#section-organizer',
+                # _('Contact Us'): reverse('intro:index') + '#section-organizer',
                 # _('Access'): {
                 #     'dropdown': {
                 #         _('Panel'): reverse('accounts:panel'),
