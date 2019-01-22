@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
     <script src="{% static 'js/scrollreveal.js' %}"></script>
+
+
 {% endblock %}
 
 {% block container %}
@@ -33,7 +35,7 @@
 
     <div class="odd section" style="padding-top: 20px" align="center">
         <div class="countdown container">
-            <div id="clockdiv">
+            <div id="clockdiv" dir="{% if LANGUAGE_BIDI %}ltr{% else %}rtl{% endif %}" >
                 <div class="seconds_div" style="margin-top: 10px">
                     <span class="seconds"></span>
                     <div class="smalltext">{% trans "seconds" %}</div>
@@ -66,12 +68,13 @@
             <div class="field">
                 <div class="ui action input" style="margin-top: 0px; margin-bottom: 25px;height: 50px; width: 350px;">
 
-                    <input type="email" placeholder="ایمیل"
-                           style=" border-bottom-right-radius: 20px;border-top-right-radius: 20px; background-color: #fff3d9"
+                    <input type="email" placeholder="{% trans "email" %}"
+                           style="{% if LANGUAGE_BIDI %} border-bottom-right-radius: 20px;border-top-right-radius: 20px;{% else %} border-bottom-left-radius: 20px;border-top-left-radius: 20px; {% endif %} background-color: #fff3d9"
                            id="email" name="email">
 
-                    <button class="ui button" type="submit" id="button"
-                            style="border-bottom-left-radius: 20px;border-top-left-radius: 20px; color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold">
+                    <button class="ui button" type="submit" id="button"style="{% if LANGUAGE_BIDI %} border-bottom-left-radius: 20px;border-top-left-radius: 20px;{% else %} border-bottom-right-radius: 20px;border-top-right-radius: 20px; {% endif %} color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold"
+
+                    >
                         {% trans 'Notify me' %}
                     </button>
 
@@ -701,11 +704,39 @@
         </div>
     </div>
 
+{#    <div class="odd section tablet computer only" id="section-about-us">#}
+{##}
+{#    <div class="ui section header">#}
+{#        <a class="circular ui big ai red button" href="#section-about-us">#}
+{#            {% trans 'About Us' %}#}
+{#        </a>#}
+{#    </div>#}
+{##}
+{##}
+{#    <div class="staff-pic" id="staff-in-mainpage" style="margin-left: 22%;">#}
+{#        {% for member in staff %}#}
+{##}
+{#        <div class="d-sm-inline-block" style="margin: 3%;">#}
+{#            <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">#}
+{#                <img class="card-img-top rounded-circle profpic" src="media/{{ member.image }}" alt="Card image">#}
+{#                <div class="layer" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">#}
+{#                    <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">#}
+{#                        <h3 class="text-font">{{ member.name }}</h3>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        {% endfor %}#}
+{#    </div>#}
+{##}
+{#    </div>#}
+
 
     <div class="odd section tablet computer only" id="section-organizer">
 
-        <div class="ui section header ">
-            <a class="circular ui big ai red button" href="#section-organizer" id="organizer_btn">
+        <div class="ui section header">
+            <a class="circular ui big ai blue button" href="#section-organizer" id="organizer_btn">
                 {% trans 'Contact Us' %}
             </a>
         </div>
