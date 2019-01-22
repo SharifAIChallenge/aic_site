@@ -1,4 +1,5 @@
 import logging
+import random
 from io import BytesIO
 
 from PIL import Image
@@ -19,13 +20,13 @@ logger = logging.getLogger(__name__)
 
 
 def index(request):
-    staff = Staff.objects.all()[:5]
+    staff = Staff.objects.all()
     return render(request, 'intro/index.html', {
         'no_sidebar': False,
         'users_count': User.objects.count(),
         'submits_count': TeamSubmission.objects.count(),
         'teams_count': Team.objects.count(),
-        'staff': Staff.objects.all()[:5],
+        'staff':staff,
     })
 
 
