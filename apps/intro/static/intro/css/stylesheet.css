@@ -256,14 +256,14 @@
 #clockdiv > div {
     padding: 10px;
     border-radius: 8px;
-    display: inline-block;
+    /*display: inline-block;*/
     width: 90px;
 }
 
 #clockdiv div > span {
     padding: 15px;
     border-radius: 8px;
-    display: inline-block;
+    /*display: inline-block;*/
     width: 70px;
 }
 
@@ -587,4 +587,21 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+ .days_div, .minutes_div, .hours_div, .smalltext{
+    display: inline-block;
+}
+.minutes, .hours, .days{
+    display: inline-block;
+}
+@media (min-width: 400px) {
+    .seconds_div,.seconds{
+      display: inline-block;
+    }
+}
+@media (max-width: 400px) {
+    .seconds_div,.seconds{
+      display: none;
+    }
 }
