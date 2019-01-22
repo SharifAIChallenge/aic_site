@@ -14,12 +14,12 @@
     <div class="mysocial">
         <ul align="center">
             <li style="margin-top: 25px"><a target="_blank" href="https://mobile.twitter.com/AiChallenge"
-                                            target="_blank"><i
+                                            target="_blank" id="twitter_side"><i
                     class="big inverted white twitter icon socialicon"></i></a></li>
             <li style="margin-top: 25px"><a target="_blank" href="https://www.instagram.com/aichallenge/"
-                                            target="_blank"><i
+                                            target="_blank" id="instagram_side"><i
                     class="big inverted white instagram icon  socialicon"></i></a></li>
-            <li style="margin-top: 25px"><a target="_blank" href="https://t.me/aichallenge" target="_blank"><i
+            <li style="margin-top: 25px"><a target="_blank" href="https://t.me/aichallenge" target="_blank" id="telegram_side"><i
                     class="big inverted white telegram plane icon socialicon"></i></a></li>
         </ul>
 
@@ -83,7 +83,7 @@
     <div class="even section" id="section-intro" style="padding-bottom: 0px!important;">
 
         <div class="ui section header">
-            <a class="circular ui big ai blue button" href="#section-intro" style="background-color: #FFF3D9">
+            <a class="circular ui big ai blue button" href="#section-intro" style="background-color: #FFF3D9" id="intro_btn">
                 {% trans 'Introduction' %}
             </a>
         </div>
@@ -218,7 +218,7 @@
 
     <div class="even section" id="section-prizes">
         <div class="ui section header">
-            <a class="circular ui big ai blue button" href="#section-prizes">
+            <a class="circular ui big ai blue button" href="#section-prizes" id="prize_btn">
                 {% trans 'Prizes' %}
             </a>
         </div>
@@ -265,7 +265,7 @@
 
     <div class="odd section" id="section-schedule">
         <div class="ui section header" id="schedule-title">
-            <a class="circular ui big ai red button" href="#section-schedule">
+            <a class="circular ui big ai red button" href="#section-schedule" id="schedule_btn">
                 {% trans 'Schedule' %}
             </a>
         </div>
@@ -310,7 +310,7 @@
 
     <div class="even section" id="section-faq">
         <div class="ui section header">
-            <a class="circular ui big ai blue button" href="#section-faq">
+            <a class="circular ui big ai blue button" href="#section-faq" id="faq_btn">
                 {% trans 'FAQ' %}
             </a>
         </div>
@@ -705,14 +705,14 @@
     <div class="odd section tablet computer only" id="section-organizer">
 
         <div class="ui section header ">
-            <a class="circular ui big ai red button" href="#section-organizer">
+            <a class="circular ui big ai red button" href="#section-organizer" id="organizer_btn">
                 {% trans 'Contact Us' %}
             </a>
         </div>
         <div class="ui center aligned stackable grid">
             <div class="eight wide column">
                 <div class="faded-d1"><h1 class="ui header">{% trans 'Organizer' %}</h1>
-                    <a href="http://ssc.ce.sharif.edu/" target="_blank"><img class="ui centered image"
+                    <a href="http://ssc.ce.sharif.edu/" target="_blank" id="ssc_logo"><img class="ui centered image"
                                                                              style="max-width: 200px;"
                                                                              src="{% static 'intro/image/SSC.png' %}"
                                                                              alt="SSC Image"></a>
@@ -720,7 +720,7 @@
                 <div class="faded-d2">
                     <div class="ui horizontal divider"></div>
                     <h1 class="ui header">{% trans 'Sponsor' %}</h1>
-                    <a href="https://www.yektanet.com/" target="_blank"><img class="ui centered medium image"
+                    <a href="https://www.yektanet.com/" target="_blank" id="yektanet_logo"><img class="ui centered medium image"
                                                                              src="{% static 'intro/image/sponsor.png' %}"></a>
                 </div>
             </div>
@@ -741,7 +741,7 @@
                     <div class="ui horizontal divider"></div>
                     <h1 class="ui header">{% trans 'Contact Info' %}</h1>
                     <b><i class="envelope icon"></i><a
-                            href="mailto:aichallenge@sharif.edu">aichallenge@sharif.edu</a></b>
+                            href="mailto:aichallenge@sharif.edu" id="mail">aichallenge@sharif.edu</a></b>
                     <br><b><i class="phone icon"></i><span dir="ltr">021-6616-5781</span></b></p>
                 </div>
             </div>
