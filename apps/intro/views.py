@@ -26,6 +26,7 @@ def index(request):
         'users_count': User.objects.count(),
         'submits_count': TeamSubmission.objects.count(),
         'teams_count': Team.objects.count(),
+        'staff': staff,
     })
 
 
