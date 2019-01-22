@@ -20,7 +20,6 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     staff = Staff.objects.all().order_by('?')[0:4]
-    Staff.objects.all().delete()
     return render(request, 'intro/index.html', {
         'no_sidebar': False,
         'users_count': User.objects.count(),
@@ -74,9 +73,9 @@ def add_staff(request):
             image_field = form.cleaned_data['image']
             image_file = BytesIO(image_field.file.read())
             image = Image.open(image_file)
-            l = image.size[1]
-            h = image.size[0]
-            image = image.crop(((h - l)/2, 0, (h - l)/2 + l, l)).resize((l, l), Image.ANTIALIAS).resize((300, 300), Image.ANTIALIAS)
+            h = image.size[1]
+            l = image.size[0]
+            image = image.crop((0, (h - l)/2, l, (h - l)/2 + l)).resize((l, l), Image.ANTIALIAS).resize((300, 300), Image.ANTIALIAS)
             image_file = BytesIO()
             image.save(image_file, 'PNG')
             image_field.file = image_file
