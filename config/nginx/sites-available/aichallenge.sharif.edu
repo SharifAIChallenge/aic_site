@@ -73,7 +73,7 @@ server {
         expires 30d;
     }
 
-    location /favicon.ico {
+    location /favicon.png {
         root            /static/root/static/intro/image;
         access_log      on;
         log_not_found   on;
