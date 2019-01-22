@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
     <script src="{% static 'js/scrollreveal.js' %}"></script>
+     <link rel="stylesheet" href="{% static 'intro/css/profile.css' %}">
 
 
 {% endblock %}
@@ -68,7 +69,7 @@
             <div class="field">
                 <div class="ui action input" style="margin-top: 0px; margin-bottom: 25px;height: 50px; width: 350px;">
 
-                    <input type="email" placeholder="{% trans "email" %}"
+                    <input type="email" placeholder="{% trans "Email" %}"
                            style="{% if LANGUAGE_BIDI %} border-bottom-right-radius: 20px;border-top-right-radius: 20px;{% else %} border-bottom-left-radius: 20px;border-top-left-radius: 20px; {% endif %} background-color: #fff3d9"
                            id="email" name="email">
 
@@ -164,9 +165,9 @@
                 {% trans 'Why Sharif AI Challenge?' %}
             </a>
         </div>
-        <div class="ui stackable grid container ai-feature">
+        <div class="ui stackable grid container ai-feature" style="margin-bottom: 0!important; padding-bottom: 0!important;">
             <div class="two wide column"></div>
-            <div class="four wide column faded-d1" style="text-align: center;">
+            <div class="four wide column faded-d1" style="text-align: center; background-color: #fcd504; color: black;">
                 <i class="huge users icon"></i>
                 <br>
                 <h1>{% trans "There's no I in success" %}</h1>
@@ -180,7 +181,7 @@
                 <br>
                 <p>{% trans "Experience two memorable days on the on-site round, in Sharif University of Technology" %}</p>
             </div>
-            <div class="four wide column faded-d3" style="text-align: center;">
+            <div class="four wide column faded-d3" style="text-align: center; background-color: #fcd504; color: black;">
                 <i class="huge terminal icon"></i>
                 <br>
                 <h1>{% trans "Code, Code to Victory" %}</h1>
@@ -189,7 +190,7 @@
             </div>
             <div class="two wide column"></div>
         </div>
-        <div class="ui stackable grid container ai-feature">
+        <div class="ui stackable grid container ai-feature" style="margin-top: 0!important; padding-top: 0!important;">
             <div class="two wide column"></div>
             <div class="four wide column faded-d3" style="text-align: center;">
                 <i class="huge lightbulb icon"></i>
@@ -198,7 +199,7 @@
                 <br>
                 <p>{% trans "Face different challenges and overcome them with your wits and creativity" %}</p>
             </div>
-            <div class="four wide column faded-d2" style="text-align: center;">
+            <div class="four wide column faded-d2" style="text-align: center; background-color: #fcd504; color: black;">
                 <i class="huge book icon"></i>
                 <br>
                 <h1>{% trans "To learn is to earn" %}</h1>
@@ -704,36 +705,36 @@
         </div>
     </div>
 
-{#    <div class="odd section tablet computer only" id="section-about-us">#}
-{##}
-{#    <div class="ui section header">#}
-{#        <a class="circular ui big ai red button" href="#section-about-us">#}
-{#            {% trans 'About Us' %}#}
-{#        </a>#}
-{#    </div>#}
-{##}
-{##}
-{#    <div class="staff-pic" id="staff-in-mainpage" style="margin-left: 22%;">#}
-{#        {% for member in staff %}#}
-{##}
-{#        <div class="d-sm-inline-block" style="margin: 3%;">#}
-{#            <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">#}
-{#                <img class="card-img-top rounded-circle profpic" src="media/{{ member.image }}" alt="Card image">#}
-{#                <div class="layer" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">#}
-{#                    <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">#}
-{#                        <h3 class="text-font">{{ member.name }}</h3>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        {% endfor %}#}
-{#    </div>#}
-{##}
-{#    </div>#}
+    <div class="odd section tablet computer only" id="section-about-us" >
+
+    <div class="ui section header">
+        <a class="circular ui big ai red button" href="#section-about-us">
+            {% trans 'About Us' %}
+        </a>
+    </div>
 
 
-    <div class="odd section tablet computer only" id="section-organizer">
+    <div class="staff-pic center aligned ui grid" id="staff-in-mainpage" style="margin-bottom: 2%;" >
+        {% for member in staff %}
+
+        <div>
+            <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
+                <img class="profpic ui circular image" src="media/{{ member.image }}" alt="Card image">
+                <div class="layer" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
+                    <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">
+                        <h3 class="text-font">{{ member.name }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    </div>
+
+
+    <div class="even section tablet computer only" id="section-organizer">
 
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-organizer" id="organizer_btn">

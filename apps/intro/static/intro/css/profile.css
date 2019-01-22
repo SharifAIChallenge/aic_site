@@ -9,9 +9,9 @@
     width: 95%;
     height: 95%;
     margin-left: 2.5%;
-    margin-top: 2.5%;
+    margin-top: 2.5% !important;
     transition: 500ms;
-    position: absolute;
+    position: absolute!important;
 }
 
 .info{
