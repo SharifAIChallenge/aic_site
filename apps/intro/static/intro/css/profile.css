@@ -6,9 +6,9 @@
     position: relative;
 }
 .profpic {
-    width: 95% !important;
-    height: 95% !important;
-    margin-left: 2.5% !important;
+    width: 95%;
+    height: 95%;
+    margin-left: 2.5%;
     margin-top: 2.5% !important;
     transition: 500ms;
     position: absolute!important;
