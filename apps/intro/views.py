@@ -1,5 +1,7 @@
 import logging
+from io import BytesIO
 
+from PIL import Image
 from django.contrib.auth.models import User
 from django import forms
 from django.db import IntegrityError
@@ -10,7 +12,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from apps.accounts.models import Team
 from apps.game.models import TeamSubmission
-from apps.intro.models import Notification
+from apps.intro.form import StaffForm
+from apps.intro.models import Notification, Staff
 
 logger = logging.getLogger(__name__)
 
@@ -52,4 +55,30 @@ def notify(request):
 
 
 def staffs(request):
-    return render(request, 'intro/staffs.html')
+    staff = Staff.objects.all()
+    tech = ['site','graphic','game design','infrastructure','test','content','server and client']
+    exe = ['executive']
+    return render(request, 'intro/staffs.html', {
+        "staff":staff,
+        "tech":tech,
+        "exe":exe
+    })
+
+def add_staff(request):
+    form = StaffForm(request.POST, request.FILES)
+    if request.POST:
+        if form.is_valid():
+            image_field = form.cleaned_data['image']
+            image_file = BytesIO(image_field.file.read())
+            image = Image.open(image_file)
+            l = image.size[1]
+            h = image.size[0]
+            image = image.crop(((h - l)/2, 0, (h - l)/2 + l, l)).resize((l, l), Image.ANTIALIAS).resize((300, 300), Image.ANTIALIAS)
+            image_file = BytesIO()
+            image.save(image_file, 'PNG')
+            image_field.file = image_file
+            image_field.image = image
+            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field)
+    return render(request, 'intro/staff-form.html', {
+        'form':form
+    })
