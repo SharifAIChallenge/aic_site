@@ -492,7 +492,7 @@ msgstr "برگزارکننده"
 
 #: apps/intro/templates/intro/index.html:722
 msgid "Sponsor"
-msgstr "حامی"
+msgstr "با حمایت"
 
 #: apps/intro/templates/intro/index.html:729
 msgid "Location"
