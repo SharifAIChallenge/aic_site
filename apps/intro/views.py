@@ -59,6 +59,7 @@ def notify(request):
 
 def staffs(request):
     staff = Staff.objects.all()
+
     tech = ['site','graphic','game design','infrastructure','test','content','server and client']
     exe = ['executive']
     return render(request, 'intro/staffs.html', {

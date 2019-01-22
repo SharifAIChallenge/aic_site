@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-22 19:57+0330\n"
+"POT-Creation-Date: 2019-01-22 21:45+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,10 +41,6 @@ msgstr "برنامه"
 #: aic_site/context_processors.py:24
 msgid "FAQ"
 msgstr "سوالات متداول"
-
-#: aic_site/context_processors.py:26
-msgid "Contact Us"
-msgstr "تماس با ما"
 
 #: aic_site/settings/base.py:122
 msgid "English"
@@ -105,12 +101,6 @@ msgid ""
 msgstr "مشکلی داخلی در سرور رخ داد."
 
 #: templates/base/footer.html:18
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "            © All rights reserved for <a href=\\\"http://ssc.ce.sharif.edu"
-#| "\">Students' Scientific Chapter (SSC)</a>, 2019\n"
-#| "\t"
 msgid ""
 "\n"
 "            © All rights reserved for <a href=\"http://ssc.ce.sharif.edu\" "
@@ -119,8 +109,8 @@ msgid ""
 "\t"
 msgstr ""
 "\n"
-"تمامی حقوق  برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
-"مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. "
+"تمامی حقوق برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
+"مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. ©"
 
 #: templates/base/navbar.html:48
 msgid "Logout"
@@ -955,6 +945,9 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
+
+#~ msgid "Contact Us"
+#~ msgstr "تماس با ما"
 
 #~ msgid "History"
 #~ msgstr "تاریخ"

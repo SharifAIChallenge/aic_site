@@ -11,6 +11,9 @@ class Staff(models.Model):
     team = models.CharField(max_length=20, default="")
     image = models.ImageField(null=True, upload_to='staff_pic')
 
+    def __str__(self):
+        return str(self.name)
+
     @property
     def color(self):
         if self.team == 'executive':
