@@ -13,11 +13,17 @@ def menu(request):
                         _('Main Page'): reverse('intro:index'),
                         _('Introduction'): reverse('intro:index') + '#section-intro',
                         _('Prize'): reverse('intro:index') + '#section-prizes',
-                        _('Schedule'): reverse('intro:index') + '#section-schedule',
-                        _('FAQ'): reverse('intro:index') + "#section-faq",
-                        _('Contact Us'): reverse('intro:index') + '#section-organizer',
+                        # _('Schedule'): reverse('intro:index') + '#section-schedule',
+                        # _('FAQ'): reverse('intro:index') + "#section-faq",
+                        # _('Contact Us'): reverse('intro:index') + '#section-organizer',
                     }
                 },
+
+                _('Schedule'): reverse('intro:index') + '#section-schedule',
+
+                _('FAQ'): reverse('intro:index') + '#section-faq',
+
+                _('Contact Us'): reverse('intro:index') + '#section-organizer',
                 # _('Access'): {
                 #     'dropdown': {
                 #         _('Panel'): reverse('accounts:panel'),
@@ -59,7 +65,6 @@ def menu(request):
             # }
         }
     }
-
 
     # if request.user.is_authenticated():
     #     context['ai']['sidebar'][_('Account')]['dropdown'][_('Logout')] = reverse('accounts:logout')
