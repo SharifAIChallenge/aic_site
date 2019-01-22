@@ -741,40 +741,47 @@
                 {% trans 'Contact Us' %}
             </a>
         </div>
-        <div class="ui center aligned stackable grid">
-            <div class="eight wide column">
-                <div class="faded-d1"><h1 class="ui header">{% trans 'Organizer' %}</h1>
-                    <a href="http://ssc.ce.sharif.edu/" target="_blank" id="ssc_logo"><img class="ui centered image"
-                                                                             style="max-width: 200px;"
-                                                                             src="{% static 'intro/image/SSC.png' %}"
-                                                                             alt="SSC Image"></a>
+        <div class="ui center aligned stackable three column grid">
+            <div class="top aligned row">
+                <div class="column ">
+                    <div class="faded-d2">
+                        <h1 class="ui header">{% trans 'Sponsor' %}</h1>
+                        <a href="https://www.yektanet.com/" target="_blank" id="yektanet_logo"><img
+                                class="ui centered medium image"
+                                src="{% static 'intro/image/sponsor.png' %}"></a>
+                    </div>
+
                 </div>
-                <div class="faded-d2">
-                    <div class="ui horizontal divider"></div>
-                    <h1 class="ui header">{% trans 'Sponsor' %}</h1>
-                    <a href="https://www.yektanet.com/" target="_blank" id="yektanet_logo"><img class="ui centered medium image"
-                                                                             src="{% static 'intro/image/sponsor.png' %}"></a>
+                <div class="column ">
+                    <div class="faded-d1"><h1 class="ui header">{% trans 'Organizer' %}</h1>
+                        <a href="http://ssc.ce.sharif.edu/" target="_blank" id="ssc_logo"><img class="ui centered image"
+                                                                                               style="max-width: 200px;"
+                                                                                               src="{% static 'intro/image/SSC.png' %}"
+                                                                                               alt="SSC Image"></a>
+                    </div>
+                    <div class="faded-d1">
+                        <div class="ui horizontal divider"></div>
+                        <h1 class="ui header">{% trans 'Contact Info' %}</h1>
+                        <b><i class="envelope icon"></i><a
+                                href="mailto:aichallenge@sharif.edu" id="mail">aichallenge@sharif.edu</a></b>
+                        <br><b><i class="phone icon"></i><span dir="ltr">021-6616-5781</span></b></p>
+                    </div>
                 </div>
-            </div>
-            <div class="eight wide column">
-                <div class="faded-d2">
-                    <h1 class="ui header">{% trans 'Location' %}</h1>
-                    <iframe id="google_maps_iframe" src=""
-                            frameborder="0" style="border: 0"></iframe>
-                    <p>
-                        {% trans 'Address: ' %}
+
+                <div class=" column ">
+                    <div class="faded-d2">
+                        <h1 class="ui header">{% trans 'Location' %}</h1>
+                        <iframe id="google_maps_iframe" src=""
+                                frameborder="0" style="border: 0"></iframe>
+                        <p>
+                            {% trans 'Address: ' %}
                         {% blocktrans %}
                             Dept. of Computer Eng., Sharif University of Technology<br>
                             Azadi St, Tehran
-                        {% endblocktrans %}<br>
-                    </p>
-                </div>
-                <div class="faded-d1">
-                    <div class="ui horizontal divider"></div>
-                    <h1 class="ui header">{% trans 'Contact Info' %}</h1>
-                    <b><i class="envelope icon"></i><a
-                            href="mailto:aichallenge@sharif.edu" id="mail">aichallenge@sharif.edu</a></b>
-                    <br><b><i class="phone icon"></i><span dir="ltr">021-6616-5781</span></b></p>
+                        {% endblocktrans %} <br>
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
