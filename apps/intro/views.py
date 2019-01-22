@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 
 def index(request):
-    staff = Staff.objects.all()
+    staff = Staff.objects.all().order_by('?')[0:4]
     return render(request, 'intro/index.html', {
         'no_sidebar': False,
         'users_count': User.objects.count(),
