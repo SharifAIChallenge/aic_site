@@ -9,7 +9,7 @@
             <div class="ui dropdown link item">
                 <span class="text">{{ title }}</span>
                 <i class="dropdown icon"></i>
-                <div class="menu">
+                <div class="menu" id="menu_navbar">
                     {% for dtitle, dlink in link.dropdown.items %}
                         <a href="{{ dlink }}" class="item">{{ dtitle }}</a>
                     {% endfor %}
