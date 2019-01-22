@@ -1,5 +1,4 @@
 import logging
-import random
 from io import BytesIO
 
 from PIL import Image
