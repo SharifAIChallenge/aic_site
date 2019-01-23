@@ -106,10 +106,6 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-document.getElementsByClassName("close")[0].onclick = function() {
-    modal.style.display = "none";
-}
-
 window.onclick = function(event) {
     if (event.target == modal) {
             modal.style.display = "none";
