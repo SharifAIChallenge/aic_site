@@ -59,11 +59,20 @@
             <h1>{% trans "Till registration" %}</h1>
             <p> {% trans "Stay in touch with us with email" %} </p>
         </div>
-        <div id="modal" class="modal">
-            <div class="modal-content" id="content">
-                <span class="close" id="modalclose">&times;</span>
-                <p id="message">Some text in the Modal..</p>
-            </div>
+        <div id="modal" class="ui basic modal test">
+  <div class="ui icon header">
+    <i class="envelope outline icon"></i>
+   {% trans "Subscription" %}
+  </div>
+  <div class="content" id="content" align="center" style="font-weight: bolder;font-size: 30px">
+ <p   id="message">Some text in the Modal..</p>  </div>
+  <div class="actions" align="center">
+    <div class="ui inverted teal large ok button"  style="font-weight: bolder">
+
+    {%trans "OK"%}
+    </div>
+  </div>
+
         </div>
         <form class="ui form" method="post" id="notify">{% csrf_token %}
             <div class="field">
@@ -813,25 +822,29 @@
                     },
                     success: function (data) {
                         if (data['success'] == true) {
-                            document.getElementById('message').innerText = 'ایمیل شما با موفقیت ثبت شد.';
-                            document.getElementById('content').style.backgroundColor = '#009D8A';
+                            document.getElementById('message').innerText = '{% trans "Your email has been successfully registered" %}';
+                            document.getElementById('content').style.color = '#009D8A';
                         } else {
-                            document.getElementById('message').innerText = 'ایمیل شما قبلا ثبت شده‌است.';
-                            document.getElementById('content').style.backgroundColor = '#ED1A3A';
+                            document.getElementById('message').innerText = '{% trans "Your email has already been registered" %}';
+                            document.getElementById('content').style.color = '#ED1A3A';
                         }
                     },
                     error: function (data) {
-                        document.getElementById('message').innerText = 'ارتباط با سایت برقرار نشد.';
-                        document.getElementById('content').style.backgroundColor = '#ED1A3A';
+                        document.getElementById('message').innerText = '{%  trans "Could not connect to site" %}';
+                        document.getElementById('content').style.color = '#ED1A3A';
                     }
                 });
             } else {
-                document.getElementById('message').innerText = 'ایمیل به درستی وارد نشده‌است.';
-                document.getElementById('content').style.backgroundColor = '#ED1A3A';
+                document.getElementById('message').innerText = '{% trans "The email has not been entered correctly" %}';
+                document.getElementById('content').style.color = '#ED1A3A';
             }
-            document.getElementById('modal').style.display = "block";
+            {#document.getElementById('modal').style.display = "block";#}
+            $(".test").modal('show');
+            $(".test").modal({
+		closable: true
+	});
             document.getElementById('email').value = '';
-            document.getElementById('modalclose').focus();
+            {#document.getElementById('modalclose').focus();#}
 
         });
     </script>
