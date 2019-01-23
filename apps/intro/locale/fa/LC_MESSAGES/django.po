@@ -498,7 +498,7 @@ msgstr ""
 "                            "
 
 #: apps/intro/templates/intro/index.html:712
-msgid "About Us"
+msgid "Part of our team"
 msgstr "برخی از اعضای تیم برگزاری"
 
 #: apps/intro/templates/intro/index.html:741
