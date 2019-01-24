@@ -82,7 +82,7 @@
                            style="{% if LANGUAGE_BIDI %} border-bottom-right-radius: 20px;border-top-right-radius: 20px;{% else %} border-bottom-left-radius: 20px;border-top-left-radius: 20px; {% endif %} background-color: #fff3d9"
                            id="email" name="email">
 
-                    <button class="ui button" type="submit" id="button"style="{% if LANGUAGE_BIDI %} border-bottom-left-radius: 20px;border-top-left-radius: 20px;{% else %} border-bottom-right-radius: 20px;border-top-right-radius: 20px; {% endif %} color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold"
+                    <button class="ui button" type="submit" id="subscribe-button" style="{% if LANGUAGE_BIDI %} border-bottom-left-radius: 20px;border-top-left-radius: 20px;{% else %} border-bottom-right-radius: 20px;border-top-right-radius: 20px; {% endif %} color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold"
 
                     >
                         {% trans 'Notify me' %}
@@ -810,7 +810,7 @@
         ScrollReveal().reveal('.faded-d2', {delay: 500});
         ScrollReveal().reveal('.faded-d3', {delay: 750});
 
-        $('#button').click(function (e) {
+        $('#subscribe-button').click(function (e) {
             e.preventDefault();
             if (validateEmail($('#email').val())) {
                 $.ajax({
