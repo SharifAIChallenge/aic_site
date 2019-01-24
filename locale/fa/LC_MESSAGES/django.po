@@ -872,6 +872,9 @@ msgstr "صفحه نوشته‌ها"
 msgid "More old entries"
 msgstr "نوشته‌های بیشتر"
 
+msgid "graphic"
+msgstr "گرافیک"
+
 #: templates/zinnia/tags/search_form.html:7
 msgid ""
 "You can use - to exclude words or phrases, &quot;double quotes&quot; for "
