@@ -60,7 +60,7 @@ def notify(request):
 def staffs(request):
     staff = Staff.objects.all()
     tech = ['site','graphic','game design','infrastructure','test','content','server and client']
-    exe = ['executive']
+    exe = ['executive','branding','design']
     return render(request, 'intro/staffs.html', {
         "staff":staff,
         "tech":tech,
@@ -75,8 +75,12 @@ def add_staff(request):
             image_file = BytesIO(image_field.file.read())
             image = Image.open(image_file)
             h = image.size[1]
-            l = image.size[0]
-            image = image.crop((0, (h - l)/2, l, (h - l)/2 + l)).resize((l, l), Image.ANTIALIAS).resize((300, 300), Image.ANTIALIAS)
+            w = image.size[0]
+            if w < h:
+                image = image.crop((0, (h - w) / 2, w, (h - w) / 2 + w)).resize((w, w), Image.ANTIALIAS)
+            elif w > h:
+                image = image.crop(((w - h) / 2, 0, (w - h) / 2 + h, h)).resize((h, h), Image.ANTIALIAS)
+            image = image.resize((300, 300), Image.ANTIALIAS)
             image_file = BytesIO()
             image.save(image_file, 'PNG')
             image_field.file = image_file
