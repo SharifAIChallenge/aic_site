@@ -716,29 +716,33 @@
 
     <div class="odd section tablet computer only" id="section-about-us" >
 
-    <div class="ui section header">
-        <a class="circular ui big ai red button" href="#section-about-us" id="part_of_team_btn">
-            {% trans 'Part of our team' %}
-        </a>
-    </div>
+        <div class="ui section header">
+            <a class="circular ui big ai red button" href="#section-about-us" id="part_of_team_btn">
+                {% trans 'Part of our team' %}
+            </a>
+        </div>
 
 
-    <div class="staff-pic stackable center aligned ui grid" id="staff-in-mainpage" style="margin-bottom: 2%;" >
-        {% for member in staff %}
+        <div class="staff-pic stackable center aligned ui grid" id="staff-in-mainpage" style="margin-bottom: 2%;" >
+            {% for member in staff %}
 
-        <div style="margin: 2%">
-            <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
-                <img class="profpic ui circular image" src="media/{{ member.image }}" alt="Card image">
-                <div class="layer" onclick="" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
-                    <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">
-                        <h3 class="text-font">{{ member.name }}</h3>
+            <div style="margin: 2%">
+                <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
+                    <img class="profpic ui circular image" src="media/{{ member.image }}" alt="Card image">
+                    <div class="layer" onclick="" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
+                        <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">
+                            <h3 class="text-font">{{ member.name }}</h3>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            {% endfor %}
         </div>
 
-        {% endfor %}
-    </div>
+        <div class="ui stackable center aligned grid">
+            <a href="staff"><button class="ui basic teal button big" style="margin-bottom: 5%;">{% trans 'See All'%} </button></a>
+        </div>
 
     </div>
 

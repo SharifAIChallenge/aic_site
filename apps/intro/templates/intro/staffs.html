@@ -9,15 +9,16 @@
 {% block container %}
 
 <div class="ui pointing secondary menu">
-            <a class="item active" data-tab="tech">{% trans 'Technical' %}</a>
-            <a class="item" data-tab="exe">{% trans 'Executive' %}</a>
+    <a class="item active" data-tab="tech">{% trans 'Technical' %}</a>
+    <a class="item" data-tab="exe">{% trans 'Executive' %}</a>
+    <a class="item" data-tab="head">{% trans 'Head' %}</a>
 </div>
 <div class="ui tab segment active" data-tab="tech" style="background-color: black!important;">
     {% for sec in tech %}
     <h3 class="ui dividing header" style="margin: 20px">
-        {{ sec }}
+        {% trans sec %}
     </h3>
-    <div class="staff-pic center aligned ui grid" id="staffs">
+    <div class="staff-pic center aligned ui grid" id="staff-tech">
     {% for member in staff %}
     {% if member.team == sec %}
         <div style="margin-bottom: 2%;">
@@ -38,9 +39,33 @@
 <div class="ui tab segment" data-tab="exe" style="background-color: black!important;">
     {% for sec in exe %}
     <h3 class="ui dividing header" style="margin: 20px">
-        {{ sec }}
+        {% trans sec %}
     </h3>
-    <div class="staff-pic center aligned ui grid" id="staffs">
+    <div class="staff-pic center aligned ui grid" id="staff-exe">
+    {% for member in staff %}
+    {% if member.team == sec %}
+        <div style="margin-bottom: 2%;">
+            <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
+                <img class="profpic ui circular image" src="media/{{ member.image }}" alt="Card image">
+                <div class="layer" onclick="" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
+                    <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">
+                        <h3 class="text-font">{{ member.name }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+    {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+<div class="ui tab segment" data-tab="head" style="background-color: black!important;">
+    {% for sec in head %}
+    <h3 class="ui dividing header" style="margin: 20px">
+        {% trans sec %}
+    </h3>
+    <div class="staff-pic center aligned ui grid" id="staff-head">
     {% for member in staff %}
     {% if member.team == sec %}
         <div style="margin-bottom: 2%;">
