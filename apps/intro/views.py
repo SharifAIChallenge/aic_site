@@ -18,7 +18,6 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     staff = Staff.objects.all().order_by('?')[0:5]
-    print(staff.count())
     return render(request, 'intro/index.html', {
         'no_sidebar': False,
         'users_count': User.objects.count(),
@@ -57,6 +56,7 @@ def notify(request):
 
 def staffs(request):
     staff = Staff.objects.all()
+    staff.delete()
     tech = ['site','graphic','game design','infrastructure','content','server and client']
     exe = ['executive','branding','design']
     head = ['head']
@@ -85,7 +85,7 @@ def add_staff(request):
             image.save(image_file, 'PNG')
             image_field.file = image_file
             image_field.image = image
-            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field)
+            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field, blog_url=form.cleaned_data['blog_url'])
     return render(request, 'intro/staff-form.html', {
         'form': form
     })
