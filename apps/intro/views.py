@@ -7,8 +7,6 @@ from django import forms
 from django.db import IntegrityError
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.utils.translation import ugettext_lazy as _
-
 
 from apps.accounts.models import Team
 from apps.game.models import TeamSubmission
@@ -59,12 +57,14 @@ def notify(request):
 
 def staffs(request):
     staff = Staff.objects.all()
-    tech = ['site','graphic','game design','infrastructure','test','content','server and client']
+    tech = ['site','graphic','game design','infrastructure','content','server and client']
     exe = ['executive','branding','design']
+    head = ['head']
     return render(request, 'intro/staffs.html', {
-        "staff":staff,
-        "tech":tech,
-        "exe":exe
+        "staff": staff,
+        "tech": tech,
+        "exe": exe,
+        "head": head,
     })
 
 def add_staff(request):
@@ -87,5 +87,5 @@ def add_staff(request):
             image_field.image = image
             Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field)
     return render(request, 'intro/staff-form.html', {
-        'form':form
+        'form': form
     })
