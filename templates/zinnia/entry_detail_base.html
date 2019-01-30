@@ -82,7 +82,7 @@
                                         {% endblock comment-image-noanswer %}
                                     </div>
                                     <div class="content">
-                                        <div class="metadata">
+                                        <div class="metadata cream">
                                             <span class="date">
                                                 {% block comment-info-noanswer %}
                                                     <p class="comment-info">
@@ -93,7 +93,7 @@
 
                                                         <a href="{{ comment_url }}" rel="external nofollow"
                                                            class="fn url header">{{ comment_name }}</a>
-                                                        on
+                                                        -
                                                         <time class="comment-published" datetime="{{ comment_technical_date }}">
                                                             {{ comment_human_date }}
                                                         </time>
@@ -102,7 +102,7 @@
                                                 {% endblock comment-info-noanswer %}
                                             </span>
                                         </div>
-                                        <div class="text">
+                                        <div class="text cream">
                                             {% block comment-content-noanswer %}
                                                 {{ object_comment.comment|linebreaks }}
                                             {% endblock comment-content-noanswer %}
@@ -124,7 +124,7 @@
                                                 {% endblock comment-image %}
                                                 </div>
                                                 <div class="content">
-                                                    <div class="metadata">
+                                                    <div class="metadata cream">
                                                         <span class="date">
                                                             {% block comment-info %}
                                                                 <p class="comment-info">
@@ -134,7 +134,7 @@
                                                                        title="Direct link to this comment">{{ comment_title }}</a>
                                                                     <a href="{{ comment_url }}" rel="external nofollow"
                                                                        class="fn url large">{{ comment_name }}</a>
-                                                                    on
+                                                                    -
                                                                     <time class="comment-published" datetime="{{ comment_technical_date }}">
                                                                         {{ comment_human_date }}
                                                                     </time>
@@ -143,7 +143,7 @@
                                                             {% endblock comment-info %}
                                                         </span>
                                                     </div>
-                                                    <div class="text">
+                                                    <div class="text cream">
                                                         {% block comment-content %}
                                                             {{ comment.comment|linebreaks }}
                                                         {% endblock comment-content %}
@@ -152,7 +152,7 @@
                                                 </div>
                                             </div>
                                         {% endfor %}
-                                        {% if request.user.is_staff %}
+                                        {% if request.user.is_authenticated %}
                                             {% render_comment_form for object_comment with object_comment.id %}
                                         {% endif %}
                                     </div>

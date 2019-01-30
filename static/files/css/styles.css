@@ -327,3 +327,7 @@ body {
     }
     
 }
+
+.cream {
+    color: var(--cream)!important;
+}
