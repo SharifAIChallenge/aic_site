@@ -16,13 +16,13 @@ from captcha.fields import ReCaptchaField
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
-    last_name = forms.CharField(max_length=30, required=True)
-    email = forms.EmailField(max_length=254, required=True)
-    organization = forms.CharField(max_length=255, required=True)
+    last_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
+    email = forms.EmailField(max_length=254, required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
+    organization = forms.CharField(max_length=255, required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
     phone_regex = RegexValidator(regex=r'^\d{8,15}$',
                                  message=_("Please enter your phone number correctly!"))
     phone_number = forms.CharField(validators=[phone_regex], required=False)
-    age = forms.IntegerField(required=False)
+    age = forms.IntegerField(required=False, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
     captcha = ReCaptchaField()
 
     def is_valid(self):
