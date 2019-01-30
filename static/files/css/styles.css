@@ -229,7 +229,11 @@ body {
     width:100%;
     max-height: 20vw;
     object-fit: cover;
-    /*margin: -1em!important;*/
+    margin-bottom: 1rem;
+}
+.comments input, .comments textarea, #comment-form input, #comment-form textarea
+{
+    margin-top: 1rem!important;
 }
 #comments-container {
     padding-top: 30px;
@@ -325,7 +329,7 @@ body {
     .socialformobile{
         display: none;
     }
-    
+
 }
 
 .cream {
