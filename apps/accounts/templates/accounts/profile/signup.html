@@ -5,7 +5,8 @@
 {% block title %}{% trans 'Sign Up' %}{% endblock %}
 
 {% block container %}
-    <form method="post" class="ui form error">
+    <div class="ui inverted segment" style="border-radius: 30px;margin: auto;">
+    <form method="post" class="ui inverted form error" style="margin:auto;width: 90%">
         {% if form.non_field_errors|length %}
             <div class="ui red message">
             {% for error in form.non_field_errors %}
@@ -19,13 +20,13 @@
             <label>{% trans 'Username' %}</label>
             {{ form.username }}
         </div>
-        <div class="ui message">
+        <div class="ui message" style="color:#009D8A">
             <ul class="list">
                 <p>{{ form.username.help_text|safe }}</p>
             </ul>
         </div>
         {% if form.username.errors %}
-            <div class="ui message error">
+            <div class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
                 <strong>{{ form.username.errors }}</strong>
             </div>
         {% endif %}
@@ -53,12 +54,12 @@
         </div>
 
         {% if form.organization.errors %}
-            <div class="ui message error">
+            <div class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
                 <strong>{{ form.organization.errors }}</strong>
             </div>
         {% endif %}
         {% if form.phone_number.errors %}
-            <div class="ui message error">
+            <div class="ui message error"style="font-weight:bolder;color:#ED1A3A;">
                 <strong>{{ form.phone_number.errors }}</strong>
             </div>
         {% endif %}
@@ -68,10 +69,10 @@
             {{ form.email }}
         </div>
         {% if form.email.errors %}
-            <div class="ui message error">
+            <div class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
                 <strong>{{ form.email.errors }}</strong>
             </div>
-            <ol class="ui message error">
+            <ol class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
                 {% for error in form.email.errors %}
                     <li>{{ error|escape }}</li>
                 {% endfor %}
@@ -86,7 +87,7 @@
         {#          <p>{{ form.password1.help_text|safe }}</p>#}
         {#      </div>#}
         {% if form.password1.errors %}
-            <ol class="ui message error">
+            <ol class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
                 {% for error in form.password1.errors %}
                     <li>{{ error|escape }}</li>
                 {% endfor %}
@@ -98,7 +99,7 @@
             {{ form.password2 }}
         </div>
         {% if form.password2.errors %}
-            <ol class="ui message error">
+            <ol class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
                 {% for error in form.password2.errors %}
                     {{ error|escape }}
                 {% endfor %}
@@ -109,13 +110,15 @@
             {{ form.captcha }}
         </div>
         {% if form.captcha.errors %}
-            <div class="ui message error">
+            <div class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
                 {{ form.captcha.errors }}
             </div>
         {% endif %}
 
 
 
-        <button type="submit" class="ui green button">{% trans 'SignUp' %}</button>
+        <button type="submit" class="ui inverted teal button" style="font-weight: bolder">{% trans 'SignUp' %}</button>
     </form>
+    </div>
 {% endblock %}
+

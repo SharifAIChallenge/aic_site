@@ -14,9 +14,8 @@ from apps.accounts.models import Profile
 from apps.accounts.tokens import account_activation_token
 from captcha.fields import ReCaptchaField
 
-
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=True)
+    first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
     last_name = forms.CharField(max_length=30, required=True)
     email = forms.EmailField(max_length=254, required=True)
     organization = forms.CharField(max_length=255, required=True)
