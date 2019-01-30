@@ -46,13 +46,13 @@
     {{ object.publication_date|date:"d" }}{% endblock body-class %}
 
 {% block container %}
-
+<div style="background-color: black!important;">
     {% block entry-content %}
         {% include object.content_template with object_content=object.html_content %}
     {% endblock entry-content %}
 
-
-
+    <div class="ui grid">
+    <div class="ten wide computer sixteen wide tablet column centered" style="margin-right: 2rem; margin-left:2rem">
     {% block entry-comments %}
         <section id="comments">
             {% if object.comment_count %}
@@ -184,7 +184,9 @@
             <a href="{% url 'accounts:login' %}" class="ui primary button">{%  trans 'Login To Comment' %}</a>
         {% endif %}
     {% endblock entry-comments-form %}
-
+    </div>
+    </div>
+</div>
 {% endblock container %}
 
 {% block admin-tools %}

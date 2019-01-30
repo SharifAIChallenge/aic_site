@@ -88,10 +88,10 @@
 {% endblock content-title %}
 
 {% block content-loop %}
-<div class="blog_post ui grid">
+<div  style="background-color: black!important;" class=" ">
 {% for object in object_list %}
 
-  <div class="blog_post card" style="margin-bottom:10px;">
+  <div class=" card" style=" margin-bottom:10px;">
     <!--<div class="image">-->
       <!--<img src="/images/avatar/large/stevie.jpg">-->
     <!--</div>-->
@@ -107,8 +107,8 @@
     <a href="{% url 'admin:zinnia_entry_add' %}">{% trans "No entries yet." %}</a>
   </p>
 {% endfor %}
-
 </div>
+
 {% endblock content-loop %}
 
 {% block content-pagination %}

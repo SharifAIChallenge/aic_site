@@ -72,6 +72,13 @@ This set of fonts are used in this project under the license: RC4QT
 /*url('../fonts/woff/IRANSansWeb_UltraLight.woff') format('woff'),  !* FF3.6+, IE9, Chrome6+, Saf5.1+*!*/
 /*url('../fonts/ttf/IRANSansWeb_UltraLight.ttf') format('truetype');*/
 /*}*/
+:root {
+    --green: #009D8A;
+    --yellow: #F8981D;
+    --red: #ED1A3A;
+    --cream: #FFF3D9;
+}
+
 @font-face {
     font-family: IRANSans;
     font-style: normal;
@@ -191,11 +198,39 @@ body {
     color: #40444d !important;
     font-size: 1.3em;
 }
-
+/*2019 Blog CSSs*/
 .blog_post {
+    margin-top: 3rem;
     width: 100% !important;
+    background-color:rgba(255,255,255,0.04)!important;
+    box-shadow: none !important;
+    -webkit-border-radius: 5px!important;
+    -moz-border-radius: 5px!important;
+    border-radius: 5px!important;
 }
-
+.blog_post:not(:last-child)
+{
+        border-bottom: 1px white solid;
+}
+.entry-title a
+{
+    color:var(--yellow) !important;
+}
+.continue-reading a
+{
+      color: var(--red) !important;
+}
+.entry-footer
+{
+    color: var(--green);
+}
+.entry-image img
+{
+    width:100%;
+    max-height: 20rem;
+    object-fit: cover;
+    /*margin: -1em!important;*/
+}
 #comments-container {
     padding-top: 30px;
     width: 100% !important;
