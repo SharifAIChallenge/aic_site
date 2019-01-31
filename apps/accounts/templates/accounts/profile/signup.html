@@ -78,14 +78,14 @@
             {{ form.email }}
         </div>
         {% if form.email.errors %}
-{#            <div class="ui message error" style="font-weight:bolder;color:#ED1A3A;">#}
-{#                <strong>{{ form.email.errors }}</strong>#}
-{#            </div>#}
-            <ul class="ui message error" style="font-weight:bolder;color:#ED1A3A;list-style-type:none ">
-                {% for error in form.email.errors %}
-                    <li>{{ error|escape }}</li>
-                {% endfor %}
-            </ul>
+            <div class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
+                <strong>{{ form.email.errors }}</strong>
+            </div>
+{#            <ul class="ui message error" style="font-weight:bolder;color:#ED1A3A; ">#}
+{#                {% for error in form.email.errors %}#}
+{#                    <li><strong>{{ error|escape }}</strong></li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
         {% endif %}
 
         <div class="field required">
@@ -96,7 +96,7 @@
         {#          <p>{{ form.password1.help_text|safe }}</p>#}
         {#      </div>#}
         {% if form.password1.errors %}
-            <ul class="ui message error" style="font-weight:bolder;color:#ED1A3A;list-style-type:none">
+            <ul class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
                 {% for error in form.password1.errors %}
                     <li>{{ error|escape }}</li>
                 {% endfor %}
@@ -108,7 +108,7 @@
             {{ form.password2 }}
         </div>
         {% if form.password2.errors %}
-            <ul class="ui message error" style="font-weight:bolder;color:#ED1A3A;list-style-type:none">
+            <ul class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
                 {% for error in form.password2.errors %}
                     {{ error|escape }}
                 {% endfor %}
