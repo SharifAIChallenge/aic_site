@@ -47,11 +47,11 @@
                 <label>{% trans 'College/School' %}</label>
                 {{ form.organization }}
             </div>
-            <div class="field">
+            <div class="field required">
                 <label>{% trans 'Phone Number' %}</label>
                 {{ form.phone_number }}
             </div>
-             <div class="field">
+             <div class="field required">
                 <label>{% trans 'Age' %}</label>
                 {{ form.age }}
             </div>
@@ -67,20 +67,25 @@
                 <strong>{{ form.phone_number.errors }}</strong>
             </div>
         {% endif %}
+       {% if form.age.errors %}
+            <div class="ui message error"style="font-weight:bolder;color:#ED1A3A;">
+                <strong>{{ form.age.errors }}</strong>
+            </div>
+        {% endif %}
 
         <div class="field required">
             <label>{% trans 'Email' %}</label>
             {{ form.email }}
         </div>
         {% if form.email.errors %}
-            <div class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
-                <strong>{{ form.email.errors }}</strong>
-            </div>
-            <ol class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
+{#            <div class="ui message error" style="font-weight:bolder;color:#ED1A3A;">#}
+{#                <strong>{{ form.email.errors }}</strong>#}
+{#            </div>#}
+            <ul class="ui message error" style="font-weight:bolder;color:#ED1A3A;list-style-type:none ">
                 {% for error in form.email.errors %}
                     <li>{{ error|escape }}</li>
                 {% endfor %}
-            </ol>
+            </ul>
         {% endif %}
 
         <div class="field required">
@@ -91,11 +96,11 @@
         {#          <p>{{ form.password1.help_text|safe }}</p>#}
         {#      </div>#}
         {% if form.password1.errors %}
-            <ol class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
+            <ul class="ui message error" style="font-weight:bolder;color:#ED1A3A;list-style-type:none">
                 {% for error in form.password1.errors %}
                     <li>{{ error|escape }}</li>
                 {% endfor %}
-            </ol>
+            </ul>
         {% endif %}
 
         <div class="field required">
@@ -103,11 +108,11 @@
             {{ form.password2 }}
         </div>
         {% if form.password2.errors %}
-            <ol class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
+            <ul class="ui message error" style="font-weight:bolder;color:#ED1A3A;list-style-type:none">
                 {% for error in form.password2.errors %}
                     {{ error|escape }}
                 {% endfor %}
-            </ol>
+            </ul>
         {% endif %}
 
         <div class="field">
