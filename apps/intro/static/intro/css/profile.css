@@ -40,6 +40,10 @@
     opacity: 0.7;
 }
 
+.layer:hover{
+    opacity: 0.7;
+}
+
 .text-font{
     font-family: IRANSans,'Helvetica Neue',Arial,Helvetica,sans-serif;
     font-size:120%;
