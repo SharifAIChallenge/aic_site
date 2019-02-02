@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
+
 <script>
 !function (t, e, n) {
         t.yektanetAnalyticsObject = n, t[n] = t[n] || function () {
@@ -84,6 +85,7 @@
             {% include 'base/navbar.html' %}
         {% endblock %}
 
+
         {% block content %}
             <div class="ui container">
                 {% block container %}
@@ -100,6 +102,19 @@
 
 <script src="{% static 'js/jquery.inview.min.js' %}"></script>
 <script src="{% static 'js/footer_scripts.js' %}"></script>
+<script type="text/javascript">
+  $(document)
+    .ready(function () {
+  var x = $("#footer").offset();
+  var footer_pos=x.top;
+  var screen=$(window).height();
+  if(footer_pos +200<screen)
+    $("#footer").css('position', 'fixed');
+
+
+});
+
+</script>
 {% block footer_scripts %}{% endblock %}
 </body>
 </html>
