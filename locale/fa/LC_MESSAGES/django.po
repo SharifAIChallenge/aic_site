@@ -1173,12 +1173,7 @@ msgstr "ایمیل به درستی وارد نشده‌است"
 msgid "Registration"
 msgstr "ثبت نام"
 
-msgid "Age"
-msgstr "سن"
 msgid "CUSTOM_VALIDITY"
 msgstr ""
 "if(this.validity.typeMismatch){this.setCustomValidity('آدرس ایمیل را صحیح وارد کنید');}"
 "else{this.setCustomValidity('لطفا این بخش را پر کنید');}"
-
-msgid "SignUp Form"
-msgstr "فرم ثبت نام"
