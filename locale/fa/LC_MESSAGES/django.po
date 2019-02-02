@@ -1178,3 +1178,6 @@ msgstr ""
 
 msgid "SignUp Form"
 msgstr "فرم ثبت نام"
+
+msgid "Reset Password"
+msgstr"تغییر رمز عبور"

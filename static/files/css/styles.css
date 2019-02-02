@@ -292,3 +292,10 @@ body {
     }
     
 }
+@media(min-width: 800px) {
+    .resetpass
+    {
+        width: 60%;
+    }
+
+}
