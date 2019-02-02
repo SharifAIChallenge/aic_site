@@ -65,15 +65,15 @@
 
     {% block extra_header %}{% endblock %}
 </head>
-<body {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<body {% if LANGUAGE_BIDI %}dir="rtl"{% endif %} style="height: 100%;">
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXQDDPG"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div class="body-image"></div>
-<div class="body-pattern" id="pattern"></div>
+<div class="body-image" {% block bg-style %}{% endblock %}></div>
+{% block hide-patterns %}<div class="body-pattern" id="pattern"></div>{% endblock %}
 {#{% block sidebar %}#}
 {#    {% include 'base/sidebar.html' %}#}
 {#{% endblock %}#}
@@ -85,7 +85,7 @@
         {% endblock %}
 
         {% block content %}
-            <div class="ui container">
+            <div class="ui container {% block error-aligns %}{% endblock %}>
                 {% block container %}
 
                 {% endblock %}

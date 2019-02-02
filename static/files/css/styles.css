@@ -284,6 +284,8 @@ body {
     position: fixed;
     opacity: 0.5;
     background-attachment: fixed;
+
+
 }
 
 @media(min-width: 800px) {
