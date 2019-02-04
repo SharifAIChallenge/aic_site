@@ -498,8 +498,11 @@ msgstr ""
 "                            "
 
 #: apps/intro/templates/intro/index.html:712
-msgid "About Us"
+msgid "Part of our team"
 msgstr "برخی از اعضای تیم برگزاری"
+
+msgid "See All"
+msgstr "مشاهده همه"
 
 #: apps/intro/templates/intro/index.html:741
 msgid "Contact Us"
@@ -543,6 +546,33 @@ msgstr "فنی"
 #: apps/intro/templates/intro/staffs.html:14
 msgid "Executive"
 msgstr "اجرایی"
+
+msgid "site"
+msgstr "سایت"
+
+msgid "graphic"
+msgstr "گرافیک"
+
+msgid "game design"
+msgstr "طراحی بازی"
+
+msgid "infrastructure"
+msgstr "زیرساخت"
+
+msgid "head"
+msgstr "هد"
+
+msgid "content"
+msgstr "محتوا"
+
+msgid "server and client"
+msgstr "سرور و کلاینت"
+
+msgid "branding"
+msgstr "برندینگ"
+
+msgid "design"
+msgstr "طراحی"
 
 #~ msgid "Head Of Committee"
 #~ msgstr "کمیته برگزاری"

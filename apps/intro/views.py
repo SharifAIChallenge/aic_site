@@ -7,8 +7,6 @@ from django import forms
 from django.db import IntegrityError
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.utils.translation import ugettext_lazy as _
-
 
 from apps.accounts.models import Team
 from apps.game.models import TeamSubmission
@@ -20,7 +18,6 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     staff = Staff.objects.all().order_by('?')[0:5]
-    print(staff.count())
     return render(request, 'intro/index.html', {
         'no_sidebar': False,
         'users_count': User.objects.count(),
@@ -59,12 +56,15 @@ def notify(request):
 
 def staffs(request):
     staff = Staff.objects.all()
-    tech = ['site','graphic','game design','infrastructure','test','content','server and client']
-    exe = ['executive']
+    staff.delete()
+    tech = ['site','graphic','game design','infrastructure','content','server and client']
+    exe = ['executive','branding','design']
+    head = ['head']
     return render(request, 'intro/staffs.html', {
-        "staff":staff,
-        "tech":tech,
-        "exe":exe
+        "staff": staff,
+        "tech": tech,
+        "exe": exe,
+        "head": head,
     })
 
 def add_staff(request):
@@ -75,13 +75,17 @@ def add_staff(request):
             image_file = BytesIO(image_field.file.read())
             image = Image.open(image_file)
             h = image.size[1]
-            l = image.size[0]
-            image = image.crop((0, (h - l)/2, l, (h - l)/2 + l)).resize((l, l), Image.ANTIALIAS).resize((300, 300), Image.ANTIALIAS)
+            w = image.size[0]
+            if w < h:
+                image = image.crop((0, (h - w) / 2, w, (h - w) / 2 + w)).resize((w, w), Image.ANTIALIAS)
+            elif w > h:
+                image = image.crop(((w - h) / 2, 0, (w - h) / 2 + h, h)).resize((h, h), Image.ANTIALIAS)
+            image = image.resize((300, 300), Image.ANTIALIAS)
             image_file = BytesIO()
             image.save(image_file, 'PNG')
             image_field.file = image_file
             image_field.image = image
-            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field)
+            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field, blog_url=form.cleaned_data['blog_url'])
     return render(request, 'intro/staff-form.html', {
-        'form':form
+        'form': form
     })
