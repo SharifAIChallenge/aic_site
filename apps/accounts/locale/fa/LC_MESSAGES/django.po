@@ -33,7 +33,6 @@ msgid "Registration is closed. See you next year."
 msgstr "ثبت نام هم‌اکنون باز نیست. به امید دیدار شما در رقابت بعدی."
 
 #: apps/accounts/forms/panel.py:45
-#, fuzzy
 #| msgid "Submissions"
 msgid "Submission is closed."
 msgstr "ارسال‌ها"
@@ -453,7 +452,6 @@ msgid "Phone Number"
 msgstr "شماره ی تلفن"
 
 #: apps/accounts/templates/accounts/profile/signup.html:55
-#, fuzzy
 #| msgid "Age‌"
 msgid "Age"
 msgstr "سن"
