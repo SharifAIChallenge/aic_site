@@ -547,31 +547,31 @@ msgstr "فنی"
 msgid "Executive"
 msgstr "اجرایی"
 
-msgid "site"
+msgid "Site"
 msgstr "سایت"
 
-msgid "graphic"
+msgid "Graphic"
 msgstr "گرافیک"
 
-msgid "game design"
+msgid "Game Design"
 msgstr "طراحی بازی"
 
-msgid "infrastructure"
+msgid "Infrastructure"
 msgstr "زیرساخت"
 
-msgid "head"
+msgid "Head"
 msgstr "هد"
 
-msgid "content"
+msgid "Content"
 msgstr "محتوا"
 
-msgid "server and client"
+msgid "Server and Vlient"
 msgstr "سرور و کلاینت"
 
-msgid "branding"
+msgid "Branding"
 msgstr "برندینگ"
 
-msgid "design"
+msgid "Design"
 msgstr "طراحی"
 
 #~ msgid "Head Of Committee"
