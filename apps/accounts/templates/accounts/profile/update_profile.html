@@ -5,10 +5,12 @@
 {% block title %}{% trans 'Sign Up' %}{% endblock %}
 
 {% block container %}
-  <h2>{% trans 'Sign up' %}</h2>
-  <form method="post" class="ui form">
+{#  <h2>{% trans 'Sign up' %}</h2>#}
+ <div class="ui inverted segment" style="border-radius: 30px;margin: auto;">
+  <form method="post" class="ui inverted form error" style="margin:auto;width: 90%">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="ui green button">{% trans 'Update' %}</button>
   </form>
+ </div>
 {% endblock %}
