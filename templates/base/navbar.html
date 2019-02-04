@@ -4,9 +4,7 @@
 <div class="ui inverted sticky borderless menu navbar-color" id="navbar">
     {% for title, link in ai.navbar.items %}
         {% if not link.dropdown %}
-            <a  class="item" onclick="$('html, body').animate({
-    scrollTop: $('{{ link }}'.substring(1)).offset().top
-}, 1000);" id="{{ title }}">{{ title }}</a>
+            <a  class="item" href="{{ link }}" id="{{ title }}">{{ title }}</a>
 {#            commented temporary#}
 {#            <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>#}
         {% else %}

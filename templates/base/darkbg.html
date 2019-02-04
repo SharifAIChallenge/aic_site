@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{#{% block sidebar %}{% endblock %}#}
+
+{% block content %}
+    <div class="ui container" {% block error-aligns %}{% endblock %}>
+
+        <div class="ui segment mybackground cream">
+            {% block container %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

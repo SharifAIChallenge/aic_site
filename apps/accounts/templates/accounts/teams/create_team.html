@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'base/darkbg.html' %}
 {% load i18n %}
 {% load static %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -45,7 +45,7 @@
         {% endfor %}
     </select>
 </div>
-  <button class="ui green button" type="submit">{% trans 'Create Team' %}</button>
+  <button class="ui inverted teal button" type="submit">{% trans 'Create Team' %}</button>
 {% if  form.non_field_errors %}
     <div class="ui error message">
         <div class="header">{% trans 'Error!' %}</div>
