@@ -105,13 +105,10 @@ This set of fonts are used in this project under the license: RC4QT
     }
 }
 
-body {
-    color: #FFF3D9;
+body, .ui.header  {
+    color: var(--cream);
 }
 
-.ui.header {
-    color: #FFF3D9;
-}
 #navbar {
     z-index: 99;
 
@@ -166,23 +163,23 @@ body {
 }
 
 .ai.red.button {
-    background-color: #ED1A3A !important;
+    background-color: var(--red) !important;
     z-index: 6;
     font-weight: bold;
-    color: #FFF3D9;
+    color: var(--cream);
 }
 
 .ai.blue.button {
-    background-color: #009d8a !important;
+    background-color: var(--green) !important;
     z-index: 6;
     font-weight: bold;
-    color: #FFF3D9;
+    color: var(--cream);
 }
 .ai.yellow.button {
-    background-color: #F8981D !important;
+    background-color: var(--yellow) !important;
     z-index: 6;
     font-weight: bold;
-    color: #FFF3D9;
+    color: var(--cream);
 }
 
 #footer {
@@ -202,7 +199,7 @@ body {
 .blog_post {
     margin-top: 3rem;
     width: 100% !important;
-    background-color:rgba(255,255,255,0.04)!important;
+    background-color: rgb(34, 34, 34) !important;
     box-shadow: none !important;
     -webkit-border-radius: 5px!important;
     -moz-border-radius: 5px!important;
@@ -341,3 +338,17 @@ body {
     color: var(--cream)!important;
 }
 
+.mybackground {
+    background-color: #222222dd !important;
+    border-radius: 30px!important;
+    margin: auto;
+}
+.mybackground #panel-navbar .item, .mybackground label
+{
+    color: var(--cream)!important;
+}
+
+.mybackground a.item.active
+{
+    border-color: var(--cream)!important;
+}

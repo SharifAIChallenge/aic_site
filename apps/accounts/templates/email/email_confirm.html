@@ -5,22 +5,45 @@
 {% block title %}{% trans 'Sign Up' %}{% endblock %}
 
 {% block container %}
-<div class="ui success icon message">
-  <i class="check circle icon"></i>
-  <div class="content">
-    <div class="header">
-      {% trans 'Your account has been successfully verified' %}
+       <div id="modal" class="ui basic modal test" >
+  <div class="ui icon header">
+    <i class="check circle icon" style="color:#009D8A"></i>
+  <span style="color: #009D8A;">    {% trans 'Your account has been successfully verified' %}</span>
+  </div>
+  <div class="content" id="content" align="center" style="font-weight: bolder;font-size: 30px">
+    <p style="color:  #009D8A">{% trans 'You can now login with your account'%}</p>
+  </div>
+  <div class="actions" align="center">
+    <div class="ui inverted teal large ok button" style="font-weight: bolder">
+<a  href="/accounts/login">
+     <span style="color: #fff3d9 !important;" >{%trans "OK"%}</span>
+    </a>
     </div>
-    <p>{% trans 'You can now login with your account'%}</p>
   </div>
-</div>
+    </div>
 
-<a href="/accounts/login">
-<div class="ui animated button" tabindex="0">
-  <div class="visible content">{% trans 'OK' %}</div>
-  <div class="hidden content">
-    <i class="right arrow icon"></i>
-  </div>
-</div>
-</a>
+
+{% endblock %}
+{% block footer_scripts %}
+    {{ block.super }}
+    {% if LANGUAGE_BIDI %}
+        <script src="{% static 'intro/js/scripts.js' %}"></script>
+    {% else %}
+        <script src="{% static 'intro/js/scriptsEN.js' %}"></script>
+    {% endif %}
+    <script type="text/javascript">
+      $(document)
+    .ready(function () {
+{#    $('.modal')#}
+{#  .modal('show')#}
+{#;#}
+ $('.modal')
+    .modal({
+        closable: false
+     }).modal('show');
+
+});
+
+    </script>
+
 {% endblock %}

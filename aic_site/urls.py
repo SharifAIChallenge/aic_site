@@ -36,7 +36,7 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^accounts/reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
     url(r'^accounts/', include(account_urls)),
-    url(r'^blog/', include(zinnia_urls)),
+    url(r'^blog/', include(zinnia_urls),name='blog'),
     url(r'^game/', include(game_urls)),
     url(r'^articles/comments/', include('django_comments.urls')),
     url(r'^tinymce/filebrowser/', include('zinnia_tinymce.urls')),

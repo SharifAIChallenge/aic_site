@@ -145,8 +145,9 @@
                     </div>
                     <div class="right floated">
                     {% block entry-published %}
-                        <time style="direction: rtl!important;" class="published" datetime="{{ object.publication_date|date:"c" }}"
-                              itemprop="datePublished">{{ object.tarikh }}</time>
+
+                        <time style="direction: rtl !important;" class="published" datetime="{{ object.publication_date|date:"c" }}"
+                              itemprop="datePublished">{{ object.publication_date|date:"DATE_FORMAT" }}</time>
                     {% endblock entry-published %}
                     </div>
 

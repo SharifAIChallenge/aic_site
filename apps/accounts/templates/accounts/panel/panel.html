@@ -1,34 +1,35 @@
-{% extends 'base/base.html' %}
+{% extends 'base/darkbg.html' %}
 {% load i18n %}
 {% load static %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% block container %}
-    {% include 'accounts/panel/messages.html' %}
+        {% include 'accounts/panel/messages.html' %}
 
 
-    <div class="ui stackable grid">
-        <div class="four wide column">
-            {% include 'accounts/panel/challenge_feild.html' %}
-            <div class="ui secondary vertical pointing fluid menu mobile-hidden">
-                {% for item in menu_items %}
-                    <a class="item{% if item.active %} active{% endif %}" href="{{ item.link }}">
-                        {{ item.text }}
-                    </a>
-                {% endfor %}
+        <div class="ui stackable grid">
+            <div class="four wide column">
+                {% include 'accounts/panel/challenge_feild.html' %}
+                <div class="ui secondary vertical pointing fluid menu mobile-hidden" id="panel-navbar">
+                    {% for item in menu_items %}
+                        <a class="item{% if item.active %} active{% endif %}" href="{{ item.link }}">
+                            {{ item.text }}
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="ui secondary pointing fluid menu mobile-only" id="panel-navbar">
+                    {% for item in menu_items %}
+                        <a class="item{% if item.active %} active{% endif %}" href="{{ item.link }}">
+                            {{ item.text }}
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="ui secondary pointing fluid menu mobile-only">
-                {% for item in menu_items %}
-                    <a class="item{% if item.active %} active{% endif %}" href="{{ item.link }}">
-                        {{ item.text }}
-                    </a>
-                {% endfor %}
+            <div class="twelve wide column">
+                {% block panel_content %}
+                    NOTHING HERE... YET!
+                {% endblock %}
             </div>
-        </div>
-        <div class="twelve wide column">
-            {% block panel_content %}
-                NOTHING HERE... YET!
-            {% endblock %}
         </div>
     </div>
     <script src="{% static 'accounts/js/api.js' %}"></script>
