@@ -4,12 +4,11 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
-
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-22 21:45+0330\n"
+"POT-Creation-Date: 2019-02-05 00:36+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,56 +50,6 @@ msgstr "انگلیسی"
 msgid "Persian"
 msgstr "فارسی"
 
-#: templates/400.html:6
-msgid "400"
-msgstr "۴۰۰"
-
-#: templates/400.html:7
-msgid "Bad request"
-msgstr "درخواست نادرست"
-
-#: templates/400.html:9
-msgid "Sorry, but the request was malformed."
-msgstr "متاسفیم اما درخواست شما ساختار درستی نداشت"
-
-#: templates/403.html:6
-msgid "403"
-msgstr "۴۰۳"
-
-#: templates/403.html:7
-msgid "Permission denied"
-msgstr "دسترسی ممنوع است."
-
-#: templates/403.html:9
-msgid "Sorry, but you don't have the permission to do this action."
-msgstr "متاسفیم اما شما دسترسی ندارید."
-
-#: templates/404.html:6
-msgid "404"
-msgstr "۴۰۴"
-
-#: templates/404.html:7
-msgid "Page not found"
-msgstr "صفحه مورد نظر یافت نشد."
-
-#: templates/404.html:9
-msgid "Sorry, but the requested page could not be found."
-msgstr "متاسفیم اما صفحه مورد نظر یافت نشد."
-
-#: templates/500.html:6
-msgid "500"
-msgstr "۵۰۰"
-
-#: templates/500.html:7
-msgid "Server error"
-msgstr "ایراد سرور"
-
-#: templates/500.html:8
-msgid ""
-"There's been an error. It's been reported to the site administrators via e-"
-"mail and should be fixed shortly. Thanks for your patience."
-msgstr "مشکلی داخلی در سرور رخ داد."
-
 #: templates/base/footer.html:18
 msgid ""
 "\n"
@@ -121,8 +70,6 @@ msgstr "خروج"
 msgid "Login"
 msgstr "ورود"
 
-msgid "LOGIN"
-msgstr "ورود"
 #: templates/base/navbar.html:57
 msgid "Register"
 msgstr "ثبت نام"
@@ -190,7 +137,7 @@ msgstr ""
 msgid "Thanks for flagging"
 msgstr ""
 
-#: templates/comments/form.html:51 templates/comments/preview.html:36
+#: templates/comments/form.html:57 templates/comments/preview.html:36
 #: templates/comments/zinnia/entry/form.html:51
 msgid "Post"
 msgstr "فرستادن"
@@ -253,7 +200,7 @@ msgid "View this comment"
 msgstr "اولین نظر را بدهید!"
 
 #: templates/comments/zinnia/entry/email/notification.txt:2
-#: templates/registration/password_reset_form.html:11
+#: templates/registration/password_reset_form.html:12
 msgid "Email"
 msgstr "ایمیل"
 
@@ -329,21 +276,21 @@ msgstr "شما می‌توانید ادامه دهید"
 msgid "log in"
 msgstr "وارد شوید"
 
-#: templates/registration/password_reset_confirm.html:8
-#: templates/registration/password_reset_confirm.html:33
+#: templates/registration/password_reset_confirm.html:9
+#: templates/registration/password_reset_confirm.html:34
 msgid "Change password"
 msgstr "رمز"
 
-#: templates/registration/password_reset_confirm.html:11
+#: templates/registration/password_reset_confirm.html:12
 #: templates/zinnia/password.html:24
 msgid "Password"
 msgstr "رمز"
 
-#: templates/registration/password_reset_confirm.html:23
+#: templates/registration/password_reset_confirm.html:24
 msgid "Password Confirm"
 msgstr "تکرار رمز"
 
-#: templates/registration/password_reset_confirm.html:39
+#: templates/registration/password_reset_confirm.html:41
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
@@ -351,7 +298,11 @@ msgstr ""
 "لینک بازیابی رمز نامعتبر است و احتمالا از آن قبلا استفاده شده‌است. لطفا برای "
 "بازیابی رمز مجددا درخواست دهید."
 
-#: templates/registration/password_reset_done.html:11
+#: templates/registration/password_reset_done.html:17
+msgid "Reset Password"
+msgstr "تغییر رمز عبور"
+
+#: templates/registration/password_reset_done.html:20
 msgid ""
 "We've emailed you instructions for setting your password, if an account "
 "exists with the email you entered. You should receive them shortly."
@@ -367,35 +318,35 @@ msgstr "سلام"
 msgid "Click on the link below in order to reset your password"
 msgstr "برای بازیابی رمز خود بر روی لینک زیر کلیک کنید"
 
-#: templates/registration/password_reset_form.html:7
+#: templates/registration/password_reset_form.html:8
 msgid "Forgot password"
 msgstr "فراموشی رمز"
 
-#: templates/registration/password_reset_form.html:15
+#: templates/registration/password_reset_form.html:16
 msgid "Submit"
 msgstr "ارسال"
 
-#: templates/zinnia/_entry_detail_base.html:110
+#: templates/zinnia/_entry_detail_base.html:113
 #, python-format
 msgid "%(percent)s%% of %(object)s still remains to read."
 msgstr ""
 
-#: templates/zinnia/_entry_detail_base.html:112
+#: templates/zinnia/_entry_detail_base.html:115
 msgid "Continue reading"
 msgstr "ادامه خواندن"
 
-#: templates/zinnia/_entry_detail_base.html:127 templates/zinnia/base.html:51
+#: templates/zinnia/_entry_detail_base.html:131 templates/zinnia/base.html:51
 #: templates/zinnia/tag_list.html:6
 msgid "Tags"
 msgstr "تگ‌ها"
 
-#: templates/zinnia/_entry_detail_base.html:131
+#: templates/zinnia/_entry_detail_base.html:135
 #: templates/zinnia/tag_list.html:17
 #, python-format
 msgid "Show all entries tagged by %(tag)s"
 msgstr "نمایش تمام نوشته‌های تگ %(tag)s"
 
-#: templates/zinnia/_entry_detail_base.html:138
+#: templates/zinnia/_entry_detail_base.html:142
 msgid "No tags"
 msgstr "بدون تگ"
 
@@ -588,7 +539,7 @@ msgid ""
 "<a href=\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
 "%(comment_pk)s\" class=\"anchor-link ui header\" title=\"Direct link to this "
 "comment\" class=\"large\"> %(comment_title)s </a> <a href=\"%(comment_url)s"
-"\" rel=\"external nofollow\" class=\"fn url header\">%(comment_name)s</a> on "
+"\" rel=\"external nofollow\" class=\"fn url header\">%(comment_name)s</a> - "
 "<time class=\"comment-published\" datetime=\"%(comment_technical_date)s\"> "
 "%(comment_human_date)s </time>"
 msgstr ""
@@ -599,7 +550,7 @@ msgid ""
 "<a href=\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
 "%(comment_pk)s\" class=\"anchor-link ui header\" title=\"Direct link to this "
 "comment\">%(comment_title)s</a> <a href=\"%(comment_url)s\" rel=\"external "
-"nofollow\" class=\"fn url large\">%(comment_name)s</a> on <time class="
+"nofollow\" class=\"fn url large\">%(comment_name)s</a> - <time class="
 "\"comment-published\" datetime=\"%(comment_technical_date)s\"> "
 "%(comment_human_date)s </time>"
 msgstr ""
@@ -618,8 +569,8 @@ msgstr "بدون نظر"
 msgid "Login To Comment"
 msgstr "برای پرسش و پاسخ وارد شوید"
 
-#: templates/zinnia/entry_detail_base.html:193
-#: templates/zinnia/entry_detail_base.html:194
+#: templates/zinnia/entry_detail_base.html:195
+#: templates/zinnia/entry_detail_base.html:196
 msgid "Edit the entry"
 msgstr "ویرایش نوشته"
 
@@ -875,9 +826,6 @@ msgstr "صفحه نوشته‌ها"
 msgid "More old entries"
 msgstr "نوشته‌های بیشتر"
 
-msgid "graphic"
-msgstr "گرافیک"
-
 #: templates/zinnia/tags/search_form.html:7
 msgid ""
 "You can use - to exclude words or phrases, &quot;double quotes&quot; for "
@@ -951,6 +899,50 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
+
+#~ msgid "400"
+#~ msgstr "۴۰۰"
+
+#~ msgid "Bad request"
+#~ msgstr "درخواست نادرست"
+
+#~ msgid "Sorry, but the request was malformed."
+#~ msgstr "متاسفیم اما درخواست شما ساختار درستی نداشت"
+
+#~ msgid "403"
+#~ msgstr "۴۰۳"
+
+#~ msgid "Permission denied"
+#~ msgstr "دسترسی ممنوع است."
+
+#~ msgid "Sorry, but you don't have the permission to do this action."
+#~ msgstr "متاسفیم اما شما دسترسی ندارید."
+
+#~ msgid "404"
+#~ msgstr "۴۰۴"
+
+#~ msgid "Page not found"
+#~ msgstr "صفحه مورد نظر یافت نشد."
+
+#~ msgid "Sorry, but the requested page could not be found."
+#~ msgstr "متاسفیم اما صفحه مورد نظر یافت نشد."
+
+#~ msgid "500"
+#~ msgstr "۵۰۰"
+
+#~ msgid "Server error"
+#~ msgstr "ایراد سرور"
+
+#~ msgid ""
+#~ "There's been an error. It's been reported to the site administrators via "
+#~ "e-mail and should be fixed shortly. Thanks for your patience."
+#~ msgstr "مشکلی داخلی در سرور رخ داد."
+
+#~ msgid "LOGIN"
+#~ msgstr "ورود"
+
+#~ msgid "graphic"
+#~ msgstr "گرافیک"
 
 #~ msgid "Contact Us"
 #~ msgstr "تماس با ما"
@@ -1157,28 +1149,32 @@ msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
 
 #~ msgid "Greetings, "
 #~ msgstr "خوش آمدید "
-msgid "OK"
-msgstr "باشه!"
-msgid "Subscription"
-msgstr "اشتراک"
-msgid "Your email has been successfully registered"
-msgstr "ایمیل شما با موفقیت ثبت شد"
-msgid "Your email has already been registered"
-msgstr "ایمیل شما قبلا ثبت شده‌است"
-msgid "Could not connect to site"
-msgstr "ارتباط با سایت برقرار نشد"
-msgid "The email has not been entered correctly"
-msgstr "ایمیل به درستی وارد نشده‌است"
-msgid "Registration"
-msgstr "ثبت نام"
 
-msgid "CUSTOM_VALIDITY"
-msgstr ""
-"if(this.validity.typeMismatch){this.setCustomValidity('آدرس ایمیل را صحیح وارد کنید');}"
-"else{this.setCustomValidity('لطفا این بخش را پر کنید');}"
+#~ msgid "OK"
+#~ msgstr "باشه!"
 
-msgid "SignUp Form"
-msgstr "فرم ثبت نام"
+#~ msgid "Subscription"
+#~ msgstr "اشتراک"
 
-msgid "Reset Password"
-msgstr"تغییر رمز عبور"
+#~ msgid "Your email has been successfully registered"
+#~ msgstr "ایمیل شما با موفقیت ثبت شد"
+
+#~ msgid "Your email has already been registered"
+#~ msgstr "ایمیل شما قبلا ثبت شده‌است"
+
+#~ msgid "Could not connect to site"
+#~ msgstr "ارتباط با سایت برقرار نشد"
+
+#~ msgid "The email has not been entered correctly"
+#~ msgstr "ایمیل به درستی وارد نشده‌است"
+
+#~ msgid "Registration"
+#~ msgstr "ثبت نام"
+
+#~ msgid "CUSTOM_VALIDITY"
+#~ msgstr ""
+#~ "if(this.validity.typeMismatch){this.setCustomValidity('آدرس ایمیل را صحیح "
+#~ "وارد کنید');}else{this.setCustomValidity('لطفا این بخش را پر کنید');}"
+
+#~ msgid "SignUp Form"
+#~ msgstr "فرم ثبت نام"
