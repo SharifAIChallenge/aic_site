@@ -1176,3 +1176,9 @@ msgid "CUSTOM_VALIDITY"
 msgstr ""
 "if(this.validity.typeMismatch){this.setCustomValidity('آدرس ایمیل را صحیح وارد کنید');}"
 "else{this.setCustomValidity('لطفا این بخش را پر کنید');}"
+
+msgid "SignUp Form"
+msgstr "فرم ثبت نام"
+
+msgid "Reset Password"
+msgstr"تغییر رمز عبور"
