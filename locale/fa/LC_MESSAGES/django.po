@@ -454,6 +454,7 @@ msgstr "لیست موضوعات"
 msgid "Categories"
 msgstr "موضوعات"
 
+
 #: templates/zinnia/category_list.html:17
 #: templates/zinnia/tags/categories.html:6
 #: templates/zinnia/tags/categories_tree.html:7
@@ -874,6 +875,9 @@ msgstr "صفحه نوشته‌ها"
 #: templates/zinnia/tags/pagination.html:57
 msgid "More old entries"
 msgstr "نوشته‌های بیشتر"
+
+msgid "graphic"
+msgstr "گرافیک"
 
 #: templates/zinnia/tags/search_form.html:7
 msgid ""

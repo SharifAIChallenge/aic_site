@@ -35,14 +35,13 @@ urlpatterns = [
     url(r'^accounts/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^accounts/reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
-    #
     url(r'^accounts/', include(account_urls)),
-    # url(r'^blog/', include(zinnia_urls)),
+    url(r'^blog/', include(zinnia_urls)),
     url(r'^game/', include(game_urls)),
-    # url(r'^articles/comments/', include('django_comments.urls')),
-    # url(r'^tinymce/filebrowser/', include('zinnia_tinymce.urls')),
-    # url(r'^tinymce/', include('tinymce.urls')),
-    # url(r'^billing/', include(billing_urls)),
+    url(r'^articles/comments/', include('django_comments.urls')),
+    url(r'^tinymce/filebrowser/', include('zinnia_tinymce.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^billing/', include(billing_urls)),
     url(r'^go/', include(modir_urls))
 ]
 
