@@ -21,8 +21,8 @@ class SignUpForm(UserCreationForm):
     organization = forms.CharField(max_length=255, required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
     phone_regex = RegexValidator(regex=r'^\d{8,15}$',
                                  message=_("Please enter your phone number correctly!"))
-    phone_number = forms.CharField(validators=[phone_regex], required=True,widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
-    age = forms.IntegerField(required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
+    phone_number = forms.CharField(validators=[phone_regex], required=False)
+    age = forms.IntegerField(required=False, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
     captcha = ReCaptchaField()
 
     def is_valid(self):
