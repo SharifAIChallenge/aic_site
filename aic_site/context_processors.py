@@ -19,9 +19,7 @@ def menu(request):
                     }
                 },
 
-                _('Schedule'): reverse('intro:index') + '#section-schedule',
-
-                _('FAQ'): reverse('intro:index') + '#section-faq',
+                _('Blog'): reverse('zinnia:entry_archive_index'),
 
                 # _('Contact Us'): reverse('intro:index') + '#section-organizer',
                 # _('Access'): {
