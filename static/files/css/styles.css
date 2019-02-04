@@ -341,3 +341,8 @@ body {
     color: var(--cream)!important;
 }
 
+.mybackground {
+    background-color: #222222dd !important;
+    border-radius: 30px!important;
+    margin: auto;
+}
