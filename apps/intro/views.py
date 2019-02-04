@@ -5,6 +5,7 @@ from PIL import Image
 from django.contrib.auth.models import User
 from django import forms
 from django.db import IntegrityError
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
 
@@ -17,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 def index(request):
-    staff = Staff.objects.all().order_by('?')[0:5]
+    staff = Staff.objects.all().filter(~Q(team='Others')).order_by('?')[0:5]
     return render(request, 'intro/index.html', {
         'no_sidebar': False,
         'users_count': User.objects.count(),
@@ -38,6 +39,7 @@ def not_found(request):
     logger.warning("hello")
     return render(request, '404.html')
 
+
 def notify(request):
     if request.POST:
         valid = True
@@ -50,22 +52,24 @@ def notify(request):
                 Notification.objects.create(email=request.POST['email'])
             except IntegrityError:
                 return JsonResponse({'success': False})
-            return JsonResponse({'success': True })
+            return JsonResponse({'success': True})
     return JsonResponse({'success': False})
 
 
 def staffs(request):
     staff = Staff.objects.all()
-    staff.delete()
-    tech = ['site','graphic','game design','infrastructure','content','server and client']
-    exe = ['executive','branding','design']
-    head = ['head']
+    tech = ['Site', 'Graphic', 'Game Design', 'Infrastructure', 'Content', 'Server and Client']
+    exe = ['Branding', 'Design']
+    head = ['Head']
+    other = ['Others']
     return render(request, 'intro/staffs.html', {
         "staff": staff,
         "tech": tech,
         "exe": exe,
         "head": head,
+        "other": other,
     })
+
 
 def add_staff(request):
     form = StaffForm(request.POST, request.FILES)
@@ -85,7 +89,7 @@ def add_staff(request):
             image.save(image_file, 'PNG')
             image_field.file = image_file
             image_field.image = image
-            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field, blog_url=form.cleaned_data['blog_url'])
+            Staff.objects.create(name=form.cleaned_data['name'], team=form.cleaned_data['team'], image=image_field)
     return render(request, 'intro/staff-form.html', {
         'form': form
     })

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-22 19:57+0330\n"
+"POT-Creation-Date: 2019-02-04 21:09+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/accounts/forms/forms.py:24
+#: apps/accounts/forms/forms.py:18 apps/accounts/forms/forms.py:19
+#: apps/accounts/forms/forms.py:20 apps/accounts/forms/forms.py:21
+#: apps/accounts/forms/forms.py:25
+msgid "CUSTOM_VALIDITY"
+msgstr ""
+
+#: apps/accounts/forms/forms.py:23
 msgid "Please enter your phone number correctly!"
 msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
 
-#: apps/accounts/forms/forms.py:33
+#: apps/accounts/forms/forms.py:32
 msgid "Registration is closed. See you next year."
 msgstr "ثبت نام هم‌اکنون باز نیست. به امید دیدار شما در رقابت بعدی."
 
@@ -351,7 +357,7 @@ msgstr "وضعیت تیم"
 #: apps/accounts/templates/accounts/oldpanel/team_management.html:10
 #: apps/accounts/templates/accounts/panel/team_management.html:12
 #: apps/accounts/templates/accounts/profile/login.html:14
-#: apps/accounts/templates/accounts/profile/signup.html:19
+#: apps/accounts/templates/accounts/profile/signup.html:20
 #: apps/accounts/templates/accounts/teams/add_member.html:12
 msgid "Username"
 msgstr "نام کاربری"
@@ -413,49 +419,54 @@ msgid "Login"
 msgstr "ورود"
 
 #: apps/accounts/templates/accounts/profile/login.html:25
-#: apps/accounts/templates/accounts/profile/signup.html:82
+#: apps/accounts/templates/accounts/profile/signup.html:87
 msgid "Password"
 msgstr "رمز"
-
-#: apps/accounts/templates/accounts/profile/login.html:31
-#: apps/accounts/templates/accounts/profile/signup.html:5
-#: apps/accounts/templates/accounts/profile/update_profile.html:5
-msgid "Sign Up"
-msgstr "ثبت نام"
 
 #: apps/accounts/templates/accounts/profile/login.html:33
 msgid "I forgot my password"
 msgstr "رمزم را فراموش کردم"
 
-#: apps/accounts/templates/accounts/profile/signup.html:17
+#: apps/accounts/templates/accounts/profile/signup.html:5
+#: apps/accounts/templates/accounts/profile/update_profile.html:5
+msgid "Sign Up"
+msgstr "ثبت نام"
+
+#: apps/accounts/templates/accounts/profile/signup.html:18
 msgid "SignUp Form"
 msgstr "ثبت نام"
 
-#: apps/accounts/templates/accounts/profile/signup.html:35
+#: apps/accounts/templates/accounts/profile/signup.html:36
 msgid "First Name"
 msgstr "نام"
 
-#: apps/accounts/templates/accounts/profile/signup.html:39
+#: apps/accounts/templates/accounts/profile/signup.html:40
 msgid "Last Name"
 msgstr "نام خانوادگی"
 
-#: apps/accounts/templates/accounts/profile/signup.html:46
+#: apps/accounts/templates/accounts/profile/signup.html:47
 msgid "College/School"
 msgstr "دانشگاه/مدرسه"
 
-#: apps/accounts/templates/accounts/profile/signup.html:50
+#: apps/accounts/templates/accounts/profile/signup.html:51
 msgid "Phone Number"
 msgstr "شماره ی تلفن"
 
-#: apps/accounts/templates/accounts/profile/signup.html:67
+#: apps/accounts/templates/accounts/profile/signup.html:55
+#, fuzzy
+#| msgid "Age‌"
+msgid "Age"
+msgstr "سن"
+
+#: apps/accounts/templates/accounts/profile/signup.html:72
 msgid "Email"
 msgstr "ایمیل"
 
-#: apps/accounts/templates/accounts/profile/signup.html:97
+#: apps/accounts/templates/accounts/profile/signup.html:102
 msgid "Password Confirm"
 msgstr "تکرار رمز"
 
-#: apps/accounts/templates/accounts/profile/signup.html:119
+#: apps/accounts/templates/accounts/profile/signup.html:124
 msgid "SignUp"
 msgstr "ثبت نام"
 

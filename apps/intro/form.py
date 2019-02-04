@@ -1,6 +1,10 @@
 from django import forms
 
+
 class StaffForm(forms.Form):
     name = forms.CharField(max_length=128)
-    team = forms.ChoiceField(choices=(('executive','executive'),('site', 'site'),('graphic', 'graphic'), ('game design', 'game design'),('infrastructure','infrastructure'),('head','head'),('content','content'),('server and client','server and client'),('branding','branding'),('design','design')))
+    team = forms.ChoiceField(choices=(('Site', 'Site'), ('Graphic', 'Graphic'),
+                                      ('Game Design', 'Game Design'), ('Head', 'Head'),
+                                      ('Infrastructure', 'Infrastructure'), ('Content', 'Content'),
+                                      ('Server and Client', 'Server and Client'), ('Others', 'Others')))
     image = forms.FileField()
