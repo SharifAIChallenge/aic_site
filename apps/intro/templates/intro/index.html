@@ -35,28 +35,34 @@
     </div>
 
     <div class="odd section" style="padding-top: 20px" align="center">
-        <div class="countdown container">
-            <div id="clockdiv" dir="{% if LANGUAGE_BIDI %}ltr{% else %}rtl{% endif %}" >
-                <div class="seconds_div" style="margin-top: 10px">
-                    <span class="seconds"></span>
-                    <div class="smalltext">{% trans "seconds" %}</div>
-                </div>
-                <div class="minutes_div" style="margin-top: 10px">
-                    <span class="minutes"></span>
-                    <div class="smalltext">{% trans "minutes" %}</div>
-                </div>
-                <div class="hours_div" style="margin-top: 10px">
-                    <span class="hours"></span>
-                    <div class="smalltext">{% trans "hours" %}</div>
-                </div>
-                <div class="days_div" style="margin-top: 10px">
-                    <span class="days"></span>
-                    <div class="smalltext">{% trans "days" %}</div>
-                </div>
-            </div>
-        </div>
+        <button class="circular ui button" id="signupButton" style="color: #fff3d9; background-color: #F8981D; font-family: URWGeometric-Bold; font-size: 30px"
+        >
+            <a style="color: #fff3d9" href="/accounts/signup">
+                {% trans "Sign Up!" %}
+            </a>
+        </button>
+{#        <div class="countdown container">#}
+{#            <div id="clockdiv" dir="{% if LANGUAGE_BIDI %}ltr{% else %}rtl{% endif %}" >#}
+{#                <div class="seconds_div" style="margin-top: 10px">#}
+{#                    <span class="seconds"></span>#}
+{#                    <div class="smalltext">{% trans "seconds" %}</div>#}
+{#                </div>#}
+{#                <div class="minutes_div" style="margin-top: 10px">#}
+{#                    <span class="minutes"></span>#}
+{#                    <div class="smalltext">{% trans "minutes" %}</div>#}
+{#                </div>#}
+{#                <div class="hours_div" style="margin-top: 10px">#}
+{#                    <span class="hours"></span>#}
+{#                    <div class="smalltext">{% trans "hours" %}</div>#}
+{#                </div>#}
+{#                <div class="days_div" style="margin-top: 10px">#}
+{#                    <span class="days"></span>#}
+{#                    <div class="smalltext">{% trans "days" %}</div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
         <div style="margin-top: 20px; margin-bottom: 10px">
-            <h1>{% trans "Till registration" %}</h1>
+{#            <h1>{% trans "Till registration" %}</h1>#}
             <p> {% trans "Stay in touch with us with email" %} </p>
         </div>
         <div id="modal" class="ui basic modal test">
