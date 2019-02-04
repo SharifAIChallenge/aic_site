@@ -329,7 +329,10 @@ body {
     .socialformobile{
         display: none;
     }
-
+    .resetpass
+    {
+        width: 60%;
+    }
 }
 
 .cream {
