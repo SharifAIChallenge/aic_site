@@ -323,6 +323,8 @@ body {
     position: fixed;
     opacity: 0.5;
     background-attachment: fixed;
+
+
 }
 
 @media(min-width: 800px) {
@@ -338,3 +340,4 @@ body {
 .cream {
     color: var(--cream)!important;
 }
+

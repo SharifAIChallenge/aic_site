@@ -1,10 +1,39 @@
 {% extends "base/base.html" %}
 {% load i18n %}
+{% load static %}
 
 
 {% block container %}
-        <h1>{% trans "403" %}</h1>
-        <h1>{% trans "Permission denied" %}</h1>
 
-        <p>{% trans "Sorry, but you don't have the permission to do this action." %}</p>
+{#        <h1>{% trans "404" %}</h1>#}
+{#        <h1>{% trans "Page not found" %}</h1>#}
+
+{#        <p>{% trans "Sorry, but the requested page could not be found." %}</p>#}
+    <button class="massive ui secondary button" onclick="goBack()" style="padding-right: 20px;padding-left: 20px; border-radius: 1.1rem; top: 200px;">
+</button>
+    <button class="massive ui secondary button" onclick="goBack()" style="padding-right: 20px;padding-left: 20px; border-radius: 1.1rem; margin-top: 36vh;">برگرد به صفحه‌ی قبلی</button>
+    <script>
+function goBack() {
+  window.history.back();
+}
+</script>
+{% endblock %}
+
+{% block bg-style %}
+    style="
+    background-image: url('/static/images/403.jpg')!important;
+    height: 100%;
+    background-repeat: repeat;
+    background-size: auto 83%;
+    background-attachment: fixed;
+    position: fixed;
+    background-position: top;
+    z-index: -1000;
+    "
+            {% endblock %}
+
+{% block hide-patterns %}{% endblock %}
+
+{% block error-aligns %}
+    center aligned
 {% endblock %}
