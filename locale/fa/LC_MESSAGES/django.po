@@ -4,6 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
+
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -120,6 +121,8 @@ msgstr "خروج"
 msgid "Login"
 msgstr "ورود"
 
+msgid "LOGIN"
+msgstr "ورود"
 #: templates/base/navbar.html:57
 msgid "Register"
 msgstr "ثبت نام"
@@ -1166,3 +1169,16 @@ msgid "Could not connect to site"
 msgstr "ارتباط با سایت برقرار نشد"
 msgid "The email has not been entered correctly"
 msgstr "ایمیل به درستی وارد نشده‌است"
+msgid "Registration"
+msgstr "ثبت نام"
+
+msgid "CUSTOM_VALIDITY"
+msgstr ""
+"if(this.validity.typeMismatch){this.setCustomValidity('آدرس ایمیل را صحیح وارد کنید');}"
+"else{this.setCustomValidity('لطفا این بخش را پر کنید');}"
+
+msgid "SignUp Form"
+msgstr "فرم ثبت نام"
+
+msgid "Reset Password"
+msgstr"تغییر رمز عبور"

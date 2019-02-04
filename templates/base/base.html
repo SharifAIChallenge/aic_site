@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
+
+<script type="text/javascript"> (function(){ var now = new Date(); var version = now.getFullYear().toString() + "0" + now.getMonth() + "0" + now.getDate() + "0" + now.getHours(); var head = document.getElementsByTagName("head")[0]; var link = document.createElement("link"); link.rel = "stylesheet"; link.href = "https://app.najva.com/static/css/local-messaging.css" + "?v=" + version; head.appendChild(link); var script = document.createElement("script"); script.type = "text/javascript"; script.async = true; script.src = "https://app.najva.com/static/js/scripts/sharif665-4095-b49ebc58-efd4-4e65-9b2e-f395e117c686.js" + "?v=" + version; head.appendChild(script); })() </script>
+
 <script>
 !function (t, e, n) {
         t.yektanetAnalyticsObject = n, t[n] = t[n] || function () {
@@ -84,6 +87,7 @@
             {% include 'base/navbar.html' %}
         {% endblock %}
 
+
         {% block content %}
             <div class="ui container {% block error-aligns %}{% endblock %}>
                 {% block container %}
@@ -100,6 +104,19 @@
 
 <script src="{% static 'js/jquery.inview.min.js' %}"></script>
 <script src="{% static 'js/footer_scripts.js' %}"></script>
+<script type="text/javascript">
+  $(document)
+    .ready(function () {
+  var x = $("#footer").offset();
+  var footer_pos=x.top;
+  var screen=$(window).height();
+  if(footer_pos +200<screen)
+    $("#footer").css('position', 'fixed');
+
+
+});
+
+</script>
 {% block footer_scripts %}{% endblock %}
 </body>
 </html>
