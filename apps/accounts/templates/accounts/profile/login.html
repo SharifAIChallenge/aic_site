@@ -1,12 +1,9 @@
-{% extends 'base/base.html' %}
+{% extends 'base/darkbg.html' %}
 
 {% load static i18n %}
 
 {% block container %}
-
-
- <div class="ui segment" style="border-radius: 30px;margin: auto; background-color: #222222dd">
-    <form method="post"  class="ui inverted form " style="margin:auto;width: 90%">
+    <form method="post" class="ui inverted form " style="margin:auto;width: 90%">
         <h3 class="ui dividing header">{% trans 'Login' %}</h3>
         {% csrf_token %}
 
@@ -30,10 +27,10 @@
         <button type="submit" class="ui inverted teal button">{% trans 'Login' %}</button>
 
         <p>
-        <a class="ui  link" href="{% url 'password_reset' %}"><span style="color: #009D8A">{% trans 'I forgot my password' %}</span></a>
+            <a class="ui  link" href="{% url 'password_reset' %}"><span
+                    style="color: #009D8A">{% trans 'I forgot my password' %}</span></a>
         </p>
     </form>
- </div>
 
 
 {% endblock %}
