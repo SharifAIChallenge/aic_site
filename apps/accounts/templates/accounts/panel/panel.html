@@ -10,14 +10,14 @@
         <div class="ui stackable grid">
             <div class="four wide column">
                 {% include 'accounts/panel/challenge_feild.html' %}
-                <div class="ui secondary vertical pointing fluid menu mobile-hidden">
+                <div class="ui secondary vertical pointing fluid menu mobile-hidden" id="panel-navbar">
                     {% for item in menu_items %}
                         <a class="item{% if item.active %} active{% endif %}" href="{{ item.link }}">
                             {{ item.text }}
                         </a>
                     {% endfor %}
                 </div>
-                <div class="ui secondary pointing fluid menu mobile-only">
+                <div class="ui secondary pointing fluid menu mobile-only" id="panel-navbar">
                     {% for item in menu_items %}
                         <a class="item{% if item.active %} active{% endif %}" href="{{ item.link }}">
                             {{ item.text }}

@@ -47,41 +47,41 @@ def get_shared_context(request):
 
     context['menu_items'] = [
         {'name': 'team_management', 'link': reverse('accounts:panel_team_management'), 'text': _('Team Status')},
-        {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
-        {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
+        # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
+        # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
     ]
 
     if request.user.profile:
         if request.user.profile.panel_active_teampc:
             if request.user.profile.panel_active_teampc.should_pay and not request.user.profile.panel_active_teampc.has_paid:
                 context['payment'] = request.user.profile.panel_active_teampc
-            if request.user.profile.panel_active_teampc.challenge.competitions.filter(
-                    type='friendly'
-            ).exists():
-                context['menu_items'].append(
-                    {
-                        'name': 'friendly_scoreboard',
-                        'link': reverse('game:scoreboard', args=[
-                            request.user.profile.panel_active_teampc.challenge.competitions.get(
-                                type='friendly'
-                            ).id
-                        ]),
-                        'text': _('Friendly Scoreboard')
-                    }
-                )
-
-            if request.user.profile.panel_active_teampc.challenge.competitions.filter(
-                    type='league'
-            ).exists():
-                context['menu_items'].append(
-                    {
-                        'name': 'friendly_scoreboard',
-                        'link': reverse('game:league_scoreboard', args=[
-                            request.user.profile.panel_active_teampc.challenge.id
-                        ]),
-                        'text': _('League')
-                    }
-                )
+            # if request.user.profile.panel_active_teampc.challenge.competitions.filter(
+            #         type='friendly'
+            # ).exists():
+            #     context['menu_items'].append(
+            #         {
+            #             'name': 'friendly_scoreboard',
+            #             'link': reverse('game:scoreboard', args=[
+            #                 request.user.profile.panel_active_teampc.challenge.competitions.get(
+            #                     type='friendly'
+            #                 ).id
+            #             ]),
+            #             'text': _('Friendly Scoreboard')
+            #         }
+            #     )
+            #
+            # if request.user.profile.panel_active_teampc.challenge.competitions.filter(
+            #         type='league'
+            # ).exists():
+            #     context['menu_items'].append(
+            #         {
+            #             'name': 'friendly_scoreboard',
+            #             'link': reverse('game:league_scoreboard', args=[
+            #                 request.user.profile.panel_active_teampc.challenge.id
+            #             ]),
+            #             'text': _('League')
+            #         }
+            #     )
 
     return context
 
