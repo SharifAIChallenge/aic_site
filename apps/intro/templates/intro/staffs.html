@@ -3,7 +3,6 @@
 {% load i18n %}
 
 {% block extra_header %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'intro/css/profile.css' %}">
 {% endblock %}
 
@@ -25,14 +24,14 @@
             {% for member in staff %}
                 {% if member.team == sec %}
                     <div class="d-sm-inline-block" style="margin: 3%">
-                        <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
-                            <img class="card-img-top rounded-circle profpic" src="media/{{ member.image }}" alt="Card image">
-                            <div class="layer" onclick="" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
-                                <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">
-                                    <h3 class="text-font">{{ member.name }}</h3>
-                                </div>
-                            </div>
-                        </div>
+                         <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
+                             <img class="profpic ui circular image" src="media/{{ member.image }}" alt="Card image">
+                             <div class="layer" onclick="" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
+                                 <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">
+                                     <h3 class="text-font">{{ member.name }}</h3>
+                                 </div>
+                             </div>
+                         </div>
                     </div>
                 {% endif %}
             {% endfor %}
