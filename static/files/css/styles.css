@@ -105,13 +105,10 @@ This set of fonts are used in this project under the license: RC4QT
     }
 }
 
-body {
+body, .ui.header  {
     color: var(--cream);
 }
 
-.ui.header {
-    color: var(--cream);
-}
 #navbar {
     z-index: 99;
 
