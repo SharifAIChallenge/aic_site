@@ -202,7 +202,7 @@ body {
 .blog_post {
     margin-top: 3rem;
     width: 100% !important;
-    background-color:rgba(255,255,255,0.04)!important;
+    background-color: rgb(34, 34, 34) !important;
     box-shadow: none !important;
     -webkit-border-radius: 5px!important;
     -moz-border-radius: 5px!important;
@@ -345,4 +345,13 @@ body {
     background-color: #222222dd !important;
     border-radius: 30px!important;
     margin: auto;
+}
+.mybackground #panel-navbar .item, .mybackground label
+{
+    color: var(--cream)!important;
+}
+
+.mybackground a.item.active
+{
+    border-color: var(--cream)!important;
 }
