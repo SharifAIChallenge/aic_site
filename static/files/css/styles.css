@@ -106,11 +106,11 @@ This set of fonts are used in this project under the license: RC4QT
 }
 
 body {
-    color: #FFF3D9;
+    color: var(--cream);
 }
 
 .ui.header {
-    color: #FFF3D9;
+    color: var(--cream);
 }
 #navbar {
     z-index: 99;
@@ -166,23 +166,23 @@ body {
 }
 
 .ai.red.button {
-    background-color: #ED1A3A !important;
+    background-color: var(--red) !important;
     z-index: 6;
     font-weight: bold;
-    color: #FFF3D9;
+    color: var(--cream);
 }
 
 .ai.blue.button {
-    background-color: #009d8a !important;
+    background-color: var(--green) !important;
     z-index: 6;
     font-weight: bold;
-    color: #FFF3D9;
+    color: var(--cream);
 }
 .ai.yellow.button {
-    background-color: #F8981D !important;
+    background-color: var(--yellow) !important;
     z-index: 6;
     font-weight: bold;
-    color: #FFF3D9;
+    color: var(--cream);
 }
 
 #footer {
