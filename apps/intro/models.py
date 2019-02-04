@@ -18,7 +18,7 @@ class Staff(models.Model):
     def color(self):
         if self.team == 'executive':
             return 'red'
-        elif self.team == 'site' or self.team == 'graphic' or self.team == 'infrastructure' or self.team == 'server and client':
+        elif self.team == 'Site' or self.team == 'Graphic' or self.team == 'Infrastructure' or self.team == 'Server and Client':
             return 'blue'
         else:
             return 'orange'
