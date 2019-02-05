@@ -63,6 +63,11 @@ def menu(request):
             # }
         }
     }
+    if request.user.is_authenticated():
+        context['ai']['navbar'][_('Panel')] = reverse('accounts:panel')
+    else:
+        context['ai']['navbar'][_('Login')] = reverse('accounts:login')
+    # _('Panel'): reverse('accounts:panel')
 
     # if request.user.is_authenticated():
     #     context['ai']['sidebar'][_('Account')]['dropdown'][_('Logout')] = reverse('accounts:logout')
