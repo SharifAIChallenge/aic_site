@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 22:06+0330\n"
+"POT-Creation-Date: 2019-02-05 04:48+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -564,59 +564,57 @@ msgstr ""
 msgid "The email has not been entered correctly"
 msgstr ""
 
-#: apps/intro/templates/intro/staffs.html:14
+#: apps/intro/templates/intro/staffs.html:13
 msgid "Technical"
 msgstr "فنی"
 
-#: apps/intro/templates/intro/staffs.html:15
+#: apps/intro/templates/intro/staffs.html:14
 msgid "Executive"
 msgstr "اجرایی"
 
-#: apps/intro/templates/intro/staffs.html:16
-
-#: apps/intro/templates/intro/staffs.html:17
-
-msgid "Site"
-msgstr "سایت"
-
-msgid "Graphic"
-msgstr "گرافیک"
-
-msgid "Game Design"
-msgstr "طراحی بازی"
-
-msgid "Infrastructure"
-msgstr "زیرساخت"
-
+#: apps/intro/templates/intro/staffs.html:15
 msgid "Head"
 msgstr "دبیران"
 
-msgid "Content"
-msgstr "محتوا"
-
-msgid "Server and Client"
-msgstr "سرور و کلاینت"
-
-msgid "Branding"
-msgstr "برندینگ"
-
-msgid "Design"
-msgstr "طراحی"
-
-msgid "Head Of Committee"
-msgstr "کمیته برگزاری"
-
-msgid "Users"
-msgstr "کاربران"
-
-msgid "Submissions"
-msgstr "ارسال‌ها"
-
-msgid "Teams"
-msgstr "تیم‌ها"
-
+#: apps/intro/templates/intro/staffs.html:16
 msgid "Others"
 msgstr "همراهان رسانه‌ای"
+
+#~ msgid "Site"
+#~ msgstr "سایت"
+
+#~ msgid "Graphic"
+#~ msgstr "گرافیک"
+
+#~ msgid "Game Design"
+#~ msgstr "طراحی بازی"
+
+#~ msgid "Infrastructure"
+#~ msgstr "زیرساخت"
+
+#~ msgid "Content"
+#~ msgstr "محتوا"
+
+#~ msgid "Server and Client"
+#~ msgstr "سرور و کلاینت"
+
+#~ msgid "Branding"
+#~ msgstr "برندینگ"
+
+#~ msgid "Design"
+#~ msgstr "طراحی"
+
+#~ msgid "Head Of Committee"
+#~ msgstr "کمیته برگزاری"
+
+#~ msgid "Users"
+#~ msgstr "کاربران"
+
+#~ msgid "Submissions"
+#~ msgstr "ارسال‌ها"
+
+#~ msgid "Teams"
+#~ msgstr "تیم‌ها"
 
 #~ msgid ""
 #~ "\n"
