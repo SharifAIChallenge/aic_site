@@ -36,12 +36,12 @@
 
     <div class="odd section" style="padding-top: 20px" align="center">
     {% if not request.user.is_authenticated %}
-        <button class="circular ui button" id="signupButton" style="color: #fff3d9; background-color: #F8981D; font-family: URWGeometric-Bold; font-size: 30px; margin-bottom: 10px"
-        >
-            <a style="color: #fff3d9" href="/accounts/signup">
+{#        <button class="circular ui button" id="signupButton" style="color: #fff3d9; background-color: #F8981D;  font-size: 30px; margin-bottom: 10px"#}
+{#        >#}
+            <a class="circular ui button" style="color: #fff3d9; background-color: #F8981D;  font-size: 30px; margin-bottom: 10px" href="{% url 'accounts:signup' %}">
                 {% trans "Sign Up!" %}
             </a>
-        </button>
+{#        </button>#}
     {% endif %}
         <div class="countdown container">
             <div id="clockdiv" dir="{% if LANGUAGE_BIDI %}ltr{% else %}rtl{% endif %}" >
