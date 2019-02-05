@@ -1,18 +1,6 @@
 <div class="ui left sidebar inverted vertical menu" id="sidebar-right">
     {% for title, link in ai.sidebar.items %}
-        {% if not link.dropdown %}
             <a href="{{ link }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>
-        {% else %}
-            <div class="item">
-                <div class="title">
-                    <span class="text">{{ title }}</span>
-                </div>
-                <div class="content menu">
-                    {% for dtitle, dlink in link.dropdown.items %}
-                        <a href="{{ dlink }}" class="item" id="title">{{ dtitle }}</a>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
+
     {% endfor %}
 </div>
