@@ -35,6 +35,14 @@
     </div>
 
     <div class="odd section" style="padding-top: 20px" align="center">
+    {% if not request.user.is_authenticated %}
+        <button class="circular ui button" id="signupButton" style="color: #fff3d9; background-color: #F8981D; font-family: URWGeometric-Bold; font-size: 30px; margin-bottom: 10px"
+        >
+            <a style="color: #fff3d9" href="/accounts/signup">
+                {% trans "Sign Up!" %}
+            </a>
+        </button>
+    {% endif %}
         <div class="countdown container">
             <div id="clockdiv" dir="{% if LANGUAGE_BIDI %}ltr{% else %}rtl{% endif %}" >
                 <div class="seconds_div" style="margin-top: 10px">
@@ -56,7 +64,7 @@
             </div>
         </div>
         <div style="margin-top: 20px; margin-bottom: 10px">
-            <h1>{% trans "Till registration" %}</h1>
+            <h1>{% trans "Till online phase" %}</h1>
             <p> {% trans "Stay in touch with us with email" %} </p>
         </div>
         <div id="modal" class="ui basic modal test">

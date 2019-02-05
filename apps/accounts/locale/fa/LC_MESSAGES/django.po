@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-05 05:03+0330\n"
+"POT-Creation-Date: 2019-02-05 10:46+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/accounts/forms/forms.py:18 apps/accounts/forms/forms.py:19
-#: apps/accounts/forms/forms.py:20 apps/accounts/forms/forms.py:21
-#: apps/accounts/forms/forms.py:25
+#: apps/accounts/forms/forms.py:20 apps/accounts/forms/forms.py:22
+#: apps/accounts/forms/forms.py:24 apps/accounts/forms/forms.py:26
+#: apps/accounts/forms/forms.py:28 apps/accounts/forms/forms.py:32
 msgid "CUSTOM_VALIDITY"
 msgstr ""
 
-#: apps/accounts/forms/forms.py:23
+#: apps/accounts/forms/forms.py:30
 msgid "Please enter your phone number correctly!"
 msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید!"
 
-#: apps/accounts/forms/forms.py:32
+#: apps/accounts/forms/forms.py:40
 msgid "Registration is closed. See you next year."
 msgstr "ثبت نام هم‌اکنون باز نیست. به امید دیدار شما در رقابت بعدی."
 
@@ -93,15 +93,15 @@ msgstr "شماره موبایل"
 msgid "Organization‌"
 msgstr "دانشگاه/مدرسه"
 
-#: apps/accounts/models.py:11
+#: apps/accounts/models.py:12
 msgid "Age‌"
 msgstr "سن"
 
-#: apps/accounts/models.py:12
+#: apps/accounts/models.py:13
 msgid "National code‌"
 msgstr "کد ملی"
 
-#: apps/accounts/models.py:13
+#: apps/accounts/models.py:14
 msgid "Telephone number‌"
 msgstr "شماره ی تلفن ثابت"
 
@@ -415,11 +415,15 @@ msgid "Login"
 msgstr "ورود"
 
 #: apps/accounts/templates/accounts/profile/login.html:22
-#: apps/accounts/templates/accounts/profile/signup.html:86
+#: apps/accounts/templates/accounts/profile/signup.html:90
 msgid "Password"
 msgstr "رمز"
 
-#: apps/accounts/templates/accounts/profile/login.html:31
+#: apps/accounts/templates/accounts/profile/login.html:28
+msgid "Register"
+msgstr ""
+
+#: apps/accounts/templates/accounts/profile/login.html:32
 msgid "I forgot my password"
 msgstr "رمزم را فراموش کردم"
 
@@ -440,33 +444,35 @@ msgstr "نام"
 msgid "Last Name"
 msgstr "نام خانوادگی"
 
-#: apps/accounts/templates/accounts/profile/signup.html:46
+#: apps/accounts/templates/accounts/profile/signup.html:43
 msgid "College/School/WorkPlace"
 msgstr "دانشگاه/مدرسه/محل‌کار"
 
+#: apps/accounts/templates/accounts/profile/signup.html:50
 msgid "Major/Position"
 msgstr "رشته‌تحصیلی/موقعیت‌ شغلی"
 
-
-msgid "I agree to share my information with AIC sponser."
-msgstr "من با به اشتراک گذاشتن اطلاعاتم با حامی نبرد هوش مصنوعی موافقم."
-#: apps/accounts/templates/accounts/profile/signup.html:50
+#: apps/accounts/templates/accounts/profile/signup.html:54
 msgid "Phone Number"
 msgstr "شماره ی تلفن همراه"
 
-#: apps/accounts/templates/accounts/profile/signup.html:54
+#: apps/accounts/templates/accounts/profile/signup.html:58
 msgid "Age"
 msgstr "سن"
 
-#: apps/accounts/templates/accounts/profile/signup.html:71
+#: apps/accounts/templates/accounts/profile/signup.html:75
 msgid "Email"
 msgstr "ایمیل"
 
-#: apps/accounts/templates/accounts/profile/signup.html:101
+#: apps/accounts/templates/accounts/profile/signup.html:105
 msgid "Password Confirm"
 msgstr "تکرار رمز"
 
-#: apps/accounts/templates/accounts/profile/signup.html:123
+#: apps/accounts/templates/accounts/profile/signup.html:119
+msgid "I agree to share my information with AIC sponser."
+msgstr "من با به اشتراک گذاشتن اطلاعاتم با حامی نبرد هوش مصنوعی موافقم."
+
+#: apps/accounts/templates/accounts/profile/signup.html:137
 msgid "SignUp"
 msgstr "ثبت نام"
 
