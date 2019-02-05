@@ -13,13 +13,13 @@ def menu(request):
                         _('Main Page'): reverse('intro:index'),
                         _('Introduction'): reverse('intro:index') + '#section-intro',
                         _('Prize'): reverse('intro:index') + '#section-prizes',
-                        # _('Schedule'): reverse('intro:index') + '#section-schedule',
-                        # _('FAQ'): reverse('intro:index') + "#section-faq",
-                        # _('Contact Us'): reverse('intro:index') + '#section-organizer',
+                        _('Schedule'): reverse('intro:index') + '#section-schedule',
+                        _('FAQ'): reverse('intro:index') + "#section-faq",
+                        _('Contact Us'): reverse('intro:index') + '#section-organizer',
                     }
                 },
 
-                # _('Blog'): reverse('zinnia:entry_archive_index'),
+                _('Blog'): reverse('zinnia:entry_archive_index'),
 
                 # _('Contact Us'): reverse('intro:index') + '#section-organizer',
                 # _('Access'): {
@@ -31,9 +31,24 @@ def menu(request):
                 #     }
                 # },
             },
+            'sidebar': {
+                _('Home'): {
+                    'dropdown': {
+                        _('Main Page'): reverse('intro:index'),
+                        _('Introduction'): reverse('intro:index') + '#section-intro',
+                        _('Prize'): reverse('intro:index') + '#section-prizes',
+                        _('Schedule'): reverse('intro:index') + '#section-schedule',
+                        _('FAQ'): reverse('intro:index') + "#section-faq",
+                        _('Contact Us'): reverse('intro:index') + '#section-organizer',
+                    }
+                },
+
+                _('Blog'): reverse('zinnia:entry_archive_index'),
+            },
             # 'sidebar': {
             #     _('Home'): {
             #         'dropdown': {
+            #             _('Main Page'): reverse('intro:index'),
             #             _('Introduction'): reverse('intro:index') + '#section-intro',
             #             _('Prize'): reverse('intro:index') + '#section-prizes',
             #             _('History'): reverse('intro:index') + "#section-history",
@@ -65,8 +80,10 @@ def menu(request):
     }
     if request.user.is_authenticated():
         context['ai']['navbar'][_('Panel')] = reverse('accounts:panel')
+        context['ai']['sidebar'][_('Panel')] = reverse('accounts:panel')
     else:
         context['ai']['navbar'][_('Login')] = reverse('accounts:login')
+        context['ai']['sidebar'][_('Login')] = reverse('accounts:login')
     # _('Panel'): reverse('accounts:panel')
 
     # if request.user.is_authenticated():

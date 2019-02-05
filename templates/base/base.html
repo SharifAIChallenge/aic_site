@@ -6,18 +6,32 @@
 <html lang="fa">
 <head>
 
-<script type="text/javascript"> (function(){ var now = new Date(); var version = now.getFullYear().toString() + "0" + now.getMonth() + "0" + now.getDate() + "0" + now.getHours(); var head = document.getElementsByTagName("head")[0]; var link = document.createElement("link"); link.rel = "stylesheet"; link.href = "https://app.najva.com/static/css/local-messaging.css" + "?v=" + version; head.appendChild(link); var script = document.createElement("script"); script.type = "text/javascript"; script.async = true; script.src = "https://app.najva.com/static/js/scripts/sharif665-4095-b49ebc58-efd4-4e65-9b2e-f395e117c686.js" + "?v=" + version; head.appendChild(script); })() </script>
+    <script type="text/javascript"> (function () {
+        var now = new Date();
+        var version = now.getFullYear().toString() + "0" + now.getMonth() + "0" + now.getDate() + "0" + now.getHours();
+        var head = document.getElementsByTagName("head")[0];
+        var link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://app.najva.com/static/css/local-messaging.css" + "?v=" + version;
+        head.appendChild(link);
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.async = true;
+        script.src = "https://app.najva.com/static/js/scripts/sharif665-4095-b49ebc58-efd4-4e65-9b2e-f395e117c686.js" + "?v=" + version;
+        head.appendChild(script);
+    })() </script>
 
-<script>
-!function (t, e, n) {
-        t.yektanetAnalyticsObject = n, t[n] = t[n] || function () {
-            t[n].q.push(arguments)
-        }, t[n].q = t[n].q || [];
-        var a = new Date, r = a.getFullYear().toString() + "0" + a.getMonth() + "0" + a.getDate() + "0" + a.getHours(),
-            c = e.getElementsByTagName("script")[0], s = e.createElement("script");
-        s.async = 1, s.type = "text/javascript", s.src = "https://cdn.yektanet.com/rg_woebegone/scripts/2382/rg.complete.js?v=" + r, c.parentNode.insertBefore(s, c)
-    }(window, document, "yektanet");
-</script>
+    <script>
+        !function (t, e, n) {
+            t.yektanetAnalyticsObject = n, t[n] = t[n] || function () {
+                t[n].q.push(arguments)
+            }, t[n].q = t[n].q || [];
+            var a = new Date,
+                r = a.getFullYear().toString() + "0" + a.getMonth() + "0" + a.getDate() + "0" + a.getHours(),
+                c = e.getElementsByTagName("script")[0], s = e.createElement("script");
+            s.async = 1, s.type = "text/javascript", s.src = "https://cdn.yektanet.com/rg_woebegone/scripts/2382/rg.complete.js?v=" + r, c.parentNode.insertBefore(s, c)
+        }(window, document, "yektanet");
+    </script>
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -48,15 +62,20 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicon/apple-icon-144x144.png' %}">
     <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicon/apple-icon-152x152.png' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{% static 'favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'favicon/android-icon-192x192.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicon/favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{%  static 'favicon/favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
     <meta name="msapplication-TileColor" content="#000000">
-    <meta name="msapplication-TileImage" content="{%  static 'favicon/ms-icon-144x144.png' %}">
+    <meta name="msapplication-TileImage" content="{% static 'favicon/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#000000">
 
     <link rel="stylesheet" href="
+
+
+
+
+
             {% if LANGUAGE_BIDI %}{% static 'semantic/semantic.rtl.min.css' %}{% else %}{% static 'semantic/semantic.min.css' %}{% endif %}">
 
     <link rel="stylesheet" href="{% static 'css/styles.css' %}?ver=2">
@@ -76,10 +95,11 @@
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div class="body-image" {% block bg-style %}{% endblock %}></div>
-{% block hide-patterns %}<div class="body-pattern" id="pattern"></div>{% endblock %}
-{#{% block sidebar %}#}
-{#    {% include 'base/sidebar.html' %}#}
-{#{% endblock %}#}
+{% block hide-patterns %}
+    <div class="body-pattern" id="pattern"></div>{% endblock %}
+{% block sidebar %}
+    {% include 'base/sidebar.html' %}
+{% endblock %}
 {% block body %}
     <div id="main">
 
@@ -105,16 +125,16 @@
 <script src="{% static 'js/jquery.inview.min.js' %}"></script>
 <script src="{% static 'js/footer_scripts.js' %}"></script>
 <script type="text/javascript">
-  $(document)
-    .ready(function () {
-  var x = $("#footer").offset();
-  var footer_pos=x.top;
-  var screen=$(window).height();
-  if(footer_pos +200<screen)
-    $("#footer").css('position', 'fixed');
+    $(document)
+        .ready(function () {
+            var x = $("#footer").offset();
+            var footer_pos = x.top;
+            var screen = $(window).height();
+            if (footer_pos + 200 < screen)
+                $("#footer").css('position', 'fixed');
 
 
-});
+        });
 
 </script>
 {% block footer_scripts %}{% endblock %}
