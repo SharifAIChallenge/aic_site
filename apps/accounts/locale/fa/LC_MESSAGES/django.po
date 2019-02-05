@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 22:08+0330\n"
+"POT-Creation-Date: 2019-02-05 05:03+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,7 +140,6 @@ msgstr "باخت"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:4
 #: apps/accounts/templates/accounts/panel/battle_history.html:6
-#: apps/accounts/views/panel.py:51
 msgid "Battle history"
 msgstr "بازی‌های دوستانه"
 
@@ -201,7 +200,7 @@ msgstr "نقشه:"
 msgid "Submit"
 msgstr "ارسال"
 
-#: apps/accounts/templates/accounts/oldpanel/challenge_feild.html:8
+#: apps/accounts/templates/accounts/oldpanel/challenge_field.html:8
 msgid "Challenge:"
 msgstr "رویداد:"
 
@@ -256,7 +255,6 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:7
 #: apps/accounts/templates/accounts/panel/submissions.html:53
-#: apps/accounts/views/panel.py:50
 msgid "Submissions"
 msgstr "ارسال‌ها"
 
@@ -354,8 +352,8 @@ msgstr "وضعیت تیم"
 
 #: apps/accounts/templates/accounts/oldpanel/team_management.html:10
 #: apps/accounts/templates/accounts/panel/team_management.html:12
-#: apps/accounts/templates/accounts/profile/login.html:14
-#: apps/accounts/templates/accounts/profile/signup.html:20
+#: apps/accounts/templates/accounts/profile/login.html:11
+#: apps/accounts/templates/accounts/profile/signup.html:19
 #: apps/accounts/templates/accounts/teams/add_member.html:12
 msgid "Username"
 msgstr "نام کاربری"
@@ -411,17 +409,17 @@ msgstr ""
 msgid "You have not participated in this challenge yet."
 msgstr "شما در این چالش شرکت نکرده‌اید."
 
-#: apps/accounts/templates/accounts/profile/login.html:10
-#: apps/accounts/templates/accounts/profile/login.html:30
+#: apps/accounts/templates/accounts/profile/login.html:7
+#: apps/accounts/templates/accounts/profile/login.html:27
 msgid "Login"
 msgstr "ورود"
 
-#: apps/accounts/templates/accounts/profile/login.html:25
-#: apps/accounts/templates/accounts/profile/signup.html:87
+#: apps/accounts/templates/accounts/profile/login.html:22
+#: apps/accounts/templates/accounts/profile/signup.html:86
 msgid "Password"
 msgstr "رمز"
 
-#: apps/accounts/templates/accounts/profile/login.html:33
+#: apps/accounts/templates/accounts/profile/login.html:31
 msgid "I forgot my password"
 msgstr "رمزم را فراموش کردم"
 
@@ -430,47 +428,43 @@ msgstr "رمزم را فراموش کردم"
 msgid "Sign Up"
 msgstr "ثبت نام"
 
-#: apps/accounts/templates/accounts/profile/signup.html:18
+#: apps/accounts/templates/accounts/profile/signup.html:17
 msgid "SignUp Form"
 msgstr "ثبت نام"
 
-#: apps/accounts/templates/accounts/profile/signup.html:36
+#: apps/accounts/templates/accounts/profile/signup.html:35
 msgid "First Name"
 msgstr "نام"
 
-#: apps/accounts/templates/accounts/profile/signup.html:40
+#: apps/accounts/templates/accounts/profile/signup.html:39
 msgid "Last Name"
 msgstr "نام خانوادگی"
 
-#: apps/accounts/templates/accounts/profile/signup.html:47
+#: apps/accounts/templates/accounts/profile/signup.html:46
 msgid "College/School"
 msgstr "دانشگاه/مدرسه"
 
-#: apps/accounts/templates/accounts/profile/signup.html:51
+#: apps/accounts/templates/accounts/profile/signup.html:50
 msgid "Phone Number"
 msgstr "شماره ی تلفن"
 
-#: apps/accounts/templates/accounts/profile/signup.html:55
+#: apps/accounts/templates/accounts/profile/signup.html:54
 msgid "Age"
 msgstr "سن"
 
-#: apps/accounts/templates/accounts/profile/signup.html:72
+#: apps/accounts/templates/accounts/profile/signup.html:71
 msgid "Email"
 msgstr "ایمیل"
 
-#: apps/accounts/templates/accounts/profile/signup.html:102
+#: apps/accounts/templates/accounts/profile/signup.html:101
 msgid "Password Confirm"
 msgstr "تکرار رمز"
 
-#: apps/accounts/templates/accounts/profile/signup.html:124
+#: apps/accounts/templates/accounts/profile/signup.html:123
 msgid "SignUp"
 msgstr "ثبت نام"
 
-#: apps/accounts/templates/accounts/profile/update_profile.html:8
-msgid "Sign up"
-msgstr "ثبت نام"
-
-#: apps/accounts/templates/accounts/profile/update_profile.html:12
+#: apps/accounts/templates/accounts/profile/update_profile.html:13
 msgid "Update"
 msgstr "ذخیره"
 
@@ -525,13 +519,14 @@ msgstr "تیم شما با موفقیت ساخته شد"
 msgid "Request messages has bee sent to your teammates"
 msgstr "درخواست عضویت به هم تیمی های شما فرستاده شد"
 
-#: apps/accounts/views/panel.py:69
-msgid "Friendly Scoreboard"
-msgstr "رده‌بندی دوستانه"
+#~ msgid "Sign up"
+#~ msgstr "ثبت نام"
 
-#: apps/accounts/views/panel.py:82
-msgid "League"
-msgstr "لیگ"
+#~ msgid "Friendly Scoreboard"
+#~ msgstr "رده‌بندی دوستانه"
+
+#~ msgid "League"
+#~ msgstr "لیگ"
 
 #~ msgid "With:"
 #~ msgstr "با:"

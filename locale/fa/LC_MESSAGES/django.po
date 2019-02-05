@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 22:08+0330\n"
+"POT-Creation-Date: 2019-02-05 05:03+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,13 +34,9 @@ msgstr "معرفی"
 msgid "Prize"
 msgstr "جایزه"
 
-#: aic_site/context_processors.py:22
-msgid "Schedule"
-msgstr "برنامه"
-
-#: aic_site/context_processors.py:24
-msgid "FAQ"
-msgstr "سوالات متداول"
+#: aic_site/context_processors.py:22 templates/zinnia/base.html:26
+msgid "Blog"
+msgstr "بلاگ"
 
 #: aic_site/settings/base.py:122
 msgid "English"
@@ -62,23 +58,23 @@ msgstr ""
 "تمامی حقوق برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
 "مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. ©"
 
-#: templates/base/navbar.html:48
+#: templates/base/navbar.html:46
 msgid "Logout"
 msgstr "خروج"
 
-#: templates/base/navbar.html:53 templates/zinnia/login.html:34
+#: templates/base/navbar.html:51 templates/zinnia/login.html:34
 msgid "Login"
 msgstr "ورود"
 
-#: templates/base/navbar.html:57
+#: templates/base/navbar.html:55
 msgid "Register"
 msgstr "ثبت نام"
 
-#: templates/base/navbar.html:62
+#: templates/base/navbar.html:60
 msgid "Change Language"
 msgstr "تغییر زبان"
 
-#: templates/base/navbar.html:65
+#: templates/base/navbar.html:63
 msgid "Blog and Q&A"
 msgstr "وبلاگ و پرسش و پاسخ"
 
@@ -385,10 +381,6 @@ msgstr "فید RSS آخرین نوشته‌ها"
 msgid "RSS feed of last discussions"
 msgstr "فید RSS آخرین بحث‌ها"
 
-#: templates/zinnia/base.html:26
-msgid "Blog"
-msgstr "بلاگ"
-
 #: templates/zinnia/base.html:60
 msgid "Recent entries"
 msgstr "نوشته‌های اخیر"
@@ -529,11 +521,11 @@ msgstr ""
 msgid "RSS feed of trackbacks on %(object)s"
 msgstr ""
 
-#: templates/zinnia/entry_detail_base.html:67
+#: templates/zinnia/entry_detail_base.html:66
 msgid "Comments and Q&A"
 msgstr "پرسش و پاسخ و نظرات"
 
-#: templates/zinnia/entry_detail_base.html:89
+#: templates/zinnia/entry_detail_base.html:88
 #, python-format
 msgid ""
 "<a href=\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
@@ -544,7 +536,7 @@ msgid ""
 "%(comment_human_date)s </time>"
 msgstr ""
 
-#: templates/zinnia/entry_detail_base.html:131
+#: templates/zinnia/entry_detail_base.html:133
 #, python-format
 msgid ""
 "<a href=\"#comment-%(comment_pk)s-by-%(comment_author_slug)s\" id=\"c"
@@ -555,22 +547,22 @@ msgid ""
 "%(comment_human_date)s </time>"
 msgstr ""
 
-#: templates/zinnia/entry_detail_base.html:166
-#: templates/zinnia/entry_detail_base.html:172
+#: templates/zinnia/entry_detail_base.html:170
+#: templates/zinnia/entry_detail_base.html:176
 msgid "Comments are closed."
 msgstr "نظرات بسته است."
 
-#: templates/zinnia/entry_detail_base.html:170
+#: templates/zinnia/entry_detail_base.html:174
 #: templates/zinnia/tags/comments_recent.html:18
 msgid "No comments yet."
 msgstr "بدون نظر"
 
-#: templates/zinnia/entry_detail_base.html:184
+#: templates/zinnia/entry_detail_base.html:188
 msgid "Login To Comment"
 msgstr "برای پرسش و پاسخ وارد شوید"
 
-#: templates/zinnia/entry_detail_base.html:195
-#: templates/zinnia/entry_detail_base.html:196
+#: templates/zinnia/entry_detail_base.html:198
+#: templates/zinnia/entry_detail_base.html:199
 msgid "Edit the entry"
 msgstr "ویرایش نوشته"
 
@@ -638,7 +630,7 @@ msgstr "آرشیو تگ «%(tag)s»"
 msgid "Author archives: %(author)s"
 msgstr ""
 
-#: templates/zinnia/entry_list.html:107 templates/zinnia/sitemap.html:30
+#: templates/zinnia/entry_list.html:106 templates/zinnia/sitemap.html:30
 #: templates/zinnia/tags/entries_featured.html:9
 #: templates/zinnia/tags/entries_popular.html:12
 #: templates/zinnia/tags/entries_random.html:9
@@ -646,15 +638,15 @@ msgstr ""
 msgid "No entries yet."
 msgstr "تا کنون نوشته‌ای ثبت نشده است."
 
-#: templates/zinnia/entry_list.html:128 templates/zinnia/entry_list.html:129
+#: templates/zinnia/entry_list.html:126 templates/zinnia/entry_list.html:127
 msgid "Edit the category"
 msgstr "ویرایش دسته‌بندی"
 
-#: templates/zinnia/entry_list.html:135 templates/zinnia/entry_list.html:136
+#: templates/zinnia/entry_list.html:133 templates/zinnia/entry_list.html:134
 msgid "Edit the tag"
 msgstr "ویرایش تگ"
 
-#: templates/zinnia/entry_list.html:142 templates/zinnia/entry_list.html:143
+#: templates/zinnia/entry_list.html:140 templates/zinnia/entry_list.html:141
 msgid "Edit the author"
 msgstr "ویرایش نویسنده"
 
@@ -899,6 +891,12 @@ msgstr ""
 msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
+
+#~ msgid "Schedule"
+#~ msgstr "برنامه"
+
+#~ msgid "FAQ"
+#~ msgstr "سوالات متداول"
 
 #~ msgid "400"
 #~ msgstr "۴۰۰"

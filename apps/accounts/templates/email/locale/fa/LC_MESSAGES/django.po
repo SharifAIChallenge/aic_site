@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 22:08+0330\n"
+"POT-Creation-Date: 2019-02-05 05:03+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr "برای فعالسازی حساب خود بر روی لینک زیر ک
 msgid "Sign Up"
 msgstr "ثبت نام"
 
-#: apps/accounts/templates/email/email_confirm.html:12
+#: apps/accounts/templates/email/email_confirm.html:11
 msgid "Your account has been successfully verified"
 msgstr "حساب شما با موفقیت تایید شد."
 
@@ -46,12 +46,12 @@ msgstr "حساب شما با موفقیت تایید شد."
 msgid "You can now login with your account"
 msgstr "شما اکنون می‌توانید با نام کاربری و گذرواژه خود وارد سایت شوید."
 
-#: apps/accounts/templates/email/email_confirm.html:20
-#: apps/accounts/templates/email/email_invalid.html:20
+#: apps/accounts/templates/email/email_confirm.html:19
+#: apps/accounts/templates/email/email_invalid.html:19
 msgid "OK"
 msgstr "باشه"
 
-#: apps/accounts/templates/email/email_invalid.html:12
+#: apps/accounts/templates/email/email_invalid.html:11
 msgid "The verification link is invalid"
 msgstr "لینک فعالسازی نامعتبر است. "
 
@@ -61,7 +61,7 @@ msgstr "لینک شما ممکن است منقضی شده‌شده باشد.‌"
 
 #: apps/accounts/templates/email/email_sent.html:13
 msgid "Registration"
-msgstr ""
+msgstr "ثبت‌نام"
 
 #: apps/accounts/templates/email/email_sent.html:16
 msgid "Your user registration was successful"
@@ -71,6 +71,6 @@ msgstr "ثبت نام شما موفقیت‌آمیز بود."
 msgid "a verification link has been sent to your Email"
 msgstr "یک ایمیل فعالسازی به رایان‌نامه شما ارسال شد."
 
-#: apps/accounts/templates/email/email_sent.html:22
+#: apps/accounts/templates/email/email_sent.html:21
 msgid "LOGIN"
-msgstr ""
+msgstr "وارد شوید"
