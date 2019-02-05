@@ -58,7 +58,14 @@ server {
         root            /static/root;
         access_log      on;
         log_not_found   on;
-        rewrite ^/static/(.*)$ /static/$1?v=2 redirect;
+        rewrite ^/static/(.*)$ /new_static/$1 redirect;
+        expires 30d;
+    }
+
+   location /new_static/ {
+        root            /static/root;
+        access_log      on;
+        log_not_found   on;
         expires 30d;
     }
 
