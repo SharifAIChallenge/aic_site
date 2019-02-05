@@ -26,6 +26,7 @@ class TestAuthentication(TestCase):
             'password1': 'test_password',
             'password2': 'test_password',
             'organization': 'Good Organization',
+            'phone_number': '09196667788'
         }
         response = self.client.post('/accounts/signup/', data, follow=True)
         #self.assertContains(response, '/accounts/login/', 2, 200)
@@ -55,6 +56,7 @@ class TestAuthentication(TestCase):
             'password1': 'test_password',
             'password2': 'test_password',
             'organization': 'Good Organization',
+            'phone_number': '09196667788'
         }
         response = self.client.post('/accounts/signup/', data, follow=True)
         #self.assertContains(response, '/accounts/login/', 2, 200)

@@ -14,15 +14,23 @@ from apps.accounts.models import Profile
 from apps.accounts.tokens import account_activation_token
 from captcha.fields import ReCaptchaField
 
+
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
-    last_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
-    email = forms.EmailField(max_length=254, required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
-    organization = forms.CharField(max_length=255, required=True, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
+    first_name = forms.CharField(max_length=30, required=True,
+                                 widget=forms.TextInput(attrs={'oninvalid': _('CUSTOM_VALIDITY')}))
+    last_name = forms.CharField(max_length=30, required=True,
+                                widget=forms.TextInput(attrs={'oninvalid': _('CUSTOM_VALIDITY')}))
+    email = forms.EmailField(max_length=254, required=True,
+                             widget=forms.TextInput(attrs={'oninvalid': _('CUSTOM_VALIDITY')}))
+    organization = forms.CharField(max_length=255, required=True,
+                                   widget=forms.TextInput(attrs={'oninvalid': _('CUSTOM_VALIDITY')}))
+    position = forms.CharField(max_length=255, required=False,
+                               widget=forms.TextInput(attrs={'oninvalid': _('CUSTOM_VALIDITY')}))
     phone_regex = RegexValidator(regex=r'^\d{8,15}$',
                                  message=_("Please enter your phone number correctly!"))
-    phone_number = forms.CharField(validators=[phone_regex], required=False)
-    age = forms.IntegerField(required=False, widget=forms.TextInput(attrs={'oninvalid':_('CUSTOM_VALIDITY')}))
+    phone_number = forms.CharField(validators=[phone_regex], required=True)
+    age = forms.IntegerField(required=False, widget=forms.TextInput(attrs={'oninvalid': _('CUSTOM_VALIDITY')}))
+    confirm_data = forms.BooleanField(initial=True, required=False)
     captcha = ReCaptchaField()
 
     def is_valid(self):
@@ -56,7 +64,9 @@ class SignUpForm(UserCreationForm):
                 user=user,
                 phone_number=self.cleaned_data['phone_number'],
                 organization=self.cleaned_data['organization'],
-                age=self.cleaned_data['age']
+                age=self.cleaned_data['age'],
+                position=self.cleaned_data['position'],
+                confirm_data = self.cleaned_data['confirm_data'],
             )
             profile.save()
 
@@ -72,7 +82,9 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'organization','age', 'phone_number', 'email', 'password1', 'password2')
+        fields = (
+        'username', 'first_name', 'last_name', 'organization', 'position', 'age', 'phone_number', 'email', 'password1',
+        'password2')
 
 
 class UpdateProfileForm(ModelForm):
@@ -96,7 +108,6 @@ class UpdateProfileForm(ModelForm):
         profile.phone_number = self.cleaned_data['phone_number']
         profile.age = self.cleaned_data['age']
         profile.organization = self.cleaned_data['organization']
-
         if commit:
             user.save()
             profile.save()
@@ -104,4 +115,4 @@ class UpdateProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'email','phone_number','age', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'email', 'phone_number', 'age', 'password1', 'password2')
