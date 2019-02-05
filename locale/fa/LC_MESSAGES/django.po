@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-05 05:03+0330\n"
+"POT-Creation-Date: 2019-02-05 10:46+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,9 +34,14 @@ msgstr "معرفی"
 msgid "Prize"
 msgstr "جایزه"
 
-#: aic_site/context_processors.py:22 templates/zinnia/base.html:26
-msgid "Blog"
-msgstr "بلاگ"
+#: aic_site/context_processors.py:67
+msgid "Panel"
+msgstr "پنل"
+
+#: aic_site/context_processors.py:69 templates/base/navbar.html:52
+#: templates/zinnia/login.html:34
+msgid "Login"
+msgstr "ورود"
 
 #: aic_site/settings/base.py:122
 msgid "English"
@@ -58,23 +63,19 @@ msgstr ""
 "تمامی حقوق برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
 "مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. ©"
 
-#: templates/base/navbar.html:46
+#: templates/base/navbar.html:47
 msgid "Logout"
 msgstr "خروج"
 
-#: templates/base/navbar.html:51 templates/zinnia/login.html:34
-msgid "Login"
-msgstr "ورود"
-
-#: templates/base/navbar.html:55
+#: templates/base/navbar.html:56
 msgid "Register"
 msgstr "ثبت نام"
 
-#: templates/base/navbar.html:60
+#: templates/base/navbar.html:61
 msgid "Change Language"
 msgstr "تغییر زبان"
 
-#: templates/base/navbar.html:63
+#: templates/base/navbar.html:64
 msgid "Blog and Q&A"
 msgstr "وبلاگ و پرسش و پاسخ"
 
@@ -380,6 +381,10 @@ msgstr "فید RSS آخرین نوشته‌ها"
 #: templates/zinnia/base.html:20
 msgid "RSS feed of last discussions"
 msgstr "فید RSS آخرین بحث‌ها"
+
+#: templates/zinnia/base.html:26
+msgid "Blog"
+msgstr "بلاگ"
 
 #: templates/zinnia/base.html:60
 msgid "Recent entries"
@@ -950,9 +955,6 @@ msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
 
 #~ msgid "Game"
 #~ msgstr "بازی"
-
-#~ msgid "Panel"
-#~ msgstr "پنل"
 
 #~ msgid "Game Viewer"
 #~ msgstr "نمایشگر بازی"

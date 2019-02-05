@@ -19,7 +19,7 @@ def menu(request):
                     }
                 },
 
-                _('Blog'): reverse('zinnia:entry_archive_index'),
+                # _('Blog'): reverse('zinnia:entry_archive_index'),
 
                 # _('Contact Us'): reverse('intro:index') + '#section-organizer',
                 # _('Access'): {
