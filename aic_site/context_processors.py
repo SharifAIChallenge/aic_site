@@ -32,11 +32,7 @@ def menu(request):
                 # },
             },
             'sidebar': {
-                _('Home'): {
-                    _('Main Page'): reverse('intro:index'),
-
-                },
-
+                _('Home'): reverse('intro:index'),
                 _('Blog'): reverse('zinnia:entry_archive_index'),
             },
             # 'sidebar': {
