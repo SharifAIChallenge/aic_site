@@ -6,9 +6,9 @@
 
 {% block extra_header %}
 
-    <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}">
+    <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css?ver=2' %}">
     <script src="{% static 'js/scrollreveal.js' %}"></script>
-     <link rel="stylesheet" href="{% static 'intro/css/profile.css' %}">
+     <link rel="stylesheet" href="{% static 'intro/css/profile.css?ver=2' %}">
 
 
 {% endblock %}
@@ -813,9 +813,9 @@
 {% block footer_scripts %}
     {{ block.super }}
     {% if LANGUAGE_BIDI %}
-        <script src="{% static 'intro/js/scripts.js' %}"></script>
+        <script src="{% static 'intro/js/scripts.js?ver=2' %}"></script>
     {% else %}
-        <script src="{% static 'intro/js/scriptsEN.js' %}"></script>
+        <script src="{% static 'intro/js/scriptsEN.js?ver=2' %}"></script>
     {% endif %}
     <script>
         ScrollReveal().reveal('.faded-d1', {delay: 250});
