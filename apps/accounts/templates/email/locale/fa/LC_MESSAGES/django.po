@@ -69,7 +69,7 @@ msgstr "ثبت نام شما موفقیت‌آمیز بود."
 
 #: apps/accounts/templates/email/email_sent.html:17
 msgid "a verification link has been sent to your Email"
-msgstr "یک ایمیل فعالسازی به رایان‌نامه شما ارسال شد."
+msgstr "یک ایمیل فعالسازی به رایا‌نامه شما ارسال شد."
 
 #: apps/accounts/templates/email/email_sent.html:21
 msgid "LOGIN"
