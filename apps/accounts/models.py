@@ -8,9 +8,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
     phone_number = models.CharField(max_length=11, null=True, blank=True, verbose_name=_('Mobile number‌'))
     organization = models.CharField(max_length=128, null=False, blank=False, verbose_name=_('Organization‌'))
+    position = models.CharField(max_length=128, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True, verbose_name=_('Age‌'))
     national_code = models.CharField(max_length=10, null=True, blank=True, verbose_name=_('National code‌'))
     tel_number = models.CharField(max_length=20, null=True, blank=True, verbose_name=_('Telephone number‌'))
+    confirm_data = models.NullBooleanField(null=True, blank=True)
     panel_active_teampc = models.ForeignKey(
         'game.TeamParticipatesChallenge', null=True, blank=True, default=None, on_delete=models.SET_NULL
     )

@@ -8,9 +8,9 @@
     <form method="post" class="ui inverted form error" style="margin:auto;width: 90%">
         {% if form.non_field_errors|length %}
             <div class="ui red message">
-            {% for error in form.non_field_errors %}
-                {{ error }}
-            {% endfor %}
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
             </div>
         {% endif %}
         {% csrf_token %}
@@ -30,7 +30,7 @@
             </div>
         {% endif %}
 
-        <div class="two fields">
+        <div class="three fields">
             <div class="field required">
                 <label>{% trans 'First Name' %}</label>
                 {{ form.first_name }}
@@ -39,18 +39,22 @@
                 <label>{% trans 'Last Name' %}</label>
                 {{ form.last_name }}
             </div>
+            <div class="field required">
+                <label>{% trans 'College/School/WorkPlace' %}</label>
+                {{ form.organization }}
+            </div>
         </div>
 
         <div class="three fields">
-            <div class="field required">
-                <label>{% trans 'College/School' %}</label>
-                {{ form.organization }}
-            </div>
             <div class="field">
+                <label>{% trans 'Major/Position' %}</label>
+                {{ form.position }}
+            </div>
+            <div class="field required">
                 <label>{% trans 'Phone Number' %}</label>
                 {{ form.phone_number }}
             </div>
-             <div class="field">
+            <div class="field">
                 <label>{% trans 'Age' %}</label>
                 {{ form.age }}
             </div>
@@ -62,7 +66,7 @@
             </div>
         {% endif %}
         {% if form.phone_number.errors %}
-            <div class="ui message error"style="font-weight:bolder;color:#ED1A3A;">
+            <div class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
                 <strong>{{ form.phone_number.errors }}</strong>
             </div>
         {% endif %}
@@ -108,6 +112,18 @@
                 {% endfor %}
             </ol>
         {% endif %}
+        <div class="field">
+            <div class="ui checkbox" style="margin-bottom: 10px">
+                <input id="id_confirm_data" name="confirm_data" type="checkbox" tabindex="0" class="hidden" checked="true">
+                <label>
+                    {% trans 'I agree to share my information with AIC sponser.' %}
+                </label>
+            </div>
+        </div>
+
+        <script>
+            $('.ui.checkbox').checkbox();
+        </script>
 
         <div class="field">
             {{ form.captcha }}
@@ -118,9 +134,8 @@
             </div>
         {% endif %}
 
-
-
         <button type="submit" class="ui inverted teal button" style="font-weight: bolder">{% trans 'SignUp' %}</button>
     </form>
+
 {% endblock %}
 

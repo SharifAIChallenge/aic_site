@@ -441,12 +441,18 @@ msgid "Last Name"
 msgstr "نام خانوادگی"
 
 #: apps/accounts/templates/accounts/profile/signup.html:46
-msgid "College/School"
-msgstr "دانشگاه/مدرسه"
+msgid "College/School/WorkPlace"
+msgstr "دانشگاه/مدرسه/محل‌کار"
 
+msgid "Major/Position"
+msgstr "رشته‌تحصیلی/موقعیت‌ شغلی"
+
+
+msgid "I agree to share my information with AIC sponser."
+msgstr "من با به اشتراک گذاشتن اطلاعاتم با حامی نبرد هوش مصنوعی موافقم."
 #: apps/accounts/templates/accounts/profile/signup.html:50
 msgid "Phone Number"
-msgstr "شماره ی تلفن"
+msgstr "شماره ی تلفن همراه"
 
 #: apps/accounts/templates/accounts/profile/signup.html:54
 msgid "Age"
