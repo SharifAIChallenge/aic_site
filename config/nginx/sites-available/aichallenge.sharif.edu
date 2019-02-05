@@ -58,8 +58,7 @@ server {
         root            /static/root;
         access_log      on;
         log_not_found   on;
-        rewrite ^/static/(.*)$ /static/$1?v=2 break;
-        expires 30d;
+        expires -1;
     }
 
     location /media/ {
