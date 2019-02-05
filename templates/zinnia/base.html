@@ -27,50 +27,51 @@
     {% zinnia_breadcrumbs root_name %}
 {% endblock breadcrumbs %}
 
-{% block sidebar %}
-    <div class="ui right sidebar inverted vertical menu">
-    {% for title, link in ai.sidebar.items %}
-            {% if not link.dropdown %}
-                <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>
-            {% else %}
-                <div class="item">
-                    <div class="title">
-                        <span class="text">{{ title }}</span>
-                    </div>
-                    <div class="content menu">
-                        {% for dtitle, dlink in link.dropdown.items %}
-                            <a href="{{ dlink }}" class="item">{{ dtitle }}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
-    {% endfor %}
-<div id="widget-tags" class="item">
-            <div class="item">
-                <div class="header">
-                    {% trans "Tags" %}
-                </div>
-            </div>
-            <div class="content menu">
-                {% get_tag_cloud %}
-            </div>
-        </div>
-        <div id="widget-recents" class="item">
-            <div class="item">
-                <div class="title">{% trans "Recent entries" %}</div>
-            </div>
-            <div class="content menu">
-                {% get_recent_entries %}
-            </div>
-        </div>
-        <div id="widget-comments" class="item">
-            <div class="item">
-                <div class="header">{% trans "Recent comments" %}</div>
-            </div>
-            <div class="content menu">
-                {% get_recent_comments %}
-            </div>
-        </div>
-
-</div>
-{% endblock sidebar %}
+{##}
+{#{% block sidebar %}#}
+{#    <div class="ui left sidebar inverted vertical menu">#}
+{#        {% for title, link in ai.sidebar.items %}#}
+{#            {% if not link.dropdown %}#}
+{#                <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>#}
+{#            {% else %}#}
+{#                <div class="item">#}
+{#                    <div class="title">#}
+{#                        <span class="text">{{ title }}</span>#}
+{#                    </div>#}
+{#                    <div class="content menu">#}
+{#                        {% for dtitle, dlink in link.dropdown.items %}#}
+{#                            <a href="{{ dlink }}" class="item">{{ dtitle }}</a>#}
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+{#        <div id="widget-tags" class="item">#}
+{#            <div class="item">#}
+{#                <div class="header">#}
+{#                    {% trans "Tags" %}#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="content menu">#}
+{#                {% get_tag_cloud %}#}
+{#            </div>#}
+{#        </div>#}
+{#        <div id="widget-recents" class="item">#}
+{#            <div class="item">#}
+{#                <div class="title">{% trans "Recent entries" %}</div>#}
+{#            </div>#}
+{#            <div class="content menu">#}
+{#                {% get_recent_entries %}#}
+{#            </div>#}
+{#        </div>#}
+{#        <div id="widget-comments" class="item">#}
+{#            <div class="item">#}
+{#                <div class="header">{% trans "Recent comments" %}</div>#}
+{#            </div>#}
+{#            <div class="content menu">#}
+{#                {% get_recent_comments %}#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{#{% endblock sidebar %}#}
