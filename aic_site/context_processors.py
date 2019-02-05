@@ -33,14 +33,8 @@ def menu(request):
             },
             'sidebar': {
                 _('Home'): {
-                    'dropdown': {
-                        _('Main Page'): reverse('intro:index'),
-                        _('Introduction'): reverse('intro:index') + '#section-intro',
-                        _('Prize'): reverse('intro:index') + '#section-prizes',
-                        _('Schedule'): reverse('intro:index') + '#section-schedule',
-                        _('FAQ'): reverse('intro:index') + "#section-faq",
-                        _('Contact Us'): reverse('intro:index') + '#section-organizer',
-                    }
+                    _('Main Page'): reverse('intro:index'),
+
                 },
 
                 _('Blog'): reverse('zinnia:entry_archive_index'),
