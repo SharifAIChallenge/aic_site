@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.billing.decorators import payment_required
-from apps.game.models import TeamSubmission, Match, TeamParticipatesChallenge, Competition
+from apps.game.models import TeamSubmission, Match, TeamParticipatesChallenge, Competition, MapForm
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -47,6 +47,7 @@ def get_shared_context(request):
 
     context['menu_items'] = [
         {'name': 'team_management', 'link': reverse('accounts:panel_team_management'), 'text': _('Team Status')},
+        {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
         # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
         # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
     ]
@@ -232,3 +233,31 @@ def battle_history(request):
                     5).page(battles_page)
             })
     return render(request, 'accounts/panel/battle_history.html', context)
+
+
+@payment_required
+@login_required
+def upload_map(request):
+    team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
+    context = get_shared_context(request)
+
+    for item in context['menu_items']:
+        if item['name'] == 'upload_map':
+            item['active'] = True
+
+    form = MapForm(request.POST)
+    if form.is_valid():
+        map = form.save(commit=False)
+        map.team = team_pc
+        map.competitions = Competition.objects.get(challenge__teams=team_pc)
+        map.save()
+        return render(request, '', context)
+    else:
+        context.update({
+            'error': _('File format is not correct.')
+        })
+        return render(request, '', context)
+
+

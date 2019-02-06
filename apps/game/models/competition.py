@@ -10,7 +10,7 @@ from django.db import models
 from django.http import HttpResponseServerError, Http404
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _, ugettext
-
+from django import forms
 from apps.accounts.models import Team
 from apps.game.models.challenge import Challenge, TeamSubmission, TeamParticipatesChallenge
 
@@ -656,6 +656,8 @@ class Map(models.Model):
     name = models.CharField(max_length=128, null=False, blank=False)
     token = models.CharField(max_length=256, null=True, blank=False)
     competitions = models.ManyToManyField(Competition, related_name='maps')
+    team = models.ForeignKey(TeamParticipatesChallenge, blank=True, null=True)
+
 
     def save(self, *args, **kwargs):
         from apps.game import functions
@@ -666,6 +668,13 @@ class Map(models.Model):
         if self.name is None:
             return str(self.id)
         return self.name
+
+
+class MapForm(forms.ModelForm):
+    class Meta:
+        model = Map
+        fields = ['file', 'name']
+
 
 
 class SingleMatch(models.Model):
