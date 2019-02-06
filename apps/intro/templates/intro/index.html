@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}?ver=2">
     <script src="{% static 'js/scrollreveal.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'intro/css/profile.css' %}?ver=2">
+     <link rel="stylesheet" href="{% static 'intro/css/profile.css' %}?ver=2">
 
 
 {% endblock %}
@@ -22,8 +22,7 @@
             <li style="margin-top: 25px"><a target="_blank" href="https://www.instagram.com/aichallenge/"
                                             target="_blank" id="instagram_side"><i
                     class="big inverted white instagram icon  socialicon"></i></a></li>
-            <li style="margin-top: 25px"><a target="_blank" href="https://t.me/aichallenge" target="_blank"
-                                            id="telegram_side"><i
+            <li style="margin-top: 25px"><a target="_blank" href="https://t.me/aichallenge" target="_blank" id="telegram_side"><i
                     class="big inverted white telegram plane icon socialicon"></i></a></li>
         </ul>
 
@@ -36,18 +35,16 @@
     </div>
 
     <div class="odd section" style="padding-top: 20px" align="center">
-        {% if not request.user.is_authenticated %}
-            {#        <button class="circular ui button" id="signupButton" style="color: #fff3d9; background-color: #F8981D;  font-size: 30px; margin-bottom: 10px"#}
-            {#        >#}
-            <a class="circular ui button"
-               style="color: #fff3d9; background-color: #F8981D;  font-size: 30px; margin-bottom: 10px"
-               href="{% url 'accounts:signup' %}">
+    {% if not request.user.is_authenticated %}
+{#        <button class="circular ui button" id="signupButton" style="color: #fff3d9; background-color: #F8981D;  font-size: 30px; margin-bottom: 10px"#}
+{#        >#}
+            <a class="circular ui button" style="color: #fff3d9; background-color: #F8981D;  font-size: 30px; margin-bottom: 10px" href="{% url 'accounts:signup' %}">
                 {% trans "Sign Up!" %}
             </a>
-            {#        </button>#}
-        {% endif %}
+{#        </button>#}
+    {% endif %}
         <div class="countdown container">
-            <div id="clockdiv" dir="{% if LANGUAGE_BIDI %}ltr{% else %}rtl{% endif %}">
+            <div id="clockdiv" dir="{% if LANGUAGE_BIDI %}ltr{% else %}rtl{% endif %}" >
                 <div class="seconds_div" style="margin-top: 10px">
                     <span class="seconds"></span>
                     <div class="smalltext">{% trans "seconds" %}</div>
@@ -71,45 +68,43 @@
             <p> {% trans "Stay in touch with us with email" %} </p>
         </div>
         <div id="modal" class="ui basic modal test">
-            <div class="ui icon header">
-                <i class="envelope outline icon"></i>
-                {% trans "Subscription" %}
-            </div>
-            <div class="content" id="content" align="center" style="font-weight: bolder;font-size: 30px">
-                <p id="message">Some text in the Modal..</p></div>
-            <div class="actions" align="center">
-                <div class="ui inverted teal large ok button" style="font-weight: bolder">
+  <div class="ui icon header">
+    <i class="envelope outline icon"></i>
+   {% trans "Subscription" %}
+  </div>
+  <div class="content" id="content" align="center" style="font-weight: bolder;font-size: 30px">
+ <p   id="message">Some text in the Modal..</p>  </div>
+  <div class="actions" align="center">
+    <div class="ui inverted teal large ok button"  style="font-weight: bolder">
 
-                    {% trans "OK" %}
-                </div>
-            </div>
+    {%trans "OK"%}
+    </div>
+  </div>
 
         </div>
-        <form class="ui form" method="post" id="notify">{% csrf_token %}
-            <div class="field">
-                <div class="ui action input" style="margin-top: 0px; margin-bottom: 25px;height: 50px; width: 350px;">
-
-                    <input type="email" placeholder="{% trans "Email" %}"
-                           style="{% if LANGUAGE_BIDI %} border-bottom-right-radius: 20px;border-top-right-radius: 20px;{% else %} border-bottom-left-radius: 20px;border-top-left-radius: 20px; {% endif %} background-color: #fff3d9"
-                           id="email" name="email">
-
-                    <button class="ui button" type="submit" id="button"
-                            style="{% if LANGUAGE_BIDI %} border-bottom-left-radius: 20px;border-top-left-radius: 20px;{% else %} border-bottom-right-radius: 20px;border-top-right-radius: 20px; {% endif %} color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold"
-
-                    >
-                        {% trans 'Notify me' %}
-                    </button>
-
-                </div>
-            </div>
-        </form>
+{#        <form class="ui form" method="post" id="notify">{% csrf_token %}#}
+{#            <div class="field">#}
+{#                <div class="ui action input" style="margin-top: 0px; margin-bottom: 25px;height: 50px; width: 350px;">#}
+{##}
+{#                    <input type="email" placeholder="{% trans "Email" %}"#}
+{#                           style="{% if LANGUAGE_BIDI %} border-bottom-right-radius: 20px;border-top-right-radius: 20px;{% else %} border-bottom-left-radius: 20px;border-top-left-radius: 20px; {% endif %} background-color: #fff3d9"#}
+{#                           id="email" name="email">#}
+{##}
+{#                    <button class="ui button" type="submit" id="button"style="{% if LANGUAGE_BIDI %} border-bottom-left-radius: 20px;border-top-left-radius: 20px;{% else %} border-bottom-right-radius: 20px;border-top-right-radius: 20px; {% endif %} color: #fff3d9; background-color: #ED1A3A; font-family: URWGeometric-Bold"#}
+{##}
+{#                    >#}
+{#                        {% trans 'Notify me' %}#}
+{#                    </button>#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </form>#}
     </div>
 
     <div class="even section" id="section-intro" style="padding-bottom: 0px!important;">
 
         <div class="ui section header">
-            <a class="circular ui big ai blue button" href="#section-intro" style="background-color: #FFF3D9"
-               id="intro_btn">
+            <a class="circular ui big ai blue button" href="#section-intro" style="background-color: #FFF3D9" id="intro_btn">
                 {% trans 'Introduction' %}
             </a>
         </div>
@@ -154,43 +149,40 @@
         </div>
     </div>
 
+    {#    <div class="odd section" id="section-intro">#}
+    {##}
+    {#        <div class="ui center aligned stackable grid">#}
+    {#            <div class="circle faded-d1" id="purple">#}
+    {##}
+    {#                <a style="padding-right: 20px">#}
+    {#                    {{ users_count }}#}
+    {#                </a>#}
+    {#                <br/>{% trans 'Users' %}#}
+    {#            </div>#}
+    {#            <div class="circle faded-d2" id="yellow">#}
+    {#                <a style="padding-right: 15px">#}
+    {#                    {{ submits_count }}#}
+    {#                </a>#}
+    {#                <br/>{% trans 'Submissions' %}#}
+    {#            </div>#}
+    {#            <div class="circle faded-d3" id="blue">#}
+    {#                <a style="padding-right: 15px">#}
+    {#                    {{ teams_count }}#}
+    {#                </a>#}
+    {#                <br/>{% trans 'Teams' %}#}
+    {#            </div>#}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
 
-    <div class="odd section" id="section-intro">
 
-        <div class="ui center aligned stackable grid">
-            <div class="circle faded-d1" id="blue">
-                <a style="padding-right: 15px">
-                    {{ teams_count }}
-                </a>
-                <br/>{% trans 'Teams' %}
-            </div>
-
-            <div class="circle faded-d2" id="yellow">
-                <a style="padding-right: 15px">
-                    {{ submits_count }}
-                </a>
-                <br/>{% trans 'Submissions' %}
-            </div>
-
-            <div class="circle faded-d3" id="purple">
-
-                <a style="padding-right: 20px">
-                    {{ users_count }}
-                </a>
-                <br/>{% trans 'Users' %}
-            </div>
-        </div>
-
-    </div>
-
-    <div class="even section">
+    <div class="odd section">
         <div class="ui section header">
             <a class="circular ui big ai red button" id="Why_SAIC_btn">
                 {% trans 'Why Sharif AI Challenge?' %}
             </a>
         </div>
-        <div class="ui stackable grid container ai-feature"
-             style="margin-bottom: 0!important; padding-bottom: 0!important;">
+        <div class="ui stackable grid container ai-feature" style="margin-bottom: 0!important; padding-bottom: 0!important;">
             <div class="two wide column"></div>
             <div class="four wide column faded-d1" style="text-align: center; background-color: #fcd504; color: black;">
                 <i class="huge users icon"></i>
@@ -245,7 +237,7 @@
         </div>
     </div>
 
-    <div class="odd section" id="section-prizes">
+    <div class="even section" id="section-prizes">
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-prizes" id="prize_btn">
                 {% trans 'Prizes' %}
@@ -292,7 +284,7 @@
         </div>
     </div>
 
-    <div class="even section" id="section-schedule">
+    <div class="odd section" id="section-schedule">
         <div class="ui section header" id="schedule-title">
             <a class="circular ui big ai red button" href="#section-schedule" id="schedule_btn">
                 {% trans 'Schedule' %}
@@ -337,7 +329,7 @@
         </section>
     </div>
 
-    <div class="odd section" id="section-faq">
+    <div class="even section" id="section-faq">
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-faq" id="faq_btn">
                 {% trans 'FAQ' %}
@@ -528,25 +520,6 @@
                             {% blocktrans %}
                                 You may register online starting February 5th. The registration for the online round is
                                 free.
-                            {% endblocktrans %}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ui inverted divider"></div>
-                <div class="title" id="FQ10">
-                    <i class="dropdown icon"></i>
-                    <b class="ui active header" style="color:#F8981D">
-                        {% blocktrans %}
-                            What is the maximum size for an acm icpc team?
-                        {% endblocktrans %}
-                    </b>
-                </div>
-                <div class="ui stackable grid content" id="FA10">
-                    <div class="ui two column row">
-                        <div class=" sixteen wide column faq-text">
-                            {% blocktrans %}
-                                Participated teams should have two or three member.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -749,7 +722,7 @@
         </div>
     </div>
 
-    <div class="even section tablet computer only" id="section-about-us">
+    <div class="odd section tablet computer only" id="section-about-us" >
 
         <div class="ui section header">
             <a class="circular ui big ai red button" href="#section-about-us" id="part_of_team_btn">
@@ -758,35 +731,31 @@
         </div>
 
 
-        <div class="staff-pic stackable center aligned ui grid" id="staff-in-mainpage" style="margin-bottom: 2%;">
+        <div class="staff-pic stackable center aligned ui grid" id="staff-in-mainpage" style="margin-bottom: 2%;" >
             {% for member in staff %}
 
-                <div style="margin: 2%">
-                    <div class="base" dir="ltr"
-                         style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red' %}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red' %}#ee224f{% else %}#007369{% endif %});">
-                        <img class="profpic ui circular image" src="media/{{ member.image }}" alt="Card image">
-                        <div class="layer" onclick=""
-                             style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red' %}#ee284d{% else %}#4abd9c{% endif %};">
-                            <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">
-                                <h3 class="text-font">{{ member.name }}</h3>
-                            </div>
+            <div style="margin: 2%">
+                <div class="base" dir="ltr" style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red'%}#ee224f{% else %}#007369{% endif %});">
+                    <img class="profpic ui circular image" src="media/{{ member.image }}" alt="Card image">
+                    <div class="layer" onclick="" style="background:{% if member.color == 'orange' %}#f8981d{% elif member.color == 'red'%}#ee284d{% else %}#4abd9c{% endif %};">
+                        <div class="caption" style="text-align: center; align-self: auto; margin-top: 40%">
+                            <h3 class="text-font">{{ member.name }}</h3>
                         </div>
                     </div>
                 </div>
+            </div>
 
             {% endfor %}
         </div>
 
         <div class="ui stackable center aligned grid">
-            <a href="staff">
-                <button class="ui basic teal button big" style="margin-bottom: 5%;">{% trans 'See All' %} </button>
-            </a>
+            <a href="staff"><button class="ui basic teal button big" style="margin-bottom: 5%;">{% trans 'See All'%} </button></a>
         </div>
 
     </div>
 
 
-    <div class="odd section tablet computer only" id="section-organizer">
+    <div class="even section tablet computer only" id="section-organizer">
 
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-organizer" id="organizer_btn">
@@ -827,10 +796,10 @@
                                 frameborder="0" style="border: 0"></iframe>
                         <p style="margin:2rem!important">
                             {% trans 'Address: ' %}
-                            {% blocktrans %}
-                                Dept. of Computer Eng., Sharif University of Technology<br>
-                                Azadi St, Tehran
-                            {% endblocktrans %} <br>
+                        {% blocktrans %}
+                            Dept. of Computer Eng., Sharif University of Technology<br>
+                            Azadi St, Tehran
+                        {% endblocktrans %} <br>
                         </p>
                     </div>
 
@@ -884,8 +853,8 @@
             {#document.getElementById('modal').style.display = "block";#}
             $(".test").modal('show');
             $(".test").modal({
-                closable: true
-            });
+		closable: true
+	});
             document.getElementById('email').value = '';
             {#document.getElementById('modalclose').focus();#}
 
