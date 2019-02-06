@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-05 10:46+0330\n"
+"POT-Creation-Date: 2019-02-06 00:35+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: aic_site/context_processors.py:11
+#: aic_site/context_processors.py:11 aic_site/context_processors.py:35
 msgid "Home"
 msgstr "خانه"
 
@@ -34,12 +34,29 @@ msgstr "معرفی"
 msgid "Prize"
 msgstr "جایزه"
 
-#: aic_site/context_processors.py:67
+#: aic_site/context_processors.py:16
+msgid "Schedule"
+msgstr "برنامه"
+
+#: aic_site/context_processors.py:17
+msgid "FAQ"
+msgstr "سوالات متداول"
+
+#: aic_site/context_processors.py:18
+msgid "Contact Us"
+msgstr "تماس با ما"
+
+#: aic_site/context_processors.py:22 aic_site/context_processors.py:36
+#: templates/zinnia/base.html:26
+msgid "Blog"
+msgstr "بلاگ"
+
+#: aic_site/context_processors.py:72 aic_site/context_processors.py:73
 msgid "Panel"
 msgstr "پنل"
 
-#: aic_site/context_processors.py:69 templates/base/navbar.html:52
-#: templates/zinnia/login.html:34
+#: aic_site/context_processors.py:75 aic_site/context_processors.py:76
+#: templates/base/navbar.html:58 templates/zinnia/login.html:34
 msgid "Login"
 msgstr "ورود"
 
@@ -63,19 +80,19 @@ msgstr ""
 "تمامی حقوق برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
 "مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. ©"
 
-#: templates/base/navbar.html:47
+#: templates/base/navbar.html:53
 msgid "Logout"
 msgstr "خروج"
 
-#: templates/base/navbar.html:56
+#: templates/base/navbar.html:62
 msgid "Register"
 msgstr "ثبت نام"
 
-#: templates/base/navbar.html:61
+#: templates/base/navbar.html:68
 msgid "Change Language"
 msgstr "تغییر زبان"
 
-#: templates/base/navbar.html:64
+#: templates/base/navbar.html:73
 msgid "Blog and Q&A"
 msgstr "وبلاگ و پرسش و پاسخ"
 
@@ -332,7 +349,7 @@ msgstr ""
 msgid "Continue reading"
 msgstr "ادامه خواندن"
 
-#: templates/zinnia/_entry_detail_base.html:131 templates/zinnia/base.html:51
+#: templates/zinnia/_entry_detail_base.html:131
 #: templates/zinnia/tag_list.html:6
 msgid "Tags"
 msgstr "تگ‌ها"
@@ -381,18 +398,6 @@ msgstr "فید RSS آخرین نوشته‌ها"
 #: templates/zinnia/base.html:20
 msgid "RSS feed of last discussions"
 msgstr "فید RSS آخرین بحث‌ها"
-
-#: templates/zinnia/base.html:26
-msgid "Blog"
-msgstr "بلاگ"
-
-#: templates/zinnia/base.html:60
-msgid "Recent entries"
-msgstr "نوشته‌های اخیر"
-
-#: templates/zinnia/base.html:68
-msgid "Recent comments"
-msgstr "نظرات اخیر"
 
 #: templates/zinnia/category_list.html:4 templates/zinnia/category_list.html:11
 msgid "Category list"
@@ -897,11 +902,11 @@ msgid "%(entry_count)s entry tagged by %(tag)s"
 msgid_plural "%(entry_count)s entries tagged by %(tag)s"
 msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
 
-#~ msgid "Schedule"
-#~ msgstr "برنامه"
+#~ msgid "Recent entries"
+#~ msgstr "نوشته‌های اخیر"
 
-#~ msgid "FAQ"
-#~ msgstr "سوالات متداول"
+#~ msgid "Recent comments"
+#~ msgstr "نظرات اخیر"
 
 #~ msgid "400"
 #~ msgstr "۴۰۰"
@@ -946,9 +951,6 @@ msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
 
 #~ msgid "graphic"
 #~ msgstr "گرافیک"
-
-#~ msgid "Contact Us"
-#~ msgstr "تماس با ما"
 
 #~ msgid "History"
 #~ msgstr "تاریخ"

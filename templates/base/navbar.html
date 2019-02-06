@@ -3,32 +3,37 @@
 {% load static %}
 
 <div class="ui inverted sticky borderless menu navbar-color" id="navbar">
+
+    {% if not no_sidebar %}
+        <div style="cursor: pointer;" class="mobile-only fitted item" onclick="$('.ui.sidebar').sidebar('toggle');">
+            <i class="sidebar icon large-icon"></i>
+        </div>
+    {% endif %}
     {% for title, link in ai.navbar.items %}
         {% if not link.dropdown %}
-            <a style="font-size: 20px" class="item" href="{{ link }}" id="{{ title }}">{{ title }}</a>
-{#            commented temporary#}
-{#            <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>#}
+            <a style="font-size: 20px" class="mobile-hidden item" href="{{ link }}" id="{{ title }}">{{ title }}</a>
+            {#            commented temporary#}
+            {#            <a href="{{ link.address }}" class="{% if link.active %}active {% endif %}item">{{ title }}</a>#}
         {% else %}
-            <div class="ui dropdown link item">
+            <div class="mobile-hidden ui dropdown link item">
                 <span style="font-size: 20px" class="text">{{ title }}</span>
                 <i class="dropdown icon"></i>
                 <div class="menu" id="menu_navbar">
                     {% for dtitle, dlink in link.dropdown.items %}
                         <a style="font-size: 20px" href="{{ dlink }}" class="item" onclick="$('html, body').animate({
-    scrollTop: $('{{ dlink }}'.substring(1)).offset().top
-}, 1000);" id="title">{{ dtitle }}</a>
+                                scrollTop: $('{{ dlink }}'.substring(1)).offset().top
+                                }, 1000);" id="title">{{ dtitle }}</a>
                     {% endfor %}
                 </div>
             </div>
         {% endif %}
     {% endfor %}
-{#    {% if request.user.is_authenticated %}#}
-{#        <a href="{% url 'accounts:panel' %}" class="ui centered button" id="panel-button">#}
-{#            <i class="dashboard icon"></i>#}
-{#            {% trans 'Panel' %}#}
-{#        </a>#}
-{#    {% endif %}#}
-
+    {#    {% if request.user.is_authenticated %}#}
+    {#        <a href="{% url 'accounts:panel' %}" class="ui centered button" id="panel-button">#}
+    {#            <i class="dashboard icon"></i>#}
+    {#            {% trans 'Panel' %}#}
+    {#        </a>#}
+    {#    {% endif %}#}
 
 
     <form name="changeLang" action="{% url 'intro:i18n:set_language' %}" method="POST">
@@ -38,37 +43,36 @@
     </form>
 
     <div class="right menu" id="right-navbar">
-        <!--<div class="ui dropdown fitted item">-->
-            <!--<i class="user icon large-icon"></i>-->
-            <!--<div class="ui inverted menu" style="margin-right: -60px;">-->
-                <!--{% if request.user.is_authenticated %}-->
-                    <a style="font-size: 20px" class="item" href="{% url 'accounts:logout' %}">
-                        <i class="sign out icon"></i>
-                        {% trans 'Logout' %}
-                    </a>
-                <!--{% else %}-->
-                    <!--<a class="item" href="{% url 'accounts:login' %}">-->
-                        <!--<i class="sign in icon"></i>-->
-                        <!--{% trans 'Login' %}-->
-                    <!--</a>-->
-                    <!--<a class="item" href="{% url 'accounts:signup' %}">-->
-                        <!--<i class="add user icon"></i>-->
-                        <!--{% trans 'Register' %}-->
-                    <!--</a>-->
-                <!--{% endif %}-->
-            <!--</div>-->
-        </div>
-        <a class="fitted item popup-link" onclick="document.changeLang.submit();" href="#" data-tooltip="{% trans 'Change Language' %}" data-position="left center" data-inverted="" style="margin-left: 15px; margin-right: 15px" id="change_lang">
-            <i class="world icon large-icon"></i>
-        </a>
-        <!--<a class="fitted item popup-link" href="/blog" data-tooltip="{% trans 'Blog and Q&A' %}" data-position="left center" data-inverted="">-->
-            <!--<i class="help icon large-icon"></i>-->
-        <!--</a>-->
 
-        <!--{% if not no_sidebar %}-->
-            <!--<div style="cursor: pointer;" class="fitted item" onclick="$('.ui.sidebar').sidebar('toggle');">-->
-                <!--<i class="sidebar icon large-icon"></i>-->
-            <!--</div>-->
-        <!--{% endif %}-->
+        <!--<div class="ui dropdown fitted item">-->
+        <!--<i class="user icon large-icon"></i>-->
+        <!--<div class="ui inverted menu" style="margin-right: -60px;">-->
+        <!--{% if request.user.is_authenticated %}-->
+            <a style="font-size: 20px" class="item" href="{% url 'accounts:logout' %}">
+                <i class="sign out icon"></i>
+                {% trans 'Logout' %}
+            </a>
+            <!--{% else %}-->
+            <!--<a class="item" href="{% url 'accounts:login' %}">-->
+            <!--<i class="sign in icon"></i>-->
+            <!--{% trans 'Login' %}-->
+            <!--</a>-->
+            <!--<a class="item" href="{% url 'accounts:signup' %}">-->
+            <!--<i class="add user icon"></i>-->
+            <!--{% trans 'Register' %}-->
+            <!--</a>-->
+            <!--{% endif %}-->
+        <!--</div>-->
+    </div>
+    <a class="fitted item popup-link" onclick="document.changeLang.submit();" href="#"
+       data-tooltip="{% trans 'Change Language' %}" data-position="left center" data-inverted=""
+       style="margin-left: 15px; margin-right: 15px" id="change_lang">
+        <i class="world icon large-icon"></i>
+    </a>
+
+    <!--<a class="fitted item popup-link" href="/blog" data-tooltip="{% trans 'Blog and Q&A' %}" data-position="left center" data-inverted="">-->
+    <!--<i class="help icon large-icon"></i>-->
+    <!--</a>-->
+
     <!--</div>-->
 </div>
