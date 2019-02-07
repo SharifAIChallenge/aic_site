@@ -18,7 +18,7 @@
     <div class="ui tab segment mybackground active" data-tab="tech">
         {% for sec in tech %}
             <h3 class="ui dividing left aligned header" style="margin: 20px" dir="rtl">
-                {% trans sec %}
+                {{ sec }}
             </h3>
             <div class="staff-pic stackable center aligned ui grid">
                 {% for member in staff %}
@@ -45,11 +45,12 @@
     <div class="ui tab segment mybackground" data-tab="exe">
         {% for sec in exe %}
             <h3 class="ui dividing left aligned header" style="margin: 20px" dir="rtl">
-                {% trans sec %}
+                {{ sec }}
             </h3>
             <div class="staff-pic stackable center aligned ui grid">
                 {% for member in staff %}
-                    {% if member.team == sec %}
+                    {%  trans member.team as team_tr %}
+                    {% if team_tr == sec %}
                         <div class="d-sm-inline-block" style="margin: 3%">
                             <div class="base" dir="ltr"
                                  style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red' %}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red' %}#ee224f{% else %}#007369{% endif %});">
@@ -71,11 +72,12 @@
     <div class="ui tab segment mybackground" data-tab="head">
         {% for sec in head %}
             <h3 class="ui dividing left aligned header" style="margin: 20px" dir="rtl">
-                {% trans sec %}
+                {{  sec }}
             </h3>
             <div class="staff-pic stackable center aligned ui grid">
                 {% for member in staff %}
-                    {% if member.team == sec %}
+                    {%  trans member.team as team_tr %}
+                    {% if team_tr == sec %}
                         <div class="d-sm-inline-block" style="margin: 3%">
                             <div class="base" dir="ltr"
                                  style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red' %}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red' %}#ee224f{% else %}#007369{% endif %});">
@@ -97,11 +99,12 @@
     <div class="ui tab segment mybackground" data-tab="other">
         {% for sec in other %}
             <h3 class="ui dividing left aligned header" style="margin: 20px" dir="rtl">
-                {% trans sec %}
+                {{ sec }}
             </h3>
             <div class="staff-pic stackable center aligned ui grid">
                 {% for member in staff %}
-                    {% if member.team == sec %}
+                    {%  trans member.team as team_tr %}
+                    {% if team_tr == sec %}
                         <div class="d-sm-inline-block" style="margin: 3%">
                             <div class="base" dir="ltr"
                                  style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red' %}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red' %}#ee224f{% else %}#007369{% endif %});">
