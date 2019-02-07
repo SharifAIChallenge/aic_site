@@ -1,0 +1,70 @@
+{% extends 'accounts/panel/panel.html' %}
+{% load static i18n ai_filters tz %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block panel_content %}
+    <h2 style="margin-top: 20px;">{% trans 'Rating' %}</h2>
+    {% if rating|length %}
+        <table class="ui center aligned table table-bordered">
+            <thead>
+            <tr>
+                <th>{% trans 'Rank' %}</th>
+                <th>{% trans 'Team' %}</th>
+                <th>{% trans 'Rate' %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for team in rating %}
+                <tr>
+                    <td>{{ forloop.counter.0|add:rating.page.start_index }}</td>
+                    <td>{{ team.name }}</td>
+                    <td> {{ team.rate }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            {% if battle_history.has_other_pages %}
+                <tfoot>
+                <tr>
+                    <th colspan="6">
+                        <div class="ui right floated pagination menu">
+                            {% if rating.has_previous %}
+                                <a class="icon item"
+                                   href="?page={{ rating.previous_page_number }}">
+                                    <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+                                </a>
+                            {% else %}
+                                <a class="disabled icon item">
+                                    <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
+                                </a>
+                            {% endif %}
+
+                            {% for i in rating.page_range %}
+                                {% if rating.number == i %}
+                                    <a class="active item"><span>{{ i }}</span></a>
+                                {% else %}
+                                    <a class="item"
+                                       href="?page={{ i }}"><span>{{ i }}</span></a>
+                                {% endif %}
+                            {% endfor %}
+
+
+                            {% if rating.has_next %}
+                                <a class="icon item"
+                                   href="?page={{ page }}&battles_page={{ rating.next_page_number }}">
+                                    <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+                                </a>
+                            {% else %}
+                                <a class="disabled icon item">
+                                    <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </th>
+                </tr>
+                </tfoot>
+            {% endif %}
+        </table>
+    {% endif %}
+{% endblock %}
+
+
