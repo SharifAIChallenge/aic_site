@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-07 16:01+0330\n"
+"POT-Creation-Date: 2019-02-07 17:33+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -406,7 +406,6 @@ msgid "You have not participated in this challenge yet."
 msgstr "شما در این چالش شرکت نکرده‌اید."
 
 #: apps/accounts/templates/accounts/panel/upload_map.html:17
-#: apps/accounts/views/panel.py:51
 msgid "Upload Map"
 msgstr "آپلود نقشه"
 
@@ -428,7 +427,6 @@ msgid "Valid Map Upload"
 msgstr "آپلود ناموفق"
 
 #: apps/accounts/templates/accounts/panel/valid_upload.html:16
-#| msgid "Compiled Successfully"
 msgid "Map uploaded successfully!"
 msgstr "با موفقیت کامپایل شد"
 
