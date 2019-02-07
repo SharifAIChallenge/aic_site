@@ -20,8 +20,8 @@
             {% for team in teams %}
                 <tr {% if team == current_team %} class="active" {% endif %}>
                     <td>{{ forloop.counter0|add:teams.start_index }}</td>
-                    <td>{{ team.name|truncatechars:20 }}</td>
-                    <td> {{ team.rate }}</td>
+                    <td><a href="{% url 'accounts:team_profile' %}?tid={{ team.id }}" >{{ team.name|truncatechars:20 }}</a></td>
+                    <td> <div class="ui large black label">{{ team.rate }}</div></td>
                 </tr>
             {% endfor %}
             </tbody>

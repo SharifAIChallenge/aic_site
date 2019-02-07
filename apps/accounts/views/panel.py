@@ -48,10 +48,11 @@ def get_shared_context(request):
 
     context['menu_items'] = [
         {'name': 'team_management', 'link': reverse('accounts:panel_team_management'), 'text': _('Team Status')},
-        # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
-        # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
-        # {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
-        # {'name': 'rating', 'link': reverse('accounts:rating'), 'text': _('Rating')}
+        {'name': 'team_profile', 'link': reverse('accounts:team_profile'), 'text': _('Team Profile')},
+        {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
+        {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
+        {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
+        {'name': 'rating', 'link': reverse('accounts:rating'), 'text': _('Rating')}
     ]
 
     if request.user.profile:
@@ -112,12 +113,12 @@ def submissions(request):
         if item['name'] == 'submissions':
             item['active'] = True
 
-    page = request.GET.get('page', 1)
     context.update({
-        'page': page,
         'participation': team_pc,
         'participation_id': team_pc.id,
     })
+
+    page = request.GET.get('page', 1)
 
     if request.method == 'POST':
         form = SubmissionForm(request.POST, request.FILES)
@@ -293,9 +294,7 @@ def rating(request):
         if item['name'] == 'rating':
             item['active'] = True
 
-    page = request.GET.get('page', 1)
     context.update({
-        'page': page,
         'participation': team_pc,
         'participation_id': team_pc.id,
     })
@@ -313,3 +312,27 @@ def rating(request):
     } )
 
     return render(request, 'accounts/panel/rating.html', context )
+
+@payment_required
+@login_required
+def team_profile(request):
+    team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
+    context = get_shared_context(request)
+
+
+    for item in context['menu_items']:
+        if item['name'] == 'team_profile':
+            item['active'] = True
+    context.update({
+        'participation': team_pc,
+        'participation_id': team_pc.id,
+    })
+
+    tid = request.GET.get('tid', team_pc.team.id)
+    team = Team.objects.get(id=tid)
+
+    context.update( {'team': team })
+
+    return render(request, 'accounts/panel/team_profile.html', context )

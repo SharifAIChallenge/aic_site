@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-07 20:45+0330\n"
+"POT-Creation-Date: 2019-02-08 02:37+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,6 +139,7 @@ msgstr "باخت"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:4
 #: apps/accounts/templates/accounts/panel/battle_history.html:6
+#: apps/accounts/views/panel.py:52
 msgid "Battle history"
 msgstr "بازی‌های دوستانه"
 
@@ -255,6 +256,7 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:7
 #: apps/accounts/templates/accounts/panel/submissions.html:53
+#: apps/accounts/views/panel.py:51
 msgid "Submissions"
 msgstr "ارسال‌ها"
 
@@ -405,12 +407,13 @@ msgid "Your rank"
 msgstr "رتبه شما"
 
 #: apps/accounts/templates/accounts/panel/rating.html:16
+#: apps/accounts/templates/accounts/panel/team_profile.html:12
 msgid "Rate"
 msgstr "امتیاز"
 
 #: apps/accounts/templates/accounts/panel/submissions.html:118
 msgid "Uploading, Wait and refresh the page."
-msgstr "در حال آپلود، لططفا صبر کنید و صفحه را ریفرش کنید."
+msgstr "در حال آپلود، لطفا صبر کنید و صفحه را ریفرش کنید."
 
 #: apps/accounts/templates/accounts/panel/submissions.html:119
 msgid "Uploading"
@@ -420,7 +423,18 @@ msgstr "در حال آپلود"
 msgid "You have not participated in this challenge yet."
 msgstr "شما در این چالش شرکت نکرده‌اید."
 
+#: apps/accounts/templates/accounts/panel/team_profile.html:6
+#: apps/accounts/views/panel.py:55
+msgid "Team Profile"
+msgstr "مشخصات تیم"
+
+#: apps/accounts/templates/accounts/panel/team_profile.html:11
+#: apps/accounts/templates/accounts/teams/create_team.html:13
+msgid "Team Name"
+msgstr "نام تیم"
+
 #: apps/accounts/templates/accounts/panel/upload_map.html:17
+#: apps/accounts/views/panel.py:53
 msgid "Upload Map"
 msgstr "آپلود نقشه"
 
@@ -443,7 +457,7 @@ msgstr "آپلود ناموفق"
 
 #: apps/accounts/templates/accounts/panel/valid_upload.html:16
 msgid "Map uploaded successfully!"
-msgstr "با موفقیت کامپایل شد"
+msgstr "نقشه با موفقیت آپلود شد"
 
 #: apps/accounts/templates/accounts/panel/valid_upload.html:20
 msgid "back"
@@ -546,10 +560,6 @@ msgstr ""
 "قبل از تشکیل تیم همه اعضای تیم باید در سایت ثبت ‌نام کرده باشند. سپس برای ثبت "
 "تیم، نام کاربری آنان را اینجا وارد کنید. تیم شما می ‌تواند حداکثر ۳ عضو داشته "
 "باشد."
-
-#: apps/accounts/templates/accounts/teams/create_team.html:13
-msgid "Team Name"
-msgstr "نام تیم"
 
 #: apps/accounts/templates/accounts/teams/create_team.html:24
 msgid "First Member"
