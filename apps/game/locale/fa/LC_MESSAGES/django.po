@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-07 16:01+0330\n"
+"POT-Creation-Date: 2019-02-06 00:35+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,7 +114,7 @@ msgstr "در حال کامپایل"
 msgid "Compiled"
 msgstr "کامپایل شده"
 
-#: apps/game/models/challenge.py:133 apps/game/models/competition.py:678
+#: apps/game/models/challenge.py:133 apps/game/models/competition.py:674
 msgid "Failed"
 msgstr "ناموفق!"
 
@@ -160,15 +160,15 @@ msgstr "خودش"
 msgid "Unknown"
 msgstr "نامعلوم"
 
-#: apps/game/models/competition.py:677
+#: apps/game/models/competition.py:673
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: apps/game/models/competition.py:679
+#: apps/game/models/competition.py:675
 msgid "Done"
 msgstr "انجام شده"
 
-#: apps/game/models/competition.py:680
+#: apps/game/models/competition.py:676
 msgid "Waiting"
 msgstr "در حال انتظار"
 

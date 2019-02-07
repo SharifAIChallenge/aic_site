@@ -8,14 +8,11 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
-from django.utils.translation import ugettext as _
 
 from apps.accounts.models import Team
 from apps.game.models import TeamSubmission
 from apps.intro.form import StaffForm
 from apps.intro.models import Notification, Staff
-
-
 
 logger = logging.getLogger(__name__)
 
@@ -61,11 +58,10 @@ def notify(request):
 
 def staffs(request):
     staff = Staff.objects.all()
-    tech = [_('Site'), _('Graphic'), _('Game Design'), _('Infrastructure'), _('Content'), _('Server and Client')]
-    exe = [_('Branding'), _('Design')]
-    head = [_('Head')]
-    other = [_('Others')]
-
+    tech = ['Site', 'Graphic', 'Game Design', 'Infrastructure', 'Content', 'Server and Client']
+    exe = ['Branding', 'Design']
+    head = ['Head']
+    other = ['Others']
     return render(request, 'intro/staffs.html', {
         "staff": staff,
         "tech": tech,

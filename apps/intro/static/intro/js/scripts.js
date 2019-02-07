@@ -96,7 +96,7 @@ function initializeClock(id, endtime) {
 }
 
 // start date of SAIC18
-var deadline = new Date(Date.parse(new Date(2019, 1, 8, 20, 0, 0, 0)));
+var deadline = new Date(Date.parse(new Date(2019, 1, 8, 9, 0, 0, 0)));
 initializeClock('clockdiv', deadline);
 
 function validateEmail(email) {
