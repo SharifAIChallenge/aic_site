@@ -22,7 +22,8 @@
             </h3>
             <div class="staff-pic stackable center aligned ui grid">
                 {% for member in staff %}
-                    {% if member.team == sec %}
+                    {%  trans member.team as team_tr %}
+                    {% if team_tr == sec %}
                         <div class="d-sm-inline-block" style="margin: 3%">
                             <div class="base" dir="ltr"
                                  style="background: linear-gradient(to left, {% if member.color == 'orange' %}#f8981d{% elif member.color == 'red' %}#ee284d{% else %}#4abd9c{% endif %}, {% if member.color == 'orange' %}#c94527{% elif member.color == 'red' %}#ee224f{% else %}#007369{% endif %});">

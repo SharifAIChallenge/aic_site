@@ -672,13 +672,6 @@ class Map(models.Model):
         return self.name + append
 
 
-class MapForm(forms.ModelForm):
-    class Meta:
-        model = Map
-        fields = ['file', 'name']
-
-
-
 class SingleMatch(models.Model):
     STATUS_CHOICES = (
         ('running', _('Running')),

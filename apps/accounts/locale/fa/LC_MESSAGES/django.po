@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-07 12:09+0330\n"
+"POT-Creation-Date: 2019-02-07 16:01+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -346,7 +346,7 @@ msgstr ""
 
 #: apps/accounts/templates/accounts/oldpanel/team_management.html:5
 #: apps/accounts/templates/accounts/panel/team_management.html:6
-#: apps/accounts/views/panel.py:49
+#: apps/accounts/views/panel.py:50
 msgid "Team Status"
 msgstr "وضعیت تیم"
 
@@ -410,7 +410,7 @@ msgid "You have not participated in this challenge yet."
 msgstr "شما در این چالش شرکت نکرده‌اید."
 
 #: apps/accounts/templates/accounts/panel/upload_map.html:17
-#: apps/accounts/views/panel.py:50
+#: apps/accounts/views/panel.py:51
 msgid "Upload Map"
 msgstr "بارگذاری نقشه"
 

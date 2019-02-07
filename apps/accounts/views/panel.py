@@ -6,7 +6,8 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.billing.decorators import payment_required
-from apps.game.models import TeamSubmission, Match, TeamParticipatesChallenge, Competition, MapForm
+from apps.game.models import TeamSubmission, Match, TeamParticipatesChallenge, Competition
+from apps.game.forms import MapForm
 from django.core.paginator import Paginator
 from django.db.models import Q
 
