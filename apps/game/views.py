@@ -10,7 +10,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
-from apps.accounts.models import Team
 from apps.game import functions
 from apps.game.models import Competition, TeamSubmission, SingleMatch, Challenge
 from apps.game.utils import get_scoreboard_table_competition, get_scoreboard_table_tag, \
@@ -305,9 +304,3 @@ def render_challenge_league(request, challenge_id):
         'tables': sorted(competitions_scoreboard, key=lambda x: -x['id']),
         'freeze_time': freeze_time,
 })
-
-
-def render_rating(request, offset):
-    teams = list(Team.objects.all())
-    return None
-
