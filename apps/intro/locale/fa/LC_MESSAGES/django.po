@@ -98,8 +98,8 @@ msgid "There's no I in success"
 msgstr "ما به جای من"
 
 #: apps/intro/templates/intro/index.html:192
-msgid "Practice teamwork in a group of 3 people"
-msgstr "قراره توی یک تیم سه نفره، کار کردن گروهی رو تجربه کنی"
+msgid "Practice teamwork in a group of 2/3 people"
+msgstr "قراره توی یک تیم دو یا سه نفره کار کردن گروهی رو تجربه کنی"
 
 #: apps/intro/templates/intro/index.html:197
 msgid "Clash of Giants"
