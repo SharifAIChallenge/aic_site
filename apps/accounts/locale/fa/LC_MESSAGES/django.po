@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-06 00:35+0330\n"
+"POT-Creation-Date: 2019-02-07 12:09+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -408,6 +408,44 @@ msgstr ""
 #: apps/accounts/templates/accounts/panel/team_management.html:66
 msgid "You have not participated in this challenge yet."
 msgstr "شما در این چالش شرکت نکرده‌اید."
+
+#: apps/accounts/templates/accounts/panel/upload_map.html:17
+#: apps/accounts/views/panel.py:50
+msgid "Upload Map"
+msgstr "بارگذاری نقشه"
+
+#: apps/accounts/templates/accounts/panel/upload_map.html:19
+#, fuzzy
+#| msgid "Last Name"
+msgid "Map Name"
+msgstr "نام نقشه"
+
+#: apps/accounts/templates/accounts/panel/upload_map.html:31
+#, fuzzy
+#| msgid "File:"
+msgid "Map File"
+msgstr "فایل نقشه"
+
+#: apps/accounts/templates/accounts/panel/upload_map.html:46
+#: apps/accounts/templates/accounts/panel/valid_upload.html:13
+msgid "Upload"
+msgstr "بارگذاری"
+
+#: apps/accounts/templates/accounts/panel/valid_upload.html:5
+#, fuzzy
+#| msgid "Failed To Upload"
+msgid "Valid Map Upload"
+msgstr "آپلود ناموفق"
+
+#: apps/accounts/templates/accounts/panel/valid_upload.html:16
+#, fuzzy
+#| msgid "Compiled Successfully"
+msgid "Map uploaded successfully!"
+msgstr "با موفقیت کامپایل شد"
+
+#: apps/accounts/templates/accounts/panel/valid_upload.html:20
+msgid "back"
+msgstr "بازگشت"
 
 #: apps/accounts/templates/accounts/profile/login.html:7
 #: apps/accounts/templates/accounts/profile/login.html:27

@@ -256,7 +256,7 @@ def upload_map(request):
             context.update({
                 'form': form
             })
-            return render(request, 'accounts/panel/upload_map.html', context)
+            return render(request, 'accounts/panel/valid_upload.html', context)
         else:
             print(form.errors)
             context.update({
