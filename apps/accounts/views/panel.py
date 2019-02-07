@@ -48,9 +48,9 @@ def get_shared_context(request):
 
     context['menu_items'] = [
         {'name': 'team_management', 'link': reverse('accounts:panel_team_management'), 'text': _('Team Status')},
-        {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
+        # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
         # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
-        {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
+        # {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
     ]
 
     if request.user.profile:
