@@ -813,9 +813,9 @@
 {% block footer_scripts %}
     {{ block.super }}
     {% if LANGUAGE_BIDI %}
-        <script src="{% static 'intro/js/scripts.js' %}?ver=2"></script>
+        <script src="{% static 'intro/js/scripts.js' %}?ver=3"></script>
     {% else %}
-        <script src="{% static 'intro/js/scriptsEN.js' %}?ver=2"></script>
+        <script src="{% static 'intro/js/scriptsEN.js' %}?ver=3"></script>
     {% endif %}
     <script>
         ScrollReveal().reveal('.faded-d1', {delay: 250});

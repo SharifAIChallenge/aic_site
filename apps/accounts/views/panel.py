@@ -48,9 +48,9 @@ def get_shared_context(request):
 
     context['menu_items'] = [
         {'name': 'team_management', 'link': reverse('accounts:panel_team_management'), 'text': _('Team Status')},
-        {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
-        # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
+        {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
         # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
+        {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
     ]
 
     if request.user.profile:
@@ -247,6 +247,14 @@ def upload_map(request):
     for item in context['menu_items']:
         if item['name'] == 'upload_map':
             item['active'] = True
+
+    page = request.GET.get('page', 1)
+    context.update({
+        'page': page,
+        'participation': team_pc,
+        'participation_id': team_pc.id,
+    })
+
     if request.method=='POST':
         form = MapForm(request.POST, request.FILES)
         print(form)
