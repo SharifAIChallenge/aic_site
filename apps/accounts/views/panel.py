@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.billing.decorators import payment_required
-from apps.game.models import TeamSubmission, Match, TeamParticipatesChallenge, Competition
+from apps.game.models import TeamSubmission, Match, Team, TeamParticipatesChallenge, Competition
 from apps.game.forms import MapForm
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -280,4 +280,16 @@ def upload_map(request):
         return render(request, 'accounts/panel/upload_map.html', context)
 
 
+@payment_required
+@login_required
+def rating(request):
+    all_teams = sorted(Team.objects.all(), key=lambda x: x.rate)
+    paginator = Paginator(Team.objects.all(), 50)
+    page = request.GET.get('page', 1)
+    teams = paginator.page(page)
+    current_team = request.user.profile.panel_active_teampc.team
 
+    return render(request, 'accounts/panel/rating.html', {
+        'teams': teams,
+        'rank': all_teams.index(current_team)
+    })
