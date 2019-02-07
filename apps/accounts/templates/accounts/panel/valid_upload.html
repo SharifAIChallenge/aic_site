@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% load static i18n %}
+
+{% block title %}{% trans 'Valid Map Upload' %}{% endblock %}
+
+{% block container %}
+
+
+    <div id="modal" class="ui basic modal test" >
+  <div class="ui icon header">
+    <i class="massive upload icon" style="color:#fff3df"></i>
+   {% trans "Upload" %}
+  </div>
+  <div class="content" id="content" align="center" style="font-weight: bolder;font-size: 30px">
+<p style="color: #009D8A">{% trans 'Map uploaded successfully!' %}</p>
+  </div>
+  <div class="actions" align="center">
+    <a  href="/accounts/panel" class="ui inverted teal large button" style="font-weight: bolder">
+     <span style="color: #fff3d9 !important;" >{% trans 'back'%}</span>
+    </a>
+  </div>
+    </div>
+
+{% endblock %}
+{% block footer_scripts %}
+    {{ block.super }}
+    {% if LANGUAGE_BIDI %}
+        <script src="{% static 'intro/js/scripts.js' %}"></script>
+    {% else %}
+        <script src="{% static 'intro/js/scriptsEN.js' %}"></script>
+    {% endif %}
+    <script type="text/javascript">
+      $(document)
+    .ready(function () {
+{#    $('.modal')#}
+{#  .modal('show')#}
+{#;#}
+ $('.modal')
+    .modal({
+        closable: false
+     }).modal('show');
+
+});
+
+    </script>
+
+{% endblock %}
