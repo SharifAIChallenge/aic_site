@@ -701,6 +701,7 @@ class SingleMatch(models.Model):
 
     def update_scores_from_log(self):
         self.part1_score, self.part2_score = self.extract_score()
+        TeamRate.update_rating_from_single_match(self)
         self.save()
 
     def get_score_for_participant(self, participant):
@@ -784,3 +785,38 @@ class SingleMatch(models.Model):
             return self.match.part2
         else:
             return self.match.part1
+
+
+class TeamRate(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    single_match = models.ForeignKey(SingleMatch, on_delete=models.CASCADE)
+    rate = models.PositiveIntegerField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    @staticmethod
+    def update_rating_from_single_match(single_match):
+        if TeamRate.objects.filter(single_match=single_match).exists():
+            return
+
+        team1 = single_match.match.part1.submission.team.team
+        team2 = single_match.match.part2.submission.team.team
+
+        if TeamRate.objects.filter(team=team1).exists():
+            prev_rate1 = TeamRate.objects.filter(team=team1).latest('date').rate
+        else:
+            prev_rate1 = 1500
+
+        if TeamRate.objects.filter(team=team2).exists():
+            prev_rate2 = TeamRate.objects.filter(team=team2).latest('date').rate
+        else:
+            prev_rate2 = 1500
+
+        expected_score1 = 1 / (1 + pow(10, (prev_rate2 - prev_rate1) / 400))
+        expected_score2 = 1 / (1 + pow(10, (prev_rate1 - prev_rate2) / 400))
+
+        K = 32
+        rate1 = round(prev_rate1 + K * (single_match.part1_score - expected_score1))
+        rate2 = round(prev_rate2 + K * (single_match.part2_score - expected_score2))
+
+        TeamRate.objects.create(team=team1, single_match=single_match, rate=rate1)
+        TeamRate.objects.create(team=team2, single_match=single_match, rate=rate2)

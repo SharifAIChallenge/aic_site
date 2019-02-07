@@ -51,6 +51,14 @@ class Team(models.Model):
         #             matches.extend(competition.match_set)
         # return matches[start:start + 5]
 
+    @property
+    def rate(self):
+        from apps.game.models import TeamRate
+        if TeamRate.objects.filter(team=self).exists():
+            return TeamRate.objects.filter(team=self).latest('date').rate
+        else:
+            return 1500
+
 
 class UserParticipatesOnTeam(models.Model):
     team = models.ForeignKey(Team, related_name='participants')

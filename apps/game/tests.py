@@ -1,4 +1,5 @@
 import json
+from model_mommy import mommy
 import time
 
 from datetime import timedelta
@@ -12,7 +13,8 @@ from django.utils import timezone
 from apps.accounts import tests
 from apps.accounts.models import Team, UserParticipatesOnTeam
 from apps.game import functions
-from apps.game.models import Match, Challenge, Competition, Game, Map, TeamSubmission, Participant, SingleMatch
+from apps.game.models import Match, Challenge, Competition, Game, Map, TeamSubmission, TeamRate,\
+    Participant, SingleMatch
 from apps.game.models.challenge import TeamParticipatesChallenge
 
 
@@ -825,3 +827,40 @@ class TestScoreboardForFriendly(TestCase):
         # return render(request, 'scoreboard/group_table.html', {
         #     'league_scoreboard': league_scoreboard
         # })
+
+
+class TeamRateTestCase(TransactionTestCase):
+    def setUp(self):
+        super().setUp()
+        self.submission1 = mommy.make(TeamSubmission)
+        self.submission2 = mommy.make(TeamSubmission)
+        self.single_match = mommy.make(SingleMatch, part1_score=1, part2_score=0,
+                                       match__part1__submission=self.submission1,
+                                       match__part2__submission=self.submission2)
+
+    def test_rating1(self):
+        TeamRate.update_rating_from_single_match(self.single_match)
+        self.assertEqual(TeamRate.objects.filter(team=self.submission1.team.team).latest('date').rate,
+                         1516)
+        self.assertEqual(TeamRate.objects.filter(team=self.submission2.team.team).latest('date').rate,
+                         1484)
+
+    def test_rating2(self):
+        mommy.make(TeamRate, rate=1400, team=self.submission1.team.team)
+        mommy.make(TeamRate, rate=1800, team=self.submission2.team.team)
+
+        TeamRate.update_rating_from_single_match(self.single_match)
+        self.assertEqual(TeamRate.objects.filter(team=self.submission1.team.team).latest('date').rate,
+                         1429)
+        self.assertEqual(TeamRate.objects.filter(team=self.submission2.team.team).latest('date').rate,
+                         1771)
+
+    def test_rating3(self):
+        mommy.make(TeamRate, rate=1800, team=self.submission1.team.team)
+        mommy.make(TeamRate, rate=1400, team=self.submission2.team.team)
+
+        TeamRate.update_rating_from_single_match(self.single_match)
+        self.assertEqual(TeamRate.objects.filter(team=self.submission1.team.team).latest('date').rate,
+                         1803)
+        self.assertEqual(TeamRate.objects.filter(team=self.submission2.team.team).latest('date').rate,
+                         1397)
