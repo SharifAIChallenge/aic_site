@@ -51,7 +51,7 @@ def get_shared_context(request):
         # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
         # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
         # {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
-        {'name': 'rating', 'link': reverse('accounts:rating'), 'text': _('Rating')}
+        # {'name': 'rating', 'link': reverse('accounts:rating'), 'text': _('Rating')}
     ]
 
     if request.user.profile:
@@ -284,13 +284,32 @@ def upload_map(request):
 @payment_required
 @login_required
 def rating(request):
-    all_teams = sorted(Team.objects.all(), key=lambda x: x.rate)
-    paginator = Paginator(Team.objects.all(), 50)
+    team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
+    context = get_shared_context(request)
+
+    for item in context['menu_items']:
+        if item['name'] == 'rating':
+            item['active'] = True
+
+    page = request.GET.get('page', 1)
+    context.update({
+        'page': page,
+        'participation': team_pc,
+        'participation_id': team_pc.id,
+    })
+
+    all_teams = sorted(list(Team.objects.all()), key=lambda x: -x.rate)
+    paginator = Paginator(all_teams, 50)
     page = request.GET.get('page', 1)
     teams = paginator.page(page)
-    current_team = request.user.profile.panel_active_teampc.team
+    current_team = team_pc.team
 
-    return render(request, 'accounts/panel/rating.html', {
+    context.update( {
         'teams': teams,
-        'rank': all_teams.index(current_team)
-    })
+        'rank': all_teams.index(current_team) + 1,
+        'current_team': current_team
+    } )
+
+    return render(request, 'accounts/panel/rating.html', context )

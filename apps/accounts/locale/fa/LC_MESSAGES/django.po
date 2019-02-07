@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-07 16:01+0330\n"
+"POT-Creation-Date: 2019-02-07 20:45+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,6 +111,7 @@ msgid "Scoreboard"
 msgstr "جدول امتیازات"
 
 #: apps/accounts/templates/accounts/friendly_match_scoreboard.html:8
+#: apps/accounts/templates/accounts/panel/rating.html:14
 msgid "Rank"
 msgstr "رتبه"
 
@@ -150,6 +151,7 @@ msgstr "زمان"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:10
 #: apps/accounts/templates/accounts/panel/battle_history.html:12
+#: apps/accounts/templates/accounts/panel/rating.html:15
 msgid "Team"
 msgstr "نام تیم"
 
@@ -393,6 +395,19 @@ msgstr "پرداخت"
 msgid "Complete team"
 msgstr "تکمیل تیم"
 
+#: apps/accounts/templates/accounts/panel/rating.html:6
+#: apps/accounts/views/panel.py:54
+msgid "Rating"
+msgstr "رتبه‌بندی"
+
+#: apps/accounts/templates/accounts/panel/rating.html:8
+msgid "Your rank"
+msgstr "رتبه شما"
+
+#: apps/accounts/templates/accounts/panel/rating.html:16
+msgid "Rate"
+msgstr "امتیاز"
+
 #: apps/accounts/templates/accounts/panel/submissions.html:118
 msgid "Uploading, Wait and refresh the page."
 msgstr "در حال آپلود، لططفا صبر کنید و صفحه را ریفرش کنید."
@@ -406,7 +421,6 @@ msgid "You have not participated in this challenge yet."
 msgstr "شما در این چالش شرکت نکرده‌اید."
 
 #: apps/accounts/templates/accounts/panel/upload_map.html:17
-#: apps/accounts/views/panel.py:51
 msgid "Upload Map"
 msgstr "آپلود نقشه"
 
@@ -428,7 +442,6 @@ msgid "Valid Map Upload"
 msgstr "آپلود ناموفق"
 
 #: apps/accounts/templates/accounts/panel/valid_upload.html:16
-#| msgid "Compiled Successfully"
 msgid "Map uploaded successfully!"
 msgstr "با موفقیت کامپایل شد"
 

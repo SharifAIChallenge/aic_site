@@ -4,8 +4,11 @@
 
 {% block panel_content %}
     <h2 style="margin-top: 20px;">{% trans 'Rating' %}</h2>
-    {% if rating|length %}
-        <table class="ui center aligned table table-bordered">
+    <h3 style="margin-bottom: 30px">
+    {% trans 'Your rank' %}: {{ rank }}
+    </h3>
+    {% if teams|length %}
+        <table class="ui center aligned inverted table table-bordered">
             <thead>
             <tr>
                 <th>{% trans 'Rank' %}</th>
@@ -14,22 +17,22 @@
             </tr>
             </thead>
             <tbody>
-            {% for team in rating %}
-                <tr>
-                    <td>{{ forloop.counter.0|add:rating.page.start_index }}</td>
-                    <td>{{ team.name }}</td>
+            {% for team in teams %}
+                <tr {% if team == current_team %} class="active" {% endif %}>
+                    <td>{{ forloop.counter0|add:teams.start_index }}</td>
+                    <td>{{ team.name|truncatechars:20 }}</td>
                     <td> {{ team.rate }}</td>
                 </tr>
             {% endfor %}
             </tbody>
-            {% if battle_history.has_other_pages %}
+            {% if teams.has_other_pages %}
                 <tfoot>
                 <tr>
-                    <th colspan="6">
+                    <th colspan="3">
                         <div class="ui right floated pagination menu">
-                            {% if rating.has_previous %}
+                            {% if teams.has_previous %}
                                 <a class="icon item"
-                                   href="?page={{ rating.previous_page_number }}">
+                                   href="?page={{ teams.previous_page_number }}">
                                     <i class="{% if LANGUAGE_BIDI %}right{% else %}left{% endif %} chevron icon"></i>
                                 </a>
                             {% else %}
@@ -38,8 +41,8 @@
                                 </a>
                             {% endif %}
 
-                            {% for i in rating.page_range %}
-                                {% if rating.number == i %}
+                            {% for i in teams.paginator.page_range %}
+                                {% if teams.number == i %}
                                     <a class="active item"><span>{{ i }}</span></a>
                                 {% else %}
                                     <a class="item"
@@ -48,9 +51,9 @@
                             {% endfor %}
 
 
-                            {% if rating.has_next %}
+                            {% if teams.has_next %}
                                 <a class="icon item"
-                                   href="?page={{ page }}&battles_page={{ rating.next_page_number }}">
+                                   href="?page={{ teams.next_page_number }}">
                                     <i class="{% if LANGUAGE_BIDI %}left{% else %}right{% endif %} chevron icon"></i>
                                 </a>
                             {% else %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-07 16:01+0330\n"
+"POT-Creation-Date: 2019-02-07 20:45+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,6 +88,18 @@ msgstr ""
 "<br> هر تیم با استفاده از ایده‌های خلاقانه و استراتژی‌های متفاوت سعی می‌کند یک "
 "هوش مصنوعی قدرتمند طراحی کند که تا جای ممکن بر تیم‌های حریف چیره شود و به "
 "مرحلهٔ حضوری مسابقات راه پیدا کند.                              "
+
+#: apps/intro/templates/intro/index.html:160
+msgid "Users"
+msgstr "کاربران"
+
+#: apps/intro/templates/intro/index.html:166
+msgid "Submissions"
+msgstr "ارسال‌ها"
+
+#: apps/intro/templates/intro/index.html:172
+msgid "Teams"
+msgstr "تیم‌ها"
 
 #: apps/intro/templates/intro/index.html:182
 msgid "Why Sharif AI Challenge?"
@@ -616,15 +628,6 @@ msgstr "طراحی"
 
 #~ msgid "Notify me"
 #~ msgstr "با خبرم کن"
-
-#~ msgid "Teams"
-#~ msgstr "تیم‌ها"
-
-#~ msgid "Submissions"
-#~ msgstr "ارسال‌ها"
-
-#~ msgid "Users"
-#~ msgstr "کاربران"
 
 #~ msgid ""
 #~ "\n"
