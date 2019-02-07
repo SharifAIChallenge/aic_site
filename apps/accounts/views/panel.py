@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.billing.decorators import payment_required
 from apps.game.models import TeamSubmission, Match, TeamParticipatesChallenge, Competition
+from apps.game.forms import MapForm
 from django.core.paginator import Paginator
 from django.db.models import Q
 
@@ -49,6 +50,7 @@ def get_shared_context(request):
         {'name': 'team_management', 'link': reverse('accounts:panel_team_management'), 'text': _('Team Status')},
         # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
         # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
+        # {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
     ]
 
     if request.user.profile:
@@ -232,3 +234,50 @@ def battle_history(request):
                     5).page(battles_page)
             })
     return render(request, 'accounts/panel/battle_history.html', context)
+
+
+@payment_required
+@login_required
+def upload_map(request):
+    team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
+    context = get_shared_context(request)
+
+    for item in context['menu_items']:
+        if item['name'] == 'upload_map':
+            item['active'] = True
+
+    page = request.GET.get('page', 1)
+    context.update({
+        'page': page,
+        'participation': team_pc,
+        'participation_id': team_pc.id,
+    })
+
+    if request.method=='POST':
+        form = MapForm(request.POST, request.FILES)
+        print(form)
+        if form.is_valid():
+            map = form.save(commit=False)
+            map.team = team_pc
+            map.save()
+            context.update({
+                'form': form
+            })
+            return render(request, 'accounts/panel/valid_upload.html', context)
+        else:
+            print(form.errors)
+            context.update({
+                'form':form
+             })
+            return render(request, 'accounts/panel/upload_map.html', context)
+    elif request.method=='GET':
+        form = MapForm()
+        context.update({
+            'form': form
+        })
+        return render(request, 'accounts/panel/upload_map.html', context)
+
+
+
