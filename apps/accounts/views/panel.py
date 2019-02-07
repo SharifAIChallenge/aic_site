@@ -246,18 +246,29 @@ def upload_map(request):
     for item in context['menu_items']:
         if item['name'] == 'upload_map':
             item['active'] = True
-
-    form = MapForm(request.POST)
-    if form.is_valid():
-        map = form.save(commit=False)
-        map.team = team_pc
-        map.competitions = Competition.objects.get(challenge__teams=team_pc)
-        map.save()
-        return render(request, '', context)
-    else:
+    if request.method=='POST':
+        form = MapForm(request.POST, request.FILES)
+        print(form)
+        if form.is_valid():
+            map = form.save(commit=False)
+            map.team = team_pc
+            map.save()
+            context.update({
+                'form': form
+            })
+            return render(request, 'accounts/panel/upload_map.html', context)
+        else:
+            print(form.errors)
+            context.update({
+                'form':form
+             })
+            return render(request, 'accounts/panel/upload_map.html', context)
+    elif request.method=='GET':
+        form = MapForm()
         context.update({
-            'error': _('File format is not correct.')
+            'form': form
         })
-        return render(request, '', context)
+        return render(request, 'accounts/panel/upload_map.html', context)
+
 
 

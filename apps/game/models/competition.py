@@ -652,7 +652,7 @@ class Match(models.Model):
 
 
 class Map(models.Model):
-    file = models.FileField(blank=False, null=False)
+    file = models.FileField(blank=False, null=False, upload_to='maps/')
     name = models.CharField(max_length=128, null=False, blank=False)
     token = models.CharField(max_length=256, null=True, blank=False)
     competitions = models.ManyToManyField(Competition, related_name='maps')
@@ -665,9 +665,11 @@ class Map(models.Model):
         super(Map, self).save(args, kwargs)
 
     def __str__(self):
+        append = str(self.team) if self.team else ""
+
         if self.name is None:
-            return str(self.id)
-        return self.name
+            return str(self.id) + append
+        return self.name + append
 
 
 class MapForm(forms.ModelForm):

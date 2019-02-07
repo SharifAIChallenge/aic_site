@@ -5,7 +5,7 @@
 
 {% block panel_content %}
 
- <form method="post" class="ui inverted form error" style="margin:auto;width: 90%">
+ <form method="post" class="ui inverted form error" style="margin:auto;width: 90%" enctype="multipart/form-data">
         {% if form.non_field_errors|length %}
             <div class="ui red message">
                 {% for error in form.non_field_errors %}
