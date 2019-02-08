@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.contenttypes',
 
+    'compress_storage',
+
     'mptt',
     'tagging',
     'zinnia',
@@ -51,6 +53,7 @@ INSTALLED_APPS += (
     'threadedcomments',
     'django_comments',
     'django.contrib.sites',
+
 )
 
 # comments
@@ -209,3 +212,5 @@ if TESTING:
     LANGUAGE_CODE = 'en'
 
 CELERY_RESULT_BACKEND = 'django-db'
+
+FILE_COMPRESS_DELETE_OLD_FILE = True # to not delete old files after compressed

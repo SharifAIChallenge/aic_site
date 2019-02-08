@@ -13,7 +13,7 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 from django import forms
 from apps.accounts.models import Team
 from apps.game.models.challenge import Challenge, TeamSubmission, TeamParticipatesChallenge
-
+from compress_storage import ZipFileField
 import logging
 
 logger = logging.getLogger(__name__)
@@ -652,7 +652,8 @@ class Match(models.Model):
 
 
 class Map(models.Model):
-    file = models.FileField(blank=False, null=False, upload_to='maps/')
+    file = ZipFileField(blank=True, null=True, upload_to='maps/')
+    # file = models.FileField(blank=False, null=False, upload_to='maps/')
     name = models.CharField(max_length=128, null=False, blank=False)
     token = models.CharField(max_length=256, null=True, blank=False)
     competitions = models.ManyToManyField(Competition, related_name='maps')
