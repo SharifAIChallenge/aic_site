@@ -672,6 +672,21 @@ class Map(models.Model):
         return self.name + append
 
 
+class MapForm(forms.ModelForm):
+    class Meta:
+        model = Map
+        fields = ['file', 'name']
+
+    def is_valid(self):
+        valid = super(MapForm, self).is_valid()
+        if not valid:
+            return valid
+        if self.instance.file.size > 524288:
+            self.errors['file'] = _('Max acceptable file size is 500kb')
+            return False
+        return True
+
+
 class SingleMatch(models.Model):
     STATUS_CHOICES = (
         ('running', _('Running')),
