@@ -35,3 +35,4 @@ django-import-export==1.0.0
 celery==4.1.0
 redis==2.10.6
 ipython==6.2.1
+model-mommy==1.6.0

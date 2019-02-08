@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.billing.decorators import payment_required
-from apps.game.models import TeamSubmission, Match, TeamParticipatesChallenge, Competition
+from apps.game.models import TeamSubmission, Match, Team, TeamParticipatesChallenge, Competition
 from apps.game.forms import MapForm
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -48,9 +48,11 @@ def get_shared_context(request):
 
     context['menu_items'] = [
         {'name': 'team_management', 'link': reverse('accounts:panel_team_management'), 'text': _('Team Status')},
-        # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
-        # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
-        # {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
+       # {'name': 'team_profile', 'link': reverse('accounts:team_profile'), 'text': _('Team Profile')},
+       # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
+       # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
+       # {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
+       # {'name': 'rating', 'link': reverse('accounts:rating'), 'text': _('Rating')}
     ]
 
     if request.user.profile:
@@ -111,12 +113,12 @@ def submissions(request):
         if item['name'] == 'submissions':
             item['active'] = True
 
-    page = request.GET.get('page', 1)
     context.update({
-        'page': page,
         'participation': team_pc,
         'participation_id': team_pc.id,
     })
+
+    page = request.GET.get('page', 1)
 
     if request.method == 'POST':
         form = SubmissionForm(request.POST, request.FILES)
@@ -280,4 +282,57 @@ def upload_map(request):
         return render(request, 'accounts/panel/upload_map.html', context)
 
 
+@payment_required
+@login_required
+def rating(request):
+    team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
+    context = get_shared_context(request)
 
+    for item in context['menu_items']:
+        if item['name'] == 'rating':
+            item['active'] = True
+
+    context.update({
+        'participation': team_pc,
+        'participation_id': team_pc.id,
+    })
+
+    all_teams = sorted(list(Team.objects.all()), key=lambda x: -x.rate)
+    paginator = Paginator(all_teams, 50)
+    page = request.GET.get('page', 1)
+    teams = paginator.page(page)
+    current_team = team_pc.team
+
+    context.update( {
+        'teams': teams,
+        'rank': all_teams.index(current_team) + 1,
+        'current_team': current_team
+    } )
+
+    return render(request, 'accounts/panel/rating.html', context )
+
+@payment_required
+@login_required
+def team_profile(request):
+    team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
+    context = get_shared_context(request)
+
+
+    for item in context['menu_items']:
+        if item['name'] == 'team_profile':
+            item['active'] = True
+    context.update({
+        'participation': team_pc,
+        'participation_id': team_pc.id,
+    })
+
+    tid = request.GET.get('tid', team_pc.team.id)
+    team = Team.objects.get(id=tid)
+
+    context.update( {'team': team })
+
+    return render(request, 'accounts/panel/team_profile.html', context )
