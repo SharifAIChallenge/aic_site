@@ -34,7 +34,7 @@ msgstr "ثبت نام هم‌اکنون باز نیست. به امید دیدا�
 
 #: apps/accounts/forms/panel.py:45
 msgid "Submission is closed."
-msgstr "ارسال‌ها"
+msgstr "امکان ارسال وجود ندارد."
 
 #: apps/accounts/forms/panel.py:50
 msgid "Max file size is 5MB."
