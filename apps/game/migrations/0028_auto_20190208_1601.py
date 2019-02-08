@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('game', '0024_teamrate'),
+        ('game', '0027_map_time_created'),
     ]
 
     operations = [
