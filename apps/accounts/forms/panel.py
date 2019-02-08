@@ -46,6 +46,18 @@ class SubmissionForm(ModelForm):
             return False
         if not self.cleaned_data['team'].challenge.is_submission_open:
             return False
+
+        submissions = self.cleaned_data['team'].submissions
+        last_submission = submissions.order_by('-time')[0]
+
+        if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.TEAM_SUBMISSION_TIME_DELTA):
+            self.add_error(
+                None,
+                _("You have to wait at least %(minutes)s minutes between each submission!") %
+                {'minutes': settings.TEAM_SUBMISSION_TIME_DELTA}
+            )
+            return False
+
         if self.cleaned_data['file'].size > 5242880:
             self.add_error('file', _('Max file size is 5MB.'))
             return False
