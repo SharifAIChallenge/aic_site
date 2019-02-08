@@ -6,7 +6,7 @@
 
 {% block extra_header %}
 
-    <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}?ver=2">
+    <link rel="stylesheet" href="{% static 'intro/css/stylesheet.css' %}?ver=3">
     <script src="{% static 'js/scrollreveal.js' %}"></script>
      <link rel="stylesheet" href="{% static 'intro/css/profile.css' %}?ver=2">
 
@@ -149,34 +149,34 @@
         </div>
     </div>
 
-    {#    <div class="odd section" id="section-intro">#}
-    {##}
-    {#        <div class="ui center aligned stackable grid">#}
-    {#            <div class="circle faded-d1" id="purple">#}
-    {##}
-    {#                <a style="padding-right: 20px">#}
-    {#                    {{ users_count }}#}
-    {#                </a>#}
-    {#                <br/>{% trans 'Users' %}#}
-    {#            </div>#}
-    {#            <div class="circle faded-d2" id="yellow">#}
-    {#                <a style="padding-right: 15px">#}
-    {#                    {{ submits_count }}#}
-    {#                </a>#}
-    {#                <br/>{% trans 'Submissions' %}#}
-    {#            </div>#}
-    {#            <div class="circle faded-d3" id="blue">#}
-    {#                <a style="padding-right: 15px">#}
-    {#                    {{ teams_count }}#}
-    {#                </a>#}
-    {#                <br/>{% trans 'Teams' %}#}
-    {#            </div>#}
-    {#        </div>#}
-    {##}
-    {#    </div>#}
+        <div class="odd section" id="section-intro">
+
+            <div class="ui center aligned stackable grid">
+                <div class="circle faded-d1" id="purple">
+
+                    <a style="padding-right: 20px">
+                        {{ users_count }}
+                    </a>
+                    <br/>{% trans 'Users' %}
+                </div>
+                <div class="circle faded-d2" id="yellow">
+                    <a style="padding-right: 15px">
+                        {{ submits_count }}
+                    </a>
+                    <br/>{% trans 'Submissions' %}
+                </div>
+                <div class="circle faded-d3" id="blue">
+                    <a style="padding-right: 15px">
+                        {{ teams_count }}
+                    </a>
+                    <br/>{% trans 'Teams' %}
+                </div>
+            </div>
+
+        </div>
 
 
-    <div class="odd section">
+    <div class="even section">
         <div class="ui section header">
             <a class="circular ui big ai red button" id="Why_SAIC_btn">
                 {% trans 'Why Sharif AI Challenge?' %}
@@ -189,7 +189,7 @@
                 <br>
                 <h1>{% trans "There's no I in success" %}</h1>
                 <br>
-                <p>{% trans "Practice teamwork in a group of 3 people" %}</p>
+                <p>{% trans "Practice teamwork in a group of 2/3 people" %}</p>
             </div>
             <div class="four wide column faded-d2" style="text-align: center;">
                 <i class="huge university icon"></i>
@@ -237,7 +237,7 @@
         </div>
     </div>
 
-    <div class="even section" id="section-prizes">
+    <div class="odd section" id="section-prizes">
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-prizes" id="prize_btn">
                 {% trans 'Prizes' %}
@@ -284,7 +284,7 @@
         </div>
     </div>
 
-    <div class="odd section" id="section-schedule">
+    <div class="even section" id="section-schedule">
         <div class="ui section header" id="schedule-title">
             <a class="circular ui big ai red button" href="#section-schedule" id="schedule_btn">
                 {% trans 'Schedule' %}
@@ -329,7 +329,7 @@
         </section>
     </div>
 
-    <div class="even section" id="section-faq">
+    <div class="odd section" id="section-faq">
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-faq" id="faq_btn">
                 {% trans 'FAQ' %}
@@ -520,6 +520,24 @@
                             {% blocktrans %}
                                 You may register online starting February 5th. The registration for the online round is
                                 free.
+                            {% endblocktrans %}
+                        </div>
+                    </div>
+                </div>
+                 <div class="ui inverted divider"></div>
+                <div class="title" id="FQ10">
+                    <i class="dropdown icon"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        {% blocktrans %}
+                            What is the maximum size for each team?
+                        {% endblocktrans %}
+                    </b>
+                </div>
+                <div class="ui stackable grid content" id="FA10">
+                    <div class="ui two column row">
+                        <div class=" sixteen wide column faq-text">
+                            {% blocktrans %}
+                                Participated teams should have two or three member.
                             {% endblocktrans %}
                         </div>
                     </div>
@@ -718,11 +736,29 @@
                         </div>
                     </div>
                 </div>
+              <div class="ui inverted divider"></div>
+                <div class="title" id="FQ10">
+                    <i class="dropdown icon"></i>
+                    <b class="ui active header" style="color:#F8981D">
+                        {% blocktrans %}
+                            What is the maximum size for each team?
+                        {% endblocktrans %}
+                    </b>
+                </div>
+                <div class="ui stackable grid content" id="FA10">
+                    <div class="ui two column row">
+                        <div class=" sixteen wide column faq-text">
+                            {% blocktrans %}
+                                Participated teams should have two or three member.
+                            {% endblocktrans %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="odd section tablet computer only" id="section-about-us" >
+    <div class="even section tablet computer only" id="section-about-us" >
 
         <div class="ui section header">
             <a class="circular ui big ai red button" href="#section-about-us" id="part_of_team_btn">
@@ -755,7 +791,7 @@
     </div>
 
 
-    <div class="even section tablet computer only" id="section-organizer">
+    <div class="odd section tablet computer only" id="section-organizer">
 
         <div class="ui section header">
             <a class="circular ui big ai blue button" href="#section-organizer" id="organizer_btn">
@@ -813,9 +849,9 @@
 {% block footer_scripts %}
     {{ block.super }}
     {% if LANGUAGE_BIDI %}
-        <script src="{% static 'intro/js/scripts.js' %}?ver=2"></script>
+        <script src="{% static 'intro/js/scripts.js' %}?ver=3"></script>
     {% else %}
-        <script src="{% static 'intro/js/scriptsEN.js' %}?ver=2"></script>
+        <script src="{% static 'intro/js/scriptsEN.js' %}?ver=3"></script>
     {% endif %}
     <script>
         ScrollReveal().reveal('.faded-d1', {delay: 250});

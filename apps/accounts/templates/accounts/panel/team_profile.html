@@ -1,0 +1,26 @@
+{% extends 'accounts/panel/panel.html' %}
+{% load static i18n ai_filters tz %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+
+{% block panel_content %}
+    <h2 style="margin-top: 20px;">{% trans 'Team Profile' %}</h2>
+
+    <table class="ui center aligned inverted celled table table-bordered">
+    <thead>
+    <tr>
+        <th> {% trans 'Team Name' %}: {{ team.name|truncatechars:20 }}</th>
+        <th> {% trans 'Rate' %}: {{ team.rate }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for part in team.participants.all %}
+        <tr>
+            <td> {{ part.user.first_name }} {{ part.user.last_name }}</td>
+            <td>
+                {{ part.user.profile.organization }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

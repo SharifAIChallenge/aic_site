@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^email_invalid$', views.email_invalid, name='email_invalid'),
     url(r'^challenge_a_team/(?P<participation_id>\d+)$', views.challenge_a_team, name='challenge_a_team'),
 
+    url(r'^panel/profile',views.team_profile, name='team_profile'),
+    url(r'^panel/rating', views.rating, name='rating'),
     url(r'^panel/submissions', views.submissions, name='panel_submissions'),
     url(r'^panel/upload_map', views.upload_map, name='upload_map'),
     url(r'^panel/team$', views.team_management, name='panel_team_management'),

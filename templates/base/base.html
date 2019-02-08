@@ -83,7 +83,7 @@
     <script type="text/javascript" src="{% static 'semantic/semantic.min.js' %}"></script>
 
 
-    <script src="{% static 'js/scripts.js' %}?ver=2"></script>
+    <script src="{% static 'js/scripts.js' %}?ver=3"></script>
 
     {% block extra_header %}{% endblock %}
 </head>
@@ -94,33 +94,36 @@
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div class="body-image" {% block bg-style %}{% endblock %}></div>
-{% block hide-patterns %}
-    <div class="body-pattern" id="pattern"></div>{% endblock %}
 {% block sidebar %}
     {% include 'base/sidebar.html' %}
 {% endblock %}
-{% block body %}
-    <div id="main">
+<div class="pusher">
+    <div class="body-image" {% block bg-style %}{% endblock %}></div>
+    {% block hide-patterns %}
+        <div class="body-pattern" id="pattern"></div>{% endblock %}
+    {% block body %}
+        <div id="main">
 
-        {% block navbar %}
-            {% include 'base/navbar.html' %}
-        {% endblock %}
+            {% block navbar %}
+                {% include 'base/navbar.html' %}
+            {% endblock %}
 
 
-        {% block content %}
-            <div class="ui container" {% block error-aligns %}{% endblock %}>
-                {% block container %}
+            {% block content %}
+                <div class="ui container" {% block error-aligns %}{% endblock %}>
+                    {% block container %}
 
-                {% endblock %}
-            </div>
-        {% endblock %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
 
-        {% block footer %}
-            {% include 'base/footer.html' %}
-        {% endblock %}
-    </div>
-{% endblock %}
+            {% block footer %}
+                {% include 'base/footer.html' %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+</div>
 
 <script src="{% static 'js/jquery.inview.min.js' %}"></script>
 <script src="{% static 'js/footer_scripts.js' %}"></script>
