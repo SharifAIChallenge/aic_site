@@ -676,6 +676,7 @@ class Map(models.Model):
     competitions = models.ManyToManyField(Competition, related_name='maps')
     team = models.ForeignKey(TeamParticipatesChallenge, blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
+    verified = models.NullBooleanField()
 
 
     def save(self, *args, **kwargs):

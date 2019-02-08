@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
+
+from aic_site.settings.base import UPLOAD_MAP_TIME_DELTA
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.billing.decorators import payment_required
 from apps.game.models import TeamSubmission, Match, Team, TeamParticipatesChallenge, Competition, SingleMatch
@@ -51,8 +53,8 @@ def get_shared_context(request):
       # {'name': 'team_profile', 'link': reverse('accounts:team_profile'), 'text': _('Team Profile')},
       {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
       # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
-      # {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
-      # {'name': 'rating', 'link': reverse('accounts:rating'), 'text': _('Rating')}
+      {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
+      # {'name': 'rating', 'link': reverse('a ccounts:rating'), 'text': _('Rating')}
     ]
 
     if request.user.profile:
@@ -255,6 +257,7 @@ def upload_map(request):
         'page': page,
         'participation': team_pc,
         'participation_id': team_pc.id,
+        'timedelta': UPLOAD_MAP_TIME_DELTA,
     })
 
     if request.method=='POST':
