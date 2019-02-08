@@ -4,6 +4,7 @@
 
 {% block container %}
     <form method="post" class="ui inverted form " style="margin:auto;width: 90%">
+
         <h3 class="ui dividing header">{% trans 'Login' %}</h3>
         {% csrf_token %}
 
@@ -23,7 +24,13 @@
             {{ form.password }}
         </div>
 
-
+          {% if form.non_field_errors|length %}
+            <div class="ui red message">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
         <button type="submit" class="ui inverted teal button">{% trans 'Login' %}</button>
         <button type="button" onclick="location.href='/accounts/signup'" class="ui inverted teal button">{% trans 'Register' %}</button>
 
