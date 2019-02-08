@@ -47,3 +47,4 @@ class ProfileAdmin(ImportExportModelAdmin):
 
 
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(UserParticipatesOnTeam)
