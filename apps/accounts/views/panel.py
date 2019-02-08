@@ -260,7 +260,7 @@ def upload_map(request):
     if request.method=='POST':
         form = MapForm(request.POST, request.FILES)
         print(form)
-        if form.is_valid():
+        if form.is_valid(get_team_pc(request)):
             map = form.save(commit=False)
             map.team = team_pc
             map.save()

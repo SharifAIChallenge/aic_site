@@ -204,6 +204,9 @@ LOGGING = {
 # this time delta is in minutes
 SINGLE_MATCH_SUBMISSION_TIME_DELTA = 5
 
+# this time delta is in hours
+UPLOAD_MAP_TIME_DELTA = 12
+
 ENABLE_REGISTRATION = True
 ENABLE_SUBMISSION = True
 
