@@ -651,8 +651,12 @@ class Match(models.Model):
         return self.get_score_for_participant(self.part2)
 
 
+def map_directory_path(instance, filename):
+    return str('maps/%s/map.map' %instance.name)
+
+
 class Map(models.Model):
-    file = ZipFileField(blank=True, null=True, upload_to='maps/')
+    file = ZipFileField(blank=True, null=True, upload_to=map_directory_path)
     # file = models.FileField(blank=False, null=False, upload_to='maps/')
     name = models.CharField(max_length=128, null=False, blank=False)
     token = models.CharField(max_length=256, null=True, blank=False)
