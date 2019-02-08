@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 19:19+0330\n"
+"POT-Creation-Date: 2019-02-08 20:52+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,19 +36,23 @@ msgstr "ثبت نام هم‌اکنون باز نیست. به امید دیدا�
 msgid "Submission is closed."
 msgstr "امکان ارسال وجود ندارد."
 
-#: apps/accounts/forms/panel.py:50
+#: apps/accounts/forms/panel.py:56
+msgid "You have to wait at least %(minutes)s minutes between each submission!"
+msgstr "بین هر دو ارسال باید حداقل %(minutes)s دقیقه صبر کنید."
+
+#: apps/accounts/forms/panel.py:62
 msgid "Max file size is 5MB."
 msgstr "بیشترین حجم فایل قابل استفاده ۵ مگابایت است."
 
-#: apps/accounts/forms/panel.py:74
+#: apps/accounts/forms/panel.py:86
 msgid "First submit a compilable code."
 msgstr "ابتدا یک کد قابل کامپایل ارسال کنید."
 
-#: apps/accounts/forms/panel.py:77
+#: apps/accounts/forms/panel.py:89
 msgid "You have to be one of participants."
 msgstr "شما باید یکی از طرفین باشید."
 
-#: apps/accounts/forms/panel.py:87
+#: apps/accounts/forms/panel.py:99
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each match!"
 msgstr "بین هر دو بازی دوستانه باید حداقل %(minutes)s دقیقه صبر کنید."
@@ -257,6 +261,7 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:7
 #: apps/accounts/templates/accounts/panel/submissions.html:53
+#: apps/accounts/views/panel.py:52
 msgid "Submissions"
 msgstr "ارسال‌ها"
 

@@ -20,7 +20,7 @@ def menu(request):
                 },
 
                 _('Blog'): reverse('zinnia:entry_archive_index'),
-                _('Resources'): 'blog/2019/02/08/2019-resources/',
+                _('Resources'): '/blog/2019/02/08/2019-resources/',
 
                 # _('Contact Us'): reverse('intro:index') + '#section-organizer',
                 # _('Access'): {
@@ -35,7 +35,7 @@ def menu(request):
             'sidebar': {
                 _('Home'): reverse('intro:index'),
                 _('Blog'): reverse('zinnia:entry_archive_index'),
-                _('Resources'): 'blog/2019/02/08/2019-resources/',
+                _('Resources'): '/blog/2019/02/08/2019-resources/',
             },
             # 'sidebar': {
             #     _('Home'): {
