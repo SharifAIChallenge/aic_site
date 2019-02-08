@@ -14,7 +14,7 @@ class MapForm(ModelForm):
     def is_valid(self, team):
         team_maps = Map.objects.filter(team=team)
         for m in team_maps:
-            if timezone.now()-m.time_created < timezone.timedelta(UPLOAD_MAP_TIME_DELTA*60):
+            if timezone.now()-m.time_created < timezone.timedelta(hours=UPLOAD_MAP_TIME_DELTA):
                 self.errors[''] = _('You can not upload a map right now. You have uploaded a map recently!')
                 return False
         valid = super(MapForm, self).is_valid()
