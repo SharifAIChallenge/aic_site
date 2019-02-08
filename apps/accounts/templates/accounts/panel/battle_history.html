@@ -59,9 +59,15 @@
 
                         {% if match.single_matches.first.status == 'waitacc' and match.part2.depend == participation %}
                             <div class="ui tiny buttons">
+                            <form method="post" action="/accounts/panel/faccept/{{ match.single_matches.first.id }}">
                                 <button class="ui button">{% trans 'Accept' %}</button>
+                                {% csrf_token %}
+                            </form>
                                 <div class="or" data-text="{% trans 'or' %}"></div>
+                            <form method="post" action="/accounts/panel/freject/{{ match.single_matches.first.id }}">
+                                {% csrf_token %}
                                 <button class="ui button">{% trans 'Reject' %}</button>
+                            </form>
                             </div>
                         {% endif %}
                     </td>
