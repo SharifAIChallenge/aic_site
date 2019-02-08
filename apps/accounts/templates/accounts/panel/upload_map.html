@@ -42,6 +42,12 @@
 {#            </ol>#}
         {% endif %}
 
+        {% if form.errors %}
+            <div class="ui message error" style="font-weight:bolder;color:#ED1A3A;">
+                <strong>{{ form.errors }}</strong>
+            </div>
+        {% endif %}
+
 
         <button type="submit" class="ui inverted teal button" style="font-weight: bolder">{% trans 'Upload' %}</button>
     </form>

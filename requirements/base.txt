@@ -13,6 +13,7 @@ diff-match-patch==20181111
 Django==1.10.7
 django-blog-zinnia==0.19
 django-celery-results==1.0.4
+django-compress-storage==0.9.1
 django-contrib-comments==1.8.0
 django-import-export==1.0.0
 django-js-asset==0.1.1

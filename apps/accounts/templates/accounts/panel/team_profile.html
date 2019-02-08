@@ -5,18 +5,18 @@
 {% block panel_content %}
     <h2 style="margin-top: 20px;">{% trans 'Team Profile' %}</h2>
 
-    <table class="ui center aligned inverted celled table table-bordered">
-    <thead>
-    <tr>
-        <th> {% trans 'Team Name' %}: {{ team.name|truncatechars:20 }}</th>
-        <th> {% trans 'Rate' %}: {{ team.rate }}</th>
+    <table class="ui center aligned inverted celled table table-bordered"  style="border:solid #009D8A;">
+    <thead style="border:solid #009D8A;">
+    <tr style="border:solid #009D8A;">
+        <th style="border:solid #009D8A;"> {% trans 'Team Name' %}: {{ team.name|truncatechars:20 }}</th>
+        <th style="border:solid #009D8A;"> {% trans 'Rate' %}: {{ team.rate }}</th>
     </tr>
     </thead>
     <tbody>
     {% for part in team.participants.all %}
-        <tr>
-            <td> {{ part.user.first_name }} {{ part.user.last_name }}</td>
-            <td>
+        <tr style="border:solid #009D8A;">
+            <td style="border:solid #009D8A;"> {{ part.user.first_name }} {{ part.user.last_name }}</td>
+            <td style="border:solid #009D8A;">
                 {{ part.user.profile.organization }}
             </td>
         </tr>

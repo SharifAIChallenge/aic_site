@@ -6,7 +6,7 @@
     <h2>{% trans 'Team Status' %}</h2>
     <div>
     {% if accepted_participations|length > 0 %}
-        <table class="ui center aligned inverted table">
+        <table class="ui center aligned inverted table" style="border:solid #009D8A;">
             <thead>
             <tr>
                 <th>{% trans 'Username' %}</th>
@@ -21,12 +21,12 @@
                         {% if removable %}
 
                             <a href="{% url 'accounts:cancel_participation_request' participation.id user.id %}"
-                               class="ui right aligned red button tiny">
+                               class="ui right aligned inverted red button tiny">
                                 <i class="remove icon"></i>
                                 {% trans 'Remove' %}
                             </a>
                         {% else %}
-                            <span class="ui right aligned green button tiny">
+                            <span class="ui right aligned inverted teal button tiny">
                                     <i class="checkmark icon"></i>
                                     {% trans 'Accepted' %}
                                 </span>
@@ -38,7 +38,7 @@
                 <tr>
                     <td>
                         <a href="{% url 'accounts:add_participation' participation.id %}"
-                           class="ui right aligned green button tiny">
+                           class="ui right aligned inverted teal button tiny">
                             <i class="add icon"></i>
                             {% trans 'Add a member' %}
                         </a>

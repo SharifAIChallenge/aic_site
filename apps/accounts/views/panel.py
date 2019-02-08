@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.billing.decorators import payment_required
-from apps.game.models import TeamSubmission, Match, Team, TeamParticipatesChallenge, Competition
+from apps.game.models import TeamSubmission, Match, Team, TeamParticipatesChallenge, Competition, SingleMatch
 from apps.game.forms import MapForm
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -48,11 +48,11 @@ def get_shared_context(request):
 
     context['menu_items'] = [
         {'name': 'team_management', 'link': reverse('accounts:panel_team_management'), 'text': _('Team Status')},
-       # {'name': 'team_profile', 'link': reverse('accounts:team_profile'), 'text': _('Team Profile')},
-       # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
-       # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
-       # {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
-       # {'name': 'rating', 'link': reverse('accounts:rating'), 'text': _('Rating')}
+      # {'name': 'team_profile', 'link': reverse('accounts:team_profile'), 'text': _('Team Profile')},
+      # {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
+      # {'name': 'battle_history', 'link': reverse('accounts:panel_battle_history'), 'text': _('Battle history')},
+      # {'name': 'upload_map', 'link': reverse('accounts:upload_map'), 'text': _('Upload Map')},
+      # {'name': 'rating', 'link': reverse('accounts:rating'), 'text': _('Rating')}
     ]
 
     if request.user.profile:
@@ -260,10 +260,13 @@ def upload_map(request):
     if request.method=='POST':
         form = MapForm(request.POST, request.FILES)
         print(form)
-        if form.is_valid():
+        if form.is_valid(get_team_pc(request)):
             map = form.save(commit=False)
             map.team = team_pc
             map.save()
+            map.file.compress(async=False)
+            map.save()
+            print(map.file)
             context.update({
                 'form': form
             })
@@ -336,3 +339,36 @@ def team_profile(request):
     context.update( {'team': team })
 
     return render(request, 'accounts/panel/team_profile.html', context )
+
+@payment_required
+@login_required
+def accept_friendly(request, sm_id):
+    team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
+
+    single_match = SingleMatch.objects.get(id=sm_id)
+
+    if single_match.match.part2.submission and single_match.match.part2.submission.team == team_pc:
+        single_match.status = 'waiting'
+        single_match.save()
+        single_match.handle()
+        return redirect('accounts:panel_battle_history')
+
+    return redirect('accounts:panel_battle_history')
+
+
+@payment_required
+@login_required
+def reject_friendly(request, sm_id):
+    team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
+
+    single_match = SingleMatch.objects.get(id=sm_id)
+
+    if single_match.match.part2.submission and single_match.match.part2.submission.team == team_pc:
+        single_match.status = 'rejected'
+        single_match.save()
+
+    return redirect('accounts:panel_battle_history')

@@ -118,8 +118,8 @@ class ChallengeATeamForm(forms.Form):
 
         competition_map = Map.objects.filter(id=self.cleaned_data['battle_team_maps']).first()
 
-        single_match = SingleMatch(match=match, map=competition_map)
+        single_match = SingleMatch(match=match, map=competition_map, status='waitacc')
         if commit:
             single_match.save()
 
-        single_match.handle()
+

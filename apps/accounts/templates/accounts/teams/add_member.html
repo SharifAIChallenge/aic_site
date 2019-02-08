@@ -1,10 +1,11 @@
 {% extends 'base/base.html' %}
+
 {% load i18n %}
 {% load static %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% block container %}
-
-<form class="ui form error" id="create_team_form" method="post" style="padding: 70px">
+<div class="ui inverted segment resetpass" style="background-color: #222222dd; border-radius: 30px;margin: auto">
+<form class="ui inverted form error" id="create_team_form" method="post" style="margin: auto">
 <h3 class="ui dividing header">{% trans 'Add a member to' %} {{ team }} </h3>
   {% csrf_token %}
 
@@ -18,7 +19,7 @@
         {% endfor %}
     </select>
 </div>
-  <button class="ui green button" type="submit">{% trans 'Add' %}</button>
+  <button class="ui inverted teal button" type="submit">{% trans 'Add' %}</button>
 {% if  form.non_field_errors %}
     <div class="ui error message">
         <div class="header">{% trans 'Error!' %}</div>
@@ -26,5 +27,6 @@
     </div>
 {% endif %}
 </form>
+</div>
 <script type="text/javascript" src="{% static 'accounts/js/create_team.js' %}"></script>
 {% endblock %}

@@ -13,7 +13,7 @@ from django.utils.translation import ugettext_lazy as _, ugettext
 from django import forms
 from apps.accounts.models import Team
 from apps.game.models.challenge import Challenge, TeamSubmission, TeamParticipatesChallenge
-
+from compress_storage import ZipFileField
 import logging
 
 logger = logging.getLogger(__name__)
@@ -424,6 +424,9 @@ class Match(models.Model):
         have_failed = False
         have_done = False
         have_waiting = False
+        have_waitacc = False
+        have_rejected = False
+
         for single_match in self.single_matches.filter(time__lte=freeze_time):
             if single_match.status == 'running':
                 have_running = True
@@ -433,19 +436,29 @@ class Match(models.Model):
                 have_done = True
             if single_match.status == 'waiting':
                 have_waiting = True
+            if single_match.status == 'waitacc':
+                have_waitacc = True
+            if single_match.status == 'rejected':
+                have_rejected = True
 
-        if (not have_running) and (not have_failed) and (not have_waiting):
+        if have_rejected:
+            return 'Rejected'
+
+        if (not have_running) and (not have_failed) and (not have_waiting) and (not have_waitacc):
             if have_done:
-                return 'done'
+                return 'Done'
             else:
-                return 'waiting'
+                return 'Waiting'
+
+        if have_waitacc:
+            status_result = 'Waiting'
 
         if have_running:
-            status_result = 'running'
+            status_result = 'Running'
         if have_waiting:
-            status_result = 'waiting'
+            status_result = 'Waiting'
         if have_failed:
-            status_result = 'failed'
+            status_result = 'Failed'
 
         return status_result
 
@@ -651,12 +664,18 @@ class Match(models.Model):
         return self.get_score_for_participant(self.part2)
 
 
+def map_directory_path(instance, filename):
+    return str('maps/%s/map.map' %instance.name)
+
+
 class Map(models.Model):
-    file = models.FileField(blank=False, null=False, upload_to='maps/')
+    file = ZipFileField(blank=True, null=True, upload_to=map_directory_path)
+    # file = models.FileField(blank=False, null=False, upload_to='maps/')
     name = models.CharField(max_length=128, null=False, blank=False)
     token = models.CharField(max_length=256, null=True, blank=False)
     competitions = models.ManyToManyField(Competition, related_name='maps')
     team = models.ForeignKey(TeamParticipatesChallenge, blank=True, null=True)
+    time_created = models.DateTimeField(auto_now_add=True)
 
 
     def save(self, *args, **kwargs):
@@ -678,6 +697,8 @@ class SingleMatch(models.Model):
         ('failed', _('Failed')),
         ('done', _('Done')),
         ('waiting', _('Waiting')),
+        ('waitacc', _('Wating to accept')),
+        ('rejected', _('Rejected'))
     )
 
     match = models.ForeignKey(Match, related_name='single_matches')

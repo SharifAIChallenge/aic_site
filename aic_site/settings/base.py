@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.contenttypes',
 
+    'compress_storage',
+
     'mptt',
     'tagging',
     'zinnia',
@@ -51,6 +53,7 @@ INSTALLED_APPS += (
     'threadedcomments',
     'django_comments',
     'django.contrib.sites',
+
 )
 
 # comments
@@ -201,6 +204,9 @@ LOGGING = {
 # this time delta is in minutes
 SINGLE_MATCH_SUBMISSION_TIME_DELTA = 5
 
+# this time delta is in hours
+UPLOAD_MAP_TIME_DELTA = 12
+
 ENABLE_REGISTRATION = True
 ENABLE_SUBMISSION = True
 
@@ -209,3 +215,5 @@ if TESTING:
     LANGUAGE_CODE = 'en'
 
 CELERY_RESULT_BACKEND = 'django-db'
+
+FILE_COMPRESS_DELETE_OLD_FILE = True # to not delete old files after compressed

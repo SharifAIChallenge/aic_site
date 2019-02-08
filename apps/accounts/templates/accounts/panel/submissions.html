@@ -38,7 +38,7 @@
                 </div>
                 <div class="three wide field">
                     <label><i class="submit icon"></i></label>
-                    <button type="submit" class="ui green button">{% trans 'Submit' %}</button>
+                    <button type="submit" class="ui inverted teal button">{% trans 'Submit' %}</button>
                 </div>
             </div>
 
@@ -53,7 +53,7 @@
         <h2>{% trans 'Submissions' %}</h2>
     {% endif %}
     {% if submissions|length > 0 %}
-        <table class="ui center aligned inverted table table-bordered">
+        <table class="ui center aligned inverted table table-bordered" style="border:solid #009D8A;">
             <thead>
             <tr>
                 <th>{% trans "Selected" %}</th>
@@ -74,14 +74,14 @@
                             <label></label>
                         </div>
                     </td>
-                    <td><a href="{{ submission.file.url }}">{{ submission.time.date|jalali }} - {{ submission.time|time }}</a></td>
+                    <td><a href="{{ submission.file.url }}"><span style="color: #009D8A">{{ submission.time.date|jalali }} - {{ submission.time|time }}</span></a></td>
                     <td>
                         {% if submission.language == 'java' %}
-                            <div class="ui orange label">Java</div>
+                            <div class="ui inverted orange label">Java</div>
                         {% elif submission.language == 'py3' %}
-                            <div class="ui blue label">Python 3</div>
+                            <div class="ui inverted blue label">Python 3</div>
                         {% elif submission.language == 'cpp' %}
-                            <div dir="ltr" class="ui purple label">C++</div>
+                            <div dir="ltr" class="ui inverted purple label">C++</div>
                         {% endif %}
                     </td>
                     <td>
@@ -91,28 +91,7 @@
                         {% elif submission.status == 'failed' %}
                             <a onclick="$('#submission_modal_{{ submission.id }}').show()" class="ui red label"
                                data-tooltip="{% trans 'Click To View' %}" data-inverted="">{% trans 'Failed' %}</a>
-                            <div class="ui modal" id="submission_modal_{{ submission.id }}">
-                                <div class="header">
-                                    {% trans 'Compile Error' %}
-                                </div>
-                                <i class="close icon"></i>
-                                <div class="scrolling content">
-                                    <div class="description">
-                                        <div class="ui header">
-                                            {% trans 'The Log From Compiler Is Shown Below:' %}
-                                        </div>
-                                        <p dir="ltr" style="float: left;">
-                                            {{ submission.infra_compile_message }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="actions">
-                                    <div class="ui black deny button"
-                                         onclick="$('#submission_modal_{{ submission.id }}').hide()">
-                                        {% trans 'OK' %}
-                                    </div>
-                                </div>
-                            </div>
+
                         {% elif submission.status == 'uploading' %}
                             <a class="ui label"
                                data-tooltip="{% trans 'Uploading, Wait and refresh the page.' %}"
@@ -124,10 +103,32 @@
                         {% endif %}
                     </td>
                 </tr>
+                            <div class="ui modal test" align="center" id="submission_modal_{{ submission.id }}">
+                                <div class="header" style="color:#fff3d9;background-color: #222222dd;border-left: solid #ED1A3A;border-right: solid #ED1A3A;border-top: solid #ED1A3A;">
+                                    {% trans 'Compile Error' %}
+                                </div>
+
+                                <div class="scrolling  content" style="background-color: #222222dd;border-left: solid #ED1A3A;border-right: solid #ED1A3A;">
+                                    <div class="description">
+                                        <div class="ui header">
+                                            {% trans 'The Log From Compiler Is Shown Below:' %}
+                                        </div>
+                                        <p dir="ltr" style="float: left;">
+                                            {{ submission.infra_compile_message }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="actions" style="background-color: #222222dd ;border-left: solid #ED1A3A;border-right: solid #ED1A3A;border-bottom: solid #ED1A3A;">
+                                    <div class="ui black deny button"
+                                         onclick="$('#submission_modal_{{ submission.id }}').hide()">
+                                        {% trans 'OK' %}
+                                    </div>
+                                </div>
+                            </div>
             {% endfor %}
             </tbody>
             {% if submissions.has_other_pages %}
-                <tfoot>
+                <tfoot >
                 <tr>
                     <th colspan="4">
                         <div class="ui right floated pagination menu">

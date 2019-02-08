@@ -3,12 +3,12 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 {% for invitation in invitations %}
-    <div class="ui info message">
+    <div class="ui inverted info message">
         <i onclick="window.location.href='{% url "accounts:reject_participation" invitation.id %}';"
            class="close icon"></i>
         <div class="header">
-            <p>{% trans 'You are invited to the team ' %}"{{ invitation.team }}"{% trans ' on the challenge ' %}"{{ invitation.challenge }}"{% trans ', do you accept?' %}</p>
-            <p>{% trans 'Members are:' %}</p>
+            <p style="color: #FFF3D9">{% trans 'You are invited to the team ' %}"{{ invitation.team }}"{% trans ' on the challenge ' %}"{{ invitation.challenge }}"{% trans ', do you accept?' %}</p>
+            <p style="color: #FFF3D9">{% trans 'Members are:' %}</p>
         </div>
         <ul class="list">
             {% for participant in invitation.team.participants.all %}
@@ -18,9 +18,9 @@
         <br>
         <div class="ui buttons">
             <a href="{% url 'accounts:accept_participation' invitation.id %}"
-               class="ui right aligned green button">{% trans 'Accept' %}</a>
+               class="ui right aligned inverted teal button">{% trans 'Accept' %}</a>
             <a href="{% url 'accounts:reject_participation' invitation.id %}"
-               class="ui right aligned red button">{% trans 'Reject' %}</a>
+               class="ui right aligned inverted red button">{% trans 'Reject' %}</a>
         </div>
     </div>
 {% endfor %}
