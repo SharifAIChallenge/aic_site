@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
-    phone_number = models.CharField(max_length=11, null=True, blank=True, verbose_name=_('Mobile number‌'))
+    phone_number = models.CharField(max_length=14, null=True, blank=True, verbose_name=_('Mobile number‌'))
     organization = models.CharField(max_length=128, null=False, blank=False, verbose_name=_('Organization‌'))
     position = models.CharField(max_length=128, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True, verbose_name=_('Age‌'))

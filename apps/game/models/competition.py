@@ -424,6 +424,8 @@ class Match(models.Model):
         have_failed = False
         have_done = False
         have_waiting = False
+        have_waitacc = False
+
         for single_match in self.single_matches.filter(time__lte=freeze_time):
             if single_match.status == 'running':
                 have_running = True
@@ -433,12 +435,17 @@ class Match(models.Model):
                 have_done = True
             if single_match.status == 'waiting':
                 have_waiting = True
+            if single_match.status == 'waitacc':
+                have_waitacc = True
 
         if (not have_running) and (not have_failed) and (not have_waiting):
             if have_done:
                 return 'done'
             else:
                 return 'waiting'
+
+        if have_waitacc:
+            status_result = 'waitacc'
 
         if have_running:
             status_result = 'running'
@@ -678,6 +685,8 @@ class SingleMatch(models.Model):
         ('failed', _('Failed')),
         ('done', _('Done')),
         ('waiting', _('Waiting')),
+        ('waitacc', _('Wating to accept')),
+        ('rejected', _('Rejected'))
     )
 
     match = models.ForeignKey(Match, related_name='single_matches')
