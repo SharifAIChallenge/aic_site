@@ -3,21 +3,59 @@
 {% load static %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 {% block container %}
-<div class="ui icon green message">
-    <i class="users icon"></i>
-    <div class="content">
-      <div class="header">
-        {% trans 'Your team has been created successfully' %}
-      </div>
-      <p>{% trans 'Request messages has bee sent to your teammates' %}</p>
-    </div>
-</div>
-<a href="{% url 'accounts:panel' last_participation_id %}">
-<div class="ui animated button" tabindex="0">
-  <div class="visible content">{% trans 'OK' %}</div>
-  <div class="hidden content">
-    <i class="right arrow icon"></i>
+        <div id="modal" class="ui basic modal test" >
+  <div class="ui icon header">
+    <i class=" users icon" style="color:#fff3df"></i>
+     {% trans 'Your team has been created successfully' %}
   </div>
-</div>
-</a>
+  <div class="content" id="content" align="center" style="font-weight: bolder;font-size: 30px">
+<p style="color: #009D8A">{% trans 'Request messages has bee sent to your teammates' %}</p>
+
+  </div>
+  <div class="actions" align="center">
+    <a  href="{% url 'accounts:panel' last_participation_id %}" class="ui inverted teal large button" style="font-weight: bolder">
+     <span style="color: #fff3d9 !important;" >{% trans 'LOGIN'%}</span>
+    </a>
+  </div>
+    </div>
+{#<div class="ui icon green message">#}
+{#    <i class="users icon"></i>#}
+{#    <div class="content">#}
+{#      <div class="header">#}
+{#        {% trans 'Your team has been created successfully' %}#}
+{#      </div>#}
+{#      <p>{% trans 'Request messages has bee sent to your teammates' %}</p>#}
+{#    </div>#}
+{#</div>#}
+{#<a href="{% url 'accounts:panel' last_participation_id %}">#}
+{#<div class="ui animated button" tabindex="0">#}
+{#  <div class="visible content">{% trans 'OK' %}</div>#}
+{#  <div class="hidden content">#}
+{#    <i class="right arrow icon"></i>#}
+{#  </div>#}
+{#</div>#}
+{#</a>#}
+{% endblock %}
+{% block footer_scripts %}
+    {{ block.super }}
+    {% if LANGUAGE_BIDI %}
+        <script src="{% static 'intro/js/scripts.js' %}"></script>
+    {% else %}
+        <script src="{% static 'intro/js/scriptsEN.js' %}"></script>
+    {% endif %}
+    <script type="text/javascript">
+      $(document)
+    .ready(function () {
+{#    $('.modal')#}
+{#  .modal('show')#}
+{#;#}
+ $('.modal')
+    .modal({
+        closable: false
+     }).modal('show');
+
+});
+
+    </script>
+
 {% endblock %}
