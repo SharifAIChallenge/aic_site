@@ -5,7 +5,7 @@
 {% block panel_content %}
     <h2 style="margin-top: 20px;">{% trans 'Battle history' %}</h2>
     {% if battle_history|length %}
-        <table class="ui center aligned inverted table table-bordered">
+        <table class="ui center aligned inverted table table-bordered"  style="border:solid #009D8A;">
             <thead>
             <tr>
                 <th>{% trans 'Time' %}</th>
@@ -87,7 +87,7 @@
             {% endif %}
         </table>
     {% endif %}
-    <form class="ui form" action="{% url 'accounts:challenge_a_team' participation_id %}" method="post"
+    <form class="ui inverted form" action="{% url 'accounts:challenge_a_team' participation_id %}" method="post"
           style="width: 100% !important;">
         {% csrf_token %}
         <div class="two fields">
