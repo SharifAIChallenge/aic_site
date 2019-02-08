@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 02:37+0330\n"
+"POT-Creation-Date: 2019-02-08 19:19+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,6 +74,14 @@ msgstr "تیمی انتخاب نشده است!"
 msgid "Only teams from one challenge!"
 msgstr "تنها میتوانید از تیم‌های یک چالش انتخاب کنید!"
 
+#: apps/game/forms.py:18
+msgid "You can not upload a map right now. You have uploaded a map recently!"
+msgstr ""
+
+#: apps/game/forms.py:24
+msgid "Max acceptable file size is 500kb"
+msgstr ""
+
 #: apps/game/models/challenge.py:75 apps/game/models/challenge.py:78
 msgid "None"
 msgstr "هیچ!"
@@ -114,7 +122,7 @@ msgstr "در حال کامپایل"
 msgid "Compiled"
 msgstr "کامپایل شده"
 
-#: apps/game/models/challenge.py:133 apps/game/models/competition.py:678
+#: apps/game/models/challenge.py:133 apps/game/models/competition.py:697
 msgid "Failed"
 msgstr "ناموفق!"
 
@@ -160,17 +168,25 @@ msgstr "خودش"
 msgid "Unknown"
 msgstr "نامعلوم"
 
-#: apps/game/models/competition.py:677
+#: apps/game/models/competition.py:696
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: apps/game/models/competition.py:679
+#: apps/game/models/competition.py:698
 msgid "Done"
 msgstr "انجام شده"
 
-#: apps/game/models/competition.py:680
+#: apps/game/models/competition.py:699
 msgid "Waiting"
 msgstr "در حال انتظار"
+
+#: apps/game/models/competition.py:700
+msgid "Wating to accept"
+msgstr ""
+
+#: apps/game/models/competition.py:701
+msgid "Rejected"
+msgstr ""
 
 #: apps/game/templates/scoreboard/bracket.html:17
 msgid "Winners bracket"

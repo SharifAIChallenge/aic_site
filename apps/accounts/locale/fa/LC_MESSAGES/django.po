@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 02:37+0330\n"
+"POT-Creation-Date: 2019-02-08 19:19+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,7 +139,6 @@ msgstr "باخت"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:4
 #: apps/accounts/templates/accounts/panel/battle_history.html:6
-#: apps/accounts/views/panel.py:52
 msgid "Battle history"
 msgstr "بازی‌های دوستانه"
 
@@ -164,8 +163,8 @@ msgstr "امتیاز حریف"
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:13
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:28
 #: apps/accounts/templates/accounts/panel/battle_history.html:15
-#: apps/accounts/templates/accounts/panel/battle_history.html:34
-#: apps/accounts/templates/accounts/panel/battle_history.html:44
+#: apps/accounts/templates/accounts/panel/battle_history.html:35
+#: apps/accounts/templates/accounts/panel/battle_history.html:45
 msgid "View"
 msgstr "نمایش"
 
@@ -175,7 +174,7 @@ msgid "Log"
 msgstr "گزارش"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:40
-#: apps/accounts/templates/accounts/panel/battle_history.html:51
+#: apps/accounts/templates/accounts/panel/battle_history.html:52
 msgid "Download"
 msgstr "دانلود"
 
@@ -184,18 +183,18 @@ msgid "Running"
 msgstr "در حال اجرا"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:93
-#: apps/accounts/templates/accounts/panel/battle_history.html:79
+#: apps/accounts/templates/accounts/panel/battle_history.html:96
 msgid "Versus:"
 msgstr "حریف:"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:104
-#: apps/accounts/templates/accounts/panel/battle_history.html:90
+#: apps/accounts/templates/accounts/panel/battle_history.html:107
 msgid "Map:"
 msgstr "نقشه:"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:114
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:151
-#: apps/accounts/templates/accounts/panel/battle_history.html:100
+#: apps/accounts/templates/accounts/panel/battle_history.html:117
 #: apps/accounts/templates/accounts/panel/submissions.html:9
 #: apps/accounts/templates/accounts/panel/submissions.html:41
 msgid "Submit"
@@ -241,11 +240,13 @@ msgid "Members are:"
 msgstr "اعضا:"
 
 #: apps/accounts/templates/accounts/oldpanel/messages.html:21
+#: apps/accounts/templates/accounts/panel/battle_history.html:63
 #: apps/accounts/templates/accounts/panel/messages.html:21
 msgid "Accept"
 msgstr "پذیرفتن"
 
 #: apps/accounts/templates/accounts/oldpanel/messages.html:23
+#: apps/accounts/templates/accounts/panel/battle_history.html:69
 #: apps/accounts/templates/accounts/panel/messages.html:23
 msgid "Reject"
 msgstr "ردکردن"
@@ -256,7 +257,6 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:7
 #: apps/accounts/templates/accounts/panel/submissions.html:53
-#: apps/accounts/views/panel.py:51
 msgid "Submissions"
 msgstr "ارسال‌ها"
 
@@ -296,18 +296,17 @@ msgid "Failed"
 msgstr "ناموفق"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:53
-#: apps/accounts/templates/accounts/panel/submissions.html:96
+#: apps/accounts/templates/accounts/panel/submissions.html:108
 msgid "Compile Error"
 msgstr "کامپایل‌شده"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:59
-#: apps/accounts/templates/accounts/panel/submissions.html:102
+#: apps/accounts/templates/accounts/panel/submissions.html:114
 msgid "The Log From Compiler Is Shown Below:"
 msgstr "نتیجه کار کامپایلر:"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:69
-#: apps/accounts/templates/accounts/panel/submissions.html:112
-#: apps/accounts/templates/accounts/teams/success_create_team.html:17
+#: apps/accounts/templates/accounts/panel/submissions.html:124
 msgid "OK"
 msgstr "باشه"
 
@@ -320,12 +319,12 @@ msgid "Failed To Upload"
 msgstr "آپلود ناموفق"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:79
-#: apps/accounts/templates/accounts/panel/submissions.html:122
+#: apps/accounts/templates/accounts/panel/submissions.html:101
 msgid "We are compiling your code! Wait and refresh your page."
 msgstr "ما در حال کامپایل کردن کد شما هستیم. صبر کنید و صفحه را مجددا ببینید."
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:80
-#: apps/accounts/templates/accounts/panel/submissions.html:123
+#: apps/accounts/templates/accounts/panel/submissions.html:102
 msgid "Compiling"
 msgstr "در حال کامپایل"
 
@@ -356,7 +355,7 @@ msgstr "وضعیت تیم"
 #: apps/accounts/templates/accounts/panel/team_management.html:12
 #: apps/accounts/templates/accounts/profile/login.html:11
 #: apps/accounts/templates/accounts/profile/signup.html:19
-#: apps/accounts/templates/accounts/teams/add_member.html:12
+#: apps/accounts/templates/accounts/teams/add_member.html:13
 msgid "Username"
 msgstr "نام کاربری"
 
@@ -385,6 +384,14 @@ msgstr "تمام اعضا شرکت در مسابقه را تایید کرده‌
 msgid "All users haven't accepted the challenge yet!"
 msgstr "هنوز همه اعضا شرکت در مسابقه را تایید نکرده‌اند."
 
+#: apps/accounts/templates/accounts/panel/battle_history.html:17
+msgid "Confirm"
+msgstr "تایید"
+
+#: apps/accounts/templates/accounts/panel/battle_history.html:66
+msgid "or"
+msgstr "یا"
+
 #: apps/accounts/templates/accounts/panel/messages.html:31
 msgid "You have to complete the team and pay to continue to this challenge."
 msgstr "برای ادامه کار در این چالش باید تیم خود را تکمیل کرده و پرداخت کنید."
@@ -398,7 +405,6 @@ msgid "Complete team"
 msgstr "تکمیل تیم"
 
 #: apps/accounts/templates/accounts/panel/rating.html:6
-#: apps/accounts/views/panel.py:54
 msgid "Rating"
 msgstr "رتبه‌بندی"
 
@@ -411,11 +417,11 @@ msgstr "رتبه شما"
 msgid "Rate"
 msgstr "امتیاز"
 
-#: apps/accounts/templates/accounts/panel/submissions.html:118
+#: apps/accounts/templates/accounts/panel/submissions.html:97
 msgid "Uploading, Wait and refresh the page."
 msgstr "در حال آپلود، لطفا صبر کنید و صفحه را ریفرش کنید."
 
-#: apps/accounts/templates/accounts/panel/submissions.html:119
+#: apps/accounts/templates/accounts/panel/submissions.html:98
 msgid "Uploading"
 msgstr "در حال آپلود"
 
@@ -424,7 +430,6 @@ msgid "You have not participated in this challenge yet."
 msgstr "شما در این چالش شرکت نکرده‌اید."
 
 #: apps/accounts/templates/accounts/panel/team_profile.html:6
-#: apps/accounts/views/panel.py:55
 msgid "Team Profile"
 msgstr "مشخصات تیم"
 
@@ -434,7 +439,6 @@ msgid "Team Name"
 msgstr "نام تیم"
 
 #: apps/accounts/templates/accounts/panel/upload_map.html:17
-#: apps/accounts/views/panel.py:53
 msgid "Upload Map"
 msgstr "آپلود نقشه"
 
@@ -446,7 +450,7 @@ msgstr "نام نقشه"
 msgid "Map File"
 msgstr "فایل نقشه"
 
-#: apps/accounts/templates/accounts/panel/upload_map.html:46
+#: apps/accounts/templates/accounts/panel/upload_map.html:52
 #: apps/accounts/templates/accounts/panel/valid_upload.html:13
 msgid "Upload"
 msgstr "بارگذاری"
@@ -475,7 +479,7 @@ msgstr "رمز"
 
 #: apps/accounts/templates/accounts/profile/login.html:28
 msgid "Register"
-msgstr ""
+msgstr "ثبت نام"
 
 #: apps/accounts/templates/accounts/profile/login.html:32
 msgid "I forgot my password"
@@ -534,15 +538,15 @@ msgstr "ثبت نام"
 msgid "Update"
 msgstr "ذخیره"
 
-#: apps/accounts/templates/accounts/teams/add_member.html:8
+#: apps/accounts/templates/accounts/teams/add_member.html:9
 msgid "Add a member to"
 msgstr "اضافه کردن عضو به"
 
-#: apps/accounts/templates/accounts/teams/add_member.html:21
+#: apps/accounts/templates/accounts/teams/add_member.html:22
 msgid "Add"
 msgstr "اضافه کن"
 
-#: apps/accounts/templates/accounts/teams/add_member.html:24
+#: apps/accounts/templates/accounts/teams/add_member.html:25
 #: apps/accounts/templates/accounts/teams/create_team.html:51
 msgid "Error!"
 msgstr "خطا!"
@@ -573,13 +577,17 @@ msgstr "عضو دوم"
 msgid "Third Member"
 msgstr "عضو سوم"
 
-#: apps/accounts/templates/accounts/teams/success_create_team.html:10
+#: apps/accounts/templates/accounts/teams/success_create_team.html:9
 msgid "Your team has been created successfully"
 msgstr "تیم شما با موفقیت ساخته شد"
 
 #: apps/accounts/templates/accounts/teams/success_create_team.html:12
 msgid "Request messages has bee sent to your teammates"
 msgstr "درخواست عضویت به هم تیمی های شما فرستاده شد"
+
+#: apps/accounts/templates/accounts/teams/success_create_team.html:17
+msgid "LOGIN"
+msgstr ""
 
 #~ msgid "Sign up"
 #~ msgstr "ثبت نام"
