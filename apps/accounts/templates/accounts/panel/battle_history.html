@@ -14,6 +14,7 @@
                 <th>{% trans 'Oponent Score' %}</th>
                 <th>{% trans 'View' %}</th>
                 <th>{% trans 'Log' %}</th>
+                <th>{% trans 'Confirm' %}</th>
             </tr>
             </thead>
             <tbody>
@@ -35,7 +36,7 @@
                             {% endif %}
                         </td>
                     {% elif match.part2.depend == participation %}
-                        <td>{{ match.part1.depend.team.name }}</td>
+                        <td>{{ match.part1.depend.team.name|truncatechars:20 }}</td>
                         <td>{% if match.single_matches.first.log %}{{ match.score2 }}{% endif %}</td>
                         <td>{% if match.single_matches.first.log %}{{ match.score1 }}{% endif %}</td>
                         <td>
@@ -51,7 +52,23 @@
                                 {% trans 'Download' %}
                             </a>
                         {% else %}
-                            <span class="ui blue label">{{ match.status }}</span>
+                            <span class="ui blue label">{%  trans match.status %}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+
+                        {% if match.single_matches.first.status == 'waitacc' and match.part2.depend == participation %}
+                            <div class="ui tiny buttons">
+                            <form method="post" action="/accounts/panel/faccept/{{ match.single_matches.first.id }}">
+                                <button class="ui button">{% trans 'Accept' %}</button>
+                                {% csrf_token %}
+                            </form>
+                                <div class="or" data-text="{% trans 'or' %}"></div>
+                            <form method="post" action="/accounts/panel/freject/{{ match.single_matches.first.id }}">
+                                {% csrf_token %}
+                                <button class="ui button">{% trans 'Reject' %}</button>
+                            </form>
+                            </div>
                         {% endif %}
                     </td>
                 </tr>
