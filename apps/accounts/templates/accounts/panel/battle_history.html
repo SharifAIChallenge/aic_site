@@ -25,7 +25,7 @@
                     <td>{{ match.time.date }} - {{ match.time|time }}</td>
                     {% endif %}
                     {% if match.part1.depend == participation %}
-                        <td>{{ match.part2.depend.team.name }}</td>
+                        <td>{{ match.part2.depend.team.name|truncatechars:20 }}</td>
                         <td>{% if match.single_matches.first.log %}{{ match.score1 }}{% endif %}</td>
                         <td>{% if match.single_matches.first.log %}{{ match.score2 }}{% endif %}</td>
                         <td>
