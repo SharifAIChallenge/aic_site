@@ -156,6 +156,7 @@ class TestTeam(TransactionTestCase):
             time.sleep(0.4)
             self.assertEqual(TeamSubmission.objects.filter(language="cpp").count(), 1)
             client.get('/accounts/panel/' + str(participation.id))  # to change participation in site
+            settings.TEAM_SUBMISSION_TIME_DELTA = -10
             response = client.post(
                 '/accounts/panel/submissions',
                 {

@@ -48,9 +48,8 @@ class SubmissionForm(ModelForm):
             return False
 
         submissions = self.cleaned_data['team'].submissions
-        last_submission = submissions.order_by('-time')[0]
 
-        if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.TEAM_SUBMISSION_TIME_DELTA):
+        if submissions.exists() and datetime.now(utc) - submissions.order_by('-time')[0].time < timedelta(minutes=settings.TEAM_SUBMISSION_TIME_DELTA):
             self.add_error(
                 None,
                 _("You have to wait at least %(minutes)s minutes between each submission!") %
