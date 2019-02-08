@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 02:37+0330\n"
+"POT-Creation-Date: 2019-02-08 19:19+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: aic_site/context_processors.py:11 aic_site/context_processors.py:35
+#: aic_site/context_processors.py:11 aic_site/context_processors.py:36
 msgid "Home"
 msgstr "خانه"
 
@@ -46,25 +46,29 @@ msgstr "سوالات متداول"
 msgid "Contact Us"
 msgstr "تماس با ما"
 
-#: aic_site/context_processors.py:22 aic_site/context_processors.py:36
+#: aic_site/context_processors.py:22 aic_site/context_processors.py:37
 #: templates/zinnia/base.html:26
 msgid "Blog"
 msgstr "بلاگ"
 
-#: aic_site/context_processors.py:72 aic_site/context_processors.py:73
+#: aic_site/context_processors.py:23 aic_site/context_processors.py:38
+msgid "Resources"
+msgstr "منابع"
+
+#: aic_site/context_processors.py:74 aic_site/context_processors.py:75
 msgid "Panel"
 msgstr "پنل"
 
-#: aic_site/context_processors.py:75 aic_site/context_processors.py:76
-#: templates/base/navbar.html:58 templates/zinnia/login.html:34
+#: aic_site/context_processors.py:77 aic_site/context_processors.py:78
+#: templates/base/navbar.html:59 templates/zinnia/login.html:34
 msgid "Login"
 msgstr "ورود"
 
-#: aic_site/settings/base.py:122
+#: aic_site/settings/base.py:126
 msgid "English"
 msgstr "انگلیسی"
 
-#: aic_site/settings/base.py:123
+#: aic_site/settings/base.py:127
 msgid "Persian"
 msgstr "فارسی"
 
@@ -80,19 +84,19 @@ msgstr ""
 "تمامی حقوق برای <a href=\"http://ssc.ce.sharif.edu\">انجمن علمی دانشکده "
 "مهندسی کامپیوتر</a> دانشگاه صنعتی شریف محفوظ است. ©"
 
-#: templates/base/navbar.html:53
-msgid "Logout"
-msgstr "خروج"
-
-#: templates/base/navbar.html:62
-msgid "Register"
-msgstr "ثبت نام"
-
-#: templates/base/navbar.html:68
+#: templates/base/navbar.html:34 templates/base/navbar.html:70
 msgid "Change Language"
 msgstr "تغییر زبان"
 
-#: templates/base/navbar.html:73
+#: templates/base/navbar.html:54
+msgid "Logout"
+msgstr "خروج"
+
+#: templates/base/navbar.html:63
+msgid "Register"
+msgstr "ثبت نام"
+
+#: templates/base/navbar.html:81
 msgid "Blog and Q&A"
 msgstr "وبلاگ و پرسش و پاسخ"
 
@@ -975,9 +979,6 @@ msgstr[0] "%(entry_count)s تا پست با تگ %(tag)s"
 
 #~ msgid "Access"
 #~ msgstr "دسترسی"
-
-#~ msgid "Resources"
-#~ msgstr "منابع"
 
 #~ msgid "Staff"
 #~ msgstr "استف‌ها"
