@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'apps.billing',
     'apps.game',
     'apps.modir',
-    'apps.utils'
+    'apps.utils',
+    'django_celery_results'
 ]
 
 INSTALLED_APPS += (
