@@ -181,8 +181,6 @@ msgid "Losers bracket"
 msgstr "دسته بازنده‌ها"
 
 #: apps/game/templates/scoreboard/bracket.html:20
-#, fuzzy
-#| msgid "Elimination"
 msgid "Elimination bracket"
 msgstr "حذفی"
 
