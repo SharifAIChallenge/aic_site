@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 20:52+0330\n"
+"POT-Creation-Date: 2019-02-09 16:17+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,11 +76,11 @@ msgstr "تنها میتوانید از تیم‌های یک چالش انتخا�
 
 #: apps/game/forms.py:18
 msgid "You can not upload a map right now. You have uploaded a map recently!"
-msgstr ""
+msgstr "شما نمیتوانید یک نقشه جدید بارگذاری کنید. اخیرا یک نقشه آپلود کرده اید!"
 
 #: apps/game/forms.py:24
 msgid "Max acceptable file size is 500kb"
-msgstr ""
+msgstr "بیشترین حجم قابل قبول فایل نقشه 500 کیلو بایت است."
 
 #: apps/game/models/challenge.py:75 apps/game/models/challenge.py:78
 msgid "None"
@@ -122,7 +122,7 @@ msgstr "در حال کامپایل"
 msgid "Compiled"
 msgstr "کامپایل شده"
 
-#: apps/game/models/challenge.py:133 apps/game/models/competition.py:697
+#: apps/game/models/challenge.py:133 apps/game/models/competition.py:698
 msgid "Failed"
 msgstr "ناموفق!"
 
@@ -168,23 +168,23 @@ msgstr "خودش"
 msgid "Unknown"
 msgstr "نامعلوم"
 
-#: apps/game/models/competition.py:696
+#: apps/game/models/competition.py:697
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: apps/game/models/competition.py:698
+#: apps/game/models/competition.py:699
 msgid "Done"
 msgstr "انجام شده"
 
-#: apps/game/models/competition.py:699
+#: apps/game/models/competition.py:700
 msgid "Waiting"
 msgstr "در حال انتظار"
 
-#: apps/game/models/competition.py:700
+#: apps/game/models/competition.py:701
 msgid "Wating to accept"
 msgstr ""
 
-#: apps/game/models/competition.py:701
+#: apps/game/models/competition.py:702
 msgid "Rejected"
 msgstr ""
 
