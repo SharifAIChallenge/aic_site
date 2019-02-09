@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 20:52+0330\n"
+"POT-Creation-Date: 2019-02-09 17:49+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,23 +36,24 @@ msgstr "ثبت نام هم‌اکنون باز نیست. به امید دیدا�
 msgid "Submission is closed."
 msgstr "امکان ارسال وجود ندارد."
 
-#: apps/accounts/forms/panel.py:56
+#: apps/accounts/forms/panel.py:55
+#, python-format
 msgid "You have to wait at least %(minutes)s minutes between each submission!"
 msgstr "بین هر دو ارسال باید حداقل %(minutes)s دقیقه صبر کنید."
 
-#: apps/accounts/forms/panel.py:62
+#: apps/accounts/forms/panel.py:61
 msgid "Max file size is 5MB."
 msgstr "بیشترین حجم فایل قابل استفاده ۵ مگابایت است."
 
-#: apps/accounts/forms/panel.py:86
+#: apps/accounts/forms/panel.py:85
 msgid "First submit a compilable code."
 msgstr "ابتدا یک کد قابل کامپایل ارسال کنید."
 
-#: apps/accounts/forms/panel.py:89
+#: apps/accounts/forms/panel.py:88
 msgid "You have to be one of participants."
 msgstr "شما باید یکی از طرفین باشید."
 
-#: apps/accounts/forms/panel.py:99
+#: apps/accounts/forms/panel.py:98
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each match!"
 msgstr "بین هر دو بازی دوستانه باید حداقل %(minutes)s دقیقه صبر کنید."
@@ -261,7 +262,7 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:7
 #: apps/accounts/templates/accounts/panel/submissions.html:53
-#: apps/accounts/views/panel.py:52
+#: apps/accounts/views/panel.py:54
 msgid "Submissions"
 msgstr "ارسال‌ها"
 
@@ -352,13 +353,13 @@ msgstr ""
 
 #: apps/accounts/templates/accounts/oldpanel/team_management.html:5
 #: apps/accounts/templates/accounts/panel/team_management.html:6
-#: apps/accounts/views/panel.py:50
+#: apps/accounts/views/panel.py:52
 msgid "Team Status"
 msgstr "وضعیت تیم"
 
 #: apps/accounts/templates/accounts/oldpanel/team_management.html:10
 #: apps/accounts/templates/accounts/panel/team_management.html:12
-#: apps/accounts/templates/accounts/profile/login.html:11
+#: apps/accounts/templates/accounts/profile/login.html:12
 #: apps/accounts/templates/accounts/profile/signup.html:19
 #: apps/accounts/templates/accounts/teams/add_member.html:13
 msgid "Username"
@@ -447,15 +448,23 @@ msgstr "نام تیم"
 msgid "Upload Map"
 msgstr "آپلود نقشه"
 
-#: apps/accounts/templates/accounts/panel/upload_map.html:19
+#: apps/accounts/templates/accounts/panel/upload_map.html:18
+msgid "You can upload a new map only every "
+msgstr "شما تنها هر "
+
+#: apps/accounts/templates/accounts/panel/upload_map.html:18
+msgid " hours."
+msgstr " ساعت می توانید یک نقشه جدید آپلود کنید!"
+
+#: apps/accounts/templates/accounts/panel/upload_map.html:20
 msgid "Map Name"
 msgstr "نام نقشه"
 
-#: apps/accounts/templates/accounts/panel/upload_map.html:31
+#: apps/accounts/templates/accounts/panel/upload_map.html:32
 msgid "Map File"
 msgstr "فایل نقشه"
 
-#: apps/accounts/templates/accounts/panel/upload_map.html:52
+#: apps/accounts/templates/accounts/panel/upload_map.html:53
 #: apps/accounts/templates/accounts/panel/valid_upload.html:13
 msgid "Upload"
 msgstr "بارگذاری"
@@ -465,28 +474,31 @@ msgid "Valid Map Upload"
 msgstr "آپلود ناموفق"
 
 #: apps/accounts/templates/accounts/panel/valid_upload.html:16
-msgid "Map uploaded successfully!"
-msgstr "نقشه با موفقیت آپلود شد"
+msgid ""
+"Map uploaded successfully! It will be uploaded in site after confirmation."
+msgstr ""
+"نقشه با موفقیت بارگذاری شد. به زودی پس از تایید تیم فنی بر روی سایت قرار "
+"خواهد گرفت!"
 
 #: apps/accounts/templates/accounts/panel/valid_upload.html:20
 msgid "back"
 msgstr "بازگشت"
 
-#: apps/accounts/templates/accounts/profile/login.html:7
-#: apps/accounts/templates/accounts/profile/login.html:27
+#: apps/accounts/templates/accounts/profile/login.html:8
+#: apps/accounts/templates/accounts/profile/login.html:34
 msgid "Login"
 msgstr "ورود"
 
-#: apps/accounts/templates/accounts/profile/login.html:22
+#: apps/accounts/templates/accounts/profile/login.html:23
 #: apps/accounts/templates/accounts/profile/signup.html:90
 msgid "Password"
 msgstr "رمز"
 
-#: apps/accounts/templates/accounts/profile/login.html:28
+#: apps/accounts/templates/accounts/profile/login.html:35
 msgid "Register"
 msgstr "ثبت نام"
 
-#: apps/accounts/templates/accounts/profile/login.html:32
+#: apps/accounts/templates/accounts/profile/login.html:39
 msgid "I forgot my password"
 msgstr "رمزم را فراموش کردم"
 
@@ -593,6 +605,9 @@ msgstr "درخواست عضویت به هم تیمی های شما فرستاد�
 #: apps/accounts/templates/accounts/teams/success_create_team.html:17
 msgid "LOGIN"
 msgstr ""
+
+#~ msgid "Map uploaded successfully!"
+#~ msgstr "نقشه با موفقیت آپلود شد"
 
 #~ msgid "Sign up"
 #~ msgstr "ثبت نام"
