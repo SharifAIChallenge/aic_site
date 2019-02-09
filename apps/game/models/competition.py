@@ -451,7 +451,7 @@ class Match(models.Model):
                 return 'Waiting'
 
         if have_waitacc:
-            status_result = 'Waiting'
+            status_result = 'Waiting to accept'
 
         if have_running:
             status_result = 'Running'
@@ -698,7 +698,7 @@ class SingleMatch(models.Model):
         ('failed', _('Failed')),
         ('done', _('Done')),
         ('waiting', _('Waiting')),
-        ('waitacc', _('Wating to accept')),
+        ('waitacc', _('Waiting to accept')),
         ('rejected', _('Rejected'))
     )
 

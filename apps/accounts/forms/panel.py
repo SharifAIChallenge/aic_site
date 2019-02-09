@@ -121,10 +121,15 @@ class ChallengeATeamForm(forms.Form):
 
             ind = teams.index(self.participation)
 
-            st = max(0, ind - 10)
-            en = min(ind + 10, len(teams))
+            st = max(0, ind - settings.RANDOM_MATCH_RANK_RANGE)
+            en = min(ind + settings.RANDOM_MATCH_RANK_RANGE, len(teams))
 
-            second_team_participation = teams[randrange(st, en)]
+            trial = 0
+            while trial < 5:
+                trial += 1
+                second_team_participation = teams[randrange(st, en)]
+                if second_team_participation != self.participation:
+                    break
             approv = False
         else:
             second_team_participation = TeamParticipatesChallenge.objects.filter(
