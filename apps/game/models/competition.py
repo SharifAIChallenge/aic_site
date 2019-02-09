@@ -451,7 +451,7 @@ class Match(models.Model):
                 return 'Waiting'
 
         if have_waitacc:
-            status_result = 'Waiting'
+            status_result = 'Waiting to accept'
 
         if have_running:
             status_result = 'Running'
@@ -676,13 +676,13 @@ class Map(models.Model):
     competitions = models.ManyToManyField(Competition, related_name='maps')
     team = models.ForeignKey(TeamParticipatesChallenge, blank=True, null=True)
     time_created = models.DateTimeField(auto_now_add=True)
-    verified = models.NullBooleanField()
+    verified = models.NullBooleanField(null=True, blank=True)
 
 
     def save(self, *args, **kwargs):
         from apps.game import functions
-        self.token = functions.upload_file(self.file)
         super(Map, self).save(args, kwargs)
+        self.token = functions.upload_file(self.file)
 
     def __str__(self):
         append = str(self.team) if self.team else ""
@@ -698,7 +698,7 @@ class SingleMatch(models.Model):
         ('failed', _('Failed')),
         ('done', _('Done')),
         ('waiting', _('Waiting')),
-        ('waitacc', _('Wating to accept')),
+        ('waitacc', _('Waiting to accept')),
         ('rejected', _('Rejected'))
     )
 

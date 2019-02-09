@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 17:49+0330\n"
+"POT-Creation-Date: 2019-02-09 22:59+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -182,12 +182,12 @@ msgid "Waiting"
 msgstr "در حال انتظار"
 
 #: apps/game/models/competition.py:701
-msgid "Wating to accept"
-msgstr ""
+msgid "Waiting to accept"
+msgstr "در انتظار قبول"
 
 #: apps/game/models/competition.py:702
 msgid "Rejected"
-msgstr ""
+msgstr "رد شده"
 
 #: apps/game/templates/scoreboard/bracket.html:17
 msgid "Winners bracket"

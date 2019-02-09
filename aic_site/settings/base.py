@@ -205,8 +205,12 @@ LOGGING = {
 # this time delta is in minutes
 TEAM_SUBMISSION_TIME_DELTA = 5
 
+# +RANGE -RANGE of rank
+RANDOM_MATCH_RANK_RANGE = 10
+
 # this time delta is in minutes
-SINGLE_MATCH_SUBMISSION_TIME_DELTA = 5
+SINGLE_MATCH_SUBMISSION_TIME_DELTA = 0
+
 
 # this time delta is in hours
 UPLOAD_MAP_TIME_DELTA = 12
