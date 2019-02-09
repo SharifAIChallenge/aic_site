@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 16:17+0330\n"
+"POT-Creation-Date: 2019-02-09 17:49+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,8 +39,8 @@ msgid "days"
 msgstr "روز"
 
 #: apps/intro/templates/intro/index.html:67
-msgid "Till online phase"
-msgstr "تا شروع مرحله غیر حضوری"
+msgid "Till end of online phase"
+msgstr "تا پایان مرحله غیر حضوری"
 
 #: apps/intro/templates/intro/index.html:73
 msgid "Subscription"

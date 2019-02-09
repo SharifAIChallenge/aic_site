@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 16:17+0330\n"
+"POT-Creation-Date: 2019-02-09 17:49+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -445,7 +445,6 @@ msgid "Team Name"
 msgstr "نام تیم"
 
 #: apps/accounts/templates/accounts/panel/upload_map.html:17
-#: apps/accounts/views/panel.py:56
 msgid "Upload Map"
 msgstr "آپلود نقشه"
 
@@ -477,7 +476,9 @@ msgstr "آپلود ناموفق"
 #: apps/accounts/templates/accounts/panel/valid_upload.html:16
 msgid ""
 "Map uploaded successfully! It will be uploaded in site after confirmation."
-msgstr "نقشه با موفقیت بارگذاری شد. به زودی پس از تایید تیم فنی بر روی سایت قرار خواهد گرفت!"
+msgstr ""
+"نقشه با موفقیت بارگذاری شد. به زودی پس از تایید تیم فنی بر روی سایت قرار "
+"خواهد گرفت!"
 
 #: apps/accounts/templates/accounts/panel/valid_upload.html:20
 msgid "back"
