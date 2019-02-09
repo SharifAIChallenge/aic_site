@@ -15,6 +15,7 @@
         {% endif %}
         {% csrf_token %}
         <h3 class="ui dividing header">{% trans 'Upload Map' %}</h3>
+        <h4>{% trans "You can upload a new map only every " %}{{ timedelta }}{% trans " hours." %}</h4>
         <div class="field required">
             <label>{% trans 'Map Name' %}</label>
             {{ form.name }}
