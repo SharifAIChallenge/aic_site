@@ -330,12 +330,8 @@ admin.site.register(UserAcceptsTeamInChallenge)
 admin.site.register(Participant)
 
 
-class MapAdmin(admin.ModelAdmin):
-    fields = ['name', 'file', 'token', 'competitions', 'verified']
-    readonly_fields = ['token']
 
-
-admin.site.register(Map, MapAdmin)
+admin.site.register(Map)
 admin.site.register(SingleMatch)
 admin.site.register(TeamSubmission)
 admin.site.register(TeamRate)

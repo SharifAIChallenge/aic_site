@@ -681,8 +681,8 @@ class Map(models.Model):
 
     def save(self, *args, **kwargs):
         from apps.game import functions
-        self.token = functions.upload_file(self.file)
         super(Map, self).save(args, kwargs)
+        self.token = functions.upload_file(self.file)
 
     def __str__(self):
         append = str(self.team) if self.team else ""
