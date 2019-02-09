@@ -87,6 +87,13 @@
             {% endif %}
         </table>
     {% endif %}
+
+    <form class="ui inverted form" action="{% url 'accounts:challenge_a_team' participation_id %}" method="post"
+          style="width: 100% !important;">
+        {% csrf_token %}
+    </form>
+
+
     <form class="ui inverted form" action="{% url 'accounts:challenge_a_team' participation_id %}" method="post"
           style="width: 100% !important;">
         {% csrf_token %}
@@ -113,8 +120,11 @@
                     {% endfor %}
                 </select>
             </div>
+            <div class="field">
+                <label><i class="submit icon"></i></label>
+                <input type="submit" class="ui inverted teal button" value="{% trans 'Submit' %}">
+            </div>
         </div>
-        <input type="submit" class="ui inverted teal button" value="{% trans 'Submit' %}">
     </form>
 
 {% endblock %}

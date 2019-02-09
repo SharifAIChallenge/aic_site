@@ -423,6 +423,12 @@ msgstr "رتبه شما"
 msgid "Rate"
 msgstr "امتیاز"
 
+msgid "Your rate"
+msgstr "امتیاز شما"
+
+msgid "Random team within your level"
+msgstr "تیم رندوم در حدود امتیاز شما"
+
 #: apps/accounts/templates/accounts/panel/submissions.html:97
 msgid "Uploading, Wait and refresh the page."
 msgstr "در حال آپلود، لطفا صبر کنید و صفحه را ریفرش کنید."

@@ -49,6 +49,7 @@ def get_shared_context(request):
         context['user_pcs'].append(tpc)
 
     context['menu_items'] = [
+        {'name': 'your-rate', 'link': '#', 'text': _('Your rate') + ': ' + str(request.user.profile.panel_active_teampc.team.rate) },
         {'name': 'team_management', 'link': reverse('accounts:panel_team_management'), 'text': _('Team Status')},
       # {'name': 'team_profile', 'link': reverse('accounts:team_profile'), 'text': _('Team Profile')},
       {'name': 'submissions', 'link': reverse('accounts:panel_submissions'), 'text': _('Submissions')},
