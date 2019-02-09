@@ -352,3 +352,6 @@ body {
 {
     border-color: var(--cream)!important;
 }
+#blogpost *{
+    line-height: 30px;
+}
