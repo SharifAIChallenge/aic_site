@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-09 17:49+0330\n"
+"POT-Creation-Date: 2019-02-09 22:59+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,28 +32,32 @@ msgstr "لطفاً شماره ی تلفن خود را درست وارد کنید
 msgid "Registration is closed. See you next year."
 msgstr "ثبت نام هم‌اکنون باز نیست. به امید دیدار شما در رقابت بعدی."
 
-#: apps/accounts/forms/panel.py:45
+#: apps/accounts/forms/panel.py:29
+msgid "Random team within your level"
+msgstr "تیم رندوم در حدود امتیاز شما"
+
+#: apps/accounts/forms/panel.py:47
 msgid "Submission is closed."
 msgstr "امکان ارسال وجود ندارد."
 
-#: apps/accounts/forms/panel.py:55
+#: apps/accounts/forms/panel.py:57
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each submission!"
 msgstr "بین هر دو ارسال باید حداقل %(minutes)s دقیقه صبر کنید."
 
-#: apps/accounts/forms/panel.py:61
+#: apps/accounts/forms/panel.py:63
 msgid "Max file size is 5MB."
 msgstr "بیشترین حجم فایل قابل استفاده ۵ مگابایت است."
 
-#: apps/accounts/forms/panel.py:85
+#: apps/accounts/forms/panel.py:89
 msgid "First submit a compilable code."
 msgstr "ابتدا یک کد قابل کامپایل ارسال کنید."
 
-#: apps/accounts/forms/panel.py:88
+#: apps/accounts/forms/panel.py:92
 msgid "You have to be one of participants."
 msgstr "شما باید یکی از طرفین باشید."
 
-#: apps/accounts/forms/panel.py:98
+#: apps/accounts/forms/panel.py:102
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each match!"
 msgstr "بین هر دو بازی دوستانه باید حداقل %(minutes)s دقیقه صبر کنید."
@@ -144,6 +148,8 @@ msgstr "باخت"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:4
 #: apps/accounts/templates/accounts/panel/battle_history.html:6
+#: apps/accounts/templates/accounts/panel/friendly_result.html:20
+#: apps/accounts/views/panel.py:56
 msgid "Battle history"
 msgstr "بازی‌های دوستانه"
 
@@ -188,18 +194,18 @@ msgid "Running"
 msgstr "در حال اجرا"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:93
-#: apps/accounts/templates/accounts/panel/battle_history.html:96
+#: apps/accounts/templates/accounts/panel/battle_history.html:103
 msgid "Versus:"
 msgstr "حریف:"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:104
-#: apps/accounts/templates/accounts/panel/battle_history.html:107
+#: apps/accounts/templates/accounts/panel/battle_history.html:114
 msgid "Map:"
 msgstr "نقشه:"
 
 #: apps/accounts/templates/accounts/oldpanel/battle_history.html:114
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:151
-#: apps/accounts/templates/accounts/panel/battle_history.html:117
+#: apps/accounts/templates/accounts/panel/battle_history.html:125
 #: apps/accounts/templates/accounts/panel/submissions.html:9
 #: apps/accounts/templates/accounts/panel/submissions.html:41
 msgid "Submit"
@@ -220,7 +226,6 @@ msgid "Successfully scheduled friendly match."
 msgstr "بازی دوستانه با موفقیت در صف اجرا قرار گرفت."
 
 #: apps/accounts/templates/accounts/oldpanel/friendly_result.html:20
-#: apps/accounts/templates/accounts/panel/friendly_result.html:20
 msgid "Panel"
 msgstr "پنل"
 
@@ -262,7 +267,7 @@ msgstr "ایجاد تیم جدید"
 
 #: apps/accounts/templates/accounts/oldpanel/submissions.html:7
 #: apps/accounts/templates/accounts/panel/submissions.html:53
-#: apps/accounts/views/panel.py:54
+#: apps/accounts/views/panel.py:55
 msgid "Submissions"
 msgstr "ارسال‌ها"
 
@@ -353,7 +358,7 @@ msgstr ""
 
 #: apps/accounts/templates/accounts/oldpanel/team_management.html:5
 #: apps/accounts/templates/accounts/panel/team_management.html:6
-#: apps/accounts/views/panel.py:52
+#: apps/accounts/views/panel.py:53
 msgid "Team Status"
 msgstr "وضعیت تیم"
 
@@ -398,6 +403,16 @@ msgstr "تایید"
 msgid "or"
 msgstr "یا"
 
+#: apps/accounts/templates/accounts/panel/battle_history.html:129
+msgid ""
+"Friendly match requires opponents confirmation, but random match doesn't."
+msgstr "بازی دوستانه نیازمند تایید حریف است، اما بازی با تیم رندوم نیازی به تایید تیم حریف ندارد."
+
+#: apps/accounts/templates/accounts/panel/battle_history.html:129
+#: apps/accounts/templates/accounts/panel/upload_map.html:18
+msgid " hours."
+msgstr " ساعت می توانید یک نقشه جدید آپلود کنید!"
+
 #: apps/accounts/templates/accounts/panel/messages.html:31
 msgid "You have to complete the team and pay to continue to this challenge."
 msgstr "برای ادامه کار در این چالش باید تیم خود را تکمیل کرده و پرداخت کنید."
@@ -411,6 +426,7 @@ msgid "Complete team"
 msgstr "تکمیل تیم"
 
 #: apps/accounts/templates/accounts/panel/rating.html:6
+#: apps/accounts/views/panel.py:58
 msgid "Rating"
 msgstr "رتبه‌بندی"
 
@@ -422,12 +438,6 @@ msgstr "رتبه شما"
 #: apps/accounts/templates/accounts/panel/team_profile.html:12
 msgid "Rate"
 msgstr "امتیاز"
-
-msgid "Your rate"
-msgstr "امتیاز شما"
-
-msgid "Random team within your level"
-msgstr "تیم رندوم در حدود امتیاز شما"
 
 #: apps/accounts/templates/accounts/panel/submissions.html:97
 msgid "Uploading, Wait and refresh the page."
@@ -442,6 +452,7 @@ msgid "You have not participated in this challenge yet."
 msgstr "شما در این چالش شرکت نکرده‌اید."
 
 #: apps/accounts/templates/accounts/panel/team_profile.html:6
+#: apps/accounts/views/panel.py:54
 msgid "Team Profile"
 msgstr "مشخصات تیم"
 
@@ -451,16 +462,13 @@ msgid "Team Name"
 msgstr "نام تیم"
 
 #: apps/accounts/templates/accounts/panel/upload_map.html:17
+#: apps/accounts/views/panel.py:57
 msgid "Upload Map"
 msgstr "آپلود نقشه"
 
 #: apps/accounts/templates/accounts/panel/upload_map.html:18
 msgid "You can upload a new map only every "
 msgstr "شما تنها هر "
-
-#: apps/accounts/templates/accounts/panel/upload_map.html:18
-msgid " hours."
-msgstr " ساعت می توانید یک نقشه جدید آپلود کنید!"
 
 #: apps/accounts/templates/accounts/panel/upload_map.html:20
 msgid "Map Name"
@@ -611,6 +619,10 @@ msgstr "درخواست عضویت به هم تیمی های شما فرستاد�
 #: apps/accounts/templates/accounts/teams/success_create_team.html:17
 msgid "LOGIN"
 msgstr ""
+
+#: apps/accounts/views/panel.py:52
+msgid "Your rate"
+msgstr "امتیاز شما"
 
 #~ msgid "Map uploaded successfully!"
 #~ msgstr "نقشه با موفقیت آپلود شد"
