@@ -17,7 +17,7 @@
                         </a>
                     {% endfor %}
                 </div>
-                <div class="ui secondary pointing fluid menu mobile-only" id="panel-navbar">
+                <div class="ui secondary pointing fluid stackable menu mobile-only" id="panel-navbar">
                     {% for item in menu_items %}
                         <a class="item{% if item.active %} active{% endif %}" href="{{ item.link }}">
                             {{ item.text }}
