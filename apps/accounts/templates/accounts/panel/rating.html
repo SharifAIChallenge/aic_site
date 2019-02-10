@@ -5,10 +5,10 @@
 {% block panel_content %}
     <h2 style="margin-top: 20px;">{% trans 'Rating' %}</h2>
     <h3 style="margin-bottom: 30px">
-    {% trans 'Your rank' %}: {{ rank }}
+        {% trans 'Your rank' %}: {{ rank }}
     </h3>
     {% if teams|length %}
-        <table class="ui center aligned inverted table table-bordered"  style="border:solid #009D8A;">
+        <table class="ui center aligned inverted table table-bordered" style="border:solid #009D8A;">
             <thead>
             <tr>
                 <th>{% trans 'Rank' %}</th>
@@ -20,8 +20,11 @@
             {% for team in teams %}
                 <tr {% if team == current_team %} class="active" {% endif %}>
                     <td>{{ forloop.counter0|add:teams.start_index }}</td>
-                    <td><a href="{% url 'accounts:team_profile' %}?tid={{ team.id }}" ><span style="color:#009D8A;">{{ team.name|truncatechars:20 }}</span></a></td>
-                    <td> <div class="ui large black label">{{ team.rate }}</div></td>
+                    <td><a href="{% url 'accounts:team_profile' %}?tid={{ team.id }}"><span
+                            style="color:#009D8A;">{{ team.name|truncatechars:20 }}</span></a></td>
+                    <td>
+                        <div class="ui large black label">{{ team.rate }}</div>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -41,14 +44,35 @@
                                 </a>
                             {% endif %}
 
-                            {% for i in teams.paginator.page_range %}
-                                {% if teams.number == i %}
-                                    <a class="active item"><span>{{ i }}</span></a>
-                                {% else %}
-                                    <a class="item"
-                                       href="?page={{ i }}"><span>{{ i }}</span></a>
-                                {% endif %}
-                            {% endfor %}
+                            {% if teams.paginator.page_range <= 5 %}
+                                {% for i in teams.paginator.page_range %}
+                                    {% if teams.number == i %}
+                                        <a class="active item"><span>{{ i }}</span></a>
+                                    {% else %}
+                                        <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {% for i in '123'|make_list %}
+                                    {% if teams.number == forloop.counter %}
+                                        <a class="active item"><span>{{ i }}</span></a>
+                                    {% else %}
+                                        <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
+                                    {% endif %}
+                                {% endfor %}
+                                <a class="disabled item">...</a>
+                                {% with teams.paginator.page_range as i %}
+                                    <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
+                                {% endwith %}
+                            {% endif %}
+                            {#                            {% for i in teams.paginator.page_range %}#}
+                            {#                                {% if teams.number == i %}#}
+                            {#                                    <a class="active item"><span>{{ i }}</span></a>#}
+                            {#                                {% elif teams.number == i  %}#}
+                            {#                                    <a class="item"#}
+                            {#                                       href="?page={{ i }}"><span>{{ i }}</span></a>#}
+                            {#                                {% endif %}#}
+                            {#                            {% endfor %}#}
 
 
                             {% if teams.has_next %}
