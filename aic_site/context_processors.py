@@ -19,8 +19,9 @@ def menu(request):
                     }
                 },
 
-                _('Blog'): reverse('zinnia:entry_archive_index'),
-                _('Resources'): '/blog/2019/02/08/2019-resources/',
+                _('Blog'): '/blog/tags/general/',
+                _('Resources'): '/blog/tags/tech/',
+                _('Content'): '/blog/tags/content/',
 
                 # _('Contact Us'): reverse('intro:index') + '#section-organizer',
                 # _('Access'): {
@@ -34,8 +35,9 @@ def menu(request):
             },
             'sidebar': {
                 _('Home'): reverse('intro:index'),
-                _('Blog'): reverse('zinnia:entry_archive_index'),
-                _('Resources'): '/blog/2019/02/08/2019-resources/',
+                _('Blog'): '/blog/tags/general/',
+                _('Resources'): '/blog/tags/tech/',
+                _('Content'): '/blog/tags/content/',
             },
             # 'sidebar': {
             #     _('Home'): {
