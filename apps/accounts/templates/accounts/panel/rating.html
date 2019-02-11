@@ -61,7 +61,7 @@
                                     {% endif %}
                                 {% endfor %}
                                 <a class="disabled item">...</a>
-                                {% with teams.paginator.page_range as i %}
+                                {% with teams.paginator.num_pages as i %}
                                     <a class="item" href="?page={{ i }}"><span>{{ i }}</span></a>
                                 {% endwith %}
                             {% endif %}
