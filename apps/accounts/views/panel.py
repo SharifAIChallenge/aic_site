@@ -307,7 +307,7 @@ def rating(request):
     })
 
     all_teams = sorted(list(Team.objects.all()), key=lambda x: -x.rate)
-    paginator = Paginator(all_teams, 1)
+    paginator = Paginator(all_teams, 50)
     page = request.GET.get('page', 1)
     teams = paginator.page(page)
     current_team = team_pc.team
