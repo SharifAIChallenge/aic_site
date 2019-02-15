@@ -26,7 +26,9 @@
                     <td>{{ match.time.date }} - {{ match.time|time }}</td>
                     {% endif %}
                     {% if match.part1.depend == participation %}
-                        <td>{{ match.part2.depend.team.name|truncatechars:20 }}</td>
+                        <td><a href="{% url 'accounts:team_profile' %}?tid={{ match.part2.depend.team.id }}"><span
+                            style="color:#009D8A;">{{ match.part2.depend.team.name|truncatechars:20 }}</span></a>
+                            </td>
                         <td>{% if match.single_matches.first.log %}{{ match.score1 }}{% endif %}</td>
                         <td>{% if match.single_matches.first.log %}{{ match.score2 }}{% endif %}</td>
                         <td>
@@ -37,6 +39,9 @@
                         </td>
                     {% elif match.part2.depend == participation %}
                         <td>{{ match.part1.depend.team.name|truncatechars:20 }}</td>
+                         <td><a href="{% url 'accounts:team_profile' %}?tid={{ match.part1.depend.team.id }}"><span
+                            style="color:#009D8A;">{{ match.part1.depend.team.name|truncatechars:20 }}</span></a>
+                            </td>
                         <td>{% if match.single_matches.first.log %}{{ match.score2 }}{% endif %}</td>
                         <td>{% if match.single_matches.first.log %}{{ match.score1 }}{% endif %}</td>
                         <td>
