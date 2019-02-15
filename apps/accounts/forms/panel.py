@@ -115,10 +115,11 @@ class ChallengeATeamForm(forms.Form):
             teams = []
 
             for team in self.participation.challenge.teams.all():
-                if team_participates_in_challenge.submissions.filter(is_final=True).exists():
+                if team.submissions.filter(is_final=True).exists():
                     teams.append(team)
 
             teams.sort(key=lambda x: x.team.rate)
+
 
             ind = teams.index(self.participation)
 
