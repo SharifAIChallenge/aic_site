@@ -215,7 +215,7 @@ def report(request):
         try:
             if single_report['status'] == 2:
                 logger.debug("Report status is OK")
-                logfile = functions.download_file(single_report['parameters']['game_log'])
+                logfile = functions.download_file(single_report['parameters']['graphic_log'])
                 single_match.status = 'done'
                 single_match.log.save(name='log', content=File(logfile.file))
                 single_match.update_scores_from_log()
@@ -237,11 +237,11 @@ def report(request):
 
 def game_view(request):
     if request.GET.urlencode().__len__() > 0:
-        return redirect(to='/static/game_graphics/game_viewer/index.html?'
+        return redirect(to='/static/game_graphics/index.html?'
                            + request.GET.urlencode()
                         )
     else:
-        return redirect(to='/static/game_graphics/game_viewer/index.html')
+        return redirect(to='/static/game_graphics/index.html')
 
 
 def map_maker(request):
