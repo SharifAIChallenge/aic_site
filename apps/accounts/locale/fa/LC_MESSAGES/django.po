@@ -624,6 +624,10 @@ msgstr ""
 msgid "Your rate"
 msgstr "امتیاز شما"
 
+msgid "Game viewer"
+msgstr "نمایشگر بازی"
+
+
 #~ msgid "Map uploaded successfully!"
 #~ msgstr "نقشه با موفقیت آپلود شد"
 
