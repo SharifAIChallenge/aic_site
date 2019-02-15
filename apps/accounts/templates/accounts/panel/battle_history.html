@@ -38,7 +38,6 @@
                             {% endif %}
                         </td>
                     {% elif match.part2.depend == participation %}
-                        <td>{{ match.part1.depend.team.name|truncatechars:20 }}</td>
                          <td><a href="{% url 'accounts:team_profile' %}?tid={{ match.part1.depend.team.id }}"><span
                             style="color:#009D8A;">{{ match.part1.depend.team.name|truncatechars:20 }}</span></a>
                             </td>
