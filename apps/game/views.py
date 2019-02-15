@@ -237,11 +237,11 @@ def report(request):
 
 def game_view(request):
     if request.GET.urlencode().__len__() > 0:
-        return redirect(to='/static/game_graphics/game_viewer/index.html?'
+        return redirect(to='/static/game_graphics/index.html?'
                            + request.GET.urlencode()
                         )
     else:
-        return redirect(to='/static/game_graphics/game_viewer/index.html')
+        return redirect(to='/static/game_graphics/index.html')
 
 
 def map_maker(request):
