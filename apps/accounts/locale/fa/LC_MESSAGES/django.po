@@ -222,8 +222,8 @@ msgstr "خطا در ایجاد بازی دوستانه."
 
 #: apps/accounts/templates/accounts/oldpanel/friendly_result.html:17
 #: apps/accounts/templates/accounts/panel/friendly_result.html:17
-msgid "Successfully scheduled friendly match."
-msgstr "بازی دوستانه با موفقیت در صف اجرا قرار گرفت."
+msgid "Successfully created friendly match."
+msgstr "بازی دوستانه با موفقیت ساخته شد."
 
 #: apps/accounts/templates/accounts/oldpanel/friendly_result.html:20
 msgid "Panel"
