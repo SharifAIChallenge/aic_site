@@ -685,11 +685,13 @@ class Map(models.Model):
         self.token = functions.upload_file(self.file)
 
     def __str__(self):
-        append = str(self.team) if self.team else ""
+        append = str(self.team.team.name[:10]) if self.team else ""
 
         if self.name is None:
-            return str(self.id) + append
-        return self.name + append
+            return 'نقشه ' + str(self.id) + append
+        if append:
+            return 'نقشه ارسالی ' + self.name + '(' + append + ')'
+        return 'نقشه ' + self.name
 
 
 class SingleMatch(models.Model):
