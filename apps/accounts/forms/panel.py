@@ -18,11 +18,15 @@ logger = logging.getLogger(__name__)
 
 def get_maps(competition):
     maps = [('', '----')]
+    maps_s = []
     for map in Map.objects.all():
         if competition.id in [competition.id for competition in map.competitions.all()]:
             if map.verified:
-                maps.append((map.id, map.name))  # id will pass
-    return maps
+                if map.team:
+                    maps_s.append((map.id, str(map) ))  # id will pass
+                else:
+                    maps.append((map.id, str(map) ))  # id will pass
+    return maps + maps_s
 
 
 def get_submitted_teams(challenge):
