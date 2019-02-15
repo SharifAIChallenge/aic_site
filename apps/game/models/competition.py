@@ -446,7 +446,7 @@ class Match(models.Model):
 
         if (not have_running) and (not have_failed) and (not have_waiting) and (not have_waitacc):
             if have_done:
-                return 'Done'
+                return 'done'
             else:
                 return 'Waiting'
 
