@@ -416,7 +416,7 @@ class Match(models.Model):
         # STATUS_CHOICES = (
         #     ('running', _('Running')),
         #     ('failed', _('Failed')),
-        #     ('done', _('done')),
+        #     ('done', _('Done')),
         #     ('waiting', _('Waiting')),
         # )
         freeze_time = timezone.now() if self.competition.get_freeze_time() is None else self.competition.get_freeze_time()
@@ -696,7 +696,7 @@ class SingleMatch(models.Model):
     STATUS_CHOICES = (
         ('running', _('Running')),
         ('failed', _('Failed')),
-        ('done', _('done')),
+        ('done', _('Done')),
         ('waiting', _('Waiting')),
         ('waitacc', _('Waiting to accept')),
         ('rejected', _('Rejected'))
