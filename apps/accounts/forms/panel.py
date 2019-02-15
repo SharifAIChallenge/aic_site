@@ -81,10 +81,8 @@ class ChallengeATeamForm(forms.Form):
             choices=get_submitted_teams(self.participation.challenge))
 
     def is_valid(self):
-        print("HI")
         if not super().is_valid():
             return False
-        print("BYE")
         if self.participation.get_final_submission() is None:
             self.add_error(None, _("First submit a compilable code."))
             return False
@@ -114,10 +112,13 @@ class ChallengeATeamForm(forms.Form):
 
         print(self.cleaned_data['battle_team'])
         if self.cleaned_data['battle_team'] == '-1':
-            teams = list(TeamParticipatesChallenge.objects.all())
+            teams = []
+
+            for team in self.participation.challenge.teams.all():
+                if team_participates_in_challenge.submissions.filter(is_final=True).exists():
+                    teams.append(team)
+
             teams.sort(key=lambda x: x.team.rate)
-            for i in teams:
-                print(i, i.team.rate)
 
             ind = teams.index(self.participation)
 
