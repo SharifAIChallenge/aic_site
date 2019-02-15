@@ -786,7 +786,7 @@ class SingleMatch(models.Model):
             return 1, 0
         if last_row['args'][0]['winner'] == 1:
             return 0, 1
-        return 0, 0
+        return 0.5, 0.5
 
     def done_single_match(self):
         self.status = 'done'
@@ -826,6 +826,9 @@ class TeamRate(models.Model):
 
         team1 = single_match.match.part1.submission.team.team
         team2 = single_match.match.part2.submission.team.team
+
+        if team1 == team2:
+            return
 
         if TeamRate.objects.filter(team=team1).exists():
             prev_rate1 = TeamRate.objects.filter(team=team1).latest('date').rate
