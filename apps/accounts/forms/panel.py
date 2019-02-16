@@ -6,7 +6,8 @@ from django.db.models import Q
 from django.forms.models import ModelForm
 from django.utils.timezone import utc
 from django.utils.translation import ugettext, ugettext_lazy as _
-from random import randrange
+from random import randrange, seed
+from time import time as curr_time
 
 from apps.game.models import TeamSubmission, Map, Team, TeamParticipatesChallenge, Match, Competition, Participant, \
     SingleMatch
@@ -129,6 +130,7 @@ class ChallengeATeamForm(forms.Form):
 
             st = max(0, ind - settings.RANDOM_MATCH_RANK_RANGE)
             en = min(ind + settings.RANDOM_MATCH_RANK_RANGE, len(teams))
+            seed(curr_time())
 
             trial = 0
             while trial < 5:
