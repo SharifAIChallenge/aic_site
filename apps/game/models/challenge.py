@@ -51,6 +51,7 @@ class Challenge(models.Model):
 class TeamParticipatesChallenge(models.Model):
     team = models.ForeignKey(Team, related_name='challenges')
     challenge = models.ForeignKey(Challenge, related_name='teams')
+    allow_random = models.NullBooleanField(blank=True, null=True)
 
     @property
     def should_pay(self):
