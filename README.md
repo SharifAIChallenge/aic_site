@@ -1,7 +1,5 @@
 # Sharif AI Challenge 2019 website
 
----
-
 
 ## Requirements
 
