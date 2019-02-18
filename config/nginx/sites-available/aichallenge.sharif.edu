@@ -59,7 +59,7 @@ server {
         access_log      on;
         log_not_found   on;
         
-        add_header 'Access-Control-Allow-Origin' '*';
+        add_header Access-Control-Allow-Origin *;
         expires 30d;
     }
 
