@@ -325,7 +325,7 @@ def rating(request):
 
     context.update({
         'teams': teams,
-        'rank': all_teams.index(current_team) + 1,
+        'rank': all_teams.index(current_team) + 1 if current_team in all_teams else len(all_teams) + 1,
         'current_team': current_team
     })
 
