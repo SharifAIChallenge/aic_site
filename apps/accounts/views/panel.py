@@ -1,14 +1,15 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
+import json
 
 from aic_site.settings.base import UPLOAD_MAP_TIME_DELTA
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
 from apps.billing.decorators import payment_required
-from apps.game.models import TeamSubmission, Match, Team, TeamParticipatesChallenge, Competition, SingleMatch
+from apps.game.models import TeamSubmission, Match, Team, TeamParticipatesChallenge, Competition, SingleMatch, TeamRate
 from apps.game.forms import MapForm
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -221,7 +222,7 @@ def battle_history(request):
         participation_id = team_pc.id
         context.update({
             'participation': participation,
-            'participation_id': participation_id,
+            'participation_id': participation_id
         })
 
     if participation is not None and participation.challenge.competitions.filter(type='friendly').exists():
@@ -309,18 +310,27 @@ def rating(request):
     })
 
     all_teams = sorted(list(Team.objects.all()), key=lambda x: -x.rate)
+
+    removed_teams = []
+    for t in all_teams:
+        if not TeamRate.objects.filter(team=t).exists():
+            removed_teams.append(t)
+
+    for t in removed_teams:
+        all_teams.remove(t)
+
     paginator = Paginator(all_teams, 50)
     page = request.GET.get('page', 1)
     teams = paginator.page(page)
     current_team = team_pc.team
 
-    context.update( {
+    context.update({
         'teams': teams,
-        'rank': all_teams.index(current_team) + 1,
+        'rank': all_teams.index(current_team) + 1 if current_team in all_teams else len(all_teams) + 1,
         'current_team': current_team
-    } )
+    })
 
-    return render(request, 'accounts/panel/rating.html', context )
+    return render(request, 'accounts/panel/rating.html', context)
 
 @payment_required
 @login_required
@@ -342,9 +352,9 @@ def team_profile(request):
     tid = request.GET.get('tid', team_pc.team.id)
     team = Team.objects.get(id=tid)
 
-    context.update( {'team': team })
+    context.update({'team': team})
 
-    return render(request, 'accounts/panel/team_profile.html', context )
+    return render(request, 'accounts/panel/team_profile.html', context)
 
 @payment_required
 @login_required
@@ -378,3 +388,15 @@ def reject_friendly(request, sm_id):
         single_match.save()
 
     return redirect('accounts:panel_battle_history')
+
+@login_required
+def toggle_random(request):
+    team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
+
+    team_pc.allow_random = not team_pc.allow_random
+    team_pc.save()
+
+    data = {'success': True, 'status': team_pc.allow_random}
+    return HttpResponse(json.dumps(data))

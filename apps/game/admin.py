@@ -253,10 +253,10 @@ class HasSubmittedListFilter(SimpleListFilter):
 
 
 class TeamParticipatesChallengeAdmin(admin.ModelAdmin):
-    fields = ['team', 'challenge']
+    fields = ['team', 'challenge', 'allow_random']
 
     actions = ['create_new_league', 'create_new_double_elimination']
-    list_display = ('id', 'team', 'challenge')
+    list_display = ('id', 'team', 'challenge', 'allow_random')
     list_filter = ['challenge', HasSubmittedListFilter]
 
     def create_new_league(self, request, queryset):
