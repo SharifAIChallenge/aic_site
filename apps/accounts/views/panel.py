@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
+import json
 
 from aic_site.settings.base import UPLOAD_MAP_TIME_DELTA
 from apps.accounts.forms.panel import SubmissionForm, ChallengeATeamForm
@@ -221,7 +222,7 @@ def battle_history(request):
         participation_id = team_pc.id
         context.update({
             'participation': participation,
-            'participation_id': participation_id,
+            'participation_id': participation_id
         })
 
     if participation is not None and participation.challenge.competitions.filter(type='friendly').exists():
@@ -387,3 +388,15 @@ def reject_friendly(request, sm_id):
         single_match.save()
 
     return redirect('accounts:panel_battle_history')
+
+@login_required
+def toggle_random(request):
+    team_pc = get_team_pc(request)
+    if team_pc is None:
+        return redirect_to_somewhere_better(request)
+
+    team_pc.allow_random = not team_pc.allow_random
+    team_pc.save()
+
+    data = {'success': True, 'status': team_pc.allow_random}
+    return HttpResponse(json.dumps(data))

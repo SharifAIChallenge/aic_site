@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^email_invalid$', views.email_invalid, name='email_invalid'),
     url(r'^challenge_a_team/(?P<participation_id>\d+)$', views.challenge_a_team, name='challenge_a_team'),
 
+    url(r'^panel/toggle_random', views.toggle_random, name='toggle_random'),
     url(r'^panel/faccept/(?P<sm_id>\d+)$', views.accept_friendly, name='accept_friendly'),
     url(r'^panel/freject/(?P<sm_id>\d+)$', views.reject_friendly, name='reject_friendly'),
     url(r'^panel/profile',views.team_profile, name='team_profile'),

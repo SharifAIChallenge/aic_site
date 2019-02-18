@@ -408,6 +408,10 @@ msgid ""
 "Friendly match requires opponents confirmation, but random match doesn't. You can only perform random if you allow to be challenged by a random team."
 msgstr "بازی دوستانه نیازمند تایید حریف است، اما بازی با تیم رندوم نیازی به تایید تیم حریف ندارد. شما در صورتی می‌توانید درخواست بازی تصادفی بدهید که به دیگران اجازه بدهید که با شما بازی تصادفی کنند."
 
+msgid ""
+"Other teams can perform random match with our team."
+msgstr "تیم‌های دیگر می‌توانند با تیم ما بازی تصادفی کنند."
+
 #: apps/accounts/templates/accounts/panel/battle_history.html:129
 #: apps/accounts/templates/accounts/panel/upload_map.html:18
 msgid " hours."

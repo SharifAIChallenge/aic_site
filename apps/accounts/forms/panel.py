@@ -120,7 +120,7 @@ class ChallengeATeamForm(forms.Form):
             teams = []
 
             for team in self.participation.challenge.teams.all():
-                if team.submissions.filter(is_final=True).exists():
+                if team.allow_random and team.submissions.filter(is_final=True).exists():
                     teams.append(team)
 
             teams.sort(key=lambda x: x.team.rate)
