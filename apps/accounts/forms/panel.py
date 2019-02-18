@@ -30,8 +30,8 @@ def get_maps(competition):
     return maps + maps_s
 
 
-def get_submitted_teams(challenge):
-    teams = [(-1, _('Random team within your level') )]
+def get_submitted_teams(challenge, tpc):
+    teams = [(-1, _('Random team within your level') )] if tpc.allow_random else [('', '---')]
     for team_participates_in_challenge in challenge.teams.all():
         if team_participates_in_challenge.submissions.filter(is_final=True).exists():
             teams.append(
@@ -83,7 +83,7 @@ class ChallengeATeamForm(forms.Form):
         self.fields['battle_team_maps'] = forms.ChoiceField(
             choices=get_maps(self.participation.challenge.competitions.get(type='friendly')))
         self.fields['battle_team'] = forms.ChoiceField(
-            choices=get_submitted_teams(self.participation.challenge))
+            choices=get_submitted_teams(self.participation.challenge, self.participation))
 
     def is_valid(self):
         if not super().is_valid():

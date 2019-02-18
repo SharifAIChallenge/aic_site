@@ -109,7 +109,7 @@
                 <select id="{{ form_challenge.battle_team.id_for_label }}" name="{{ form_challenge.battle_team.name }}"
                         class="ui search dropdown">
                     {% for choice in form_challenge.battle_team.field.choices %}
-                        <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                        <option value="{{ choice.0 }}">{{ choice.1|truncatechars:20 }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -130,6 +130,6 @@
             </div>
         </div>
     </form>
-    <h4>{% trans "Friendly match requires opponents confirmation, but random match doesn't." %}</h4>
+    <h4>{% trans "Friendly match requires opponents confirmation, but random match doesn't. You can only perform random if you allow to be challenged by a random team." %}</h4>
 
 {% endblock %}
