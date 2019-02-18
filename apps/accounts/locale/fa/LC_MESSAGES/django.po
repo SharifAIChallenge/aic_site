@@ -412,6 +412,14 @@ msgid ""
 "Other teams can perform random match with our team."
 msgstr "تیم‌های دیگر می‌توانند با تیم ما بازی تصادفی کنند."
 
+msgid ""
+"The only team ready for random is you!"
+msgstr "تنها تیم آماده برای بازی تصادفی شما هستید!"
+
+msgid ""
+"You should allow random match first!"
+msgstr "شما ابتدا باید اجازه بازی تصادفی با خودتان را بدهید!"
+
 #: apps/accounts/templates/accounts/panel/battle_history.html:129
 #: apps/accounts/templates/accounts/panel/upload_map.html:18
 msgid " hours."

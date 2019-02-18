@@ -106,6 +106,20 @@ class ChallengeATeamForm(forms.Form):
                     {'minutes': settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA}
                 )
                 return False
+
+        if self.cleaned_data['battle_team'] == '-1' and not self.participation.allow_random:
+            self.add_error(
+                None,
+                _("You should allow random match first!")
+            )
+            return False
+
+        if self.cleaned_data['battle_team'] == '-1' and len(self.participation.challenge.teams.filter(allow_random=True)) <= 1:
+            self.add_error(
+                None,
+                _("The only team ready for random is you!")
+            )
+            return False
         return True
 
     def save(self, commit=True):
