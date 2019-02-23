@@ -239,7 +239,7 @@ def battle_history(request):
                         Q(part2__object_id=participation_id)).order_by('-id').filter(
                         competition__type='friendly'
                     ),
-                    15).page(battles_page)
+                    10).page(battles_page)
             })
     return render(request, 'accounts/panel/battle_history.html', context)
 
