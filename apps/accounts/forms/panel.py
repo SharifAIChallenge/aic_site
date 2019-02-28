@@ -129,6 +129,13 @@ class ChallengeATeamForm(forms.Form):
             type='friendly'
         ).first()
 
+        matches = Match.objects.filter(competition=competition,
+                                                part1__object_id=self.participation.id)
+        if matches.exists():
+            last_submission = matches.order_by('-time')[0]
+            if datetime.now(utc) - last_submission.time < timedelta(minutes=settings.SINGLE_MATCH_SUBMISSION_TIME_DELTA):
+                raise BaseException("Don't try to fool us")
+
         print(self.cleaned_data['battle_team'])
         if self.cleaned_data['battle_team'] == '-1':
             teams = []
