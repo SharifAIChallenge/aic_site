@@ -313,7 +313,7 @@
                             {% blocktrans %}
                                 Online Phase
                                 <br/>
-                                February 8 - March 1
+                                February 8 - March 2
                             {% endblocktrans %}
                         </div>
                         <img src="{% static "intro/image/laptop.svg" %}" class="left card-pic">
@@ -853,9 +853,9 @@
 {% block footer_scripts %}
     {{ block.super }}
     {% if LANGUAGE_BIDI %}
-        <script src="{% static 'intro/js/scripts.js' %}?ver=4"></script>
+        <script src="{% static 'intro/js/scripts.js' %}?ver=5"></script>
     {% else %}
-        <script src="{% static 'intro/js/scriptsEN.js' %}?ver=4"></script>
+        <script src="{% static 'intro/js/scriptsEN.js' %}?ver=5"></script>
     {% endif %}
     <script>
         ScrollReveal().reveal('.faded-d1', {delay: 250});
