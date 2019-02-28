@@ -64,8 +64,8 @@ class SubmissionForm(ModelForm):
             )
             return False
 
-        if self.cleaned_data['file'].size > 5242880:
-            self.add_error('file', _('Max file size is 5MB.'))
+        if self.cleaned_data['file'].size > 20 * 1024 * 124:
+            self.add_error('file', _('Max file size is 20MB.'))
             return False
         return True
 

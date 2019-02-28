@@ -46,8 +46,8 @@ msgid "You have to wait at least %(minutes)s minutes between each submission!"
 msgstr "بین هر دو ارسال باید حداقل %(minutes)s دقیقه صبر کنید."
 
 #: apps/accounts/forms/panel.py:63
-msgid "Max file size is 5MB."
-msgstr "بیشترین حجم فایل قابل استفاده ۵ مگابایت است."
+msgid "Max file size is 20MB."
+msgstr "بیشترین حجم فایل قابل استفاده ۲۰ مگابایت است."
 
 #: apps/accounts/forms/panel.py:89
 msgid "First submit a compilable code."
