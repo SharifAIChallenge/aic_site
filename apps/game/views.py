@@ -216,8 +216,10 @@ def report(request):
             if single_report['status'] == 2:
                 logger.debug("Report status is OK")
                 logfile = functions.download_file(single_report['parameters']['graphic_log'])
-                client1_log_file = functions.download_file(single_report['parameters']['client1_log'])
-                client2_log_file = functions.download_file(single_report['parameters']['client2_log'])
+                client1_log_token = single_report['parameters']['client1_log']
+                client2_log_token = single_report['parameters']['client2_log']
+                client1_log_file = functions.download_file(client1_log_token)
+                client2_log_file = functions.download_file(client2_log_token)
 
                 single_match.status = 'done'
                 single_match.log.save(name='log', content=File(logfile.file))
