@@ -65,13 +65,13 @@
 
                             {% if match.single_matches.first.part1_log and match.single_matches.first.status == 'done'  %}
                                 <a class="ui green label" href="{{ match.single_matches.first.part1_log.url }}">
-                                    {% trans 'Client Log' %}
+                                    {% trans 'Download' %}
                                 </a>
                             {% endif %}
                         {% else %}
                             {% if match.single_matches.first.part2_log and match.single_matches.first.status == 'done'  %}
                                 <a class="ui green label" href="{{ match.single_matches.first.part2_log.url }}">
-                                    {% trans 'Client Log' %}
+                                    {% trans 'Download' %}
                                 </a>
                             {% endif %}
                         {% endif %}
