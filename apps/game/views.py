@@ -216,8 +216,13 @@ def report(request):
             if single_report['status'] == 2:
                 logger.debug("Report status is OK")
                 logfile = functions.download_file(single_report['parameters']['graphic_log'])
+                client1_log_file = functions.download_file(single_report['parameters']['client1_log'])
+                client2_log_file = functions.download_file(single_report['parameters']['client2_log'])
+
                 single_match.status = 'done'
                 single_match.log.save(name='log', content=File(logfile.file))
+                single_match.part1_log.save(name='client1', content=File(client1_log_file.file))
+                single_match.part2_log.save(name='client2', content=File(client2_log_file.file))
                 single_match.update_scores_from_log()
             elif single_report['status'] == 3:
                 single_match.status = 'failed'
