@@ -88,6 +88,12 @@ class ChallengeATeamForm(forms.Form):
     def is_valid(self):
         if not super().is_valid():
             return False
+        if not settings.ENABLE_SUBMISSION:
+            self.add_error(None, _('Friendly Match is closed.'))
+            return False
+        if not self.cleaned_data['team'].challenge.is_submission_open:
+            return False
+
         if self.participation.get_final_submission() is None:
             self.add_error(None, _("First submit a compilable code."))
             return False

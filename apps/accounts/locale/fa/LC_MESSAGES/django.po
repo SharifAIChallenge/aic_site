@@ -40,6 +40,10 @@ msgstr "تیم رندوم در حدود امتیاز شما"
 msgid "Submission is closed."
 msgstr "امکان ارسال وجود ندارد."
 
+#: apps/accounts/forms/panel.py:47
+msgid "Friendly Match is closed."
+msgstr "امکان ایجاد بازی دوستانه وجود ندارد."
+
 #: apps/accounts/forms/panel.py:57
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each submission!"
