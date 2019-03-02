@@ -221,8 +221,8 @@ def report(request):
 
                 single_match.status = 'done'
                 single_match.log.save(name='log', content=File(logfile.file))
-                single_match.part1_log.save(name='client1', content=File(client1_log_file.file))
-                single_match.part2_log.save(name='client2', content=File(client2_log_file.file))
+                single_match.part1_log.save(name='client.zip', content=File(client1_log_file.file))
+                single_match.part2_log.save(name='client.zip', content=File(client2_log_file.file))
                 single_match.update_scores_from_log()
             elif single_report['status'] == 3:
                 single_match.status = 'failed'
