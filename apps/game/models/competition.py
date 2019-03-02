@@ -727,8 +727,7 @@ class SingleMatch(models.Model):
 
     def update_scores_from_log(self):
         self.part1_score, self.part2_score = self.extract_score()
-        #TODO uncomment to enable rating
-        #TeamRate.update_rating_from_single_match(self)
+        TeamRate.update_rating_from_single_match(self)
         self.save()
 
     def get_score_for_participant(self, participant):
