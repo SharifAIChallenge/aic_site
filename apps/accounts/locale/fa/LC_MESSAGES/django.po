@@ -124,6 +124,9 @@ msgstr "جدول امتیازات"
 msgid "Rank"
 msgstr "رتبه"
 
+msgid "Client Log"
+msgstr "گزارش کلاینت"
+
 #: apps/accounts/templates/accounts/friendly_match_scoreboard.html:9
 msgid "Name"
 msgstr "نام"

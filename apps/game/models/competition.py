@@ -708,6 +708,8 @@ class SingleMatch(models.Model):
     infra_match_message = models.CharField(max_length=1023, null=True, blank=True)
     infra_token = models.CharField(max_length=256, null=True, blank=True, unique=True)
     log = models.FileField(upload_to=get_log_file_directory, blank=True, null=True)
+    part1_log = models.FileField(upload_to='logs/', blank=True, null=True)
+    part2_log = models.FileField(upload_to='logs/', blank=True, null=True)
     part1_score = models.IntegerField(null=True, blank=True)
     part2_score = models.IntegerField(null=True, blank=True)
     time = models.DateTimeField(auto_now=True)
