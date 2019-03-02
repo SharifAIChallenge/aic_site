@@ -161,7 +161,8 @@ def run_matches(single_matches):
                 "client2_id": single_match.match.part2.submission.id,
                 "client2_token": random_token(),
                 "client2_code": single_match.get_second_file(),
-                "client2_name": single_match.match.part2.submission.team.team.id
+                "client2_name": single_match.match.part2.submission.team.team.id,
+                "map_name": single_match.map.name
             }
         })
 
