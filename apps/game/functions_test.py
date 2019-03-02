@@ -69,7 +69,9 @@ def match_results(match):
     errors = ""
     parameters = {
         'code_compiled_zip': random_token(),
-        'code_log': random_token()
+        'code_log': random_token(),
+        'client1_log': random_token(),
+        'client2_log': random_token()
     }
 
     if success is True:
