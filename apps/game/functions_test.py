@@ -82,6 +82,7 @@ def match_results(match):
 
     Match.objects.filter(infra_token=token).update(infra_match_message=errors)
 
+    #TODO: this function is incomplete
 
 """
     **** Infrastructure API Functions ****
