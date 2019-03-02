@@ -14,6 +14,7 @@
                 <th>{% trans 'Oponent Score' %}</th>
                 <th>{% trans 'View' %}</th>
                 <th>{% trans 'Log' %}</th>
+                <th>{% trans 'Client Log' %}</th>
                 <th>{% trans 'Confirm' %}</th>
             </tr>
             </thead>
@@ -57,6 +58,22 @@
                             </a>
                         {% else %}
                             <span class="ui blue label">{%  trans match.status %}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if match.part1.depend == participation %}
+
+                            {% if match.single_matches.first.part1_log and match.single_matches.first.status == 'done'  %}
+                                <a class="ui green label" href="{{ match.single_matches.first.part1_log.url }}">
+                                    {% trans 'Client Log' %}
+                                </a>
+                            {% endif %}
+                        {% else %}
+                            {% if match.single_matches.first.part2_log and match.single_matches.first.status == 'done'  %}
+                                <a class="ui green label" href="{{ match.single_matches.first.part2_log.url }}">
+                                    {% trans 'Client Log' %}
+                                </a>
+                            {% endif %}
                         {% endif %}
                     </td>
                     <td>
