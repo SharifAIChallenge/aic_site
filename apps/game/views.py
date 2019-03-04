@@ -308,6 +308,6 @@ def render_challenge_league(request, challenge_id):
     competitions_scoreboard = list(competitions_scoreboard.values())
 
     return render(request, 'scoreboard/group_table_challenge.html', {
-        'tables': sorted(competitions_scoreboard, key=lambda x: -x['id']),
+        'tables': sorted(competitions_scoreboard, key=lambda x: x['id']),
         'freeze_time': freeze_time,
 })
