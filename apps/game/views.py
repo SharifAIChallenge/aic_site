@@ -119,44 +119,27 @@ def render_friendly(request, competition_id):
 
 
 def render_league(request, competition_id):
-    matches = list(Competition.objects.get(pk=int(competition_id)).matches.all())
+    competition = Competition.objects.get(id=competition_id)
+    challenge = competition.challenge
 
-    league_scoreboard = get_scoreboard_table_competition(competition_id)
-    league_size = len(league_scoreboard)
-    # print(matches)
-    # print(league_scoreboard)
-    # list of matches in a special format ( not a simple list) to pass to template for rendering
-    league_matches = []
+    freeze_time = timezone.now() if challenge.scoreboard_freeze_time is None else challenge.scoreboard_freeze_time
+    single_matches = SingleMatch.objects.filter(match__competition=competition,
+                                                     time__lte=freeze_time, status='done').prefetch_related(
+                                        'match').prefetch_related(
+                                        'match__part1__depend__team').prefetch_related(
+                                        'match__part2__depend__team')
 
-    if league_size % 2 == 0:
-        num_matches_per_week = int(league_size / 2)
-        num_weeks = league_size - 1
-    else:
-        num_matches_per_week = int((league_size - 1) / 2)
-        num_weeks = league_size
+    league_scoreboard = get_scoreboard_table_from_single_matches(single_matches)
 
-    num_one_round_matches = num_matches_per_week * num_weeks
-    num_rounds = int(len(matches) / num_one_round_matches)
-
-    cnt = -1
-    for round in range(num_rounds):
-        league_matches.append([])
-        for week in range(num_weeks):
-            r = len(league_matches) - 1
-            league_matches[r].append([])
-            for i in range(num_matches_per_week):
-                cnt += 1
-                match_result = matches[cnt].get_match_result()
-                team1 = None
-                team2 = None
-                if matches[cnt].part1.object_id is not None and matches[cnt].part2.object_id is not None:
-                    r = len(league_matches) - 1
-                    w = len(league_matches[r]) - 1
-                    league_matches[r][w].append(match_result)
+    context = {
+        'id': competition_id,
+        'name': competition.name,
+        'league_scoreboard': league_scoreboard,
+        'single_matches': single_matches
+    }
 
     return render(request, 'scoreboard/group_table.html', {
-        'league_scoreboard': league_scoreboard,
-        'league_matches': league_matches
+        'table': context
     })
 
 
@@ -308,6 +291,6 @@ def render_challenge_league(request, challenge_id):
     competitions_scoreboard = list(competitions_scoreboard.values())
 
     return render(request, 'scoreboard/group_table_challenge.html', {
-        'tables': sorted(competitions_scoreboard, key=lambda x: -x['id']),
+        'tables': sorted(competitions_scoreboard, key=lambda x: x['id']),
         'freeze_time': freeze_time,
 })
