@@ -48,7 +48,7 @@ def get_scoreboard_table_from_single_matches(single_matches):
 
     teams_status = [value for key, value in teams_status.items()]
 
-    teams_status = sorted(teams_status, lambda x: -x['win_num'])
+    teams_status = sorted(teams_status, key=lambda x: -x['win_num'])
     count = 1
     for team_status in teams_status:
         team_status['rank'] = count
