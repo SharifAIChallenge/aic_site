@@ -246,7 +246,7 @@ msgid "View/Hide Games"
 msgstr "نمایش/مخفی‌کردن بازی‌ها"
 
 msgid "More Details"
-msgstr "نمایش/مخفی‌کردن بازی‌ها"
+msgstr "جزئیات بیشتر بازی‌ها"
 
 #: apps/game/templates/scoreboard/single_matches_table.html:61
 msgid "In "
