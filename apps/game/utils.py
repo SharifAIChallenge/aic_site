@@ -48,18 +48,7 @@ def get_scoreboard_table_from_single_matches(single_matches):
 
     teams_status = [value for key, value in teams_status.items()]
 
-    def compare(x, y):
-        if x['win_num'] > y['win_num']:
-            return -1
-        elif x['win_num'] < y['win_num']:
-            return 1
-        elif x['team_pc'].get_final_submission().time < y['team_pc'].get_final_submission().time:
-            return -1
-        else:
-            return 1
-
-    import functools
-    teams_status = sorted(teams_status, key=functools.cmp_to_key(compare))
+    teams_status = sorted(teams_status, lambda x: -x['win_num'])
     count = 1
     for team_status in teams_status:
         team_status['rank'] = count
