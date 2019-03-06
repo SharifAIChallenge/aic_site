@@ -22,7 +22,7 @@ def complete_team_required(view):
         else:
             return HttpResponseRedirect(
                 reverse(
-                    'accounts:add_participation',
+                    'accounts:panel',
                     args=[request.user.profile.panel_active_teampc.id]
                 )
             )

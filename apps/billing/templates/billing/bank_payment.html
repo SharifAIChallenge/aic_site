@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'base/darkbg.html' %}
 {% load i18n %}
 {% load static %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -35,13 +35,13 @@
                                 {% endblocktrans %}
                             </h2>
                             {% csrf_token %}
-                            {{ form }}
+
                             <div class="center-align">
                                 <p class="text muted text-muted">
                                     {% trans 'Amount (for all members):' %} <span class="text-info">{{ participation.challenge.entrance_price }} {% trans 'Rials' %}</span>
                                     </p>
-                                <button type="submit" class="ui green button">
-                                    {% trans 'Complete profile and pay' %}
+                                <button type="submit" class="ui inverted blue button">
+                                    {% trans 'Pay' %}
                                 </button>
                             </div>
                         </form>

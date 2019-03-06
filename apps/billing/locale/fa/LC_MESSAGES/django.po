@@ -63,8 +63,8 @@ msgid "Rials"
 msgstr "ًریال"
 
 #: apps/billing/templates/billing/bank_payment.html:44
-msgid "Complete profile and pay"
-msgstr "تکمیل اطلاعات و پرداخت"
+msgid "Pay"
+msgstr "پرداخت"
 
 #: apps/billing/templates/billing/bank_payment_error.html:29
 msgid "Transaction failed with this message: "

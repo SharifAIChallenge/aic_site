@@ -13,4 +13,4 @@ class UpdateProfileView(LoginRequiredMixin, generic.UpdateView):
     model = Profile
 
     def get_object(self, queryset=None):
-        return get_object_or_404(User, pk=self.request.user.id)
+        return get_object_or_404(Profile, user__pk=self.request.user.id)
