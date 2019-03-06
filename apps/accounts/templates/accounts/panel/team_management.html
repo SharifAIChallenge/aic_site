@@ -34,7 +34,7 @@
                     </td>
                 </tr>
             {% endfor %}
-            {% if participation_members|length < participation.challenge.team_size %}
+            {% if participation_members|length < 3 %}
                 <tr>
                     <td>
                         <a href="{% url 'accounts:add_participation' participation.id %}"
