@@ -106,6 +106,7 @@ class Transaction(models.Model):
         password = settings.BANK_PASSWORD
         group_id = settings.BANK_GROUP_ID
 
+
         params = {
             'groupid': group_id,
             'username': username,

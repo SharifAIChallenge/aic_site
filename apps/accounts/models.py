@@ -10,6 +10,9 @@ class Profile(models.Model):
     organization = models.CharField(max_length=128, null=False, blank=False, verbose_name=_('Organization‌'))
     position = models.CharField(max_length=128, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True, verbose_name=_('Age‌'))
+    first_name_eng = models.CharField(max_length=50, null=True, blank=True, verbose_name=_('First Name in English'))
+    last_name_eng = models.CharField(max_length=50, null=True, blank=True, verbose_name=_('Last Name in English'))
+
     national_code = models.CharField(max_length=10, null=True, blank=True, verbose_name=_('National code‌'))
     tel_number = models.CharField(max_length=20, null=True, blank=True, verbose_name=_('Telephone number‌'))
     confirm_data = models.NullBooleanField(null=True, blank=True)
@@ -19,13 +22,13 @@ class Profile(models.Model):
 
     @property
     def is_complete(self):
-        if self.phone_number is None:
+        if not self.phone_number:
             return False
-        if self.age is None:
+        if not self.national_code:
             return False
-        if self.national_code is None:
+        if not self.first_name_eng:
             return False
-        if self.tel_number is None:
+        if not self.last_name_eng:
             return False
         return True
 

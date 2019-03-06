@@ -23,30 +23,29 @@ def payment(request, participation_id):
     if not participation.should_pay or participation.has_paid:
         return HttpResponseRedirect(reverse('accounts:panel'))
     if request.method == 'POST':
-        form = UserCompletionForm(request.POST, instance=request.user.profile)
-        if form.is_valid():
-            profile = form.save()
-            callback_url = request.build_absolute_uri(
-                reverse(
-                    'billing:complete_payment',
-                    args=[participation_id]
-                )) + '?'
+        callback_url = request.build_absolute_uri(
+            reverse(
+                'billing:complete_payment',
+                args=[participation_id]
+            )) + '?'
 
-            logger.error(callback_url)
+        logger.error(callback_url)
 
-            url, t = Transaction.begin_transaction(profile=profile,
-                                                   amount=participation.challenge.entrance_price,
-                                                   callback_url=callback_url,
-                                                   participation=participation,
-                                                   )
-            if url:
-                return HttpResponseRedirect(url)
-            else:
-                return render(request, 'billing/bank_payment_error.html', context={
-                    'error': t.error,
-                    'participation': participation,
-                    'participation_id': participation_id,
-                })
+        profile = request.user.profile
+
+        url, t = Transaction.begin_transaction(profile=profile,
+                                               amount=participation.challenge.entrance_price,
+                                               callback_url=callback_url,
+                                               participation=participation,
+                                               )
+        if url:
+            return HttpResponseRedirect(url)
+        else:
+            return render(request, 'billing/bank_payment_error.html', context={
+                'error': t.error,
+                'participation': participation,
+                'participation_id': participation_id,
+            })
     else:
         error = None
         unverified_transaction = participation.transactions.filter(status='u')
@@ -66,12 +65,8 @@ def payment(request, participation_id):
                 'participation': participation,
                 'participation_id': participation_id,
             })
-        form = UserCompletionForm(instance=request.user.profile, initial={
-            'first_name': request.user.first_name,
-            'last_name': request.user.last_name,
-        })
+
         return render(request, 'billing/bank_payment.html', {
-            'form': form,
             'participation': participation
         })
 

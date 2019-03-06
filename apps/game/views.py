@@ -131,6 +131,13 @@ def render_league(request, competition_id):
 
     league_scoreboard = get_scoreboard_table_from_single_matches(single_matches)
 
+    if request.user.is_staff:
+        single_matches = SingleMatch.objects.filter(match__competition=competition,
+                                                     status='done').prefetch_related(
+                                        'match').prefetch_related(
+                                        'match__part1__depend__team').prefetch_related(
+                                        'match__part2__depend__team')
+
     context = {
         'id': competition_id,
         'name': competition.name,
@@ -271,22 +278,6 @@ def render_challenge_league(request, challenge_id):
         competition_data['league_scoreboard'] = get_scoreboard_table_from_single_matches(
             competition_data['single_matches']
         )
-        if request.user.is_staff:
-            competition_data['single_matches'] = []
-
-    if request.user.is_staff:
-        for single_match in single_matches:
-            competition_id = single_match.match.competition_id
-            if competition_id not in competitions_scoreboard:
-                competitions_scoreboard[competition_id] = {
-                    'id': competition_id,
-                    'name': single_match.match.competition.name,
-                    'league_scoreboard': None,
-                    'single_matches': [],
-                }
-            competitions_scoreboard[competition_id]['single_matches'].append(
-                single_match
-            )
 
     competitions_scoreboard = list(competitions_scoreboard.values())
 

@@ -88,26 +88,22 @@ class SignUpForm(UserCreationForm):
 
 
 class UpdateProfileForm(ModelForm):
-    first_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
-    last_name = forms.CharField(max_length=30, required=True, help_text='Optional.')
-    email = forms.EmailField(max_length=254, required=True, help_text='Required. Inform a valid email address.')
-    age = forms.IntegerField()
-    password1 = forms.CharField(required=False, widget=forms.PasswordInput)
-    password2 = forms.CharField(required=False, widget=forms.PasswordInput)
+    first_name = forms.CharField(max_length=30, required=True, label=_('First name'))
+    last_name = forms.CharField(max_length=30, required=True, label=_('Last name'))
 
-    def clean(self):
-        super().clean()
-        password1 = self.cleaned_data['password1']
-        password2 = self.cleaned_data['password2']
-        if password1 and password2 and password1 != password2:
-            self.add_error('password1', 'password error')
+    def __init__(self, *args, **kwargs):
+        super(UpdateProfileForm, self).__init__(*args, **kwargs)
+        if self.instance:
+            user = self.instance.user
+            self.fields['first_name'].initial = user.first_name
+            self.fields['last_name'].initial = user.last_name
 
     def save(self, commit=True):
-        user = super().save(commit=False)
-        profile = user.profile
-        profile.phone_number = self.cleaned_data['phone_number']
-        profile.age = self.cleaned_data['age']
-        profile.organization = self.cleaned_data['organization']
+        profile = super().save(commit=False)
+        user  = profile.user
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+
         if commit:
             user.save()
             profile.save()
@@ -115,4 +111,4 @@ class UpdateProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('first_name', 'last_name', 'email', 'phone_number', 'age', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'first_name_eng', 'last_name_eng', 'national_code', 'phone_number', 'organization')
