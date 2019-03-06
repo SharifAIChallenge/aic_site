@@ -44,6 +44,9 @@ msgstr "امکان ارسال وجود ندارد."
 msgid "Friendly Match is closed."
 msgstr "امکان ایجاد بازی دوستانه وجود ندارد."
 
+msgid "Full Name in English"
+msgstr "نام کامل به انگلیسی"
+
 #: apps/accounts/forms/panel.py:57
 #, python-format
 msgid "You have to wait at least %(minutes)s minutes between each submission!"
