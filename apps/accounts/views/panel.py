@@ -309,7 +309,9 @@ def rating(request):
         'participation_id': team_pc.id,
     })
 
-    all_teams = sorted(list(Team.objects.all()), key=lambda x: -x.rate)
+    all_teams = sorted(list(
+        map(lambda x: x.team, TeamParticipatesChallenge.objects.filter(challenge=team_pc.challenge))
+    ), key=lambda x: -x.rate)
 
     removed_teams = []
     for t in all_teams:

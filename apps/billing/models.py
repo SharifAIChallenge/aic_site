@@ -58,7 +58,7 @@ class Transaction(models.Model):
                  1784: 56,  # 8
                  1785: 57}  # 9
 
-        phone = profile.tel_number.translate(table)
+        phone = profile.phone_number.translate(table)
         if len(phone) < 7:
             phone = '%s%s' % ('0' * (7 - len(phone)), phone)
         elif len(phone) > 7:
