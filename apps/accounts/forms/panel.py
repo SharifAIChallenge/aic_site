@@ -91,7 +91,7 @@ class ChallengeATeamForm(forms.Form):
         if not settings.ENABLE_SUBMISSION:
             self.add_error(None, _('Friendly Match is closed.'))
             return False
-        if not self.cleaned_data['team'].challenge.is_submission_open:
+        if not self.participation.challenge.is_submission_open:
             return False
 
         if self.participation.get_final_submission() is None:
