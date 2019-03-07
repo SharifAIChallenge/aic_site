@@ -97,7 +97,7 @@ class AddParticipationForm(Form):
                                                      team__challenge=self.challenge).count() > 0:
             self.add_error(None, _("The user is already participating in this challenge"))
             return False
-        if self.team.participants.count() > self.challenge.team_size - 1:
+        if self.team.participants.count() > 2: #Team can have max size of 3
             self.add_error(None, _("No more capacity in this challenge."))
             return False
         return True
