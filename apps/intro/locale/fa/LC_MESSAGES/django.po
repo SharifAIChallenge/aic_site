@@ -43,8 +43,8 @@ msgid "days"
 msgstr "روز"
 
 #: templates/intro/index.html:71
-msgid "Till end of online phase"
-msgstr "تا پایان مرحله غیر حضوری"
+msgid "Till start of on-site phase"
+msgstr "تا شروع مرحله حضوری"
 
 #: templates/intro/index.html:77
 msgid "Subscription"
