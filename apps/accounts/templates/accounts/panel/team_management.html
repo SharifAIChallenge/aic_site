@@ -83,7 +83,26 @@
             </tr>
             </tfoot>
         </table>
-
+        <table class="ui center aligned inverted table" style="border:solid #009D8A;">
+            <thead>
+            <tr>
+                <th>{% trans 'Username' %}</th>
+                <th>Sharif ID</th>
+                <th>Password</th>
+            </tr>
+            </thead>
+            {% for user, removable in participation_members %}
+                <tr>
+                    <td>{{ user }}</td>
+                    <td>
+                        {{ user.profile.sharif_id_user }}
+                    </td>
+                    <td>
+                        {{ user.profile.sharif_id_pass }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
     {% else %}
         {% trans 'You have not participated in this challenge yet.' %}
     {% endif %}
