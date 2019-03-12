@@ -12,7 +12,8 @@ class Profile(models.Model):
     age = models.IntegerField(null=True, blank=True, verbose_name=_('Age‌'))
     first_name_eng = models.CharField(max_length=50, null=True, blank=True, verbose_name=_('First Name in English'))
     last_name_eng = models.CharField(max_length=50, null=True, blank=True, verbose_name=_('Last Name in English'))
-
+    sharif_id_user = models.CharField(max_length=50, null=True, blank=True, verbose_name=_('Sharif ID Username'))
+    sharif_id_pass = models.CharField(max_length=50, null=True, blank=True, verbose_name=_('Sharif ID Password'))
     national_code = models.CharField(max_length=10, null=True, blank=True, verbose_name=_('National code‌'))
     tel_number = models.CharField(max_length=20, null=True, blank=True, verbose_name=_('Telephone number‌'))
     confirm_data = models.NullBooleanField(null=True, blank=True)
