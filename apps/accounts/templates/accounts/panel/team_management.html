@@ -4,108 +4,107 @@
 
 {% block panel_content %}
     <h2>{% trans 'Team Status' %}</h2>
-    <table>
-        {% if accepted_participations|length > 0 %}
-            <table class="ui center aligned inverted table" style="border:solid #009D8A;">
-                <thead>
+    <div>
+    {% if accepted_participations|length > 0 %}
+        <table class="ui center aligned inverted table" style="border:solid #009D8A;">
+            <thead>
+            <tr>
+                <th>{% trans 'Username' %}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user, removable in participation_members %}
                 <tr>
-                    <th>{% trans 'Username' %}</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for user, removable in participation_members %}
-                    <tr>
-                        <td>{{ user }}</td>
-                        <td>
-                            {% if removable %}
+                    <td>{{ user }}</td>
+                    <td>
+                        {% if removable %}
 
-                                <a href="{% url 'accounts:cancel_participation_request' participation.id user.id %}"
-                                   class="ui right aligned inverted red button tiny">
-                                    <i class="remove icon"></i>
-                                    {% trans 'Remove' %}
-                                </a>
-                            {% else %}
-                                <span class="ui right aligned inverted teal button tiny">
+                            <a href="{% url 'accounts:cancel_participation_request' participation.id user.id %}"
+                               class="ui right aligned inverted red button tiny">
+                                <i class="remove icon"></i>
+                                {% trans 'Remove' %}
+                            </a>
+                        {% else %}
+                            <span class="ui right aligned inverted teal button tiny">
                                     <i class="checkmark icon"></i>
                                     {% trans 'Accepted' %}
                                 </span>
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if user.profile.is_complete %}
-                                <span class="ui right aligned inverted teal button tiny">
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if user.profile.is_complete %}
+                            <span class="ui right aligned inverted teal button tiny">
                                     <i class="checkmark icon"></i>
                                     {% trans 'Profile is complete' %}
                             </span>
-                            {% else %}
-                                {% if request.user == user %}
-                                    <a href="{% url 'accounts:update_profile' %}"
-                                       class="ui right aligned inverted teal button tiny">
+                        {% else %}
+                            {% if request.user == user %}
+                                 <a href="{% url 'accounts:update_profile' %}" class="ui right aligned inverted teal button tiny">
                                         <i class="remove icon"></i>
                                         {% trans 'Your profile is not complete. Click to complete it.' %}
-                                    </a>
-                                {% else %}
-                                    <span class="ui right aligned inverted teal button tiny">
+                                </a>
+                            {% else %}
+                                 <span class="ui right aligned inverted teal button tiny">
                                         <i class="remove icon"></i>
                                         {% trans 'Profile is not complete' %}
                                 </span>
-                                {% endif %}
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-                {% if participation_members|length < 3 %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'accounts:add_participation' participation.id %}"
-                               class="ui right aligned inverted teal button tiny">
-                                <i class="add icon"></i>
-                                {% trans 'Add a member' %}
-                            </a>
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                {% endif %}
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th colspan="3">
-                        {% if participation %}
-                            {% if participation.all_members_accepted %}
-                                {% trans "All users have accepted the challenge." %}
-                            {% else %}
-                                {% trans "All users haven't accepted the challenge yet!" %}
                             {% endif %}
                         {% endif %}
-                    </th>
+                    </td>
                 </tr>
-                </tfoot>
-            </table>
-            <table class="ui center aligned inverted table" style="border:solid #009D8A;">
-                <thead>
+            {% endfor %}
+            {% if participation_members|length < 3 %}
                 <tr>
-                    <th>{% trans 'Username' %}</th>
-                    <th>Sharif ID</th>
-                    <th>Password</th>
+                    <td>
+                        <a href="{% url 'accounts:add_participation' participation.id %}"
+                           class="ui right aligned inverted teal button tiny">
+                            <i class="add icon"></i>
+                            {% trans 'Add a member' %}
+                        </a>
+                    </td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                </thead>
-                {% for user, removable in participation_members %}
-                    <tr>
-                        <td>{{ user }}</td>
-                        <td>
-                            {{ user.profile.sharif_id_user }}
-                        </td>
-                        <td>
-                            {{ user.profile.sharif_id_pass }}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
-        {% else %}
-            {% trans 'You have not participated in this challenge yet.' %}
-        {% endif %}
-        </div>
+            {% endif %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="3">
+                    {% if participation %}
+                        {% if participation.all_members_accepted %}
+                            {% trans "All users have accepted the challenge." %}
+                        {% else %}
+                            {% trans "All users haven't accepted the challenge yet!" %}
+                        {% endif %}
+                    {% endif %}
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+        <table class="ui center aligned inverted table" style="border:solid #009D8A;">
+            <thead>
+            <tr>
+                <th>{% trans 'Username' %}</th>
+                <th>Sharif ID</th>
+                <th>Password</th>
+            </tr>
+            </thead>
+            {% for user, removable in participation_members %}
+                <tr>
+                    <td>{{ user }}</td>
+                    <td>
+                        {{ user.profile.sharif_id_user }}
+                    </td>
+                    <td>
+                        {{ user.profile.sharif_id_pass }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        {% trans 'You have not participated in this challenge yet.' %}
+    {% endif %}
+    </div>
 {% endblock %}
