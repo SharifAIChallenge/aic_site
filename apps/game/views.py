@@ -246,7 +246,7 @@ def map_maker(request):
 
 
 def render_challenge_league(request, challenge_id):
-    challenge = Challenge.objects.filter(id=challenge_id).first()
+    challenge = Challenge.objects.get(id=challenge_id)
     freeze_time = timezone.now() if challenge.scoreboard_freeze_time is None else challenge.scoreboard_freeze_time
     single_matches = SingleMatch.objects.filter(
         match__competition__challenge_id=challenge_id,
