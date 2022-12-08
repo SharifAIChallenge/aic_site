@@ -3,7 +3,7 @@ anyjson==0.3.3
 beautifulsoup4==4.6.0
 billiard==3.5.0.5
 celery==4.2.1
-certifi==2018.1.18
+certifi==2022.12.7
 chardet==3.0.4
 coreapi==2.2.4
 coreschema==0.0.4
